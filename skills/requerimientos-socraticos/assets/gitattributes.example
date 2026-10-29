@@ -1,0 +1,5 @@
+# Apply in the documentation repository before creating new hashes/evidence.
+*.json text eol=lf
+*.md text eol=lf
+*.py text eol=lf
+*.toml text eol=lf

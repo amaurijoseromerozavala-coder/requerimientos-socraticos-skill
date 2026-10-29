@@ -1,0 +1,67 @@
+{
+  "type": "object",
+  "properties": {
+    "role": {
+      "const": "SENIOR_SOFTWARE_ARCHITECT_SCIENTIST"
+    },
+    "action": {
+      "enum": [
+        "ASK",
+        "WAITING_USER",
+        "BLOCKED",
+        "COMPLETE"
+      ]
+    },
+    "question_id": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "topic_id": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "question": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "assessment_previous": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "needed_evidence": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "minItems": 0
+    },
+    "claims_challenged": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "minItems": 0
+    }
+  },
+  "required": [
+    "role",
+    "action",
+    "question_id",
+    "topic_id",
+    "question",
+    "assessment_previous",
+    "needed_evidence",
+    "claims_challenged"
+  ],
+  "additionalProperties": false
+}

@@ -1,0 +1,38 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Requerimientos: informe de contraste formal/material",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "scope", "snapshot_ref", "sections", "limitations", "open_questions", "lean_status", "target_hardware_status"],
+  "properties": {
+    "schema_version": {"const": "1.0.0"},
+    "scope": {"type": "string", "minLength": 1},
+    "snapshot_ref": {"type": "string", "minLength": 1},
+    "sections": {
+      "type": "object", "additionalProperties": false,
+      "required": ["ANALYSIS", "TEST PLAN", "VERIFICATION"],
+      "properties": {
+        "ANALYSIS": {"type": "array", "items": {"$ref": "#/$defs/claim"}},
+        "TEST PLAN": {"type": "array", "items": {"$ref": "#/$defs/claim"}},
+        "VERIFICATION": {"type": "array", "items": {"$ref": "#/$defs/claim"}}
+      }
+    },
+    "limitations": {"type": "array", "items": {"type": "string"}},
+    "open_questions": {"type": "array", "items": {"type": "string"}},
+    "lean_status": {"enum": ["NOT_RUN", "VERIFIED_WITH_DECLARED_ASSUMPTIONS", "INCOMPLETE", "UNKNOWN"]},
+    "target_hardware_status": {"enum": ["NOT_RUN", "OBSERVED_WITHIN_SCOPE", "UNKNOWN"]}
+  },
+  "$defs": {
+    "claim": {
+      "type": "object", "additionalProperties": false,
+      "required": ["id", "classification", "text", "source_refs", "status"],
+      "properties": {
+        "id": {"type": "string", "minLength": 1},
+        "classification": {"enum": ["OBSERVATION", "FORMAL_RESULT", "HYPOTHESIS", "DECISION", "PROPOSAL", "UNKNOWN"]},
+        "text": {"type": "string", "minLength": 1},
+        "source_refs": {"type": "array", "items": {"type": "string", "minLength": 1}},
+        "status": {"enum": ["OBSERVED", "PROVED_WITHIN_MODEL", "REFUTED_WITHIN_SCOPE", "NOT_RUN", "INCONCLUSIVE", "PROPOSED"]}
+      }
+    }
+  }
+}

@@ -1,0 +1,545 @@
+{
+  "type": "object",
+  "properties": {
+    "schema_version": {
+      "const": "2.0.0"
+    },
+    "project": {
+      "type": "string",
+      "minLength": 1
+    },
+    "mode": {
+      "enum": [
+        "INDEPENDENT_ASSISTANT_INTERVIEW",
+        "SINGLE_ASSISTANT_USER_INTERVIEW"
+      ]
+    },
+    "status": {
+      "enum": [
+        "CAPTURED",
+        "INTERROGATING",
+        "WAITING_ASSISTANT",
+        "WAITING_USER",
+        "PAUSED",
+        "BLOCKED",
+        "COMPLETE"
+      ]
+    },
+    "actors": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "role": {
+            "enum": [
+              "INTERROGATOR",
+              "ASSISTANT_RESPONDER",
+              "HUMAN_OWNER"
+            ]
+          },
+          "runtime_refs": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            },
+            "minItems": 0
+          }
+        },
+        "required": [
+          "id",
+          "role",
+          "runtime_refs"
+        ],
+        "additionalProperties": false
+      },
+      "minItems": 2
+    },
+    "sources": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "kind": {
+            "enum": [
+              "HUMAN",
+              "LOCAL",
+              "MCP",
+              "WEB_PRIMARY",
+              "EXPERIMENT"
+            ]
+          },
+          "locator": {
+            "type": "string",
+            "minLength": 1
+          },
+          "verbatim_or_observation": {
+            "type": "string",
+            "minLength": 1
+          },
+          "observed_at": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "required": [
+          "id",
+          "kind",
+          "locator",
+          "verbatim_or_observation",
+          "observed_at"
+        ],
+        "additionalProperties": false
+      },
+      "minItems": 0
+    },
+    "topics": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "dimension": {
+            "type": "string",
+            "minLength": 1
+          },
+          "material": {
+            "type": "boolean"
+          },
+          "applicable": {
+            "type": "boolean"
+          },
+          "status": {
+            "enum": [
+              "UNASSESSED",
+              "OPEN",
+              "COVERED",
+              "NOT_APPLICABLE"
+            ]
+          },
+          "rationale": {
+            "type": "string",
+            "minLength": 1
+          },
+          "question_ids": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            },
+            "minItems": 0
+          },
+          "source_ids": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            },
+            "minItems": 0
+          }
+        },
+        "required": [
+          "id",
+          "dimension",
+          "material",
+          "applicable",
+          "status",
+          "rationale",
+          "question_ids",
+          "source_ids"
+        ],
+        "additionalProperties": false
+      },
+      "minItems": 1
+    },
+    "exchanges": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "question": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string",
+                "minLength": 1
+              },
+              "by_actor": {
+                "type": "string",
+                "minLength": 1
+              },
+              "to_actor": {
+                "type": "string",
+                "minLength": 1
+              },
+              "topic_id": {
+                "type": "string",
+                "minLength": 1
+              },
+              "text": {
+                "type": "string",
+                "minLength": 1
+              },
+              "dimension": {
+                "type": "string",
+                "minLength": 1,
+                "description": "Clave estable de la dimensión preguntada; un seguimiento que resuelve otra pregunta debe conservarla exactamente, además del topic_id."
+              },
+              "required_evidence": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "minItems": 1
+              },
+              "answer_kind": {
+                "enum": [
+                  "EVIDENCE",
+                  "HUMAN_DECISION",
+                  "DESIGN_ARGUMENT"
+                ]
+              }
+            },
+            "required": [
+              "id",
+              "by_actor",
+              "to_actor",
+              "topic_id",
+              "text",
+              "dimension",
+              "required_evidence",
+              "answer_kind"
+            ],
+            "additionalProperties": false
+          },
+          "answer": {
+            "anyOf": [
+              {
+                "type": "null"
+              },
+              {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "by_actor": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "question_id": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "text": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "classification": {
+                    "enum": [
+                      "FACT",
+                      "USER_DECISION",
+                      "INFERENCE",
+                      "HYPOTHESIS",
+                      "UNKNOWN",
+                      "CONSTRAINT"
+                    ]
+                  },
+                  "source_ids": {
+                    "type": "array",
+                    "items": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "minItems": 0
+                  },
+                  "authoritative_quote": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  }
+                },
+                "required": [
+                  "id",
+                  "by_actor",
+                  "question_id",
+                  "text",
+                  "classification",
+                  "source_ids",
+                  "authoritative_quote"
+                ],
+                "additionalProperties": false
+              }
+            ]
+          },
+          "assessment": {
+            "anyOf": [
+              {
+                "type": "null"
+              },
+              {
+                "type": "object",
+                "properties": {
+                  "verdict": {
+                    "enum": [
+                      "ANSWERED",
+                      "INCOMPLETE",
+                      "CONTRADICTED",
+                      "ESCALATE_USER"
+                    ]
+                  },
+                  "rationale": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "remaining_gaps": {
+                    "type": "array",
+                    "items": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "minItems": 0
+                  },
+                  "resolved_by": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  }
+                },
+                "required": [
+                  "verdict",
+                  "rationale",
+                  "remaining_gaps",
+                  "resolved_by"
+                ],
+                "additionalProperties": false
+              }
+            ]
+          },
+          "question_receipt": {
+            "type": "object",
+            "properties": {
+              "path": {
+                "type": "string",
+                "minLength": 1
+              },
+              "format": {
+                "enum": [
+                  "PLAIN_TEXT",
+                  "JSON_QUESTION_FIELD"
+                ]
+              },
+              "sha256": {
+                "type": "string",
+                "pattern": "^[a-f0-9]{64}$"
+              }
+            },
+            "required": [
+              "path",
+              "format",
+              "sha256"
+            ],
+            "additionalProperties": false
+          },
+          "answer_receipt": {
+            "anyOf": [
+              {
+                "type": "null"
+              },
+              {
+                "type": "object",
+                "properties": {
+                  "path": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "format": {
+                    "enum": [
+                      "PLAIN_TEXT",
+                      "JSON_QUESTION_FIELD"
+                    ]
+                  },
+                  "sha256": {
+                    "type": "string",
+                    "pattern": "^[a-f0-9]{64}$"
+                  }
+                },
+                "required": [
+                  "path",
+                  "format",
+                  "sha256"
+                ],
+                "additionalProperties": false
+              }
+            ]
+          }
+        },
+        "required": [
+          "question",
+          "answer",
+          "assessment",
+          "question_receipt",
+          "answer_receipt"
+        ],
+        "additionalProperties": false
+      },
+      "minItems": 0
+    },
+    "research": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "kind": {
+            "enum": [
+              "SKILL_DISCOVERY",
+              "SKILL_READ",
+              "MCP_DISCOVERY",
+              "MCP_QUERY",
+              "WEB_SEARCH",
+              "WEB_OPEN",
+              "CONSOLE",
+              "FALLBACK"
+            ]
+          },
+          "status": {
+            "enum": [
+              "OK",
+              "UNAVAILABLE",
+              "NOT_APPLICABLE"
+            ]
+          },
+          "tool": {
+            "type": "string",
+            "minLength": 1
+          },
+          "query_or_action": {
+            "type": "string",
+            "minLength": 1
+          },
+          "source_ids": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            },
+            "minItems": 0
+          },
+          "receipt_locator": {
+            "type": "string",
+            "minLength": 1
+          },
+          "reason": {
+            "type": "string",
+            "minLength": 1
+          },
+          "receipt_sha256": {
+            "type": "string",
+            "pattern": "^[a-f0-9]{64}$"
+          }
+        },
+        "required": [
+          "id",
+          "kind",
+          "status",
+          "tool",
+          "query_or_action",
+          "source_ids",
+          "receipt_locator",
+          "reason",
+          "receipt_sha256"
+        ],
+        "additionalProperties": false
+      },
+      "minItems": 0
+    },
+    "active_question_id": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "budget": {
+      "type": "object",
+      "properties": {
+        "max_exchanges_this_session": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "stop_action": {
+          "const": "PAUSE_WITH_OPEN_TOPICS"
+        }
+      },
+      "required": [
+        "max_exchanges_this_session",
+        "stop_action"
+      ],
+      "additionalProperties": false
+    },
+    "limitations": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "minItems": 1
+    }
+  },
+  "required": [
+    "schema_version",
+    "project",
+    "mode",
+    "status",
+    "actors",
+    "sources",
+    "topics",
+    "exchanges",
+    "research",
+    "active_question_id",
+    "budget",
+    "limitations"
+  ],
+  "additionalProperties": false,
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Actual requirements interrogation record v2",
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "status": {
+            "const": "COMPLETE"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "active_question_id": {
+            "type": "null"
+          },
+          "exchanges": {
+            "minItems": 1
+          }
+        }
+      }
+    }
+  ]
+}

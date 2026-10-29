@@ -1,0 +1,11 @@
+{
+  "inputs": ["request"],
+  "outputs": ["approved", "logged"],
+  "domain": true,
+  "rules": [
+    {"id": "approval", "guard": {"var": "request"}, "response": {"var": "approved"}},
+    {"id": "logging", "guard": {"var": "request"}, "response": {"var": "logged"}},
+    {"id": "restriction", "guard": {"var": "request"}, "response": {"op": "not", "args": [{"op": "and", "args": [{"var": "approved"}, {"var": "logged"}]}]}}
+  ],
+  "properties": [{"id": "approval_implies_logging", "expression": {"op": "implies", "args": [{"var": "approved"}, {"var": "logged"}]}}]
+}

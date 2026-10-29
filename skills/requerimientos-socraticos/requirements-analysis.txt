@@ -1,0 +1,2 @@
+# Optional symbolic-analysis backend. Not installed during skill activation.
+z3-solver==4.15.4.0

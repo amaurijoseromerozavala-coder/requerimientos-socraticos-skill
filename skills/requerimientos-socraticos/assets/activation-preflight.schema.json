@@ -1,0 +1,290 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Activation preflight 1.0.0 — prospective observations, not authorization",
+  "oneOf": [
+    {
+      "type": "object",
+      "required": [
+        "schema_version",
+        "kind",
+        "observed_at",
+        "status",
+        "observation",
+        "policy",
+        "capabilities",
+        "execution",
+        "evidence"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "schema_version": {
+          "const": "1.0.0"
+        },
+        "kind": {
+          "const": "ACTIVATION_PREFLIGHT"
+        },
+        "observed_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "status": {
+          "enum": [
+            "READY_FOR_LIVE_ADMISSION",
+            "INCONCLUSIVE"
+          ]
+        },
+        "observation": {
+          "type": "object",
+          "required": [
+            "platform",
+            "cpu",
+            "memory",
+            "storage",
+            "observation_scope"
+          ],
+          "properties": {
+            "observation_scope": {
+              "type": "object",
+              "required": [
+                "physical_host"
+              ],
+              "properties": {
+                "physical_host": {
+                  "const": "NOT_OBSERVED"
+                }
+              }
+            }
+          }
+        },
+        "policy": {
+          "type": "object",
+          "required": [
+            "kind",
+            "calibration",
+            "workload",
+            "caller_scope",
+            "selected_profile_mib",
+            "effective_profile_mib"
+          ],
+          "properties": {
+            "kind": {
+              "const": "PROVISIONAL_ENGINEERING_POLICY"
+            },
+            "calibration": {
+              "const": "NOT_CALIBRATED"
+            },
+            "workload": {
+              "type": "string"
+            },
+            "caller_scope": {
+              "type": "string"
+            },
+            "selected_profile_mib": {
+              "anyOf": [
+                {
+                  "type": "integer",
+                  "minimum": 256,
+                  "maximum": 512,
+                  "multipleOf": 8
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "effective_profile_mib": {
+              "anyOf": [
+                {
+                  "type": "integer",
+                  "minimum": 256,
+                  "maximum": 512,
+                  "multipleOf": 8
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "role_limits_mib": {
+              "type": [
+                "object",
+                "null"
+              ],
+              "additionalProperties": {
+                "type": "integer",
+                "minimum": 1
+              }
+            }
+          }
+        },
+        "capabilities": {
+          "type": "object",
+          "required": [
+            "document_analysis",
+            "workers"
+          ],
+          "properties": {
+            "document_analysis": {
+              "const": "AVAILABLE"
+            },
+            "workers": {
+              "enum": [
+                "UNKNOWN",
+                "REJECTED",
+                "CANDIDATE_SUBJECT_TO_LIVE_ADMISSION"
+              ]
+            }
+          }
+        },
+        "execution": {
+          "type": "object",
+          "required": [
+            "authorized",
+            "workers",
+            "gate",
+            "control_state",
+            "enforced",
+            "prospective_controls",
+            "effective_profile_mib"
+          ],
+          "properties": {
+            "authorized": {
+              "const": false
+            },
+            "workers": {
+              "enum": [
+                "BLOCKED",
+                "LIVE_GATE_REQUIRED",
+                "COMPLETED"
+              ]
+            },
+            "gate": {
+              "const": "LIVE_ADMISSION_REQUIRED"
+            },
+            "control_state": {
+              "enum": [
+                "PENDING",
+                "PARTIALLY_APPLIED",
+                "APPLIED"
+              ]
+            },
+            "enforced": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "prospective_controls": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "effective_profile_mib": {
+              "anyOf": [
+                {
+                  "type": "integer",
+                  "minimum": 256,
+                  "maximum": 512,
+                  "multipleOf": 8
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            }
+          }
+        },
+        "evidence": {
+          "type": "object"
+        },
+        "error": {
+          "$ref": "#/$defs/error"
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "status": {
+                "const": "INCONCLUSIVE"
+              }
+            }
+          },
+          "then": {
+            "required": [
+              "error"
+            ],
+            "properties": {
+              "execution": {
+                "properties": {
+                  "workers": {
+                    "const": "BLOCKED"
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "execution": {
+                "properties": {
+                  "control_state": {
+                    "const": "PENDING"
+                  }
+                }
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "execution": {
+                "properties": {
+                  "enforced": {
+                    "maxItems": 0
+                  }
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "type": "object",
+      "required": [
+        "status",
+        "error"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "status": {
+          "const": "INCONCLUSIVE"
+        },
+        "error": {
+          "$ref": "#/$defs/error"
+        }
+      }
+    }
+  ],
+  "$defs": {
+    "error": {
+      "type": "object",
+      "required": [
+        "code"
+      ],
+      "properties": {
+        "code": {
+          "type": "string",
+          "minLength": 1
+        },
+        "message": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    }
+  }
+}

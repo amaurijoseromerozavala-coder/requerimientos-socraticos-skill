@@ -1,0 +1,27 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.invalid/requerimientos-socraticos/logic-input.schema.json",
+  "title": "Bounded Boolean model for requirements analysis",
+  "description": "The analyzer additionally enforces at most 32 unique variables in total, unique IDs across rules and properties, variable scope, and aggregate AST node and depth limits.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["inputs", "outputs", "domain", "rules", "properties"],
+  "properties": {
+    "inputs": {"$ref": "#/$defs/variables"},
+    "outputs": {"$ref": "#/$defs/variables"},
+    "domain": {"$ref": "#/$defs/expression"},
+    "rules": {"type": "array", "maxItems": 128, "items": {"type": "object", "additionalProperties": false, "required": ["id", "guard", "response"], "properties": {"id": {"$ref": "#/$defs/name"}, "guard": {"$ref": "#/$defs/expression"}, "response": {"$ref": "#/$defs/expression"}}}},
+    "properties": {"type": "array", "maxItems": 128, "items": {"type": "object", "additionalProperties": false, "required": ["id", "expression"], "properties": {"id": {"$ref": "#/$defs/name"}, "expression": {"$ref": "#/$defs/expression"}}}}
+  },
+  "$defs": {
+    "name": {"type": "string", "pattern": "^[A-Za-z_][A-Za-z0-9_]{0,63}$"},
+    "variables": {"type": "array", "maxItems": 32, "uniqueItems": true, "items": {"$ref": "#/$defs/name"}},
+    "expression": {"oneOf": [
+      {"type": "boolean"},
+      {"type": "object", "additionalProperties": false, "required": ["var"], "properties": {"var": {"$ref": "#/$defs/name"}}},
+      {"type": "object", "additionalProperties": false, "required": ["op", "args"], "properties": {"op": {"enum": ["not"]}, "args": {"type": "array", "minItems": 1, "maxItems": 1, "items": {"$ref": "#/$defs/expression"}}}},
+      {"type": "object", "additionalProperties": false, "required": ["op", "args"], "properties": {"op": {"enum": ["implies", "eq"]}, "args": {"type": "array", "minItems": 2, "maxItems": 2, "items": {"$ref": "#/$defs/expression"}}}},
+      {"type": "object", "additionalProperties": false, "required": ["op", "args"], "properties": {"op": {"enum": ["and", "or"]}, "args": {"type": "array", "minItems": 2, "maxItems": 128, "items": {"$ref": "#/$defs/expression"}}}}
+    ]}
+  }
+}
