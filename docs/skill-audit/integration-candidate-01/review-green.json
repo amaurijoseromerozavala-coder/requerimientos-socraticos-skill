@@ -1,0 +1,7 @@
+{
+  "scope": "documentary checks after independent findings; not operational tests",
+  "revocation_handler_covers_states": 9,
+  "epoch_binding_specified": true,
+  "task_authority_definitions": 7,
+  "C01_matches_scoped_revoked_epoch": true
+}

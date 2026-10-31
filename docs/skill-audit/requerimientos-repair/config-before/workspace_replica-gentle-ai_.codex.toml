@@ -1,0 +1,32 @@
+model = "gpt-6-luna"
+model_reasoning_effort = "medium"
+model_verbosity = "low"
+[features]
+multi_agent = true
+
+[agents]
+max_depth = 1
+max_threads = 2
+
+[mcp_servers.context7]
+url = "https://mcp.context7.com/mcp"
+
+[mcp_servers.engram]
+command = "/home/agent/.local/bin/engram"
+args = ["mcp", "--tools=agent"]
+
+[mcp_servers.codegraph]
+command = "/home/agent/.local/bin/codegraph"
+args = ["serve", "--mcp"]
+
+[agents.odd-explorer]
+description = "Read-only exploration of one bounded question."
+config_file = "/workspace/replica-gentle-ai/.codex/agents/odd-explorer.toml"
+
+[agents.odd-worker]
+description = "Implement one bounded task with applicable verification."
+config_file = "/workspace/replica-gentle-ai/.codex/agents/odd-worker.toml"
+
+[agents.odd-verify]
+description = "Read-only independent verification when the task names a material risk."
+config_file = "/workspace/replica-gentle-ai/.codex/agents/odd-verify.toml"

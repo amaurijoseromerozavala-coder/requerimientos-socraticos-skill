@@ -1,0 +1,20 @@
+{
+  "timeout_test": {
+    "scope": "Synthetic waiting consumer; no CPU/memory stress",
+    "budget_seconds": 0.5,
+    "elapsed_seconds": 0.5020951559999958,
+    "child_alive_after_timeout": false,
+    "next_validation": "PASS"
+  },
+  "qa_claims": {
+    "no_child_timeout": "REFUTED_FOR_LIVE_PARENT",
+    "same_account_isolation": "NOT_PROVIDED_BY_MODEL",
+    "utimensat_restores_ctime": "INCORRECT: API sets atime/mtime; not arbitrary ctime",
+    "0600_impossible_consumption": "NOT_ESTABLISHED; consumer channel unspecified"
+  },
+  "limits": [
+    "No claim for parent terminated while an indefinitely waiting child survives.",
+    "Same-UID hostile process and compromised engine/kernel remain outside declared trust boundary.",
+    "Not physical WSL or hardware acceptance."
+  ]
+}

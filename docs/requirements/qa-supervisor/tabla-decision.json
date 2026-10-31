@@ -1,0 +1,118 @@
+{
+  "status": "DRAFT_MODEL",
+  "scope": "16 abstract combinations; coherence includes version/schema and exit/result pairing; runtime failure is directly observed, not inferred cause",
+  "rows": [
+    {
+      "runtime_failure_observed": false,
+      "payload_supported_complete_and_coherent": false,
+      "exit_class": "0",
+      "result_class": "PROTOCOL_FAILURE",
+      "execution_authorized": false
+    },
+    {
+      "runtime_failure_observed": false,
+      "payload_supported_complete_and_coherent": false,
+      "exit_class": "2",
+      "result_class": "PROTOCOL_FAILURE",
+      "execution_authorized": false
+    },
+    {
+      "runtime_failure_observed": false,
+      "payload_supported_complete_and_coherent": false,
+      "exit_class": "3",
+      "result_class": "PROTOCOL_FAILURE",
+      "execution_authorized": false
+    },
+    {
+      "runtime_failure_observed": false,
+      "payload_supported_complete_and_coherent": false,
+      "exit_class": "OTHER",
+      "result_class": "PROTOCOL_FAILURE",
+      "execution_authorized": false
+    },
+    {
+      "runtime_failure_observed": false,
+      "payload_supported_complete_and_coherent": true,
+      "exit_class": "0",
+      "result_class": "EVALUATED_RECORD",
+      "execution_authorized": false
+    },
+    {
+      "runtime_failure_observed": false,
+      "payload_supported_complete_and_coherent": true,
+      "exit_class": "2",
+      "result_class": "REJECT_INPUT",
+      "execution_authorized": false
+    },
+    {
+      "runtime_failure_observed": false,
+      "payload_supported_complete_and_coherent": true,
+      "exit_class": "3",
+      "result_class": "INFRA_FAILURE",
+      "execution_authorized": false
+    },
+    {
+      "runtime_failure_observed": false,
+      "payload_supported_complete_and_coherent": true,
+      "exit_class": "OTHER",
+      "result_class": "PROTOCOL_FAILURE",
+      "execution_authorized": false
+    },
+    {
+      "runtime_failure_observed": true,
+      "payload_supported_complete_and_coherent": false,
+      "exit_class": "0",
+      "result_class": "INFRA_FAILURE",
+      "execution_authorized": false
+    },
+    {
+      "runtime_failure_observed": true,
+      "payload_supported_complete_and_coherent": false,
+      "exit_class": "2",
+      "result_class": "INFRA_FAILURE",
+      "execution_authorized": false
+    },
+    {
+      "runtime_failure_observed": true,
+      "payload_supported_complete_and_coherent": false,
+      "exit_class": "3",
+      "result_class": "INFRA_FAILURE",
+      "execution_authorized": false
+    },
+    {
+      "runtime_failure_observed": true,
+      "payload_supported_complete_and_coherent": false,
+      "exit_class": "OTHER",
+      "result_class": "INFRA_FAILURE",
+      "execution_authorized": false
+    },
+    {
+      "runtime_failure_observed": true,
+      "payload_supported_complete_and_coherent": true,
+      "exit_class": "0",
+      "result_class": "INFRA_FAILURE",
+      "execution_authorized": false
+    },
+    {
+      "runtime_failure_observed": true,
+      "payload_supported_complete_and_coherent": true,
+      "exit_class": "2",
+      "result_class": "INFRA_FAILURE",
+      "execution_authorized": false
+    },
+    {
+      "runtime_failure_observed": true,
+      "payload_supported_complete_and_coherent": true,
+      "exit_class": "3",
+      "result_class": "INFRA_FAILURE",
+      "execution_authorized": false
+    },
+    {
+      "runtime_failure_observed": true,
+      "payload_supported_complete_and_coherent": true,
+      "exit_class": "OTHER",
+      "result_class": "INFRA_FAILURE",
+      "execution_authorized": false
+    }
+  ]
+}

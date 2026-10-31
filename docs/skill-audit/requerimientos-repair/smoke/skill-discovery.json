@@ -1,0 +1,8 @@
+{
+  "observed_action": "Resolved known local skill paths, read registered custom skill and upstream skill-improver; no new skill installed.",
+  "paths": [
+    "skills/requerimientos-socraticos/SKILL.md",
+    "/tmp/gentle-source/internal/assets/skills/skill-improver/SKILL.md"
+  ],
+  "observed_at": "2026-10-26T17:19:34.837340+00:00"
+}

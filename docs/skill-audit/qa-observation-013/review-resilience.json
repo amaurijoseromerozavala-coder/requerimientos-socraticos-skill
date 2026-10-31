@@ -1,0 +1,12 @@
+{
+  "schema": "gentle-ai.review-result-artifact/v2",
+  "capability": "review.native_result_artifact",
+  "reference": "rart1_13bcc52a059863e230c2af1f6de596c441ed9318863d00562d1f887a33477263",
+  "sha256": "sha256:2ffd99604cf89b3f39a18837d00b83fc75125c6e8a769553c5c57c5540aaf20d",
+  "lineage_id": "review-7a9416af43bbf95b",
+  "target_identity": "sha256:aabfa52ad49dd986576f01d7d43eec90e283e553c8aba859e94e750b01683ebf",
+  "lens": "review-resilience",
+  "selected_order": 0,
+  "subject_hash": "sha256:233593188aa3ffb032223628bca940e1e6d8cb653d519a7d157ddaca54836477",
+  "admission_decision": "completed"
+}

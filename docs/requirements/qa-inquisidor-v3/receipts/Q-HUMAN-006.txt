@@ -1,0 +1,1 @@
+En QA Inquisidor, ¿quién debe confirmar que el alcance, la importancia de los pendientes y la evidencia bastan para emitir PASS?

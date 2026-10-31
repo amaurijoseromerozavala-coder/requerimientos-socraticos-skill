@@ -1,0 +1,76 @@
+{
+  "schema": "gentle-ai.review-last-event-closure/v1",
+  "operation": "review/capture-result",
+  "lineage_id": "review-84f615eebfc2ae7d",
+  "state": "approved",
+  "action": "the approved review completed on the last admitted event and awaits its exact acknowledgement",
+  "reviewer_results": [
+    {
+      "lens": "review-resilience",
+      "findings": [],
+      "evidence": [
+        "Inspected all 23 supplied immutable patches. The candidate adds documentation and interview receipts without executable changes; no candidate-caused production failure or measured operational regression is demonstrated.",
+        "docs/requirements/qa-supervisor/receipts/A-SUP-003.txt:1 requires observed child termination before confirming cleanup, rejects partial output, and prohibits automatic replacement when termination is unconfirmed.",
+        "docs/requirements/qa-supervisor/receipts/A-SUP-006.txt:1 explicitly documents conservative recovery locks and potentially indefinite local unavailability when process identity or termination evidence cannot be recovered; execution tests remain NOT_RUN.",
+        "docs/requirements/qa-supervisor/receipts/A-SUP-007.txt:1 defines monotonic deadlines and escalation while explicitly distinguishing provisional budgets from measured latency or a guaranteed completion bound.",
+        "docs/requirements/qa-supervisor/receipts/RETENTION-OPTIONS.txt:1 records the human-selected retention policy, including blocking new executions at the storage limit without automatic deletion."
+      ],
+      "result_hash": "sha256:c650d268553080023f20e82b2eb05a30fee4c6845b861f1d16111cd28bb9113c"
+    },
+    {
+      "lens": "review-reliability",
+      "findings": [],
+      "evidence": [
+        "Inspected all 23 supplied immutable patches. The candidate adds documentary interview records, decisions, and receipts; it introduces no executable implementation.",
+        "docs/requirements/qa-supervisor/receipts/A-SUP-003.txt:1 distinguishes observed child termination from merely sending a signal, rejects partial JSON, and specifies an observable falsifier for incorrectly confirmed cleanup.",
+        "docs/requirements/qa-supervisor/receipts/A-SUP-006.txt:1 specifies conservative recovery for interrupted process creation, separates receipts from the recovery journal, and explicitly limits model assertions to their documented scope.",
+        "docs/requirements/qa-supervisor/receipts/A-SUP-007.txt:1 defines monotonic deadline origins, escalation stages, rejection of late success, and the provisional nature of timing budgets.",
+        "docs/requirements/qa-supervisor/design-proposals.json:53 expressly limits the result to documentary design. Runtime verification is explicitly deferred, so the supplied records do not claim that supervisor behavior has passed execution tests."
+      ],
+      "result_hash": "sha256:19f02a57fa98f00e5e5882374de5ac4703f1df19131faff5515896d9d6b34234"
+    }
+  ],
+  "acknowledgement": {
+    "operation": "review.acknowledge-approved",
+    "command": "gentle-ai review acknowledge-approved --cwd=/workspace/replica-gentle-ai --lineage=review-84f615eebfc2ae7d --target=sha256:55a0dc546e2a860a42b1d2c389f948ed403aea8c82d070adeaf1cef856a6a011 --expected-revision=sha256:24e1867192b7a5e054dcad574b91bc8276e25a0ca53fece5cb4e2bba9f142ec8 --token=bd915e50471a30b8923b4e50a8afe7e32f239b0244cfa3ed1e7ca3c54dbfe8c3",
+    "arguments": [
+      {
+        "name": "cwd",
+        "value": "/workspace/replica-gentle-ai",
+        "token": "--cwd=/workspace/replica-gentle-ai"
+      },
+      {
+        "name": "lineage",
+        "value": "review-84f615eebfc2ae7d",
+        "token": "--lineage=review-84f615eebfc2ae7d"
+      },
+      {
+        "name": "target",
+        "value": "sha256:55a0dc546e2a860a42b1d2c389f948ed403aea8c82d070adeaf1cef856a6a011",
+        "token": "--target=sha256:55a0dc546e2a860a42b1d2c389f948ed403aea8c82d070adeaf1cef856a6a011"
+      },
+      {
+        "name": "expected-revision",
+        "value": "sha256:24e1867192b7a5e054dcad574b91bc8276e25a0ca53fece5cb4e2bba9f142ec8",
+        "token": "--expected-revision=sha256:24e1867192b7a5e054dcad574b91bc8276e25a0ca53fece5cb4e2bba9f142ec8"
+      },
+      {
+        "name": "token",
+        "value": "bd915e50471a30b8923b4e50a8afe7e32f239b0244cfa3ed1e7ca3c54dbfe8c3",
+        "token": "--token=bd915e50471a30b8923b4e50a8afe7e32f239b0244cfa3ed1e7ca3c54dbfe8c3"
+      }
+    ],
+    "preconditions": [
+      {
+        "name": "state",
+        "value": "approved"
+      }
+    ],
+    "binding": {
+      "lineage_id": "review-84f615eebfc2ae7d",
+      "revision": "sha256:24e1867192b7a5e054dcad574b91bc8276e25a0ca53fece5cb4e2bba9f142ec8",
+      "target_identity": "sha256:55a0dc546e2a860a42b1d2c389f948ed403aea8c82d070adeaf1cef856a6a011"
+    }
+  },
+  "store_revision": "sha256:24e1867192b7a5e054dcad574b91bc8276e25a0ca53fece5cb4e2bba9f142ec8"
+}

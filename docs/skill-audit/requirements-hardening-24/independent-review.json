@@ -1,0 +1,30 @@
+{
+  "reviewer": "/root/requirements_formal_review",
+  "model": "gpt-6-astra",
+  "reasoning_effort": "high",
+  "scope": "Bounded source review and independent execution in temporary copy, not physical hardware.",
+  "initial_results": {
+    "public_tests": 11,
+    "independent_models": 7,
+    "max_model_variables": 3,
+    "findings_material": []
+  },
+  "followup": {
+    "public_environment_tests": 5,
+    "independent_cpu_fixtures": 6,
+    "finite_memory_fixture": "checked",
+    "findings_material": []
+  },
+  "limits": [
+    "Deadline cooperative, no OS supervisor added.",
+    "No claim of implementation correctness of products described by PRDs.",
+    "No Lean proof execution, capacity calibration, target i3/WSL acceptance or CI."
+  ],
+  "hashes": {
+    "skills/requerimientos-socraticos/scripts/analyze_logic.py": "a6eb2d49b5a569972dfc227950cb920558701d2f7213cc69f0068fd870f61348",
+    "skills/requerimientos-socraticos/scripts/probe_environment.py": "1ffda09f034d81e71a0a3b133a0f31f8731ff68c771a517e63f0279619bb0675",
+    "skills/requerimientos-socraticos/tests/test_logic.py": "73b444efbe3eb07c95617c3d16fccdc775b4e7d52e6e1520e62952a6f1b483d4",
+    "skills/requerimientos-socraticos/tests/test_environment.py": "5d19bbe390c406bcccf18df821f37de8d7b74d95f351993e00425f395ebf884c",
+    "skills/requerimientos-socraticos/assets/logic-input.schema.json": "7d84a4206aef40594e81cf091b15104de9d9dfe2043643ea1af352b79c411067"
+  }
+}

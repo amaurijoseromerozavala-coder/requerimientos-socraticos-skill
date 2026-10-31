@@ -1,0 +1,38 @@
+{
+  "schema": "gentle-ai.review-integration.consent/v3",
+  "contract": "gentle-ai.review-integration/v2",
+  "operation": "review.start",
+  "action": "consent_required",
+  "agent": "codex",
+  "blocking": true,
+  "target_identity": "sha256:69dca0c899c73807807ca164b7abee119bdf9afffa000916629dfbc3128be916",
+  "projection": "workspace",
+  "risk_level": "medium",
+  "changed_files": 23,
+  "changed_lines": 2287,
+  "headline": "Gentle AI can review this change before you call it done.",
+  "reason": "Review can help detect regressions in these changes.",
+  "value": "Reviewing takes a little longer and makes the result safer.",
+  "risk_evidence": [
+    "this change is not purely passive documentation, so it gets one consolidated review.",
+    "an executable change in AGENTS.md"
+  ],
+  "choices": [
+    {
+      "answer": "granted",
+      "label": "Review this change",
+      "effect": "Reviews only this change; later medium- or high-risk changes ask again, and delivery needs separate approval.",
+      "invocation": "gentle-ai review start --contract gentle-ai.review-integration/v2 --cwd /workspace/replica-gentle-ai --target sha256:69dca0c899c73807807ca164b7abee119bdf9afffa000916629dfbc3128be916 --target-evidence v1:current-changes:workspace:4b825dc642cb6eb9a060e54bf8d69288fbee4904:093c194016a7f8b92892d8f204da5d39bf7649c3:sha256:f0967f8c8b2fa2b3b35400ca72ed5a75be499f58ba8e867dcc9ae3142ecc01b3 --projection workspace --agent codex --lineage review-49b09408ba4188ae --untracked-scope=select --expected-untracked-inventory=sha256:5c28a74ea0e2303c7839e531ac515dec6a3162751214232045c24c4ad12c20bd --intended-untracked=AGENTS.md --intended-untracked=docs/requirements/qa-inquisidor-v3/PRD.md --intended-untracked=docs/requirements/qa-inquisidor-v3/contrato-evidencia.json --intended-untracked=docs/requirements/qa-inquisidor-v3/escenarios-previos.json --intended-untracked=docs/requirements/qa-inquisidor-v3/interview.json --intended-untracked=docs/requirements/qa-inquisidor-v3/modelo-cierre.json --intended-untracked=docs/requirements/qa-inquisidor-v3/receipts/A-HUMAN-006.txt --intended-untracked=docs/requirements/qa-inquisidor-v3/receipts/A-QA-006.txt --intended-untracked=docs/requirements/qa-inquisidor-v3/receipts/A-QA-007.txt --intended-untracked=docs/requirements/qa-inquisidor-v3/receipts/A-QA-008.txt --intended-untracked=docs/requirements/qa-inquisidor-v3/receipts/Q-HUMAN-006.txt --intended-untracked=docs/requirements/qa-inquisidor-v3/receipts/Q-QA-006.txt --intended-untracked=docs/requirements/qa-inquisidor-v3/receipts/Q-QA-007.txt --intended-untracked=docs/requirements/qa-inquisidor-v3/receipts/Q-QA-008.txt --intended-untracked=docs/requirements/qa-inquisidor-v3/registro-skill-asistente.md --intended-untracked=docs/requirements/qa-inquisidor-v3/resumen-entrada.schema.json --intended-untracked=skills/qa-inquisidor/SKILL.md --intended-untracked=skills/qa-inquisidor/assets/report.schema.json --intended-untracked=skills/qa-inquisidor/references/criteria.md --intended-untracked=skills/qa-inquisidor/scripts/validate_report.py --intended-untracked=skills/qa-inquisidor/tests/test_report.py --intended-untracked=skills/requerimientos-socraticos/scripts/json_preflight.py --intended-untracked=skills/requerimientos-socraticos/scripts/safe_io.py --request-context /workspace/replica-gentle-ai/docs/skill-audit/qa-construction-v3/request.md --lenses review-risk,review-resilience,review-readability,review-reliability --lenses-reason 'Local QA alpha: bounded record checker, semantic bindings, uncertainty and documentation; no application executor.' --consent granted"
+    },
+    {
+      "answer": "declined",
+      "label": "Skip this time",
+      "effect": "Skips only this change; no review record is created, and future reviews stay enabled.",
+      "invocation": "gentle-ai review start --contract gentle-ai.review-integration/v2 --cwd /workspace/replica-gentle-ai --target sha256:69dca0c899c73807807ca164b7abee119bdf9afffa000916629dfbc3128be916 --target-evidence v1:current-changes:workspace:4b825dc642cb6eb9a060e54bf8d69288fbee4904:093c194016a7f8b92892d8f204da5d39bf7649c3:sha256:f0967f8c8b2fa2b3b35400ca72ed5a75be499f58ba8e867dcc9ae3142ecc01b3 --projection workspace --agent codex --lineage review-49b09408ba4188ae --untracked-scope=select --expected-untracked-inventory=sha256:5c28a74ea0e2303c7839e531ac515dec6a3162751214232045c24c4ad12c20bd --intended-untracked=AGENTS.md --intended-untracked=docs/requirements/qa-inquisidor-v3/PRD.md --intended-untracked=docs/requirements/qa-inquisidor-v3/contrato-evidencia.json --intended-untracked=docs/requirements/qa-inquisidor-v3/escenarios-previos.json --intended-untracked=docs/requirements/qa-inquisidor-v3/interview.json --intended-untracked=docs/requirements/qa-inquisidor-v3/modelo-cierre.json --intended-untracked=docs/requirements/qa-inquisidor-v3/receipts/A-HUMAN-006.txt --intended-untracked=docs/requirements/qa-inquisidor-v3/receipts/A-QA-006.txt --intended-untracked=docs/requirements/qa-inquisidor-v3/receipts/A-QA-007.txt --intended-untracked=docs/requirements/qa-inquisidor-v3/receipts/A-QA-008.txt --intended-untracked=docs/requirements/qa-inquisidor-v3/receipts/Q-HUMAN-006.txt --intended-untracked=docs/requirements/qa-inquisidor-v3/receipts/Q-QA-006.txt --intended-untracked=docs/requirements/qa-inquisidor-v3/receipts/Q-QA-007.txt --intended-untracked=docs/requirements/qa-inquisidor-v3/receipts/Q-QA-008.txt --intended-untracked=docs/requirements/qa-inquisidor-v3/registro-skill-asistente.md --intended-untracked=docs/requirements/qa-inquisidor-v3/resumen-entrada.schema.json --intended-untracked=skills/qa-inquisidor/SKILL.md --intended-untracked=skills/qa-inquisidor/assets/report.schema.json --intended-untracked=skills/qa-inquisidor/references/criteria.md --intended-untracked=skills/qa-inquisidor/scripts/validate_report.py --intended-untracked=skills/qa-inquisidor/tests/test_report.py --intended-untracked=skills/requerimientos-socraticos/scripts/json_preflight.py --intended-untracked=skills/requerimientos-socraticos/scripts/safe_io.py --request-context /workspace/replica-gentle-ai/docs/skill-audit/qa-construction-v3/request.md --lenses review-risk,review-resilience,review-readability,review-reliability --lenses-reason 'Local QA alpha: bounded record checker, semantic bindings, uncertainty and documentation; no application executor.' --consent declined"
+    }
+  ],
+  "off_path": {
+    "note": "To turn reviews off for good, run 'gentle-ai review mode disable'.",
+    "command": "gentle-ai review mode disable"
+  }
+}

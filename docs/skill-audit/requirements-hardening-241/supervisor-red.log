@@ -1,0 +1,71 @@
+test_cli_short_budget_is_inconclusive (test_supervisor.SupervisorTests.test_cli_short_budget_is_inconclusive) ... FAIL
+test_no_implicit_interpreter_fallback (test_supervisor.SupervisorTests.test_no_implicit_interpreter_fallback) ... FAIL
+test_runtime_identity_is_observed_not_authenticated (test_supervisor.SupervisorTests.test_runtime_identity_is_observed_not_authenticated) ... ERROR
+test_successful_worker_is_preserved (test_supervisor.SupervisorTests.test_successful_worker_is_preserved) ... ERROR
+test_waiting_worker_stops_and_is_reaped (test_supervisor.SupervisorTests.test_waiting_worker_stops_and_is_reaped) ... ERROR
+
+======================================================================
+ERROR: test_runtime_identity_is_observed_not_authenticated (test_supervisor.SupervisorTests.test_runtime_identity_is_observed_not_authenticated)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/replica-gentle-ai/skills/requerimientos-socraticos/tests/test_supervisor.py", line 53, in test_runtime_identity_is_observed_not_authenticated
+    result = load().runtime_identity()
+             ^^^^^^
+  File "/workspace/replica-gentle-ai/skills/requerimientos-socraticos/tests/test_supervisor.py", line 19, in load
+    spec.loader.exec_module(module)
+  File "<frozen importlib._bootstrap_external>", line 999, in exec_module
+  File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+  File "/workspace/replica-gentle-ai/skills/requerimientos-socraticos/scripts/analyze_logic.py", line 13, in <module>
+    from safe_io import read_regular
+ModuleNotFoundError: No module named 'safe_io'
+
+======================================================================
+ERROR: test_successful_worker_is_preserved (test_supervisor.SupervisorTests.test_successful_worker_is_preserved)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/replica-gentle-ai/skills/requerimientos-socraticos/tests/test_supervisor.py", line 36, in test_successful_worker_is_preserved
+    result = load().run_supervised([sys.executable, '-c', 'print(\'{"ok":true}\')'], 2)
+             ^^^^^^
+  File "/workspace/replica-gentle-ai/skills/requerimientos-socraticos/tests/test_supervisor.py", line 19, in load
+    spec.loader.exec_module(module)
+  File "<frozen importlib._bootstrap_external>", line 999, in exec_module
+  File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+  File "/workspace/replica-gentle-ai/skills/requerimientos-socraticos/scripts/analyze_logic.py", line 13, in <module>
+    from safe_io import read_regular
+ModuleNotFoundError: No module named 'safe_io'
+
+======================================================================
+ERROR: test_waiting_worker_stops_and_is_reaped (test_supervisor.SupervisorTests.test_waiting_worker_stops_and_is_reaped)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/replica-gentle-ai/skills/requerimientos-socraticos/tests/test_supervisor.py", line 25, in test_waiting_worker_stops_and_is_reaped
+    module = load()
+             ^^^^^^
+  File "/workspace/replica-gentle-ai/skills/requerimientos-socraticos/tests/test_supervisor.py", line 19, in load
+    spec.loader.exec_module(module)
+  File "<frozen importlib._bootstrap_external>", line 999, in exec_module
+  File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+  File "/workspace/replica-gentle-ai/skills/requerimientos-socraticos/scripts/analyze_logic.py", line 13, in <module>
+    from safe_io import read_regular
+ModuleNotFoundError: No module named 'safe_io'
+
+======================================================================
+FAIL: test_cli_short_budget_is_inconclusive (test_supervisor.SupervisorTests.test_cli_short_budget_is_inconclusive)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/replica-gentle-ai/skills/requerimientos-socraticos/tests/test_supervisor.py", line 47, in test_cli_short_budget_is_inconclusive
+    self.assertEqual(run.returncode, 3)
+AssertionError: 0 != 3
+
+======================================================================
+FAIL: test_no_implicit_interpreter_fallback (test_supervisor.SupervisorTests.test_no_implicit_interpreter_fallback)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/replica-gentle-ai/skills/requerimientos-socraticos/tests/test_supervisor.py", line 65, in test_no_implicit_interpreter_fallback
+    self.assertEqual(p.returncode, 2)
+AssertionError: 0 != 2
+
+----------------------------------------------------------------------
+Ran 5 tests in 0.082s
+
+FAILED (failures=2, errors=3)

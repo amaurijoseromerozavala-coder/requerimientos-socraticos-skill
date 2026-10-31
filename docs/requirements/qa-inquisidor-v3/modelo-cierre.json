@@ -1,0 +1,426 @@
+{
+  "inputs": [
+    "input_valid",
+    "delegation_current",
+    "scope_supported",
+    "valid_failure",
+    "has_gap",
+    "all_success"
+  ],
+  "outputs": [
+    "reject",
+    "failure",
+    "gap",
+    "success"
+  ],
+  "domain": true,
+  "rules": [
+    {
+      "id": "reject",
+      "guard": {
+        "op": "not",
+        "args": [
+          {
+            "var": "input_valid"
+          }
+        ]
+      },
+      "response": {
+        "op": "and",
+        "args": [
+          {
+            "var": "reject"
+          },
+          {
+            "op": "not",
+            "args": [
+              {
+                "var": "failure"
+              }
+            ]
+          },
+          {
+            "op": "not",
+            "args": [
+              {
+                "var": "gap"
+              }
+            ]
+          },
+          {
+            "op": "not",
+            "args": [
+              {
+                "var": "success"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "failure",
+      "guard": {
+        "op": "and",
+        "args": [
+          {
+            "var": "input_valid"
+          },
+          {
+            "var": "valid_failure"
+          }
+        ]
+      },
+      "response": {
+        "op": "and",
+        "args": [
+          {
+            "op": "not",
+            "args": [
+              {
+                "var": "reject"
+              }
+            ]
+          },
+          {
+            "var": "failure"
+          },
+          {
+            "op": "not",
+            "args": [
+              {
+                "var": "gap"
+              }
+            ]
+          },
+          {
+            "op": "not",
+            "args": [
+              {
+                "var": "success"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "gap",
+      "guard": {
+        "op": "and",
+        "args": [
+          {
+            "var": "input_valid"
+          },
+          {
+            "op": "not",
+            "args": [
+              {
+                "var": "valid_failure"
+              }
+            ]
+          },
+          {
+            "op": "or",
+            "args": [
+              {
+                "op": "not",
+                "args": [
+                  {
+                    "var": "delegation_current"
+                  }
+                ]
+              },
+              {
+                "op": "not",
+                "args": [
+                  {
+                    "var": "scope_supported"
+                  }
+                ]
+              },
+              {
+                "var": "has_gap"
+              },
+              {
+                "op": "not",
+                "args": [
+                  {
+                    "var": "all_success"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "response": {
+        "op": "and",
+        "args": [
+          {
+            "op": "not",
+            "args": [
+              {
+                "var": "reject"
+              }
+            ]
+          },
+          {
+            "op": "not",
+            "args": [
+              {
+                "var": "failure"
+              }
+            ]
+          },
+          {
+            "var": "gap"
+          },
+          {
+            "op": "not",
+            "args": [
+              {
+                "var": "success"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "success",
+      "guard": {
+        "op": "and",
+        "args": [
+          {
+            "var": "input_valid"
+          },
+          {
+            "op": "not",
+            "args": [
+              {
+                "var": "valid_failure"
+              }
+            ]
+          },
+          {
+            "var": "delegation_current"
+          },
+          {
+            "var": "scope_supported"
+          },
+          {
+            "op": "not",
+            "args": [
+              {
+                "var": "has_gap"
+              }
+            ]
+          },
+          {
+            "var": "all_success"
+          }
+        ]
+      },
+      "response": {
+        "op": "and",
+        "args": [
+          {
+            "op": "not",
+            "args": [
+              {
+                "var": "reject"
+              }
+            ]
+          },
+          {
+            "op": "not",
+            "args": [
+              {
+                "var": "failure"
+              }
+            ]
+          },
+          {
+            "op": "not",
+            "args": [
+              {
+                "var": "gap"
+              }
+            ]
+          },
+          {
+            "var": "success"
+          }
+        ]
+      }
+    }
+  ],
+  "properties": [
+    {
+      "id": "exactly_one_outcome",
+      "expression": {
+        "op": "and",
+        "args": [
+          {
+            "op": "or",
+            "args": [
+              {
+                "var": "reject"
+              },
+              {
+                "var": "failure"
+              },
+              {
+                "var": "gap"
+              },
+              {
+                "var": "success"
+              }
+            ]
+          },
+          {
+            "op": "not",
+            "args": [
+              {
+                "op": "and",
+                "args": [
+                  {
+                    "var": "reject"
+                  },
+                  {
+                    "var": "failure"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "op": "not",
+            "args": [
+              {
+                "op": "and",
+                "args": [
+                  {
+                    "var": "reject"
+                  },
+                  {
+                    "var": "gap"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "op": "not",
+            "args": [
+              {
+                "op": "and",
+                "args": [
+                  {
+                    "var": "reject"
+                  },
+                  {
+                    "var": "success"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "op": "not",
+            "args": [
+              {
+                "op": "and",
+                "args": [
+                  {
+                    "var": "failure"
+                  },
+                  {
+                    "var": "gap"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "op": "not",
+            "args": [
+              {
+                "op": "and",
+                "args": [
+                  {
+                    "var": "failure"
+                  },
+                  {
+                    "var": "success"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "op": "not",
+            "args": [
+              {
+                "op": "and",
+                "args": [
+                  {
+                    "var": "gap"
+                  },
+                  {
+                    "var": "success"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "success_requires_all_gates",
+      "expression": {
+        "op": "implies",
+        "args": [
+          {
+            "var": "success"
+          },
+          {
+            "op": "and",
+            "args": [
+              {
+                "var": "input_valid"
+              },
+              {
+                "op": "not",
+                "args": [
+                  {
+                    "var": "valid_failure"
+                  }
+                ]
+              },
+              {
+                "var": "delegation_current"
+              },
+              {
+                "var": "scope_supported"
+              },
+              {
+                "op": "not",
+                "args": [
+                  {
+                    "var": "has_gap"
+                  }
+                ]
+              },
+              {
+                "var": "all_success"
+              }
+            ]
+          }
+        ]
+      }
+    }
+  ]
+}

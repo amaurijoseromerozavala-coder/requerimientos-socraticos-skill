@@ -1,0 +1,671 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Supervisor adapter QA0.1.3 exit/payload protocol v1",
+  "description": "Envelope assembled by supervisor from observed exit code and bounded decoded stdout; never supplied as trusted input by the report. Additional semantic predicates in protocol-contract.json.",
+  "oneOf": [
+    {
+      "type": "object",
+      "properties": {
+        "returncode": {
+          "const": 0
+        },
+        "payload": {
+          "type": "object",
+          "properties": {
+            "authority_verification": {
+              "const": "NOT_PERFORMED"
+            },
+            "execution_authorized": {
+              "const": false
+            },
+            "execution_performed": {
+              "const": false
+            },
+            "failure_observation": {
+              "type": "object",
+              "properties": {
+                "status": {
+                  "enum": [
+                    "NOT_ASSESSED",
+                    "NO_DECLARATIONS_FOUND",
+                    "UNVERIFIED_DECLARATIONS_FOUND"
+                  ]
+                },
+                "scan_status": {
+                  "enum": [
+                    "NOT_ASSESSED",
+                    "PARTIAL",
+                    "COMPLETE"
+                  ]
+                },
+                "declared_failure_count": {
+                  "type": [
+                    "integer",
+                    "null"
+                  ],
+                  "minimum": 0,
+                  "maximum": 128
+                },
+                "scanned_records": {
+                  "type": "integer",
+                  "minimum": 0,
+                  "maximum": 128
+                },
+                "evidence_verification": {
+                  "const": "NOT_ESTABLISHED"
+                }
+              },
+              "required": [
+                "status",
+                "scan_status",
+                "declared_failure_count",
+                "scanned_records",
+                "evidence_verification"
+              ],
+              "additionalProperties": false,
+              "oneOf": [
+                {
+                  "properties": {
+                    "scan_status": {
+                      "const": "NOT_ASSESSED"
+                    },
+                    "status": {
+                      "const": "NOT_ASSESSED"
+                    },
+                    "declared_failure_count": {
+                      "const": null
+                    },
+                    "scanned_records": {
+                      "const": 0
+                    }
+                  }
+                },
+                {
+                  "properties": {
+                    "scan_status": {
+                      "enum": [
+                        "COMPLETE",
+                        "PARTIAL"
+                      ]
+                    },
+                    "status": {
+                      "const": "UNVERIFIED_DECLARATIONS_FOUND"
+                    },
+                    "declared_failure_count": {
+                      "type": "integer",
+                      "minimum": 1
+                    },
+                    "scanned_records": {
+                      "minimum": 1
+                    }
+                  }
+                },
+                {
+                  "properties": {
+                    "scan_status": {
+                      "const": "COMPLETE"
+                    },
+                    "status": {
+                      "const": "NO_DECLARATIONS_FOUND"
+                    },
+                    "declared_failure_count": {
+                      "const": 0
+                    }
+                  }
+                },
+                {
+                  "properties": {
+                    "scan_status": {
+                      "const": "PARTIAL"
+                    },
+                    "status": {
+                      "const": "NOT_ASSESSED"
+                    },
+                    "declared_failure_count": {
+                      "const": 0
+                    }
+                  }
+                }
+              ]
+            },
+            "execution_status": {
+              "const": "COMPLETED"
+            },
+            "document_validation": {
+              "const": "VALID"
+            },
+            "proposed_event": {
+              "enum": [
+                "RECORD_CURRENT_FAILURE",
+                "RECORD_GAP_OR_STALE",
+                "RECORD_CURRENT_SUCCESS"
+              ]
+            },
+            "verdict": {
+              "enum": [
+                "FAIL_WITHIN_DECLARED_EVIDENCE",
+                "INCONCLUSIVE",
+                "SUPPORTED_WITHIN_DECLARED_EVIDENCE"
+              ]
+            },
+            "required_obligations": {
+              "type": "array",
+              "maxItems": 128,
+              "items": {
+                "type": "string",
+                "maxLength": 4096
+              }
+            },
+            "gaps": {
+              "type": "array",
+              "maxItems": 128,
+              "items": {
+                "type": "string",
+                "maxLength": 4096
+              }
+            },
+            "failure_cases": {
+              "type": "array",
+              "maxItems": 128,
+              "items": {
+                "type": "string",
+                "maxLength": 4096
+              }
+            },
+            "material_gap": {
+              "type": "boolean"
+            },
+            "gap_reasons": {
+              "type": "array",
+              "maxItems": 128,
+              "items": {
+                "type": "string",
+                "maxLength": 4096
+              }
+            },
+            "delegation_current": {
+              "type": "boolean"
+            },
+            "scope_supported": {
+              "type": "boolean"
+            },
+            "all_success": {
+              "type": "boolean"
+            },
+            "verified_artifact_bytes": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 8388608
+            },
+            "limits": {
+              "type": "array",
+              "maxItems": 32,
+              "items": {
+                "type": "string",
+                "maxLength": 4096
+              }
+            }
+          },
+          "required": [
+            "authority_verification",
+            "execution_authorized",
+            "execution_performed",
+            "failure_observation",
+            "execution_status",
+            "document_validation",
+            "proposed_event",
+            "verdict",
+            "required_obligations",
+            "gaps",
+            "failure_cases",
+            "material_gap",
+            "gap_reasons",
+            "delegation_current",
+            "scope_supported",
+            "all_success",
+            "verified_artifact_bytes",
+            "limits"
+          ],
+          "additionalProperties": false,
+          "oneOf": [
+            {
+              "properties": {
+                "proposed_event": {
+                  "const": "RECORD_CURRENT_FAILURE"
+                },
+                "verdict": {
+                  "const": "FAIL_WITHIN_DECLARED_EVIDENCE"
+                },
+                "failure_cases": {
+                  "minItems": 1
+                }
+              }
+            },
+            {
+              "properties": {
+                "proposed_event": {
+                  "const": "RECORD_GAP_OR_STALE"
+                },
+                "verdict": {
+                  "const": "INCONCLUSIVE"
+                },
+                "failure_cases": {
+                  "maxItems": 0
+                }
+              },
+              "anyOf": [
+                {
+                  "properties": {
+                    "material_gap": {
+                      "const": true
+                    }
+                  }
+                },
+                {
+                  "properties": {
+                    "all_success": {
+                      "const": false
+                    }
+                  }
+                },
+                {
+                  "properties": {
+                    "delegation_current": {
+                      "const": false
+                    }
+                  }
+                },
+                {
+                  "properties": {
+                    "scope_supported": {
+                      "const": false
+                    }
+                  }
+                }
+              ]
+            },
+            {
+              "properties": {
+                "proposed_event": {
+                  "const": "RECORD_CURRENT_SUCCESS"
+                },
+                "verdict": {
+                  "const": "SUPPORTED_WITHIN_DECLARED_EVIDENCE"
+                },
+                "failure_cases": {
+                  "maxItems": 0
+                },
+                "gaps": {
+                  "maxItems": 0
+                },
+                "gap_reasons": {
+                  "maxItems": 0
+                },
+                "material_gap": {
+                  "const": false
+                },
+                "all_success": {
+                  "const": true
+                },
+                "delegation_current": {
+                  "const": true
+                },
+                "scope_supported": {
+                  "const": true
+                },
+                "required_obligations": {
+                  "minItems": 1
+                }
+              }
+            }
+          ]
+        }
+      },
+      "required": [
+        "returncode",
+        "payload"
+      ],
+      "additionalProperties": false
+    },
+    {
+      "type": "object",
+      "properties": {
+        "returncode": {
+          "const": 2
+        },
+        "payload": {
+          "type": "object",
+          "properties": {
+            "authority_verification": {
+              "const": "NOT_PERFORMED"
+            },
+            "execution_authorized": {
+              "const": false
+            },
+            "execution_performed": {
+              "const": false
+            },
+            "failure_observation": {
+              "type": "object",
+              "properties": {
+                "status": {
+                  "enum": [
+                    "NOT_ASSESSED",
+                    "NO_DECLARATIONS_FOUND",
+                    "UNVERIFIED_DECLARATIONS_FOUND"
+                  ]
+                },
+                "scan_status": {
+                  "enum": [
+                    "NOT_ASSESSED",
+                    "PARTIAL",
+                    "COMPLETE"
+                  ]
+                },
+                "declared_failure_count": {
+                  "type": [
+                    "integer",
+                    "null"
+                  ],
+                  "minimum": 0,
+                  "maximum": 128
+                },
+                "scanned_records": {
+                  "type": "integer",
+                  "minimum": 0,
+                  "maximum": 128
+                },
+                "evidence_verification": {
+                  "const": "NOT_ESTABLISHED"
+                }
+              },
+              "required": [
+                "status",
+                "scan_status",
+                "declared_failure_count",
+                "scanned_records",
+                "evidence_verification"
+              ],
+              "additionalProperties": false,
+              "oneOf": [
+                {
+                  "properties": {
+                    "scan_status": {
+                      "const": "NOT_ASSESSED"
+                    },
+                    "status": {
+                      "const": "NOT_ASSESSED"
+                    },
+                    "declared_failure_count": {
+                      "const": null
+                    },
+                    "scanned_records": {
+                      "const": 0
+                    }
+                  }
+                },
+                {
+                  "properties": {
+                    "scan_status": {
+                      "enum": [
+                        "COMPLETE",
+                        "PARTIAL"
+                      ]
+                    },
+                    "status": {
+                      "const": "UNVERIFIED_DECLARATIONS_FOUND"
+                    },
+                    "declared_failure_count": {
+                      "type": "integer",
+                      "minimum": 1
+                    },
+                    "scanned_records": {
+                      "minimum": 1
+                    }
+                  }
+                },
+                {
+                  "properties": {
+                    "scan_status": {
+                      "const": "COMPLETE"
+                    },
+                    "status": {
+                      "const": "NO_DECLARATIONS_FOUND"
+                    },
+                    "declared_failure_count": {
+                      "const": 0
+                    }
+                  }
+                },
+                {
+                  "properties": {
+                    "scan_status": {
+                      "const": "PARTIAL"
+                    },
+                    "status": {
+                      "const": "NOT_ASSESSED"
+                    },
+                    "declared_failure_count": {
+                      "const": 0
+                    }
+                  }
+                }
+              ]
+            },
+            "execution_status": {
+              "const": "COMPLETED"
+            },
+            "document_validation": {
+              "const": "INVALID"
+            },
+            "proposed_event": {
+              "const": "REJECT_INPUT"
+            },
+            "error": {
+              "type": "string",
+              "maxLength": 8192
+            }
+          },
+          "required": [
+            "authority_verification",
+            "execution_authorized",
+            "execution_performed",
+            "failure_observation",
+            "execution_status",
+            "document_validation",
+            "proposed_event",
+            "error"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "returncode",
+        "payload"
+      ],
+      "additionalProperties": false
+    },
+    {
+      "type": "object",
+      "properties": {
+        "returncode": {
+          "const": 3
+        },
+        "payload": {
+          "type": "object",
+          "properties": {
+            "authority_verification": {
+              "const": "NOT_PERFORMED"
+            },
+            "execution_authorized": {
+              "const": false
+            },
+            "execution_performed": {
+              "const": false
+            },
+            "failure_observation": {
+              "type": "object",
+              "properties": {
+                "status": {
+                  "enum": [
+                    "NOT_ASSESSED",
+                    "NO_DECLARATIONS_FOUND",
+                    "UNVERIFIED_DECLARATIONS_FOUND"
+                  ]
+                },
+                "scan_status": {
+                  "enum": [
+                    "NOT_ASSESSED",
+                    "PARTIAL",
+                    "COMPLETE"
+                  ]
+                },
+                "declared_failure_count": {
+                  "type": [
+                    "integer",
+                    "null"
+                  ],
+                  "minimum": 0,
+                  "maximum": 128
+                },
+                "scanned_records": {
+                  "type": "integer",
+                  "minimum": 0,
+                  "maximum": 128
+                },
+                "evidence_verification": {
+                  "const": "NOT_ESTABLISHED"
+                }
+              },
+              "required": [
+                "status",
+                "scan_status",
+                "declared_failure_count",
+                "scanned_records",
+                "evidence_verification"
+              ],
+              "additionalProperties": false,
+              "oneOf": [
+                {
+                  "properties": {
+                    "scan_status": {
+                      "const": "NOT_ASSESSED"
+                    },
+                    "status": {
+                      "const": "NOT_ASSESSED"
+                    },
+                    "declared_failure_count": {
+                      "const": null
+                    },
+                    "scanned_records": {
+                      "const": 0
+                    }
+                  }
+                },
+                {
+                  "properties": {
+                    "scan_status": {
+                      "enum": [
+                        "COMPLETE",
+                        "PARTIAL"
+                      ]
+                    },
+                    "status": {
+                      "const": "UNVERIFIED_DECLARATIONS_FOUND"
+                    },
+                    "declared_failure_count": {
+                      "type": "integer",
+                      "minimum": 1
+                    },
+                    "scanned_records": {
+                      "minimum": 1
+                    }
+                  }
+                },
+                {
+                  "properties": {
+                    "scan_status": {
+                      "const": "COMPLETE"
+                    },
+                    "status": {
+                      "const": "NO_DECLARATIONS_FOUND"
+                    },
+                    "declared_failure_count": {
+                      "const": 0
+                    }
+                  }
+                },
+                {
+                  "properties": {
+                    "scan_status": {
+                      "const": "PARTIAL"
+                    },
+                    "status": {
+                      "const": "NOT_ASSESSED"
+                    },
+                    "declared_failure_count": {
+                      "const": 0
+                    }
+                  }
+                }
+              ]
+            },
+            "execution_status": {
+              "const": "INFRA_FAILURE"
+            },
+            "document_validation": {
+              "const": "NOT_ASSESSED"
+            },
+            "proposed_event": {
+              "const": null
+            },
+            "verdict": {
+              "const": null
+            },
+            "diagnostic": {
+              "type": "object",
+              "properties": {
+                "exception_type": {
+                  "type": "string",
+                  "maxLength": 256
+                },
+                "errno": {
+                  "type": [
+                    "integer",
+                    "null"
+                  ]
+                },
+                "cause": {
+                  "const": "NOT_DETERMINED"
+                }
+              },
+              "required": [
+                "exception_type",
+                "errno",
+                "cause"
+              ],
+              "additionalProperties": false
+            }
+          },
+          "required": [
+            "authority_verification",
+            "execution_authorized",
+            "execution_performed",
+            "failure_observation",
+            "execution_status",
+            "document_validation",
+            "proposed_event",
+            "verdict",
+            "diagnostic"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "returncode",
+        "payload"
+      ],
+      "additionalProperties": false
+    }
+  ]
+}

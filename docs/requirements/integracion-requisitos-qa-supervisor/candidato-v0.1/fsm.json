@@ -1,0 +1,139 @@
+{
+  "schema": "qualified-projection/v0.1",
+  "status": "PARTIAL_NOT_GLOBAL_FSM",
+  "scope": "Incorporation control projection only. Resource/exploration/task/adaptor FSMs remain to compose.",
+  "initial": "ISOLATED",
+  "states": [
+    "ISOLATED",
+    "VERIFYING",
+    "WAIT_AUTHORIZATION",
+    "READY",
+    "INCORPORATING",
+    "RECOVERING",
+    "INCORPORATED",
+    "BLOCKED",
+    "REBASE_REQUIRED"
+  ],
+  "events": [
+    "base_changed",
+    "checks_inconclusive",
+    "checks_supported",
+    "completion_observed",
+    "fresh_authorization",
+    "gate_eligible_and_exclusive_admission",
+    "reevaluation_requested",
+    "restoration_unknown_or_unsafe",
+    "revocation_accepted",
+    "safe_restoration_observed",
+    "submit",
+    "write_failure"
+  ],
+  "transitions": [
+    {
+      "from": "ISOLATED",
+      "event": "submit",
+      "to": "VERIFYING"
+    },
+    {
+      "from": "VERIFYING",
+      "event": "checks_supported",
+      "to": "READY"
+    },
+    {
+      "from": "VERIFYING",
+      "event": "checks_inconclusive",
+      "to": "BLOCKED"
+    },
+    {
+      "from": "READY",
+      "event": "revocation_accepted",
+      "to": "WAIT_AUTHORIZATION"
+    },
+    {
+      "from": "WAIT_AUTHORIZATION",
+      "event": "fresh_authorization",
+      "to": "VERIFYING"
+    },
+    {
+      "from": "READY",
+      "event": "base_changed",
+      "to": "REBASE_REQUIRED"
+    },
+    {
+      "from": "REBASE_REQUIRED",
+      "event": "reevaluation_requested",
+      "to": "VERIFYING"
+    },
+    {
+      "from": "READY",
+      "event": "gate_eligible_and_exclusive_admission",
+      "to": "INCORPORATING"
+    },
+    {
+      "from": "INCORPORATING",
+      "event": "revocation_accepted",
+      "to": "RECOVERING"
+    },
+    {
+      "from": "INCORPORATING",
+      "event": "write_failure",
+      "to": "RECOVERING"
+    },
+    {
+      "from": "INCORPORATING",
+      "event": "completion_observed",
+      "to": "INCORPORATED"
+    },
+    {
+      "from": "RECOVERING",
+      "event": "safe_restoration_observed",
+      "to": "ISOLATED"
+    },
+    {
+      "from": "RECOVERING",
+      "event": "restoration_unknown_or_unsafe",
+      "to": "BLOCKED"
+    }
+  ],
+  "default": "REJECT_PRESERVE_DOMAIN_STATE; bounded audit may record rejection",
+  "qualification_assumptions": [
+    "checks_supported includes applicability, currency and sufficiency under fixed criteria",
+    "gate_eligible_and_exclusive_admission is serialized with accepted revocations",
+    "safe_restoration_observed includes no unknown in-flight writes and preservation of foreign changes",
+    "fresh_authorization matches latest authority_epoch, task/candidate/base/operation and all validity conditions; it does not erase revocation history."
+  ],
+  "orthogonal_state": [
+    "task_revoked is global task context, updated by global handler in all states.",
+    "fresh_incorporation_authorized is derived from a sufficient identified approval after the latest accepted revocation, not a stored unversioned boolean.",
+    "Global handler runs once before the applicable local revocation transition; it never starts another task."
+  ],
+  "limitations": [
+    "No concrete guard evaluation proved.",
+    "No atomic multi-file update or liveness proved.",
+    "Global supervisor FSM coverage incomplete."
+  ],
+  "global_handlers": [
+    {
+      "event": "revocation_accepted",
+      "priority": "BEFORE_LOCAL_TRANSITION",
+      "applies_to": [
+        "ISOLATED",
+        "VERIFYING",
+        "WAIT_AUTHORIZATION",
+        "READY",
+        "INCORPORATING",
+        "RECOVERING",
+        "INCORPORATED",
+        "BLOCKED",
+        "REBASE_REQUIRED"
+      ],
+      "effects": [
+        "Record accepted revocation in durable local sequence and advance authority_epoch.",
+        "Set task_revoked=true; invalidate fresh incorporation approvals from earlier epochs.",
+        "For INCORPORATING, stop new incorporation writes and enter RECOVERING; existing issued writes remain observed.",
+        "For READY enter WAIT_AUTHORIZATION. For other states preserve local control state and latch revocation; do not reject the global event."
+      ],
+      "limitations": "Actual acceptance requires valid scope and durable admission; this is an abstract event already qualified externally."
+    }
+  ]
+}

@@ -1,0 +1,9 @@
+test_cpu_and_memory_have_provenance (test_environment.EnvironmentTests.test_cpu_and_memory_have_provenance) ... ok
+test_missing_path_is_explicit_unknown (test_environment.EnvironmentTests.test_missing_path_is_explicit_unknown) ... ok
+test_path_does_not_create_files (test_environment.EnvironmentTests.test_path_does_not_create_files) ... ok
+test_probe_has_no_hardware_coverage_claim (test_environment.EnvironmentTests.test_probe_has_no_hardware_coverage_claim) ... ok
+
+----------------------------------------------------------------------
+Ran 4 tests in 0.082s
+
+OK

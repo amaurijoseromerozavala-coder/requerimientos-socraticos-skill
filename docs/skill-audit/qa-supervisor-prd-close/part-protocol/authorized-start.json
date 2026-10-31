@@ -1,0 +1,138 @@
+{
+  "schema": "gentle-ai.review-integration.start/v4",
+  "contract": "gentle-ai.review-integration/v2",
+  "operation": "review.start",
+  "action": "created",
+  "lenses_required": true,
+  "lineage_id": "review-f820aca952a82557",
+  "state": "reviewing",
+  "risk_level": "medium",
+  "selected_lenses": [
+    "review-resilience",
+    "review-reliability"
+  ],
+  "projection": "workspace",
+  "target_mode": "base-workspace-overlay",
+  "target_identity": "sha256:4815366453a183d1de513cebf5c97cd96582c147652da479f6d69b20fec3c487",
+  "base_tree": "4b825dc642cb6eb9a060e54bf8d69288fbee4904",
+  "candidate_tree": "ff3d0f7e5c3f9dfa0792647a4f62ed2012a9561b",
+  "changed_files": 8,
+  "changed_lines": 1686,
+  "correction_budget": 200,
+  "risk_reasons": [
+    {
+      "code": "configuration_change",
+      "path": "docs/requirements/qa-supervisor/checker-binding.json"
+    }
+  ],
+  "artifact_subjects": [
+    {
+      "schema": "gentle-ai.review-artifact-subject/v2",
+      "subject_hash": "sha256:5089fbf9440d1e54b8bd2d588cf3f7a404a9088df84434c4b0410a2d3a7a20c8",
+      "lineage_id": "review-f820aca952a82557",
+      "authority_revision": "sha256:7c15e2bf4f6f45a17a332d538b36689c585d86506a7144e25eab8efd2b4e8c0a",
+      "target_identity": "sha256:4815366453a183d1de513cebf5c97cd96582c147652da479f6d69b20fec3c487",
+      "base_tree": "4b825dc642cb6eb9a060e54bf8d69288fbee4904",
+      "candidate_tree": "ff3d0f7e5c3f9dfa0792647a4f62ed2012a9561b",
+      "changed_path_manifest_sha256": "sha256:b83c0296a78a4ae7fe3e695d89d7a0d95c0dd38917cfbfe072a4ae59fafdadd3",
+      "lens": "review-resilience",
+      "selected_order": 0
+    },
+    {
+      "schema": "gentle-ai.review-artifact-subject/v2",
+      "subject_hash": "sha256:258d659839db09d0d1edfff80f7366ff4f216d84ac4864e29b952b4b8644b754",
+      "lineage_id": "review-f820aca952a82557",
+      "authority_revision": "sha256:7c15e2bf4f6f45a17a332d538b36689c585d86506a7144e25eab8efd2b4e8c0a",
+      "target_identity": "sha256:4815366453a183d1de513cebf5c97cd96582c147652da479f6d69b20fec3c487",
+      "base_tree": "4b825dc642cb6eb9a060e54bf8d69288fbee4904",
+      "candidate_tree": "ff3d0f7e5c3f9dfa0792647a4f62ed2012a9561b",
+      "changed_path_manifest_sha256": "sha256:b83c0296a78a4ae7fe3e695d89d7a0d95c0dd38917cfbfe072a4ae59fafdadd3",
+      "lens": "review-reliability",
+      "selected_order": 1
+    }
+  ],
+  "changed_path_manifest": [
+    {"path":"docs/requirements/qa-supervisor/checker-binding.json","status":"A","old_mode":"000000","new_mode":"100644","deleted":false,"type_changed":false,"mode_only":false,"intended_untracked":true},
+    {"path":"docs/requirements/qa-supervisor/checker-output.schema.json","status":"A","old_mode":"000000","new_mode":"100644","deleted":false,"type_changed":false,"mode_only":false,"intended_untracked":true},
+    {"path":"docs/requirements/qa-supervisor/protocol-contract.json","status":"A","old_mode":"000000","new_mode":"100644","deleted":false,"type_changed":false,"mode_only":false,"intended_untracked":true},
+    {"path":"skills/qa-inquisidor/SKILL.md","status":"A","old_mode":"000000","new_mode":"100644","deleted":false,"type_changed":false,"mode_only":false,"intended_untracked":true},
+    {"path":"skills/qa-inquisidor/assets/report.schema.json","status":"A","old_mode":"000000","new_mode":"100644","deleted":false,"type_changed":false,"mode_only":false,"intended_untracked":true},
+    {"path":"skills/qa-inquisidor/scripts/validate_report.py","status":"A","old_mode":"000000","new_mode":"100644","deleted":false,"type_changed":false,"mode_only":false,"intended_untracked":true},
+    {"path":"skills/requerimientos-socraticos/scripts/json_preflight.py","status":"A","old_mode":"000000","new_mode":"100644","deleted":false,"type_changed":false,"mode_only":false,"intended_untracked":true},
+    {"path":"skills/requerimientos-socraticos/scripts/safe_io.py","status":"A","old_mode":"000000","new_mode":"100644","deleted":false,"type_changed":false,"mode_only":false,"intended_untracked":true}
+  ],
+  "repository_context": {
+    "capability": "review.opaque_repository_context",
+    "handle": "rctx2_0283f3294a90f0d3bd515adac5a7e7b3298a585f6b36d6bb60c256230e8759f1",
+    "revision": "sha256:7c15e2bf4f6f45a17a332d538b36689c585d86506a7144e25eab8efd2b4e8c0a",
+    "target_identity": "sha256:4815366453a183d1de513cebf5c97cd96582c147652da479f6d69b20fec3c487"
+  },
+  "next_transition": {
+    "kind": "execute",
+    "reason_code": "review_status_required",
+    "execute": {
+      "operation": "review.status",
+      "command": "gentle-ai review status --contract=gentle-ai.review-integration/v2 --next-transition=true --lineage=review-f820aca952a82557 --repository-context=rctx2_0283f3294a90f0d3bd515adac5a7e7b3298a585f6b36d6bb60c256230e8759f1 --agent=codex --base-ref=4b825dc642cb6eb9a060e54bf8d69288fbee4904 --workspace-overlay=true",
+      "arguments": [
+        {
+          "name": "contract",
+          "value": "gentle-ai.review-integration/v2",
+          "token": "--contract=gentle-ai.review-integration/v2"
+        },
+        {
+          "name": "next-transition",
+          "value": "true",
+          "token": "--next-transition=true"
+        },
+        {
+          "name": "lineage",
+          "value": "review-f820aca952a82557",
+          "token": "--lineage=review-f820aca952a82557"
+        },
+        {
+          "name": "repository-context",
+          "value": "rctx2_0283f3294a90f0d3bd515adac5a7e7b3298a585f6b36d6bb60c256230e8759f1",
+          "token": "--repository-context=rctx2_0283f3294a90f0d3bd515adac5a7e7b3298a585f6b36d6bb60c256230e8759f1"
+        },
+        {
+          "name": "agent",
+          "value": "codex",
+          "token": "--agent=codex"
+        },
+        {
+          "name": "base-ref",
+          "value": "4b825dc642cb6eb9a060e54bf8d69288fbee4904",
+          "token": "--base-ref=4b825dc642cb6eb9a060e54bf8d69288fbee4904"
+        },
+        {
+          "name": "workspace-overlay",
+          "value": "true",
+          "token": "--workspace-overlay=true"
+        }
+      ],
+      "selector_arguments": [
+        {
+          "name": "base-ref",
+          "value": "4b825dc642cb6eb9a060e54bf8d69288fbee4904",
+          "token": "--base-ref=4b825dc642cb6eb9a060e54bf8d69288fbee4904"
+        },
+        {
+          "name": "workspace-overlay",
+          "value": "true",
+          "token": "--workspace-overlay=true"
+        }
+      ],
+      "preconditions": [
+        {
+          "name": "state",
+          "value": "reviewing"
+        }
+      ],
+      "binding": {
+        "lineage_id": "review-f820aca952a82557",
+        "revision": "sha256:7c15e2bf4f6f45a17a332d538b36689c585d86506a7144e25eab8efd2b4e8c0a",
+        "target_identity": "sha256:4815366453a183d1de513cebf5c97cd96582c147652da479f6d69b20fec3c487"
+      }
+    }
+  }
+}

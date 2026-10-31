@@ -1,0 +1,6 @@
+{
+  "scope": "Eight-byte temporary fixture; no concurrent writer or real PRD.",
+  "read_returns_current_bytes": true,
+  "differs_from_prior_digest": true,
+  "interpretation": "read_regular validates file/path and changes during read; it does not compare a prior expected content digest. No full validate_git result demonstrated."
+}

@@ -1,0 +1,101 @@
+{
+  "schema": "gentle-ai.review-last-event-closure/v1",
+  "operation": "review/capture-result",
+  "lineage_id": "review-1e21a531f9384c6d",
+  "state": "approved",
+  "action": "the approved review completed on the last admitted event and awaits its exact acknowledgement",
+  "advisory_findings": {
+    "statement": "This review is approved and its receipt stands. Every finding listed here is non-blocking: none opened a correction, none reopens this review, and no correction transition is offered for this candidate. Treat them as separate later work, never as a reason to re-run review on this candidate.",
+    "findings": [
+      {
+        "id": "R3-001",
+        "lens": "reliability",
+        "location": "docs/skill-audit/integration-candidate-01/check-document-model.py:27-35",
+        "severity": "WARNING",
+        "disposition": "informational"
+      }
+    ]
+  },
+  "reviewer_results": [
+    {
+      "lens": "review-resilience",
+      "findings": [],
+      "evidence": [
+        "Inspected all 13 supplied patches without executing commands or consulting external files. No concrete production failure or measured operational regression caused by this documentary candidate was established.",
+        "docs/requirements/integracion-requisitos-qa-supervisor/candidato-v0.1/contracts.json:108-121 specifies durable revocation acceptance, authority epochs, observation of previously issued writes, and reconciliation before restoration after uncertain completion.",
+        "docs/requirements/integracion-requisitos-qa-supervisor/candidato-v0.1/incorporation-gate.json:47-64 rejects unknown inputs and requires current resource admission, reconciled process state, and applicable authorization.",
+        "docs/requirements/integracion-requisitos-qa-supervisor/candidato-v0.1/open-gaps.json:1-40 explicitly blocks implementation readiness pending resource enforcement, adapter contracts, termination evidence, and incorporation atomicity. docs/skill-audit/integration-candidate-01/green.json:16-20 limits its reported checks to the document model and disclaims runtime recovery verification."
+      ],
+      "result_hash": "sha256:c22882f8aba3b0b4e585fe267e241831cd80f70bb1dcb84aa4d27f4acf9580bc"
+    },
+    {
+      "lens": "review-reliability",
+      "findings": [
+        {
+          "id": "R3-001",
+          "lens": "reliability",
+          "location": "docs/skill-audit/integration-candidate-01/check-document-model.py:27-35",
+          "severity": "WARNING",
+          "claim": "The documentary checker never inspects global_handlers. Removing the entire global revocation handler would still satisfy every FSM assertion and produce PASS_WITHIN_DOCUMENT_MODEL_SCOPE, leaving the correction for revocation outside READY/INCORPORATING unprotected. Add document-level assertions for handler coverage and priority, plus a negative control that removes the handler and must fail.",
+          "proof_refs": [
+            "docs/skill-audit/integration-candidate-01/check-document-model.py:27-37",
+            "docs/requirements/integracion-requisitos-qa-supervisor/candidato-v0.1/fsm.json:116-137",
+            "docs/skill-audit/integration-candidate-01/review-green.json:3"
+          ],
+          "evidence_class": "deterministic",
+          "causal_disposition": "introduced"
+        }
+      ],
+      "evidence": [
+        "Inspected all 13 supplied immutable patches; no commands were run or external files read.",
+        "docs/skill-audit/integration-candidate-01/check-document-model.py:11-26 checks Boolean gate outcomes against an independent expression, rejects one UNKNOWN input, and includes a removed-revocation-rule negative control.",
+        "docs/skill-audit/integration-candidate-01/check-document-model.py:27-35 verifies local transition uniqueness, references, three destinations, and graph reachability, but does not validate global handler semantics.",
+        "docs/requirements/integracion-requisitos-qa-supervisor/candidato-v0.1/README.md:28-30 explicitly limits the evidence to documentary checks and marks implementation tests NOT_RUN; no runtime safety conclusion was inferred."
+      ],
+      "result_hash": "sha256:37f596c07a55a32ba5641c0ab87e2c74b143622f89a0377009af6f8e818a24a9"
+    }
+  ],
+  "acknowledgement": {
+    "operation": "review.acknowledge-approved",
+    "command": "gentle-ai review acknowledge-approved --cwd=/workspace/replica-gentle-ai --lineage=review-1e21a531f9384c6d --target=sha256:551a7a33c412f242c3c2c69437f46ef72ce992dec5ebed848af5af28f98384c2 --expected-revision=sha256:0cc1dfc9c0d8b984baa4101f84e3eed65de7155ada054a564fa05644d8bbe613 --token=9e84ca0f0b049f3773c8c52b647d6df456b9d351ace79a9bd79c4a45bd839eb6",
+    "arguments": [
+      {
+        "name": "cwd",
+        "value": "/workspace/replica-gentle-ai",
+        "token": "--cwd=/workspace/replica-gentle-ai"
+      },
+      {
+        "name": "lineage",
+        "value": "review-1e21a531f9384c6d",
+        "token": "--lineage=review-1e21a531f9384c6d"
+      },
+      {
+        "name": "target",
+        "value": "sha256:551a7a33c412f242c3c2c69437f46ef72ce992dec5ebed848af5af28f98384c2",
+        "token": "--target=sha256:551a7a33c412f242c3c2c69437f46ef72ce992dec5ebed848af5af28f98384c2"
+      },
+      {
+        "name": "expected-revision",
+        "value": "sha256:0cc1dfc9c0d8b984baa4101f84e3eed65de7155ada054a564fa05644d8bbe613",
+        "token": "--expected-revision=sha256:0cc1dfc9c0d8b984baa4101f84e3eed65de7155ada054a564fa05644d8bbe613"
+      },
+      {
+        "name": "token",
+        "value": "9e84ca0f0b049f3773c8c52b647d6df456b9d351ace79a9bd79c4a45bd839eb6",
+        "token": "--token=9e84ca0f0b049f3773c8c52b647d6df456b9d351ace79a9bd79c4a45bd839eb6"
+      }
+    ],
+    "preconditions": [
+      {
+        "name": "state",
+        "value": "approved"
+      }
+    ],
+    "binding": {
+      "lineage_id": "review-1e21a531f9384c6d",
+      "revision": "sha256:0cc1dfc9c0d8b984baa4101f84e3eed65de7155ada054a564fa05644d8bbe613",
+      "target_identity": "sha256:551a7a33c412f242c3c2c69437f46ef72ce992dec5ebed848af5af28f98384c2"
+    }
+  },
+  "store_revision": "sha256:0cc1dfc9c0d8b984baa4101f84e3eed65de7155ada054a564fa05644d8bbe613"
+}

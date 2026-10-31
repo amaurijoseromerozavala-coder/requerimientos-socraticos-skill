@@ -1,0 +1,228 @@
+{
+  "snapshot": "/tmp/requirements-244-independent-erd2ny8h",
+  "source": "/workspace/replica-gentle-ai/skills/requerimientos-socraticos",
+  "entries": [
+    {
+      "path": "skills/requerimientos-socraticos/assets/analysis-report.schema.json",
+      "sha256": "bc9fca234245184459f68552db8c4571dfc02cd310ebce8433b6ba68499858a7",
+      "bytes": 1865
+    },
+    {
+      "path": "skills/requerimientos-socraticos/assets/design-proposals.schema.json",
+      "sha256": "950be8ad944d07ff5b26cb5245377ad6587da28746d7c4f1837121bae66121f5",
+      "bytes": 3866
+    },
+    {
+      "path": "skills/requerimientos-socraticos/assets/example.prd.json",
+      "sha256": "cc997d76a52570795c786918276372f436130669576ce3802980978001a5b527",
+      "bytes": 11981
+    },
+    {
+      "path": "skills/requerimientos-socraticos/assets/gitattributes.example",
+      "sha256": "da4e98b8d85e0097acda607c5657f631741e4d9d484a6efc8ea61411c21e0a40",
+      "bytes": 149
+    },
+    {
+      "path": "skills/requerimientos-socraticos/assets/interrogator-packet.schema.json",
+      "sha256": "422acb95aad107f1fc70a202859ed89631d44e40bbac9a9d464bdd0ca8aa7c02",
+      "bytes": 1092
+    },
+    {
+      "path": "skills/requerimientos-socraticos/assets/interview.schema.json",
+      "sha256": "35492aefbc67d9861244f1e534d01f4fe9bae172c7da5389130a44d073ddfcc6",
+      "bytes": 13150
+    },
+    {
+      "path": "skills/requerimientos-socraticos/assets/logic-example.json",
+      "sha256": "bcd115fa67a8be5b38a53565a60bbc7762ac2c39f3fe395a0a382afea59f0bb4",
+      "bytes": 564
+    },
+    {
+      "path": "skills/requerimientos-socraticos/assets/logic-input.schema.json",
+      "sha256": "7d84a4206aef40594e81cf091b15104de9d9dfe2043643ea1af352b79c411067",
+      "bytes": 2291
+    },
+    {
+      "path": "skills/requerimientos-socraticos/assets/prd.schema.json",
+      "sha256": "37b2c6b4af2eeee7c39c892a5b057e7b9ee0eab5d7963310be2de7029a5df99b",
+      "bytes": 40505
+    },
+    {
+      "path": "skills/requerimientos-socraticos/scripts/analyze_logic.py",
+      "sha256": "5e0918840026f032d48f81c4b09613078e7637fd908752f367bcde9d83d7fd64",
+      "bytes": 12108
+    },
+    {
+      "path": "skills/requerimientos-socraticos/scripts/document_source.py",
+      "sha256": "42d233be87cd091b8a1d740115c8813386454be756acb477ede084004b855d35",
+      "bytes": 4079
+    },
+    {
+      "path": "skills/requerimientos-socraticos/scripts/git_bundle.py",
+      "sha256": "5c053dc1856c4a43e93716f0c5e5ecd50ee6c21fefd63924a7314985d172a9ba",
+      "bytes": 4229
+    },
+    {
+      "path": "skills/requerimientos-socraticos/scripts/git_document_worker.py",
+      "sha256": "73af82f01ed57271b116be70480aff8196075c101e59df963222bc47ec803aeb",
+      "bytes": 1221
+    },
+    {
+      "path": "skills/requerimientos-socraticos/scripts/git_validation_engine.py",
+      "sha256": "929650f3b94f69741afefb978167b6c4e453b6d87de62346d28d08ea17a14312",
+      "bytes": 8805
+    },
+    {
+      "path": "skills/requerimientos-socraticos/scripts/json_preflight.py",
+      "sha256": "1aba3975e3696c82cf8689ab15721572ab55c7c2eeeae7b1f2a87bbe32c2a295",
+      "bytes": 1843
+    },
+    {
+      "path": "skills/requerimientos-socraticos/scripts/logic_engine.py",
+      "sha256": "2bd0623e3291e2a4ca9d0784f24781154fb3239ac87d468071b305d230f62fdb",
+      "bytes": 10445
+    },
+    {
+      "path": "skills/requerimientos-socraticos/scripts/memory_budget.py",
+      "sha256": "c8c17977284f50316bea0ea6fec9b210d7ece60bc7f5e12e1bc13269ad29e6a8",
+      "bytes": 10664
+    },
+    {
+      "path": "skills/requerimientos-socraticos/scripts/normalize_text.py",
+      "sha256": "d0ab7ffd503f095082f816d50fab99023950585f11cb5eb39aadd1a07e894fe9",
+      "bytes": 1934
+    },
+    {
+      "path": "skills/requerimientos-socraticos/scripts/probe_environment.py",
+      "sha256": "2e7a2b189441edb1ecf72b40230c00d316a7a46d5f8a8fd5d7e69f69a67a9b01",
+      "bytes": 8288
+    },
+    {
+      "path": "skills/requerimientos-socraticos/scripts/process_supervision.py",
+      "sha256": "80dc44c9abe1eceb0c11c741c2b7ecab4fd51d9c83b2650b1c6bdedd6f79d05e",
+      "bytes": 9331
+    },
+    {
+      "path": "skills/requerimientos-socraticos/scripts/requirements_guard.py",
+      "sha256": "ebb5c9e3098e700897fd5226e62975873f7dc8d7a40f3f6eebcba223a5df31a3",
+      "bytes": 10497
+    },
+    {
+      "path": "skills/requerimientos-socraticos/scripts/safe_io.py",
+      "sha256": "c40bfd51fb5ef89af85622ef662116aaf9cc2300783d09170f7258e0d43379e0",
+      "bytes": 2600
+    },
+    {
+      "path": "skills/requerimientos-socraticos/scripts/scratch_pool.py",
+      "sha256": "554c9c054c286b8bbc989c8e0e3b2cc4aebf493d07d90d5bf52079922ed7ade1",
+      "bytes": 3173
+    },
+    {
+      "path": "skills/requerimientos-socraticos/scripts/validate_git.py",
+      "sha256": "c118529e5f369755756455de89e4199e190d2be4ce0b224b94f596c98b0087d1",
+      "bytes": 6404
+    },
+    {
+      "path": "skills/requerimientos-socraticos/scripts/validate_interview.py",
+      "sha256": "71a1ab503ef6fca520152b5afe2e1bcd3c60ed254936fbe28454e2cb4632099a",
+      "bytes": 11800
+    },
+    {
+      "path": "skills/requerimientos-socraticos/scripts/validate_prd.py",
+      "sha256": "a457346ae791dd8563214ef4e206b334edb1bf79dd993bca9011554072a53f66",
+      "bytes": 2550
+    },
+    {
+      "path": "skills/requerimientos-socraticos/tests/test_document_source.py",
+      "sha256": "9e705d8df50ff25dbe5ff7fa292517b95e37265d71230cbd671ce611f1b9053d",
+      "bytes": 9806
+    },
+    {
+      "path": "skills/requerimientos-socraticos/tests/test_environment.py",
+      "sha256": "301e7b85642ead742365171d33cf670a03cdb4fd0baeefec5ed3b290ed4334cf",
+      "bytes": 5051
+    },
+    {
+      "path": "skills/requerimientos-socraticos/tests/test_git_bundle.py",
+      "sha256": "c3313c24159e2224eada98c05591ce5fd9262fbb01bb1ab6dd77ad7e0011e67f",
+      "bytes": 2379
+    },
+    {
+      "path": "skills/requerimientos-socraticos/tests/test_git_memory.py",
+      "sha256": "2d6019e38cbed37ac271865341d28c5a23221ce6d56035d3ee97d14310f485f5",
+      "bytes": 4901
+    },
+    {
+      "path": "skills/requerimientos-socraticos/tests/test_guard.py",
+      "sha256": "84bacd9a71290fb4fde076f7379653ab6b9edf94ca7712c6f1f4fd7e08e37974",
+      "bytes": 8533
+    },
+    {
+      "path": "skills/requerimientos-socraticos/tests/test_interview.py",
+      "sha256": "8b6d023a248c4bb9a4d44af6b06bebf7d33779617e9cdcf30a3ba66d986cf273",
+      "bytes": 20689
+    },
+    {
+      "path": "skills/requerimientos-socraticos/tests/test_logic.py",
+      "sha256": "4259edee3995760dd6d1ccefcaf2381616e1fc0b45a1bf65a57a6a73ad4f4321",
+      "bytes": 6575
+    },
+    {
+      "path": "skills/requerimientos-socraticos/tests/test_logic_memory.py",
+      "sha256": "7e89e58b37c9b641759314f80aea9fd83598e9091f4f3710b8fc07f4043473f3",
+      "bytes": 11731
+    },
+    {
+      "path": "skills/requerimientos-socraticos/tests/test_logic_worker_memory.py",
+      "sha256": "b3d1ffd531bc7e5b0422de7d31bd5659206e4ceb5c76fea1c925402c9c24d983",
+      "bytes": 1659
+    },
+    {
+      "path": "skills/requerimientos-socraticos/tests/test_memory_budget.py",
+      "sha256": "71633fbb4265408abaac86d80a19f1aa51a3f06321eb305894232ee3627e3d7a",
+      "bytes": 17611
+    },
+    {
+      "path": "skills/requerimientos-socraticos/tests/test_preflight.py",
+      "sha256": "84f953e343f9dfb737da9a06b43d3dc65b1ee873b9bcca04f6bde086142acd86",
+      "bytes": 2295
+    },
+    {
+      "path": "skills/requerimientos-socraticos/tests/test_process_supervision.py",
+      "sha256": "7dedef8012846e71fa0fb03cb8b764b08377e6665e640103993cd64fa7a66951",
+      "bytes": 13138
+    },
+    {
+      "path": "skills/requerimientos-socraticos/tests/test_scratch.py",
+      "sha256": "d89f5ab1eac2cd1c7fd43fa0308a5c5925456d7ada3f60b504334f8d35d45ed0",
+      "bytes": 6575
+    },
+    {
+      "path": "skills/requerimientos-socraticos/tests/test_sealed.py",
+      "sha256": "cad469d63134abc0b6439122b40f47f71955fe9d1fe47ba9e8732d66a161ee7d",
+      "bytes": 10051
+    },
+    {
+      "path": "skills/requerimientos-socraticos/tests/test_supervisor.py",
+      "sha256": "32d10ab492c87f6753105077ee71171f7f6eda099a58903070ad894227131790",
+      "bytes": 9378
+    },
+    {
+      "path": "skills/requerimientos-socraticos/tests/test_validation_budget.py",
+      "sha256": "76b806f20c56fd48a2126fdfb2858f56922549b269c62df67836c5615ff5b228",
+      "bytes": 7362
+    },
+    {
+      "path": "bin/gentle-ai",
+      "sha256": "4af07e2c09cc1a115cb12aa5d385766682229c65746c6b7700d2b3d5febf51fb",
+      "bytes": 2288
+    }
+  ],
+  "source_unchanged_at_copy": true,
+  "supplement_reason": "test_supervisor requires launcher to verify unavailable interpreter; unchanged source copy",
+  "source_changed_after_review": [],
+  "review_artifacts_in_snapshot": [
+    "api_observations.py",
+    "minimal-model.json"
+  ]
+}

@@ -1,0 +1,56 @@
+{
+  "status": "DRAFT_SUPERVISED_EXERCISE",
+  "canonical_prd": false,
+  "purpose": "Probar trazabilidad de instrucciones humanas y tratamiento del output QA sin implementar producto",
+  "requirements": [
+    {
+      "id": "R1",
+      "source_kind": "HUMAN_INSTRUCTION",
+      "source_quote": "Regla dura de proyecto no se ejecutará acciones qu3 violen las normas de open aí las normas del software de terceros o plataformas de terceros ni poner en riesgo hardware de terceros",
+      "ears": "Cuando una operación no tenga cumplimiento y alcance seguro establecidos, el proceso deberá bloquear su ejecución y registrar el motivo.",
+      "verification": "Inspección de reglas; ensayo acotado propio; no carga intensiva ni terceros."
+    },
+    {
+      "id": "R2",
+      "source_kind": "HUMAN_INSTRUCTION",
+      "source_quote": "esto es output de qa no mis mandatos debes refutar y analizar los outputs de qa",
+      "ears": "Cuando se reciba un output QA, el proceso deberá clasificar sus afirmaciones y propuestas antes de adoptar cambios.",
+      "verification": "La propuesta QA de0644 no se ejecutó; fuente de la skill permanece idéntica."
+    },
+    {
+      "id": "R3",
+      "source_kind": "HUMAN_INSTRUCTION",
+      "source_quote": "no quiero CI todavia",
+      "ears": "Mientras no exista una nueva autorización humana, el proceso deberá mantener diferida la configuración de CI.",
+      "verification": "No se configuró CI ni se desbloqueó producción."
+    }
+  ],
+  "qa_input_handling": [
+    {
+      "input": "se exige timeout duro",
+      "classification": "HYPOTHESIS_ALREADY_IMPLEMENTED",
+      "result": "Timeout observado; no cambio innecesario."
+    },
+    {
+      "input": "se exige0644",
+      "classification": "DESIGN_PROPOSAL_NOT_AUTHORIZATION",
+      "result": "No aplicado; faltan principal/canal/confidencialidad."
+    },
+    {
+      "input": "zero-disk elimina modificación por misma cuenta",
+      "classification": "OVERSTATED_GUARANTEE",
+      "result": "No aceptado como prueba: cambiar transporte no establece por sí solo aislamiento de procesos."
+    }
+  ],
+  "open_questions": [
+    "Canal/principal de un eventual consumidor externo.",
+    "Necesidad de supervisión independiente tras terminar el padre.",
+    "Entorno físico WSL objetivo no disponible."
+  ],
+  "interview_record": {
+    "new_independent_interview": false,
+    "fabricated_messages": false,
+    "note": "Ejercicio documental desde citas humanas existentes; no cierre de entrevista ni demostración de obediencia universal del LLM."
+  },
+  "production": "BLOCKED_GLOBAL_ENFORCEMENT"
+}

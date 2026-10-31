@@ -1,0 +1,300 @@
+{
+  "schema": "gentle-ai.review-integration.status/v9",
+  "contract": "gentle-ai.review-integration/v2",
+  "operation": "review.status",
+  "applicability": "unrelated",
+  "action": "start",
+  "replayability": "not_replayable",
+  "target_identity": "sha256:fb1a85f35077a80bc46529458fee6d947fd78745abfd97a5c696c0eec2428b7e",
+  "projection": {
+    "schema": "gentle-ai.review-integration.projection/v1",
+    "kind": "base-workspace-overlay",
+    "projection": "workspace",
+    "base_tree": "b4e39373a52a6f2921ca61e5df819165656d33f1",
+    "initial_review_tree": "e584178633999dd05bb8aa6cf107ecfeac3913e9",
+    "current_candidate_tree": "e584178633999dd05bb8aa6cf107ecfeac3913e9",
+    "paths_digest": "sha256:ba16a89937029bc427025e9d4eba32a3239b7a0e3f7b7b0a977b16ce8c9342a4",
+    "paths": [
+      "AGENTS.md",
+      "skills/qa-inquisidor/SKILL.md",
+      "skills/qa-inquisidor/scripts/validate_report.py",
+      "skills/qa-inquisidor/tests/test_report.py"
+    ],
+    "intended_untracked": [
+      "AGENTS.md",
+      "docs/requirements/qa-inquisidor-v3/PRD.md",
+      "docs/requirements/qa-inquisidor-v3/contrato-evidencia.json",
+      "docs/requirements/qa-inquisidor-v3/escenarios-previos.json",
+      "docs/requirements/qa-inquisidor-v3/interview.json",
+      "docs/requirements/qa-inquisidor-v3/modelo-cierre.json",
+      "docs/requirements/qa-inquisidor-v3/receipts/A-HUMAN-006.txt",
+      "docs/requirements/qa-inquisidor-v3/receipts/A-QA-006.txt",
+      "docs/requirements/qa-inquisidor-v3/receipts/A-QA-007.txt",
+      "docs/requirements/qa-inquisidor-v3/receipts/A-QA-008.txt",
+      "docs/requirements/qa-inquisidor-v3/receipts/Q-HUMAN-006.txt",
+      "docs/requirements/qa-inquisidor-v3/receipts/Q-QA-006.txt",
+      "docs/requirements/qa-inquisidor-v3/receipts/Q-QA-007.txt",
+      "docs/requirements/qa-inquisidor-v3/receipts/Q-QA-008.txt",
+      "docs/requirements/qa-inquisidor-v3/registro-skill-asistente.md",
+      "docs/requirements/qa-inquisidor-v3/resumen-entrada.schema.json",
+      "skills/qa-inquisidor/SKILL.md",
+      "skills/qa-inquisidor/assets/report.schema.json",
+      "skills/qa-inquisidor/references/criteria.md",
+      "skills/qa-inquisidor/scripts/validate_report.py",
+      "skills/qa-inquisidor/tests/test_infrastructure.py",
+      "skills/qa-inquisidor/tests/test_report.py",
+      "skills/requerimientos-socraticos/scripts/json_preflight.py",
+      "skills/requerimientos-socraticos/scripts/safe_io.py"
+    ],
+    "intended_untracked_proof": "sha256:ada18e2c2fc1d420162111385aa6d7eec41dd4837ee191d8d49d19783c2c641f",
+    "initial_snapshot_identity": "sha256:fb1a85f35077a80bc46529458fee6d947fd78745abfd97a5c696c0eec2428b7e",
+    "current_snapshot_identity": "sha256:fb1a85f35077a80bc46529458fee6d947fd78745abfd97a5c696c0eec2428b7e"
+  },
+  "eligible_untracked_inventory": "sha256:2231b1117eee3dcec74a45bd23842cc050390dae8ad62b7bd5c55ab6b0d81b3c",
+  "repair": {
+    "schema": "gentle-ai.review-authority-repair-assessment/v1",
+    "status": "unsupported",
+    "counts": {
+      "lineages": 0,
+      "compact_lineages": 0,
+      "legacy_lineages": 0,
+      "events": 0,
+      "bytes": 0,
+      "eligible_candidates": 0,
+      "unsupported_lineages": 0,
+      "conflicts": 0
+    },
+    "supported_operations": [
+      "review/complete-fix",
+      "review/validate-fix"
+    ],
+    "authorization_schema": "gentle-ai.review-repair-authorization/v1"
+  },
+  "candidates": [],
+  "forecast": {
+    "horizon": "partial",
+    "steps": [
+      {
+        "step": 1,
+        "kind": "execute",
+        "reason_code": "fresh_target_ready",
+        "description": "Target is unreviewed and ready for initial review start"
+      }
+    ]
+  },
+  "next_transition": {
+    "kind": "execute",
+    "reason_code": "fresh_target_ready",
+    "execute": {
+      "operation": "review.start",
+      "command": "gentle-ai review start --cwd=/workspace/replica-gentle-ai --contract=gentle-ai.review-integration/v2 --target=sha256:fb1a85f35077a80bc46529458fee6d947fd78745abfd97a5c696c0eec2428b7e --target-evidence=v1:base-workspace-overlay:workspace:b4e39373a52a6f2921ca61e5df819165656d33f1:e584178633999dd05bb8aa6cf107ecfeac3913e9:sha256:ba16a89937029bc427025e9d4eba32a3239b7a0e3f7b7b0a977b16ce8c9342a4 --projection=workspace --base-ref=b4e39373a52a6f2921ca61e5df819165656d33f1 --workspace-overlay=true --lineage=review-0965112d2a35a265 --agent=codex --consent=relay --untracked-scope=select --expected-untracked-inventory=sha256:2231b1117eee3dcec74a45bd23842cc050390dae8ad62b7bd5c55ab6b0d81b3c --intended-untracked=AGENTS.md --intended-untracked=docs/requirements/qa-inquisidor-v3/PRD.md --intended-untracked=docs/requirements/qa-inquisidor-v3/contrato-evidencia.json --intended-untracked=docs/requirements/qa-inquisidor-v3/escenarios-previos.json --intended-untracked=docs/requirements/qa-inquisidor-v3/interview.json --intended-untracked=docs/requirements/qa-inquisidor-v3/modelo-cierre.json --intended-untracked=docs/requirements/qa-inquisidor-v3/receipts/A-HUMAN-006.txt --intended-untracked=docs/requirements/qa-inquisidor-v3/receipts/A-QA-006.txt --intended-untracked=docs/requirements/qa-inquisidor-v3/receipts/A-QA-007.txt --intended-untracked=docs/requirements/qa-inquisidor-v3/receipts/A-QA-008.txt --intended-untracked=docs/requirements/qa-inquisidor-v3/receipts/Q-HUMAN-006.txt --intended-untracked=docs/requirements/qa-inquisidor-v3/receipts/Q-QA-006.txt --intended-untracked=docs/requirements/qa-inquisidor-v3/receipts/Q-QA-007.txt --intended-untracked=docs/requirements/qa-inquisidor-v3/receipts/Q-QA-008.txt --intended-untracked=docs/requirements/qa-inquisidor-v3/registro-skill-asistente.md --intended-untracked=docs/requirements/qa-inquisidor-v3/resumen-entrada.schema.json --intended-untracked=skills/qa-inquisidor/SKILL.md --intended-untracked=skills/qa-inquisidor/assets/report.schema.json --intended-untracked=skills/qa-inquisidor/references/criteria.md --intended-untracked=skills/qa-inquisidor/scripts/validate_report.py --intended-untracked=skills/qa-inquisidor/tests/test_infrastructure.py --intended-untracked=skills/qa-inquisidor/tests/test_report.py --intended-untracked=skills/requerimientos-socraticos/scripts/json_preflight.py --intended-untracked=skills/requerimientos-socraticos/scripts/safe_io.py --request-context=/workspace/replica-gentle-ai/docs/skill-audit/qa-binding-012/request.md --lenses=review-resilience,review-reliability '--lenses-reason=Bind complete input context and explicitly deny execution authority; check compatibility and regression coverage.'",
+      "arguments": [
+        {
+          "name": "cwd",
+          "value": "/workspace/replica-gentle-ai",
+          "token": "--cwd=/workspace/replica-gentle-ai"
+        },
+        {
+          "name": "contract",
+          "value": "gentle-ai.review-integration/v2",
+          "token": "--contract=gentle-ai.review-integration/v2"
+        },
+        {
+          "name": "target",
+          "value": "sha256:fb1a85f35077a80bc46529458fee6d947fd78745abfd97a5c696c0eec2428b7e",
+          "token": "--target=sha256:fb1a85f35077a80bc46529458fee6d947fd78745abfd97a5c696c0eec2428b7e"
+        },
+        {
+          "name": "target-evidence",
+          "value": "v1:base-workspace-overlay:workspace:b4e39373a52a6f2921ca61e5df819165656d33f1:e584178633999dd05bb8aa6cf107ecfeac3913e9:sha256:ba16a89937029bc427025e9d4eba32a3239b7a0e3f7b7b0a977b16ce8c9342a4",
+          "token": "--target-evidence=v1:base-workspace-overlay:workspace:b4e39373a52a6f2921ca61e5df819165656d33f1:e584178633999dd05bb8aa6cf107ecfeac3913e9:sha256:ba16a89937029bc427025e9d4eba32a3239b7a0e3f7b7b0a977b16ce8c9342a4"
+        },
+        {
+          "name": "projection",
+          "value": "workspace",
+          "token": "--projection=workspace"
+        },
+        {
+          "name": "base-ref",
+          "value": "b4e39373a52a6f2921ca61e5df819165656d33f1",
+          "token": "--base-ref=b4e39373a52a6f2921ca61e5df819165656d33f1"
+        },
+        {
+          "name": "workspace-overlay",
+          "value": "true",
+          "token": "--workspace-overlay=true"
+        },
+        {
+          "name": "lineage",
+          "value": "review-0965112d2a35a265",
+          "token": "--lineage=review-0965112d2a35a265"
+        },
+        {
+          "name": "agent",
+          "value": "codex",
+          "token": "--agent=codex"
+        },
+        {
+          "name": "consent",
+          "value": "relay",
+          "token": "--consent=relay"
+        },
+        {
+          "name": "untracked-scope",
+          "value": "select",
+          "token": "--untracked-scope=select"
+        },
+        {
+          "name": "expected-untracked-inventory",
+          "value": "sha256:2231b1117eee3dcec74a45bd23842cc050390dae8ad62b7bd5c55ab6b0d81b3c",
+          "token": "--expected-untracked-inventory=sha256:2231b1117eee3dcec74a45bd23842cc050390dae8ad62b7bd5c55ab6b0d81b3c"
+        },
+        {
+          "name": "intended-untracked",
+          "value": "AGENTS.md",
+          "token": "--intended-untracked=AGENTS.md"
+        },
+        {
+          "name": "intended-untracked",
+          "value": "docs/requirements/qa-inquisidor-v3/PRD.md",
+          "token": "--intended-untracked=docs/requirements/qa-inquisidor-v3/PRD.md"
+        },
+        {
+          "name": "intended-untracked",
+          "value": "docs/requirements/qa-inquisidor-v3/contrato-evidencia.json",
+          "token": "--intended-untracked=docs/requirements/qa-inquisidor-v3/contrato-evidencia.json"
+        },
+        {
+          "name": "intended-untracked",
+          "value": "docs/requirements/qa-inquisidor-v3/escenarios-previos.json",
+          "token": "--intended-untracked=docs/requirements/qa-inquisidor-v3/escenarios-previos.json"
+        },
+        {
+          "name": "intended-untracked",
+          "value": "docs/requirements/qa-inquisidor-v3/interview.json",
+          "token": "--intended-untracked=docs/requirements/qa-inquisidor-v3/interview.json"
+        },
+        {
+          "name": "intended-untracked",
+          "value": "docs/requirements/qa-inquisidor-v3/modelo-cierre.json",
+          "token": "--intended-untracked=docs/requirements/qa-inquisidor-v3/modelo-cierre.json"
+        },
+        {
+          "name": "intended-untracked",
+          "value": "docs/requirements/qa-inquisidor-v3/receipts/A-HUMAN-006.txt",
+          "token": "--intended-untracked=docs/requirements/qa-inquisidor-v3/receipts/A-HUMAN-006.txt"
+        },
+        {
+          "name": "intended-untracked",
+          "value": "docs/requirements/qa-inquisidor-v3/receipts/A-QA-006.txt",
+          "token": "--intended-untracked=docs/requirements/qa-inquisidor-v3/receipts/A-QA-006.txt"
+        },
+        {
+          "name": "intended-untracked",
+          "value": "docs/requirements/qa-inquisidor-v3/receipts/A-QA-007.txt",
+          "token": "--intended-untracked=docs/requirements/qa-inquisidor-v3/receipts/A-QA-007.txt"
+        },
+        {
+          "name": "intended-untracked",
+          "value": "docs/requirements/qa-inquisidor-v3/receipts/A-QA-008.txt",
+          "token": "--intended-untracked=docs/requirements/qa-inquisidor-v3/receipts/A-QA-008.txt"
+        },
+        {
+          "name": "intended-untracked",
+          "value": "docs/requirements/qa-inquisidor-v3/receipts/Q-HUMAN-006.txt",
+          "token": "--intended-untracked=docs/requirements/qa-inquisidor-v3/receipts/Q-HUMAN-006.txt"
+        },
+        {
+          "name": "intended-untracked",
+          "value": "docs/requirements/qa-inquisidor-v3/receipts/Q-QA-006.txt",
+          "token": "--intended-untracked=docs/requirements/qa-inquisidor-v3/receipts/Q-QA-006.txt"
+        },
+        {
+          "name": "intended-untracked",
+          "value": "docs/requirements/qa-inquisidor-v3/receipts/Q-QA-007.txt",
+          "token": "--intended-untracked=docs/requirements/qa-inquisidor-v3/receipts/Q-QA-007.txt"
+        },
+        {
+          "name": "intended-untracked",
+          "value": "docs/requirements/qa-inquisidor-v3/receipts/Q-QA-008.txt",
+          "token": "--intended-untracked=docs/requirements/qa-inquisidor-v3/receipts/Q-QA-008.txt"
+        },
+        {
+          "name": "intended-untracked",
+          "value": "docs/requirements/qa-inquisidor-v3/registro-skill-asistente.md",
+          "token": "--intended-untracked=docs/requirements/qa-inquisidor-v3/registro-skill-asistente.md"
+        },
+        {
+          "name": "intended-untracked",
+          "value": "docs/requirements/qa-inquisidor-v3/resumen-entrada.schema.json",
+          "token": "--intended-untracked=docs/requirements/qa-inquisidor-v3/resumen-entrada.schema.json"
+        },
+        {
+          "name": "intended-untracked",
+          "value": "skills/qa-inquisidor/SKILL.md",
+          "token": "--intended-untracked=skills/qa-inquisidor/SKILL.md"
+        },
+        {
+          "name": "intended-untracked",
+          "value": "skills/qa-inquisidor/assets/report.schema.json",
+          "token": "--intended-untracked=skills/qa-inquisidor/assets/report.schema.json"
+        },
+        {
+          "name": "intended-untracked",
+          "value": "skills/qa-inquisidor/references/criteria.md",
+          "token": "--intended-untracked=skills/qa-inquisidor/references/criteria.md"
+        },
+        {
+          "name": "intended-untracked",
+          "value": "skills/qa-inquisidor/scripts/validate_report.py",
+          "token": "--intended-untracked=skills/qa-inquisidor/scripts/validate_report.py"
+        },
+        {
+          "name": "intended-untracked",
+          "value": "skills/qa-inquisidor/tests/test_infrastructure.py",
+          "token": "--intended-untracked=skills/qa-inquisidor/tests/test_infrastructure.py"
+        },
+        {
+          "name": "intended-untracked",
+          "value": "skills/qa-inquisidor/tests/test_report.py",
+          "token": "--intended-untracked=skills/qa-inquisidor/tests/test_report.py"
+        },
+        {
+          "name": "intended-untracked",
+          "value": "skills/requerimientos-socraticos/scripts/json_preflight.py",
+          "token": "--intended-untracked=skills/requerimientos-socraticos/scripts/json_preflight.py"
+        },
+        {
+          "name": "intended-untracked",
+          "value": "skills/requerimientos-socraticos/scripts/safe_io.py",
+          "token": "--intended-untracked=skills/requerimientos-socraticos/scripts/safe_io.py"
+        },
+        {
+          "name": "request-context",
+          "value": "/workspace/replica-gentle-ai/docs/skill-audit/qa-binding-012/request.md",
+          "token": "--request-context=/workspace/replica-gentle-ai/docs/skill-audit/qa-binding-012/request.md"
+        },
+        {
+          "name": "lenses",
+          "value": "review-resilience,review-reliability",
+          "token": "--lenses=review-resilience,review-reliability"
+        },
+        {
+          "name": "lenses-reason",
+          "value": "Bind complete input context and explicitly deny execution authority; check compatibility and regression coverage.",
+          "token": "--lenses-reason=Bind complete input context and explicitly deny execution authority; check compatibility and regression coverage."
+        }
+      ],
+      "preconditions": [
+        {
+          "name": "target_identity",
+          "value": "sha256:fb1a85f35077a80bc46529458fee6d947fd78745abfd97a5c696c0eec2428b7e"
+        }
+      ],
+      "binding": {
+        "lineage_id": "review-0965112d2a35a265",
+        "target_identity": "sha256:fb1a85f35077a80bc46529458fee6d947fd78745abfd97a5c696c0eec2428b7e"
+      }
+    }
+  }
+}

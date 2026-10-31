@@ -1,0 +1,15 @@
+{
+  "id": "Q-INT-T01",
+  "interrogator": "/root/integration_interrogator",
+  "responder": "/root",
+  "question_verbatim": "¿Qué contrato técnico propones para ordenar de forma observable la aceptación de una revocación frente a cada emisión de escritura de incorporación, de modo que la FSM pueda impedir escrituras posteriores y distinguir operaciones ya emitidas antes de evaluar recuperación segura, indicando qué evidencia disponible lo sustenta o qué permanece UNKNOWN?",
+  "answer_summary_not_verbatim": "Propuesta: coordinador único serializa aceptación de revocación y emisión de escrituras mediante secuencia durable por tarea; acuse solo tras registrar revocación; operaciones previamente emitidas siguen IN_FLIGHT. Incertidumbre de resultado bloquea restauración; mecanismos de durabilidad y exclusión desconocidos. Si escritores externos no coordinados pueden cambiar base, no afirmar protección ni restauración segura.",
+  "assessment": "ANSWERED_FOR_PROPOSED_DOCUMENTARY_CONTRACT",
+  "clarification": "Crash after OS issue but before result persistence leaves UNKNOWN/IN_FLIGHT; durable sequence alone does not prove no write happened.",
+  "unknowns": [
+    "durable mechanism",
+    "exclusive writer enforcement",
+    "external operation semantics"
+  ],
+  "authority": "No new human policy inferred"
+}

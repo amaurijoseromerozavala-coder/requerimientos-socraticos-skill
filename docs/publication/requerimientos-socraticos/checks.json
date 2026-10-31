@@ -1,0 +1,502 @@
+[
+  {
+    "name": "activation_preflight",
+    "command": [
+      "/home/agent/.local/share/requerimientos-socraticos/venv/bin/python",
+      "-B",
+      "skills/requerimientos-socraticos/scripts/activation_preflight.py",
+      "--path",
+      "."
+    ],
+    "outer_timeout_seconds": 30,
+    "returncode": 0,
+    "elapsed_seconds": 0.024,
+    "stdout_sha256": "3da8162a54150dfcc2cf76592b890ecffa6d0d27f849f5d17e0a91d37b75ad96",
+    "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "json_keys": [
+      "schema_version",
+      "kind",
+      "observed_at",
+      "status",
+      "observation",
+      "policy",
+      "capabilities",
+      "execution",
+      "evidence"
+    ],
+    "outcome": {
+      "status": "READY_FOR_LIVE_ADMISSION",
+      "kind": "ACTIVATION_PREFLIGHT"
+    }
+  },
+  {
+    "name": "logic_example",
+    "command": [
+      "/home/agent/.local/share/requerimientos-socraticos/venv/bin/python",
+      "-B",
+      "skills/requerimientos-socraticos/scripts/analyze_logic.py",
+      "skills/requerimientos-socraticos/assets/logic-example.json"
+    ],
+    "outer_timeout_seconds": 30,
+    "returncode": 0,
+    "elapsed_seconds": 0.142,
+    "stdout_sha256": "b77f8aa0d21f11ff05eeffd1c9900db72a5ebb618de66df8f2250ecc1a2d666b",
+    "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "json_keys": [
+      "domain_validity",
+      "queries",
+      "properties",
+      "limits",
+      "scope",
+      "provenance",
+      "memory_observation",
+      "runtime",
+      "supervision",
+      "memory_budget"
+    ],
+    "outcome": {},
+    "logic_result": {
+      "domain_validity": "VALID",
+      "queries": {
+        "domain": {
+          "status": "SAT",
+          "witness": {
+            "request": false
+          }
+        },
+        "gap": {
+          "status": "SAT",
+          "witness": {
+            "request": false
+          }
+        },
+        "no_output": {
+          "status": "SAT",
+          "witness": {
+            "request": true
+          }
+        },
+        "rule_consistency": {
+          "status": "SAT",
+          "witness": {
+            "request": false,
+            "approved": true,
+            "logged": true
+          }
+        }
+      },
+      "properties": [
+        {
+          "id": "approval_implies_logging",
+          "interpretation": "Consequence of model rules within domain; not implementation verification.",
+          "consequence": "NOT_ENTAILED",
+          "counterexample": {
+            "status": "SAT",
+            "witness": {
+              "request": false,
+              "approved": true,
+              "logged": false
+            }
+          }
+        }
+      ],
+      "limits": {
+        "variables": 3,
+        "ast_nodes": 13,
+        "max_variables": 32,
+        "max_ast_nodes": 4096,
+        "max_depth": 32,
+        "max_input_bytes": 262144,
+        "total_seconds": 4.981107325002085,
+        "per_query_seconds": 1
+      },
+      "scope": "Results concern the supplied Boolean model only; they do not verify implementation, hardware, or human meaning.",
+      "provenance": {
+        "model_sha256": "bcd115fa67a8be5b38a53565a60bbc7762ac2c39f3fe395a0a382afea59f0bb4",
+        "z3_version": "4.15.4",
+        "z3_module": {
+          "status": "OBSERVED",
+          "resolved_path": "/home/agent/.local/share/requerimientos-socraticos/venv/lib/python3.12/site-packages/z3/__init__.py",
+          "sha256": "53c4529a01f38e7c0d593b7548c79e0d7398aa09f7d7cbd1773470859ee2febd"
+        },
+        "elapsed_seconds": 0.019079238998529036,
+        "note": "Hash identifies supplied bytes; it does not establish semantic correctness."
+      },
+      "memory_observation": {
+        "scope": "PROCESS_LOCAL_SAMPLES",
+        "virtual_bytes": 163364864,
+        "rss_bytes": 53284864,
+        "peak_rss_bytes": 53239808,
+        "peak_rss_scope": "PROCESS_LIFETIME_HIGH_WATER",
+        "as_soft_bytes": 469762048,
+        "as_hard_bytes": 469762048,
+        "rss_quota_enforced": false,
+        "source": "/proc/self/statm, getrusage(RUSAGE_SELF), getrlimit(RLIMIT_AS)",
+        "sampling": "SEQUENTIAL_NOT_ATOMIC",
+        "status": "OBSERVED_PROCESS_LOCAL",
+        "as_unlimited": {
+          "soft": false,
+          "hard": false
+        }
+      },
+      "runtime": {
+        "executable": "/home/agent/.local/share/requerimientos-socraticos/venv/bin/python",
+        "python_version": "3.12.14",
+        "executable_sha256": "fa67443527ed9647f760d807e2a38f26340757123e643c4639cf273ed15d5ea7",
+        "artifact": {
+          "status": "OBSERVED",
+          "resolved_path": "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3.12",
+          "sha256": "fa67443527ed9647f760d807e2a38f26340757123e643c4639cf273ed15d5ea7"
+        },
+        "distributions": {
+          "z3-solver": "4.15.4.0",
+          "jsonschema": "4.26.0"
+        },
+        "authentication": "NOT_ESTABLISHED",
+        "limits": "Observed bytes/metadata in a trusted local account; not a signed runtime or dependency attestation."
+      },
+      "supervision": {
+        "worker_elapsed_seconds": 0.074484813005256,
+        "wall_budget_seconds": 5,
+        "parent_death_policy": "LINUX_DIRECT_CHILD_PDEATHSIG",
+        "cleanup_status": "DIRECT_WORKER_REAPED_AND_PIPES_DRAINED",
+        "cleanup_grace_seconds": 1,
+        "limits": "Responsive OS and live supervisor required for deadline handling; Linux death signal covers direct worker only. No arbitrary descendant or hardware isolation guarantee."
+      },
+      "memory_budget": {
+        "policy": {
+          "total_mib": 512,
+          "total_bytes": 536870912,
+          "roles_mib": {
+            "caller": 64,
+            "solver": 448
+          },
+          "roles_bytes": {
+            "caller": 67108864,
+            "solver": 469762048
+          },
+          "kind": "PROVISIONAL_ENGINEERING_POLICY",
+          "hardware_capacity_calibrated": false,
+          "aggregate_kernel_quota": false,
+          "workload": "BOOLEAN_ANALYSIS"
+        },
+        "admission": {
+          "status": "ADMITTED_COOPERATIVE",
+          "headroom_observed_bytes": 8180936704,
+          "required_headroom_bytes": 1073741824,
+          "scope": "VISIBLE_KERNEL_AND_CGROUP_PARTIAL",
+          "physical_reservation": false,
+          "sampling": "SEQUENTIAL_NOT_ATOMIC",
+          "memory_observation": {
+            "status": "OBSERVED",
+            "source": "/proc/meminfo (visible kernel scope)",
+            "total_bytes": 10452471808,
+            "available_bytes": 9771741184,
+            "swap_total_bytes": 0,
+            "swap_free_bytes": 0
+          },
+          "cgroup_observation": {
+            "status": "OBSERVED_VISIBLE_SCOPE",
+            "source": "/proc/self/cgroup and visible /sys/fs/cgroup ancestors",
+            "memory_limits": [
+              {
+                "limit_bytes": 8589934592,
+                "current_bytes": 408997888,
+                "sampled_headroom_bytes": 8180936704
+              }
+            ],
+            "cpu_quotas": [
+              {
+                "quota": 200000,
+                "period": 100000,
+                "cpu_time_ratio": 2.0
+              }
+            ],
+            "limit_states": [
+              {
+                "visible_ancestor": 0,
+                "memory": "FINITE",
+                "cpu": "FINITE"
+              }
+            ],
+            "limitation": "Sequential samples; hidden ancestors/host and concurrent changes remain unknown."
+          }
+        },
+        "caller": {
+          "scope": "OWNED_CLI_PROCESS",
+          "virtual_bytes": 44236800,
+          "rss_bytes": 17596416,
+          "peak_rss_bytes": 17432576,
+          "peak_rss_scope": "PROCESS_LIFETIME_HIGH_WATER",
+          "as_soft_bytes": 67108864,
+          "as_hard_bytes": 469762048,
+          "rss_quota_enforced": false,
+          "source": "/proc/self/statm, getrusage(RUSAGE_SELF), getrlimit(RLIMIT_AS)",
+          "sampling": "SEQUENTIAL_NOT_ATOMIC",
+          "status": "OBSERVED_PROCESS_LOCAL",
+          "as_unlimited": {
+            "soft": false,
+            "hard": false
+          },
+          "sample_scope": "PROCESS_LOCAL_SAMPLES"
+        },
+        "limits": [
+          "Virtual address-space limits, not RSS quotas or physical reservations.",
+          "Admission serializes cooperating calls per account; not global host enforcement.",
+          "Sequential local samples and lifetime peaks do not prove aggregate RSS.",
+          "Signals and missing diagnostics do not establish OOM."
+        ],
+        "activation_preflight": {
+          "schema_version": "1.0.0",
+          "kind": "ACTIVATION_PREFLIGHT",
+          "observed_at": "2026-10-29T00:01:37.867889+00:00",
+          "status": "READY_FOR_LIVE_ADMISSION",
+          "observation": {
+            "schema_version": "1.0.0",
+            "kind": "OBSERVED_LOCAL_ENVIRONMENT",
+            "observed_at": "2026-10-29T00:01:37.867559+00:00",
+            "elapsed_seconds": 0.0002620350060169585,
+            "platform": {
+              "os": "linux",
+              "architecture": "x86_64",
+              "kernel_release": "6.18.55",
+              "python": "3.12.14"
+            },
+            "hosting": {
+              "status": "UNKNOWN",
+              "indicators": []
+            },
+            "cpu": {
+              "source": "os.cpu_count / sched_getaffinity / visible cgroup CPU quotas",
+              "logical_visible": 3,
+              "affinity_count": 3,
+              "effective_exclusive_cpu_capacity": null,
+              "model": {
+                "status": "OBSERVED",
+                "model": "AMD EPYC 9V45 96-Core Processor",
+                "class": "MODEL_STRING_ONLY",
+                "source": "/proc/cpuinfo (bounded first matching field)"
+              }
+            },
+            "memory": {
+              "status": "OBSERVED",
+              "source": "/proc/meminfo (visible kernel scope)",
+              "total_bytes": 10452471808,
+              "available_bytes": 9771769856,
+              "swap_total_bytes": 0,
+              "swap_free_bytes": 0
+            },
+            "cgroup": {
+              "status": "OBSERVED_VISIBLE_SCOPE",
+              "source": "/proc/self/cgroup and visible /sys/fs/cgroup ancestors",
+              "memory_limits": [
+                {
+                  "limit_bytes": 8589934592,
+                  "current_bytes": 409001984,
+                  "sampled_headroom_bytes": 8180932608
+                }
+              ],
+              "cpu_quotas": [
+                {
+                  "quota": 200000,
+                  "period": 100000,
+                  "cpu_time_ratio": 2.0
+                }
+              ],
+              "limit_states": [
+                {
+                  "visible_ancestor": 0,
+                  "memory": "FINITE",
+                  "cpu": "FINITE"
+                }
+              ],
+              "limitation": "Sequential samples; hidden ancestors/host and concurrent changes remain unknown."
+            },
+            "sampled_memory_headroom": {
+              "status": "PARTIAL_ESTIMATE",
+              "bytes": 8180932608,
+              "not_a_budget": true
+            },
+            "storage": {
+              "status": "OBSERVED",
+              "source": "disk_usage of requested path",
+              "total_bytes": 33770192896,
+              "free_bytes": 31196848128
+            },
+            "thermal": {
+              "status": "NOT_MEASURED"
+            },
+            "capacity_estimate": {
+              "status": "NOT_CALIBRATED"
+            },
+            "coverage": {
+              "status": "NOT_COMPUTED_FROM_HARDWARE",
+              "percent": null
+            },
+            "execution_authorized": false,
+            "target_equivalence": "NOT_ESTABLISHED",
+            "observation_scope": {
+              "visible_runtime": "OBSERVED",
+              "physical_host": "NOT_OBSERVED"
+            },
+            "resource_admission": "NOT_ASSESSED",
+            "limits": [
+              "Local visible scope only; no hardware identity or throughput claim.",
+              "No benchmark, temperature sampling, network request or configuration mutation.",
+              "Non-Linux memory/quota adapters are not implemented; unavailable fields remain UNKNOWN.",
+              "Samples are not atomic; do not use them as enforceable resource limits."
+            ]
+          },
+          "policy": {
+            "kind": "PROVISIONAL_ENGINEERING_POLICY",
+            "calibration": "NOT_CALIBRATED",
+            "workload": "logic",
+            "caller_scope": "OWNED_CLI",
+            "headroom_visible_bytes": 8180932608,
+            "headroom_profile_cap_mib": 512,
+            "inherited_as_hard_bytes": null,
+            "inherited_as_hard_status": "OBSERVED",
+            "inherited_as_hard_unlimited": true,
+            "selected_profile_mib": 512,
+            "effective_profile_mib": 512,
+            "role_limits_mib": {
+              "caller": 64,
+              "solver": 448
+            },
+            "selection_rule": "min(512 MiB, floor8(headroom/2), each role fit under inherited RLIMIT_AS)",
+            "selection": "PROVISIONAL_ROLE_VIABILITY"
+          },
+          "capabilities": {
+            "document_analysis": "AVAILABLE",
+            "workers": "CANDIDATE_SUBJECT_TO_LIVE_ADMISSION"
+          },
+          "execution": {
+            "authorized": false,
+            "workers": "COMPLETED",
+            "gate": "LIVE_ADMISSION_REQUIRED",
+            "effective_profile_mib": 512,
+            "control_state": "APPLIED",
+            "enforced": [
+              "cooperative account admission lock acquired",
+              "visible headroom >= 2x profile at live admission sample",
+              "role-specific RLIMIT_AS applied before worker exec"
+            ],
+            "prospective_controls": [
+              "cooperative account admission lock",
+              "visible headroom >= 2x profile",
+              "role-specific RLIMIT_AS before exec"
+            ],
+            "advisory": [
+              "visible CPU model/count do not estimate speed",
+              "storage observation is not a capacity guarantee"
+            ],
+            "limits": [
+              "No physical memory reservation or RSS quota.",
+              "No guarantee against swap or concurrent system changes.",
+              "Existing caller API limits are preserved."
+            ],
+            "existing_contract": {
+              "analyze_timeout_seconds": "default 5; accepted >0..30",
+              "git_timeout_seconds": "default 60; accepted >0..300",
+              "boolean_variables_max": 32,
+              "boolean_ast_nodes_max": 4096,
+              "boolean_input_bytes_max": 262144,
+              "git_document_bytes_max_each": 8388608,
+              "git_document_bytes_max_total": 33554432,
+              "json_structural_depth_max": 96
+            }
+          },
+          "evidence": {
+            "memory": {
+              "status": "OBSERVED",
+              "source": "/proc/meminfo (visible kernel scope)",
+              "total_bytes": 10452471808,
+              "available_bytes": 9771769856,
+              "swap_total_bytes": 0,
+              "swap_free_bytes": 0
+            },
+            "cgroup": {
+              "status": "OBSERVED_VISIBLE_SCOPE",
+              "source": "/proc/self/cgroup and visible /sys/fs/cgroup ancestors",
+              "memory_limits": [
+                {
+                  "limit_bytes": 8589934592,
+                  "current_bytes": 409001984,
+                  "sampled_headroom_bytes": 8180932608
+                }
+              ],
+              "cpu_quotas": [
+                {
+                  "quota": 200000,
+                  "period": 100000,
+                  "cpu_time_ratio": 2.0
+                }
+              ],
+              "limit_states": [
+                {
+                  "visible_ancestor": 0,
+                  "memory": "FINITE",
+                  "cpu": "FINITE"
+                }
+              ],
+              "limitation": "Sequential samples; hidden ancestors/host and concurrent changes remain unknown."
+            },
+            "inherited_as_soft_bytes": null,
+            "inherited_as_soft_status": "OBSERVED",
+            "inherited_as_soft_unlimited": true,
+            "caller_baseline_bytes": 44236800,
+            "caller_baseline_status": "OBSERVED",
+            "unknowns": [
+              "hidden host limits",
+              "physical host identity",
+              "thermal state",
+              "performance"
+            ]
+          }
+        }
+      }
+    }
+  },
+  {
+    "name": "test_role_policy_source",
+    "command": [
+      "/home/agent/.local/share/requerimientos-socraticos/venv/bin/python",
+      "-B",
+      "-m",
+      "unittest",
+      "discover",
+      "-s",
+      "skills/requerimientos-socraticos/tests",
+      "-p",
+      "test_role_policy_source.py",
+      "-v"
+    ],
+    "outer_timeout_seconds": 30,
+    "returncode": 0,
+    "elapsed_seconds": 0.073,
+    "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stderr_sha256": "85a77d2516d9658b91436c8788e7a9c09e34b83989f3d6405953d278dbce170b",
+    "test_output": "test_actual_512_mib_roles_remain_byte_exact (test_role_policy_source.RolePolicySourceTests.test_actual_512_mib_roles_remain_byte_exact) ... ok\ntest_all_uses_largest_shared_role_from_both_policies (test_role_policy_source.RolePolicySourceTests.test_all_uses_largest_shared_role_from_both_policies) ... ok\ntest_git_admission_tracks_changed_policy_roles (test_role_policy_source.RolePolicySourceTests.test_git_admission_tracks_changed_policy_roles) ... ok\ntest_logic_admission_tracks_changed_policy_roles (test_role_policy_source.RolePolicySourceTests.test_logic_admission_tracks_changed_policy_roles) ... ok\n\n----------------------------------------------------------------------\nRan 4 tests in 0.002s\n\nOK\n"
+  },
+  {
+    "name": "test_memory_budget",
+    "command": [
+      "/home/agent/.local/share/requerimientos-socraticos/venv/bin/python",
+      "-B",
+      "-m",
+      "unittest",
+      "discover",
+      "-s",
+      "skills/requerimientos-socraticos/tests",
+      "-p",
+      "test_memory_budget.py",
+      "-v"
+    ],
+    "outer_timeout_seconds": 30,
+    "returncode": 0,
+    "elapsed_seconds": 0.129,
+    "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stderr_sha256": "ac17ed237dbb9eeafea2df1da5e905e165a3ed4d9d193660dc367b015c5ce93e",
+    "test_output": "test_absolute_file_import_does_not_mutate_module_search_paths (test_memory_budget.MemoryBudgetTests.test_absolute_file_import_does_not_mutate_module_search_paths) ... ok\ntest_admission_private_nonblocking_and_release (test_memory_budget.MemoryBudgetTests.test_admission_private_nonblocking_and_release) ... ok\ntest_admission_rejects_changed_or_type_coerced_profiles (test_memory_budget.MemoryBudgetTests.test_admission_rejects_changed_or_type_coerced_profiles) ... ok\ntest_admission_uses_canonical_snapshot_after_validation (test_memory_budget.MemoryBudgetTests.test_admission_uses_canonical_snapshot_after_validation) ... ok\ntest_git_policy_contract_243_is_unchanged (test_memory_budget.MemoryBudgetTests.test_git_policy_contract_243_is_unchanged) ... ok\ntest_inherited_descriptor_holds_lease_until_child_exits (test_memory_budget.MemoryBudgetTests.test_inherited_descriptor_holds_lease_until_child_exits) ... ok\ntest_kernel_refusal_is_explicit_and_ordinary_helpers_do_not_set_limits (test_memory_budget.MemoryBudgetTests.test_kernel_refusal_is_explicit_and_ordinary_helpers_do_not_set_limits) ... ok\ntest_limit_validation_never_raises_inherited_hard (test_memory_budget.MemoryBudgetTests.test_limit_validation_never_raises_inherited_hard) ... ok\ntest_logic_admission_rejects_changed_or_type_coerced_profiles (test_memory_budget.MemoryBudgetTests.test_logic_admission_rejects_changed_or_type_coerced_profiles) ... ok\ntest_logic_and_git_share_one_account_lease (test_memory_budget.MemoryBudgetTests.test_logic_and_git_share_one_account_lease) ... ok\ntest_logic_headroom_uses_twice_total_at_exact_boundary (test_memory_budget.MemoryBudgetTests.test_logic_headroom_uses_twice_total_at_exact_boundary) ... ok\ntest_logic_policy_roles_flags_and_validation (test_memory_budget.MemoryBudgetTests.test_logic_policy_roles_flags_and_validation) ... ok\ntest_partial_cgroup_rows_block_and_unlimited_visible_scope_is_distinct (test_memory_budget.MemoryBudgetTests.test_partial_cgroup_rows_block_and_unlimited_visible_scope_is_distinct) ... ok\ntest_policy_roles_and_validation (test_memory_budget.MemoryBudgetTests.test_policy_roles_and_validation) ... ok\ntest_process_observation_distinguishes_virtual_rss_and_high_water (test_memory_budget.MemoryBudgetTests.test_process_observation_distinguishes_virtual_rss_and_high_water) ... ok\ntest_small_real_limit_in_child_only (test_memory_budget.MemoryBudgetTests.test_small_real_limit_in_child_only) ... ok\ntest_unknown_or_low_headroom_blocks (test_memory_budget.MemoryBudgetTests.test_unknown_or_low_headroom_blocks) ... ok\ntest_unsafe_lock_and_directory_are_rejected (test_memory_budget.MemoryBudgetTests.test_unsafe_lock_and_directory_are_rejected) ... ok\ntest_unsupported_is_explicit (test_memory_budget.MemoryBudgetTests.test_unsupported_is_explicit) ... ok\n\n----------------------------------------------------------------------\nRan 19 tests in 0.055s\n\nOK\n"
+  }
+]

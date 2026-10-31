@@ -1,0 +1,75 @@
+test_each_output_stream_is_bounded_and_worker_reaped (test_process_supervision.ProcessSupervisionTests.test_each_output_stream_is_bounded_and_worker_reaped) ... 
+  test_each_output_stream_is_bounded_and_worker_reaped (test_process_supervision.ProcessSupervisionTests.test_each_output_stream_is_bounded_and_worker_reaped) (fd=1) ... ERROR
+  test_each_output_stream_is_bounded_and_worker_reaped (test_process_supervision.ProcessSupervisionTests.test_each_output_stream_is_bounded_and_worker_reaped) (fd=2) ... ERROR
+test_exact_output_limit_and_empty_input_succeed (test_process_supervision.ProcessSupervisionTests.test_exact_output_limit_and_empty_input_succeed) ... ERROR
+test_explicit_descriptor_is_inherited (test_process_supervision.ProcessSupervisionTests.test_explicit_descriptor_is_inherited) ... ERROR
+test_input_and_output_progress_without_pipe_deadlock (test_process_supervision.ProcessSupervisionTests.test_input_and_output_progress_without_pipe_deadlock) ... ERROR
+test_invalid_budget_or_input_starts_no_worker (test_process_supervision.ProcessSupervisionTests.test_invalid_budget_or_input_starts_no_worker) ... ERROR
+test_stdin_write_obeys_total_deadline (test_process_supervision.ProcessSupervisionTests.test_stdin_write_obeys_total_deadline) ... ERROR
+
+======================================================================
+ERROR: test_each_output_stream_is_bounded_and_worker_reaped (test_process_supervision.ProcessSupervisionTests.test_each_output_stream_is_bounded_and_worker_reaped) (fd=1)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/replica-gentle-ai/skills/requerimientos-socraticos/tests/test_process_supervision.py", line 45, in test_each_output_stream_is_bounded_and_worker_reaped
+    result = load().run_supervised(
+             ^^^^^^^^^^^^^^^^^^^^^^
+TypeError: run_supervised() got an unexpected keyword argument 'output_limit_bytes'
+
+======================================================================
+ERROR: test_each_output_stream_is_bounded_and_worker_reaped (test_process_supervision.ProcessSupervisionTests.test_each_output_stream_is_bounded_and_worker_reaped) (fd=2)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/replica-gentle-ai/skills/requerimientos-socraticos/tests/test_process_supervision.py", line 45, in test_each_output_stream_is_bounded_and_worker_reaped
+    result = load().run_supervised(
+             ^^^^^^^^^^^^^^^^^^^^^^
+TypeError: run_supervised() got an unexpected keyword argument 'output_limit_bytes'
+
+======================================================================
+ERROR: test_exact_output_limit_and_empty_input_succeed (test_process_supervision.ProcessSupervisionTests.test_exact_output_limit_and_empty_input_succeed)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/replica-gentle-ai/skills/requerimientos-socraticos/tests/test_process_supervision.py", line 56, in test_exact_output_limit_and_empty_input_succeed
+    result = load().run_supervised(
+             ^^^^^^^^^^^^^^^^^^^^^^
+TypeError: run_supervised() got an unexpected keyword argument 'input_data'
+
+======================================================================
+ERROR: test_explicit_descriptor_is_inherited (test_process_supervision.ProcessSupervisionTests.test_explicit_descriptor_is_inherited)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/replica-gentle-ai/skills/requerimientos-socraticos/tests/test_process_supervision.py", line 69, in test_explicit_descriptor_is_inherited
+    result = load().run_supervised(
+             ^^^^^^^^^^^^^^^^^^^^^^
+TypeError: run_supervised() got an unexpected keyword argument 'pass_fds'
+
+======================================================================
+ERROR: test_input_and_output_progress_without_pipe_deadlock (test_process_supervision.ProcessSupervisionTests.test_input_and_output_progress_without_pipe_deadlock)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/replica-gentle-ai/skills/requerimientos-socraticos/tests/test_process_supervision.py", line 26, in test_input_and_output_progress_without_pipe_deadlock
+    result = load().run_supervised([sys.executable, '-c', code], 2, input_data=payload)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: run_supervised() got an unexpected keyword argument 'input_data'
+
+======================================================================
+ERROR: test_invalid_budget_or_input_starts_no_worker (test_process_supervision.ProcessSupervisionTests.test_invalid_budget_or_input_starts_no_worker)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/replica-gentle-ai/skills/requerimientos-socraticos/tests/test_process_supervision.py", line 88, in test_invalid_budget_or_input_starts_no_worker
+    module.run_supervised([sys.executable], 1, output_limit_bytes=0)
+TypeError: run_supervised() got an unexpected keyword argument 'output_limit_bytes'
+
+======================================================================
+ERROR: test_stdin_write_obeys_total_deadline (test_process_supervision.ProcessSupervisionTests.test_stdin_write_obeys_total_deadline)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/replica-gentle-ai/skills/requerimientos-socraticos/tests/test_process_supervision.py", line 34, in test_stdin_write_obeys_total_deadline
+    result = load().run_supervised(
+             ^^^^^^^^^^^^^^^^^^^^^^
+TypeError: run_supervised() got an unexpected keyword argument 'input_data'
+
+----------------------------------------------------------------------
+Ran 6 tests in 0.012s
+
+FAILED (errors=7)

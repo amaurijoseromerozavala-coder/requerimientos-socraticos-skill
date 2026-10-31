@@ -1,0 +1,633 @@
+{
+  "schema": "gentle-ai.review-integration.status/v9",
+  "contract": "gentle-ai.review-integration/v2",
+  "operation": "review.status",
+  "applicability": "unrelated",
+  "action": "start",
+  "replayability": "not_replayable",
+  "target_identity": "sha256:7f07ef901f9dc9f6bec34afeecf7f5cf63d5ee3712721680b55aa7f6cc816e3d",
+  "projection": {
+    "schema": "gentle-ai.review-integration.projection/v1",
+    "kind": "base-workspace-overlay",
+    "projection": "workspace",
+    "base_tree": "16500340ab2da63681e46eedbac12b3d2caf10d7",
+    "initial_review_tree": "30860e973cb3954995ad7de358944696128388c9",
+    "current_candidate_tree": "30860e973cb3954995ad7de358944696128388c9",
+    "paths_digest": "sha256:89a3a654cbbaf0a13a2c5dc54354c5c1fe8c75742e714b8de8e012fee26d2300",
+    "paths": [
+      "bin/gentle-ai",
+      "docs/skill-audit/requirements-hardening-241/full-tests.log",
+      "docs/skill-audit/requirements-hardening-241/group-red.log",
+      "docs/skill-audit/requirements-hardening-241/independent-group-lifecycle.json",
+      "docs/skill-audit/requirements-hardening-241/independent-manifest.json",
+      "docs/skill-audit/requirements-hardening-241/independent-review.json",
+      "docs/skill-audit/requirements-hardening-241/independent-tests.log",
+      "docs/skill-audit/requirements-hardening-241/logic-example.json",
+      "docs/skill-audit/requirements-hardening-241/profile.json",
+      "docs/skill-audit/requirements-hardening-241/supervisor-green.log",
+      "docs/skill-audit/requirements-hardening-241/supervisor-red.log",
+      "skills/requerimientos-socraticos/SKILL.md",
+      "skills/requerimientos-socraticos/references/formal-analysis.md",
+      "skills/requerimientos-socraticos/scripts/analyze_logic.py",
+      "skills/requerimientos-socraticos/scripts/json_preflight.py",
+      "skills/requerimientos-socraticos/scripts/logic_engine.py",
+      "skills/requerimientos-socraticos/scripts/probe_environment.py",
+      "skills/requerimientos-socraticos/tests/test_environment.py",
+      "skills/requerimientos-socraticos/tests/test_logic.py",
+      "skills/requerimientos-socraticos/tests/test_preflight.py",
+      "skills/requerimientos-socraticos/tests/test_supervisor.py",
+      "skills/requerimientos-socraticos/validation.json"
+    ],
+    "intended_untracked": [
+      "AGENTS.md",
+      "bin/gentle-ai",
+      "docs/skill-audit/accepted-qa-fixes/ANALISIS.md",
+      "docs/skill-audit/accepted-qa-fixes/guard.stderr",
+      "docs/skill-audit/accepted-qa-fixes/interview.stderr",
+      "docs/skill-audit/accepted-qa-fixes/scratch.stderr",
+      "docs/skill-audit/accepted-qa-fixes/sealed.stderr",
+      "docs/skill-audit/accepted-qa-fixes/sha1-red.stderr",
+      "docs/skill-audit/integrity-challenge/ANALISIS.md",
+      "docs/skill-audit/integrity-challenge/guard-tests.stderr",
+      "docs/skill-audit/integrity-challenge/interview-tests.stderr",
+      "docs/skill-audit/integrity-challenge/red-baseline.json",
+      "docs/skill-audit/requerimientos-repair/smoke/assessment-final.json",
+      "docs/skill-audit/requerimientos-repair/smoke/registro-skill-asistente.md",
+      "docs/skill-audit/requerimientos-repair/tests-green.stderr",
+      "docs/skill-audit/requirements-hardening-24/analysis-report.json",
+      "docs/skill-audit/requirements-hardening-24/cgroup-red.log",
+      "docs/skill-audit/requirements-hardening-24/dependencies.txt",
+      "docs/skill-audit/requirements-hardening-24/environment-green.log",
+      "docs/skill-audit/requirements-hardening-24/environment-red.log",
+      "docs/skill-audit/requirements-hardening-24/full-tests.log",
+      "docs/skill-audit/requirements-hardening-24/independent-review.json",
+      "docs/skill-audit/requirements-hardening-24/local-profile.json",
+      "docs/skill-audit/requirements-hardening-24/logic-example-result.json",
+      "docs/skill-audit/requirements-hardening-241/full-tests.log",
+      "docs/skill-audit/requirements-hardening-241/group-red.log",
+      "docs/skill-audit/requirements-hardening-241/independent-group-lifecycle.json",
+      "docs/skill-audit/requirements-hardening-241/independent-manifest.json",
+      "docs/skill-audit/requirements-hardening-241/independent-review.json",
+      "docs/skill-audit/requirements-hardening-241/independent-tests.log",
+      "docs/skill-audit/requirements-hardening-241/logic-example.json",
+      "docs/skill-audit/requirements-hardening-241/profile.json",
+      "docs/skill-audit/requirements-hardening-241/supervisor-green.log",
+      "docs/skill-audit/requirements-hardening-241/supervisor-red.log",
+      "docs/skill-audit/sealed-validation/ANALISIS.md",
+      "docs/skill-audit/sealed-validation/guard.stderr",
+      "docs/skill-audit/sealed-validation/interview.stderr",
+      "docs/skill-audit/sealed-validation/red-baseline.json",
+      "docs/skill-audit/sealed-validation/tests.stderr",
+      "skills/requerimientos-socraticos/SKILL.md",
+      "skills/requerimientos-socraticos/agents/requirements-interrogator.toml",
+      "skills/requerimientos-socraticos/assets/analysis-report.schema.json",
+      "skills/requerimientos-socraticos/assets/design-proposals.schema.json",
+      "skills/requerimientos-socraticos/assets/example.prd.json",
+      "skills/requerimientos-socraticos/assets/gitattributes.example",
+      "skills/requerimientos-socraticos/assets/interrogator-packet.schema.json",
+      "skills/requerimientos-socraticos/assets/interview.schema.json",
+      "skills/requerimientos-socraticos/assets/logic-example.json",
+      "skills/requerimientos-socraticos/assets/logic-input.schema.json",
+      "skills/requerimientos-socraticos/assets/prd.schema.json",
+      "skills/requerimientos-socraticos/references/formal-analysis.md",
+      "skills/requerimientos-socraticos/references/integrity-boundary.md",
+      "skills/requerimientos-socraticos/references/interrogation.md",
+      "skills/requerimientos-socraticos/references/method.md",
+      "skills/requerimientos-socraticos/references/research-design.md",
+      "skills/requerimientos-socraticos/references/sealed-validation.md",
+      "skills/requerimientos-socraticos/references/validation.md",
+      "skills/requerimientos-socraticos/references/workflow.md",
+      "skills/requerimientos-socraticos/requirements-analysis.txt",
+      "skills/requerimientos-socraticos/scripts/analyze_logic.py",
+      "skills/requerimientos-socraticos/scripts/json_preflight.py",
+      "skills/requerimientos-socraticos/scripts/logic_engine.py",
+      "skills/requerimientos-socraticos/scripts/normalize_text.py",
+      "skills/requerimientos-socraticos/scripts/probe_environment.py",
+      "skills/requerimientos-socraticos/scripts/requirements_guard.py",
+      "skills/requerimientos-socraticos/scripts/safe_io.py",
+      "skills/requerimientos-socraticos/scripts/scratch_pool.py",
+      "skills/requerimientos-socraticos/scripts/validate_git.py",
+      "skills/requerimientos-socraticos/scripts/validate_interview.py",
+      "skills/requerimientos-socraticos/scripts/validate_prd.py",
+      "skills/requerimientos-socraticos/tests/test_environment.py",
+      "skills/requerimientos-socraticos/tests/test_guard.py",
+      "skills/requerimientos-socraticos/tests/test_interview.py",
+      "skills/requerimientos-socraticos/tests/test_logic.py",
+      "skills/requerimientos-socraticos/tests/test_preflight.py",
+      "skills/requerimientos-socraticos/tests/test_scratch.py",
+      "skills/requerimientos-socraticos/tests/test_sealed.py",
+      "skills/requerimientos-socraticos/tests/test_supervisor.py",
+      "skills/requerimientos-socraticos/validation.json"
+    ],
+    "intended_untracked_proof": "sha256:760cdd48495ebd5c7223cc6e30ba9cf827c2bc4cf251bff20cbc9502836d17dd",
+    "initial_snapshot_identity": "sha256:7f07ef901f9dc9f6bec34afeecf7f5cf63d5ee3712721680b55aa7f6cc816e3d",
+    "current_snapshot_identity": "sha256:7f07ef901f9dc9f6bec34afeecf7f5cf63d5ee3712721680b55aa7f6cc816e3d"
+  },
+  "eligible_untracked_inventory": "sha256:5937ecb5f140730112eb54503d021f24baa681d581bde3372e4a9f8e530c11ce",
+  "repair": {
+    "schema": "gentle-ai.review-authority-repair-assessment/v1",
+    "status": "unsupported",
+    "counts": {
+      "lineages": 0,
+      "compact_lineages": 0,
+      "legacy_lineages": 0,
+      "events": 0,
+      "bytes": 0,
+      "eligible_candidates": 0,
+      "unsupported_lineages": 0,
+      "conflicts": 0
+    },
+    "supported_operations": [
+      "review/complete-fix",
+      "review/validate-fix"
+    ],
+    "authorization_schema": "gentle-ai.review-repair-authorization/v1"
+  },
+  "candidates": [],
+  "forecast": {
+    "horizon": "partial",
+    "steps": [
+      {
+        "step": 1,
+        "kind": "execute",
+        "reason_code": "fresh_target_ready",
+        "description": "Target is unreviewed and ready for initial review start"
+      }
+    ]
+  },
+  "next_transition": {
+    "kind": "execute",
+    "reason_code": "fresh_target_ready",
+    "execute": {
+      "operation": "review.start",
+      "command": "gentle-ai review start --cwd=/workspace/replica-gentle-ai --contract=gentle-ai.review-integration/v2 --target=sha256:7f07ef901f9dc9f6bec34afeecf7f5cf63d5ee3712721680b55aa7f6cc816e3d --target-evidence=v1:base-workspace-overlay:workspace:16500340ab2da63681e46eedbac12b3d2caf10d7:30860e973cb3954995ad7de358944696128388c9:sha256:89a3a654cbbaf0a13a2c5dc54354c5c1fe8c75742e714b8de8e012fee26d2300 --projection=workspace --base-ref=16500340ab2da63681e46eedbac12b3d2caf10d7 --workspace-overlay=true --lineage=review-65b72cd5614b2220 --agent=codex --consent=relay --untracked-scope=select --expected-untracked-inventory=sha256:5937ecb5f140730112eb54503d021f24baa681d581bde3372e4a9f8e530c11ce --intended-untracked=AGENTS.md --intended-untracked=bin/gentle-ai --intended-untracked=docs/skill-audit/accepted-qa-fixes/ANALISIS.md --intended-untracked=docs/skill-audit/accepted-qa-fixes/guard.stderr --intended-untracked=docs/skill-audit/accepted-qa-fixes/interview.stderr --intended-untracked=docs/skill-audit/accepted-qa-fixes/scratch.stderr --intended-untracked=docs/skill-audit/accepted-qa-fixes/sealed.stderr --intended-untracked=docs/skill-audit/accepted-qa-fixes/sha1-red.stderr --intended-untracked=docs/skill-audit/integrity-challenge/ANALISIS.md --intended-untracked=docs/skill-audit/integrity-challenge/guard-tests.stderr --intended-untracked=docs/skill-audit/integrity-challenge/interview-tests.stderr --intended-untracked=docs/skill-audit/integrity-challenge/red-baseline.json --intended-untracked=docs/skill-audit/requerimientos-repair/smoke/assessment-final.json --intended-untracked=docs/skill-audit/requerimientos-repair/smoke/registro-skill-asistente.md --intended-untracked=docs/skill-audit/requerimientos-repair/tests-green.stderr --intended-untracked=docs/skill-audit/requirements-hardening-24/analysis-report.json --intended-untracked=docs/skill-audit/requirements-hardening-24/cgroup-red.log --intended-untracked=docs/skill-audit/requirements-hardening-24/dependencies.txt --intended-untracked=docs/skill-audit/requirements-hardening-24/environment-green.log --intended-untracked=docs/skill-audit/requirements-hardening-24/environment-red.log --intended-untracked=docs/skill-audit/requirements-hardening-24/full-tests.log --intended-untracked=docs/skill-audit/requirements-hardening-24/independent-review.json --intended-untracked=docs/skill-audit/requirements-hardening-24/local-profile.json --intended-untracked=docs/skill-audit/requirements-hardening-24/logic-example-result.json --intended-untracked=docs/skill-audit/requirements-hardening-241/full-tests.log --intended-untracked=docs/skill-audit/requirements-hardening-241/group-red.log --intended-untracked=docs/skill-audit/requirements-hardening-241/independent-group-lifecycle.json --intended-untracked=docs/skill-audit/requirements-hardening-241/independent-manifest.json --intended-untracked=docs/skill-audit/requirements-hardening-241/independent-review.json --intended-untracked=docs/skill-audit/requirements-hardening-241/independent-tests.log --intended-untracked=docs/skill-audit/requirements-hardening-241/logic-example.json --intended-untracked=docs/skill-audit/requirements-hardening-241/profile.json --intended-untracked=docs/skill-audit/requirements-hardening-241/supervisor-green.log --intended-untracked=docs/skill-audit/requirements-hardening-241/supervisor-red.log --intended-untracked=docs/skill-audit/sealed-validation/ANALISIS.md --intended-untracked=docs/skill-audit/sealed-validation/guard.stderr --intended-untracked=docs/skill-audit/sealed-validation/interview.stderr --intended-untracked=docs/skill-audit/sealed-validation/red-baseline.json --intended-untracked=docs/skill-audit/sealed-validation/tests.stderr --intended-untracked=skills/requerimientos-socraticos/SKILL.md --intended-untracked=skills/requerimientos-socraticos/agents/requirements-interrogator.toml --intended-untracked=skills/requerimientos-socraticos/assets/analysis-report.schema.json --intended-untracked=skills/requerimientos-socraticos/assets/design-proposals.schema.json --intended-untracked=skills/requerimientos-socraticos/assets/example.prd.json --intended-untracked=skills/requerimientos-socraticos/assets/gitattributes.example --intended-untracked=skills/requerimientos-socraticos/assets/interrogator-packet.schema.json --intended-untracked=skills/requerimientos-socraticos/assets/interview.schema.json --intended-untracked=skills/requerimientos-socraticos/assets/logic-example.json --intended-untracked=skills/requerimientos-socraticos/assets/logic-input.schema.json --intended-untracked=skills/requerimientos-socraticos/assets/prd.schema.json --intended-untracked=skills/requerimientos-socraticos/references/formal-analysis.md --intended-untracked=skills/requerimientos-socraticos/references/integrity-boundary.md --intended-untracked=skills/requerimientos-socraticos/references/interrogation.md --intended-untracked=skills/requerimientos-socraticos/references/method.md --intended-untracked=skills/requerimientos-socraticos/references/research-design.md --intended-untracked=skills/requerimientos-socraticos/references/sealed-validation.md --intended-untracked=skills/requerimientos-socraticos/references/validation.md --intended-untracked=skills/requerimientos-socraticos/references/workflow.md --intended-untracked=skills/requerimientos-socraticos/requirements-analysis.txt --intended-untracked=skills/requerimientos-socraticos/scripts/analyze_logic.py --intended-untracked=skills/requerimientos-socraticos/scripts/json_preflight.py --intended-untracked=skills/requerimientos-socraticos/scripts/logic_engine.py --intended-untracked=skills/requerimientos-socraticos/scripts/normalize_text.py --intended-untracked=skills/requerimientos-socraticos/scripts/probe_environment.py --intended-untracked=skills/requerimientos-socraticos/scripts/requirements_guard.py --intended-untracked=skills/requerimientos-socraticos/scripts/safe_io.py --intended-untracked=skills/requerimientos-socraticos/scripts/scratch_pool.py --intended-untracked=skills/requerimientos-socraticos/scripts/validate_git.py --intended-untracked=skills/requerimientos-socraticos/scripts/validate_interview.py --intended-untracked=skills/requerimientos-socraticos/scripts/validate_prd.py --intended-untracked=skills/requerimientos-socraticos/tests/test_environment.py --intended-untracked=skills/requerimientos-socraticos/tests/test_guard.py --intended-untracked=skills/requerimientos-socraticos/tests/test_interview.py --intended-untracked=skills/requerimientos-socraticos/tests/test_logic.py --intended-untracked=skills/requerimientos-socraticos/tests/test_preflight.py --intended-untracked=skills/requerimientos-socraticos/tests/test_scratch.py --intended-untracked=skills/requerimientos-socraticos/tests/test_sealed.py --intended-untracked=skills/requerimientos-socraticos/tests/test_supervisor.py --intended-untracked=skills/requerimientos-socraticos/validation.json",
+      "arguments": [
+        {
+          "name": "cwd",
+          "value": "/workspace/replica-gentle-ai",
+          "token": "--cwd=/workspace/replica-gentle-ai"
+        },
+        {
+          "name": "contract",
+          "value": "gentle-ai.review-integration/v2",
+          "token": "--contract=gentle-ai.review-integration/v2"
+        },
+        {
+          "name": "target",
+          "value": "sha256:7f07ef901f9dc9f6bec34afeecf7f5cf63d5ee3712721680b55aa7f6cc816e3d",
+          "token": "--target=sha256:7f07ef901f9dc9f6bec34afeecf7f5cf63d5ee3712721680b55aa7f6cc816e3d"
+        },
+        {
+          "name": "target-evidence",
+          "value": "v1:base-workspace-overlay:workspace:16500340ab2da63681e46eedbac12b3d2caf10d7:30860e973cb3954995ad7de358944696128388c9:sha256:89a3a654cbbaf0a13a2c5dc54354c5c1fe8c75742e714b8de8e012fee26d2300",
+          "token": "--target-evidence=v1:base-workspace-overlay:workspace:16500340ab2da63681e46eedbac12b3d2caf10d7:30860e973cb3954995ad7de358944696128388c9:sha256:89a3a654cbbaf0a13a2c5dc54354c5c1fe8c75742e714b8de8e012fee26d2300"
+        },
+        {
+          "name": "projection",
+          "value": "workspace",
+          "token": "--projection=workspace"
+        },
+        {
+          "name": "base-ref",
+          "value": "16500340ab2da63681e46eedbac12b3d2caf10d7",
+          "token": "--base-ref=16500340ab2da63681e46eedbac12b3d2caf10d7"
+        },
+        {
+          "name": "workspace-overlay",
+          "value": "true",
+          "token": "--workspace-overlay=true"
+        },
+        {
+          "name": "lineage",
+          "value": "review-65b72cd5614b2220",
+          "token": "--lineage=review-65b72cd5614b2220"
+        },
+        {
+          "name": "agent",
+          "value": "codex",
+          "token": "--agent=codex"
+        },
+        {
+          "name": "consent",
+          "value": "relay",
+          "token": "--consent=relay"
+        },
+        {
+          "name": "untracked-scope",
+          "value": "select",
+          "token": "--untracked-scope=select"
+        },
+        {
+          "name": "expected-untracked-inventory",
+          "value": "sha256:5937ecb5f140730112eb54503d021f24baa681d581bde3372e4a9f8e530c11ce",
+          "token": "--expected-untracked-inventory=sha256:5937ecb5f140730112eb54503d021f24baa681d581bde3372e4a9f8e530c11ce"
+        },
+        {
+          "name": "intended-untracked",
+          "value": "AGENTS.md",
+          "token": "--intended-untracked=AGENTS.md"
+        },
+        {
+          "name": "intended-untracked",
+          "value": "bin/gentle-ai",
+          "token": "--intended-untracked=bin/gentle-ai"
+        },
+        {
+          "name": "intended-untracked",
+          "value": "docs/skill-audit/accepted-qa-fixes/ANALISIS.md",
+          "token": "--intended-untracked=docs/skill-audit/accepted-qa-fixes/ANALISIS.md"
+        },
+        {
+          "name": "intended-untracked",
+          "value": "docs/skill-audit/accepted-qa-fixes/guard.stderr",
+          "token": "--intended-untracked=docs/skill-audit/accepted-qa-fixes/guard.stderr"
+        },
+        {
+          "name": "intended-untracked",
+          "value": "docs/skill-audit/accepted-qa-fixes/interview.stderr",
+          "token": "--intended-untracked=docs/skill-audit/accepted-qa-fixes/interview.stderr"
+        },
+        {
+          "name": "intended-untracked",
+          "value": "docs/skill-audit/accepted-qa-fixes/scratch.stderr",
+          "token": "--intended-untracked=docs/skill-audit/accepted-qa-fixes/scratch.stderr"
+        },
+        {
+          "name": "intended-untracked",
+          "value": "docs/skill-audit/accepted-qa-fixes/sealed.stderr",
+          "token": "--intended-untracked=docs/skill-audit/accepted-qa-fixes/sealed.stderr"
+        },
+        {
+          "name": "intended-untracked",
+          "value": "docs/skill-audit/accepted-qa-fixes/sha1-red.stderr",
+          "token": "--intended-untracked=docs/skill-audit/accepted-qa-fixes/sha1-red.stderr"
+        },
+        {
+          "name": "intended-untracked",
+          "value": "docs/skill-audit/integrity-challenge/ANALISIS.md",
+          "token": "--intended-untracked=docs/skill-audit/integrity-challenge/ANALISIS.md"
+        },
+        {
+          "name": "intended-untracked",
+          "value": "docs/skill-audit/integrity-challenge/guard-tests.stderr",
+          "token": "--intended-untracked=docs/skill-audit/integrity-challenge/guard-tests.stderr"
+        },
+        {
+          "name": "intended-untracked",
+          "value": "docs/skill-audit/integrity-challenge/interview-tests.stderr",
+          "token": "--intended-untracked=docs/skill-audit/integrity-challenge/interview-tests.stderr"
+        },
+        {
+          "name": "intended-untracked",
+          "value": "docs/skill-audit/integrity-challenge/red-baseline.json",
+          "token": "--intended-untracked=docs/skill-audit/integrity-challenge/red-baseline.json"
+        },
+        {
+          "name": "intended-untracked",
+          "value": "docs/skill-audit/requerimientos-repair/smoke/assessment-final.json",
+          "token": "--intended-untracked=docs/skill-audit/requerimientos-repair/smoke/assessment-final.json"
+        },
+        {
+          "name": "intended-untracked",
+          "value": "docs/skill-audit/requerimientos-repair/smoke/registro-skill-asistente.md",
+          "token": "--intended-untracked=docs/skill-audit/requerimientos-repair/smoke/registro-skill-asistente.md"
+        },
+        {
+          "name": "intended-untracked",
+          "value": "docs/skill-audit/requerimientos-repair/tests-green.stderr",
+          "token": "--intended-untracked=docs/skill-audit/requerimientos-repair/tests-green.stderr"
+        },
+        {
+          "name": "intended-untracked",
+          "value": "docs/skill-audit/requirements-hardening-24/analysis-report.json",
+          "token": "--intended-untracked=docs/skill-audit/requirements-hardening-24/analysis-report.json"
+        },
+        {
+          "name": "intended-untracked",
+          "value": "docs/skill-audit/requirements-hardening-24/cgroup-red.log",
+          "token": "--intended-untracked=docs/skill-audit/requirements-hardening-24/cgroup-red.log"
+        },
+        {
+          "name": "intended-untracked",
+          "value": "docs/skill-audit/requirements-hardening-24/dependencies.txt",
+          "token": "--intended-untracked=docs/skill-audit/requirements-hardening-24/dependencies.txt"
+        },
+        {
+          "name": "intended-untracked",
+          "value": "docs/skill-audit/requirements-hardening-24/environment-green.log",
+          "token": "--intended-untracked=docs/skill-audit/requirements-hardening-24/environment-green.log"
+        },
+        {
+          "name": "intended-untracked",
+          "value": "docs/skill-audit/requirements-hardening-24/environment-red.log",
+          "token": "--intended-untracked=docs/skill-audit/requirements-hardening-24/environment-red.log"
+        },
+        {
+          "name": "intended-untracked",
+          "value": "docs/skill-audit/requirements-hardening-24/full-tests.log",
+          "token": "--intended-untracked=docs/skill-audit/requirements-hardening-24/full-tests.log"
+        },
+        {
+          "name": "intended-untracked",
+          "value": "docs/skill-audit/requirements-hardening-24/independent-review.json",
+          "token": "--intended-untracked=docs/skill-audit/requirements-hardening-24/independent-review.json"
+        },
+        {
+          "name": "intended-untracked",
+          "value": "docs/skill-audit/requirements-hardening-24/local-profile.json",
+          "token": "--intended-untracked=docs/skill-audit/requirements-hardening-24/local-profile.json"
+        },
+        {
+          "name": "intended-untracked",
+          "value": "docs/skill-audit/requirements-hardening-24/logic-example-result.json",
+          "token": "--intended-untracked=docs/skill-audit/requirements-hardening-24/logic-example-result.json"
+        },
+        {
+          "name": "intended-untracked",
+          "value": "docs/skill-audit/requirements-hardening-241/full-tests.log",
+          "token": "--intended-untracked=docs/skill-audit/requirements-hardening-241/full-tests.log"
+        },
+        {
+          "name": "intended-untracked",
+          "value": "docs/skill-audit/requirements-hardening-241/group-red.log",
+          "token": "--intended-untracked=docs/skill-audit/requirements-hardening-241/group-red.log"
+        },
+        {
+          "name": "intended-untracked",
+          "value": "docs/skill-audit/requirements-hardening-241/independent-group-lifecycle.json",
+          "token": "--intended-untracked=docs/skill-audit/requirements-hardening-241/independent-group-lifecycle.json"
+        },
+        {
+          "name": "intended-untracked",
+          "value": "docs/skill-audit/requirements-hardening-241/independent-manifest.json",
+          "token": "--intended-untracked=docs/skill-audit/requirements-hardening-241/independent-manifest.json"
+        },
+        {
+          "name": "intended-untracked",
+          "value": "docs/skill-audit/requirements-hardening-241/independent-review.json",
+          "token": "--intended-untracked=docs/skill-audit/requirements-hardening-241/independent-review.json"
+        },
+        {
+          "name": "intended-untracked",
+          "value": "docs/skill-audit/requirements-hardening-241/independent-tests.log",
+          "token": "--intended-untracked=docs/skill-audit/requirements-hardening-241/independent-tests.log"
+        },
+        {
+          "name": "intended-untracked",
+          "value": "docs/skill-audit/requirements-hardening-241/logic-example.json",
+          "token": "--intended-untracked=docs/skill-audit/requirements-hardening-241/logic-example.json"
+        },
+        {
+          "name": "intended-untracked",
+          "value": "docs/skill-audit/requirements-hardening-241/profile.json",
+          "token": "--intended-untracked=docs/skill-audit/requirements-hardening-241/profile.json"
+        },
+        {
+          "name": "intended-untracked",
+          "value": "docs/skill-audit/requirements-hardening-241/supervisor-green.log",
+          "token": "--intended-untracked=docs/skill-audit/requirements-hardening-241/supervisor-green.log"
+        },
+        {
+          "name": "intended-untracked",
+          "value": "docs/skill-audit/requirements-hardening-241/supervisor-red.log",
+          "token": "--intended-untracked=docs/skill-audit/requirements-hardening-241/supervisor-red.log"
+        },
+        {
+          "name": "intended-untracked",
+          "value": "docs/skill-audit/sealed-validation/ANALISIS.md",
+          "token": "--intended-untracked=docs/skill-audit/sealed-validation/ANALISIS.md"
+        },
+        {
+          "name": "intended-untracked",
+          "value": "docs/skill-audit/sealed-validation/guard.stderr",
+          "token": "--intended-untracked=docs/skill-audit/sealed-validation/guard.stderr"
+        },
+        {
+          "name": "intended-untracked",
+          "value": "docs/skill-audit/sealed-validation/interview.stderr",
+          "token": "--intended-untracked=docs/skill-audit/sealed-validation/interview.stderr"
+        },
+        {
+          "name": "intended-untracked",
+          "value": "docs/skill-audit/sealed-validation/red-baseline.json",
+          "token": "--intended-untracked=docs/skill-audit/sealed-validation/red-baseline.json"
+        },
+        {
+          "name": "intended-untracked",
+          "value": "docs/skill-audit/sealed-validation/tests.stderr",
+          "token": "--intended-untracked=docs/skill-audit/sealed-validation/tests.stderr"
+        },
+        {
+          "name": "intended-untracked",
+          "value": "skills/requerimientos-socraticos/SKILL.md",
+          "token": "--intended-untracked=skills/requerimientos-socraticos/SKILL.md"
+        },
+        {
+          "name": "intended-untracked",
+          "value": "skills/requerimientos-socraticos/agents/requirements-interrogator.toml",
+          "token": "--intended-untracked=skills/requerimientos-socraticos/agents/requirements-interrogator.toml"
+        },
+        {
+          "name": "intended-untracked",
+          "value": "skills/requerimientos-socraticos/assets/analysis-report.schema.json",
+          "token": "--intended-untracked=skills/requerimientos-socraticos/assets/analysis-report.schema.json"
+        },
+        {
+          "name": "intended-untracked",
+          "value": "skills/requerimientos-socraticos/assets/design-proposals.schema.json",
+          "token": "--intended-untracked=skills/requerimientos-socraticos/assets/design-proposals.schema.json"
+        },
+        {
+          "name": "intended-untracked",
+          "value": "skills/requerimientos-socraticos/assets/example.prd.json",
+          "token": "--intended-untracked=skills/requerimientos-socraticos/assets/example.prd.json"
+        },
+        {
+          "name": "intended-untracked",
+          "value": "skills/requerimientos-socraticos/assets/gitattributes.example",
+          "token": "--intended-untracked=skills/requerimientos-socraticos/assets/gitattributes.example"
+        },
+        {
+          "name": "intended-untracked",
+          "value": "skills/requerimientos-socraticos/assets/interrogator-packet.schema.json",
+          "token": "--intended-untracked=skills/requerimientos-socraticos/assets/interrogator-packet.schema.json"
+        },
+        {
+          "name": "intended-untracked",
+          "value": "skills/requerimientos-socraticos/assets/interview.schema.json",
+          "token": "--intended-untracked=skills/requerimientos-socraticos/assets/interview.schema.json"
+        },
+        {
+          "name": "intended-untracked",
+          "value": "skills/requerimientos-socraticos/assets/logic-example.json",
+          "token": "--intended-untracked=skills/requerimientos-socraticos/assets/logic-example.json"
+        },
+        {
+          "name": "intended-untracked",
+          "value": "skills/requerimientos-socraticos/assets/logic-input.schema.json",
+          "token": "--intended-untracked=skills/requerimientos-socraticos/assets/logic-input.schema.json"
+        },
+        {
+          "name": "intended-untracked",
+          "value": "skills/requerimientos-socraticos/assets/prd.schema.json",
+          "token": "--intended-untracked=skills/requerimientos-socraticos/assets/prd.schema.json"
+        },
+        {
+          "name": "intended-untracked",
+          "value": "skills/requerimientos-socraticos/references/formal-analysis.md",
+          "token": "--intended-untracked=skills/requerimientos-socraticos/references/formal-analysis.md"
+        },
+        {
+          "name": "intended-untracked",
+          "value": "skills/requerimientos-socraticos/references/integrity-boundary.md",
+          "token": "--intended-untracked=skills/requerimientos-socraticos/references/integrity-boundary.md"
+        },
+        {
+          "name": "intended-untracked",
+          "value": "skills/requerimientos-socraticos/references/interrogation.md",
+          "token": "--intended-untracked=skills/requerimientos-socraticos/references/interrogation.md"
+        },
+        {
+          "name": "intended-untracked",
+          "value": "skills/requerimientos-socraticos/references/method.md",
+          "token": "--intended-untracked=skills/requerimientos-socraticos/references/method.md"
+        },
+        {
+          "name": "intended-untracked",
+          "value": "skills/requerimientos-socraticos/references/research-design.md",
+          "token": "--intended-untracked=skills/requerimientos-socraticos/references/research-design.md"
+        },
+        {
+          "name": "intended-untracked",
+          "value": "skills/requerimientos-socraticos/references/sealed-validation.md",
+          "token": "--intended-untracked=skills/requerimientos-socraticos/references/sealed-validation.md"
+        },
+        {
+          "name": "intended-untracked",
+          "value": "skills/requerimientos-socraticos/references/validation.md",
+          "token": "--intended-untracked=skills/requerimientos-socraticos/references/validation.md"
+        },
+        {
+          "name": "intended-untracked",
+          "value": "skills/requerimientos-socraticos/references/workflow.md",
+          "token": "--intended-untracked=skills/requerimientos-socraticos/references/workflow.md"
+        },
+        {
+          "name": "intended-untracked",
+          "value": "skills/requerimientos-socraticos/requirements-analysis.txt",
+          "token": "--intended-untracked=skills/requerimientos-socraticos/requirements-analysis.txt"
+        },
+        {
+          "name": "intended-untracked",
+          "value": "skills/requerimientos-socraticos/scripts/analyze_logic.py",
+          "token": "--intended-untracked=skills/requerimientos-socraticos/scripts/analyze_logic.py"
+        },
+        {
+          "name": "intended-untracked",
+          "value": "skills/requerimientos-socraticos/scripts/json_preflight.py",
+          "token": "--intended-untracked=skills/requerimientos-socraticos/scripts/json_preflight.py"
+        },
+        {
+          "name": "intended-untracked",
+          "value": "skills/requerimientos-socraticos/scripts/logic_engine.py",
+          "token": "--intended-untracked=skills/requerimientos-socraticos/scripts/logic_engine.py"
+        },
+        {
+          "name": "intended-untracked",
+          "value": "skills/requerimientos-socraticos/scripts/normalize_text.py",
+          "token": "--intended-untracked=skills/requerimientos-socraticos/scripts/normalize_text.py"
+        },
+        {
+          "name": "intended-untracked",
+          "value": "skills/requerimientos-socraticos/scripts/probe_environment.py",
+          "token": "--intended-untracked=skills/requerimientos-socraticos/scripts/probe_environment.py"
+        },
+        {
+          "name": "intended-untracked",
+          "value": "skills/requerimientos-socraticos/scripts/requirements_guard.py",
+          "token": "--intended-untracked=skills/requerimientos-socraticos/scripts/requirements_guard.py"
+        },
+        {
+          "name": "intended-untracked",
+          "value": "skills/requerimientos-socraticos/scripts/safe_io.py",
+          "token": "--intended-untracked=skills/requerimientos-socraticos/scripts/safe_io.py"
+        },
+        {
+          "name": "intended-untracked",
+          "value": "skills/requerimientos-socraticos/scripts/scratch_pool.py",
+          "token": "--intended-untracked=skills/requerimientos-socraticos/scripts/scratch_pool.py"
+        },
+        {
+          "name": "intended-untracked",
+          "value": "skills/requerimientos-socraticos/scripts/validate_git.py",
+          "token": "--intended-untracked=skills/requerimientos-socraticos/scripts/validate_git.py"
+        },
+        {
+          "name": "intended-untracked",
+          "value": "skills/requerimientos-socraticos/scripts/validate_interview.py",
+          "token": "--intended-untracked=skills/requerimientos-socraticos/scripts/validate_interview.py"
+        },
+        {
+          "name": "intended-untracked",
+          "value": "skills/requerimientos-socraticos/scripts/validate_prd.py",
+          "token": "--intended-untracked=skills/requerimientos-socraticos/scripts/validate_prd.py"
+        },
+        {
+          "name": "intended-untracked",
+          "value": "skills/requerimientos-socraticos/tests/test_environment.py",
+          "token": "--intended-untracked=skills/requerimientos-socraticos/tests/test_environment.py"
+        },
+        {
+          "name": "intended-untracked",
+          "value": "skills/requerimientos-socraticos/tests/test_guard.py",
+          "token": "--intended-untracked=skills/requerimientos-socraticos/tests/test_guard.py"
+        },
+        {
+          "name": "intended-untracked",
+          "value": "skills/requerimientos-socraticos/tests/test_interview.py",
+          "token": "--intended-untracked=skills/requerimientos-socraticos/tests/test_interview.py"
+        },
+        {
+          "name": "intended-untracked",
+          "value": "skills/requerimientos-socraticos/tests/test_logic.py",
+          "token": "--intended-untracked=skills/requerimientos-socraticos/tests/test_logic.py"
+        },
+        {
+          "name": "intended-untracked",
+          "value": "skills/requerimientos-socraticos/tests/test_preflight.py",
+          "token": "--intended-untracked=skills/requerimientos-socraticos/tests/test_preflight.py"
+        },
+        {
+          "name": "intended-untracked",
+          "value": "skills/requerimientos-socraticos/tests/test_scratch.py",
+          "token": "--intended-untracked=skills/requerimientos-socraticos/tests/test_scratch.py"
+        },
+        {
+          "name": "intended-untracked",
+          "value": "skills/requerimientos-socraticos/tests/test_sealed.py",
+          "token": "--intended-untracked=skills/requerimientos-socraticos/tests/test_sealed.py"
+        },
+        {
+          "name": "intended-untracked",
+          "value": "skills/requerimientos-socraticos/tests/test_supervisor.py",
+          "token": "--intended-untracked=skills/requerimientos-socraticos/tests/test_supervisor.py"
+        },
+        {
+          "name": "intended-untracked",
+          "value": "skills/requerimientos-socraticos/validation.json",
+          "token": "--intended-untracked=skills/requerimientos-socraticos/validation.json"
+        }
+      ],
+      "preconditions": [
+        {
+          "name": "target_identity",
+          "value": "sha256:7f07ef901f9dc9f6bec34afeecf7f5cf63d5ee3712721680b55aa7f6cc816e3d"
+        }
+      ],
+      "binding": {
+        "lineage_id": "review-65b72cd5614b2220",
+        "target_identity": "sha256:7f07ef901f9dc9f6bec34afeecf7f5cf63d5ee3712721680b55aa7f6cc816e3d"
+      }
+    }
+  }
+}

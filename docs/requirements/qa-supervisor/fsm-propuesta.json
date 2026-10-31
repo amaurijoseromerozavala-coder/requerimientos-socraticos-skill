@@ -1,0 +1,168 @@
+{
+  "status": "DRAFT_LOCAL_QA_LAUNCHER",
+  "initial": "RECONCILING",
+  "states": [
+    "CAPTURED",
+    "ADMISSION",
+    "RUNNING",
+    "STOPPING",
+    "CLASSIFYING",
+    "PERSISTING",
+    "DELIVERED",
+    "BLOCKED",
+    "UNCONFIRMED",
+    "INFRA_LOCK",
+    "RECONCILING"
+  ],
+  "transitions": [
+    {
+      "from": "RECONCILING",
+      "event": "no_unresolved_run",
+      "to": "CAPTURED"
+    },
+    {
+      "from": "RECONCILING",
+      "event": "unresolved_or_unknown",
+      "to": "INFRA_LOCK"
+    },
+    {
+      "from": "CAPTURED",
+      "event": "request",
+      "to": "ADMISSION"
+    },
+    {
+      "from": "ADMISSION",
+      "event": "admitted",
+      "to": "RUNNING"
+    },
+    {
+      "from": "ADMISSION",
+      "event": "denied_or_unknown",
+      "to": "BLOCKED"
+    },
+    {
+      "from": "RUNNING",
+      "event": "exit_observed",
+      "to": "CLASSIFYING"
+    },
+    {
+      "from": "RUNNING",
+      "event": "limit_or_cancel",
+      "to": "STOPPING"
+    },
+    {
+      "from": "STOPPING",
+      "event": "exit_confirmed",
+      "to": "CLASSIFYING"
+    },
+    {
+      "from": "STOPPING",
+      "event": "cleanup_deadline",
+      "to": "INFRA_LOCK"
+    },
+    {
+      "from": "CLASSIFYING",
+      "event": "record_created",
+      "to": "PERSISTING"
+    },
+    {
+      "from": "PERSISTING",
+      "event": "write_confirmed",
+      "to": "DELIVERED"
+    },
+    {
+      "from": "PERSISTING",
+      "event": "write_failed",
+      "to": "UNCONFIRMED"
+    },
+    {
+      "from": "INFRA_LOCK",
+      "event": "request",
+      "to": "INFRA_LOCK"
+    },
+    {
+      "from": "INFRA_LOCK",
+      "event": "human_ack_only",
+      "to": "INFRA_LOCK"
+    },
+    {
+      "from": "INFRA_LOCK",
+      "event": "reconciliation_unknown",
+      "to": "INFRA_LOCK"
+    },
+    {
+      "from": "INFRA_LOCK",
+      "event": "termination_reconciled",
+      "to": "CLASSIFYING"
+    },
+    {
+      "from": "RUNNING",
+      "event": "launch_failed_no_child",
+      "to": "CLASSIFYING"
+    },
+    {
+      "from": "RUNNING",
+      "event": "launch_outcome_unknown",
+      "to": "INFRA_LOCK"
+    },
+    {
+      "from": "INFRA_LOCK",
+      "event": "record_created",
+      "to": "INFRA_LOCK",
+      "effect": "Attempt bounded receipt persistence; do not clear admission latch."
+    },
+    {
+      "from": "INFRA_LOCK",
+      "event": "write_confirmed",
+      "to": "INFRA_LOCK",
+      "effect": "receipt_status=DURABLE; preserve admission latch."
+    },
+    {
+      "from": "INFRA_LOCK",
+      "event": "write_failed",
+      "to": "INFRA_LOCK",
+      "effect": "receipt_status=UNCONFIRMED; preserve admission latch."
+    },
+    {
+      "from": "DELIVERED",
+      "event": "fresh_request",
+      "to": "RECONCILING",
+      "effect": "Preserve admission journal/latch; reconcile before accepting another run."
+    },
+    {
+      "from": "UNCONFIRMED",
+      "event": "fresh_request",
+      "to": "RECONCILING",
+      "effect": "Preserve admission journal/latch; reconcile before accepting another run."
+    },
+    {
+      "from": "BLOCKED",
+      "event": "fresh_request",
+      "to": "RECONCILING",
+      "effect": "Preserve admission journal/latch; reconcile before accepting another run."
+    }
+  ],
+  "default": "Reject unspecified transition; preserve current state and evidence",
+  "invariants": [
+    "DELIVERED != PASS",
+    "execution_authorized=false",
+    "UNCONFIRMED != cleanup_success",
+    "INFRA_LOCK implies no new local checker launch",
+    "Receipt generation/notification may continue while launch gate remains locked",
+    "Restart cannot erase unresolved-run state"
+  ],
+  "observer_limit": "If supervisor/host dies, this FSM cannot guarantee emitting a terminal event.",
+  "guards": {
+    "termination_reconciled": "Identity-bound evidence confirms prior checker termination AND admission reconciliation is complete; no PID-only, acknowledgement-only or restart-only unlock.",
+    "no_unresolved_run": "Admission bookkeeping reconciled, no unknown prior child.",
+    "admitted": "Only authorized identified local checker, no active/unresolved prior run, resource policy satisfied.",
+    "launch_failed_no_child": "Launch failed and absence of a created child is established; otherwise launch_outcome_unknown.",
+    "launch_outcome_unknown": "Launch outcome or identity/existence of possible child cannot be established.",
+    "fresh_request": "Explicit new local request, not automatic retry. Receipt status does not clear admission latch."
+  },
+  "orthogonal_gate": "INFRA_LOCK is an admission latch; writing a receipt or notifying cannot clear it. Transaction states do not overwrite this latch.",
+  "state_semantics": {
+    "RUNNING": "Owns the launch attempt or live child; launch failure must be classified explicitly.",
+    "INFRA_LOCK": "Admission latch locked; receipt events may update receipt_status without admitting a new child."
+  }
+}

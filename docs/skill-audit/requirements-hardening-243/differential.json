@@ -1,0 +1,159 @@
+{
+  "records": [
+    {
+      "case": "prd-valid",
+      "identical": true,
+      "baseline": {
+        "returncode": 0,
+        "stdout": "{\"status\": \"DRAFT\", \"interview\": \"COMPLETE\", \"design\": \"REVIEWED\", \"limits\": \"Validates declared records and retained files, not truth or LLM compliance.\"}\n",
+        "stderr": ""
+      },
+      "current": {
+        "returncode": 0,
+        "stdout": "{\"status\": \"DRAFT\", \"interview\": \"COMPLETE\", \"design\": \"REVIEWED\", \"limits\": \"Validates declared records and retained files, not truth or LLM compliance.\"}\n",
+        "stderr": ""
+      }
+    },
+    {
+      "case": "prd-json",
+      "identical": true,
+      "baseline": {
+        "returncode": 1,
+        "stdout": "{\"status\": \"INVALID\", \"error\": \"Expecting property name enclosed in double quotes: line 1 column 2 (char 1)\"}\n",
+        "stderr": ""
+      },
+      "current": {
+        "returncode": 1,
+        "stdout": "{\"status\": \"INVALID\", \"error\": \"Expecting property name enclosed in double quotes: line 1 column 2 (char 1)\"}\n",
+        "stderr": ""
+      }
+    },
+    {
+      "case": "interview-valid",
+      "identical": true,
+      "baseline": {
+        "returncode": 0,
+        "stdout": "{\"status\": \"COMPLETE\", \"questions\": 2, \"pending\": [], \"semantic_validation\": \"PASS_WITHIN_DECLARED_RECORD\", \"receipt_files_checked\": true}\n",
+        "stderr": ""
+      },
+      "current": {
+        "returncode": 0,
+        "stdout": "{\"status\": \"COMPLETE\", \"questions\": 2, \"pending\": [], \"semantic_validation\": \"PASS_WITHIN_DECLARED_RECORD\", \"receipt_files_checked\": true}\n",
+        "stderr": ""
+      }
+    },
+    {
+      "case": "interview-design",
+      "identical": true,
+      "baseline": {
+        "returncode": 1,
+        "stdout": "{\"status\": \"INVALID\", \"error\": \"[Errno 2] No such file or directory: 'design-proposals.json'\"}\n",
+        "stderr": ""
+      },
+      "current": {
+        "returncode": 1,
+        "stdout": "{\"status\": \"INVALID\", \"error\": \"[Errno 2] No such file or directory: 'design-proposals.json'\"}\n",
+        "stderr": ""
+      }
+    },
+    {
+      "case": "analysis-noargs",
+      "identical": true,
+      "baseline": {
+        "returncode": 2,
+        "stdout": "{\"error\": {\"code\": \"INVALID_INPUT\", \"message\": \"the following arguments are required: input\"}}\n",
+        "stderr": ""
+      },
+      "current": {
+        "returncode": 2,
+        "stdout": "{\"error\": {\"code\": \"INVALID_INPUT\", \"message\": \"the following arguments are required: input\"}}\n",
+        "stderr": ""
+      }
+    },
+    {
+      "case": "analysis-unknown",
+      "identical": true,
+      "baseline": {
+        "returncode": 2,
+        "stdout": "{\"error\": {\"code\": \"INVALID_INPUT\", \"message\": \"unrecognized arguments: --unknown-option\"}}\n",
+        "stderr": ""
+      },
+      "current": {
+        "returncode": 2,
+        "stdout": "{\"error\": {\"code\": \"INVALID_INPUT\", \"message\": \"unrecognized arguments: --unknown-option\"}}\n",
+        "stderr": ""
+      }
+    },
+    {
+      "case": "analysis-timeout",
+      "identical": true,
+      "baseline": {
+        "returncode": 2,
+        "stdout": "{\"error\": {\"code\": \"INVALID_INPUT\", \"message\": \"timeout must be greater than 0 and at most 30 seconds\"}}\n",
+        "stderr": ""
+      },
+      "current": {
+        "returncode": 2,
+        "stdout": "{\"error\": {\"code\": \"INVALID_INPUT\", \"message\": \"timeout must be greater than 0 and at most 30 seconds\"}}\n",
+        "stderr": ""
+      }
+    },
+    {
+      "case": "probe-unknown",
+      "identical": true,
+      "baseline": {
+        "returncode": 2,
+        "stdout": "",
+        "stderr": "usage: probe_environment.py [-h] [--path PATH]\nprobe_environment.py: error: unrecognized arguments: --unknown-option\n"
+      },
+      "current": {
+        "returncode": 2,
+        "stdout": "",
+        "stderr": "usage: probe_environment.py [-h] [--path PATH]\nprobe_environment.py: error: unrecognized arguments: --unknown-option\n"
+      }
+    },
+    {
+      "case": "git-symbolic",
+      "identical": true,
+      "baseline": {
+        "returncode": 1,
+        "stdout": "{\"status\": \"BLOCKED\", \"error\": \"FULL_COMMIT_OID_REQUIRED\"}\n",
+        "stderr": ""
+      },
+      "current": {
+        "returncode": 1,
+        "stdout": "{\"status\": \"BLOCKED\", \"error\": \"FULL_COMMIT_OID_REQUIRED\"}\n",
+        "stderr": ""
+      }
+    },
+    {
+      "case": "git-sha1",
+      "identical": true,
+      "baseline": {
+        "returncode": 1,
+        "stdout": "{\"status\": \"BLOCKED\", \"error\": \"SHA256_REQUIRED\"}\n",
+        "stderr": ""
+      },
+      "current": {
+        "returncode": 1,
+        "stdout": "{\"status\": \"BLOCKED\", \"error\": \"SHA256_REQUIRED\"}\n",
+        "stderr": ""
+      }
+    },
+    {
+      "case": "git-timeout",
+      "identical": true,
+      "baseline": {
+        "returncode": 1,
+        "stdout": "{\"status\": \"BLOCKED\", \"error\": \"INVALID_TIMEOUT\"}\n",
+        "stderr": ""
+      },
+      "current": {
+        "returncode": 1,
+        "stdout": "{\"status\": \"BLOCKED\", \"error\": \"INVALID_TIMEOUT\"}\n",
+        "stderr": ""
+      }
+    }
+  ],
+  "all_identical": true
+}

@@ -1,0 +1,109 @@
+{
+  "contract_version": "1.0.0",
+  "language": "es",
+  "section_order": [
+    "ANALYSIS",
+    "TEST PLAN",
+    "VERIFICATION"
+  ],
+  "target_snapshot_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+  "ANALYSIS": {
+    "summary_es": "Fixture documental sintético; no representa una auditoría de producto ni evidencia real.",
+    "system_inventory": [
+      {
+        "component_id": "documento-sintetico",
+        "boundary_es": "Solo fixture de contrato JSON",
+        "status": "EXAMINED",
+        "requirement_ids": [
+          "R02"
+        ],
+        "evidence_ids": [
+          "E-synthetic"
+        ],
+        "reason_es": "Datos sintéticos para probar el schema."
+      }
+    ],
+    "contracts_and_cross_component_conflicts": [],
+    "claims": [
+      {
+        "id": "CL-synthetic",
+        "statement_es": "Afirmación sintética de prueba estructural.",
+        "classification": "FACT",
+        "verification": "VERIFIED",
+        "material": true,
+        "evidence_ids": [
+          "E-synthetic"
+        ],
+        "limitations_es": [
+          "Fixture; no constituye conocimiento sobre un sistema real."
+        ]
+      }
+    ],
+    "architecture_recommendations": []
+  },
+  "TEST PLAN": {
+    "strategy_es": "Validación documental de un caso negativo sintético.",
+    "cases": [
+      {
+        "id": "TEST-synthetic",
+        "requirement_ids": [
+          "R02"
+        ],
+        "category": "NEGATIVE",
+        "counterexample_es": "Claim verificado sin evidencia.",
+        "oracle_es": "Contrato de salida",
+        "execution_kind": "STATIC_REVIEW",
+        "authorization_status": "NOT_APPLICABLE",
+        "resource_budget_es": "Fixture en memoria; sin ejecución de aplicación."
+      }
+    ],
+    "uncovered_or_blocked_es": []
+  },
+  "VERIFICATION": {
+    "verdict": "PASS_WITHIN_SCOPE",
+    "coverage": "COMPLETE",
+    "evidence": [
+      {
+        "id": "E-synthetic",
+        "snapshot_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "kind": "STATIC_REVIEW",
+        "command_or_tool": "synthetic fixture, not an executed application command",
+        "tool_version": "fixture-1",
+        "observed_at": "synthetic-not-an-observation",
+        "environment_fingerprint": "fixture-memory",
+        "exit_code": null,
+        "result": "PASS",
+        "output_sha256": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+        "output_locator": "synthetic fixture only",
+        "proves_real_execution": false,
+        "limitations_es": [
+          "Los valores son sintéticos, no recibos de una ejecución real."
+        ]
+      }
+    ],
+    "results": [
+      {
+        "test_id": "TEST-synthetic",
+        "outcome": "PASS",
+        "evidence_ids": [
+          "E-synthetic"
+        ],
+        "actual_observation_es": "Valor sintético para ejercitar el contrato."
+      }
+    ],
+    "reproducibility": {
+      "inputs_and_versions_pinned": true,
+      "same_environment": true,
+      "repetitions": 2,
+      "comparison_oracle_es": "Igualdad estructural en fixture sintético.",
+      "observed_variations_es": [],
+      "unproved_es": [
+        "No certifica producto ni runtime."
+      ]
+    },
+    "limitations_es": [
+      "Fixture de schema; ningún PASS se atribuye a la skill futura."
+    ],
+    "next_actions_es": []
+  }
+}

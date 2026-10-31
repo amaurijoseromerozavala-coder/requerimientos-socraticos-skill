@@ -1,0 +1,307 @@
+{
+  "format": "qa-supervisor-prd-draft/v1",
+  "status": "REVIEWING_DOCUMENTS",
+  "canonical": false,
+  "project": "qa-supervisor-local",
+  "authorization": "Documentos únicamente. Humano: «Ejecuta las correcciones usa gentle aí». No implementación.",
+  "purpose": "Evitar confundir interrupción, rechazo documental o exploración incompleta con resultado fiable o autorización.",
+  "cesm": {
+    "composition": [
+      "humano",
+      "supervisor propuesto",
+      "QA checker0.1.3",
+      "SO visible",
+      "almacén local propuesto"
+    ],
+    "environment": [
+      "Linux/WSL propuestos",
+      "host físico no controlado",
+      "i3/8GB declarado, no observado"
+    ],
+    "structure": [
+      "Invocador confirmado: supervisor controla exclusivamente checker QA local.",
+      "stdout/stderr y terminación separados",
+      "recibo separado del documento evaluado"
+    ],
+    "mechanisms": [
+      "admisión",
+      "captura acotada propuesta",
+      "validación de protocolo",
+      "clasificación total",
+      "persistencia y escalada propuestas"
+    ]
+  },
+  "catwoe": {
+    "customers": "humano que revisa QA",
+    "actors": "supervisor propuesto y comprobador existente",
+    "transformation": "observaciones de ejecución -> recibo con límites y decisión pendiente",
+    "worldview": "ausencia de resultado no es éxito y declaración no es prueba",
+    "owner": "humano",
+    "environmental_constraints": "autorización, recursos, SO y alcance local"
+  },
+  "scope": {
+    "included": [
+      "PRD del supervisor local",
+      "contrato de resultados",
+      "manejo de incertidumbre",
+      "casos y FSM propuestos"
+    ],
+    "excluded": [
+      "implementación",
+      "CI",
+      "despliegue",
+      "firmas e identidad autenticada",
+      "alertas remotas",
+      "ensayos de carga o hardware",
+      "control universal de descendientes o del host"
+    ]
+  },
+  "requirements": [
+    {
+      "id": "SUP-001",
+      "status": "CONSTRAINT",
+      "ears": "El supervisor no deberá autorizar ejecución de aplicaciones, CI ni producción a partir de resultados del comprobador.",
+      "logic": "forall result: execution_authorized = false",
+      "falsifier": "Resultado favorable provoca ejecución de aplicación.",
+      "execution_test": "NOT_RUN"
+    },
+    {
+      "id": "SUP-002",
+      "status": "PROPOSED",
+      "ears": "Cuando termine una evaluación, el supervisor deberá conservar por separado terminación, admisión del protocolo, admisión documental y observación de declaraciones.",
+      "logic": "termination != document_admission != failure_observation (dimensiones distintas)",
+      "falsifier": "Exit0 convierte una declaración no verificada en fallo confirmado.",
+      "execution_test": "NOT_RUN"
+    },
+    {
+      "id": "SUP-003",
+      "status": "ACCEPTED_DOCUMENT_CORRECTION",
+      "ears": "Cuando clasifique una ejecución, el supervisor deberá distinguir REJECT_INPUT, INFRA_FAILURE y PROTOCOL_FAILURE; ninguna clase autoriza ejecución ni establece automáticamente causa raíz.",
+      "logic": "Ordered total cases: observed_runtime_failure -> INFRA_FAILURE; else not supported_complete_coherent_payload or exit_code not in {0,2,3} -> PROTOCOL_FAILURE; else exit_code=3 -> INFRA_FAILURE; else exit_code=2 -> REJECT_INPUT; else exit_code=0 -> EVALUATED_RECORD. All cases: execution_authorized=false.",
+      "falsifier": "Un timeout se clasifica como documento inválido o una salida incoherente acredita evaluación.",
+      "execution_test": "NOT_RUN"
+    },
+    {
+      "id": "SUP-004",
+      "status": "PROPOSED",
+      "ears": "Si la exploración es parcial o no evaluada, el supervisor deberá conservar la incertidumbre sin concluir ausencia de fallos.",
+      "logic": "scan != COMPLETE -> absence_of_failures != ESTABLISHED",
+      "falsifier": "PARTIAL con contador0 se transforma en comprobación completa.",
+      "execution_test": "NOT_RUN"
+    },
+    {
+      "id": "SUP-005",
+      "status": "PROPOSED",
+      "ears": "Cuando aparezcan declaraciones FAIL no verificadas, el supervisor deberá conservar su estado no verificado aun si el documento se rechaza.",
+      "logic": "unverified_declared_fail -> preserve_signal and not verified_failure",
+      "falsifier": "Se pierde la señal al registrar REJECT_INPUT.",
+      "execution_test": "NOT_RUN"
+    },
+    {
+      "id": "SUP-006",
+      "status": "CONFIRMED_SCOPE_PROPOSED_MECHANISM",
+      "ears": "El supervisor deberá iniciar y controlar únicamente el comprobador QA local; se propone identificarlo de forma explícita, usar argumentos tipados y excluir shell y comandos arbitrarios.",
+      "logic": "mode=LAUNCHER and not allowed_checker -> no_spawn",
+      "falsifier": "Un campo del reporte selecciona un ejecutable.",
+      "execution_test": "NOT_RUN"
+    },
+    {
+      "id": "SUP-007",
+      "status": "ACCEPTED_DOCUMENT_CORRECTION",
+      "ears": "Si no puede confirmar terminación del checker propio dentro del plazo de limpieza, el supervisor deberá entrar en INFRA_LOCK e impedir todo nuevo lanzamiento local hasta reconciliar la terminación del proceso correspondiente.",
+      "logic": "cleanup=UNCONFIRMED -> local_gate=INFRA_LOCK and no_spawn; human_ack_only -> no_unlock",
+      "falsifier": "Una segunda solicitud inicia otro checker sin confirmar terminación del anterior.",
+      "execution_test": "NOT_RUN"
+    },
+    {
+      "id": "SUP-008",
+      "status": "ACCEPTED_DOCUMENT_CORRECTION",
+      "ears": "Cuando observe una señal sin evidencia causal suficiente, el supervisor deberá conservar NOT_DETERMINED; podrá consultar diagnóstico del SO autorizado, acotado y correlacionado, sin elevar privilegios.",
+      "logic": "signal_only -> cause=NOT_DETERMINED; log_unavailable -> not OOM_CONFIRMED",
+      "falsifier": "Se atribuye OOM solo por -9/137, o un registro de otro proceso se acepta como causa.",
+      "execution_test": "NOT_RUN"
+    },
+    {
+      "id": "SUP-009",
+      "status": "PROPOSED",
+      "ears": "Si no puede persistir un recibo, el supervisor deberá declarar entrega no acreditada y no informar evidencia durable.",
+      "logic": "write_failed -> receipt_status != DURABLE",
+      "falsifier": "Permiso denegado al escribir termina como registro persistido.",
+      "execution_test": "NOT_RUN"
+    },
+    {
+      "id": "SUP-010",
+      "status": "PROPOSED",
+      "ears": "Si cambia el candidato, la política, los datos o la versión de protocolo, el supervisor deberá invalidar la aplicabilidad de resultados anteriores.",
+      "logic": "context_changed -> previous_result_not_current",
+      "falsifier": "Se reutiliza resultado de otro snapshot.",
+      "execution_test": "NOT_RUN"
+    },
+    {
+      "id": "SUP-011",
+      "status": "CONSTRAINT",
+      "ears": "El supervisor deberá mantener separados el entorno local observado y el hardware objetivo declarado no medido.",
+      "logic": "cloud_observation -> not target_hardware_validation",
+      "falsifier": "Un ensayo cloud se presenta como calibración del i3/WSL.",
+      "execution_test": "NOT_RUN"
+    },
+    {
+      "id": "SUP-012",
+      "status": "PROPOSED",
+      "ears": "Cuando una situación exceda los criterios delegados, el supervisor deberá devolver una decisión pendiente para el humano sin autoautorizar una excepción.",
+      "logic": "outside_policy -> ESCALATE_USER and execution_authorized=false",
+      "falsifier": "Estado desconocido se convierte en permiso.",
+      "execution_test": "NOT_RUN"
+    },
+    {
+      "id": "SUP-013",
+      "status": "ACCEPTED_DOCUMENT_CORRECTION",
+      "ears": "Al iniciar o reiniciar el supervisor, si no puede reconciliar la existencia y terminación de ejecuciones anteriores bajo su control, deberá mantener INFRA_LOCK antes de admitir trabajo; un PID aislado o un reconocimiento humano no bastarán.",
+      "logic": "unresolved_prior_run -> no_spawn; pid_only -> insufficient_identity",
+      "falsifier": "Reiniciar el supervisor borra la incertidumbre y permite lanzar otro checker.",
+      "execution_test": "NOT_RUN"
+    },
+    {
+      "id": "SUP-014",
+      "status": "SPECIFIED",
+      "ears": "Mientras registre una ejecución, el supervisor deberá conservar stdout/stderr acotados en archivos separados del recibo estructurado, con acceso exclusivo del propietario y eliminación únicamente manual.",
+      "logic": "raw_stdout<=262144 and raw_stderr<=65536 and receipt<=8192; owner_only; automatic_deletion=false; journal_separate=true.",
+      "falsifier": "Se borra automáticamente una salida, se mezcla salida cruda con el recibo o se elimina el diario al limpiar salidas.",
+      "execution_test": "NOT_RUN"
+    },
+    {
+      "id": "SUP-015",
+      "status": "SPECIFIED",
+      "ears": "Antes de lanzar un checker, el supervisor deberá reservar 335872 bytes y una plaza sin exceder 100 ejecuciones ni 33554432 bytes compartidos entre recibos, stdout/stderr y archivos parciales; si falta capacidad o contabilidad fiable, deberá bloquear nuevas ejecuciones sin borrar automáticamente.",
+      "logic": "count+1<=100 and accounted_bytes+reserved_bytes+335872<=33554432 required before launch; unknown_accounting -> no_spawn.",
+      "falsifier": "Con almacén lleno, reserva concurrente no contabilizada o archivos parciales ignorados se inicia un proceso o se borra una ejecución anterior.",
+      "execution_test": "NOT_RUN"
+    },
+    {
+      "id": "SUP-016",
+      "status": "SPECIFIED",
+      "ears": "Mientras supervise el checker, deberá aplicar los presupuestos de closure-proposal.json y registrar límites prospectivos frente a aplicados; si faltan controles requeridos deberá rechazar admisión.",
+      "logic": "Missing required controls -> UNSUPPORTED_ENVIRONMENT/no_spawn; no automatic budget expansion.",
+      "falsifier": "El supervisor eleva su presupuesto automáticamente tras un timeout.",
+      "execution_test": "NOT_RUN"
+    },
+    {
+      "id": "SUP-017",
+      "status": "SPECIFIED",
+      "ears": "Cuando lea la salida, deberá validar el esquema y reglas de protocol-contract.json antes de admitir una evaluación, manteniendo separados el código observado y el contenido declarado.",
+      "logic": "observed_returncode + strict_decode + schema + predicates govern result admission.",
+      "falsifier": "Código declarado dentro del JSON reemplaza el código observado del proceso.",
+      "execution_test": "NOT_RUN"
+    }
+  ],
+  "open_decisions": [
+    {
+      "id": "D1",
+      "topic": "Quién inicia/controla el checker",
+      "status": "RESOLVED_LOCAL_QA_LAUNCHER"
+    },
+    {
+      "id": "D2",
+      "topic": "Política de escalada humana, urgencia y reintentos",
+      "status": "SPECIFIED_LOCAL_ONLY_NO_RETRIES"
+    },
+    {
+      "id": "D3",
+      "topic": "Retención, datos sensibles y almacenamiento de recibos",
+      "status": "CONFIRMED_MINIMAL_RECEIPTS"
+    },
+    {
+      "id": "D4",
+      "topic": "Presupuestos por rol, compatibilidad del SO y calibración",
+      "status": "SPECIFIED_PROVISIONAL_LIMITS_NOT_CALIBRATED"
+    }
+  ],
+  "limits": [
+    "No garantía de entrega si muere el supervisor o el host.",
+    "RLIMIT_AS no es cuota RSS ni reserva física.",
+    "Revisión formal verifica solo el modelo, no ejecución.",
+    "No READY mientras haya decisiones materiales abiertas."
+  ],
+  "supervisor_mode": {
+    "value": "LOCAL_QA_LAUNCHER",
+    "status": "CONFIRMED",
+    "source": "receipts/A-HUMAN-SUP-001.txt"
+  },
+  "revision": "closure-candidate-1",
+  "result_contract": {
+    "failure_classes": [
+      "REJECT_INPUT",
+      "INFRA_FAILURE",
+      "PROTOCOL_FAILURE"
+    ],
+    "dimensions": [
+      "execution_status",
+      "result_admission",
+      "document_validation",
+      "failure_observation",
+      "cleanup_status",
+      "receipt_status",
+      "escalation"
+    ],
+    "precedence": [
+      {
+        "when": "Observed launch error, signal, deadline/capture-limit enforcement, or coherent exit3 with INFRA_FAILURE payload",
+        "class": "INFRA_FAILURE"
+      },
+      {
+        "when": "No observed execution failure, but missing/malformed/unsupported payload, unknown exit code, or exit/payload mismatch",
+        "class": "PROTOCOL_FAILURE"
+      },
+      {
+        "when": "Complete supported payload coherent with exit2 and INVALID/REJECT_INPUT",
+        "class": "REJECT_INPUT"
+      },
+      {
+        "when": "Complete supported payload coherent with exit0 and COMPLETED/VALID",
+        "class": "EVALUATED_RECORD"
+      }
+    ],
+    "semantics": [
+      "Failure class is an observed category, not attribution of blame.",
+      "Exit0 is completed evaluation, not PASS; retain original verdict and unverified observation.",
+      "Signal/deadline takes precedence even if a plausible JSON fragment was captured.",
+      "Malformed supervisor request rejected before launch is REQUEST_INVALID, not a claim about the QA document.",
+      "Local visible diagnostics; no domain-critical severity inferred. Exceptions need human decision; no automatic retry."
+    ],
+    "execution_authorized": false,
+    "protocol_gap": "Specified by checker-output.schema.json + protocol-contract.json; implementation acceptance remains NOT_RUN."
+  },
+  "os_diagnostics": {
+    "required_for_completion": false,
+    "privilege_elevation": false,
+    "scope": "Authorized local guest observations only; no automatic Windows host or global log collection.",
+    "budget": "Optional, disabled by default; explicit configured authorized source,1second/64KiB cap. Missing capabilities -> NOT_AVAILABLE without privilege escalation.",
+    "default": "NOT_REQUESTED",
+    "unavailable": "NOT_AVAILABLE; preserve NOT_DETERMINED",
+    "correlation": [
+      "same observed process identity beyond PID alone",
+      "matching execution interval and boot/session context",
+      "source explicitly associates the termination with memory enforcement"
+    ],
+    "causality": "Only sufficiently correlated explicit records support OOM_CONFIRMED within the observed scope; generic memory pressure, counters or absent logs do not.",
+    "privacy": "Raw OS logs are not persisted; manual raw retention covers only bounded local QA stdout/stderr."
+  },
+  "cleanup_contract": {
+    "scope": "Local supervisor admission gate, not host shutdown",
+    "lock": "INFRA_LOCK",
+    "unlock_guard": "Verified identity-bound termination of prior execution and successful admission reconciliation; no PID-only, acknowledgement-only, restart-only unlock",
+    "restart": "Unresolved prior execution or unavailable bookkeeping keeps admission blocked.",
+    "no_automatic_actions": [
+      "new launch while locked",
+      "retry while locked",
+      "host shutdown",
+      "WSL restart",
+      "privilege elevation"
+    ],
+    "limits": "No guaranteed recovery if kernel/host unavailable. recovery-contract.json specifies conservative durable ordering and identity evidence; implementation tests NOT_RUN."
+  },
+  "technical_policy_ref": "closure-proposal.json",
+  "recovery_contract_ref": "recovery-contract.json",
+  "protocol_contract_ref": "protocol-contract.json",
+  "output_schema_ref": "checker-output.schema.json"
+}

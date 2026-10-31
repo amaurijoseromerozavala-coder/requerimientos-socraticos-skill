@@ -1,0 +1,53 @@
+FFFF
+======================================================================
+FAIL: test_cpu_and_memory_have_provenance (test_environment.EnvironmentTests.test_cpu_and_memory_have_provenance)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/replica-gentle-ai/skills/requerimientos-socraticos/tests/test_environment.py", line 40, in test_cpu_and_memory_have_provenance
+    doc = self.run_probe()
+          ^^^^^^^^^^^^^^^^
+  File "/workspace/replica-gentle-ai/skills/requerimientos-socraticos/tests/test_environment.py", line 14, in run_probe
+    self.assertEqual(p.returncode, 0, p.stderr)
+AssertionError: 2 != 0 : /opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3: can't open file '/workspace/replica-gentle-ai/skills/requerimientos-socraticos/scripts/probe_environment.py': [Errno 2] No such file or directory
+
+
+======================================================================
+FAIL: test_missing_path_is_explicit_unknown (test_environment.EnvironmentTests.test_missing_path_is_explicit_unknown)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/replica-gentle-ai/skills/requerimientos-socraticos/tests/test_environment.py", line 35, in test_missing_path_is_explicit_unknown
+    doc = self.run_probe('--path', '/definitely-not-an-existing-requirements-path')
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/replica-gentle-ai/skills/requerimientos-socraticos/tests/test_environment.py", line 14, in run_probe
+    self.assertEqual(p.returncode, 0, p.stderr)
+AssertionError: 2 != 0 : /opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3: can't open file '/workspace/replica-gentle-ai/skills/requerimientos-socraticos/scripts/probe_environment.py': [Errno 2] No such file or directory
+
+
+======================================================================
+FAIL: test_path_does_not_create_files (test_environment.EnvironmentTests.test_path_does_not_create_files)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/replica-gentle-ai/skills/requerimientos-socraticos/tests/test_environment.py", line 29, in test_path_does_not_create_files
+    doc = self.run_probe('--path', d)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/replica-gentle-ai/skills/requerimientos-socraticos/tests/test_environment.py", line 14, in run_probe
+    self.assertEqual(p.returncode, 0, p.stderr)
+AssertionError: 2 != 0 : /opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3: can't open file '/workspace/replica-gentle-ai/skills/requerimientos-socraticos/scripts/probe_environment.py': [Errno 2] No such file or directory
+
+
+======================================================================
+FAIL: test_probe_has_no_hardware_coverage_claim (test_environment.EnvironmentTests.test_probe_has_no_hardware_coverage_claim)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/replica-gentle-ai/skills/requerimientos-socraticos/tests/test_environment.py", line 18, in test_probe_has_no_hardware_coverage_claim
+    doc = self.run_probe()
+          ^^^^^^^^^^^^^^^^
+  File "/workspace/replica-gentle-ai/skills/requerimientos-socraticos/tests/test_environment.py", line 14, in run_probe
+    self.assertEqual(p.returncode, 0, p.stderr)
+AssertionError: 2 != 0 : /opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3: can't open file '/workspace/replica-gentle-ai/skills/requerimientos-socraticos/scripts/probe_environment.py': [Errno 2] No such file or directory
+
+
+----------------------------------------------------------------------
+Ran 4 tests in 0.029s
+
+FAILED (failures=4)

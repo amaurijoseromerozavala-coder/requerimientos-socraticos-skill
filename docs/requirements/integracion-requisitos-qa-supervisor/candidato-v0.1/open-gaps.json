@@ -1,0 +1,45 @@
+{
+  "status": "OPEN_BLOCKS_READY",
+  "gaps": [
+    {
+      "id": "G1",
+      "description": "estimation method and margins by adapter, including exploratory budget bootstrap",
+      "class": "TECHNICAL_DESIGN",
+      "blocks": "implementation/READY, not documentary elaboration"
+    },
+    {
+      "id": "G2",
+      "description": "reserve/headroom and quota enforcement mechanism",
+      "class": "TECHNICAL_DESIGN",
+      "blocks": "implementation/READY, not documentary elaboration"
+    },
+    {
+      "id": "G3",
+      "description": "per-adapter contracts and budgets",
+      "class": "TECHNICAL_DESIGN",
+      "blocks": "implementation/READY, not documentary elaboration"
+    },
+    {
+      "id": "G4",
+      "description": "exact termination and required-cleanup evidence for extended adapters",
+      "class": "TECHNICAL_DESIGN",
+      "blocks": "implementation/READY, not documentary elaboration"
+    },
+    {
+      "id": "G5",
+      "description": "adapter update/revocation lifecycle",
+      "class": "TECHNICAL_DESIGN",
+      "blocks": "implementation/READY, not documentary elaboration"
+    },
+    {
+      "id": "G6",
+      "description": "observable criteria and controlled atomicity for incorporation",
+      "class": "TECHNICAL_DESIGN",
+      "blocks": "implementation/READY, not documentary elaboration"
+    }
+  ],
+  "review_pending": [
+    "native RDD of exact candidate",
+    "independent correspondence review of produced artifacts"
+  ]
+}

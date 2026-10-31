@@ -1,0 +1,14 @@
+{
+  "reason": "Environment restarted before an output artifact was produced; no reviewer or proposal result claimed.",
+  "invocations_emitted_before_retry": 1,
+  "completed_before_retry": 0,
+  "retry_limit": 1,
+  "retrying_now": false,
+  "observed_at": "2026-10-26T17:32:39.509200+00:00",
+  "invocations_emitted": 2,
+  "invocations_completed": 1,
+  "transport_failures": 1,
+  "retries": 1,
+  "final_result": "RETAINED_NATIVE_PROPOSAL",
+  "updated_at": "2026-10-26T17:36:45.407096+00:00"
+}

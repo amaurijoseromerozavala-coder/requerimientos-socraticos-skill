@@ -1,0 +1,288 @@
+{
+  "lineage": "review-afc5fe83dd67b2e3",
+  "records": [
+    {
+      "exit_code": 0,
+      "stdout": "{\n  \"schema\": \"gentle-ai.review-result-artifact/v2\",\n  \"capability\": \"review.native_result_artifact\",\n  \"reference\": \"rart1_32c48bf9f8cdcb714a5587f8e4e4b2501c63565a722f71346bba91387bad428c\",\n  \"sha256\": \"sha256:ce8ef434679410f83192f7b556b520a3576daef21e83071b6418d5183651a4ac\",\n  \"lineage_id\": \"review-afc5fe83dd67b2e3\",\n  \"target_identity\": \"sha256:169b6d325ebbf34f76cd9ddf7620d2e7c770d967233f7da8999fb7d7115d4ae2\",\n  \"lens\": \"review-risk\",\n  \"selected_order\": 0,\n  \"subject_hash\": \"sha256:716f9d326526e56dc5656eb3564d7ede239a1eb6e38dfc0a1ac6b50e01fc3149\",\n  \"admission_decision\": \"completed\"\n}\n",
+      "stderr": ""
+    },
+    {
+      "exit_code": 0,
+      "stdout": "{\n  \"schema\": \"gentle-ai.review-result-artifact/v2\",\n  \"capability\": \"review.native_result_artifact\",\n  \"reference\": \"rart1_56c5f6d3cdf25aed7c0ba26ace464aeb7092712fbebe4567d8cdd7f7700c3a4a\",\n  \"sha256\": \"sha256:149e8c28ede470402fb85a1431d2515e985f7ecf17e5a084c723e39a576c1813\",\n  \"lineage_id\": \"review-afc5fe83dd67b2e3\",\n  \"target_identity\": \"sha256:169b6d325ebbf34f76cd9ddf7620d2e7c770d967233f7da8999fb7d7115d4ae2\",\n  \"lens\": \"review-resilience\",\n  \"selected_order\": 1,\n  \"subject_hash\": \"sha256:0e306f5844f12f2b5b9ddc17c46ed069879b30fa1187e9f2f9dcb10f16a92954\",\n  \"admission_decision\": \"completed\"\n}\n",
+      "stderr": ""
+    },
+    {
+      "exit_code": 0,
+      "stdout": "{\n  \"schema\": \"gentle-ai.review-result-artifact/v2\",\n  \"capability\": \"review.native_result_artifact\",\n  \"reference\": \"rart1_96d4b109fa455aadd1babfc651dcdfb3d43f5c6e11487a335672ad63a90b6a7b\",\n  \"sha256\": \"sha256:3abe2fd46946c706ca674f95cd66a290f11b8b27d52304ee6c4eb9a4ad0e90ed\",\n  \"lineage_id\": \"review-afc5fe83dd67b2e3\",\n  \"target_identity\": \"sha256:169b6d325ebbf34f76cd9ddf7620d2e7c770d967233f7da8999fb7d7115d4ae2\",\n  \"lens\": \"review-readability\",\n  \"selected_order\": 2,\n  \"subject_hash\": \"sha256:c35a50c1a746f0881c45573b2fc5c290bca263228bf1cec31034866d8806ea0f\",\n  \"admission_decision\": \"completed\"\n}\n",
+      "stderr": ""
+    },
+    {
+      "exit_code": 0,
+      "stdout": "{\n  \"schema\": \"gentle-ai.review-last-event-closure/v1\",\n  \"operation\": \"review/capture-result\",\n  \"lineage_id\": \"review-afc5fe83dd67b2e3\",\n  \"state\": \"correction_required\",\n  \"action\": \"candidate-caused severe findings require one bounded correction\",\n  \"status_continuation\": {\n    \"operation\": \"review.status\",\n    \"command\": \"gentle-ai review status --cwd=/workspace/replica-gentle-ai --contract=gentle-ai.review-integration/v2 --next-transition=true --lineage=review-afc5fe83dd67b2e3 --agent=codex --base-ref=c24007f72ea84e86c54bc470cc256c8444928419 --workspace-overlay=true\",\n    \"arguments\": [\n      {\n        \"name\": \"cwd\",\n        \"value\": \"/workspace/replica-gentle-ai\",\n        \"token\": \"--cwd=/workspace/replica-gentle-ai\"\n      },\n      {\n        \"name\": \"contract\",\n        \"value\": \"gentle-ai.review-integration/v2\",\n        \"token\": \"--contract=gentle-ai.review-integration/v2\"\n      },\n      {\n        \"name\": \"next-transition\",\n        \"value\": \"true\",\n        \"token\": \"--next-transition=true\"\n      },\n      {\n        \"name\": \"lineage\",\n        \"value\": \"review-afc5fe83dd67b2e3\",\n        \"token\": \"--lineage=review-afc5fe83dd67b2e3\"\n      },\n      {\n        \"name\": \"agent\",\n        \"value\": \"codex\",\n        \"token\": \"--agent=codex\"\n      },\n      {\n        \"name\": \"base-ref\",\n        \"value\": \"c24007f72ea84e86c54bc470cc256c8444928419\",\n        \"token\": \"--base-ref=c24007f72ea84e86c54bc470cc256c8444928419\"\n      },\n      {\n        \"name\": \"workspace-overlay\",\n        \"value\": \"true\",\n        \"token\": \"--workspace-overlay=true\"\n      }\n    ],\n    \"preconditions\": [\n      {\n        \"name\": \"state\",\n        \"value\": \"correction_required\"\n      }\n    ],\n    \"binding\": {\n      \"lineage_id\": \"review-afc5fe83dd67b2e3\",\n      \"revision\": \"sha256:33529355b7ebf3b63e5256259a73e78efa17565ed141825b813e3d01c8ff9d7c\",\n      \"target_identity\": \"sha256:169b6d325ebbf34f76cd9ddf7620d2e7c770d967233f7da8999fb7d7115d4ae2\"\n    }\n  },\n  \"store_revision\": \"sha256:33529355b7ebf3b63e5256259a73e78efa17565ed141825b813e3d01c8ff9d7c\"\n}\n",
+      "stderr": ""
+    },
+    {
+      "schema": "gentle-ai.review-integration.status/v9",
+      "contract": "gentle-ai.review-integration/v2",
+      "operation": "review.status",
+      "applicability": "current_target",
+      "authority": {
+        "version": "compact-v2",
+        "lineage_id": "review-afc5fe83dd67b2e3",
+        "state": "correction_required",
+        "generation": 1,
+        "revision": "sha256:33529355b7ebf3b63e5256259a73e78efa17565ed141825b813e3d01c8ff9d7c"
+      },
+      "action": "collect",
+      "replayability": "manual_action_required",
+      "frozen": {
+        "tier": "high",
+        "original_changed_lines": 1106,
+        "correction_budget": 200
+      },
+      "target_identity": "sha256:169b6d325ebbf34f76cd9ddf7620d2e7c770d967233f7da8999fb7d7115d4ae2",
+      "projection": {
+        "schema": "gentle-ai.review-integration.projection/v1",
+        "kind": "base-workspace-overlay",
+        "projection": "workspace",
+        "base_tree": "c24007f72ea84e86c54bc470cc256c8444928419",
+        "initial_review_tree": "a34c85258892e8521f1597a58c87716c8bfdbad9",
+        "current_candidate_tree": "a34c85258892e8521f1597a58c87716c8bfdbad9",
+        "paths_digest": "sha256:1d574927c4cbee24fdff7e0adfd3abd0330eaf7eecb493d86be1457070c4e429",
+        "paths": [
+          "AGENTS.md",
+          "bin/gentle-ai",
+          "docs/skill-audit/requirements-hardening-24/analysis-report.json",
+          "docs/skill-audit/requirements-hardening-24/cgroup-red.log",
+          "docs/skill-audit/requirements-hardening-24/dependencies.txt",
+          "docs/skill-audit/requirements-hardening-24/environment-green.log",
+          "docs/skill-audit/requirements-hardening-24/environment-red.log",
+          "docs/skill-audit/requirements-hardening-24/full-tests.log",
+          "docs/skill-audit/requirements-hardening-24/independent-review.json",
+          "docs/skill-audit/requirements-hardening-24/local-profile.json",
+          "docs/skill-audit/requirements-hardening-24/logic-example-result.json",
+          "skills/requerimientos-socraticos/SKILL.md",
+          "skills/requerimientos-socraticos/assets/analysis-report.schema.json",
+          "skills/requerimientos-socraticos/assets/logic-example.json",
+          "skills/requerimientos-socraticos/assets/logic-input.schema.json",
+          "skills/requerimientos-socraticos/references/formal-analysis.md",
+          "skills/requerimientos-socraticos/requirements-analysis.txt",
+          "skills/requerimientos-socraticos/scripts/analyze_logic.py",
+          "skills/requerimientos-socraticos/scripts/probe_environment.py",
+          "skills/requerimientos-socraticos/tests/test_environment.py",
+          "skills/requerimientos-socraticos/tests/test_logic.py",
+          "skills/requerimientos-socraticos/validation.json"
+        ],
+        "intended_untracked": [
+          "AGENTS.md",
+          "bin/gentle-ai",
+          "docs/skill-audit/accepted-qa-fixes/ANALISIS.md",
+          "docs/skill-audit/accepted-qa-fixes/guard.stderr",
+          "docs/skill-audit/accepted-qa-fixes/interview.stderr",
+          "docs/skill-audit/accepted-qa-fixes/scratch.stderr",
+          "docs/skill-audit/accepted-qa-fixes/sealed.stderr",
+          "docs/skill-audit/accepted-qa-fixes/sha1-red.stderr",
+          "docs/skill-audit/integrity-challenge/ANALISIS.md",
+          "docs/skill-audit/integrity-challenge/guard-tests.stderr",
+          "docs/skill-audit/integrity-challenge/interview-tests.stderr",
+          "docs/skill-audit/integrity-challenge/red-baseline.json",
+          "docs/skill-audit/requerimientos-repair/smoke/assessment-final.json",
+          "docs/skill-audit/requerimientos-repair/smoke/registro-skill-asistente.md",
+          "docs/skill-audit/requerimientos-repair/tests-green.stderr",
+          "docs/skill-audit/requirements-hardening-24/analysis-report.json",
+          "docs/skill-audit/requirements-hardening-24/cgroup-red.log",
+          "docs/skill-audit/requirements-hardening-24/dependencies.txt",
+          "docs/skill-audit/requirements-hardening-24/environment-green.log",
+          "docs/skill-audit/requirements-hardening-24/environment-red.log",
+          "docs/skill-audit/requirements-hardening-24/full-tests.log",
+          "docs/skill-audit/requirements-hardening-24/independent-review.json",
+          "docs/skill-audit/requirements-hardening-24/local-profile.json",
+          "docs/skill-audit/requirements-hardening-24/logic-example-result.json",
+          "docs/skill-audit/sealed-validation/ANALISIS.md",
+          "docs/skill-audit/sealed-validation/guard.stderr",
+          "docs/skill-audit/sealed-validation/interview.stderr",
+          "docs/skill-audit/sealed-validation/red-baseline.json",
+          "docs/skill-audit/sealed-validation/tests.stderr",
+          "skills/requerimientos-socraticos/SKILL.md",
+          "skills/requerimientos-socraticos/agents/requirements-interrogator.toml",
+          "skills/requerimientos-socraticos/assets/analysis-report.schema.json",
+          "skills/requerimientos-socraticos/assets/design-proposals.schema.json",
+          "skills/requerimientos-socraticos/assets/example.prd.json",
+          "skills/requerimientos-socraticos/assets/gitattributes.example",
+          "skills/requerimientos-socraticos/assets/interrogator-packet.schema.json",
+          "skills/requerimientos-socraticos/assets/interview.schema.json",
+          "skills/requerimientos-socraticos/assets/logic-example.json",
+          "skills/requerimientos-socraticos/assets/logic-input.schema.json",
+          "skills/requerimientos-socraticos/assets/prd.schema.json",
+          "skills/requerimientos-socraticos/references/formal-analysis.md",
+          "skills/requerimientos-socraticos/references/integrity-boundary.md",
+          "skills/requerimientos-socraticos/references/interrogation.md",
+          "skills/requerimientos-socraticos/references/method.md",
+          "skills/requerimientos-socraticos/references/research-design.md",
+          "skills/requerimientos-socraticos/references/sealed-validation.md",
+          "skills/requerimientos-socraticos/references/validation.md",
+          "skills/requerimientos-socraticos/references/workflow.md",
+          "skills/requerimientos-socraticos/requirements-analysis.txt",
+          "skills/requerimientos-socraticos/scripts/analyze_logic.py",
+          "skills/requerimientos-socraticos/scripts/normalize_text.py",
+          "skills/requerimientos-socraticos/scripts/probe_environment.py",
+          "skills/requerimientos-socraticos/scripts/requirements_guard.py",
+          "skills/requerimientos-socraticos/scripts/safe_io.py",
+          "skills/requerimientos-socraticos/scripts/scratch_pool.py",
+          "skills/requerimientos-socraticos/scripts/validate_git.py",
+          "skills/requerimientos-socraticos/scripts/validate_interview.py",
+          "skills/requerimientos-socraticos/scripts/validate_prd.py",
+          "skills/requerimientos-socraticos/tests/test_environment.py",
+          "skills/requerimientos-socraticos/tests/test_guard.py",
+          "skills/requerimientos-socraticos/tests/test_interview.py",
+          "skills/requerimientos-socraticos/tests/test_logic.py",
+          "skills/requerimientos-socraticos/tests/test_scratch.py",
+          "skills/requerimientos-socraticos/tests/test_sealed.py",
+          "skills/requerimientos-socraticos/validation.json"
+        ],
+        "intended_untracked_proof": "sha256:6dceaceeeb2c24dd1aaf9ed5755702b84914b65d4bad213fe191540b6c16d61b",
+        "initial_snapshot_identity": "sha256:169b6d325ebbf34f76cd9ddf7620d2e7c770d967233f7da8999fb7d7115d4ae2",
+        "current_snapshot_identity": "sha256:169b6d325ebbf34f76cd9ddf7620d2e7c770d967233f7da8999fb7d7115d4ae2"
+      },
+      "eligible_untracked_inventory": "sha256:ca7cd3e95e8a7a8d45f0f6b4238acedf1cfab0c015f76e5463dd018acdbf3b50",
+      "repair": {
+        "schema": "gentle-ai.review-authority-repair-assessment/v1",
+        "status": "unsupported",
+        "counts": {
+          "lineages": 0,
+          "compact_lineages": 0,
+          "legacy_lineages": 0,
+          "events": 0,
+          "bytes": 0,
+          "eligible_candidates": 0,
+          "unsupported_lineages": 0,
+          "conflicts": 0
+        },
+        "supported_operations": [
+          "review/complete-fix",
+          "review/validate-fix"
+        ],
+        "authorization_schema": "gentle-ai.review-repair-authorization/v1"
+      },
+      "candidates": [],
+      "forecast": {
+        "horizon": "partial",
+        "steps": [
+          {
+            "step": 1,
+            "kind": "collect",
+            "reason_code": "correction_plan_required",
+            "description": "Correction plan required to resolve review findings"
+          }
+        ]
+      },
+      "next_transition": {
+        "kind": "collect",
+        "reason_code": "correction_plan_required",
+        "collect": {
+          "inputs": [
+            {
+              "name": "correction_lines",
+              "schema": "gentle-ai.review-correction-plan/v1",
+              "capture_operation": "review.capture-correction-plan",
+              "arguments": [
+                {
+                  "name": "lineage",
+                  "value": "review-afc5fe83dd67b2e3",
+                  "token": "--lineage=review-afc5fe83dd67b2e3"
+                },
+                {
+                  "name": "expected-revision",
+                  "value": "sha256:e1a9137ea0435b7634739172b61a0167f343ad8f09d82e9a4bf89301b30f6a97",
+                  "token": "--expected-revision=sha256:e1a9137ea0435b7634739172b61a0167f343ad8f09d82e9a4bf89301b30f6a97"
+                },
+                {
+                  "name": "target",
+                  "value": "sha256:169b6d325ebbf34f76cd9ddf7620d2e7c770d967233f7da8999fb7d7115d4ae2",
+                  "token": "--target=sha256:169b6d325ebbf34f76cd9ddf7620d2e7c770d967233f7da8999fb7d7115d4ae2"
+                },
+                {
+                  "name": "repository-context",
+                  "value": "rctx2_256a9dd5baed09a5275c7de9110011bb9f05da0c259fcea44420da92d37d2fd0",
+                  "token": "--repository-context=rctx2_256a9dd5baed09a5275c7de9110011bb9f05da0c259fcea44420da92d37d2fd0"
+                },
+                {
+                  "name": "request-hash",
+                  "value": "sha256:a0816064b7ce2325cdd04d42d49610cb36cacd97b1d5b836bdafa0da1a9ce4a5",
+                  "token": "--request-hash=sha256:a0816064b7ce2325cdd04d42d49610cb36cacd97b1d5b836bdafa0da1a9ce4a5"
+                }
+              ],
+              "submission": {
+                "operation_token": "capture-correction-plan",
+                "argument_tokens": [
+                  "--lineage=review-afc5fe83dd67b2e3",
+                  "--expected-revision=sha256:e1a9137ea0435b7634739172b61a0167f343ad8f09d82e9a4bf89301b30f6a97",
+                  "--target=sha256:169b6d325ebbf34f76cd9ddf7620d2e7c770d967233f7da8999fb7d7115d4ae2",
+                  "--request-hash=sha256:a0816064b7ce2325cdd04d42d49610cb36cacd97b1d5b836bdafa0da1a9ce4a5",
+                  "--repository-context=rctx2_256a9dd5baed09a5275c7de9110011bb9f05da0c259fcea44420da92d37d2fd0",
+                  "--correction-lines={{value}}"
+                ],
+                "value": {
+                  "slot": "correction_lines",
+                  "domain": "positive_correction_lines",
+                  "minimum": 1,
+                  "maximum": 200,
+                  "substitution_location": 5
+                }
+              }
+            }
+          ]
+        },
+        "correction_request": {
+          "schema": "gentle-ai.review-correction-plan-request/v1",
+          "request_hash": "sha256:a0816064b7ce2325cdd04d42d49610cb36cacd97b1d5b836bdafa0da1a9ce4a5",
+          "lineage_id": "review-afc5fe83dd67b2e3",
+          "expected_revision": "sha256:e1a9137ea0435b7634739172b61a0167f343ad8f09d82e9a4bf89301b30f6a97",
+          "target_identity": "sha256:169b6d325ebbf34f76cd9ddf7620d2e7c770d967233f7da8999fb7d7115d4ae2",
+          "correction_budget": 200,
+          "fix_finding_ids": [
+            "R3-runtime-selection",
+            "R4-runtime-fallback"
+          ],
+          "findings": [
+            {
+              "id": "R3-runtime-selection",
+              "lens": "reliability",
+              "location": "bin/gentle-ai:10-11",
+              "severity": "CRITICAL",
+              "claim": "An explicit REQUIREMENTS_PYTHON selection is silently discarded when it is unavailable or supplied as an interpreter name resolved through PATH. The launcher substitutes python3, so probe can report success under a different interpreter and analyze can use a different solver installation. Preserve fallback only for the implicit default; resolve or reject an explicit selection instead.",
+              "proof_refs": [
+                "bin/gentle-ai:10-11 selects the explicit environment value and then unconditionally replaces any value failing the executable-path test with python3.",
+                "skills/requerimientos-socraticos/references/formal-analysis.md:116-117 documents REQUIREMENTS_PYTHON as selecting the installed interpreter.",
+                "skills/requerimientos-socraticos/tests/test_environment.py:14-17 and skills/requerimientos-socraticos/tests/test_logic.py:16-21 invoke scripts directly, leaving launcher interpreter selection untested."
+              ],
+              "evidence": "bin/gentle-ai:10-11 selects the explicit environment value and then unconditionally replaces any value failing the executable-path test with python3.\nskills/requerimientos-socraticos/references/formal-analysis.md:116-117 documents REQUIREMENTS_PYTHON as selecting the installed interpreter.\nskills/requerimientos-socraticos/tests/test_environment.py:14-17 and skills/requerimientos-socraticos/tests/test_logic.py:16-21 invoke scripts directly, leaving launcher interpreter selection untested.",
+              "evidence_class": "deterministic",
+              "causal_disposition": "introduced"
+            },
+            {
+              "id": "R4-runtime-fallback",
+              "lens": "resilience",
+              "location": "bin/gentle-ai:11",
+              "severity": "CRITICAL",
+              "claim": "An explicitly selected REQUIREMENTS_PYTHON interpreter is silently discarded when it is missing or not executable. For example, after a configured virtual environment is removed during an upgrade, probe still succeeds using python3, and analyze can succeed using a different installed solver environment. This hides the broken runtime configuration and violates the documented interpreter selection. Fall back only when no explicit override was supplied; otherwise report the unavailable interpreter and exit nonzero.",
+              "proof_refs": [
+                "bin/gentle-ai:10-16",
+                "skills/requerimientos-socraticos/references/formal-analysis.md:115-119"
+              ],
+              "evidence": "bin/gentle-ai:10-16\nskills/requerimientos-socraticos/references/formal-analysis.md:115-119",
+              "evidence_class": "deterministic",
+              "causal_disposition": "introduced"
+            }
+          ]
+        }
+      },
+      "repository_context": {
+        "capability": "review.opaque_repository_context",
+        "handle": "rctx2_256a9dd5baed09a5275c7de9110011bb9f05da0c259fcea44420da92d37d2fd0",
+        "revision": "sha256:e1a9137ea0435b7634739172b61a0167f343ad8f09d82e9a4bf89301b30f6a97",
+        "target_identity": "sha256:169b6d325ebbf34f76cd9ddf7620d2e7c770d967233f7da8999fb7d7115d4ae2"
+      }
+    }
+  ]
+}

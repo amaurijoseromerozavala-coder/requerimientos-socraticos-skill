@@ -1,0 +1,7 @@
+{
+  "status": "PASS_EXPORT_ROUNDTRIP",
+  "files": 893,
+  "bytes": 6704364,
+  "sha256": "b7c3c5205133b7a78a10e55d9e077781a0f325b10579e9e99f7c4ede4a0b8857",
+  "scope": "Validez del JSON, referencias iniciales y reconstrucción de todos los bytes incluidos; no pruebas del producto."
+}

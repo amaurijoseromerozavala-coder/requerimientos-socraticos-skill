@@ -1,0 +1,1 @@
+Primer helper: STATUS selectorless con4lenses devolvió invalid_request antes de crear autoridad; check_output presentó traceback de harness. La ayuda confirma flags soportados. Ajuste acotado: obtener solo inventario sin lentes y enviar los4lentes con la selección overlay real. No se alteran modoRDD ni consentimiento. No se atribuye causa interna sin evidencia.

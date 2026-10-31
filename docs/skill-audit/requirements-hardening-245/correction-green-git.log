@@ -1,0 +1,16 @@
+test_auto_git_profile_fits_inherited_role_hard_without_changing_caller (test_validation_budget.ValidationBudgetTests.test_auto_git_profile_fits_inherited_role_hard_without_changing_caller) ... ok
+test_cli_rejects_budget_below_existing_virtual_size_before_changing_limits (test_validation_budget.ValidationBudgetTests.test_cli_rejects_budget_below_existing_virtual_size_before_changing_limits) ... ok
+test_coordinator_memory_error_returns_fixed_failure_record (test_validation_budget.ValidationBudgetTests.test_coordinator_memory_error_returns_fixed_failure_record) ... ok
+test_coordinator_transport_keeps_room_for_existing_complete_manifest (test_validation_budget.ValidationBudgetTests.test_coordinator_transport_keeps_room_for_existing_complete_manifest) ... ok
+test_document_memory_error_returns_fixed_failure_record (test_validation_budget.ValidationBudgetTests.test_document_memory_error_returns_fixed_failure_record) ... ok
+test_explicit_coordinator_memory_failure_blocks (test_validation_budget.ValidationBudgetTests.test_explicit_coordinator_memory_failure_blocks) ... ok
+test_invalid_policy_rejected_before_spawning (test_validation_budget.ValidationBudgetTests.test_invalid_policy_rejected_before_spawning) ... ok
+test_library_caller_limits_unchanged_and_data_workers_capped (test_validation_budget.ValidationBudgetTests.test_library_caller_limits_unchanged_and_data_workers_capped) ... ok
+test_live_preflight_rejection_starts_no_validation_worker (test_validation_budget.ValidationBudgetTests.test_live_preflight_rejection_starts_no_validation_worker) ... ok
+test_missing_diagnostic_is_not_reported_as_proven_memory_exhaustion (test_validation_budget.ValidationBudgetTests.test_missing_diagnostic_is_not_reported_as_proven_memory_exhaustion) ... ok
+test_public_cli_bounds_owned_caller_and_keeps_byte_identity (test_validation_budget.ValidationBudgetTests.test_public_cli_bounds_owned_caller_and_keeps_byte_identity) ... ok
+
+----------------------------------------------------------------------
+Ran 11 tests in 0.377s
+
+OK

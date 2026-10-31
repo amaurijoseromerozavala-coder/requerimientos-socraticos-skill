@@ -1,0 +1,74 @@
+{
+  "schema": "gentle-ai.review-last-event-closure/v1",
+  "operation": "review/capture-result",
+  "lineage_id": "review-6dfeca15fe8d271d",
+  "state": "approved",
+  "action": "the approved review completed on the last admitted event and awaits its exact acknowledgement",
+  "reviewer_results": [
+    {
+      "lens": "review-resilience",
+      "findings": [],
+      "evidence": [
+        "Inspected all four immutable patches. No concrete resilience regression caused by this candidate was established.",
+        "skills/qa-inquisidor/scripts/validate_report.py separates intercepted infrastructure exceptions from invalid input, returns exit 3 with an unassessed document and null event/verdict, and retains exception type and errno without asserting a root cause.",
+        "skills/qa-inquisidor/SKILL.md explicitly limits JSON emission to best effort and documents abrupt termination, allocation failure, and unavailable stdout. Failure while emitting a diagnostic remains possible in the baseline as well.",
+        "skills/qa-inquisidor/tests/test_infrastructure.py adds controlled exception coverage for infrastructure classification and preserves ValueError rejection checks. Tests were inspected, not executed, in accordance with the review scope. AGENTS.md updates the advertised version."
+      ],
+      "result_hash": "sha256:bb17dc4b0e78694a27f62e37b55a6443461ed6d9da70032511f15c3f7bfac036"
+    },
+    {
+      "lens": "review-reliability",
+      "findings": [],
+      "evidence": [
+        "Inspected all four immutable patches. No commands were run or external files read.",
+        "skills/qa-inquisidor/scripts/validate_report.py separates intercepted infrastructure exceptions from ValueError, returning distinct exit codes and withholding semantic event and verdict on infrastructure failure.",
+        "skills/qa-inquisidor/tests/test_infrastructure.py asserts observable exit codes and JSON classification for controlled memory, recursion, I/O, permission, missing-artifact, and invalid-input failures, including errno preservation and undetermined cause.",
+        "skills/qa-inquisidor/SKILL.md explicitly documents best-effort output and conditions that can prevent JSON emission; AGENTS.md updates the advertised version consistently."
+      ],
+      "result_hash": "sha256:5a481d7bca5f32eea554c6b6abe6444485fb1b5e5eb71e3d420c316c8ed1f280"
+    }
+  ],
+  "acknowledgement": {
+    "operation": "review.acknowledge-approved",
+    "command": "gentle-ai review acknowledge-approved --cwd=/workspace/replica-gentle-ai --lineage=review-6dfeca15fe8d271d --target=sha256:6bace5dc6e2bcfc43e82c5b4ed1e7a272061b51a0bb7d53a7c01f1ee3af8cfc4 --expected-revision=sha256:bca231ec9724fa289901f0d655f29b8838b487685493f39108b37ce9c2db0653 --token=77f02079a9d411216a97b69913faeaec156ee92c25389f36239f6e78cdb6665c",
+    "arguments": [
+      {
+        "name": "cwd",
+        "value": "/workspace/replica-gentle-ai",
+        "token": "--cwd=/workspace/replica-gentle-ai"
+      },
+      {
+        "name": "lineage",
+        "value": "review-6dfeca15fe8d271d",
+        "token": "--lineage=review-6dfeca15fe8d271d"
+      },
+      {
+        "name": "target",
+        "value": "sha256:6bace5dc6e2bcfc43e82c5b4ed1e7a272061b51a0bb7d53a7c01f1ee3af8cfc4",
+        "token": "--target=sha256:6bace5dc6e2bcfc43e82c5b4ed1e7a272061b51a0bb7d53a7c01f1ee3af8cfc4"
+      },
+      {
+        "name": "expected-revision",
+        "value": "sha256:bca231ec9724fa289901f0d655f29b8838b487685493f39108b37ce9c2db0653",
+        "token": "--expected-revision=sha256:bca231ec9724fa289901f0d655f29b8838b487685493f39108b37ce9c2db0653"
+      },
+      {
+        "name": "token",
+        "value": "77f02079a9d411216a97b69913faeaec156ee92c25389f36239f6e78cdb6665c",
+        "token": "--token=77f02079a9d411216a97b69913faeaec156ee92c25389f36239f6e78cdb6665c"
+      }
+    ],
+    "preconditions": [
+      {
+        "name": "state",
+        "value": "approved"
+      }
+    ],
+    "binding": {
+      "lineage_id": "review-6dfeca15fe8d271d",
+      "revision": "sha256:bca231ec9724fa289901f0d655f29b8838b487685493f39108b37ce9c2db0653",
+      "target_identity": "sha256:6bace5dc6e2bcfc43e82c5b4ed1e7a272061b51a0bb7d53a7c01f1ee3af8cfc4"
+    }
+  },
+  "store_revision": "sha256:bca231ec9724fa289901f0d655f29b8838b487685493f39108b37ce9c2db0653"
+}

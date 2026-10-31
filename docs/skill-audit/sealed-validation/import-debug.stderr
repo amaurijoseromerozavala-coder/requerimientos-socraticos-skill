@@ -1,0 +1,18 @@
+setUpClass (__main__.ContractTests) ... ERROR
+
+======================================================================
+ERROR: setUpClass (__main__.ContractTests)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/replica-gentle-ai/skills/requerimientos-socraticos/tests/test_interview.py", line 39, in setUpClass
+    spec.loader.exec_module(cls.module)
+  File "<frozen importlib._bootstrap_external>", line 999, in exec_module
+  File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+  File "/workspace/replica-gentle-ai/skills/requerimientos-socraticos/scripts/validate_interview.py", line 4, in <module>
+    from safe_io import read_regular
+ModuleNotFoundError: No module named 'safe_io'
+
+----------------------------------------------------------------------
+Ran 0 tests in 0.002s
+
+FAILED (errors=1)

@@ -1,0 +1,12 @@
+{
+  "jsonrpc": "2.0",
+  "id": 3,
+  "result": {
+    "content": [
+      {
+        "type": "text",
+        "text": "{\"id\":9,\"judgment_required\":false,\"project\":\"replica-gentle-ai\",\"project_path\":\"\",\"project_source\":\"explicit_override\",\"result\":\"Memory saved: \\\"ODD reparación requerimientos-socraticos\\\" (decision)\",\"review_after\":\"2027-04-26 16:56:06\",\"state\":\"active\",\"sync_id\":\"obs-a6f98d54a075f907\",\"truncation\":{\"original_bytes\":4026,\"limit_bytes\":50000,\"truncated\":false}}"
+      }
+    ]
+  }
+}

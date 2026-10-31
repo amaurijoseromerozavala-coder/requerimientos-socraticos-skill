@@ -1,0 +1,48 @@
+test_assistant_cannot_invent_policy (__main__.ContractTests.test_assistant_cannot_invent_policy) ... ok
+test_changed_interview_invalidates_bound_prd (__main__.ContractTests.test_changed_interview_invalidates_bound_prd) ... ok
+test_cli_complete_record_is_positive_integrity_control (__main__.ContractTests.test_cli_complete_record_is_positive_integrity_control) ... ok
+test_cli_rejects_ready_with_paused_interview (__main__.ContractTests.test_cli_rejects_ready_with_paused_interview) ... ok
+test_dangling_source (__main__.ContractTests.test_dangling_source) ... ok
+test_design_acceptance_needs_human_source (__main__.ContractTests.test_design_acceptance_needs_human_source) ... ok
+test_design_cannot_use_foreign_project_sources (__main__.ContractTests.test_design_cannot_use_foreign_project_sources) ... ok
+test_duplicate_ids_rejected_before_index (__main__.ContractTests.test_duplicate_ids_rejected_before_index) ... ok
+test_existing_literal_human_decision_can_be_cited (__main__.ContractTests.test_existing_literal_human_decision_can_be_cited) ... ok
+test_fake_covered_topic (__main__.ContractTests.test_fake_covered_topic) ... ok
+test_fake_independent_runtime (__main__.ContractTests.test_fake_independent_runtime) ... ok
+test_false_applicability_cannot_hide_open_material_topic (__main__.ContractTests.test_false_applicability_cannot_hide_open_material_topic) ... ok
+test_false_applicability_cannot_keep_covered_status (__main__.ContractTests.test_false_applicability_cannot_keep_covered_status) ... ok
+test_false_quote_rejected (__main__.ContractTests.test_false_quote_rejected) ... ok
+test_followup_cannot_resolve_different_topic (__main__.ContractTests.test_followup_cannot_resolve_different_topic) ... ok
+test_inference_is_not_confirmed_fact (__main__.ContractTests.test_inference_is_not_confirmed_fact) ... ok
+test_legacy_draft_still_valid_and_ready_loophole_closed (__main__.ContractTests.test_legacy_draft_still_valid_and_ready_loophole_closed) ... ok
+test_material_scope_cannot_be_dismissed_without_owner (__main__.ContractTests.test_material_scope_cannot_be_dismissed_without_owner) ... ok
+test_missing_web_exploration_blocks_complete (__main__.ContractTests.test_missing_web_exploration_blocks_complete) ... ok
+test_no_empty_design_review (__main__.ContractTests.test_no_empty_design_review) ... ok
+test_no_next_question_before_answer (__main__.ContractTests.test_no_next_question_before_answer) ... ok
+test_no_next_question_before_assessment (__main__.ContractTests.test_no_next_question_before_assessment) ... ok
+test_one_answer_is_not_total_coverage (__main__.ContractTests.test_one_answer_is_not_total_coverage) ... ok
+test_pause_remains_incomplete_but_valid (__main__.ContractTests.test_pause_remains_incomplete_but_valid) ... ok
+test_prd_cannot_use_foreign_project_interview (__main__.ContractTests.test_prd_cannot_use_foreign_project_interview) ... ok
+test_prd_design_can_reference_its_requirement (__main__.ContractTests.test_prd_design_can_reference_its_requirement) ... ok
+test_prd_ref_cannot_escape_project (__main__.ContractTests.test_prd_ref_cannot_escape_project) ... ok
+test_receipt_path_escape (__main__.ContractTests.test_receipt_path_escape) ... ok
+test_receipts_checked_not_just_declared (__main__.ContractTests.test_receipts_checked_not_just_declared) ... ok
+test_research_receipt_missing_is_not_success (__main__.ContractTests.test_research_receipt_missing_is_not_success) ... ok
+test_same_topic_different_dimension_does_not_resolve (__main__.ContractTests.test_same_topic_different_dimension_does_not_resolve) ... ok
+test_same_topic_same_dimension_can_resolve (__main__.ContractTests.test_same_topic_same_dimension_can_resolve) ... ok
+test_stale_candidate_hash_rejected (__main__.ContractTests.test_stale_candidate_hash_rejected) ... ok
+test_tool_unavailability_is_not_success (__main__.ContractTests.test_tool_unavailability_is_not_success) ... ok
+test_unanswered_blocks_complete (__main__.ContractTests.test_unanswered_blocks_complete) ... ok
+test_unanswered_question_cannot_be_addressed_to_self (__main__.ContractTests.test_unanswered_question_cannot_be_addressed_to_self) ... ok
+test_unknown_is_not_answered (__main__.ContractTests.test_unknown_is_not_answered) ... ok
+test_unresolved_followup_rejected (__main__.ContractTests.test_unresolved_followup_rejected) ... ok
+test_v2_dependency_hashes_and_receipts (__main__.ContractTests.test_v2_dependency_hashes_and_receipts) ... ok
+test_valid_bounded_interview (__main__.ContractTests.test_valid_bounded_interview) ... ok
+test_wait_state_matches_active_recipient (__main__.ContractTests.test_wait_state_matches_active_recipient) ... ok
+test_web_requires_discovery_first (__main__.ContractTests.test_web_requires_discovery_first) ... ok
+test_wrong_respondent (__main__.ContractTests.test_wrong_respondent) ... ok
+
+----------------------------------------------------------------------
+Ran 43 tests in 0.212s
+
+OK

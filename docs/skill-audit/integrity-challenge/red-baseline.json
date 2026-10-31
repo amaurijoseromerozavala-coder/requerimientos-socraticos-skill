@@ -1,0 +1,15 @@
+{
+  "scope": "Isolated copy; live QA untouched",
+  "baseline_algorithm": "all enumerated file_sha256 values match; reconstruction from manifest, not execution of a retained comparator executable",
+  "injection_undetected": true,
+  "restored_mutation_undetected": true,
+  "historical_continuous_integrity": "NOT_PROVEN",
+  "red_contract": [
+    "enumerate complete directory tree, including additions/deletions/renames/empty dirs/types",
+    "reject observed mutation-and-restore during bounded monitored window",
+    "serialize cooperative validation with bounded lock wait",
+    "block phase advance without configured trusted consumer",
+    "preserve synthetic stale-hash negative test; do not count unrelated failure as intended RED"
+  ],
+  "hardware_stress": "NOT_RUN; actual WSL target unavailable"
+}

@@ -1,0 +1,46 @@
+{
+  "scope": "Arithmetic policy model only; no filesystem supervisor implementation",
+  "cases": [
+    {
+      "case": "empty",
+      "expected": true,
+      "observed_model": true,
+      "pass": true
+    },
+    {
+      "case": "exact_fit",
+      "expected": true,
+      "observed_model": true,
+      "pass": true
+    },
+    {
+      "case": "one_byte_short",
+      "expected": false,
+      "observed_model": false,
+      "pass": true
+    },
+    {
+      "case": "reserved_capacity_counts",
+      "expected": false,
+      "observed_model": false,
+      "pass": true
+    },
+    {
+      "case": "run_limit",
+      "expected": false,
+      "observed_model": false,
+      "pass": true
+    },
+    {
+      "case": "last_slot",
+      "expected": true,
+      "observed_model": true,
+      "pass": true
+    }
+  ],
+  "reservation_sum": 335872,
+  "capacity_bytes": 33554432,
+  "full_max_size_runs": 99,
+  "manual_deletion": "specified, not executed",
+  "pass": true
+}

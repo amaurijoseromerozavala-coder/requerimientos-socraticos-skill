@@ -1,0 +1,12 @@
+{
+  "jsonrpc": "2.0",
+  "id": 2,
+  "result": {
+    "content": [
+      {
+        "type": "text",
+        "text": "{\"id\":18,\"judgment_required\":false,\"project\":\"replica-gentle-ai\",\"project_path\":\"\",\"project_source\":\"explicit_override\",\"result\":\"Memory saved: \\\"Endurecimiento requerimientos socraticos 2.4\\\" (progress)\",\"state\":\"active\",\"sync_id\":\"obs-9af4cbdb3c6c8b76\",\"truncation\":{\"original_bytes\":2893,\"limit_bytes\":50000,\"truncated\":false}}"
+      }
+    ]
+  }
+}

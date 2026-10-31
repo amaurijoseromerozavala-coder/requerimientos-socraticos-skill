@@ -1,0 +1,6 @@
+..............................................................
+----------------------------------------------------------------------
+Ran 62 tests in 0.160s
+
+OK
+Additional checks: retained declaration after controlled infrastructure exception; partial scan preserves positive declaration. OK

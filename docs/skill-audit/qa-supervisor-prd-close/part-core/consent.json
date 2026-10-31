@@ -1,0 +1,38 @@
+{
+  "schema": "gentle-ai.review-integration.consent/v3",
+  "contract": "gentle-ai.review-integration/v2",
+  "operation": "review.start",
+  "action": "consent_required",
+  "agent": "codex",
+  "blocking": true,
+  "target_identity": "sha256:244addaaaec7698302eadfa32321262beed5f9c341bb5debcb7bd9fadcb7cdb5",
+  "projection": "workspace",
+  "risk_level": "medium",
+  "changed_files": 7,
+  "changed_lines": 890,
+  "headline": "Gentle AI can review this change before you call it done.",
+  "reason": "Review can help detect regressions in these changes.",
+  "value": "Reviewing takes a little longer and makes the result safer.",
+  "risk_evidence": [
+    "this change is not purely passive documentation, so it gets one consolidated review.",
+    "a configuration change in docs/requirements/qa-supervisor/closure-proposal.json"
+  ],
+  "choices": [
+    {
+      "answer": "granted",
+      "label": "Review this change",
+      "effect": "Reviews only this change; later medium- or high-risk changes ask again, and delivery needs separate approval.",
+      "invocation": "gentle-ai review start --contract gentle-ai.review-integration/v2 --cwd /workspace/replica-gentle-ai --target sha256:244addaaaec7698302eadfa32321262beed5f9c341bb5debcb7bd9fadcb7cdb5 --target-evidence v1:base-workspace-overlay:workspace:4b825dc642cb6eb9a060e54bf8d69288fbee4904:8b05a201b816ef7e5f90151fd209b4a4ba554019:sha256:94f32f3e53bd4e18adf09c1e25f95ab2e4c1b7877fede605ba29bb1a2900a192 --projection workspace --agent codex --lineage review-efcc53913bd98b9c --base-ref 4b825dc642cb6eb9a060e54bf8d69288fbee4904 --workspace-overlay --untracked-scope=select --expected-untracked-inventory=sha256:655f42462086a35c650c76a46f04546b2788a399a546d16ba184cb413a05beb5 --intended-untracked=docs/requirements/qa-supervisor/PRD.md --intended-untracked=docs/requirements/qa-supervisor/closure-proposal.json --intended-untracked=docs/requirements/qa-supervisor/fsm-propuesta.json --intended-untracked=docs/requirements/qa-supervisor/prd-draft.json --intended-untracked=docs/requirements/qa-supervisor/propuesta-cierre.md --intended-untracked=docs/requirements/qa-supervisor/recovery-contract.json --intended-untracked=docs/requirements/qa-supervisor/tabla-decision.json --lenses review-resilience,review-reliability --lenses-reason 'Partial PRD review: core. Other parts and aggregate integration remain separately required; no implementation approval.' --consent granted"
+    },
+    {
+      "answer": "declined",
+      "label": "Skip this time",
+      "effect": "Skips only this change; no review record is created, and future reviews stay enabled.",
+      "invocation": "gentle-ai review start --contract gentle-ai.review-integration/v2 --cwd /workspace/replica-gentle-ai --target sha256:244addaaaec7698302eadfa32321262beed5f9c341bb5debcb7bd9fadcb7cdb5 --target-evidence v1:base-workspace-overlay:workspace:4b825dc642cb6eb9a060e54bf8d69288fbee4904:8b05a201b816ef7e5f90151fd209b4a4ba554019:sha256:94f32f3e53bd4e18adf09c1e25f95ab2e4c1b7877fede605ba29bb1a2900a192 --projection workspace --agent codex --lineage review-efcc53913bd98b9c --base-ref 4b825dc642cb6eb9a060e54bf8d69288fbee4904 --workspace-overlay --untracked-scope=select --expected-untracked-inventory=sha256:655f42462086a35c650c76a46f04546b2788a399a546d16ba184cb413a05beb5 --intended-untracked=docs/requirements/qa-supervisor/PRD.md --intended-untracked=docs/requirements/qa-supervisor/closure-proposal.json --intended-untracked=docs/requirements/qa-supervisor/fsm-propuesta.json --intended-untracked=docs/requirements/qa-supervisor/prd-draft.json --intended-untracked=docs/requirements/qa-supervisor/propuesta-cierre.md --intended-untracked=docs/requirements/qa-supervisor/recovery-contract.json --intended-untracked=docs/requirements/qa-supervisor/tabla-decision.json --lenses review-resilience,review-reliability --lenses-reason 'Partial PRD review: core. Other parts and aggregate integration remain separately required; no implementation approval.' --consent declined"
+    }
+  ],
+  "off_path": {
+    "note": "To turn reviews off for good, run 'gentle-ai review mode disable'.",
+    "command": "gentle-ai review mode disable"
+  }
+}

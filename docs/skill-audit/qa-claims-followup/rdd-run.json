@@ -1,0 +1,227 @@
+{
+  "schema": "gentle-ai.review-integration.start/v4",
+  "contract": "gentle-ai.review-integration/v2",
+  "operation": "review.start",
+  "action": "created",
+  "lenses_required": true,
+  "lineage_id": "review-e7d174d14d0c8002",
+  "state": "reviewing",
+  "risk_level": "medium",
+  "selected_lenses": [
+    "review-reliability"
+  ],
+  "projection": "workspace",
+  "target_mode": "base-workspace-overlay",
+  "target_identity": "sha256:44020c98294501359766e743b9f5c90521d534ca2776c6e65855a61435bba5a3",
+  "base_tree": "13b1fb1321e16fc664032c8b53c93a47a2fe7509",
+  "candidate_tree": "8beafd718d74763d79b76548a9027740d3e3be31",
+  "changed_files": 11,
+  "changed_lines": 331,
+  "correction_budget": 166,
+  "risk_reasons": [
+    {
+      "code": "executable_change",
+      "path": "AGENTS.md"
+    }
+  ],
+  "artifact_subjects": [
+    {
+      "schema": "gentle-ai.review-artifact-subject/v2",
+      "subject_hash": "sha256:4e853d72bed1e19d2f7d94ef9e71a60e2e1156a9ba122b16cada0876bc76dc1a",
+      "lineage_id": "review-e7d174d14d0c8002",
+      "authority_revision": "sha256:6be5c7012ab4f9107e215046f61cf977c001aba365eb7d9d5fa45289926bb15e",
+      "target_identity": "sha256:44020c98294501359766e743b9f5c90521d534ca2776c6e65855a61435bba5a3",
+      "base_tree": "13b1fb1321e16fc664032c8b53c93a47a2fe7509",
+      "candidate_tree": "8beafd718d74763d79b76548a9027740d3e3be31",
+      "changed_path_manifest_sha256": "sha256:3eda53375133098014f5f90acddb1f36d8d1588749b72b8b3b4ffd909e3e0321",
+      "lens": "review-reliability",
+      "selected_order": 0
+    }
+  ],
+  "changed_path_manifest": [
+    {
+      "path": "AGENTS.md",
+      "status": "A",
+      "old_mode": "000000",
+      "new_mode": "100644",
+      "deleted": false,
+      "type_changed": false,
+      "mode_only": false,
+      "intended_untracked": true
+    },
+    {
+      "path": "docs/compliance/openai-codex-cloud.md",
+      "status": "A",
+      "old_mode": "000000",
+      "new_mode": "100644",
+      "deleted": false,
+      "type_changed": false,
+      "mode_only": false,
+      "intended_untracked": true
+    },
+    {
+      "path": "docs/requirements/qa-inquisidor-v2/PRD.md",
+      "status": "M",
+      "old_mode": "100644",
+      "new_mode": "100644",
+      "deleted": false,
+      "type_changed": false,
+      "mode_only": false,
+      "intended_untracked": true
+    },
+    {
+      "path": "docs/requirements/qa-inquisidor-v2/contrato-evidencia-propuesto.md",
+      "status": "A",
+      "old_mode": "000000",
+      "new_mode": "100644",
+      "deleted": false,
+      "type_changed": false,
+      "mode_only": false,
+      "intended_untracked": true
+    },
+    {
+      "path": "docs/requirements/qa-inquisidor-v2/registro-skill-asistente.json",
+      "status": "M",
+      "old_mode": "100644",
+      "new_mode": "100644",
+      "deleted": false,
+      "type_changed": false,
+      "mode_only": false,
+      "intended_untracked": true
+    },
+    {
+      "path": "docs/requirements/qa-inquisidor-v2/registro-skill-asistente.md",
+      "status": "M",
+      "old_mode": "100644",
+      "new_mode": "100644",
+      "deleted": false,
+      "type_changed": false,
+      "mode_only": false,
+      "intended_untracked": true
+    },
+    {
+      "path": "docs/skill-audit/qa-claims-followup/RESULTADO.md",
+      "status": "A",
+      "old_mode": "000000",
+      "new_mode": "100644",
+      "deleted": false,
+      "type_changed": false,
+      "mode_only": false,
+      "intended_untracked": true
+    },
+    {
+      "path": "docs/skill-audit/qa-claims-followup/bounded-observation.json",
+      "status": "A",
+      "old_mode": "000000",
+      "new_mode": "100644",
+      "deleted": false,
+      "type_changed": false,
+      "mode_only": false,
+      "intended_untracked": true
+    },
+    {
+      "path": "docs/skill-audit/qa-claims-followup/integrity.json",
+      "status": "A",
+      "old_mode": "000000",
+      "new_mode": "100644",
+      "deleted": false,
+      "type_changed": false,
+      "mode_only": false,
+      "intended_untracked": true
+    },
+    {
+      "path": "docs/skill-audit/qa-claims-followup/scratch-tests.log",
+      "status": "A",
+      "old_mode": "000000",
+      "new_mode": "100644",
+      "deleted": false,
+      "type_changed": false,
+      "mode_only": false,
+      "intended_untracked": true
+    },
+    {
+      "path": "docs/skill-audit/qa-claims-followup/sealed-tests.log",
+      "status": "A",
+      "old_mode": "000000",
+      "new_mode": "100644",
+      "deleted": false,
+      "type_changed": false,
+      "mode_only": false,
+      "intended_untracked": true
+    }
+  ],
+  "repository_context": {
+    "capability": "review.opaque_repository_context",
+    "handle": "rctx2_4e621756fa3bf520c089c68b254d11e55e460ecd745e13b3a1f4236166f2713d",
+    "revision": "sha256:6be5c7012ab4f9107e215046f61cf977c001aba365eb7d9d5fa45289926bb15e",
+    "target_identity": "sha256:44020c98294501359766e743b9f5c90521d534ca2776c6e65855a61435bba5a3"
+  },
+  "next_transition": {
+    "kind": "execute",
+    "reason_code": "review_status_required",
+    "execute": {
+      "operation": "review.status",
+      "command": "gentle-ai review status --contract=gentle-ai.review-integration/v2 --next-transition=true --lineage=review-e7d174d14d0c8002 --repository-context=rctx2_4e621756fa3bf520c089c68b254d11e55e460ecd745e13b3a1f4236166f2713d --agent=codex --base-ref=13b1fb1321e16fc664032c8b53c93a47a2fe7509 --workspace-overlay=true",
+      "arguments": [
+        {
+          "name": "contract",
+          "value": "gentle-ai.review-integration/v2",
+          "token": "--contract=gentle-ai.review-integration/v2"
+        },
+        {
+          "name": "next-transition",
+          "value": "true",
+          "token": "--next-transition=true"
+        },
+        {
+          "name": "lineage",
+          "value": "review-e7d174d14d0c8002",
+          "token": "--lineage=review-e7d174d14d0c8002"
+        },
+        {
+          "name": "repository-context",
+          "value": "rctx2_4e621756fa3bf520c089c68b254d11e55e460ecd745e13b3a1f4236166f2713d",
+          "token": "--repository-context=rctx2_4e621756fa3bf520c089c68b254d11e55e460ecd745e13b3a1f4236166f2713d"
+        },
+        {
+          "name": "agent",
+          "value": "codex",
+          "token": "--agent=codex"
+        },
+        {
+          "name": "base-ref",
+          "value": "13b1fb1321e16fc664032c8b53c93a47a2fe7509",
+          "token": "--base-ref=13b1fb1321e16fc664032c8b53c93a47a2fe7509"
+        },
+        {
+          "name": "workspace-overlay",
+          "value": "true",
+          "token": "--workspace-overlay=true"
+        }
+      ],
+      "selector_arguments": [
+        {
+          "name": "base-ref",
+          "value": "13b1fb1321e16fc664032c8b53c93a47a2fe7509",
+          "token": "--base-ref=13b1fb1321e16fc664032c8b53c93a47a2fe7509"
+        },
+        {
+          "name": "workspace-overlay",
+          "value": "true",
+          "token": "--workspace-overlay=true"
+        }
+      ],
+      "preconditions": [
+        {
+          "name": "state",
+          "value": "reviewing"
+        }
+      ],
+      "binding": {
+        "lineage_id": "review-e7d174d14d0c8002",
+        "revision": "sha256:6be5c7012ab4f9107e215046f61cf977c001aba365eb7d9d5fa45289926bb15e",
+        "target_identity": "sha256:44020c98294501359766e743b9f5c90521d534ca2776c6e65855a61435bba5a3"
+      }
+    }
+  }
+}

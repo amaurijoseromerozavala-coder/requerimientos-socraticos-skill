@@ -1,0 +1,26 @@
+services:
+  ubuntu:
+    build:
+      context: .
+      secrets:
+        - ca_bundle
+    platform: linux/amd64
+    cpus: 2.0
+    mem_limit: 6g
+    # Docker counts RAM + swap here: 6 GiB RAM + 8 GiB swap.
+    memswap_limit: 14g
+    stdin_open: true
+    tty: true
+    volumes:
+      - project:/project
+      - developer-home:/home/developer
+      - ${REPLICA_CA_BUNDLE:-/etc/ssl/certs/ca-certificates.crt}:/run/ca-bundle.pem:ro
+    environment:
+      SSL_CERT_FILE: /run/ca-bundle.pem
+      CURL_CA_BUNDLE: /run/ca-bundle.pem
+secrets:
+  ca_bundle:
+    file: ${REPLICA_CA_BUNDLE:-/etc/ssl/certs/ca-certificates.crt}
+volumes:
+  project:
+  developer-home:

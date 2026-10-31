@@ -1,0 +1,15 @@
+{
+  "scope": "document/model assertions, not execution tests",
+  "checks": {
+    "cleanup_enters_lock": false,
+    "lock_blocks_new_request": false,
+    "ack_does_not_unlock": false,
+    "reconciliation_required": false,
+    "no_lock_to_running": true,
+    "rejection_types": false,
+    "optional_os_diagnostics": false,
+    "no_elevation": false,
+    "invoker_confirmed": true
+  },
+  "pass": false
+}

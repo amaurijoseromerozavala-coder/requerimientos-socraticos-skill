@@ -1,0 +1,9 @@
+{
+  "case": "A22",
+  "stage": "RED before correction",
+  "observed": "ACCEPT",
+  "expected": "REJECT/DUPLICATE_ID",
+  "counterexample": "REAL_EXECUTION case shadows same-id STATIC_REVIEW case in by_test; only static receipt exists.",
+  "actual": "hashes, cross-references and planned/evidence execution kinds match",
+  "observed_at": "2026-10-26T16:38:40.208138+00:00"
+}

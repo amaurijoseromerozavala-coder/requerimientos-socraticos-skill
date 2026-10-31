@@ -1,0 +1,12 @@
+{
+  "jsonrpc": "2.0",
+  "id": 2,
+  "result": {
+    "content": [
+      {
+        "type": "text",
+        "text": "{\"candidates\":[{\"id\":6,\"judgment_id\":\"rel-39f2e75b18aaf8d2\",\"score\":-3.075846227073367,\"sync_id\":\"obs-52b358566c2f791f\",\"title\":\"PRD QA Inquisidor: ensayos acotados y RDD documental cerrado\",\"topic_key\":\"odd/qa-inquisidor-prd/tasks\",\"type\":\"progress\"},{\"id\":19,\"judgment_id\":\"rel-0a35619ac0ceb746\",\"score\":-2.7865039911310503,\"sync_id\":\"obs-e54782ea507876d3\",\"title\":\"Endurecimiento requerimientos socraticos 2.4.1\",\"topic_key\":\"odd/requirements-hardening-241/tasks\",\"type\":\"progress\"},{\"id\":13,\"judgment_id\":\"rel-75795f6812d17ab3\",\"score\":-0.9824502836445742,\"sync_id\":\"obs-2e76f242431901ef\",\"title\":\"Gentle AI requerimientos2.2.1: objetos Git fijados y lecturas acotadas\",\"topic_key\":\"odd/sealed-validation/tasks\",\"type\":\"decision\"}],\"id\":20,\"judgment_id\":\"rel-39f2e75b18aaf8d2\",\"judgment_required\":true,\"judgment_status\":\"pending\",\"project\":\"replica-gentle-ai\",\"project_path\":\"\",\"project_source\":\"explicit_override\",\"result\":\"Memory saved: \\\"Contraste documental QA 2.4.1\\\" (progress)\\nCONFLICT REVIEW PENDING — 3 candidate(s); use mem_judge to record verdicts.\",\"state\":\"active\",\"sync_id\":\"obs-6fbb2ff63671c6a2\",\"truncation\":{\"original_bytes\":1237,\"limit_bytes\":50000,\"truncated\":false}}"
+      }
+    ]
+  }
+}

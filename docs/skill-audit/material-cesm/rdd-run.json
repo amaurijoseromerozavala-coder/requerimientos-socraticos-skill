@@ -1,0 +1,67 @@
+{
+  "schema": "gentle-ai.review-integration.start/v4",
+  "contract": "gentle-ai.review-integration/v2",
+  "operation": "review.start",
+  "action": "closed",
+  "lenses_required": false,
+  "lineage_id": "review-18f271eef43839c4",
+  "state": "approved",
+  "risk_level": "low",
+  "selected_lenses": [],
+  "projection": "workspace",
+  "target_mode": "base-workspace-overlay",
+  "target_identity": "sha256:11ece147dd861f0724a4ff3370a8e6e3e26178e1ccc2c778f102ca77542025e4",
+  "base_tree": "1e4862e3f4f44f4d436337088aa293b02da3379d",
+  "candidate_tree": "a697891792b0792b7f04b4e7944d3c353a663675",
+  "changed_files": 1,
+  "changed_lines": 128,
+  "correction_budget": 64,
+  "risk_reasons": [
+    {
+      "code": "non_executable_only"
+    }
+  ],
+  "artifact_subjects": [],
+  "acknowledgement": {
+    "operation": "review.acknowledge-approved",
+    "command": "gentle-ai review acknowledge-approved --cwd=/workspace/replica-gentle-ai --lineage=review-18f271eef43839c4 --target=sha256:11ece147dd861f0724a4ff3370a8e6e3e26178e1ccc2c778f102ca77542025e4 --expected-revision=sha256:3eb111925c8678cc4d1e155548e20a176ef094c76759648bddce96ed67662130 --token=62b98f379fdd309563eeda9a9ec0e79954332c7046ad03273ea66af7b840836c",
+    "arguments": [
+      {
+        "name": "cwd",
+        "value": "/workspace/replica-gentle-ai",
+        "token": "--cwd=/workspace/replica-gentle-ai"
+      },
+      {
+        "name": "lineage",
+        "value": "review-18f271eef43839c4",
+        "token": "--lineage=review-18f271eef43839c4"
+      },
+      {
+        "name": "target",
+        "value": "sha256:11ece147dd861f0724a4ff3370a8e6e3e26178e1ccc2c778f102ca77542025e4",
+        "token": "--target=sha256:11ece147dd861f0724a4ff3370a8e6e3e26178e1ccc2c778f102ca77542025e4"
+      },
+      {
+        "name": "expected-revision",
+        "value": "sha256:3eb111925c8678cc4d1e155548e20a176ef094c76759648bddce96ed67662130",
+        "token": "--expected-revision=sha256:3eb111925c8678cc4d1e155548e20a176ef094c76759648bddce96ed67662130"
+      },
+      {
+        "name": "token",
+        "value": "62b98f379fdd309563eeda9a9ec0e79954332c7046ad03273ea66af7b840836c",
+        "token": "--token=62b98f379fdd309563eeda9a9ec0e79954332c7046ad03273ea66af7b840836c"
+      }
+    ],
+    "preconditions": [
+      {
+        "name": "state",
+        "value": "approved"
+      }
+    ],
+    "binding": {
+      "lineage_id": "review-18f271eef43839c4",
+      "revision": "sha256:3eb111925c8678cc4d1e155548e20a176ef094c76759648bddce96ed67662130",
+      "target_identity": "sha256:11ece147dd861f0724a4ff3370a8e6e3e26178e1ccc2c778f102ca77542025e4"
+    }
+  }
+}

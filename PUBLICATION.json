@@ -1,0 +1,15 @@
+{
+  "status": "VERIFIED_FOR_PUBLICATION",
+  "bundle_files": 893,
+  "bundle_sha256": "b7c3c5205133b7a78a10e55d9e077781a0f325b10579e9e99f7c4ede4a0b8857",
+  "readme_and_gitignore": "Publication-specific replacement; original bytes retained in JSON bundle",
+  "excluded": "credentials, runtime state, backups, caches, external binary, previous duplicate exports",
+  "ci": "NO_WORKFLOWS_ADDED",
+  "byte_identical_bundle_files": 891,
+  "publication_overrides": [
+    "README.md",
+    ".gitignore"
+  ],
+  "credential_pattern_scan": "NO_MATCHES_NOT_A_UNIVERSAL_GUARANTEE",
+  "product_tests": "NOT_RERUN_PUBLICATION_ONLY"
+}

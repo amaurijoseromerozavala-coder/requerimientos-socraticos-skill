@@ -1,0 +1,72 @@
+{
+  "schema": "gentle-ai.review-last-event-closure/v1",
+  "operation": "review/capture-result",
+  "lineage_id": "review-2383ffa61c4de09b",
+  "state": "approved",
+  "action": "the approved review completed on the last admitted event and awaits its exact acknowledgement",
+  "reviewer_results": [
+    {
+      "lens": "review-resilience",
+      "findings": [],
+      "evidence": [
+        "Inspected all four supplied patches. The candidate adds scenario-specific state assertions and a uniform infrastructure-failure negative control in docs/requirements/qa-supervisor/verification/check-output-contract.py; the supplied results record matching expected and actual states in docs/requirements/qa-supervisor/verification/output-contract-results.json.",
+        "The path resolution change in docs/requirements/qa-supervisor/verification/check-document-model.py and digest update in docs/requirements/qa-supervisor/verification/canonical-model-results.json show no concrete introduced resilience failure. The supplied patches provide no measured production latency or load impact; no commands were run."
+      ],
+      "result_hash": "sha256:a8067f42a0cf38a957604bb3ce9a9f5194161d0ce45a69db20906f74b6146edc"
+    },
+    {
+      "lens": "review-reliability",
+      "findings": [],
+      "evidence": [
+        "Inspected all four supplied patches without accessing external files or running commands.",
+        "docs/requirements/qa-supervisor/verification/check-document-model.py resolves its document directory relative to the script location.",
+        "docs/requirements/qa-supervisor/verification/check-output-contract.py adds independent expected states for five checker scenarios and requires both contract admission and state equality. The supplied results in docs/requirements/qa-supervisor/verification/output-contract-results.json agree with those expectations.",
+        "docs/requirements/qa-supervisor/verification/canonical-model-results.json changes only the candidate digest. No candidate-caused reliability defect is established by the supplied patches."
+      ],
+      "result_hash": "sha256:0a8c0c0c254620cc94ad351e6cc4cb96b5fd0d9eff95c3fdb3cd085ee3b205e8"
+    }
+  ],
+  "acknowledgement": {
+    "operation": "review.acknowledge-approved",
+    "command": "gentle-ai review acknowledge-approved --cwd=/workspace/replica-gentle-ai --lineage=review-2383ffa61c4de09b --target=sha256:dcdc8ae7f0da32cf4d52ba441df3869f95448c58b275e65d917260b32a8a4fbf --expected-revision=sha256:e7990795256f75f520e20475b2b32be6475691657ad9a42b0f4e77b883a187cf --token=cd3d2597e91e9fb2c46625a4180fe1d9fd04ab345c11d50eb27b6ad6110a6b59",
+    "arguments": [
+      {
+        "name": "cwd",
+        "value": "/workspace/replica-gentle-ai",
+        "token": "--cwd=/workspace/replica-gentle-ai"
+      },
+      {
+        "name": "lineage",
+        "value": "review-2383ffa61c4de09b",
+        "token": "--lineage=review-2383ffa61c4de09b"
+      },
+      {
+        "name": "target",
+        "value": "sha256:dcdc8ae7f0da32cf4d52ba441df3869f95448c58b275e65d917260b32a8a4fbf",
+        "token": "--target=sha256:dcdc8ae7f0da32cf4d52ba441df3869f95448c58b275e65d917260b32a8a4fbf"
+      },
+      {
+        "name": "expected-revision",
+        "value": "sha256:e7990795256f75f520e20475b2b32be6475691657ad9a42b0f4e77b883a187cf",
+        "token": "--expected-revision=sha256:e7990795256f75f520e20475b2b32be6475691657ad9a42b0f4e77b883a187cf"
+      },
+      {
+        "name": "token",
+        "value": "cd3d2597e91e9fb2c46625a4180fe1d9fd04ab345c11d50eb27b6ad6110a6b59",
+        "token": "--token=cd3d2597e91e9fb2c46625a4180fe1d9fd04ab345c11d50eb27b6ad6110a6b59"
+      }
+    ],
+    "preconditions": [
+      {
+        "name": "state",
+        "value": "approved"
+      }
+    ],
+    "binding": {
+      "lineage_id": "review-2383ffa61c4de09b",
+      "revision": "sha256:e7990795256f75f520e20475b2b32be6475691657ad9a42b0f4e77b883a187cf",
+      "target_identity": "sha256:dcdc8ae7f0da32cf4d52ba441df3869f95448c58b275e65d917260b32a8a4fbf"
+    }
+  },
+  "store_revision": "sha256:e7990795256f75f520e20475b2b32be6475691657ad9a42b0f4e77b883a187cf"
+}

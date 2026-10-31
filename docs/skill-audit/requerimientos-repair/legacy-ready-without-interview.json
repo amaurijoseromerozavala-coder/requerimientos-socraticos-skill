@@ -1,0 +1,433 @@
+{
+  "schema_version": "1.0.0",
+  "project": "synthetic-activation-example",
+  "status": "READY",
+  "candidate": {
+    "raw_inputs": [
+      {
+        "id": "U1",
+        "speaker": "synthetic example author",
+        "turn": "EXAMPLE-1",
+        "verbatim": "Solo el operador puede activar el recurso inactivo. Cualquier otra solicitud se rechaza sin cambiarlo."
+      }
+    ],
+    "scope": "Synthetic finite demonstration, not a real project or approved business policy.",
+    "out_of_scope": [
+      "Implementation",
+      "Performance",
+      "Distributed identity validation"
+    ],
+    "sources": [
+      {
+        "id": "SRC1",
+        "kind": "HUMAN",
+        "locator": "EXAMPLE-1 synthetic input",
+        "retrieved_at": null,
+        "claim": "Only the stated bounded example is modeled.",
+        "limitations": "Not actual user business intent."
+      }
+    ],
+    "claims": [
+      {
+        "id": "C1",
+        "statement": "This example has a finite two-state abstraction.",
+        "classification": "CONSTRAINT",
+        "source_ids": [
+          "SRC1"
+        ],
+        "limits": "Operator identity is assumed verified outside this toy model."
+      }
+    ],
+    "semantic_ir": [
+      {
+        "id": "IR1",
+        "input_ids": [
+          "U1"
+        ],
+        "normalized": "Only operator may enable inactive resource; reject all other requests.",
+        "confirmed_meaning": "Same as the synthetic input, including no change on rejection.",
+        "confirmation": "UNAMBIGUOUS_INPUT",
+        "authority": "Synthetic example, not user approval",
+        "forbidden_inferences": [
+          "No reset or administrative bypass implied."
+        ]
+      }
+    ],
+    "questions": [],
+    "methods": {
+      "checkland": {
+        "problem_situation": "Unspecified activation authority could permit a bypass.",
+        "root_definition": "Owner-controlled transformation from inactive to active by an operator.",
+        "catwoe": {
+          "customers": "Resource consumers",
+          "actors": "Operator",
+          "transformation": "Inactive → active",
+          "worldview": "Explicit activation authority",
+          "owners": "Resource owner",
+          "environment": "Finite synchronous toy model"
+        },
+        "desirable_feasible_changes": [
+          "Document explicit rejection of all other requests."
+        ]
+      },
+      "kendall_and_kendall": {
+        "objectives": [
+          "Unambiguous activation policy"
+        ],
+        "stakeholders": [
+          "Operator",
+          "Resource owner"
+        ],
+        "inputs_processes_outputs": [
+          "request → authorize → active or reject"
+        ],
+        "data_dictionary": [
+          "state: inactive|active; actor: operator|OTHER; event: enable|OTHER"
+        ],
+        "decision_tables": [
+          "Only inactive × operator × enable allows activation."
+        ]
+      },
+      "scientific_method": {
+        "problem": "Can an unauthorized request activate the resource?",
+        "hypotheses": [],
+        "observable_predictions": [
+          "OTHER actor never has an ALLOW edge."
+        ],
+        "rival_explanations": [
+          "An implicit fallback might activate the resource."
+        ],
+        "limitations": [
+          "Cannot prove real authentication, concurrency or transport behavior."
+        ]
+      }
+    },
+    "requirements": [
+      {
+        "id": "R1",
+        "ir_ids": [
+          "IR1"
+        ],
+        "kind": "FUNCTIONAL",
+        "ears_pattern": "EVENT_DRIVEN",
+        "ears": "Cuando el operador solicite activar un recurso inactivo, el sistema deberá activarlo.",
+        "logic": "forall s,a,e: s=inactive and a=operator and e=enable implies outcome=ALLOW and next=active",
+        "quantifiers": "forall reachable configuration, actor and event",
+        "actors": [
+          "operator",
+          "OTHER"
+        ],
+        "definitions": [
+          "Resource state and alphabet defined by the FSM."
+        ],
+        "acceptance": [
+          "Every declared configuration has exactly one matching transition."
+        ],
+        "falsifier_ids": [
+          "F1"
+        ],
+        "transition_ids": [
+          "T1"
+        ],
+        "invariant_ids": [],
+        "assumption_ids": [
+          "C1"
+        ],
+        "metric": null
+      },
+      {
+        "id": "R2",
+        "ir_ids": [
+          "IR1"
+        ],
+        "kind": "FUNCTIONAL",
+        "ears_pattern": "UNWANTED_BEHAVIOR",
+        "ears": "Si una solicitud no está autorizada por R1, el sistema deberá rechazarla sin modificar estado ni datos.",
+        "logic": "forall s,a,e: not(s=inactive and a=operator and e=enable) implies outcome=REJECT and next=s",
+        "quantifiers": "forall reachable configuration, actor and event",
+        "actors": [
+          "operator",
+          "OTHER"
+        ],
+        "definitions": [
+          "Resource state and alphabet defined by the FSM."
+        ],
+        "acceptance": [
+          "Every declared configuration has exactly one matching transition."
+        ],
+        "falsifier_ids": [
+          "F2"
+        ],
+        "transition_ids": [
+          "T2",
+          "T3",
+          "T4",
+          "T5",
+          "T6",
+          "T7",
+          "T8"
+        ],
+        "invariant_ids": [],
+        "assumption_ids": [
+          "C1"
+        ],
+        "metric": null
+      }
+    ],
+    "fsm": {
+      "states": [
+        "inactive",
+        "active"
+      ],
+      "initial": {
+        "state": "inactive",
+        "values": {}
+      },
+      "actors": [
+        "operator",
+        "OTHER"
+      ],
+      "events": [
+        "enable",
+        "OTHER"
+      ],
+      "variables": {},
+      "terminal_states": [
+        "active"
+      ],
+      "transitions": [
+        {
+          "id": "T1",
+          "from": "inactive",
+          "actor": "operator",
+          "event": "enable",
+          "guard_dnf": [
+            {}
+          ],
+          "to": "active",
+          "effects": {},
+          "outcome": "ALLOW",
+          "requirement_ids": [
+            "R1"
+          ],
+          "reason": "Explicit authorization"
+        },
+        {
+          "id": "T2",
+          "from": "inactive",
+          "actor": "operator",
+          "event": "OTHER",
+          "guard_dnf": [
+            {}
+          ],
+          "to": "inactive",
+          "effects": {},
+          "outcome": "REJECT",
+          "requirement_ids": [
+            "R2"
+          ],
+          "reason": "Unknown or disallowed request; preserve state"
+        },
+        {
+          "id": "T3",
+          "from": "inactive",
+          "actor": "OTHER",
+          "event": "enable",
+          "guard_dnf": [
+            {}
+          ],
+          "to": "inactive",
+          "effects": {},
+          "outcome": "REJECT",
+          "requirement_ids": [
+            "R2"
+          ],
+          "reason": "Unknown or disallowed request; preserve state"
+        },
+        {
+          "id": "T4",
+          "from": "inactive",
+          "actor": "OTHER",
+          "event": "OTHER",
+          "guard_dnf": [
+            {}
+          ],
+          "to": "inactive",
+          "effects": {},
+          "outcome": "REJECT",
+          "requirement_ids": [
+            "R2"
+          ],
+          "reason": "Unknown or disallowed request; preserve state"
+        },
+        {
+          "id": "T5",
+          "from": "active",
+          "actor": "operator",
+          "event": "enable",
+          "guard_dnf": [
+            {}
+          ],
+          "to": "active",
+          "effects": {},
+          "outcome": "REJECT",
+          "requirement_ids": [
+            "R2"
+          ],
+          "reason": "Unknown or disallowed request; preserve state"
+        },
+        {
+          "id": "T6",
+          "from": "active",
+          "actor": "operator",
+          "event": "OTHER",
+          "guard_dnf": [
+            {}
+          ],
+          "to": "active",
+          "effects": {},
+          "outcome": "REJECT",
+          "requirement_ids": [
+            "R2"
+          ],
+          "reason": "Unknown or disallowed request; preserve state"
+        },
+        {
+          "id": "T7",
+          "from": "active",
+          "actor": "OTHER",
+          "event": "enable",
+          "guard_dnf": [
+            {}
+          ],
+          "to": "active",
+          "effects": {},
+          "outcome": "REJECT",
+          "requirement_ids": [
+            "R2"
+          ],
+          "reason": "Unknown or disallowed request; preserve state"
+        },
+        {
+          "id": "T8",
+          "from": "active",
+          "actor": "OTHER",
+          "event": "OTHER",
+          "guard_dnf": [
+            {}
+          ],
+          "to": "active",
+          "effects": {},
+          "outcome": "REJECT",
+          "requirement_ids": [
+            "R2"
+          ],
+          "reason": "Unknown or disallowed request; preserve state"
+        }
+      ],
+      "invariants": [],
+      "authorization_obligations": [
+        "Every ALLOW transition must have actor=operator and event=enable and from=inactive."
+      ],
+      "progress_obligations": [
+        "From inactive, operator enable reaches active in one step."
+      ],
+      "abstraction_complete": true,
+      "abstraction_justification": "Complete only for this synthetic synchronous finite alphabet; OTHER requests are rejected.",
+      "environment_mapping": "An external trusted boundary supplies operator or OTHER; unrecognized events map to OTHER. Real identity verification is outside the example.",
+      "bounds": "2 states × 2 actors × 2 events; no variables or clocks."
+    },
+    "gaps": [],
+    "process_history": [
+      {
+        "from": "CAPTURED",
+        "event": "synthetic scope recorded",
+        "to": "CLARIFYING",
+        "reason": "No real business decision is inferred."
+      },
+      {
+        "from": "CLARIFYING",
+        "event": "toy meaning explicit",
+        "to": "SPECIFYING",
+        "reason": "Build a bounded documentation example."
+      }
+    ],
+    "falsifiers": [
+      {
+        "id": "F1",
+        "claim_ids": [
+          "R1"
+        ],
+        "observation_that_refutes": "Authorized enable does not reach active.",
+        "method": "Exhaustive finite enumeration",
+        "oracle": "R1 and transition semantics",
+        "negative_control": "Remove T1 and observe a coverage gap.",
+        "evidence_ids": [
+          "E-test"
+        ],
+        "status": "NOT_REFUTED_UNDER_TEST"
+      },
+      {
+        "id": "F2",
+        "claim_ids": [
+          "R2"
+        ],
+        "observation_that_refutes": "OTHER request is allowed or changes state.",
+        "method": "Exhaustive finite enumeration",
+        "oracle": "R2 and frame condition",
+        "negative_control": "Mutate one OTHER rejection into ALLOW.",
+        "evidence_ids": [
+          "E-test"
+        ],
+        "status": "NOT_REFUTED_UNDER_TEST"
+      }
+    ]
+  },
+  "assurance": {
+    "candidate_sha256": "7a29dc4a3aeaa4576550996bac39fbc2afa07de84efadf6d4cb373916e427ce9",
+    "formal_scope": "Finite synchronous example only; no claim of implementation correctness.",
+    "formal_status": "PASS_BOUNDED",
+    "checks": {
+      "schema": "PASS",
+      "semantics": "PASS",
+      "references": "PASS",
+      "traceability": "PASS",
+      "coverage": "PASS",
+      "determinism": "PASS",
+      "authorization": "PASS",
+      "reachability": "PASS",
+      "invariants": "PASS",
+      "progress": "PASS",
+      "falsifiability": "PASS",
+      "tdd_red_green": "PASS",
+      "freshness": "PASS",
+      "independent_review": "PASS"
+    },
+    "counterexamples": [],
+    "evidence": [
+      {
+        "id": "E-test",
+        "candidate_sha256": "7a29dc4a3aeaa4576550996bac39fbc2afa07de84efadf6d4cb373916e427ce9",
+        "command_or_tool": "synthetic schema branch test",
+        "version": "1",
+        "cwd_or_url": "in-memory",
+        "observed_at": "synthetic",
+        "exit_code": 0,
+        "result": "PASS",
+        "output_locator": "none: synthetic schema branch test",
+        "scope_and_limits": "Not actual review evidence."
+      }
+    ],
+    "rdd": {
+      "mode": "ON",
+      "status": "NATIVE_PASS",
+      "receipt_locator": "SYNTHETIC-TEST-ONLY",
+      "candidate_identity": "SYNTHETIC-TEST-ONLY",
+      "independent_reviewer": "SYNTHETIC-TEST-ONLY"
+    },
+    "limitations": [
+      "Illustrative draft; native review not performed; all assurance fields deliberately NOT_RUN."
+    ],
+    "next_action": "Execute checks, then independently review the exact candidate before considering READY."
+  }
+}

@@ -1,0 +1,154 @@
+{
+  "schema": "gentle-ai.review-integration.status/v9",
+  "contract": "gentle-ai.review-integration/v2",
+  "operation": "review.status",
+  "applicability": "unrelated",
+  "action": "start",
+  "replayability": "not_replayable",
+  "target_identity": "sha256:709145f50fc44cae5a2a573df58f99ee6509865996a11a8fc22d5d60953f5f11",
+  "projection": {
+    "schema": "gentle-ai.review-integration.projection/v1",
+    "kind": "base-workspace-overlay",
+    "projection": "workspace",
+    "base_tree": "4b825dc642cb6eb9a060e54bf8d69288fbee4904",
+    "initial_review_tree": "6bce9e84046fd49bf5200bec9fcb697bb99f930f",
+    "current_candidate_tree": "6bce9e84046fd49bf5200bec9fcb697bb99f930f",
+    "paths_digest": "sha256:0320457a93238ccdb19282280251a90864e6637f35435a808dd1803085c063f4",
+    "paths": [
+      "docs/requirements/qa-supervisor/prd.json"
+    ],
+    "intended_untracked": [
+      "docs/requirements/qa-supervisor/prd.json"
+    ],
+    "intended_untracked_proof": "sha256:95279e97c3c8b3134930d7b083a7de918d3fd043cd3de17380f75d1969b6f8d7",
+    "initial_snapshot_identity": "sha256:709145f50fc44cae5a2a573df58f99ee6509865996a11a8fc22d5d60953f5f11",
+    "current_snapshot_identity": "sha256:709145f50fc44cae5a2a573df58f99ee6509865996a11a8fc22d5d60953f5f11"
+  },
+  "eligible_untracked_inventory": "sha256:655f42462086a35c650c76a46f04546b2788a399a546d16ba184cb413a05beb5",
+  "repair": {
+    "schema": "gentle-ai.review-authority-repair-assessment/v1",
+    "status": "unsupported",
+    "counts": {
+      "lineages": 0,
+      "compact_lineages": 0,
+      "legacy_lineages": 0,
+      "events": 0,
+      "bytes": 0,
+      "eligible_candidates": 0,
+      "unsupported_lineages": 0,
+      "conflicts": 0
+    },
+    "supported_operations": [
+      "review/complete-fix",
+      "review/validate-fix"
+    ],
+    "authorization_schema": "gentle-ai.review-repair-authorization/v1"
+  },
+  "candidates": [],
+  "forecast": {
+    "horizon": "partial",
+    "steps": [
+      {
+        "step": 1,
+        "kind": "execute",
+        "reason_code": "fresh_target_ready",
+        "description": "Target is unreviewed and ready for initial review start"
+      }
+    ]
+  },
+  "next_transition": {
+    "kind": "execute",
+    "reason_code": "fresh_target_ready",
+    "execute": {
+      "operation": "review.start",
+      "command": "gentle-ai review start --cwd=/workspace/replica-gentle-ai --contract=gentle-ai.review-integration/v2 --target=sha256:709145f50fc44cae5a2a573df58f99ee6509865996a11a8fc22d5d60953f5f11 --target-evidence=v1:base-workspace-overlay:workspace:4b825dc642cb6eb9a060e54bf8d69288fbee4904:6bce9e84046fd49bf5200bec9fcb697bb99f930f:sha256:0320457a93238ccdb19282280251a90864e6637f35435a808dd1803085c063f4 --projection=workspace --base-ref=4b825dc642cb6eb9a060e54bf8d69288fbee4904 --workspace-overlay=true --lineage=review-b2e0f4114b5f5bb8 --agent=codex --consent=relay --untracked-scope=select --expected-untracked-inventory=sha256:655f42462086a35c650c76a46f04546b2788a399a546d16ba184cb413a05beb5 --intended-untracked=docs/requirements/qa-supervisor/prd.json --lenses=review-resilience,review-reliability '--lenses-reason=Partial PRD review: canonical. Other parts and aggregate integration remain separately required; no implementation approval.'",
+      "arguments": [
+        {
+          "name": "cwd",
+          "value": "/workspace/replica-gentle-ai",
+          "token": "--cwd=/workspace/replica-gentle-ai"
+        },
+        {
+          "name": "contract",
+          "value": "gentle-ai.review-integration/v2",
+          "token": "--contract=gentle-ai.review-integration/v2"
+        },
+        {
+          "name": "target",
+          "value": "sha256:709145f50fc44cae5a2a573df58f99ee6509865996a11a8fc22d5d60953f5f11",
+          "token": "--target=sha256:709145f50fc44cae5a2a573df58f99ee6509865996a11a8fc22d5d60953f5f11"
+        },
+        {
+          "name": "target-evidence",
+          "value": "v1:base-workspace-overlay:workspace:4b825dc642cb6eb9a060e54bf8d69288fbee4904:6bce9e84046fd49bf5200bec9fcb697bb99f930f:sha256:0320457a93238ccdb19282280251a90864e6637f35435a808dd1803085c063f4",
+          "token": "--target-evidence=v1:base-workspace-overlay:workspace:4b825dc642cb6eb9a060e54bf8d69288fbee4904:6bce9e84046fd49bf5200bec9fcb697bb99f930f:sha256:0320457a93238ccdb19282280251a90864e6637f35435a808dd1803085c063f4"
+        },
+        {
+          "name": "projection",
+          "value": "workspace",
+          "token": "--projection=workspace"
+        },
+        {
+          "name": "base-ref",
+          "value": "4b825dc642cb6eb9a060e54bf8d69288fbee4904",
+          "token": "--base-ref=4b825dc642cb6eb9a060e54bf8d69288fbee4904"
+        },
+        {
+          "name": "workspace-overlay",
+          "value": "true",
+          "token": "--workspace-overlay=true"
+        },
+        {
+          "name": "lineage",
+          "value": "review-b2e0f4114b5f5bb8",
+          "token": "--lineage=review-b2e0f4114b5f5bb8"
+        },
+        {
+          "name": "agent",
+          "value": "codex",
+          "token": "--agent=codex"
+        },
+        {
+          "name": "consent",
+          "value": "relay",
+          "token": "--consent=relay"
+        },
+        {
+          "name": "untracked-scope",
+          "value": "select",
+          "token": "--untracked-scope=select"
+        },
+        {
+          "name": "expected-untracked-inventory",
+          "value": "sha256:655f42462086a35c650c76a46f04546b2788a399a546d16ba184cb413a05beb5",
+          "token": "--expected-untracked-inventory=sha256:655f42462086a35c650c76a46f04546b2788a399a546d16ba184cb413a05beb5"
+        },
+        {
+          "name": "intended-untracked",
+          "value": "docs/requirements/qa-supervisor/prd.json",
+          "token": "--intended-untracked=docs/requirements/qa-supervisor/prd.json"
+        },
+        {
+          "name": "lenses",
+          "value": "review-resilience,review-reliability",
+          "token": "--lenses=review-resilience,review-reliability"
+        },
+        {
+          "name": "lenses-reason",
+          "value": "Partial PRD review: canonical. Other parts and aggregate integration remain separately required; no implementation approval.",
+          "token": "--lenses-reason=Partial PRD review: canonical. Other parts and aggregate integration remain separately required; no implementation approval."
+        }
+      ],
+      "preconditions": [
+        {
+          "name": "target_identity",
+          "value": "sha256:709145f50fc44cae5a2a573df58f99ee6509865996a11a8fc22d5d60953f5f11"
+        }
+      ],
+      "binding": {
+        "lineage_id": "review-b2e0f4114b5f5bb8",
+        "target_identity": "sha256:709145f50fc44cae5a2a573df58f99ee6509865996a11a8fc22d5d60953f5f11"
+      }
+    }
+  }
+}

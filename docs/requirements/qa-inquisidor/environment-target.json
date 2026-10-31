@@ -1,0 +1,17 @@
+{
+  "authority": "User-provided target; not measured in the Cloud environment.",
+  "processor": "Intel Core i3-3240 @ 3.40 GHz",
+  "physical_ram_label": "8,00 GB",
+  "storage_label": "238 GB SSD SWR256G-N01I",
+  "gpu": "NVIDIA GeForce GT 710 (2 GB)",
+  "architecture": "x64",
+  "os": "Ubuntu under WSL (exact Windows/Ubuntu/kernel versions not supplied)",
+  "wsl_ram_label": "6gb",
+  "zram_label": "2gb",
+  "swap_label": "8gb",
+  "effective_byte_limits": "Must be measured on the target before executable verification.",
+  "memory_semantics": "zram consumes allocated physical RAM; swap capacity does not establish RAM or acceptable performance.",
+  "device_and_product_identifiers": "Omitted: not relevant to architecture or test requirements.",
+  "performance_thresholds": "Not provided; obtain per workload before claiming performance compliance.",
+  "external_services": "Network latency, availability and model nondeterminism remain environmental dependencies."
+}

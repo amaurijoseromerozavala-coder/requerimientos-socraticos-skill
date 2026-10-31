@@ -1,0 +1,48 @@
+#!/usr/bin/env bash
+set -euo pipefail
+# Local documentary gate extension; upstream Gentle AI binary is unchanged.
+if [[ "${1:-}" == requirements ]]; then
+    shift
+    case "${1:-}" in
+        analyze|probe|activate|preflight)
+            operation="$1"
+            shift
+            if [[ "${REQUIREMENTS_PYTHON+x}" == x ]]; then
+                if [[ -z "$REQUIREMENTS_PYTHON" ]] || ! runtime=$(command -v -- "$REQUIREMENTS_PYTHON") || [[ ! -f "$runtime" || ! -x "$runtime" ]]; then
+                    printf '%s\n' '{"error":{"code":"INTERPRETER_UNAVAILABLE","message":"Explicit REQUIREMENTS_PYTHON is unavailable; no fallback performed."}}'
+                    exit 2
+                fi
+            else
+                runtime="${XDG_DATA_HOME:-$HOME/.local/share}/requerimientos-socraticos/venv/bin/python"
+                if [[ ! -f "$runtime" || ! -x "$runtime" ]]; then
+                    printf '%s\n' '{"error":{"code":"INTERPRETER_UNAVAILABLE","message":"Configured requirements environment is unavailable; no fallback performed."}}'
+                    exit 2
+                fi
+            fi
+            case "$operation" in
+                analyze) script=analyze_logic.py ;;
+                probe) script=probe_environment.py ;;
+                activate|preflight) script=activation_preflight.py ;;
+            esac
+            exec "$runtime" -B "/workspace/replica-gentle-ai/skills/requerimientos-socraticos/scripts/$script" "$@"
+            ;;
+        validate|git-validate)
+            shift
+            exec python3 -B /workspace/replica-gentle-ai/skills/requerimientos-socraticos/scripts/validate_git.py "$@"
+            ;;
+        normalize)
+            shift
+            exec python3 -B /workspace/replica-gentle-ai/skills/requerimientos-socraticos/scripts/normalize_text.py "$@"
+            ;;
+        lint)
+            shift
+            exec python3 -B /workspace/replica-gentle-ai/skills/requerimientos-socraticos/scripts/requirements_guard.py validate "$@"
+            ;;
+    esac
+    exec python3 -B /workspace/replica-gentle-ai/skills/requerimientos-socraticos/scripts/requirements_guard.py "$@"
+fi
+# Only review subprocesses use the separately authenticated Codex CLI.
+if [[ "${1:-}" == review ]]; then
+    export PATH="/workspace/replica-gentle-ai/libexec/reviewer-bin:$PATH"
+fi
+exec /workspace/replica-gentle-ai/libexec/gentle-ai-4.2.0 "$@"

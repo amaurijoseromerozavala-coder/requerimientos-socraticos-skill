@@ -1,0 +1,21 @@
+......................................................
+----------------------------------------------------------------------
+Ran 54 tests in 0.153s
+
+OK
+
+Independent controlled output probes:
+[
+  {
+    "exception": "ValueError",
+    "exit": 2,
+    "authority_verification": "NOT_PERFORMED",
+    "execution_authorized": false
+  },
+  {
+    "exception": "OSError",
+    "exit": 3,
+    "authority_verification": "NOT_PERFORMED",
+    "execution_authorized": false
+  }
+]

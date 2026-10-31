@@ -1,0 +1,24 @@
+{
+  "returncode": 0,
+  "result": {
+    "z3_version": "4.15.4",
+    "memory": {
+      "scope": "PROCESS_LOCAL_SAMPLES",
+      "virtual_bytes": 84185088,
+      "rss_bytes": 44335104,
+      "peak_rss_bytes": 44154880,
+      "peak_rss_scope": "PROCESS_LIFETIME_HIGH_WATER",
+      "as_soft_bytes": null,
+      "as_hard_bytes": null,
+      "rss_quota_enforced": false,
+      "source": "/proc/self/statm, getrusage(RUSAGE_SELF), getrlimit(RLIMIT_AS)",
+      "sampling": "SEQUENTIAL_NOT_ATOMIC",
+      "status": "OBSERVED_PROCESS_LOCAL",
+      "as_unlimited": {
+        "soft": true,
+        "hard": true
+      }
+    }
+  },
+  "scope": "ONE_SMALL_LOCAL_SOLVER_QUERY_NOT_TARGET_OR_MAXIMUM"
+}

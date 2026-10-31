@@ -1,0 +1,1 @@
+El usuario pidió opciones y consecuencias. El coordinador recomendó opción1: recibos mínimos, sin stdout/stderr completos, acceso del propietario, máximo100recibos o1MiB total; al alcanzar límite bloquear nuevas ejecuciones sin borrar automáticamente. El humano respondió literalmente «1».

@@ -1,0 +1,28 @@
+{
+  "target": "sha256:69dca0c899c73807807ca164b7abee119bdf9afffa000916629dfbc3128be916",
+  "files_sha256": {
+    "AGENTS.md": "b4ff6dc18dd34dff07b374b809c3eb677a681da972abc7241c78c43e7847f69d",
+    "docs/requirements/qa-inquisidor-v3/PRD.md": "903a11fe731a4ccd01978a2bd4404c1e2818cc30616ab67712bfe45e7a817e3b",
+    "docs/requirements/qa-inquisidor-v3/contrato-evidencia.json": "e6e2e3816c8683ed110485ec78b6080fca5f1e84785b92069e592aabede9ab2a",
+    "docs/requirements/qa-inquisidor-v3/escenarios-previos.json": "8afc63ae66cf27417563201e1e90855ce0f9f0edb69da0f4244a4748bfa1cfdc",
+    "docs/requirements/qa-inquisidor-v3/interview.json": "f02080ece78c3d3b6896e5cd1ec3f859f99beea3b74fddd9130db4d182ec62b6",
+    "docs/requirements/qa-inquisidor-v3/modelo-cierre.json": "e8ff646b1450bcb1decee23961abc9bfacf8d12dd8d1b9ee11af75d283eebd96",
+    "docs/requirements/qa-inquisidor-v3/receipts/A-HUMAN-006.txt": "a687b823fa2a8c324155a38d959f6a333f26c47e6eaaeec16a53f51e9d4aad8f",
+    "docs/requirements/qa-inquisidor-v3/receipts/A-QA-006.txt": "7a2121e0b72f7e57901363b0b2c13844e97d58099a1359257f8006373faa0cf0",
+    "docs/requirements/qa-inquisidor-v3/receipts/A-QA-007.txt": "87d65fffd2ca7a31bdf68254556c40ded35a4d66c6de67f9808daa37323edc2a",
+    "docs/requirements/qa-inquisidor-v3/receipts/A-QA-008.txt": "ab8de127421288b8033eaabc4d8a0fcd035a50f18fdf5ded4c5e5298001f55df",
+    "docs/requirements/qa-inquisidor-v3/receipts/Q-HUMAN-006.txt": "a0dd4b57fde9f7492d1732b80a7936cdf7b4960a57ed78d9ad128e866cec21c8",
+    "docs/requirements/qa-inquisidor-v3/receipts/Q-QA-006.txt": "5ea3d3cc1646e98cf54dc90e7af1d5aa015a966804284fa88258a96a22a90c52",
+    "docs/requirements/qa-inquisidor-v3/receipts/Q-QA-007.txt": "c72c4d3912483fe39e57c6c5e0753a782184eb0601d86d254475fd534aff8723",
+    "docs/requirements/qa-inquisidor-v3/receipts/Q-QA-008.txt": "7cf9c55251acef37e0e4524ea136194882cfd40fa1f84e4c8d9d88f6b5d4a4a4",
+    "docs/requirements/qa-inquisidor-v3/registro-skill-asistente.md": "d9ab79b5ff01e4fc4c112fec047d5369c959b1817f1c509591554009484d5413",
+    "docs/requirements/qa-inquisidor-v3/resumen-entrada.schema.json": "cd9593dc2c67f11e291e6b4a65e87c3fb58ddf484d5888ca3e5c104f99a2c648",
+    "skills/qa-inquisidor/SKILL.md": "823e5ec31920622dd88d0f12cc4f7b8b7b62197b34aabcc1f4c94e54e6e6ecf4",
+    "skills/qa-inquisidor/assets/report.schema.json": "8edd02899370d4754f388d25513c59c6d578ba7889c8adc029370373391aa9e2",
+    "skills/qa-inquisidor/references/criteria.md": "f752c8b8635c4e64d8b1e4a4a10f3c45846ee0963bb4dead147c8dcf01057b50",
+    "skills/qa-inquisidor/scripts/validate_report.py": "b53d31f42e76b5e62c58c4f4ce12328ab0e35528a1f2be5974c306bf6ae47c4b",
+    "skills/qa-inquisidor/tests/test_report.py": "2cd522312dbbbd12112733f0973dd545cbbc2864f3f0907b9c19da2f8c96679e",
+    "skills/requerimientos-socraticos/scripts/json_preflight.py": "1aba3975e3696c82cf8689ab15721572ab55c7c2eeeae7b1f2a87bbe32c2a295",
+    "skills/requerimientos-socraticos/scripts/safe_io.py": "c40bfd51fb5ef89af85622ef662116aaf9cc2300783d09170f7258e0d43379e0"
+  }
+}

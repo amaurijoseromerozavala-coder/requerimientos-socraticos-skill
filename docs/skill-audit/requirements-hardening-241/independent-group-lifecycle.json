@@ -1,0 +1,36 @@
+[
+  {
+    "case": "same-group pipe holder",
+    "budget": 0.1,
+    "result": {
+      "pid": 37207,
+      "returncode": 0,
+      "stdout": "worker exiting\n",
+      "stderr": "",
+      "timed_out": true,
+      "elapsed_seconds": 0.10049406500183977,
+      "cleanup_status": "DIRECT_WORKER_REAPED_AND_PIPES_DRAINED",
+      "parent_death_policy": "LINUX_DIRECT_CHILD_PDEATHSIG"
+    },
+    "owned_descendants_reaped": [
+      37208
+    ]
+  },
+  {
+    "case": "escaped pipe holder",
+    "budget": 0.1,
+    "result": {
+      "pid": 37209,
+      "returncode": 0,
+      "stdout": "worker exiting\n",
+      "stderr": "",
+      "timed_out": true,
+      "elapsed_seconds": 1.102310991002014,
+      "cleanup_status": "INCOMPLETE",
+      "parent_death_policy": "LINUX_DIRECT_CHILD_PDEATHSIG"
+    },
+    "owned_descendants_reaped": [
+      37210
+    ]
+  }
+]

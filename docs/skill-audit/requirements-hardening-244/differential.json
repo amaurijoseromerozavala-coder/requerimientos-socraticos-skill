@@ -1,0 +1,600 @@
+{
+  "comparison": "Return code and mathematical/error fields; excludes new resource metadata, runtime identity and elapsed/remaining time",
+  "records": [
+    {
+      "case": "empty-rules",
+      "equivalent": true,
+      "baseline": {
+        "returncode": 0,
+        "stdout": "{\"domain_validity\": \"VALID\", \"queries\": {\"domain\": {\"status\": \"SAT\", \"witness\": {\"x\": false}}, \"gap\": {\"status\": \"SAT\", \"witness\": {\"x\": false}}, \"no_output\": {\"status\": \"UNSAT\"}, \"rule_consistency\": {\"status\": \"SAT\", \"witness\": {\"x\": false, \"a\": false, \"b\": false}}}, \"properties\": [], \"limits\": {\"variables\": 3, \"ast_nodes\": 1, \"max_variables\": 32, \"max_ast_nodes\": 4096, \"max_depth\": 32, \"max_input_bytes\": 262144, \"total_seconds\": 4.980834681999113, \"per_query_seconds\": 1}, \"scope\": \"Results concern the supplied Boolean model only; they do not verify implementation, hardware, or human meaning.\", \"table\": {\"status\": \"EXACT\", \"possible_rows\": 2, \"rows_examined\": 2, \"feasible_inputs\": 2, \"covered_inputs\": 0, \"inputs_without_output\": 0, \"coverage\": {\"metric\": \"GUARD_ACTIVATION_COVERAGE\", \"numerator\": 0, \"denominator\": 2}}, \"provenance\": {\"model_sha256\": \"15587383172ff2df2f21793d4b8c2f5a5e8db7f849f0384ea3681aaae8057e69\", \"z3_version\": \"4.15.4\", \"z3_module\": {\"status\": \"OBSERVED\", \"resolved_path\": \"/home/agent/.local/share/requerimientos-socraticos/venv/lib/python3.12/site-packages/z3/__init__.py\", \"sha256\": \"53c4529a01f38e7c0d593b7548c79e0d7398aa09f7d7cbd1773470859ee2febd\"}, \"elapsed_seconds\": 0.019312389005790465, \"note\": \"Hash identifies supplied bytes; it does not establish semantic correctness.\"}, \"runtime\": {\"executable\": \"/home/agent/.local/share/requerimientos-socraticos/venv/bin/python\", \"python_version\": \"3.12.14\", \"executable_sha256\": \"fa67443527ed9647f760d807e2a38f26340757123e643c4639cf273ed15d5ea7\", \"artifact\": {\"status\": \"OBSERVED\", \"resolved_path\": \"/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3.12\", \"sha256\": \"fa67443527ed9647f760d807e2a38f26340757123e643c4639cf273ed15d5ea7\"}, \"distributions\": {\"z3-solver\": \"4.15.4.0\", \"jsonschema\": \"4.26.0\"}, \"authentication\": \"NOT_ESTABLISHED\", \"limits\": \"Observed bytes/metadata in a trusted local account; not a signed runtime or dependency attestation.\"}, \"supervision\": {\"worker_elapsed_seconds\": 0.06935484200221254, \"wall_budget_seconds\": 5, \"parent_death_policy\": \"LINUX_DIRECT_CHILD_PDEATHSIG\", \"cleanup_status\": \"DIRECT_WORKER_REAPED_AND_PIPES_DRAINED\", \"cleanup_grace_seconds\": 1, \"limits\": \"Responsive OS and live supervisor required for deadline handling; Linux death signal covers direct worker only. No arbitrary descendant or hardware isolation guarantee.\"}}\n",
+        "stderr": "",
+        "stable": {
+          "domain_validity": "VALID",
+          "queries": {
+            "domain": {
+              "status": "SAT",
+              "witness": {
+                "x": false
+              }
+            },
+            "gap": {
+              "status": "SAT",
+              "witness": {
+                "x": false
+              }
+            },
+            "no_output": {
+              "status": "UNSAT"
+            },
+            "rule_consistency": {
+              "status": "SAT",
+              "witness": {
+                "x": false,
+                "a": false,
+                "b": false
+              }
+            }
+          },
+          "properties": [],
+          "table": {
+            "status": "EXACT",
+            "possible_rows": 2,
+            "rows_examined": 2,
+            "feasible_inputs": 2,
+            "covered_inputs": 0,
+            "inputs_without_output": 0,
+            "coverage": {
+              "metric": "GUARD_ACTIVATION_COVERAGE",
+              "numerator": 0,
+              "denominator": 2
+            }
+          },
+          "scope": "Results concern the supplied Boolean model only; they do not verify implementation, hardware, or human meaning.",
+          "limits": {
+            "variables": 3,
+            "ast_nodes": 1,
+            "max_variables": 32,
+            "max_ast_nodes": 4096,
+            "max_depth": 32,
+            "max_input_bytes": 262144,
+            "per_query_seconds": 1
+          },
+          "provenance": {
+            "model_sha256": "15587383172ff2df2f21793d4b8c2f5a5e8db7f849f0384ea3681aaae8057e69",
+            "z3_version": "4.15.4"
+          }
+        }
+      },
+      "current": {
+        "returncode": 0,
+        "stdout": "{\"domain_validity\": \"VALID\", \"queries\": {\"domain\": {\"status\": \"SAT\", \"witness\": {\"x\": false}}, \"gap\": {\"status\": \"SAT\", \"witness\": {\"x\": false}}, \"no_output\": {\"status\": \"UNSAT\"}, \"rule_consistency\": {\"status\": \"SAT\", \"witness\": {\"x\": false, \"a\": false, \"b\": false}}}, \"properties\": [], \"limits\": {\"variables\": 3, \"ast_nodes\": 1, \"max_variables\": 32, \"max_ast_nodes\": 4096, \"max_depth\": 32, \"max_input_bytes\": 262144, \"total_seconds\": 4.982701667999208, \"per_query_seconds\": 1}, \"scope\": \"Results concern the supplied Boolean model only; they do not verify implementation, hardware, or human meaning.\", \"table\": {\"status\": \"EXACT\", \"possible_rows\": 2, \"rows_examined\": 2, \"feasible_inputs\": 2, \"covered_inputs\": 0, \"inputs_without_output\": 0, \"coverage\": {\"metric\": \"GUARD_ACTIVATION_COVERAGE\", \"numerator\": 0, \"denominator\": 2}}, \"provenance\": {\"model_sha256\": \"15587383172ff2df2f21793d4b8c2f5a5e8db7f849f0384ea3681aaae8057e69\", \"z3_version\": \"4.15.4\", \"z3_module\": {\"status\": \"OBSERVED\", \"resolved_path\": \"/home/agent/.local/share/requerimientos-socraticos/venv/lib/python3.12/site-packages/z3/__init__.py\", \"sha256\": \"53c4529a01f38e7c0d593b7548c79e0d7398aa09f7d7cbd1773470859ee2febd\"}, \"elapsed_seconds\": 0.01654661799693713, \"note\": \"Hash identifies supplied bytes; it does not establish semantic correctness.\"}, \"memory_observation\": {\"scope\": \"PROCESS_LOCAL_SAMPLES\", \"virtual_bytes\": 162500608, \"rss_bytes\": 48787456, \"peak_rss_bytes\": 48590848, \"peak_rss_scope\": \"PROCESS_LIFETIME_HIGH_WATER\", \"as_soft_bytes\": 469762048, \"as_hard_bytes\": 469762048, \"rss_quota_enforced\": false, \"source\": \"/proc/self/statm, getrusage(RUSAGE_SELF), getrlimit(RLIMIT_AS)\", \"sampling\": \"SEQUENTIAL_NOT_ATOMIC\", \"status\": \"OBSERVED_PROCESS_LOCAL\", \"as_unlimited\": {\"soft\": false, \"hard\": false}}, \"runtime\": {\"executable\": \"/home/agent/.local/share/requerimientos-socraticos/venv/bin/python\", \"python_version\": \"3.12.14\", \"executable_sha256\": \"fa67443527ed9647f760d807e2a38f26340757123e643c4639cf273ed15d5ea7\", \"artifact\": {\"status\": \"OBSERVED\", \"resolved_path\": \"/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3.12\", \"sha256\": \"fa67443527ed9647f760d807e2a38f26340757123e643c4639cf273ed15d5ea7\"}, \"distributions\": {\"z3-solver\": \"4.15.4.0\", \"jsonschema\": \"4.26.0\"}, \"authentication\": \"NOT_ESTABLISHED\", \"limits\": \"Observed bytes/metadata in a trusted local account; not a signed runtime or dependency attestation.\"}, \"supervision\": {\"worker_elapsed_seconds\": 0.06150271400110796, \"wall_budget_seconds\": 5, \"parent_death_policy\": \"LINUX_DIRECT_CHILD_PDEATHSIG\", \"cleanup_status\": \"DIRECT_WORKER_REAPED_AND_PIPES_DRAINED\", \"cleanup_grace_seconds\": 1, \"limits\": \"Responsive OS and live supervisor required for deadline handling; Linux death signal covers direct worker only. No arbitrary descendant or hardware isolation guarantee.\"}, \"memory_budget\": {\"policy\": {\"total_mib\": 512, \"total_bytes\": 536870912, \"roles_mib\": {\"caller\": 64, \"solver\": 448}, \"roles_bytes\": {\"caller\": 67108864, \"solver\": 469762048}, \"kind\": \"PROVISIONAL_ENGINEERING_POLICY\", \"hardware_capacity_calibrated\": false, \"aggregate_kernel_quota\": false, \"workload\": \"BOOLEAN_ANALYSIS\"}, \"admission\": {\"status\": \"ADMITTED_COOPERATIVE\", \"headroom_observed_bytes\": 8195801088, \"required_headroom_bytes\": 1073741824, \"scope\": \"VISIBLE_KERNEL_AND_CGROUP_PARTIAL\", \"physical_reservation\": false, \"sampling\": \"SEQUENTIAL_NOT_ATOMIC\", \"memory_observation\": {\"status\": \"OBSERVED\", \"source\": \"/proc/meminfo (visible kernel scope)\", \"total_bytes\": 10452471808, \"available_bytes\": 9744900096, \"swap_total_bytes\": 0, \"swap_free_bytes\": 0}, \"cgroup_observation\": {\"status\": \"OBSERVED_VISIBLE_SCOPE\", \"source\": \"/proc/self/cgroup and visible /sys/fs/cgroup ancestors\", \"memory_limits\": [{\"limit_bytes\": 8589934592, \"current_bytes\": 394133504, \"sampled_headroom_bytes\": 8195801088}], \"cpu_quotas\": [{\"quota\": 200000, \"period\": 100000, \"cpu_time_ratio\": 2.0}], \"limit_states\": [{\"visible_ancestor\": 0, \"memory\": \"FINITE\", \"cpu\": \"FINITE\"}], \"limitation\": \"Sequential samples; hidden ancestors/host and concurrent changes remain unknown.\"}}, \"caller\": {\"scope\": \"OWNED_CLI_PROCESS\", \"virtual_bytes\": 43462656, \"rss_bytes\": 16412672, \"peak_rss_bytes\": 16384000, \"peak_rss_scope\": \"PROCESS_LIFETIME_HIGH_WATER\", \"as_soft_bytes\": 67108864, \"as_hard_bytes\": 469762048, \"rss_quota_enforced\": false, \"source\": \"/proc/self/statm, getrusage(RUSAGE_SELF), getrlimit(RLIMIT_AS)\", \"sampling\": \"SEQUENTIAL_NOT_ATOMIC\", \"status\": \"OBSERVED_PROCESS_LOCAL\", \"as_unlimited\": {\"soft\": false, \"hard\": false}, \"sample_scope\": \"PROCESS_LOCAL_SAMPLES\"}, \"limits\": [\"Virtual address-space limits, not RSS quotas or physical reservations.\", \"Admission serializes cooperating calls per account; not global host enforcement.\", \"Sequential local samples and lifetime peaks do not prove aggregate RSS.\", \"Signals and missing diagnostics do not establish OOM.\"]}}\n",
+        "stderr": "",
+        "stable": {
+          "domain_validity": "VALID",
+          "queries": {
+            "domain": {
+              "status": "SAT",
+              "witness": {
+                "x": false
+              }
+            },
+            "gap": {
+              "status": "SAT",
+              "witness": {
+                "x": false
+              }
+            },
+            "no_output": {
+              "status": "UNSAT"
+            },
+            "rule_consistency": {
+              "status": "SAT",
+              "witness": {
+                "x": false,
+                "a": false,
+                "b": false
+              }
+            }
+          },
+          "properties": [],
+          "table": {
+            "status": "EXACT",
+            "possible_rows": 2,
+            "rows_examined": 2,
+            "feasible_inputs": 2,
+            "covered_inputs": 0,
+            "inputs_without_output": 0,
+            "coverage": {
+              "metric": "GUARD_ACTIVATION_COVERAGE",
+              "numerator": 0,
+              "denominator": 2
+            }
+          },
+          "scope": "Results concern the supplied Boolean model only; they do not verify implementation, hardware, or human meaning.",
+          "limits": {
+            "variables": 3,
+            "ast_nodes": 1,
+            "max_variables": 32,
+            "max_ast_nodes": 4096,
+            "max_depth": 32,
+            "max_input_bytes": 262144,
+            "per_query_seconds": 1
+          },
+          "provenance": {
+            "model_sha256": "15587383172ff2df2f21793d4b8c2f5a5e8db7f849f0384ea3681aaae8057e69",
+            "z3_version": "4.15.4"
+          }
+        }
+      }
+    },
+    {
+      "case": "triple-conflict",
+      "equivalent": true,
+      "baseline": {
+        "returncode": 0,
+        "stdout": "{\"domain_validity\": \"VALID\", \"queries\": {\"domain\": {\"status\": \"SAT\", \"witness\": {\"x\": false}}, \"gap\": {\"status\": \"SAT\", \"witness\": {\"x\": false}}, \"no_output\": {\"status\": \"SAT\", \"witness\": {\"x\": true}}, \"rule_consistency\": {\"status\": \"SAT\", \"witness\": {\"x\": false, \"a\": true, \"b\": true}}}, \"properties\": [], \"limits\": {\"variables\": 3, \"ast_nodes\": 10, \"max_variables\": 32, \"max_ast_nodes\": 4096, \"max_depth\": 32, \"max_input_bytes\": 262144, \"total_seconds\": 4.982389770993905, \"per_query_seconds\": 1}, \"scope\": \"Results concern the supplied Boolean model only; they do not verify implementation, hardware, or human meaning.\", \"table\": {\"status\": \"EXACT\", \"possible_rows\": 2, \"rows_examined\": 2, \"feasible_inputs\": 2, \"covered_inputs\": 1, \"inputs_without_output\": 1, \"coverage\": {\"metric\": \"GUARD_ACTIVATION_COVERAGE\", \"numerator\": 1, \"denominator\": 2}}, \"provenance\": {\"model_sha256\": \"b58f95ce731baa335078ca7052db510c665b35f104304b5a26bf87dac6223af3\", \"z3_version\": \"4.15.4\", \"z3_module\": {\"status\": \"OBSERVED\", \"resolved_path\": \"/home/agent/.local/share/requerimientos-socraticos/venv/lib/python3.12/site-packages/z3/__init__.py\", \"sha256\": \"53c4529a01f38e7c0d593b7548c79e0d7398aa09f7d7cbd1773470859ee2febd\"}, \"elapsed_seconds\": 0.019367000000784174, \"note\": \"Hash identifies supplied bytes; it does not establish semantic correctness.\"}, \"runtime\": {\"executable\": \"/home/agent/.local/share/requerimientos-socraticos/venv/bin/python\", \"python_version\": \"3.12.14\", \"executable_sha256\": \"fa67443527ed9647f760d807e2a38f26340757123e643c4639cf273ed15d5ea7\", \"artifact\": {\"status\": \"OBSERVED\", \"resolved_path\": \"/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3.12\", \"sha256\": \"fa67443527ed9647f760d807e2a38f26340757123e643c4639cf273ed15d5ea7\"}, \"distributions\": {\"z3-solver\": \"4.15.4.0\", \"jsonschema\": \"4.26.0\"}, \"authentication\": \"NOT_ESTABLISHED\", \"limits\": \"Observed bytes/metadata in a trusted local account; not a signed runtime or dependency attestation.\"}, \"supervision\": {\"worker_elapsed_seconds\": 0.06749149099778151, \"wall_budget_seconds\": 5, \"parent_death_policy\": \"LINUX_DIRECT_CHILD_PDEATHSIG\", \"cleanup_status\": \"DIRECT_WORKER_REAPED_AND_PIPES_DRAINED\", \"cleanup_grace_seconds\": 1, \"limits\": \"Responsive OS and live supervisor required for deadline handling; Linux death signal covers direct worker only. No arbitrary descendant or hardware isolation guarantee.\"}}\n",
+        "stderr": "",
+        "stable": {
+          "domain_validity": "VALID",
+          "queries": {
+            "domain": {
+              "status": "SAT",
+              "witness": {
+                "x": false
+              }
+            },
+            "gap": {
+              "status": "SAT",
+              "witness": {
+                "x": false
+              }
+            },
+            "no_output": {
+              "status": "SAT",
+              "witness": {
+                "x": true
+              }
+            },
+            "rule_consistency": {
+              "status": "SAT",
+              "witness": {
+                "x": false,
+                "a": true,
+                "b": true
+              }
+            }
+          },
+          "properties": [],
+          "table": {
+            "status": "EXACT",
+            "possible_rows": 2,
+            "rows_examined": 2,
+            "feasible_inputs": 2,
+            "covered_inputs": 1,
+            "inputs_without_output": 1,
+            "coverage": {
+              "metric": "GUARD_ACTIVATION_COVERAGE",
+              "numerator": 1,
+              "denominator": 2
+            }
+          },
+          "scope": "Results concern the supplied Boolean model only; they do not verify implementation, hardware, or human meaning.",
+          "limits": {
+            "variables": 3,
+            "ast_nodes": 10,
+            "max_variables": 32,
+            "max_ast_nodes": 4096,
+            "max_depth": 32,
+            "max_input_bytes": 262144,
+            "per_query_seconds": 1
+          },
+          "provenance": {
+            "model_sha256": "b58f95ce731baa335078ca7052db510c665b35f104304b5a26bf87dac6223af3",
+            "z3_version": "4.15.4"
+          }
+        }
+      },
+      "current": {
+        "returncode": 0,
+        "stdout": "{\"domain_validity\": \"VALID\", \"queries\": {\"domain\": {\"status\": \"SAT\", \"witness\": {\"x\": false}}, \"gap\": {\"status\": \"SAT\", \"witness\": {\"x\": false}}, \"no_output\": {\"status\": \"SAT\", \"witness\": {\"x\": true}}, \"rule_consistency\": {\"status\": \"SAT\", \"witness\": {\"x\": false, \"a\": true, \"b\": true}}}, \"properties\": [], \"limits\": {\"variables\": 3, \"ast_nodes\": 10, \"max_variables\": 32, \"max_ast_nodes\": 4096, \"max_depth\": 32, \"max_input_bytes\": 262144, \"total_seconds\": 4.98297821199958, \"per_query_seconds\": 1}, \"scope\": \"Results concern the supplied Boolean model only; they do not verify implementation, hardware, or human meaning.\", \"table\": {\"status\": \"EXACT\", \"possible_rows\": 2, \"rows_examined\": 2, \"feasible_inputs\": 2, \"covered_inputs\": 1, \"inputs_without_output\": 1, \"coverage\": {\"metric\": \"GUARD_ACTIVATION_COVERAGE\", \"numerator\": 1, \"denominator\": 2}}, \"provenance\": {\"model_sha256\": \"b58f95ce731baa335078ca7052db510c665b35f104304b5a26bf87dac6223af3\", \"z3_version\": \"4.15.4\", \"z3_module\": {\"status\": \"OBSERVED\", \"resolved_path\": \"/home/agent/.local/share/requerimientos-socraticos/venv/lib/python3.12/site-packages/z3/__init__.py\", \"sha256\": \"53c4529a01f38e7c0d593b7548c79e0d7398aa09f7d7cbd1773470859ee2febd\"}, \"elapsed_seconds\": 0.01836532099696342, \"note\": \"Hash identifies supplied bytes; it does not establish semantic correctness.\"}, \"memory_observation\": {\"scope\": \"PROCESS_LOCAL_SAMPLES\", \"virtual_bytes\": 163344384, \"rss_bytes\": 53227520, \"peak_rss_bytes\": 53161984, \"peak_rss_scope\": \"PROCESS_LIFETIME_HIGH_WATER\", \"as_soft_bytes\": 469762048, \"as_hard_bytes\": 469762048, \"rss_quota_enforced\": false, \"source\": \"/proc/self/statm, getrusage(RUSAGE_SELF), getrlimit(RLIMIT_AS)\", \"sampling\": \"SEQUENTIAL_NOT_ATOMIC\", \"status\": \"OBSERVED_PROCESS_LOCAL\", \"as_unlimited\": {\"soft\": false, \"hard\": false}}, \"runtime\": {\"executable\": \"/home/agent/.local/share/requerimientos-socraticos/venv/bin/python\", \"python_version\": \"3.12.14\", \"executable_sha256\": \"fa67443527ed9647f760d807e2a38f26340757123e643c4639cf273ed15d5ea7\", \"artifact\": {\"status\": \"OBSERVED\", \"resolved_path\": \"/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3.12\", \"sha256\": \"fa67443527ed9647f760d807e2a38f26340757123e643c4639cf273ed15d5ea7\"}, \"distributions\": {\"z3-solver\": \"4.15.4.0\", \"jsonschema\": \"4.26.0\"}, \"authentication\": \"NOT_ESTABLISHED\", \"limits\": \"Observed bytes/metadata in a trusted local account; not a signed runtime or dependency attestation.\"}, \"supervision\": {\"worker_elapsed_seconds\": 0.06352016900200397, \"wall_budget_seconds\": 5, \"parent_death_policy\": \"LINUX_DIRECT_CHILD_PDEATHSIG\", \"cleanup_status\": \"DIRECT_WORKER_REAPED_AND_PIPES_DRAINED\", \"cleanup_grace_seconds\": 1, \"limits\": \"Responsive OS and live supervisor required for deadline handling; Linux death signal covers direct worker only. No arbitrary descendant or hardware isolation guarantee.\"}, \"memory_budget\": {\"policy\": {\"total_mib\": 512, \"total_bytes\": 536870912, \"roles_mib\": {\"caller\": 64, \"solver\": 448}, \"roles_bytes\": {\"caller\": 67108864, \"solver\": 469762048}, \"kind\": \"PROVISIONAL_ENGINEERING_POLICY\", \"hardware_capacity_calibrated\": false, \"aggregate_kernel_quota\": false, \"workload\": \"BOOLEAN_ANALYSIS\"}, \"admission\": {\"status\": \"ADMITTED_COOPERATIVE\", \"headroom_observed_bytes\": 8195940352, \"required_headroom_bytes\": 1073741824, \"scope\": \"VISIBLE_KERNEL_AND_CGROUP_PARTIAL\", \"physical_reservation\": false, \"sampling\": \"SEQUENTIAL_NOT_ATOMIC\", \"memory_observation\": {\"status\": \"OBSERVED\", \"source\": \"/proc/meminfo (visible kernel scope)\", \"total_bytes\": 10452471808, \"available_bytes\": 9746358272, \"swap_total_bytes\": 0, \"swap_free_bytes\": 0}, \"cgroup_observation\": {\"status\": \"OBSERVED_VISIBLE_SCOPE\", \"source\": \"/proc/self/cgroup and visible /sys/fs/cgroup ancestors\", \"memory_limits\": [{\"limit_bytes\": 8589934592, \"current_bytes\": 393994240, \"sampled_headroom_bytes\": 8195940352}], \"cpu_quotas\": [{\"quota\": 200000, \"period\": 100000, \"cpu_time_ratio\": 2.0}], \"limit_states\": [{\"visible_ancestor\": 0, \"memory\": \"FINITE\", \"cpu\": \"FINITE\"}], \"limitation\": \"Sequential samples; hidden ancestors/host and concurrent changes remain unknown.\"}}, \"caller\": {\"scope\": \"OWNED_CLI_PROCESS\", \"virtual_bytes\": 43462656, \"rss_bytes\": 16408576, \"peak_rss_bytes\": 16384000, \"peak_rss_scope\": \"PROCESS_LIFETIME_HIGH_WATER\", \"as_soft_bytes\": 67108864, \"as_hard_bytes\": 469762048, \"rss_quota_enforced\": false, \"source\": \"/proc/self/statm, getrusage(RUSAGE_SELF), getrlimit(RLIMIT_AS)\", \"sampling\": \"SEQUENTIAL_NOT_ATOMIC\", \"status\": \"OBSERVED_PROCESS_LOCAL\", \"as_unlimited\": {\"soft\": false, \"hard\": false}, \"sample_scope\": \"PROCESS_LOCAL_SAMPLES\"}, \"limits\": [\"Virtual address-space limits, not RSS quotas or physical reservations.\", \"Admission serializes cooperating calls per account; not global host enforcement.\", \"Sequential local samples and lifetime peaks do not prove aggregate RSS.\", \"Signals and missing diagnostics do not establish OOM.\"]}}\n",
+        "stderr": "",
+        "stable": {
+          "domain_validity": "VALID",
+          "queries": {
+            "domain": {
+              "status": "SAT",
+              "witness": {
+                "x": false
+              }
+            },
+            "gap": {
+              "status": "SAT",
+              "witness": {
+                "x": false
+              }
+            },
+            "no_output": {
+              "status": "SAT",
+              "witness": {
+                "x": true
+              }
+            },
+            "rule_consistency": {
+              "status": "SAT",
+              "witness": {
+                "x": false,
+                "a": true,
+                "b": true
+              }
+            }
+          },
+          "properties": [],
+          "table": {
+            "status": "EXACT",
+            "possible_rows": 2,
+            "rows_examined": 2,
+            "feasible_inputs": 2,
+            "covered_inputs": 1,
+            "inputs_without_output": 1,
+            "coverage": {
+              "metric": "GUARD_ACTIVATION_COVERAGE",
+              "numerator": 1,
+              "denominator": 2
+            }
+          },
+          "scope": "Results concern the supplied Boolean model only; they do not verify implementation, hardware, or human meaning.",
+          "limits": {
+            "variables": 3,
+            "ast_nodes": 10,
+            "max_variables": 32,
+            "max_ast_nodes": 4096,
+            "max_depth": 32,
+            "max_input_bytes": 262144,
+            "per_query_seconds": 1
+          },
+          "provenance": {
+            "model_sha256": "b58f95ce731baa335078ca7052db510c665b35f104304b5a26bf87dac6223af3",
+            "z3_version": "4.15.4"
+          }
+        }
+      }
+    },
+    {
+      "case": "empty-domain",
+      "equivalent": true,
+      "baseline": {
+        "returncode": 0,
+        "stdout": "{\"domain_validity\": \"INVALID\", \"queries\": {\"domain\": {\"status\": \"UNSAT\"}, \"gap\": {\"status\": \"UNSAT\"}, \"no_output\": {\"status\": \"UNSAT\"}, \"rule_consistency\": {\"status\": \"UNSAT\"}}, \"properties\": [], \"limits\": {\"variables\": 3, \"ast_nodes\": 1, \"max_variables\": 32, \"max_ast_nodes\": 4096, \"max_depth\": 32, \"max_input_bytes\": 262144, \"total_seconds\": 4.982760214996233, \"per_query_seconds\": 1}, \"scope\": \"Results concern the supplied Boolean model only; they do not verify implementation, hardware, or human meaning.\", \"table\": {\"status\": \"EXACT\", \"possible_rows\": 2, \"rows_examined\": 2, \"feasible_inputs\": 0, \"covered_inputs\": 0, \"inputs_without_output\": 0}, \"provenance\": {\"model_sha256\": \"a13554de5649c8dd68eccc2f15c9dc27088979a17fc108483d72d5c36f26a5c8\", \"z3_version\": \"4.15.4\", \"z3_module\": {\"status\": \"OBSERVED\", \"resolved_path\": \"/home/agent/.local/share/requerimientos-socraticos/venv/lib/python3.12/site-packages/z3/__init__.py\", \"sha256\": \"53c4529a01f38e7c0d593b7548c79e0d7398aa09f7d7cbd1773470859ee2febd\"}, \"elapsed_seconds\": 0.015828493000299204, \"note\": \"Hash identifies supplied bytes; it does not establish semantic correctness.\"}, \"runtime\": {\"executable\": \"/home/agent/.local/share/requerimientos-socraticos/venv/bin/python\", \"python_version\": \"3.12.14\", \"executable_sha256\": \"fa67443527ed9647f760d807e2a38f26340757123e643c4639cf273ed15d5ea7\", \"artifact\": {\"status\": \"OBSERVED\", \"resolved_path\": \"/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3.12\", \"sha256\": \"fa67443527ed9647f760d807e2a38f26340757123e643c4639cf273ed15d5ea7\"}, \"distributions\": {\"z3-solver\": \"4.15.4.0\", \"jsonschema\": \"4.26.0\"}, \"authentication\": \"NOT_ESTABLISHED\", \"limits\": \"Observed bytes/metadata in a trusted local account; not a signed runtime or dependency attestation.\"}, \"supervision\": {\"worker_elapsed_seconds\": 0.0617134089989122, \"wall_budget_seconds\": 5, \"parent_death_policy\": \"LINUX_DIRECT_CHILD_PDEATHSIG\", \"cleanup_status\": \"DIRECT_WORKER_REAPED_AND_PIPES_DRAINED\", \"cleanup_grace_seconds\": 1, \"limits\": \"Responsive OS and live supervisor required for deadline handling; Linux death signal covers direct worker only. No arbitrary descendant or hardware isolation guarantee.\"}}\n",
+        "stderr": "",
+        "stable": {
+          "domain_validity": "INVALID",
+          "queries": {
+            "domain": {
+              "status": "UNSAT"
+            },
+            "gap": {
+              "status": "UNSAT"
+            },
+            "no_output": {
+              "status": "UNSAT"
+            },
+            "rule_consistency": {
+              "status": "UNSAT"
+            }
+          },
+          "properties": [],
+          "table": {
+            "status": "EXACT",
+            "possible_rows": 2,
+            "rows_examined": 2,
+            "feasible_inputs": 0,
+            "covered_inputs": 0,
+            "inputs_without_output": 0
+          },
+          "scope": "Results concern the supplied Boolean model only; they do not verify implementation, hardware, or human meaning.",
+          "limits": {
+            "variables": 3,
+            "ast_nodes": 1,
+            "max_variables": 32,
+            "max_ast_nodes": 4096,
+            "max_depth": 32,
+            "max_input_bytes": 262144,
+            "per_query_seconds": 1
+          },
+          "provenance": {
+            "model_sha256": "a13554de5649c8dd68eccc2f15c9dc27088979a17fc108483d72d5c36f26a5c8",
+            "z3_version": "4.15.4"
+          }
+        }
+      },
+      "current": {
+        "returncode": 0,
+        "stdout": "{\"domain_validity\": \"INVALID\", \"queries\": {\"domain\": {\"status\": \"UNSAT\"}, \"gap\": {\"status\": \"UNSAT\"}, \"no_output\": {\"status\": \"UNSAT\"}, \"rule_consistency\": {\"status\": \"UNSAT\"}}, \"properties\": [], \"limits\": {\"variables\": 3, \"ast_nodes\": 1, \"max_variables\": 32, \"max_ast_nodes\": 4096, \"max_depth\": 32, \"max_input_bytes\": 262144, \"total_seconds\": 4.9813797079987125, \"per_query_seconds\": 1}, \"scope\": \"Results concern the supplied Boolean model only; they do not verify implementation, hardware, or human meaning.\", \"table\": {\"status\": \"EXACT\", \"possible_rows\": 2, \"rows_examined\": 2, \"feasible_inputs\": 0, \"covered_inputs\": 0, \"inputs_without_output\": 0}, \"provenance\": {\"model_sha256\": \"a13554de5649c8dd68eccc2f15c9dc27088979a17fc108483d72d5c36f26a5c8\", \"z3_version\": \"4.15.4\", \"z3_module\": {\"status\": \"OBSERVED\", \"resolved_path\": \"/home/agent/.local/share/requerimientos-socraticos/venv/lib/python3.12/site-packages/z3/__init__.py\", \"sha256\": \"53c4529a01f38e7c0d593b7548c79e0d7398aa09f7d7cbd1773470859ee2febd\"}, \"elapsed_seconds\": 0.015915310999844223, \"note\": \"Hash identifies supplied bytes; it does not establish semantic correctness.\"}, \"memory_observation\": {\"scope\": \"PROCESS_LOCAL_SAMPLES\", \"virtual_bytes\": 162230272, \"rss_bytes\": 47357952, \"peak_rss_bytes\": 47218688, \"peak_rss_scope\": \"PROCESS_LIFETIME_HIGH_WATER\", \"as_soft_bytes\": 469762048, \"as_hard_bytes\": 469762048, \"rss_quota_enforced\": false, \"source\": \"/proc/self/statm, getrusage(RUSAGE_SELF), getrlimit(RLIMIT_AS)\", \"sampling\": \"SEQUENTIAL_NOT_ATOMIC\", \"status\": \"OBSERVED_PROCESS_LOCAL\", \"as_unlimited\": {\"soft\": false, \"hard\": false}}, \"runtime\": {\"executable\": \"/home/agent/.local/share/requerimientos-socraticos/venv/bin/python\", \"python_version\": \"3.12.14\", \"executable_sha256\": \"fa67443527ed9647f760d807e2a38f26340757123e643c4639cf273ed15d5ea7\", \"artifact\": {\"status\": \"OBSERVED\", \"resolved_path\": \"/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3.12\", \"sha256\": \"fa67443527ed9647f760d807e2a38f26340757123e643c4639cf273ed15d5ea7\"}, \"distributions\": {\"z3-solver\": \"4.15.4.0\", \"jsonschema\": \"4.26.0\"}, \"authentication\": \"NOT_ESTABLISHED\", \"limits\": \"Observed bytes/metadata in a trusted local account; not a signed runtime or dependency attestation.\"}, \"supervision\": {\"worker_elapsed_seconds\": 0.06606324199674418, \"wall_budget_seconds\": 5, \"parent_death_policy\": \"LINUX_DIRECT_CHILD_PDEATHSIG\", \"cleanup_status\": \"DIRECT_WORKER_REAPED_AND_PIPES_DRAINED\", \"cleanup_grace_seconds\": 1, \"limits\": \"Responsive OS and live supervisor required for deadline handling; Linux death signal covers direct worker only. No arbitrary descendant or hardware isolation guarantee.\"}, \"memory_budget\": {\"policy\": {\"total_mib\": 512, \"total_bytes\": 536870912, \"roles_mib\": {\"caller\": 64, \"solver\": 448}, \"roles_bytes\": {\"caller\": 67108864, \"solver\": 469762048}, \"kind\": \"PROVISIONAL_ENGINEERING_POLICY\", \"hardware_capacity_calibrated\": false, \"aggregate_kernel_quota\": false, \"workload\": \"BOOLEAN_ANALYSIS\"}, \"admission\": {\"status\": \"ADMITTED_COOPERATIVE\", \"headroom_observed_bytes\": 8195776512, \"required_headroom_bytes\": 1073741824, \"scope\": \"VISIBLE_KERNEL_AND_CGROUP_PARTIAL\", \"physical_reservation\": false, \"sampling\": \"SEQUENTIAL_NOT_ATOMIC\", \"memory_observation\": {\"status\": \"OBSERVED\", \"source\": \"/proc/meminfo (visible kernel scope)\", \"total_bytes\": 10452471808, \"available_bytes\": 9708036096, \"swap_total_bytes\": 0, \"swap_free_bytes\": 0}, \"cgroup_observation\": {\"status\": \"OBSERVED_VISIBLE_SCOPE\", \"source\": \"/proc/self/cgroup and visible /sys/fs/cgroup ancestors\", \"memory_limits\": [{\"limit_bytes\": 8589934592, \"current_bytes\": 394158080, \"sampled_headroom_bytes\": 8195776512}], \"cpu_quotas\": [{\"quota\": 200000, \"period\": 100000, \"cpu_time_ratio\": 2.0}], \"limit_states\": [{\"visible_ancestor\": 0, \"memory\": \"FINITE\", \"cpu\": \"FINITE\"}], \"limitation\": \"Sequential samples; hidden ancestors/host and concurrent changes remain unknown.\"}}, \"caller\": {\"scope\": \"OWNED_CLI_PROCESS\", \"virtual_bytes\": 43462656, \"rss_bytes\": 16412672, \"peak_rss_bytes\": 16384000, \"peak_rss_scope\": \"PROCESS_LIFETIME_HIGH_WATER\", \"as_soft_bytes\": 67108864, \"as_hard_bytes\": 469762048, \"rss_quota_enforced\": false, \"source\": \"/proc/self/statm, getrusage(RUSAGE_SELF), getrlimit(RLIMIT_AS)\", \"sampling\": \"SEQUENTIAL_NOT_ATOMIC\", \"status\": \"OBSERVED_PROCESS_LOCAL\", \"as_unlimited\": {\"soft\": false, \"hard\": false}, \"sample_scope\": \"PROCESS_LOCAL_SAMPLES\"}, \"limits\": [\"Virtual address-space limits, not RSS quotas or physical reservations.\", \"Admission serializes cooperating calls per account; not global host enforcement.\", \"Sequential local samples and lifetime peaks do not prove aggregate RSS.\", \"Signals and missing diagnostics do not establish OOM.\"]}}\n",
+        "stderr": "",
+        "stable": {
+          "domain_validity": "INVALID",
+          "queries": {
+            "domain": {
+              "status": "UNSAT"
+            },
+            "gap": {
+              "status": "UNSAT"
+            },
+            "no_output": {
+              "status": "UNSAT"
+            },
+            "rule_consistency": {
+              "status": "UNSAT"
+            }
+          },
+          "properties": [],
+          "table": {
+            "status": "EXACT",
+            "possible_rows": 2,
+            "rows_examined": 2,
+            "feasible_inputs": 0,
+            "covered_inputs": 0,
+            "inputs_without_output": 0
+          },
+          "scope": "Results concern the supplied Boolean model only; they do not verify implementation, hardware, or human meaning.",
+          "limits": {
+            "variables": 3,
+            "ast_nodes": 1,
+            "max_variables": 32,
+            "max_ast_nodes": 4096,
+            "max_depth": 32,
+            "max_input_bytes": 262144,
+            "per_query_seconds": 1
+          },
+          "provenance": {
+            "model_sha256": "a13554de5649c8dd68eccc2f15c9dc27088979a17fc108483d72d5c36f26a5c8",
+            "z3_version": "4.15.4"
+          }
+        }
+      }
+    },
+    {
+      "case": "entailed-property",
+      "equivalent": true,
+      "baseline": {
+        "returncode": 0,
+        "stdout": "{\"domain_validity\": \"VALID\", \"queries\": {\"domain\": {\"status\": \"SAT\", \"witness\": {\"x\": false}}, \"gap\": {\"status\": \"UNSAT\"}, \"no_output\": {\"status\": \"UNSAT\"}, \"rule_consistency\": {\"status\": \"SAT\", \"witness\": {\"x\": false, \"a\": true, \"b\": false}}}, \"properties\": [{\"id\": \"p\", \"interpretation\": \"Consequence of model rules within domain; not implementation verification.\", \"consequence\": \"ENTAILED\", \"counterexample\": {\"status\": \"UNSAT\"}}], \"limits\": {\"variables\": 3, \"ast_nodes\": 4, \"max_variables\": 32, \"max_ast_nodes\": 4096, \"max_depth\": 32, \"max_input_bytes\": 262144, \"total_seconds\": 4.982333906998974, \"per_query_seconds\": 1}, \"scope\": \"Results concern the supplied Boolean model only; they do not verify implementation, hardware, or human meaning.\", \"table\": {\"status\": \"EXACT\", \"possible_rows\": 2, \"rows_examined\": 2, \"feasible_inputs\": 2, \"covered_inputs\": 2, \"inputs_without_output\": 0, \"coverage\": {\"metric\": \"GUARD_ACTIVATION_COVERAGE\", \"numerator\": 2, \"denominator\": 2}}, \"provenance\": {\"model_sha256\": \"94fa3d6bef9bf03664b4210c0074412145c0504c7907952db8767605b7a8116a\", \"z3_version\": \"4.15.4\", \"z3_module\": {\"status\": \"OBSERVED\", \"resolved_path\": \"/home/agent/.local/share/requerimientos-socraticos/venv/lib/python3.12/site-packages/z3/__init__.py\", \"sha256\": \"53c4529a01f38e7c0d593b7548c79e0d7398aa09f7d7cbd1773470859ee2febd\"}, \"elapsed_seconds\": 0.018615013003000058, \"note\": \"Hash identifies supplied bytes; it does not establish semantic correctness.\"}, \"runtime\": {\"executable\": \"/home/agent/.local/share/requerimientos-socraticos/venv/bin/python\", \"python_version\": \"3.12.14\", \"executable_sha256\": \"fa67443527ed9647f760d807e2a38f26340757123e643c4639cf273ed15d5ea7\", \"artifact\": {\"status\": \"OBSERVED\", \"resolved_path\": \"/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3.12\", \"sha256\": \"fa67443527ed9647f760d807e2a38f26340757123e643c4639cf273ed15d5ea7\"}, \"distributions\": {\"z3-solver\": \"4.15.4.0\", \"jsonschema\": \"4.26.0\"}, \"authentication\": \"NOT_ESTABLISHED\", \"limits\": \"Observed bytes/metadata in a trusted local account; not a signed runtime or dependency attestation.\"}, \"supervision\": {\"worker_elapsed_seconds\": 0.07076800699724117, \"wall_budget_seconds\": 5, \"parent_death_policy\": \"LINUX_DIRECT_CHILD_PDEATHSIG\", \"cleanup_status\": \"DIRECT_WORKER_REAPED_AND_PIPES_DRAINED\", \"cleanup_grace_seconds\": 1, \"limits\": \"Responsive OS and live supervisor required for deadline handling; Linux death signal covers direct worker only. No arbitrary descendant or hardware isolation guarantee.\"}}\n",
+        "stderr": "",
+        "stable": {
+          "domain_validity": "VALID",
+          "queries": {
+            "domain": {
+              "status": "SAT",
+              "witness": {
+                "x": false
+              }
+            },
+            "gap": {
+              "status": "UNSAT"
+            },
+            "no_output": {
+              "status": "UNSAT"
+            },
+            "rule_consistency": {
+              "status": "SAT",
+              "witness": {
+                "x": false,
+                "a": true,
+                "b": false
+              }
+            }
+          },
+          "properties": [
+            {
+              "id": "p",
+              "interpretation": "Consequence of model rules within domain; not implementation verification.",
+              "consequence": "ENTAILED",
+              "counterexample": {
+                "status": "UNSAT"
+              }
+            }
+          ],
+          "table": {
+            "status": "EXACT",
+            "possible_rows": 2,
+            "rows_examined": 2,
+            "feasible_inputs": 2,
+            "covered_inputs": 2,
+            "inputs_without_output": 0,
+            "coverage": {
+              "metric": "GUARD_ACTIVATION_COVERAGE",
+              "numerator": 2,
+              "denominator": 2
+            }
+          },
+          "scope": "Results concern the supplied Boolean model only; they do not verify implementation, hardware, or human meaning.",
+          "limits": {
+            "variables": 3,
+            "ast_nodes": 4,
+            "max_variables": 32,
+            "max_ast_nodes": 4096,
+            "max_depth": 32,
+            "max_input_bytes": 262144,
+            "per_query_seconds": 1
+          },
+          "provenance": {
+            "model_sha256": "94fa3d6bef9bf03664b4210c0074412145c0504c7907952db8767605b7a8116a",
+            "z3_version": "4.15.4"
+          }
+        }
+      },
+      "current": {
+        "returncode": 0,
+        "stdout": "{\"domain_validity\": \"VALID\", \"queries\": {\"domain\": {\"status\": \"SAT\", \"witness\": {\"x\": false}}, \"gap\": {\"status\": \"UNSAT\"}, \"no_output\": {\"status\": \"UNSAT\"}, \"rule_consistency\": {\"status\": \"SAT\", \"witness\": {\"x\": false, \"a\": true, \"b\": false}}}, \"properties\": [{\"id\": \"p\", \"interpretation\": \"Consequence of model rules within domain; not implementation verification.\", \"consequence\": \"ENTAILED\", \"counterexample\": {\"status\": \"UNSAT\"}}], \"limits\": {\"variables\": 3, \"ast_nodes\": 4, \"max_variables\": 32, \"max_ast_nodes\": 4096, \"max_depth\": 32, \"max_input_bytes\": 262144, \"total_seconds\": 4.982403641995916, \"per_query_seconds\": 1}, \"scope\": \"Results concern the supplied Boolean model only; they do not verify implementation, hardware, or human meaning.\", \"table\": {\"status\": \"EXACT\", \"possible_rows\": 2, \"rows_examined\": 2, \"feasible_inputs\": 2, \"covered_inputs\": 2, \"inputs_without_output\": 0, \"coverage\": {\"metric\": \"GUARD_ACTIVATION_COVERAGE\", \"numerator\": 2, \"denominator\": 2}}, \"provenance\": {\"model_sha256\": \"94fa3d6bef9bf03664b4210c0074412145c0504c7907952db8767605b7a8116a\", \"z3_version\": \"4.15.4\", \"z3_module\": {\"status\": \"OBSERVED\", \"resolved_path\": \"/home/agent/.local/share/requerimientos-socraticos/venv/lib/python3.12/site-packages/z3/__init__.py\", \"sha256\": \"53c4529a01f38e7c0d593b7548c79e0d7398aa09f7d7cbd1773470859ee2febd\"}, \"elapsed_seconds\": 0.017782566996174864, \"note\": \"Hash identifies supplied bytes; it does not establish semantic correctness.\"}, \"memory_observation\": {\"scope\": \"PROCESS_LOCAL_SAMPLES\", \"virtual_bytes\": 162500608, \"rss_bytes\": 48963584, \"peak_rss_bytes\": 48910336, \"peak_rss_scope\": \"PROCESS_LIFETIME_HIGH_WATER\", \"as_soft_bytes\": 469762048, \"as_hard_bytes\": 469762048, \"rss_quota_enforced\": false, \"source\": \"/proc/self/statm, getrusage(RUSAGE_SELF), getrlimit(RLIMIT_AS)\", \"sampling\": \"SEQUENTIAL_NOT_ATOMIC\", \"status\": \"OBSERVED_PROCESS_LOCAL\", \"as_unlimited\": {\"soft\": false, \"hard\": false}}, \"runtime\": {\"executable\": \"/home/agent/.local/share/requerimientos-socraticos/venv/bin/python\", \"python_version\": \"3.12.14\", \"executable_sha256\": \"fa67443527ed9647f760d807e2a38f26340757123e643c4639cf273ed15d5ea7\", \"artifact\": {\"status\": \"OBSERVED\", \"resolved_path\": \"/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3.12\", \"sha256\": \"fa67443527ed9647f760d807e2a38f26340757123e643c4639cf273ed15d5ea7\"}, \"distributions\": {\"z3-solver\": \"4.15.4.0\", \"jsonschema\": \"4.26.0\"}, \"authentication\": \"NOT_ESTABLISHED\", \"limits\": \"Observed bytes/metadata in a trusted local account; not a signed runtime or dependency attestation.\"}, \"supervision\": {\"worker_elapsed_seconds\": 0.06613865599501878, \"wall_budget_seconds\": 5, \"parent_death_policy\": \"LINUX_DIRECT_CHILD_PDEATHSIG\", \"cleanup_status\": \"DIRECT_WORKER_REAPED_AND_PIPES_DRAINED\", \"cleanup_grace_seconds\": 1, \"limits\": \"Responsive OS and live supervisor required for deadline handling; Linux death signal covers direct worker only. No arbitrary descendant or hardware isolation guarantee.\"}, \"memory_budget\": {\"policy\": {\"total_mib\": 512, \"total_bytes\": 536870912, \"roles_mib\": {\"caller\": 64, \"solver\": 448}, \"roles_bytes\": {\"caller\": 67108864, \"solver\": 469762048}, \"kind\": \"PROVISIONAL_ENGINEERING_POLICY\", \"hardware_capacity_calibrated\": false, \"aggregate_kernel_quota\": false, \"workload\": \"BOOLEAN_ANALYSIS\"}, \"admission\": {\"status\": \"ADMITTED_COOPERATIVE\", \"headroom_observed_bytes\": 8195694592, \"required_headroom_bytes\": 1073741824, \"scope\": \"VISIBLE_KERNEL_AND_CGROUP_PARTIAL\", \"physical_reservation\": false, \"sampling\": \"SEQUENTIAL_NOT_ATOMIC\", \"memory_observation\": {\"status\": \"OBSERVED\", \"source\": \"/proc/meminfo (visible kernel scope)\", \"total_bytes\": 10452471808, \"available_bytes\": 9706377216, \"swap_total_bytes\": 0, \"swap_free_bytes\": 0}, \"cgroup_observation\": {\"status\": \"OBSERVED_VISIBLE_SCOPE\", \"source\": \"/proc/self/cgroup and visible /sys/fs/cgroup ancestors\", \"memory_limits\": [{\"limit_bytes\": 8589934592, \"current_bytes\": 394240000, \"sampled_headroom_bytes\": 8195694592}], \"cpu_quotas\": [{\"quota\": 200000, \"period\": 100000, \"cpu_time_ratio\": 2.0}], \"limit_states\": [{\"visible_ancestor\": 0, \"memory\": \"FINITE\", \"cpu\": \"FINITE\"}], \"limitation\": \"Sequential samples; hidden ancestors/host and concurrent changes remain unknown.\"}}, \"caller\": {\"scope\": \"OWNED_CLI_PROCESS\", \"virtual_bytes\": 43458560, \"rss_bytes\": 16412672, \"peak_rss_bytes\": 16384000, \"peak_rss_scope\": \"PROCESS_LIFETIME_HIGH_WATER\", \"as_soft_bytes\": 67108864, \"as_hard_bytes\": 469762048, \"rss_quota_enforced\": false, \"source\": \"/proc/self/statm, getrusage(RUSAGE_SELF), getrlimit(RLIMIT_AS)\", \"sampling\": \"SEQUENTIAL_NOT_ATOMIC\", \"status\": \"OBSERVED_PROCESS_LOCAL\", \"as_unlimited\": {\"soft\": false, \"hard\": false}, \"sample_scope\": \"PROCESS_LOCAL_SAMPLES\"}, \"limits\": [\"Virtual address-space limits, not RSS quotas or physical reservations.\", \"Admission serializes cooperating calls per account; not global host enforcement.\", \"Sequential local samples and lifetime peaks do not prove aggregate RSS.\", \"Signals and missing diagnostics do not establish OOM.\"]}}\n",
+        "stderr": "",
+        "stable": {
+          "domain_validity": "VALID",
+          "queries": {
+            "domain": {
+              "status": "SAT",
+              "witness": {
+                "x": false
+              }
+            },
+            "gap": {
+              "status": "UNSAT"
+            },
+            "no_output": {
+              "status": "UNSAT"
+            },
+            "rule_consistency": {
+              "status": "SAT",
+              "witness": {
+                "x": false,
+                "a": true,
+                "b": false
+              }
+            }
+          },
+          "properties": [
+            {
+              "id": "p",
+              "interpretation": "Consequence of model rules within domain; not implementation verification.",
+              "consequence": "ENTAILED",
+              "counterexample": {
+                "status": "UNSAT"
+              }
+            }
+          ],
+          "table": {
+            "status": "EXACT",
+            "possible_rows": 2,
+            "rows_examined": 2,
+            "feasible_inputs": 2,
+            "covered_inputs": 2,
+            "inputs_without_output": 0,
+            "coverage": {
+              "metric": "GUARD_ACTIVATION_COVERAGE",
+              "numerator": 2,
+              "denominator": 2
+            }
+          },
+          "scope": "Results concern the supplied Boolean model only; they do not verify implementation, hardware, or human meaning.",
+          "limits": {
+            "variables": 3,
+            "ast_nodes": 4,
+            "max_variables": 32,
+            "max_ast_nodes": 4096,
+            "max_depth": 32,
+            "max_input_bytes": 262144,
+            "per_query_seconds": 1
+          },
+          "provenance": {
+            "model_sha256": "94fa3d6bef9bf03664b4210c0074412145c0504c7907952db8767605b7a8116a",
+            "z3_version": "4.15.4"
+          }
+        }
+      }
+    },
+    {
+      "case": "invalid-json",
+      "equivalent": true,
+      "baseline": {
+        "returncode": 2,
+        "stdout": "{\"error\": {\"code\": \"INVALID_INPUT\", \"message\": \"JSON has unclosed delimiters\"}, \"runtime\": {\"executable\": \"/home/agent/.local/share/requerimientos-socraticos/venv/bin/python\", \"python_version\": \"3.12.14\", \"executable_sha256\": \"fa67443527ed9647f760d807e2a38f26340757123e643c4639cf273ed15d5ea7\", \"artifact\": {\"status\": \"OBSERVED\", \"resolved_path\": \"/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3.12\", \"sha256\": \"fa67443527ed9647f760d807e2a38f26340757123e643c4639cf273ed15d5ea7\"}, \"distributions\": {\"z3-solver\": \"4.15.4.0\", \"jsonschema\": \"4.26.0\"}, \"authentication\": \"NOT_ESTABLISHED\", \"limits\": \"Observed bytes/metadata in a trusted local account; not a signed runtime or dependency attestation.\"}, \"supervision\": {\"worker_elapsed_seconds\": 0.041232486997614615, \"wall_budget_seconds\": 5, \"parent_death_policy\": \"LINUX_DIRECT_CHILD_PDEATHSIG\", \"cleanup_status\": \"DIRECT_WORKER_REAPED_AND_PIPES_DRAINED\", \"cleanup_grace_seconds\": 1, \"limits\": \"Responsive OS and live supervisor required for deadline handling; Linux death signal covers direct worker only. No arbitrary descendant or hardware isolation guarantee.\"}}\n",
+        "stderr": "",
+        "stable": {
+          "error": {
+            "code": "INVALID_INPUT",
+            "message": "JSON has unclosed delimiters"
+          }
+        }
+      },
+      "current": {
+        "returncode": 2,
+        "stdout": "{\"error\": {\"code\": \"INVALID_INPUT\", \"message\": \"JSON has unclosed delimiters\"}, \"runtime\": {\"executable\": \"/home/agent/.local/share/requerimientos-socraticos/venv/bin/python\", \"python_version\": \"3.12.14\", \"executable_sha256\": \"fa67443527ed9647f760d807e2a38f26340757123e643c4639cf273ed15d5ea7\", \"artifact\": {\"status\": \"OBSERVED\", \"resolved_path\": \"/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3.12\", \"sha256\": \"fa67443527ed9647f760d807e2a38f26340757123e643c4639cf273ed15d5ea7\"}, \"distributions\": {\"z3-solver\": \"4.15.4.0\", \"jsonschema\": \"4.26.0\"}, \"authentication\": \"NOT_ESTABLISHED\", \"limits\": \"Observed bytes/metadata in a trusted local account; not a signed runtime or dependency attestation.\"}, \"supervision\": {\"worker_elapsed_seconds\": 0.042743580997921526, \"wall_budget_seconds\": 5, \"parent_death_policy\": \"LINUX_DIRECT_CHILD_PDEATHSIG\", \"cleanup_status\": \"DIRECT_WORKER_REAPED_AND_PIPES_DRAINED\", \"cleanup_grace_seconds\": 1, \"limits\": \"Responsive OS and live supervisor required for deadline handling; Linux death signal covers direct worker only. No arbitrary descendant or hardware isolation guarantee.\"}, \"memory_budget\": {\"policy\": {\"total_mib\": 512, \"total_bytes\": 536870912, \"roles_mib\": {\"caller\": 64, \"solver\": 448}, \"roles_bytes\": {\"caller\": 67108864, \"solver\": 469762048}, \"kind\": \"PROVISIONAL_ENGINEERING_POLICY\", \"hardware_capacity_calibrated\": false, \"aggregate_kernel_quota\": false, \"workload\": \"BOOLEAN_ANALYSIS\"}, \"admission\": {\"status\": \"ADMITTED_COOPERATIVE\", \"headroom_observed_bytes\": 8195768320, \"required_headroom_bytes\": 1073741824, \"scope\": \"VISIBLE_KERNEL_AND_CGROUP_PARTIAL\", \"physical_reservation\": false, \"sampling\": \"SEQUENTIAL_NOT_ATOMIC\", \"memory_observation\": {\"status\": \"OBSERVED\", \"source\": \"/proc/meminfo (visible kernel scope)\", \"total_bytes\": 10452471808, \"available_bytes\": 9709187072, \"swap_total_bytes\": 0, \"swap_free_bytes\": 0}, \"cgroup_observation\": {\"status\": \"OBSERVED_VISIBLE_SCOPE\", \"source\": \"/proc/self/cgroup and visible /sys/fs/cgroup ancestors\", \"memory_limits\": [{\"limit_bytes\": 8589934592, \"current_bytes\": 394166272, \"sampled_headroom_bytes\": 8195768320}], \"cpu_quotas\": [{\"quota\": 200000, \"period\": 100000, \"cpu_time_ratio\": 2.0}], \"limit_states\": [{\"visible_ancestor\": 0, \"memory\": \"FINITE\", \"cpu\": \"FINITE\"}], \"limitation\": \"Sequential samples; hidden ancestors/host and concurrent changes remain unknown.\"}}, \"caller\": {\"scope\": \"OWNED_CLI_PROCESS\", \"virtual_bytes\": 43458560, \"rss_bytes\": 16412672, \"peak_rss_bytes\": 16384000, \"peak_rss_scope\": \"PROCESS_LIFETIME_HIGH_WATER\", \"as_soft_bytes\": 67108864, \"as_hard_bytes\": 469762048, \"rss_quota_enforced\": false, \"source\": \"/proc/self/statm, getrusage(RUSAGE_SELF), getrlimit(RLIMIT_AS)\", \"sampling\": \"SEQUENTIAL_NOT_ATOMIC\", \"status\": \"OBSERVED_PROCESS_LOCAL\", \"as_unlimited\": {\"soft\": false, \"hard\": false}, \"sample_scope\": \"PROCESS_LOCAL_SAMPLES\"}, \"limits\": [\"Virtual address-space limits, not RSS quotas or physical reservations.\", \"Admission serializes cooperating calls per account; not global host enforcement.\", \"Sequential local samples and lifetime peaks do not prove aggregate RSS.\", \"Signals and missing diagnostics do not establish OOM.\"]}}\n",
+        "stderr": "",
+        "stable": {
+          "error": {
+            "code": "INVALID_INPUT",
+            "message": "JSON has unclosed delimiters"
+          }
+        }
+      }
+    },
+    {
+      "case": "no-args",
+      "equivalent": true,
+      "baseline": {
+        "returncode": 2,
+        "stdout": "{\"error\": {\"code\": \"INVALID_INPUT\", \"message\": \"the following arguments are required: input\"}}\n",
+        "stderr": "",
+        "stable": {
+          "error": {
+            "code": "INVALID_INPUT",
+            "message": "the following arguments are required: input"
+          }
+        }
+      },
+      "current": {
+        "returncode": 2,
+        "stdout": "{\"error\": {\"code\": \"INVALID_INPUT\", \"message\": \"the following arguments are required: input\"}}\n",
+        "stderr": "",
+        "stable": {
+          "error": {
+            "code": "INVALID_INPUT",
+            "message": "the following arguments are required: input"
+          }
+        }
+      }
+    },
+    {
+      "case": "bad-timeout",
+      "equivalent": true,
+      "baseline": {
+        "returncode": 2,
+        "stdout": "{\"error\": {\"code\": \"INVALID_INPUT\", \"message\": \"timeout must be greater than 0 and at most 30 seconds\"}}\n",
+        "stderr": "",
+        "stable": {
+          "error": {
+            "code": "INVALID_INPUT",
+            "message": "timeout must be greater than 0 and at most 30 seconds"
+          }
+        }
+      },
+      "current": {
+        "returncode": 2,
+        "stdout": "{\"error\": {\"code\": \"INVALID_INPUT\", \"message\": \"timeout must be greater than 0 and at most 30 seconds\"}}\n",
+        "stderr": "",
+        "stable": {
+          "error": {
+            "code": "INVALID_INPUT",
+            "message": "timeout must be greater than 0 and at most 30 seconds"
+          }
+        }
+      }
+    },
+    {
+      "case": "missing-solver",
+      "equivalent": true,
+      "baseline": {
+        "returncode": 2,
+        "stdout": "{\"error\": {\"code\": \"SOLVER_UNAVAILABLE\", \"message\": \"z3-solver is unavailable\"}, \"runtime\": {\"executable\": \"/home/agent/.local/share/requerimientos-socraticos/venv/bin/python\", \"python_version\": \"3.12.14\", \"executable_sha256\": \"fa67443527ed9647f760d807e2a38f26340757123e643c4639cf273ed15d5ea7\", \"artifact\": {\"status\": \"OBSERVED\", \"resolved_path\": \"/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3.12\", \"sha256\": \"fa67443527ed9647f760d807e2a38f26340757123e643c4639cf273ed15d5ea7\"}, \"distributions\": {\"z3-solver\": null, \"jsonschema\": null}, \"authentication\": \"NOT_ESTABLISHED\", \"limits\": \"Observed bytes/metadata in a trusted local account; not a signed runtime or dependency attestation.\"}, \"supervision\": {\"worker_elapsed_seconds\": 0.04167254600179149, \"wall_budget_seconds\": 5, \"parent_death_policy\": \"LINUX_DIRECT_CHILD_PDEATHSIG\", \"cleanup_status\": \"DIRECT_WORKER_REAPED_AND_PIPES_DRAINED\", \"cleanup_grace_seconds\": 1, \"limits\": \"Responsive OS and live supervisor required for deadline handling; Linux death signal covers direct worker only. No arbitrary descendant or hardware isolation guarantee.\"}}\n",
+        "stderr": "",
+        "stable": {
+          "error": {
+            "code": "SOLVER_UNAVAILABLE",
+            "message": "z3-solver is unavailable"
+          }
+        }
+      },
+      "current": {
+        "returncode": 2,
+        "stdout": "{\"error\": {\"code\": \"SOLVER_UNAVAILABLE\", \"message\": \"z3-solver is unavailable\"}, \"runtime\": {\"executable\": \"/home/agent/.local/share/requerimientos-socraticos/venv/bin/python\", \"python_version\": \"3.12.14\", \"executable_sha256\": \"fa67443527ed9647f760d807e2a38f26340757123e643c4639cf273ed15d5ea7\", \"artifact\": {\"status\": \"OBSERVED\", \"resolved_path\": \"/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3.12\", \"sha256\": \"fa67443527ed9647f760d807e2a38f26340757123e643c4639cf273ed15d5ea7\"}, \"distributions\": {\"z3-solver\": null, \"jsonschema\": null}, \"authentication\": \"NOT_ESTABLISHED\", \"limits\": \"Observed bytes/metadata in a trusted local account; not a signed runtime or dependency attestation.\"}, \"supervision\": {\"worker_elapsed_seconds\": 0.041064805001951754, \"wall_budget_seconds\": 5, \"parent_death_policy\": \"LINUX_DIRECT_CHILD_PDEATHSIG\", \"cleanup_status\": \"DIRECT_WORKER_REAPED_AND_PIPES_DRAINED\", \"cleanup_grace_seconds\": 1, \"limits\": \"Responsive OS and live supervisor required for deadline handling; Linux death signal covers direct worker only. No arbitrary descendant or hardware isolation guarantee.\"}, \"memory_budget\": {\"policy\": {\"total_mib\": 512, \"total_bytes\": 536870912, \"roles_mib\": {\"caller\": 64, \"solver\": 448}, \"roles_bytes\": {\"caller\": 67108864, \"solver\": 469762048}, \"kind\": \"PROVISIONAL_ENGINEERING_POLICY\", \"hardware_capacity_calibrated\": false, \"aggregate_kernel_quota\": false, \"workload\": \"BOOLEAN_ANALYSIS\"}, \"admission\": {\"status\": \"ADMITTED_COOPERATIVE\", \"headroom_observed_bytes\": 8195866624, \"required_headroom_bytes\": 1073741824, \"scope\": \"VISIBLE_KERNEL_AND_CGROUP_PARTIAL\", \"physical_reservation\": false, \"sampling\": \"SEQUENTIAL_NOT_ATOMIC\", \"memory_observation\": {\"status\": \"OBSERVED\", \"source\": \"/proc/meminfo (visible kernel scope)\", \"total_bytes\": 10452471808, \"available_bytes\": 9709047808, \"swap_total_bytes\": 0, \"swap_free_bytes\": 0}, \"cgroup_observation\": {\"status\": \"OBSERVED_VISIBLE_SCOPE\", \"source\": \"/proc/self/cgroup and visible /sys/fs/cgroup ancestors\", \"memory_limits\": [{\"limit_bytes\": 8589934592, \"current_bytes\": 394067968, \"sampled_headroom_bytes\": 8195866624}], \"cpu_quotas\": [{\"quota\": 200000, \"period\": 100000, \"cpu_time_ratio\": 2.0}], \"limit_states\": [{\"visible_ancestor\": 0, \"memory\": \"FINITE\", \"cpu\": \"FINITE\"}], \"limitation\": \"Sequential samples; hidden ancestors/host and concurrent changes remain unknown.\"}}, \"caller\": {\"scope\": \"OWNED_CLI_PROCESS\", \"virtual_bytes\": 42405888, \"rss_bytes\": 16293888, \"peak_rss_bytes\": 16109568, \"peak_rss_scope\": \"PROCESS_LIFETIME_HIGH_WATER\", \"as_soft_bytes\": 67108864, \"as_hard_bytes\": 469762048, \"rss_quota_enforced\": false, \"source\": \"/proc/self/statm, getrusage(RUSAGE_SELF), getrlimit(RLIMIT_AS)\", \"sampling\": \"SEQUENTIAL_NOT_ATOMIC\", \"status\": \"OBSERVED_PROCESS_LOCAL\", \"as_unlimited\": {\"soft\": false, \"hard\": false}, \"sample_scope\": \"PROCESS_LOCAL_SAMPLES\"}, \"limits\": [\"Virtual address-space limits, not RSS quotas or physical reservations.\", \"Admission serializes cooperating calls per account; not global host enforcement.\", \"Sequential local samples and lifetime peaks do not prove aggregate RSS.\", \"Signals and missing diagnostics do not establish OOM.\"]}}\n",
+        "stderr": "",
+        "stable": {
+          "error": {
+            "code": "SOLVER_UNAVAILABLE",
+            "message": "z3-solver is unavailable"
+          }
+        }
+      }
+    }
+  ],
+  "all_equivalent": true
+}

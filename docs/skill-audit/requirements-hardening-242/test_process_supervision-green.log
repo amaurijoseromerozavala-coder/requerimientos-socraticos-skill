@@ -1,0 +1,17 @@
+Final GREEN; owned bounded fixtures; outer timeout=15s
+command=['/home/agent/.local/share/requerimientos-socraticos/venv/bin/python', '-B', '-m', 'unittest', 'discover', '-s', 'skills/requerimientos-socraticos/tests', '-p', 'test_process_supervision.py', '-v']
+returncode=0
+test_each_output_stream_is_bounded_and_worker_reaped (test_process_supervision.ProcessSupervisionTests.test_each_output_stream_is_bounded_and_worker_reaped) ... ok
+test_exact_output_limit_and_empty_input_succeed (test_process_supervision.ProcessSupervisionTests.test_exact_output_limit_and_empty_input_succeed) ... ok
+test_explicit_descriptor_is_inherited (test_process_supervision.ProcessSupervisionTests.test_explicit_descriptor_is_inherited) ... ok
+test_explicit_environment_and_raw_non_utf8_output (test_process_supervision.ProcessSupervisionTests.test_explicit_environment_and_raw_non_utf8_output) ... ok
+test_input_and_output_progress_without_pipe_deadlock (test_process_supervision.ProcessSupervisionTests.test_input_and_output_progress_without_pipe_deadlock) ... ok
+test_input_byte_ceiling_before_spawn_with_small_injected_budget (test_process_supervision.ProcessSupervisionTests.test_input_byte_ceiling_before_spawn_with_small_injected_budget) ... ok
+test_invalid_budget_or_input_starts_no_worker (test_process_supervision.ProcessSupervisionTests.test_invalid_budget_or_input_starts_no_worker) ... ok
+test_output_budget_upper_bound_and_types_start_no_worker (test_process_supervision.ProcessSupervisionTests.test_output_budget_upper_bound_and_types_start_no_worker) ... ok
+test_stdin_write_obeys_total_deadline (test_process_supervision.ProcessSupervisionTests.test_stdin_write_obeys_total_deadline) ... ok
+
+----------------------------------------------------------------------
+Ran 9 tests in 0.185s
+
+OK

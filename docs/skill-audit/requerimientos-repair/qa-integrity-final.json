@@ -1,0 +1,26 @@
+{
+  "observed_at": "2026-10-26T17:54:21.579026+00:00",
+  "status": "PAUSED_UNCHANGED",
+  "files": 19,
+  "file_sha256": {
+    "docs/requirements/qa-inquisidor/PRD.md": "b84429cb06cb259603e0f7d24a51d03e084fbb63b1ca194a35d9ce110457e3c0",
+    "docs/requirements/qa-inquisidor/acceptance-cases.json": "33f6f786ed82d21269c21c2e206ebc0e1d89a19c5def5f8a1eb3a879cf4df4cd",
+    "docs/requirements/qa-inquisidor/environment-target.json": "575f8e1405c712a51e124a3bbf29d4b25e00dc820db47eef7aeac3c07ff65371",
+    "docs/requirements/qa-inquisidor/evidence/document-checker.txt": "cdc7b3aa072db33b5b9b1e4cbed40817899cd7130eefd5561a871e6ef797c3fb",
+    "docs/requirements/qa-inquisidor/evidence/duplicate-id-red.json": "7e93f9202aff017a58bf38e4fd2e3b1a687e0014129a16db29a0301c1c9339f9",
+    "docs/requirements/qa-inquisidor/evidence/engram-mirror.json": "cd4c8c75e4864b480c4dc59c178e5abecbd09d1b458302399e27d8052d71f50b",
+    "docs/requirements/qa-inquisidor/evidence/evidence-kind-red.json": "3e99155333ce24f4d9580fbcf8e792fbe792f107765386ca5bb65ce9750139bd",
+    "docs/requirements/qa-inquisidor/evidence/red-baseline.json": "ab3397fa719ce5a96756f819a9959cbdc46d2c1d87e712392426cda9fe7feb0e",
+    "docs/requirements/qa-inquisidor/evidence/report-fixture.json": "e73f23b747a8e552c11788bd8b5105dc1032f4c5878b9140d7ec1cee4b8bcfce",
+    "docs/requirements/qa-inquisidor/evidence/source-register.json": "2d423e72eec0c7853e509eb77827096b3fb8d56d1e00db5b66871bd67a47e598",
+    "docs/requirements/qa-inquisidor/evidence/validation.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "docs/requirements/qa-inquisidor/evidence/validation.stdout": "13b155bdded5e658acc4c64e7dfc8daffc45a4461055bc953c077998d03f140b",
+    "docs/requirements/qa-inquisidor/prd.json": "272773be62ece255c48aa117ccd55a9319df4cd2ce381168e3c0fb8e161933ef",
+    "docs/requirements/qa-inquisidor/qa-report.schema.json": "bb938680349981d263b194a6d8cf82aab6ed47aba67e9342052c7be8671443b7",
+    "docs/requirements/qa-inquisidor/registro-preguntas-respuestas.json": "60727429e2a8de974db86231f3f747fe1820d97d13bfb85a2f4227c139358bf2",
+    "docs/requirements/qa-inquisidor/registro-preguntas-respuestas.md": "6216aee26c34d522a29d422dfbcd965f5d46bf175baefcea6b6f9cc0b077f404",
+    "docs/requirements/qa-inquisidor/registro-skill-asistente.json": "b0884616eb55d5c85e0d3e469deba3e877eee7d415f31dc90b89bd2d5a286613",
+    "docs/requirements/qa-inquisidor/registro-skill-asistente.md": "92288c242cf214c5881a44c7138bc07e3f4f7dcbdec59a2e8f8a8d68e6cc5c21",
+    "docs/requirements/qa-inquisidor/validation.json": "b0c7ba9af0f91b8fd23a52755a7ab543f487e19ebff49cb7f2f82a07fa9ab76a"
+  }
+}

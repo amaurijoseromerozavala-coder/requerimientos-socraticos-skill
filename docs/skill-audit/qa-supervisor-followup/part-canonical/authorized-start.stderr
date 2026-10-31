@@ -1,0 +1,1 @@
+Error: The candidate's complete reviewer evidence exceeds the native context budget, so no review authority was created; review this change as smaller candidates that each fit under it. [lens_context_budget_exceeded]

@@ -1,0 +1,71 @@
+{
+  "schema": "gentle-ai.review-last-event-closure/v1",
+  "operation": "review/capture-result",
+  "lineage_id": "review-b2e0f4114b5f5bb8",
+  "state": "approved",
+  "action": "the approved review completed on the last admitted event and awaits its exact acknowledgement",
+  "reviewer_results": [
+    {
+      "lens": "review-resilience",
+      "findings": [],
+      "evidence": [
+        "Inspected the complete supplied patch at docs/requirements/qa-supervisor/prd.json:1. It adds a DRAFT requirements document and explicitly defers implementation and physical verification; no concrete production failure or measured regression is established by this change.",
+        "The document specifies conservative handling of uncertain termination and restart reconciliation, bounded capture and receipt capacity, admission rejection when required controls are missing, and unconfirmed delivery after persistence failure. Its assurance checks and implementation falsifiers remain explicitly NOT_RUN."
+      ],
+      "result_hash": "sha256:aa80865536d4f4c5d9970917ae1be6dfdd99be6da58b31460a39b7df3b94d5ba"
+    },
+    {
+      "lens": "review-reliability",
+      "findings": [],
+      "evidence": [
+        "Inspected the complete supplied addition in docs/requirements/qa-supervisor/prd.json:1, including requirements, all FSM transitions, falsifiers, and assurance declarations.",
+        "The FSM starts in RECONCILING, rejects requests during active execution, preserves INFRA_LOCK on acknowledgment and persistence events, and requires termination_reconciled to exit that lock.",
+        "The candidate explicitly limits its FSM to qualified control events, marks implementation falsifiers and assurance checks NOT_RUN, and declares DRAFT status. No runtime implementation or observed test success is claimed; referenced annex contents and physical behavior cannot be verified from this patch."
+      ],
+      "result_hash": "sha256:39e9814300ef87b10e265f137e7ba09440b421dce62d8dbb3e43bd0782b94500"
+    }
+  ],
+  "acknowledgement": {
+    "operation": "review.acknowledge-approved",
+    "command": "gentle-ai review acknowledge-approved --cwd=/workspace/replica-gentle-ai --lineage=review-b2e0f4114b5f5bb8 --target=sha256:709145f50fc44cae5a2a573df58f99ee6509865996a11a8fc22d5d60953f5f11 --expected-revision=sha256:976004b87ed43cb63aa933d750c4eed31fdf9917d66bd4955ad6a6a45c641368 --token=4d38870a297462454d911d17f4108228159729d8acf124fe6f32136d5e67e7e6",
+    "arguments": [
+      {
+        "name": "cwd",
+        "value": "/workspace/replica-gentle-ai",
+        "token": "--cwd=/workspace/replica-gentle-ai"
+      },
+      {
+        "name": "lineage",
+        "value": "review-b2e0f4114b5f5bb8",
+        "token": "--lineage=review-b2e0f4114b5f5bb8"
+      },
+      {
+        "name": "target",
+        "value": "sha256:709145f50fc44cae5a2a573df58f99ee6509865996a11a8fc22d5d60953f5f11",
+        "token": "--target=sha256:709145f50fc44cae5a2a573df58f99ee6509865996a11a8fc22d5d60953f5f11"
+      },
+      {
+        "name": "expected-revision",
+        "value": "sha256:976004b87ed43cb63aa933d750c4eed31fdf9917d66bd4955ad6a6a45c641368",
+        "token": "--expected-revision=sha256:976004b87ed43cb63aa933d750c4eed31fdf9917d66bd4955ad6a6a45c641368"
+      },
+      {
+        "name": "token",
+        "value": "4d38870a297462454d911d17f4108228159729d8acf124fe6f32136d5e67e7e6",
+        "token": "--token=4d38870a297462454d911d17f4108228159729d8acf124fe6f32136d5e67e7e6"
+      }
+    ],
+    "preconditions": [
+      {
+        "name": "state",
+        "value": "approved"
+      }
+    ],
+    "binding": {
+      "lineage_id": "review-b2e0f4114b5f5bb8",
+      "revision": "sha256:976004b87ed43cb63aa933d750c4eed31fdf9917d66bd4955ad6a6a45c641368",
+      "target_identity": "sha256:709145f50fc44cae5a2a573df58f99ee6509865996a11a8fc22d5d60953f5f11"
+    }
+  },
+  "store_revision": "sha256:976004b87ed43cb63aa933d750c4eed31fdf9917d66bd4955ad6a6a45c641368"
+}

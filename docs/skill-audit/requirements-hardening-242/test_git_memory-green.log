@@ -1,0 +1,8 @@
+test_git_and_document_worker_use_shared_supervision (test_git_memory.GitMemoryTests.test_git_and_document_worker_use_shared_supervision) ... ok
+test_git_consumer_stops_after_parent_termination (test_git_memory.GitMemoryTests.test_git_consumer_stops_after_parent_termination) ... ok
+test_no_candidate_scratch_and_original_status_preserved (test_git_memory.GitMemoryTests.test_no_candidate_scratch_and_original_status_preserved) ... ok
+
+----------------------------------------------------------------------
+Ran 3 tests in 0.285s
+
+OK

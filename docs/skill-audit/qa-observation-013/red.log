@@ -1,0 +1,86 @@
+.......EEEEEEEEE...............................................
+======================================================================
+ERROR: test_adjacent_missing_reference_preserves_declaration (test_observation.ObservationChecks.test_adjacent_missing_reference_preserves_declaration)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/replica-gentle-ai/skills/qa-inquisidor/tests/test_observation.py", line 48, in test_adjacent_missing_reference_preserves_declaration
+    self.assertEqual(result['failure_observation']['declared_failure_count'], 1)
+                     ~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+KeyError: 'failure_observation'
+
+======================================================================
+ERROR: test_contradiction_retains_unverified_declaration (test_observation.ObservationChecks.test_contradiction_retains_unverified_declaration)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/replica-gentle-ai/skills/qa-inquisidor/tests/test_observation.py", line 32, in test_contradiction_retains_unverified_declaration
+    self.assertEqual(result['failure_observation']['status'], 'UNVERIFIED_DECLARATIONS_FOUND')
+                     ~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+KeyError: 'failure_observation'
+
+======================================================================
+ERROR: test_empty_list_is_only_no_declarations (test_observation.ObservationChecks.test_empty_list_is_only_no_declarations)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/replica-gentle-ai/skills/qa-inquisidor/tests/test_observation.py", line 82, in test_empty_list_is_only_no_declarations
+    obs = fixtures.qa.observe_failure_declarations({'evidence': []})
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: module 'qa_report_checker' has no attribute 'observe_failure_declarations'
+
+======================================================================
+ERROR: test_malformed_record_keeps_other_declaration (test_observation.ObservationChecks.test_malformed_record_keeps_other_declaration)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/replica-gentle-ai/skills/qa-inquisidor/tests/test_observation.py", line 73, in test_malformed_record_keeps_other_declaration
+    obs = fixtures.qa.observe_failure_declarations({'evidence': [None, {'outcome': 'FAIL'}]})
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: module 'qa_report_checker' has no attribute 'observe_failure_declarations'
+
+======================================================================
+ERROR: test_only_direct_outcomes_count_without_io (test_observation.ObservationChecks.test_only_direct_outcomes_count_without_io)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/replica-gentle-ai/skills/qa-inquisidor/tests/test_observation.py", line 60, in test_only_direct_outcomes_count_without_io
+    obs = fixtures.qa.observe_failure_declarations({'evidence': [
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: module 'qa_report_checker' has no attribute 'observe_failure_declarations'
+
+======================================================================
+ERROR: test_scan_limit_is_partial_not_negative (test_observation.ObservationChecks.test_scan_limit_is_partial_not_negative)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/replica-gentle-ai/skills/qa-inquisidor/tests/test_observation.py", line 67, in test_scan_limit_is_partial_not_negative
+    obs = fixtures.qa.observe_failure_declarations({'evidence': [{'outcome': 'PASS'}] * 128 + [{'outcome': 'FAIL'}]})
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: module 'qa_report_checker' has no attribute 'observe_failure_declarations'
+
+======================================================================
+ERROR: test_undecodable_is_not_assessed (test_observation.ObservationChecks.test_undecodable_is_not_assessed) (raw='{')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/replica-gentle-ai/skills/qa-inquisidor/tests/test_observation.py", line 55, in test_undecodable_is_not_assessed
+    self.assertEqual(result['failure_observation']['status'], 'NOT_ASSESSED')
+                     ~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+KeyError: 'failure_observation'
+
+======================================================================
+ERROR: test_undecodable_is_not_assessed (test_observation.ObservationChecks.test_undecodable_is_not_assessed) (raw='{"evidence": [], "evidence": []}')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/replica-gentle-ai/skills/qa-inquisidor/tests/test_observation.py", line 55, in test_undecodable_is_not_assessed
+    self.assertEqual(result['failure_observation']['status'], 'NOT_ASSESSED')
+                     ~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+KeyError: 'failure_observation'
+
+======================================================================
+ERROR: test_wrong_container_is_not_assessed (test_observation.ObservationChecks.test_wrong_container_is_not_assessed)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/replica-gentle-ai/skills/qa-inquisidor/tests/test_observation.py", line 79, in test_wrong_container_is_not_assessed
+    self.assertEqual(fixtures.qa.observe_failure_declarations(doc)['status'], 'NOT_ASSESSED')
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: module 'qa_report_checker' has no attribute 'observe_failure_declarations'
+
+----------------------------------------------------------------------
+Ran 62 tests in 0.161s
+
+FAILED (errors=9)

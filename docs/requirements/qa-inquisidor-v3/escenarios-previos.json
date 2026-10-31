@@ -1,0 +1,12 @@
+{
+  "kind": "DOCUMENTARY_RED_SPECIFICATION",
+  "status": "SPECIFIED_BEFORE_V3_CONTRACT",
+  "baseline": "../qa-inquisidor-v2/fsm-propuesta.json",
+  "scope": "Modelo documental, no ejecución de QA ni prueba del sistema objetivo",
+  "cases": [
+    {"id": "RED-GAP-01", "requirement": "Un contraejemplo no borra otros pendientes", "before": "material_gap=true; hay contraejemplo vigente y otra obligación NOT_RUN", "event": "RECORD_CURRENT_FAILURE", "expected": "material_gap=true"},
+    {"id": "RED-GATE-02", "requirement": "No derivar éxito sin correspondencia y criterio delegado vigente", "before": "no constan bindings ni criterio vigente", "event": "RECORD_CURRENT_SUCCESS", "expected": "Evento no derivable; conservar GAP"}
+  ],
+  "oracle": "Examinar efectos y contrato tipado de la abstracción v2; una descripción textual externa no equivale a un predicado comprobado. Contrastar v3 con una tabla independiente de 64 filas.",
+  "limitations": ["Un RED de la abstracción no demuestra un defecto de una skill que no está implementada.", "No atribuir al contrato externo v2 una ejecución que no ocurrió."]
+}

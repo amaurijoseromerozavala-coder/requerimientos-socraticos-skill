@@ -1,0 +1,51 @@
+{
+  "reviewer_results": [
+    {
+      "lens": "review-reliability",
+      "findings": [
+        {
+          "id": "R3-duplicate-test-binding",
+          "lens": "reliability",
+          "location": "docs/requirements/qa-inquisidor/evidence/document-checker.txt:75-88",
+          "severity": "WARNING",
+          "claim": "Los identificadores de casos duplicados permiten eludir la unión por execution_kind. Partiendo del fixture, añadir primero un caso REAL_EXECUTION autorizado con el mismo id del caso STATIC_REVIEW existente conserva la aceptación: ambos casos encuentran el único resultado mediante pertenencia a conjuntos y by_test conserva únicamente el último caso estático. Así se acepta PASS_WITHIN_SCOPE sin recibo real para el caso REAL_EXECUTION. Rechazar ids duplicados antes de construir los índices y añadir este control negativo.",
+          "proof_refs": [
+            "docs/requirements/qa-inquisidor/evidence/document-checker.txt:75-88",
+            "docs/requirements/qa-inquisidor/evidence/report-fixture.json",
+            "docs/requirements/qa-inquisidor/qa-report.schema.json"
+          ],
+          "evidence_class": "deterministic",
+          "causal_disposition": "introduced"
+        }
+      ],
+      "evidence": [
+        "Se inspeccionaron los 13 parches proporcionados, incluido el archivo vacío de stderr, sin ejecutar comandos ni consultar archivos externos.",
+        "docs/requirements/qa-inquisidor/evidence/document-checker.txt comprueba existencia de resultados mediante conjuntos y construye by_test mediante un diccionario que sobrescribe ids duplicados; docs/requirements/qa-inquisidor/qa-report.schema.json no impone unicidad de esos ids.",
+        "docs/requirements/qa-inquisidor/evidence/validation.stdout conserva 21 controles documentales aprobados, pero ninguno prueba colisiones de identificadores. La observación se limita al comprobador documental; no atribuye comportamiento a la futura skill."
+      ],
+      "result_hash": "sha256:7518117cb8394ffc10650abbc0990a5faf17e87a57473a9983e9ba87a671999f"
+    }
+  ],
+  "state": "approved",
+  "acknowledgement": {
+    "schema": "gentle-ai.review-acknowledged/v1",
+    "operation": "review/acknowledge-approved",
+    "action": "acknowledged",
+    "lineage_id": "review-e52b3d3b5cb13ac8",
+    "target_identity": "sha256:110e1eb52b7c84606effd1417a4be130fd1349832344b128eba5694c13b12346",
+    "consumed_revision": "sha256:67ec5bf10bd54b9e929549fb410068430dbfacd97269112f2d95b1a77293775c",
+    "authority": "burned"
+  },
+  "advisory_findings": {
+    "statement": "This review is approved and its receipt stands. Every finding listed here is non-blocking: none opened a correction, none reopens this review, and no correction transition is offered for this candidate. Treat them as separate later work, never as a reason to re-run review on this candidate.",
+    "findings": [
+      {
+        "id": "R3-duplicate-test-binding",
+        "lens": "reliability",
+        "location": "docs/requirements/qa-inquisidor/evidence/document-checker.txt:75-88",
+        "severity": "WARNING",
+        "disposition": "informational"
+      }
+    ]
+  }
+}

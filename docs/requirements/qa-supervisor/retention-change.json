@@ -1,0 +1,26 @@
+{
+  "status": "CONFIRMED",
+  "human_literal": "Corrige las tres y recurrente la decisión de recibos mínimos por la otra opción ya fallo esa decisión corrige todo",
+  "selected_mode": "BOUNDED_RAW_QA_OUTPUT_RETENTION",
+  "supersedes": "minimal-receipts-only decision 1",
+  "failure_of_previous_policy": "NOT_DEMONSTRATED",
+  "pending": [],
+  "proposal": {
+    "owner_only": true,
+    "max_runs": 100,
+    "total_bytes": 33554432,
+    "full": "BLOCK_NEW_WORK",
+    "journal": "SEPARATE_UNCHANGED",
+    "deletion": "MANUAL_ONLY"
+  },
+  "dependent_contract_update": "APPLIED",
+  "native_rdd": "PRIOR_APPROVAL_NOT_APPLICABLE_TO_NEW_CANDIDATE",
+  "execution_authorized": false,
+  "human_clarifications": [
+    "Plazo de 32 min",
+    "Mib",
+    "Mib corrigo",
+    "Manual"
+  ],
+  "interpretation": "32 MiB capacity, not 32 minutes; manual deletion, no expiry."
+}

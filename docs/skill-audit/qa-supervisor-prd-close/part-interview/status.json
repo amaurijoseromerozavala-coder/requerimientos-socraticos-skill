@@ -1,0 +1,191 @@
+{
+  "schema": "gentle-ai.review-integration.status/v9",
+  "contract": "gentle-ai.review-integration/v2",
+  "operation": "review.status",
+  "applicability": "current_target",
+  "authority": {
+    "version": "compact-v2",
+    "lineage_id": "review-84f615eebfc2ae7d",
+    "state": "reviewing",
+    "generation": 1,
+    "revision": "sha256:d80fff64efc5c718578d301531fc9bb4ba1aa32fedac85421d4b9af3201729f5"
+  },
+  "action": "collect",
+  "replayability": "manual_action_required",
+  "frozen": {
+    "tier": "medium",
+    "original_changed_lines": 738,
+    "correction_budget": 200,
+    "changed_path_manifest_sha256": "sha256:c5dd8f31d9c16a555705f0dfa139bff92f109f3527a7b625e924a140976b533a"
+  },
+  "target_identity": "sha256:55a0dc546e2a860a42b1d2c389f948ed403aea8c82d070adeaf1cef856a6a011",
+  "projection": {
+    "schema": "gentle-ai.review-integration.projection/v1",
+    "kind": "base-workspace-overlay",
+    "projection": "workspace",
+    "base_tree": "4b825dc642cb6eb9a060e54bf8d69288fbee4904",
+    "initial_review_tree": "f3e1cb4b709326cbf4e2a697bd4af26d68ca3f84",
+    "current_candidate_tree": "f3e1cb4b709326cbf4e2a697bd4af26d68ca3f84",
+    "paths_digest": "sha256:dd38e730ff78e0fbca37d412f45de0fa7068165546c5deeafdd302c9197816a7",
+    "paths": [
+      "docs/requirements/qa-supervisor/design-proposals.json",
+      "docs/requirements/qa-supervisor/human-question.json",
+      "docs/requirements/qa-supervisor/interview.json",
+      "docs/requirements/qa-supervisor/receipts/A-HUMAN-SUP-001.txt",
+      "docs/requirements/qa-supervisor/receipts/A-SUP-001.txt",
+      "docs/requirements/qa-supervisor/receipts/A-SUP-002.txt",
+      "docs/requirements/qa-supervisor/receipts/A-SUP-003.txt",
+      "docs/requirements/qa-supervisor/receipts/A-SUP-004.txt",
+      "docs/requirements/qa-supervisor/receipts/A-SUP-005.txt",
+      "docs/requirements/qa-supervisor/receipts/A-SUP-006.txt",
+      "docs/requirements/qa-supervisor/receipts/A-SUP-007.txt",
+      "docs/requirements/qa-supervisor/receipts/A-SUP-008.txt",
+      "docs/requirements/qa-supervisor/receipts/Q-HUMAN-SUP-001.txt",
+      "docs/requirements/qa-supervisor/receipts/Q-SUP-001.txt",
+      "docs/requirements/qa-supervisor/receipts/Q-SUP-002.txt",
+      "docs/requirements/qa-supervisor/receipts/Q-SUP-003.txt",
+      "docs/requirements/qa-supervisor/receipts/Q-SUP-004.txt",
+      "docs/requirements/qa-supervisor/receipts/Q-SUP-005.txt",
+      "docs/requirements/qa-supervisor/receipts/Q-SUP-006.txt",
+      "docs/requirements/qa-supervisor/receipts/Q-SUP-007.txt",
+      "docs/requirements/qa-supervisor/receipts/Q-SUP-008.txt",
+      "docs/requirements/qa-supervisor/receipts/RETENTION-OPTIONS.txt",
+      "docs/requirements/qa-supervisor/registro-skill-asistente.md"
+    ],
+    "intended_untracked": [
+      "docs/requirements/qa-supervisor/design-proposals.json",
+      "docs/requirements/qa-supervisor/human-question.json",
+      "docs/requirements/qa-supervisor/interview.json",
+      "docs/requirements/qa-supervisor/receipts/A-HUMAN-SUP-001.txt",
+      "docs/requirements/qa-supervisor/receipts/A-SUP-001.txt",
+      "docs/requirements/qa-supervisor/receipts/A-SUP-002.txt",
+      "docs/requirements/qa-supervisor/receipts/A-SUP-003.txt",
+      "docs/requirements/qa-supervisor/receipts/A-SUP-004.txt",
+      "docs/requirements/qa-supervisor/receipts/A-SUP-005.txt",
+      "docs/requirements/qa-supervisor/receipts/A-SUP-006.txt",
+      "docs/requirements/qa-supervisor/receipts/A-SUP-007.txt",
+      "docs/requirements/qa-supervisor/receipts/A-SUP-008.txt",
+      "docs/requirements/qa-supervisor/receipts/Q-HUMAN-SUP-001.txt",
+      "docs/requirements/qa-supervisor/receipts/Q-SUP-001.txt",
+      "docs/requirements/qa-supervisor/receipts/Q-SUP-002.txt",
+      "docs/requirements/qa-supervisor/receipts/Q-SUP-003.txt",
+      "docs/requirements/qa-supervisor/receipts/Q-SUP-004.txt",
+      "docs/requirements/qa-supervisor/receipts/Q-SUP-005.txt",
+      "docs/requirements/qa-supervisor/receipts/Q-SUP-006.txt",
+      "docs/requirements/qa-supervisor/receipts/Q-SUP-007.txt",
+      "docs/requirements/qa-supervisor/receipts/Q-SUP-008.txt",
+      "docs/requirements/qa-supervisor/receipts/RETENTION-OPTIONS.txt",
+      "docs/requirements/qa-supervisor/registro-skill-asistente.md"
+    ],
+    "intended_untracked_proof": "sha256:5403a426bce4c292def15857927579c187b2ef8ab0ae0882751cc80ed50865a2",
+    "initial_snapshot_identity": "sha256:55a0dc546e2a860a42b1d2c389f948ed403aea8c82d070adeaf1cef856a6a011",
+    "current_snapshot_identity": "sha256:55a0dc546e2a860a42b1d2c389f948ed403aea8c82d070adeaf1cef856a6a011"
+  },
+  "eligible_untracked_inventory": "sha256:f08aa4ec11350e20f321661c139f875597d925a709bad48c7a63cb0ca38c6e37",
+  "repair": {
+    "schema": "gentle-ai.review-authority-repair-assessment/v1",
+    "status": "unsupported",
+    "counts": {
+      "lineages": 0,
+      "compact_lineages": 0,
+      "legacy_lineages": 0,
+      "events": 0,
+      "bytes": 0,
+      "eligible_candidates": 0,
+      "unsupported_lineages": 0,
+      "conflicts": 0
+    },
+    "supported_operations": [
+      "review/complete-fix",
+      "review/validate-fix"
+    ],
+    "authorization_schema": "gentle-ai.review-repair-authorization/v1"
+  },
+  "candidates": [],
+  "forecast": {
+    "horizon": "partial",
+    "steps": [
+      {
+        "step": 1,
+        "kind": "collect",
+        "reason_code": "reviewer_results_required",
+        "description": "Reviewer lens artifacts required for current revision"
+      }
+    ]
+  },
+  "next_transition": {
+    "kind": "collect",
+    "reason_code": "reviewer_results_required",
+    "collect": {
+      "inputs": [
+        {
+          "name": "reviewer_result",
+          "schema": "https://gentle-ai.dev/schema/review/reviewer/v1",
+          "capture_operation": "review.capture-result",
+          "arguments": [
+            {
+              "name": "lineage",
+              "value": "review-84f615eebfc2ae7d",
+              "token": "--lineage=review-84f615eebfc2ae7d"
+            },
+            {
+              "name": "expected-revision",
+              "value": "sha256:a949b36885fc2782fb4cbf7a9e7f3e2ed051142f12ab938657d33d99b054646f",
+              "token": "--expected-revision=sha256:a949b36885fc2782fb4cbf7a9e7f3e2ed051142f12ab938657d33d99b054646f"
+            },
+            {
+              "name": "target",
+              "value": "sha256:55a0dc546e2a860a42b1d2c389f948ed403aea8c82d070adeaf1cef856a6a011",
+              "token": "--target=sha256:55a0dc546e2a860a42b1d2c389f948ed403aea8c82d070adeaf1cef856a6a011"
+            },
+            {
+              "name": "repository-context",
+              "value": "rctx2_c9236a03b87af36f6ceb13cd9ab5254d8adba455acecd729f2668d6949685099",
+              "token": "--repository-context=rctx2_c9236a03b87af36f6ceb13cd9ab5254d8adba455acecd729f2668d6949685099"
+            },
+            {
+              "name": "lens",
+              "value": "review-reliability",
+              "token": "--lens=review-reliability"
+            },
+            {
+              "name": "order",
+              "value": "1",
+              "token": "--order=1"
+            },
+            {
+              "name": "subject-hash",
+              "value": "sha256:b8daa4781d3661a5af216f1672a65403e6d34327ea33a04faf2e980f02e0b493",
+              "token": "--subject-hash=sha256:b8daa4781d3661a5af216f1672a65403e6d34327ea33a04faf2e980f02e0b493"
+            },
+            {
+              "name": "agent",
+              "value": "codex",
+              "token": "--agent=codex"
+            }
+          ],
+          "artifact_subject": {
+            "schema": "gentle-ai.review-artifact-subject/v2",
+            "subject_hash": "sha256:b8daa4781d3661a5af216f1672a65403e6d34327ea33a04faf2e980f02e0b493",
+            "lineage_id": "review-84f615eebfc2ae7d",
+            "authority_revision": "sha256:a949b36885fc2782fb4cbf7a9e7f3e2ed051142f12ab938657d33d99b054646f",
+            "target_identity": "sha256:55a0dc546e2a860a42b1d2c389f948ed403aea8c82d070adeaf1cef856a6a011",
+            "base_tree": "4b825dc642cb6eb9a060e54bf8d69288fbee4904",
+            "candidate_tree": "f3e1cb4b709326cbf4e2a697bd4af26d68ca3f84",
+            "changed_path_manifest_sha256": "sha256:c5dd8f31d9c16a555705f0dfa139bff92f109f3527a7b625e924a140976b533a",
+            "lens": "review-reliability",
+            "selected_order": 1
+          },
+          "base_tree": "4b825dc642cb6eb9a060e54bf8d69288fbee4904",
+          "candidate_tree": "f3e1cb4b709326cbf4e2a697bd4af26d68ca3f84"
+        }
+      ]
+    }
+  },
+  "repository_context": {
+    "capability": "review.opaque_repository_context",
+    "handle": "rctx2_c9236a03b87af36f6ceb13cd9ab5254d8adba455acecd729f2668d6949685099",
+    "revision": "sha256:a949b36885fc2782fb4cbf7a9e7f3e2ed051142f12ab938657d33d99b054646f",
+    "target_identity": "sha256:55a0dc546e2a860a42b1d2c389f948ed403aea8c82d070adeaf1cef856a6a011"
+  }
+}

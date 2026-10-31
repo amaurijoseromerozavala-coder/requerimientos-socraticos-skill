@@ -1,0 +1,70 @@
+{
+  "schema": "gentle-ai.review-last-event-closure/v1",
+  "operation": "review/capture-result",
+  "lineage_id": "review-55dd99a391c31587",
+  "state": "approved",
+  "action": "the approved review completed on the last admitted event and awaits its exact acknowledgement",
+  "reviewer_results": [
+    {
+      "lens": "review-resilience",
+      "findings": [],
+      "evidence": [
+        "Inspected both complete supplied patches. docs/requirements/qa-supervisor/interview.json records the superseded retention decision and explicitly preserves the limitation that implementation and operating-system behavior remain unverified.",
+        "docs/requirements/qa-supervisor/registro-skill-asistente.md documents bounded local stdout/stderr retention, manual deletion, and blocking at capacity. These documentation changes provide no concrete production failure or measured operational regression attributable to this candidate."
+      ],
+      "result_hash": "sha256:9f99abbf1065499a482c14f335f49edb26ea79ee0d199e5e9f7cd89cf220c240"
+    },
+    {
+      "lens": "review-reliability",
+      "findings": [],
+      "evidence": [
+        "Inspected both immutable patches. docs/requirements/qa-supervisor/interview.json records that the historical minimal-receipt decision is superseded by bounded output retention and manual deletion.",
+        "docs/requirements/qa-supervisor/registro-skill-asistente.md records the subsequent resolution: 32 MiB is capacity rather than duration, deletion is manual, and capacity exhaustion blocks further retention. These documentation changes introduce no demonstrated executable regression; implementation remains explicitly unverified."
+      ],
+      "result_hash": "sha256:79fc4a59bf8b959d37c4a52730d9ebd13655e839624cf92e1598f1ca8fb9d109"
+    }
+  ],
+  "acknowledgement": {
+    "operation": "review.acknowledge-approved",
+    "command": "gentle-ai review acknowledge-approved --cwd=/workspace/replica-gentle-ai --lineage=review-55dd99a391c31587 --target=sha256:253ee548817ed343bb1b152d174e2c3967ce88fce3d8142be990aeefc0ac00fd --expected-revision=sha256:19fc065ec4cb1c3a4126e80befba356d9b352b6a4170405089a1b1c881042948 --token=9fef3a136032ee6e91df5c6b35edf33cc5e7ceddae77e46889e085177eb654ee",
+    "arguments": [
+      {
+        "name": "cwd",
+        "value": "/workspace/replica-gentle-ai",
+        "token": "--cwd=/workspace/replica-gentle-ai"
+      },
+      {
+        "name": "lineage",
+        "value": "review-55dd99a391c31587",
+        "token": "--lineage=review-55dd99a391c31587"
+      },
+      {
+        "name": "target",
+        "value": "sha256:253ee548817ed343bb1b152d174e2c3967ce88fce3d8142be990aeefc0ac00fd",
+        "token": "--target=sha256:253ee548817ed343bb1b152d174e2c3967ce88fce3d8142be990aeefc0ac00fd"
+      },
+      {
+        "name": "expected-revision",
+        "value": "sha256:19fc065ec4cb1c3a4126e80befba356d9b352b6a4170405089a1b1c881042948",
+        "token": "--expected-revision=sha256:19fc065ec4cb1c3a4126e80befba356d9b352b6a4170405089a1b1c881042948"
+      },
+      {
+        "name": "token",
+        "value": "9fef3a136032ee6e91df5c6b35edf33cc5e7ceddae77e46889e085177eb654ee",
+        "token": "--token=9fef3a136032ee6e91df5c6b35edf33cc5e7ceddae77e46889e085177eb654ee"
+      }
+    ],
+    "preconditions": [
+      {
+        "name": "state",
+        "value": "approved"
+      }
+    ],
+    "binding": {
+      "lineage_id": "review-55dd99a391c31587",
+      "revision": "sha256:19fc065ec4cb1c3a4126e80befba356d9b352b6a4170405089a1b1c881042948",
+      "target_identity": "sha256:253ee548817ed343bb1b152d174e2c3967ce88fce3d8142be990aeefc0ac00fd"
+    }
+  },
+  "store_revision": "sha256:19fc065ec4cb1c3a4126e80befba356d9b352b6a4170405089a1b1c881042948"
+}

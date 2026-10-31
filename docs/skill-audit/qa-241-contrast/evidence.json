@@ -1,0 +1,44 @@
+{
+  "observed_at_utc": "2026-10-27T22:57:12.744710+00:00",
+  "scope": "QA claim analysis; sources not modified in this cycle",
+  "sources_sha256": {
+    "skills/requerimientos-socraticos/scripts/validate_git.py": "3e21a5bac605a1dfdfdcafe46de9510c950daf5e3f5f3a146a205a2ac44babb9",
+    "skills/requerimientos-socraticos/scripts/safe_io.py": "c40bfd51fb5ef89af85622ef662116aaf9cc2300783d09170f7258e0d43379e0",
+    "skills/requerimientos-socraticos/scripts/scratch_pool.py": "554c9c054c286b8bbc989c8e0e3b2cc4aebf493d07d90d5bf52079922ed7ade1",
+    "skills/requerimientos-socraticos/scripts/normalize_text.py": "d0ab7ffd503f095082f816d50fab99023950585f11cb5eb39aadd1a07e894fe9",
+    "skills/requerimientos-socraticos/scripts/analyze_logic.py": "407debf08de77ac6c5e329da9e3aab8a9118deef0466357c9aef670bd20fbed4",
+    "skills/requerimientos-socraticos/references/sealed-validation.md": "f8d023226d6bbe0e29523b238b2326c9e1898894344e299c1b43e65478f1be1b",
+    "skills/requerimientos-socraticos/SKILL.md": "4d79185be490ac5d26002e08484b98f256f5b70acf3bcf240a2a9107dacb24d6",
+    "skills/requerimientos-socraticos/tests/test_sealed.py": "0180fe338caf67b24f92676f317c79544a862161fac4c7fe90d63504c90edee4",
+    "AGENTS.md": "958aa3f57cf99d4e6124859cc524d7d6d32942a5a72ffa017f266813b30b33f2"
+  },
+  "gentle_ai_version": "4.2.0",
+  "rdd_mode_observed": "ON",
+  "new_rdd_approval": false,
+  "tests": {
+    "suite": "test_sealed.py",
+    "passed": 23,
+    "failed": 0,
+    "execution_type": "LOCAL_EXISTING_REGRESSION",
+    "record_type": "TRANSCRIPTION_OF_OBSERVED_TOOL_RESULT",
+    "observed_unittest_elapsed_seconds": 0.758,
+    "tool_chunk_id": "d5022f",
+    "scope_limitation": "Does not reproduce parent termination while validate_prd consumes its bundle"
+  },
+  "independent_review": {
+    "agent": "qa241_claim_triage",
+    "kind": "STATIC_READ_ONLY",
+    "logical_requests": 1,
+    "invocations_emitted": 1,
+    "invocations_completed": 1,
+    "transport_failures": 0,
+    "retries": 0
+  },
+  "source_of_subprocess_run": {
+    "python_version": "3.12.14",
+    "module_path": "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/subprocess.py",
+    "sha256": "85d29b2bf0249f5436838298c9a60ee93508b1102e9ac43b001f8a7e7ae8f375"
+  },
+  "skill_version": "2.4.1",
+  "advance": "BLOCKED_GLOBAL_ENFORCEMENT"
+}

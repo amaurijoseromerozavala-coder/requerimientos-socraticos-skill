@@ -1,0 +1,73 @@
+{
+  "schema": "gentle-ai.review-last-event-closure/v1",
+  "operation": "review/capture-result",
+  "lineage_id": "review-7a9416af43bbf95b",
+  "state": "approved",
+  "action": "the approved review completed on the last admitted event and awaits its exact acknowledgement",
+  "reviewer_results": [
+    {
+      "lens": "review-resilience",
+      "findings": [],
+      "evidence": [
+        "Inspected all four supplied immutable patches. No concrete change-caused resilience failure was identified.",
+        "skills/qa-inquisidor/scripts/validate_report.py bounds observation to 128 decoded records without additional file reads, marks incomplete scans as partial, and preserves the calculated observation in infrastructure and input-error responses.",
+        "skills/qa-inquisidor/tests/test_observation.py covers malformed JSON, malformed records, unsupported containers, and scan truncation. Tests were inspected but not executed, as commands were prohibited."
+      ],
+      "result_hash": "sha256:fcec6a15e735e22d31f9fa9eb2a98b9842849fe34f983c80149dd043b72c8e22"
+    },
+    {
+      "lens": "review-reliability",
+      "findings": [],
+      "evidence": [
+        "Inspected all four supplied immutable patches; no commands were run or external files read.",
+        "skills/qa-inquisidor/scripts/validate_report.py bounds observation to 128 records, counts only direct FAIL outcomes, and prevents incomplete scans from asserting absence. Observation is attached independently of validation and retained in both displayed exception paths.",
+        "skills/qa-inquisidor/tests/test_observation.py supplies observable assertions for rejected documents, decoding failures, direct-field inspection, scan truncation, malformed records, invalid containers, and empty evidence. Test execution and the claimed overall suite totals were not independently verified.",
+        "AGENTS.md and skills/qa-inquisidor/SKILL.md consistently describe the version update and the observation's limited meaning."
+      ],
+      "result_hash": "sha256:7d390efacfb52f922ae52fd916b53f47173f143a0206005d921dee505c6abb9c"
+    }
+  ],
+  "acknowledgement": {
+    "operation": "review.acknowledge-approved",
+    "command": "gentle-ai review acknowledge-approved --cwd=/workspace/replica-gentle-ai --lineage=review-7a9416af43bbf95b --target=sha256:aabfa52ad49dd986576f01d7d43eec90e283e553c8aba859e94e750b01683ebf --expected-revision=sha256:e276b42ae02f3d05212511bca7eaa4a827833425636c88f08949f50f5cc792da --token=8bcf9ddfbeacc2a608e9ab00b1dc5d2d5d6509bc81598c1cd8ee8068c51ab4dc",
+    "arguments": [
+      {
+        "name": "cwd",
+        "value": "/workspace/replica-gentle-ai",
+        "token": "--cwd=/workspace/replica-gentle-ai"
+      },
+      {
+        "name": "lineage",
+        "value": "review-7a9416af43bbf95b",
+        "token": "--lineage=review-7a9416af43bbf95b"
+      },
+      {
+        "name": "target",
+        "value": "sha256:aabfa52ad49dd986576f01d7d43eec90e283e553c8aba859e94e750b01683ebf",
+        "token": "--target=sha256:aabfa52ad49dd986576f01d7d43eec90e283e553c8aba859e94e750b01683ebf"
+      },
+      {
+        "name": "expected-revision",
+        "value": "sha256:e276b42ae02f3d05212511bca7eaa4a827833425636c88f08949f50f5cc792da",
+        "token": "--expected-revision=sha256:e276b42ae02f3d05212511bca7eaa4a827833425636c88f08949f50f5cc792da"
+      },
+      {
+        "name": "token",
+        "value": "8bcf9ddfbeacc2a608e9ab00b1dc5d2d5d6509bc81598c1cd8ee8068c51ab4dc",
+        "token": "--token=8bcf9ddfbeacc2a608e9ab00b1dc5d2d5d6509bc81598c1cd8ee8068c51ab4dc"
+      }
+    ],
+    "preconditions": [
+      {
+        "name": "state",
+        "value": "approved"
+      }
+    ],
+    "binding": {
+      "lineage_id": "review-7a9416af43bbf95b",
+      "revision": "sha256:e276b42ae02f3d05212511bca7eaa4a827833425636c88f08949f50f5cc792da",
+      "target_identity": "sha256:aabfa52ad49dd986576f01d7d43eec90e283e553c8aba859e94e750b01683ebf"
+    }
+  },
+  "store_revision": "sha256:e276b42ae02f3d05212511bca7eaa4a827833425636c88f08949f50f5cc792da"
+}

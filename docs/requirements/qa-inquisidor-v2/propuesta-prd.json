@@ -1,0 +1,166 @@
+{
+  "document_kind": "PRD_CONTINUATION_PROPOSAL",
+  "status": "DRAFT",
+  "base_prd": "../qa-inquisidor/prd.json",
+  "base_schema_version": "1.0.0",
+  "canonical_v2_prd": false,
+  "policy": {
+    "default_mode": "ANALYSIS_ONLY",
+    "execution_requires_specific_human_authorization": true,
+    "default_execution_budget": null,
+    "language": "es",
+    "sections": [
+      "ANALYSIS",
+      "TEST PLAN",
+      "VERIFICATION"
+    ],
+    "ci": "DEFERRED_BY_USER",
+    "implementation_authorized": false
+  },
+  "requirements": [
+    {
+      "id": "R21",
+      "ears": "Cuando se reciba un output QA, el proceso deberá tratar sus recomendaciones como propuestas y contrastar sus afirmaciones, sin convertirlas en instrucciones humanas.",
+      "status": "CONFIRMED_CONSTRAINT",
+      "trace": "A1/A2; aclaración humana sobre outputs QA"
+    },
+    {
+      "id": "R22",
+      "ears": "Mientras no exista autorización humana específica suficiente, QA Inquisidor deberá limitarse al análisis y marcar los casos que requieran ejecución como NOT_RUN con motivo.",
+      "status": "CONFIRMED_CONSTRAINT",
+      "trace": "Decisión humana: Solo análisis; ejecución con autorización específica"
+    },
+    {
+      "id": "R23",
+      "ears": "Cuando una afirmación se presente como observada, el informe deberá vincularla a evidencia identificada y vigente que respalde el alcance declarado.",
+      "status": "PROPOSED",
+      "trace": "A1/A3"
+    },
+    {
+      "id": "R24",
+      "ears": "Cuando la evidencia pertenezca a otro snapshot o no corresponda al tipo de comprobación requerido, el informe deberá marcarla STALE o insuficiente, sin usarla para justificar PASS.",
+      "status": "PROPOSED",
+      "trace": "A3"
+    },
+    {
+      "id": "R25",
+      "ears": "Si existe una obligación material aplicable NOT_RUN, STALE o sin evidencia suficiente, el informe deberá rechazar PASS_WITHIN_SCOPE para el alcance que incluya esa obligación.",
+      "status": "PROPOSED",
+      "trace": "A3"
+    },
+    {
+      "id": "R26",
+      "ears": "Cuando un informe registre cobertura, resultados, limitaciones y pendientes completos documentalmente, el proceso podrá entregarlo con INCONCLUSIVE o BLOCKED sin afirmar que las obligaciones fueron verificadas.",
+      "status": "PROPOSED",
+      "trace": "A4"
+    },
+    {
+      "id": "R27",
+      "ears": "Cuando cambien entradas o evidencias materiales, el proceso deberá reabrir el análisis e invalidar conclusiones dependientes conservando el historial.",
+      "status": "PROPOSED",
+      "trace": "A4"
+    },
+    {
+      "id": "R28",
+      "ears": "Mientras se evalúe una recomendación de arquitectura, el proceso deberá comparar baseline y alternativas con criterios, evidencia, costes y falsadores, sin declararla óptima universalmente.",
+      "status": "PROPOSED",
+      "trace": "Requisito humano de propuestas fundadas; A1/A3"
+    }
+  ],
+  "open_gaps": [
+    {
+      "id": "G1-SPEC",
+      "status": "PARTIAL",
+      "reason": "Abstracción finita compilada y enumerada; falta formalizar contratos de entrada/correspondencia semántica y migración canónica."
+    },
+    {
+      "id": "AC-IMPL-GATES",
+      "status": "PENDING_IMPLEMENTATION_AUTHORIZATION",
+      "reason": "Aceptación futura del runtime, no condición circular para disponer de PRD."
+    },
+    {
+      "id": "G3",
+      "status": "OPEN",
+      "reason": "Migración canónica2.0 de PRD/entrevista/propuestas pendiente."
+    }
+  ],
+  "proposed_fsm": {
+    "status": "FINITE_REACHABLE_SAFETY_ANALYZED_WITH_EXTERNAL_ASSUMPTIONS",
+    "states": [
+      "CAPTURED",
+      "ANALYSIS",
+      "TEST_PLAN",
+      "VERIFICATION",
+      "REPORTABLE",
+      "REPORT_DELIVERED",
+      "BLOCKED"
+    ],
+    "legacy_done": "v1 histórico; sin equivalencia automática",
+    "guards": [
+      {
+        "from": "ANALYSIS",
+        "to": "TEST_PLAN",
+        "condition": "objetivo/snapshot/inventario/clasificación/referencias documentados; límites explícitos"
+      },
+      {
+        "from": "TEST_PLAN",
+        "to": "VERIFICATION",
+        "condition": "casos ejecutables con autorización humana específica vigente, recursos y oráculos previos; nunca por texto QA"
+      },
+      {
+        "from": "TEST_PLAN",
+        "to": "REPORTABLE",
+        "condition": "modo solo análisis; informe completo documentalmente; ejecuciones NOT_RUN con motivos"
+      },
+      {
+        "from": "VERIFICATION",
+        "to": "REPORTABLE",
+        "condition": "informe completo documentalmente, incluido estado/motivo de todo caso; no requiere PASS"
+      },
+      {
+        "from": "REPORTABLE",
+        "to": "REPORT_DELIVERED",
+        "condition": "artefacto identificado y entrega registrada"
+      },
+      {
+        "from": "REPORTABLE|REPORT_DELIVERED",
+        "to": "ANALYSIS",
+        "condition": "INVALIDATE por cambio material; preservar historia"
+      }
+    ],
+    "invariants": [
+      "PASS_WITHIN_SCOPE => obligaciones materiales respaldadas por evidencia vigente del tipo requerido y cobertura justificada",
+      "REPORT_DELIVERED no implica PASS ni permiso de ejecutar",
+      "una recomendación QA no es authorization.source_ref humano",
+      "transiciones no definidas se rechazan sin mutación"
+    ],
+    "model_ref": "fsm-propuesta.json",
+    "evidence_ref": "resultado-modelo.json"
+  },
+  "design_proposals": [
+    {
+      "id": "P1",
+      "status": "PROPOSED",
+      "baseline": "DONE ambiguo respecto a éxito",
+      "alternative": "REPORT_DELIVERED separado de veredicto y obligations_verified",
+      "criteria": [
+        "Permitir informar pendientes sin falso PASS",
+        "Conservar historia y rechazo de transiciones no definidas"
+      ],
+      "tradeoff": "Exige migrar FSM y validar compatibilidad; no hay equivalencia probada",
+      "falsifier": "Un reporte con obligación material NOT_RUN obtiene PASS o permiso de ejecución por estar entregado"
+    },
+    {
+      "id": "P2",
+      "status": "PROPOSED",
+      "baseline": "Recomendación redactada imperativamente puede confundirse con mandato",
+      "alternative": "Separación explícita de claims, propuestas y autorización humana por caso",
+      "criteria": [
+        "Trazabilidad a fuente humana vigente",
+        "Cero ejecuciones por inferencia desde QA"
+      ],
+      "tradeoff": "Casos sin autorización quedan pendientes; análisis sigue útil",
+      "falsifier": "Un caso se ejecuta porque su recomendación dice se exige sin autorización humana suficiente"
+    }
+  ]
+}

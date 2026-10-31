@@ -1,0 +1,67 @@
+{
+  "schema": "gentle-ai.review-integration.start/v4",
+  "contract": "gentle-ai.review-integration/v2",
+  "operation": "review.start",
+  "action": "closed",
+  "lenses_required": false,
+  "lineage_id": "review-6b91084af3557c74",
+  "state": "approved",
+  "risk_level": "low",
+  "selected_lenses": [],
+  "projection": "workspace",
+  "target_mode": "base-workspace-overlay",
+  "target_identity": "sha256:fd1ce6938b4cf4dfa9e38c9653812c593225842114ef1264187f879cb085f5b0",
+  "base_tree": "b7417ff0e2a7070ddb275d37695eecc699af7e8e",
+  "candidate_tree": "1e4862e3f4f44f4d436337088aa293b02da3379d",
+  "changed_files": 1,
+  "changed_lines": 106,
+  "correction_budget": 53,
+  "risk_reasons": [
+    {
+      "code": "non_executable_only"
+    }
+  ],
+  "artifact_subjects": [],
+  "acknowledgement": {
+    "operation": "review.acknowledge-approved",
+    "command": "gentle-ai review acknowledge-approved --cwd=/workspace/replica-gentle-ai --lineage=review-6b91084af3557c74 --target=sha256:fd1ce6938b4cf4dfa9e38c9653812c593225842114ef1264187f879cb085f5b0 --expected-revision=sha256:d92917302a270b773183ad45647c19bed2ef8ed54b1c66e3a0408e1d4fa3f71c --token=d0801479ce6d36cea26f63de6bbb6815a3b7ed4163612383437ccdd4ac929d42",
+    "arguments": [
+      {
+        "name": "cwd",
+        "value": "/workspace/replica-gentle-ai",
+        "token": "--cwd=/workspace/replica-gentle-ai"
+      },
+      {
+        "name": "lineage",
+        "value": "review-6b91084af3557c74",
+        "token": "--lineage=review-6b91084af3557c74"
+      },
+      {
+        "name": "target",
+        "value": "sha256:fd1ce6938b4cf4dfa9e38c9653812c593225842114ef1264187f879cb085f5b0",
+        "token": "--target=sha256:fd1ce6938b4cf4dfa9e38c9653812c593225842114ef1264187f879cb085f5b0"
+      },
+      {
+        "name": "expected-revision",
+        "value": "sha256:d92917302a270b773183ad45647c19bed2ef8ed54b1c66e3a0408e1d4fa3f71c",
+        "token": "--expected-revision=sha256:d92917302a270b773183ad45647c19bed2ef8ed54b1c66e3a0408e1d4fa3f71c"
+      },
+      {
+        "name": "token",
+        "value": "d0801479ce6d36cea26f63de6bbb6815a3b7ed4163612383437ccdd4ac929d42",
+        "token": "--token=d0801479ce6d36cea26f63de6bbb6815a3b7ed4163612383437ccdd4ac929d42"
+      }
+    ],
+    "preconditions": [
+      {
+        "name": "state",
+        "value": "approved"
+      }
+    ],
+    "binding": {
+      "lineage_id": "review-6b91084af3557c74",
+      "revision": "sha256:d92917302a270b773183ad45647c19bed2ef8ed54b1c66e3a0408e1d4fa3f71c",
+      "target_identity": "sha256:fd1ce6938b4cf4dfa9e38c9653812c593225842114ef1264187f879cb085f5b0"
+    }
+  }
+}

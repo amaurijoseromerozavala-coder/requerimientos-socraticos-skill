@@ -1,0 +1,15 @@
+GREEN específico:
+python -B -m unittest discover -s skills/requerimientos-socraticos/tests -p test_activation_preflight.py -v
+5 tests: OK.
+
+Regresiones secuenciales previas:
+test_logic_memory.py: 18 tests OK.
+test_validation_budget.py: 11 tests OK.
+test_environment.py: 8 tests OK.
+
+Regresión completa:
+python -B -m unittest discover -s skills/requerimientos-socraticos/tests -v
+229 tests: OK.
+
+Interprete usado en todos los comandos:
+/home/agent/.local/share/requerimientos-socraticos/venv/bin/python -B

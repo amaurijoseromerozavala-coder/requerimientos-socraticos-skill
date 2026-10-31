@@ -1,0 +1,51 @@
+{
+  "reviewer_results": [
+    {
+      "lens": "review-reliability",
+      "findings": [
+        {
+          "id": "R3-evidence-kind-binding",
+          "lens": "reliability",
+          "location": "docs/requirements/qa-inquisidor/evidence/document-checker.txt:70-78",
+          "severity": "WARNING",
+          "claim": "El comprobador acepta un resultado PASS de una prueba REAL_EXECUTION respaldado únicamente por STATIC_REVIEW. Contraejemplo por inspección: cambiar en el fixture execution_kind a REAL_EXECUTION y authorization_status a AUTHORIZED, conservando la evidencia estática y el veredicto PASS_WITHIN_SCOPE. El schema permite esta combinación y fresh solo comprueba referencias, snapshot y autorización pendiente; ninguno vincula el tipo de ejecución solicitado con la evidencia del resultado. Esto deja sin demostrar la separación entre ejecución real y revisión estática. Añadir esa comprobación y un control negativo que rechace este informe.",
+          "proof_refs": [
+            "docs/requirements/qa-inquisidor/evidence/report-fixture.json",
+            "docs/requirements/qa-inquisidor/evidence/document-checker.txt:64-79",
+            "docs/requirements/qa-inquisidor/qa-report.schema.json"
+          ],
+          "evidence_class": "deterministic",
+          "causal_disposition": "introduced"
+        }
+      ],
+      "evidence": [
+        "Se inspeccionaron los doce parches suministrados, incluido el archivo vacío docs/requirements/qa-inquisidor/evidence/validation.stderr. No se ejecutaron comandos ni se consultaron archivos externos.",
+        "docs/requirements/qa-inquisidor/evidence/document-checker.txt contiene controles negativos y enumeración del modelo finito; docs/requirements/qa-inquisidor/evidence/validation.stdout conserva sus resultados declarados. Estos resultados se revisaron estáticamente, sin reproducirlos.",
+        "docs/requirements/qa-inquisidor/PRD.md declara el estado DRAFT y los límites del modelo; la observación reportada afecta al contrato documental y su comprobador, sin atribuir comportamiento a una skill implementada."
+      ],
+      "result_hash": "sha256:85f41548fdef929bc6cadfc6fcd1350afbf7285defa9e51c21958ac28d175fc0"
+    }
+  ],
+  "state": "approved",
+  "acknowledgement": {
+    "schema": "gentle-ai.review-acknowledged/v1",
+    "operation": "review/acknowledge-approved",
+    "action": "acknowledged",
+    "lineage_id": "review-cae10073c73becd8",
+    "target_identity": "sha256:a0a31ec6b389fc4da3e6c65b790386e3b85e9ded6638f0855de5a115efa8e0ec",
+    "consumed_revision": "sha256:668734406991587f8b343f23ed5476fd1bcfbad6f4caebef3a54ec446b0b320e",
+    "authority": "burned"
+  },
+  "advisory_findings": {
+    "statement": "This review is approved and its receipt stands. Every finding listed here is non-blocking: none opened a correction, none reopens this review, and no correction transition is offered for this candidate. Treat them as separate later work, never as a reason to re-run review on this candidate.",
+    "findings": [
+      {
+        "id": "R3-evidence-kind-binding",
+        "lens": "reliability",
+        "location": "docs/requirements/qa-inquisidor/evidence/document-checker.txt:70-78",
+        "severity": "WARNING",
+        "disposition": "informational"
+      }
+    ]
+  }
+}

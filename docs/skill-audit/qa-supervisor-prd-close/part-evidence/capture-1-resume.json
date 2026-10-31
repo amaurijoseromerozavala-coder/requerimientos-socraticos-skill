@@ -1,0 +1,118 @@
+{
+  "schema": "gentle-ai.review-last-event-closure/v1",
+  "operation": "review/capture-result",
+  "lineage_id": "review-e3ace361dd26dcf9",
+  "state": "approved",
+  "action": "the approved review completed on the last admitted event and awaits its exact acknowledgement",
+  "advisory_findings": {
+    "statement": "This review is approved and its receipt stands. Every finding listed here is non-blocking: none opened a correction, none reopens this review, and no correction transition is offered for this candidate. Treat them as separate later work, never as a reason to re-run review on this candidate.",
+    "findings": [
+      {
+        "id": "R3-001",
+        "lens": "reliability",
+        "location": "docs/requirements/qa-supervisor/verification/check-document-model.py:3",
+        "severity": "WARNING",
+        "disposition": "informational"
+      },
+      {
+        "id": "R3-002",
+        "lens": "reliability",
+        "location": "docs/requirements/qa-supervisor/verification/check-output-contract.py:29-33",
+        "severity": "WARNING",
+        "disposition": "informational"
+      }
+    ]
+  },
+  "reviewer_results": [
+    {
+      "lens": "review-resilience",
+      "findings": [],
+      "evidence": [
+        "Inspected all 25 supplied patches without accessing external files or executing commands. The candidate adds documentary records and verification helpers; the supplied content establishes no introduced production failure mode or measured operational regression.",
+        "docs/requirements/qa-supervisor/verification/closure-independent.md explicitly limits recovery, timing, resource and persistence claims to documentary review and identifies implementation crash-window tests as pending.",
+        "docs/requirements/qa-supervisor/verification/check-canonical-model.py checks qualified-event coverage, actor authority and lock preservation, while explicitly excluding OS, clock, persistence and total-liveness proofs.",
+        "docs/requirements/qa-supervisor/verification/check-output-contract.py exercises bounded synthetic checker inputs, including malformed JSON and a controlled OSError; these checks do not establish supervisor runtime resilience."
+      ],
+      "result_hash": "sha256:fb2f15c5e2ba4d39e6a7baeaba608d9772e06ee19f22452e69c28be56c514d39"
+    },
+    {
+      "lens": "review-reliability",
+      "findings": [
+        {
+          "id": "R3-001",
+          "lens": "reliability",
+          "location": "docs/requirements/qa-supervisor/verification/check-document-model.py:3",
+          "severity": "WARNING",
+          "claim": "The document checker reads a fixed absolute checkout directory. Running it from another checkout either fails before checking anything or checks unrelated files if that directory exists. Resolve the document directory relative to __file__ so the reported checks describe the candidate being reviewed.",
+          "proof_refs": [
+            "docs/requirements/qa-supervisor/verification/check-document-model.py:3-4"
+          ],
+          "evidence_class": "deterministic",
+          "causal_disposition": "introduced"
+        },
+        {
+          "id": "R3-002",
+          "lens": "reliability",
+          "location": "docs/requirements/qa-supervisor/verification/check-output-contract.py:29-33",
+          "severity": "WARNING",
+          "claim": "The five checker scenarios assert only that their outputs are admitted by the contract, without asserting the expected return code, verdict, event, or observation for each scenario. A checker that returns the same valid infrastructure-failure envelope for every input could pass all five positive cases. Add scenario-specific assertions on externally observable output so synthetic success, contradiction, invalid input, read failure, and partial scanning are actually distinguished.",
+          "proof_refs": [
+            "docs/requirements/qa-supervisor/verification/check-output-contract.py:29-36",
+            "docs/requirements/qa-supervisor/verification/output-contract-results.json:5-34"
+          ],
+          "evidence_class": "deterministic",
+          "causal_disposition": "introduced"
+        }
+      ],
+      "evidence": [
+        "Inspected all 25 supplied patches without accessing external files or running commands.",
+        "docs/requirements/qa-supervisor/verification/check-canonical-model.py:5-19 checks reachable transition coverage, actor authority, and lock preservation with two mutation controls; it explicitly limits its claims to qualified document events.",
+        "docs/requirements/qa-supervisor/verification/closure-independent.md:31-33 explicitly leaves process behavior, durable recovery, races, permissions, and resource consumption unverified; no implementation-level success was inferred from the retained results."
+      ],
+      "result_hash": "sha256:8e505142f3ea689914261a631e15ff9e18e15d3e3fa0c3e30ca00b87d8af83a4"
+    }
+  ],
+  "acknowledgement": {
+    "operation": "review.acknowledge-approved",
+    "command": "gentle-ai review acknowledge-approved --cwd=/workspace/replica-gentle-ai --lineage=review-e3ace361dd26dcf9 --target=sha256:77778c85936cef6f218a7b53540fbdca3c84e348476919278a2fbfa0830f1ec2 --expected-revision=sha256:7d20e9f302b659f2975737f65cfeb6add05a489f57d61b925e431bf889cf41b0 --token=e25e762740ffa59209cd9fcc40596813c6356bed2f4e9fb7a5a1e7ac4f78e466",
+    "arguments": [
+      {
+        "name": "cwd",
+        "value": "/workspace/replica-gentle-ai",
+        "token": "--cwd=/workspace/replica-gentle-ai"
+      },
+      {
+        "name": "lineage",
+        "value": "review-e3ace361dd26dcf9",
+        "token": "--lineage=review-e3ace361dd26dcf9"
+      },
+      {
+        "name": "target",
+        "value": "sha256:77778c85936cef6f218a7b53540fbdca3c84e348476919278a2fbfa0830f1ec2",
+        "token": "--target=sha256:77778c85936cef6f218a7b53540fbdca3c84e348476919278a2fbfa0830f1ec2"
+      },
+      {
+        "name": "expected-revision",
+        "value": "sha256:7d20e9f302b659f2975737f65cfeb6add05a489f57d61b925e431bf889cf41b0",
+        "token": "--expected-revision=sha256:7d20e9f302b659f2975737f65cfeb6add05a489f57d61b925e431bf889cf41b0"
+      },
+      {
+        "name": "token",
+        "value": "e25e762740ffa59209cd9fcc40596813c6356bed2f4e9fb7a5a1e7ac4f78e466",
+        "token": "--token=e25e762740ffa59209cd9fcc40596813c6356bed2f4e9fb7a5a1e7ac4f78e466"
+      }
+    ],
+    "preconditions": [
+      {
+        "name": "state",
+        "value": "approved"
+      }
+    ],
+    "binding": {
+      "lineage_id": "review-e3ace361dd26dcf9",
+      "revision": "sha256:7d20e9f302b659f2975737f65cfeb6add05a489f57d61b925e431bf889cf41b0",
+      "target_identity": "sha256:77778c85936cef6f218a7b53540fbdca3c84e348476919278a2fbfa0830f1ec2"
+    }
+  },
+  "store_revision": "sha256:7d20e9f302b659f2975737f65cfeb6add05a489f57d61b925e431bf889cf41b0"
+}

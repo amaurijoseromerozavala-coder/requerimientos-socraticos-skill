@@ -1,0 +1,12 @@
+{
+  "jsonrpc": "2.0",
+  "id": 2,
+  "result": {
+    "content": [
+      {
+        "type": "text",
+        "text": "{\"candidates\":[{\"id\":5,\"judgment_id\":\"rel-706be85ee8e010fe\",\"score\":-0.000001930320313591865,\"sync_id\":\"obs-a6551f02fc306048\",\"title\":\"RDD autenticado y operativo\",\"type\":\"decision\"}],\"id\":6,\"judgment_id\":\"rel-706be85ee8e010fe\",\"judgment_required\":true,\"judgment_status\":\"pending\",\"project\":\"replica-gentle-ai\",\"project_path\":\"\",\"project_source\":\"explicit_override\",\"result\":\"Memory saved: \\\"PRD QA Inquisidor: ensayos acotados y RDD documental cerrado\\\" (progress)\\n⚠ WARNING: Content contains an absolute filesystem path that may not be portable across machines. Use a repository-relative path instead.\\nCONFLICT REVIEW PENDING — 1 candidate(s); use mem_judge to record verdicts.\",\"review_after\":\"2027-04-26 16:23:21\",\"state\":\"active\",\"sync_id\":\"obs-52b358566c2f791f\",\"truncation\":{\"original_bytes\":8192,\"limit_bytes\":50000,\"truncated\":false}}"
+      }
+    ]
+  }
+}

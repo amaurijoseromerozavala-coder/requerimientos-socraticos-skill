@@ -1,0 +1,56 @@
+test_cli_rejects_budget_below_existing_virtual_size_before_changing_limits (test_validation_budget.ValidationBudgetTests.test_cli_rejects_budget_below_existing_virtual_size_before_changing_limits) ... FAIL
+test_coordinator_memory_error_returns_fixed_failure_record (test_validation_budget.ValidationBudgetTests.test_coordinator_memory_error_returns_fixed_failure_record) ... ok
+test_coordinator_transport_keeps_room_for_existing_complete_manifest (test_validation_budget.ValidationBudgetTests.test_coordinator_transport_keeps_room_for_existing_complete_manifest) ... ERROR
+test_document_memory_error_returns_fixed_failure_record (test_validation_budget.ValidationBudgetTests.test_document_memory_error_returns_fixed_failure_record) ... ok
+test_explicit_coordinator_memory_failure_blocks (test_validation_budget.ValidationBudgetTests.test_explicit_coordinator_memory_failure_blocks) ... ok
+test_inherited_hard_limit_rejection_is_classified_without_mutation (test_validation_budget.ValidationBudgetTests.test_inherited_hard_limit_rejection_is_classified_without_mutation) ... ERROR
+test_invalid_policy_rejected_before_spawning (test_validation_budget.ValidationBudgetTests.test_invalid_policy_rejected_before_spawning) ... ok
+test_library_caller_limits_unchanged_and_data_workers_capped (test_validation_budget.ValidationBudgetTests.test_library_caller_limits_unchanged_and_data_workers_capped) ... ok
+test_missing_diagnostic_is_not_reported_as_proven_memory_exhaustion (test_validation_budget.ValidationBudgetTests.test_missing_diagnostic_is_not_reported_as_proven_memory_exhaustion) ... ok
+test_public_cli_bounds_owned_caller_and_keeps_byte_identity (test_validation_budget.ValidationBudgetTests.test_public_cli_bounds_owned_caller_and_keeps_byte_identity) ... ok
+
+======================================================================
+ERROR: test_coordinator_transport_keeps_room_for_existing_complete_manifest (test_validation_budget.ValidationBudgetTests.test_coordinator_transport_keeps_room_for_existing_complete_manifest)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/replica-gentle-ai/skills/requerimientos-socraticos/tests/test_validation_budget.py", line 120, in test_coordinator_transport_keeps_room_for_existing_complete_manifest
+    self.assertEqual(run.call_args.kwargs['output_limit_bytes'], 8*1024*1024)
+                     ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^
+KeyError: 'output_limit_bytes'
+
+======================================================================
+ERROR: test_inherited_hard_limit_rejection_is_classified_without_mutation (test_validation_budget.ValidationBudgetTests.test_inherited_hard_limit_rejection_is_classified_without_mutation)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/replica-gentle-ai/skills/requerimientos-socraticos/tests/test_validation_budget.py", line 97, in test_inherited_hard_limit_rejection_is_classified_without_mutation
+    validate_git.validate_commit(self.fixture.repo, self.commit, 'prd.json')
+  File "/workspace/replica-gentle-ai/skills/requerimientos-socraticos/scripts/validate_git.py", line 46, in validate_commit
+    result = run_supervised(command, remaining, pass_fds=(lease_fd,),
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/replica-gentle-ai/skills/requerimientos-socraticos/scripts/process_supervision.py", line 64, in run_supervised
+    raise ValueError('address_space_limit exceeds inherited hard RLIMIT_AS')
+ValueError: address_space_limit exceeds inherited hard RLIMIT_AS
+
+======================================================================
+FAIL: test_cli_rejects_budget_below_existing_virtual_size_before_changing_limits (test_validation_budget.ValidationBudgetTests.test_cli_rejects_budget_below_existing_virtual_size_before_changing_limits)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/replica-gentle-ai/skills/requerimientos-socraticos/tests/test_validation_budget.py", line 109, in test_cli_rejects_budget_below_existing_virtual_size_before_changing_limits
+    code = validate_git.main()
+           ^^^^^^^^^^^^^^^^^^^
+  File "/workspace/replica-gentle-ai/skills/requerimientos-socraticos/scripts/validate_git.py", line 96, in main
+    enforce_address_space(policy['roles_bytes']['caller'], policy['roles_bytes']['coordinator'])
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/unittest/mock.py", line 1139, in __call__
+    return self._mock_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/unittest/mock.py", line 1143, in _mock_call
+    return self._execute_mock_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/unittest/mock.py", line 1198, in _execute_mock_call
+    raise effect
+AssertionError: must not lower limits
+
+----------------------------------------------------------------------
+Ran 10 tests in 0.372s
+
+FAILED (failures=1, errors=2)

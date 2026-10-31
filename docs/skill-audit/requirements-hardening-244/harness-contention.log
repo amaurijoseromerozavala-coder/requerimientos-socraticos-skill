@@ -1,0 +1,14 @@
+2026-10-28. Registro de la primera ejecución concurrente de test_supervisor.py y test_logic.py.
+Resumen conservado desde las salidas de terminal; no es una ejecución RED de producto.
+Ambas suites arrancaron mediante Promise.allSettled con timeout exterior 20s por suite.
+El gate cooperativo compartido volvió estas operaciones dependientes.
+
+test_supervisor.py: Ran 11 tests in 0.727s; FAILED (failures=2).
+- test_cli_depth_is_rejected_before_decoder_recursion: AssertionError: 3 != 2.
+- test_worker_output_limit_is_inconclusive:
+  AssertionError: 'RESOURCE_BUSY' != 'WORKER_OUTPUT_LIMIT'.
+test_logic.py: Ran 7 tests in 2.747s; OK.
+
+Repetición secuencial test_supervisor.py: Ran 11 tests in 0.727s; OK.
+La suite final debe ser secuencial. La inyección de worker output_limit ya aísla
+admisión: prueba clasificación del supervisor sin depender de actividad ajena.

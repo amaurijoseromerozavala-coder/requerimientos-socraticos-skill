@@ -1,0 +1,154 @@
+{
+  "schema": "gentle-ai.review-integration.status/v9",
+  "contract": "gentle-ai.review-integration/v2",
+  "operation": "review.status",
+  "applicability": "unrelated",
+  "action": "start",
+  "replayability": "not_replayable",
+  "target_identity": "sha256:fff814fc0c47bb600d329ee7653510a28b41fcf806f1fffae8d9cb53e3e7ed1c",
+  "projection": {
+    "schema": "gentle-ai.review-integration.projection/v1",
+    "kind": "base-workspace-overlay",
+    "projection": "workspace",
+    "base_tree": "6bce9e84046fd49bf5200bec9fcb697bb99f930f",
+    "initial_review_tree": "00de2774d90901b880920b2b92849c03df4598f9",
+    "current_candidate_tree": "00de2774d90901b880920b2b92849c03df4598f9",
+    "paths_digest": "sha256:0320457a93238ccdb19282280251a90864e6637f35435a808dd1803085c063f4",
+    "paths": [
+      "docs/requirements/qa-supervisor/prd.json"
+    ],
+    "intended_untracked": [
+      "docs/requirements/qa-supervisor/prd.json"
+    ],
+    "intended_untracked_proof": "sha256:4c1da389b1853726c20174c71121af3174043f55d68c5533687c4f6e8a26bd3d",
+    "initial_snapshot_identity": "sha256:fff814fc0c47bb600d329ee7653510a28b41fcf806f1fffae8d9cb53e3e7ed1c",
+    "current_snapshot_identity": "sha256:fff814fc0c47bb600d329ee7653510a28b41fcf806f1fffae8d9cb53e3e7ed1c"
+  },
+  "eligible_untracked_inventory": "sha256:d46edaf41aa3f47bba21a06ad726bc31218dda1911f6e355d651432bf7f45200",
+  "repair": {
+    "schema": "gentle-ai.review-authority-repair-assessment/v1",
+    "status": "unsupported",
+    "counts": {
+      "lineages": 0,
+      "compact_lineages": 0,
+      "legacy_lineages": 0,
+      "events": 0,
+      "bytes": 0,
+      "eligible_candidates": 0,
+      "unsupported_lineages": 0,
+      "conflicts": 0
+    },
+    "supported_operations": [
+      "review/complete-fix",
+      "review/validate-fix"
+    ],
+    "authorization_schema": "gentle-ai.review-repair-authorization/v1"
+  },
+  "candidates": [],
+  "forecast": {
+    "horizon": "partial",
+    "steps": [
+      {
+        "step": 1,
+        "kind": "execute",
+        "reason_code": "fresh_target_ready",
+        "description": "Target is unreviewed and ready for initial review start"
+      }
+    ]
+  },
+  "next_transition": {
+    "kind": "execute",
+    "reason_code": "fresh_target_ready",
+    "execute": {
+      "operation": "review.start",
+      "command": "gentle-ai review start --cwd=/workspace/replica-gentle-ai --contract=gentle-ai.review-integration/v2 --target=sha256:fff814fc0c47bb600d329ee7653510a28b41fcf806f1fffae8d9cb53e3e7ed1c --target-evidence=v1:base-workspace-overlay:workspace:6bce9e84046fd49bf5200bec9fcb697bb99f930f:00de2774d90901b880920b2b92849c03df4598f9:sha256:0320457a93238ccdb19282280251a90864e6637f35435a808dd1803085c063f4 --projection=workspace --base-ref=6bce9e84046fd49bf5200bec9fcb697bb99f930f --workspace-overlay=true --lineage=review-b0c6940b9bfa0dc6 --agent=codex --consent=relay --untracked-scope=select --expected-untracked-inventory=sha256:d46edaf41aa3f47bba21a06ad726bc31218dda1911f6e355d651432bf7f45200 --intended-untracked=docs/requirements/qa-supervisor/prd.json --lenses=review-resilience,review-reliability '--lenses-reason=Documentary follow-up: manual raw QA output retention32MiB and three advisories. Other partitions separate; no implementation approval.'",
+      "arguments": [
+        {
+          "name": "cwd",
+          "value": "/workspace/replica-gentle-ai",
+          "token": "--cwd=/workspace/replica-gentle-ai"
+        },
+        {
+          "name": "contract",
+          "value": "gentle-ai.review-integration/v2",
+          "token": "--contract=gentle-ai.review-integration/v2"
+        },
+        {
+          "name": "target",
+          "value": "sha256:fff814fc0c47bb600d329ee7653510a28b41fcf806f1fffae8d9cb53e3e7ed1c",
+          "token": "--target=sha256:fff814fc0c47bb600d329ee7653510a28b41fcf806f1fffae8d9cb53e3e7ed1c"
+        },
+        {
+          "name": "target-evidence",
+          "value": "v1:base-workspace-overlay:workspace:6bce9e84046fd49bf5200bec9fcb697bb99f930f:00de2774d90901b880920b2b92849c03df4598f9:sha256:0320457a93238ccdb19282280251a90864e6637f35435a808dd1803085c063f4",
+          "token": "--target-evidence=v1:base-workspace-overlay:workspace:6bce9e84046fd49bf5200bec9fcb697bb99f930f:00de2774d90901b880920b2b92849c03df4598f9:sha256:0320457a93238ccdb19282280251a90864e6637f35435a808dd1803085c063f4"
+        },
+        {
+          "name": "projection",
+          "value": "workspace",
+          "token": "--projection=workspace"
+        },
+        {
+          "name": "base-ref",
+          "value": "6bce9e84046fd49bf5200bec9fcb697bb99f930f",
+          "token": "--base-ref=6bce9e84046fd49bf5200bec9fcb697bb99f930f"
+        },
+        {
+          "name": "workspace-overlay",
+          "value": "true",
+          "token": "--workspace-overlay=true"
+        },
+        {
+          "name": "lineage",
+          "value": "review-b0c6940b9bfa0dc6",
+          "token": "--lineage=review-b0c6940b9bfa0dc6"
+        },
+        {
+          "name": "agent",
+          "value": "codex",
+          "token": "--agent=codex"
+        },
+        {
+          "name": "consent",
+          "value": "relay",
+          "token": "--consent=relay"
+        },
+        {
+          "name": "untracked-scope",
+          "value": "select",
+          "token": "--untracked-scope=select"
+        },
+        {
+          "name": "expected-untracked-inventory",
+          "value": "sha256:d46edaf41aa3f47bba21a06ad726bc31218dda1911f6e355d651432bf7f45200",
+          "token": "--expected-untracked-inventory=sha256:d46edaf41aa3f47bba21a06ad726bc31218dda1911f6e355d651432bf7f45200"
+        },
+        {
+          "name": "intended-untracked",
+          "value": "docs/requirements/qa-supervisor/prd.json",
+          "token": "--intended-untracked=docs/requirements/qa-supervisor/prd.json"
+        },
+        {
+          "name": "lenses",
+          "value": "review-resilience,review-reliability",
+          "token": "--lenses=review-resilience,review-reliability"
+        },
+        {
+          "name": "lenses-reason",
+          "value": "Documentary follow-up: manual raw QA output retention32MiB and three advisories. Other partitions separate; no implementation approval.",
+          "token": "--lenses-reason=Documentary follow-up: manual raw QA output retention32MiB and three advisories. Other partitions separate; no implementation approval."
+        }
+      ],
+      "preconditions": [
+        {
+          "name": "target_identity",
+          "value": "sha256:fff814fc0c47bb600d329ee7653510a28b41fcf806f1fffae8d9cb53e3e7ed1c"
+        }
+      ],
+      "binding": {
+        "lineage_id": "review-b0c6940b9bfa0dc6",
+        "target_identity": "sha256:fff814fc0c47bb600d329ee7653510a28b41fcf806f1fffae8d9cb53e3e7ed1c"
+      }
+    }
+  }
+}

@@ -1,0 +1,10 @@
+test_binary_round_trip_and_nested_path (test_git_bundle.BundleTests.test_binary_round_trip_and_nested_path) ... ok
+test_changed_blob_bytes_rejected (test_git_bundle.BundleTests.test_changed_blob_bytes_rejected) ... ok
+test_invalid_metadata_rejected_before_body_read (test_git_bundle.BundleTests.test_invalid_metadata_rejected_before_body_read) ... ok
+test_truncation_and_trailing_data_rejected (test_git_bundle.BundleTests.test_truncation_and_trailing_data_rejected) ... ok
+test_unsafe_path_and_missing_prd_rejected (test_git_bundle.BundleTests.test_unsafe_path_and_missing_prd_rejected) ... ok
+
+----------------------------------------------------------------------
+Ran 5 tests in 0.001s
+
+OK

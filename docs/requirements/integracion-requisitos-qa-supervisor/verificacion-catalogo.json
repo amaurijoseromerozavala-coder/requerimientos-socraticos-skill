@@ -1,0 +1,10 @@
+{
+  "status": "PASS",
+  "scope": "Coverage and exact preservation of140source requirements; not design validation",
+  "source_requirements": 140,
+  "mapped_requirements": 140,
+  "lost": 0,
+  "duplicate_ids": 0,
+  "original_acceptance_and_tests_preserved": true,
+  "implementation_tests": "NOT_RUN"
+}

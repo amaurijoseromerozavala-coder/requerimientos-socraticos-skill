@@ -1,0 +1,172 @@
+
+COMMAND ['/home/agent/.local/share/requerimientos-socraticos/venv/bin/python', '-B', '-m', 'unittest', 'discover', '-s', 'tests', '-p', 'test_logic_memory.py', '-v']
+test_admission_elapsed_time_is_subtracted_before_worker (test_logic_memory.LogicMemoryTests.test_admission_elapsed_time_is_subtracted_before_worker) ... ok
+test_api_preserves_external_limits_and_sets_worker_limit_and_lease (test_logic_memory.LogicMemoryTests.test_api_preserves_external_limits_and_sets_worker_limit_and_lease) ... ok
+test_baseline_checked_before_owned_cli_limit (test_logic_memory.LogicMemoryTests.test_baseline_checked_before_owned_cli_limit) ... ok
+test_cli_never_raises_inherited_hard_limit (test_logic_memory.LogicMemoryTests.test_cli_never_raises_inherited_hard_limit) ... ok
+test_expired_admission_starts_no_worker (test_logic_memory.LogicMemoryTests.test_expired_admission_starts_no_worker) ... ok
+test_explicit_memory_error_removes_approbatory_payload (test_logic_memory.LogicMemoryTests.test_explicit_memory_error_removes_approbatory_payload) ... ok
+test_invalid_policy_is_coded_without_worker (test_logic_memory.LogicMemoryTests.test_invalid_policy_is_coded_without_worker) ... ok
+test_memory_argument_type_preserves_invalid_input (test_logic_memory.LogicMemoryTests.test_memory_argument_type_preserves_invalid_input) ... ok
+test_ordinary_worker_errors_preserve_contract_without_observation (test_logic_memory.LogicMemoryTests.test_ordinary_worker_errors_preserve_contract_without_observation) ... ok
+test_owned_cli_limit_leaves_room_for_worker (test_logic_memory.LogicMemoryTests.test_owned_cli_limit_leaves_room_for_worker) ... ok
+test_owned_cli_success_requires_observed_worker_limits (test_logic_memory.LogicMemoryTests.test_owned_cli_success_requires_observed_worker_limits) ... ok
+test_real_cli_observes_default_and_configured_process_limits (test_logic_memory.LogicMemoryTests.test_real_cli_observes_default_and_configured_process_limits) ... ok
+test_real_cli_shares_git_admission_gate (test_logic_memory.LogicMemoryTests.test_real_cli_shares_git_admission_gate) ... ok
+test_resource_rejection_is_inconclusive (test_logic_memory.LogicMemoryTests.test_resource_rejection_is_inconclusive) ... ok
+test_setup_exception_is_resource_control_failure (test_logic_memory.LogicMemoryTests.test_setup_exception_is_resource_control_failure) ... ok
+test_signal_without_diagnostic_is_not_called_oom (test_logic_memory.LogicMemoryTests.test_signal_without_diagnostic_is_not_called_oom) ... ok
+test_unknown_baseline_does_not_limit_owned_cli (test_logic_memory.LogicMemoryTests.test_unknown_baseline_does_not_limit_owned_cli) ... ok
+
+----------------------------------------------------------------------
+Ran 17 tests in 0.533s
+
+OK
+EXIT 0 ELAPSED 0.604
+
+COMMAND ['/home/agent/.local/share/requerimientos-socraticos/venv/bin/python', '-B', '-m', 'unittest', 'discover', '-s', 'tests', '-p', 'test_logic_worker_memory.py', '-v']
+test_non_memory_input_failure_retains_invalid_input (test_logic_worker_memory.LogicWorkerMemoryTests.test_non_memory_input_failure_retains_invalid_input) ... ok
+test_observed_memory_error_returns_inconclusive_without_results (test_logic_worker_memory.LogicWorkerMemoryTests.test_observed_memory_error_returns_inconclusive_without_results) ... ok
+
+----------------------------------------------------------------------
+Ran 2 tests in 0.001s
+
+OK
+EXIT 0 ELAPSED 0.082
+
+COMMAND ['/home/agent/.local/share/requerimientos-socraticos/venv/bin/python', '-B', '-m', 'unittest', 'discover', '-s', 'tests', '-p', 'test_memory_budget.py', '-v']
+test_absolute_file_import_does_not_mutate_module_search_paths (test_memory_budget.MemoryBudgetTests.test_absolute_file_import_does_not_mutate_module_search_paths) ... ok
+test_admission_private_nonblocking_and_release (test_memory_budget.MemoryBudgetTests.test_admission_private_nonblocking_and_release) ... ok
+test_admission_rejects_changed_or_type_coerced_profiles (test_memory_budget.MemoryBudgetTests.test_admission_rejects_changed_or_type_coerced_profiles) ... ok
+test_admission_uses_canonical_snapshot_after_validation (test_memory_budget.MemoryBudgetTests.test_admission_uses_canonical_snapshot_after_validation) ... ok
+test_git_policy_contract_243_is_unchanged (test_memory_budget.MemoryBudgetTests.test_git_policy_contract_243_is_unchanged) ... ok
+test_inherited_descriptor_holds_lease_until_child_exits (test_memory_budget.MemoryBudgetTests.test_inherited_descriptor_holds_lease_until_child_exits) ... ok
+test_kernel_refusal_is_explicit_and_ordinary_helpers_do_not_set_limits (test_memory_budget.MemoryBudgetTests.test_kernel_refusal_is_explicit_and_ordinary_helpers_do_not_set_limits) ... ok
+test_limit_validation_never_raises_inherited_hard (test_memory_budget.MemoryBudgetTests.test_limit_validation_never_raises_inherited_hard) ... ok
+test_logic_admission_rejects_changed_or_type_coerced_profiles (test_memory_budget.MemoryBudgetTests.test_logic_admission_rejects_changed_or_type_coerced_profiles) ... ok
+test_logic_and_git_share_one_account_lease (test_memory_budget.MemoryBudgetTests.test_logic_and_git_share_one_account_lease) ... ok
+test_logic_headroom_uses_twice_total_at_exact_boundary (test_memory_budget.MemoryBudgetTests.test_logic_headroom_uses_twice_total_at_exact_boundary) ... ok
+test_logic_policy_roles_flags_and_validation (test_memory_budget.MemoryBudgetTests.test_logic_policy_roles_flags_and_validation) ... ok
+test_partial_cgroup_rows_block_and_unlimited_visible_scope_is_distinct (test_memory_budget.MemoryBudgetTests.test_partial_cgroup_rows_block_and_unlimited_visible_scope_is_distinct) ... ok
+test_policy_roles_and_validation (test_memory_budget.MemoryBudgetTests.test_policy_roles_and_validation) ... ok
+test_process_observation_distinguishes_virtual_rss_and_high_water (test_memory_budget.MemoryBudgetTests.test_process_observation_distinguishes_virtual_rss_and_high_water) ... ok
+test_small_real_limit_in_child_only (test_memory_budget.MemoryBudgetTests.test_small_real_limit_in_child_only) ... ok
+test_unknown_or_low_headroom_blocks (test_memory_budget.MemoryBudgetTests.test_unknown_or_low_headroom_blocks) ... ok
+test_unsafe_lock_and_directory_are_rejected (test_memory_budget.MemoryBudgetTests.test_unsafe_lock_and_directory_are_rejected) ... ok
+test_unsupported_is_explicit (test_memory_budget.MemoryBudgetTests.test_unsupported_is_explicit) ... ok
+
+----------------------------------------------------------------------
+Ran 19 tests in 0.056s
+
+OK
+EXIT 0 ELAPSED 0.131
+
+COMMAND ['/home/agent/.local/share/requerimientos-socraticos/venv/bin/python', '-B', '-m', 'unittest', 'discover', '-s', 'tests', '-p', 'test_logic.py', '-v']
+test_bounds_and_invalid_ast (test_logic.LogicTests.test_bounds_and_invalid_ast) ... ok
+test_budget_and_table_limits (test_logic.LogicTests.test_budget_and_table_limits) ... ok
+test_empty_domain_and_property (test_logic.LogicTests.test_empty_domain_and_property) ... ok
+test_empty_variables_and_scope (test_logic.LogicTests.test_empty_variables_and_scope) ... ok
+test_missing_solver_is_structured (test_logic.LogicTests.test_missing_solver_is_structured) ... ok
+test_solver_failure_is_structured (test_logic.LogicTests.test_solver_failure_is_structured) ... ok
+test_triple_conflict_and_regional_counterexample (test_logic.LogicTests.test_triple_conflict_and_regional_counterexample) ... ok
+
+----------------------------------------------------------------------
+Ran 7 tests in 2.712s
+
+OK
+EXIT 0 ELAPSED 2.761
+
+COMMAND ['/home/agent/.local/share/requerimientos-socraticos/venv/bin/python', '-B', '-m', 'unittest', 'discover', '-s', 'tests', '-p', 'test_validation_budget.py', '-v']
+test_cli_rejects_budget_below_existing_virtual_size_before_changing_limits (test_validation_budget.ValidationBudgetTests.test_cli_rejects_budget_below_existing_virtual_size_before_changing_limits) ... ok
+test_coordinator_memory_error_returns_fixed_failure_record (test_validation_budget.ValidationBudgetTests.test_coordinator_memory_error_returns_fixed_failure_record) ... ok
+test_coordinator_transport_keeps_room_for_existing_complete_manifest (test_validation_budget.ValidationBudgetTests.test_coordinator_transport_keeps_room_for_existing_complete_manifest) ... ok
+test_document_memory_error_returns_fixed_failure_record (test_validation_budget.ValidationBudgetTests.test_document_memory_error_returns_fixed_failure_record) ... ok
+test_explicit_coordinator_memory_failure_blocks (test_validation_budget.ValidationBudgetTests.test_explicit_coordinator_memory_failure_blocks) ... ok
+test_inherited_hard_limit_rejection_is_classified_without_mutation (test_validation_budget.ValidationBudgetTests.test_inherited_hard_limit_rejection_is_classified_without_mutation) ... ok
+test_invalid_policy_rejected_before_spawning (test_validation_budget.ValidationBudgetTests.test_invalid_policy_rejected_before_spawning) ... ok
+test_library_caller_limits_unchanged_and_data_workers_capped (test_validation_budget.ValidationBudgetTests.test_library_caller_limits_unchanged_and_data_workers_capped) ... ok
+test_missing_diagnostic_is_not_reported_as_proven_memory_exhaustion (test_validation_budget.ValidationBudgetTests.test_missing_diagnostic_is_not_reported_as_proven_memory_exhaustion) ... ok
+test_public_cli_bounds_owned_caller_and_keeps_byte_identity (test_validation_budget.ValidationBudgetTests.test_public_cli_bounds_owned_caller_and_keeps_byte_identity) ... ok
+
+----------------------------------------------------------------------
+Ran 10 tests in 0.396s
+
+OK
+EXIT 0 ELAPSED 0.479
+
+COMMAND ['/home/agent/.local/share/requerimientos-socraticos/venv/bin/python', '-B', '-m', 'unittest', 'discover', '-s', 'tests', '-p', 'test_supervisor.py', '-v']
+test_cli_depth_is_rejected_before_decoder_recursion (test_supervisor.SupervisorTests.test_cli_depth_is_rejected_before_decoder_recursion) ... ok
+test_cli_short_budget_is_inconclusive (test_supervisor.SupervisorTests.test_cli_short_budget_is_inconclusive) ... ok
+test_exited_leader_does_not_leave_group_pipes_waiting (test_supervisor.SupervisorTests.test_exited_leader_does_not_leave_group_pipes_waiting) ... ok
+test_linux_direct_worker_follows_parent_lifecycle (test_supervisor.SupervisorTests.test_linux_direct_worker_follows_parent_lifecycle) ... ok
+test_no_implicit_interpreter_fallback (test_supervisor.SupervisorTests.test_no_implicit_interpreter_fallback) ... ERROR
+test_public_argument_errors_preserve_invalid_input_contract (test_supervisor.SupervisorTests.test_public_argument_errors_preserve_invalid_input_contract) ... ok
+test_runtime_identity_is_observed_not_authenticated (test_supervisor.SupervisorTests.test_runtime_identity_is_observed_not_authenticated) ... ok
+test_successful_worker_is_preserved (test_supervisor.SupervisorTests.test_successful_worker_is_preserved) ... ok
+test_unsupported_supervision_adapter_starts_no_worker (test_supervisor.SupervisorTests.test_unsupported_supervision_adapter_starts_no_worker) ... ok
+test_waiting_worker_stops_and_is_reaped (test_supervisor.SupervisorTests.test_waiting_worker_stops_and_is_reaped) ... ok
+test_worker_output_limit_is_inconclusive (test_supervisor.SupervisorTests.test_worker_output_limit_is_inconclusive) ... ok
+
+======================================================================
+ERROR: test_no_implicit_interpreter_fallback (test_supervisor.SupervisorTests.test_no_implicit_interpreter_fallback)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/requirements-244-independent-erd2ny8h/skills/requerimientos-socraticos/tests/test_supervisor.py", line 86, in test_no_implicit_interpreter_fallback
+    p = subprocess.run([str(launcher), 'requirements', 'probe'], env=env, capture_output=True, text=True, timeout=3)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/subprocess.py", line 548, in run
+    with Popen(*popenargs, **kwargs) as process:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/subprocess.py", line 1026, in __init__
+    self._execute_child(args, executable, preexec_fn, close_fds,
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/subprocess.py", line 1955, in _execute_child
+    raise child_exception_type(errno_num, err_msg, err_filename)
+FileNotFoundError: [Errno 2] No such file or directory: '/tmp/requirements-244-independent-erd2ny8h/bin/gentle-ai'
+
+----------------------------------------------------------------------
+Ran 11 tests in 0.726s
+
+FAILED (errors=1)
+EXIT 1 ELAPSED 0.802
+
+COMMAND ['/home/agent/.local/share/requerimientos-socraticos/venv/bin/python', '-B', '-m', 'unittest', 'discover', '-s', 'tests', '-p', 'test_preflight.py', '-v']
+test_depth_boundary_and_large_adversarial_input (test_preflight.PreflightTests.test_depth_boundary_and_large_adversarial_input) ... ok
+test_malformed_structure (test_preflight.PreflightTests.test_malformed_structure) ... ok
+test_not_a_json_grammar_validator (test_preflight.PreflightTests.test_not_a_json_grammar_validator) ... ok
+test_root_primitives_and_empty_array (test_preflight.PreflightTests.test_root_primitives_and_empty_array) ... ok
+test_size_and_configurable_limits (test_preflight.PreflightTests.test_size_and_configurable_limits) ... ok
+test_strings_escapes_and_multibyte (test_preflight.PreflightTests.test_strings_escapes_and_multibyte) ... ok
+
+----------------------------------------------------------------------
+Ran 6 tests in 0.000s
+
+OK
+EXIT 0 ELAPSED 0.044
+
+HARNESS_FIX: copy unchanged bin/gentle-ai required by supervisor fallback test
+COMMAND ['/home/agent/.local/share/requerimientos-socraticos/venv/bin/python', '-B', '-m', 'unittest', 'discover', '-s', 'tests', '-p', 'test_supervisor.py', '-v']
+test_cli_depth_is_rejected_before_decoder_recursion (test_supervisor.SupervisorTests.test_cli_depth_is_rejected_before_decoder_recursion) ... ok
+test_cli_short_budget_is_inconclusive (test_supervisor.SupervisorTests.test_cli_short_budget_is_inconclusive) ... ok
+test_exited_leader_does_not_leave_group_pipes_waiting (test_supervisor.SupervisorTests.test_exited_leader_does_not_leave_group_pipes_waiting) ... ok
+test_linux_direct_worker_follows_parent_lifecycle (test_supervisor.SupervisorTests.test_linux_direct_worker_follows_parent_lifecycle) ... ok
+test_no_implicit_interpreter_fallback (test_supervisor.SupervisorTests.test_no_implicit_interpreter_fallback) ... ok
+test_public_argument_errors_preserve_invalid_input_contract (test_supervisor.SupervisorTests.test_public_argument_errors_preserve_invalid_input_contract) ... ok
+test_runtime_identity_is_observed_not_authenticated (test_supervisor.SupervisorTests.test_runtime_identity_is_observed_not_authenticated) ... ok
+test_successful_worker_is_preserved (test_supervisor.SupervisorTests.test_successful_worker_is_preserved) ... ok
+test_unsupported_supervision_adapter_starts_no_worker (test_supervisor.SupervisorTests.test_unsupported_supervision_adapter_starts_no_worker) ... ok
+test_waiting_worker_stops_and_is_reaped (test_supervisor.SupervisorTests.test_waiting_worker_stops_and_is_reaped) ... ok
+test_worker_output_limit_is_inconclusive (test_supervisor.SupervisorTests.test_worker_output_limit_is_inconclusive) ... ok
+
+----------------------------------------------------------------------
+Ran 11 tests in 0.723s
+
+OK
+EXIT 0 ELAPSED 0.8
+
+API_REPRO normal
+{"code": 0, "before": [-1, -1], "after": [-1, -1], "document": {"domain_validity": "VALID", "queries": {"domain": {"status": "SAT"}, "gap": {"status": "SAT"}, "no_output": {"status": "UNSAT"}, "rule_consistency": {"status": "SAT"}}, "properties": [], "limits": {"variables": 0, "ast_nodes": 1, "max_variables": 32, "max_ast_nodes": 4096, "max_depth": 32, "max_input_bytes": 262144, "total_seconds": 1.981582721004088, "per_query_seconds": 1}, "scope": "Results concern the supplied Boolean model only; they do not verify implementation, hardware, or human meaning.", "table": {"status": "EXACT", "possible_rows": 1, "rows_examined": 1, "feasible_inputs": 1, "covered_inputs": 0, "inputs_without_output": 0, "coverage": {"metric": "GUARD_ACTIVATION_COVERAGE", "numerator": 0, "denominator": 1}}, "provenance": {"model_sha256": "75f7457a93a281135669db242d2d62de47e26f68837515343cf8f27ae81840b9", "z3_version": "4.15.4", "z3_module": {"status": "OBSERVED", "resolved_path": "/home/agent/.local/share/requerimientos-socraticos/venv/lib/python3.12/site-packages/z3/__init__.py", "sha256": "53c4529a01f38e7c0d593b7548c79e0d7398aa09f7d7cbd1773470859ee2febd"}, "elapsed_seconds": 0.017008349997922778, "note": "Hash identifies supplied bytes; it does not establish semantic correctness."}, "memory_observation": {"scope": "PROCESS_LOCAL_SAMPLES", "virtual_bytes": 162230272, "rss_bytes": 47046656, "peak_rss_bytes": 46923776, "peak_rss_scope": "PROCESS_LIFETIME_HIGH_WATER", "as_soft_bytes": 469762048, "as_hard_bytes": 469762048, "rss_quota_enforced": false, "source": "/proc/self/statm, getrusage(RUSAGE_SELF), getrlimit(RLIMIT_AS)", "sampling": "SEQUENTIAL_NOT_ATOMIC", "status": "OBSERVED_PROCESS_LOCAL", "as_unlimited": {"soft": false, "hard": false}}, "runtime": {"executable": "/home/agent/.local/share/requerimientos-socraticos/venv/bin/python", "python_version": "3.12.14", "executable_sha256": "fa67443527ed9647f760d807e2a38f26340757123e643c4639cf273ed15d5ea7", "artifact": {"status": "OBSERVED", "resolved_path": "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3.12", "sha256": "fa67443527ed9647f760d807e2a38f26340757123e643c4639cf273ed15d5ea7"}, "distributions": {"z3-solver": "4.15.4.0", "jsonschema": "4.26.0"}, "authentication": "NOT_ESTABLISHED", "limits": "Observed bytes/metadata in a trusted local account; not a signed runtime or dependency attestation."}, "supervision": {"worker_elapsed_seconds": 0.07207593000202905, "wall_budget_seconds": 2.0, "parent_death_policy": "LINUX_DIRECT_CHILD_PDEATHSIG", "cleanup_status": "DIRECT_WORKER_REAPED_AND_PIPES_DRAINED", "cleanup_grace_seconds": 1, "limits": "Responsive OS and live supervisor required for deadline handling; Linux death signal covers direct worker only. No arbitrary descendant or hardware isolation guarantee."}, "memory_budget": {"policy": {"total_mib": 512, "total_bytes": 536870912, "roles_mib": {"caller": 64, "solver": 448}, "roles_bytes": {"caller": 67108864, "solver": 469762048}, "kind": "PROVISIONAL_ENGINEERING_POLICY", "hardware_capacity_calibrated": false, "aggregate_kernel_quota": false, "workload": "BOOLEAN_ANALYSIS"}, "admission": {"status": "ADMITTED_COOPERATIVE", "headroom_observed_bytes": 8197505024, "required_headroom_bytes": 1073741824, "scope": "VISIBLE_KERNEL_AND_CGROUP_PARTIAL", "physical_reservation": false, "sampling": "SEQUENTIAL_NOT_ATOMIC", "memory_observation": {"status": "OBSERVED", "source": "/proc/meminfo (visible kernel scope)", "total_bytes": 10452471808, "available_bytes": 9763053568, "swap_total_bytes": 0, "swap_free_bytes": 0}, "cgroup_observation": {"status": "OBSERVED_VISIBLE_SCOPE", "source": "/proc/self/cgroup and visible /sys/fs/cgroup ancestors", "memory_limits": [{"limit_bytes": 8589934592, "current_bytes": 392429568, "sampled_headroom_bytes": 8197505024}], "cpu_quotas": [{"quota": 200000, "period": 100000, "cpu_time_ratio": 2.0}], "limit_states": [{"visible_ancestor": 0, "memory": "FINITE", "cpu": "FINITE"}], "limitation": "Sequential samples; hidden ancestors/host and concurrent changes remain unknown."}}, "caller": {"scope": "EXTERNAL_CALLER_NOT_LIMITED", "virtual_bytes": 43077632, "rss_bytes": 15896576, "peak_rss_bytes": 15728640, "peak_rss_scope": "PROCESS_LIFETIME_HIGH_WATER", "as_soft_bytes": null, "as_hard_bytes": null, "rss_quota_enforced": false, "source": "/proc/self/statm, getrusage(RUSAGE_SELF), getrlimit(RLIMIT_AS)", "sampling": "SEQUENTIAL_NOT_ATOMIC", "status": "OBSERVED_PROCESS_LOCAL", "as_unlimited": {"soft": true, "hard": true}, "sample_scope": "PROCESS_LOCAL_SAMPLES"}, "limits": ["Virtual address-space limits, not RSS quotas or physical reservations.", "Admission serializes cooperating calls per account; not global host enforcement.", "Sequential local samples and lifetime peaks do not prove aggregate RSS.", "Signals and missing diagnostics do not establish OOM."]}}}
+PROCESS_EXIT 0
+
+API_REPRO inherited384
+{"code": 3, "before": [402653184, 402653184], "after": [402653184, 402653184], "document": {"status": "INCONCLUSIVE", "error": {"code": "RESOURCE_CONTROL_SETUP_FAILED", "message": "RESOURCE_CONTROL_SETUP_FAILED"}, "runtime": {"executable": "/home/agent/.local/share/requerimientos-socraticos/venv/bin/python", "python_version": "3.12.14", "executable_sha256": "fa67443527ed9647f760d807e2a38f26340757123e643c4639cf273ed15d5ea7", "artifact": {"status": "OBSERVED", "resolved_path": "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3.12", "sha256": "fa67443527ed9647f760d807e2a38f26340757123e643c4639cf273ed15d5ea7"}, "distributions": {"z3-solver": "4.15.4.0", "jsonschema": "4.26.0"}, "authentication": "NOT_ESTABLISHED", "limits": "Observed bytes/metadata in a trusted local account; not a signed runtime or dependency attestation."}, "memory_budget": {"policy": {"total_mib": 512, "total_bytes": 536870912, "roles_mib": {"caller": 64, "solver": 448}, "roles_bytes": {"caller": 67108864, "solver": 469762048}, "kind": "PROVISIONAL_ENGINEERING_POLICY", "hardware_capacity_calibrated": false, "aggregate_kernel_quota": false, "workload": "BOOLEAN_ANALYSIS"}, "admission": {"status": "ADMITTED_COOPERATIVE", "headroom_observed_bytes": 8197402624, "required_headroom_bytes": 1073741824, "scope": "VISIBLE_KERNEL_AND_CGROUP_PARTIAL", "physical_reservation": false, "sampling": "SEQUENTIAL_NOT_ATOMIC", "memory_observation": {"status": "OBSERVED", "source": "/proc/meminfo (visible kernel scope)", "total_bytes": 10452471808, "available_bytes": 9760751616, "swap_total_bytes": 0, "swap_free_bytes": 0}, "cgroup_observation": {"status": "OBSERVED_VISIBLE_SCOPE", "source": "/proc/self/cgroup and visible /sys/fs/cgroup ancestors", "memory_limits": [{"limit_bytes": 8589934592, "current_bytes": 392531968, "sampled_headroom_bytes": 8197402624}], "cpu_quotas": [{"quota": 200000, "period": 100000, "cpu_time_ratio": 2.0}], "limit_states": [{"visible_ancestor": 0, "memory": "FINITE", "cpu": "FINITE"}], "limitation": "Sequential samples; hidden ancestors/host and concurrent changes remain unknown."}}, "caller": {"scope": "EXTERNAL_CALLER_NOT_LIMITED", "virtual_bytes": 43147264, "rss_bytes": 15900672, "peak_rss_bytes": 15728640, "peak_rss_scope": "PROCESS_LIFETIME_HIGH_WATER", "as_soft_bytes": 402653184, "as_hard_bytes": 402653184, "rss_quota_enforced": false, "source": "/proc/self/statm, getrusage(RUSAGE_SELF), getrlimit(RLIMIT_AS)", "sampling": "SEQUENTIAL_NOT_ATOMIC", "status": "OBSERVED_PROCESS_LOCAL", "as_unlimited": {"soft": false, "hard": false}, "sample_scope": "PROCESS_LOCAL_SAMPLES"}, "limits": ["Virtual address-space limits, not RSS quotas or physical reservations.", "Admission serializes cooperating calls per account; not global host enforcement.", "Sequential local samples and lifetime peaks do not prove aggregate RSS.", "Signals and missing diagnostics do not establish OOM."]}}}
+PROCESS_EXIT 0

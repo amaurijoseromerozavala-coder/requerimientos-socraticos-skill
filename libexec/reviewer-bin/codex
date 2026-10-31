@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+set -euo pipefail
+# Keep the ChatGPT environment credentials untouched; never copy token values.
+export CODEX_HOME=/home/agent/.local/share/gentle-ai-reviewer/codex
+exec /opt/codex/bin/codex "$@"

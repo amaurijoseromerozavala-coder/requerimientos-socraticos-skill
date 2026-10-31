@@ -1,0 +1,24 @@
+{
+  "skill": "requerimientos-socraticos",
+  "installed": true,
+  "local_checks": {
+    "passed": 24,
+    "failed": 0,
+    "report": "/workspace/replica-gentle-ai/skills/requerimientos-socraticos/validation.json"
+  },
+  "native_rdd": {
+    "status": "APPROVED_AND_ACKNOWLEDGED",
+    "lineage": "review-1bc489242685d51e",
+    "target_identity": "sha256:2ba5963795268d750570745cadd35c036380892c3b1cb334af5d034d83ce6b76",
+    "result_captured": true,
+    "receipt": "/workspace/replica-gentle-ai/docs/skill-audit/rdd-receipt.json",
+    "advisory": "R3-001: retain reproducible assertion-level evidence; non-blocking."
+  },
+  "limitations": [
+    "Instructions and JSON Schema, not a universal natural-language proof engine.",
+    "Finite example checks do not prove product implementation security.",
+    "Engram mirror ordering during creation was late; no strict ODD/TDD session-compliance claim."
+  ],
+  "next_action": "Use the installed skill; track the non-blocking reproducibility advisory separately.",
+  "observed_at": "2026-10-26T16:12:02.704339+00:00"
+}

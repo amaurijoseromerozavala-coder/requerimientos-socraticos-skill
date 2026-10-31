@@ -1,0 +1,19 @@
+{
+  "relocated_copy": {
+    "scope": "document/model assertions, not execution tests",
+    "checks": {
+      "cleanup_enters_lock": true,
+      "lock_blocks_new_request": true,
+      "ack_does_not_unlock": true,
+      "reconciliation_required": true,
+      "no_lock_to_running": true,
+      "rejection_types": true,
+      "optional_os_diagnostics": true,
+      "no_elevation": true,
+      "invoker_confirmed": true
+    },
+    "pass": true
+  },
+  "missing_local_document_rejected": true,
+  "does_not_fallback_to_original": true
+}

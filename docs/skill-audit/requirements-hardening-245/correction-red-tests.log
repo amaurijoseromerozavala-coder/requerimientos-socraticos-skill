@@ -1,0 +1,81 @@
+test_cli_invalid_profiles_return_json_without_traceback (test_activation_preflight.ActivationPreflightTests.test_cli_invalid_profiles_return_json_without_traceback) ... FAIL
+test_explicit_profile_must_fit_roles_and_headroom (test_activation_preflight.ActivationPreflightTests.test_explicit_profile_must_fit_roles_and_headroom) ... ERROR
+test_hard_limit_is_checked_per_role (test_activation_preflight.ActivationPreflightTests.test_hard_limit_is_checked_per_role) ... ERROR
+test_owned_cli_baseline_blocks_but_external_api_baseline_is_not_caller_gate (test_activation_preflight.ActivationPreflightTests.test_owned_cli_baseline_blocks_but_external_api_baseline_is_not_caller_gate) ... ERROR
+test_selects_headroom_profile_and_reports_controls_pending (test_activation_preflight.ActivationPreflightTests.test_selects_headroom_profile_and_reports_controls_pending) ... ERROR
+test_unknown_headroom_is_structured_and_blocks_workers (test_activation_preflight.ActivationPreflightTests.test_unknown_headroom_is_structured_and_blocks_workers) ... ok
+test_unknown_inherited_hard_and_cli_baseline_block (test_activation_preflight.ActivationPreflightTests.test_unknown_inherited_hard_and_cli_baseline_block) ... ERROR
+
+======================================================================
+ERROR: test_explicit_profile_must_fit_roles_and_headroom (test_activation_preflight.ActivationPreflightTests.test_explicit_profile_must_fit_roles_and_headroom)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/replica-gentle-ai/skills/requerimientos-socraticos/tests/test_activation_preflight.py", line 57, in test_explicit_profile_must_fit_roles_and_headroom
+    fixed = self.evaluate(hard=384*MIB, workload='logic', caller_scope='EXTERNAL_CALLER', requested_mib=512)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/replica-gentle-ai/skills/requerimientos-socraticos/tests/test_activation_preflight.py", line 25, in evaluate
+    return preflight.evaluate('/tmp', **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: evaluate() got an unexpected keyword argument 'workload'
+
+======================================================================
+ERROR: test_hard_limit_is_checked_per_role (test_activation_preflight.ActivationPreflightTests.test_hard_limit_is_checked_per_role)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/replica-gentle-ai/skills/requerimientos-socraticos/tests/test_activation_preflight.py", line 37, in test_hard_limit_is_checked_per_role
+    git = self.evaluate(hard=128*MIB, workload='git', caller_scope='EXTERNAL_CALLER')
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/replica-gentle-ai/skills/requerimientos-socraticos/tests/test_activation_preflight.py", line 25, in evaluate
+    return preflight.evaluate('/tmp', **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: evaluate() got an unexpected keyword argument 'workload'
+
+======================================================================
+ERROR: test_owned_cli_baseline_blocks_but_external_api_baseline_is_not_caller_gate (test_activation_preflight.ActivationPreflightTests.test_owned_cli_baseline_blocks_but_external_api_baseline_is_not_caller_gate)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/replica-gentle-ai/skills/requerimientos-socraticos/tests/test_activation_preflight.py", line 49, in test_owned_cli_baseline_blocks_but_external_api_baseline_is_not_caller_gate
+    owned = self.evaluate(baseline=100*MIB, workload='logic', caller_scope='OWNED_CLI')
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/replica-gentle-ai/skills/requerimientos-socraticos/tests/test_activation_preflight.py", line 25, in evaluate
+    return preflight.evaluate('/tmp', **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: evaluate() got an unexpected keyword argument 'workload'
+
+======================================================================
+ERROR: test_selects_headroom_profile_and_reports_controls_pending (test_activation_preflight.ActivationPreflightTests.test_selects_headroom_profile_and_reports_controls_pending)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/replica-gentle-ai/skills/requerimientos-socraticos/tests/test_activation_preflight.py", line 28, in test_selects_headroom_profile_and_reports_controls_pending
+    report = self.evaluate(headroom=900*MIB, workload='logic', caller_scope='EXTERNAL_CALLER')
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/replica-gentle-ai/skills/requerimientos-socraticos/tests/test_activation_preflight.py", line 25, in evaluate
+    return preflight.evaluate('/tmp', **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: evaluate() got an unexpected keyword argument 'workload'
+
+======================================================================
+ERROR: test_unknown_inherited_hard_and_cli_baseline_block (test_activation_preflight.ActivationPreflightTests.test_unknown_inherited_hard_and_cli_baseline_block)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/replica-gentle-ai/skills/requerimientos-socraticos/tests/test_activation_preflight.py", line 64, in test_unknown_inherited_hard_and_cli_baseline_block
+    unknown_hard = self.evaluate(hard=None, workload='logic', caller_scope='EXTERNAL_CALLER')
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/replica-gentle-ai/skills/requerimientos-socraticos/tests/test_activation_preflight.py", line 25, in evaluate
+    return preflight.evaluate('/tmp', **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: evaluate() got an unexpected keyword argument 'workload'
+
+======================================================================
+FAIL: test_cli_invalid_profiles_return_json_without_traceback (test_activation_preflight.ActivationPreflightTests.test_cli_invalid_profiles_return_json_without_traceback)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/replica-gentle-ai/skills/requerimientos-socraticos/tests/test_activation_preflight.py", line 77, in test_cli_invalid_profiles_return_json_without_traceback
+    self.assertEqual(run.stderr, '')
+AssertionError: 'Traceback (most recent call last):\n  Fil[638 chars]ID\n' != ''
+Diff is 692 characters long. Set self.maxDiff to None to see it.
+
+----------------------------------------------------------------------
+Ran 7 tests in 0.022s
+
+FAILED (failures=1, errors=5)

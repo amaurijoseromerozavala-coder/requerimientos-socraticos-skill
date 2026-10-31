@@ -1,0 +1,102 @@
+{
+  "schema": "gentle-ai.review-last-event-closure/v1",
+  "operation": "review/capture-result",
+  "lineage_id": "review-efcc53913bd98b9c",
+  "state": "approved",
+  "action": "the approved review completed on the last admitted event and awaits its exact acknowledgement",
+  "advisory_findings": {
+    "statement": "This review is approved and its receipt stands. Every finding listed here is non-blocking: none opened a correction, none reopens this review, and no correction transition is offered for this candidate. Treat them as separate later work, never as a reason to re-run review on this candidate.",
+    "findings": [
+      {
+        "id": "R3-001",
+        "lens": "reliability",
+        "location": "docs/requirements/qa-supervisor/propuesta-cierre.md:17-24",
+        "severity": "WARNING",
+        "disposition": "informational"
+      }
+    ]
+  },
+  "reviewer_results": [
+    {
+      "lens": "review-resilience",
+      "findings": [],
+      "evidence": [
+        "Inspected all seven supplied immutable patches. The candidate specifies documents only and does not authorize implementation or production execution.",
+        "docs/requirements/qa-supervisor/closure-proposal.json specifies bounded capture, monotonic deadlines, termination confirmation, zero automatic retries, and admission refusal when receipt capacity is unavailable.",
+        "docs/requirements/qa-supervisor/recovery-contract.json requires durable reservation before launch and preserves INFRA_LOCK when crash recovery cannot establish process identity or termination; receipt deletion cannot unlock admission.",
+        "docs/requirements/qa-supervisor/fsm-propuesta.json preserves the admission latch across receipt failures and requires reconciliation before subsequent requests. docs/requirements/qa-supervisor/tabla-decision.json gives observed runtime failures precedence over favorable payloads.",
+        "No concrete production failure or measured resilience regression caused by this documentation-only candidate is established by the supplied patches. Implementation and hardware acceptance tests are explicitly marked NOT_RUN."
+      ],
+      "result_hash": "sha256:bf50ed4bf6164aed00b13d62b4b747f12ccbc76f829c6b3f0f49d812f7f71431"
+    },
+    {
+      "lens": "review-reliability",
+      "findings": [
+        {
+          "id": "R3-001",
+          "lens": "reliability",
+          "location": "docs/requirements/qa-supervisor/propuesta-cierre.md:17-24",
+          "severity": "WARNING",
+          "claim": "The closure proposal treats retention as an outstanding human decision and offers raw-output retention as an alternative, while the PRD and policy confirm minimal receipts and prohibit persisting raw output. This leaves contradictory acceptance criteria: a reviewer following this proposal could reopen an already confirmed decision or approve retention that violates SUP-014. Update the proposal to reflect the confirmed policy and remaining gates.",
+          "proof_refs": [
+            "docs/requirements/qa-supervisor/propuesta-cierre.md:17-24",
+            "docs/requirements/qa-supervisor/PRD.md:7",
+            "docs/requirements/qa-supervisor/PRD.md:96-100",
+            "docs/requirements/qa-supervisor/closure-proposal.json:49-57"
+          ],
+          "evidence_class": "deterministic",
+          "causal_disposition": "introduced"
+        }
+      ],
+      "evidence": [
+        "Inspected all seven supplied patches without accessing external files or executing commands. The candidate specifies documents only and explicitly leaves implementation acceptance tests unrun.",
+        "docs/requirements/qa-supervisor/tabla-decision.json covers all 16 combinations of its abstract inputs and matches the classification ordering in docs/requirements/qa-supervisor/prd-draft.json.",
+        "docs/requirements/qa-supervisor/recovery-contract.json requires durable reservation before launch and conservative recovery across crash windows; docs/requirements/qa-supervisor/fsm-propuesta.json preserves the admission latch during receipt persistence."
+      ],
+      "result_hash": "sha256:a2df1ae8eca66f4319c8dd18e466a852957508224895d75b681ecacd69b8ce48"
+    }
+  ],
+  "acknowledgement": {
+    "operation": "review.acknowledge-approved",
+    "command": "gentle-ai review acknowledge-approved --cwd=/workspace/replica-gentle-ai --lineage=review-efcc53913bd98b9c --target=sha256:244addaaaec7698302eadfa32321262beed5f9c341bb5debcb7bd9fadcb7cdb5 --expected-revision=sha256:fb84d288ea673853dab37d7c9f957481d7d13de817128803c46d2ef19ba09c94 --token=7bc3d29e7f19ff15b6b723e7a8482f999b678bad5f1edd44d1a59865a5f14080",
+    "arguments": [
+      {
+        "name": "cwd",
+        "value": "/workspace/replica-gentle-ai",
+        "token": "--cwd=/workspace/replica-gentle-ai"
+      },
+      {
+        "name": "lineage",
+        "value": "review-efcc53913bd98b9c",
+        "token": "--lineage=review-efcc53913bd98b9c"
+      },
+      {
+        "name": "target",
+        "value": "sha256:244addaaaec7698302eadfa32321262beed5f9c341bb5debcb7bd9fadcb7cdb5",
+        "token": "--target=sha256:244addaaaec7698302eadfa32321262beed5f9c341bb5debcb7bd9fadcb7cdb5"
+      },
+      {
+        "name": "expected-revision",
+        "value": "sha256:fb84d288ea673853dab37d7c9f957481d7d13de817128803c46d2ef19ba09c94",
+        "token": "--expected-revision=sha256:fb84d288ea673853dab37d7c9f957481d7d13de817128803c46d2ef19ba09c94"
+      },
+      {
+        "name": "token",
+        "value": "7bc3d29e7f19ff15b6b723e7a8482f999b678bad5f1edd44d1a59865a5f14080",
+        "token": "--token=7bc3d29e7f19ff15b6b723e7a8482f999b678bad5f1edd44d1a59865a5f14080"
+      }
+    ],
+    "preconditions": [
+      {
+        "name": "state",
+        "value": "approved"
+      }
+    ],
+    "binding": {
+      "lineage_id": "review-efcc53913bd98b9c",
+      "revision": "sha256:fb84d288ea673853dab37d7c9f957481d7d13de817128803c46d2ef19ba09c94",
+      "target_identity": "sha256:244addaaaec7698302eadfa32321262beed5f9c341bb5debcb7bd9fadcb7cdb5"
+    }
+  },
+  "store_revision": "sha256:fb84d288ea673853dab37d7c9f957481d7d13de817128803c46d2ef19ba09c94"
+}

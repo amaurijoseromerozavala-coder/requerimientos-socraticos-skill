@@ -1,0 +1,129 @@
+test_document_source (unittest.loader._FailedTest.test_document_source) ... ERROR
+
+======================================================================
+ERROR: test_document_source (unittest.loader._FailedTest.test_document_source)
+----------------------------------------------------------------------
+ImportError: Failed to import test module: test_document_source
+Traceback (most recent call last):
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/unittest/loader.py", line 396, in _find_test_path
+    module = self._get_module_from_name(name)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/unittest/loader.py", line 339, in _get_module_from_name
+    __import__(name)
+  File "/workspace/replica-gentle-ai/skills/requerimientos-socraticos/tests/test_document_source.py", line 13, in <module>
+    import document_source as sources
+ModuleNotFoundError: No module named 'document_source'
+
+
+----------------------------------------------------------------------
+Ran 1 test in 0.000s
+
+FAILED (errors=1)
+
+Additional RED: consumed byte manifest contract
+test_direct_receipt_api_accepts_source (test_document_source.DependencyTests.test_direct_receipt_api_accepts_source) ... ok
+test_each_dependency_and_receipt_is_oid_checked (test_document_source.DependencyTests.test_each_dependency_and_receipt_is_oid_checked) ... ok
+test_existing_dependency_and_receipt_diagnostics_are_preserved (test_document_source.DependencyTests.test_existing_dependency_and_receipt_diagnostics_are_preserved) ... ok
+test_interview_source_without_base_checks_receipts (test_document_source.DependencyTests.test_interview_source_without_base_checks_receipts) ... ok
+test_memory_dependency_escape_rejected (test_document_source.DependencyTests.test_memory_dependency_escape_rejected) ... ok
+test_memory_prd_reads_only_installed_schemas_from_filesystem (test_document_source.DependencyTests.test_memory_prd_reads_only_installed_schemas_from_filesystem) ... ok
+test_prd_scopes_interview_receipts_to_its_subdirectory (test_document_source.DependencyTests.test_prd_scopes_interview_receipts_to_its_subdirectory) ... ok
+test_blob_oid_is_git_sha256_not_content_sha256 (test_document_source.SourceTests.test_blob_oid_is_git_sha256_not_content_sha256) ... ok
+test_canonical_posix_paths_at_all_entrypoints (test_document_source.SourceTests.test_canonical_posix_paths_at_all_entrypoints) ... ok
+test_consumed_files_are_verified_shared_scoped_and_copied (test_document_source.SourceTests.test_consumed_files_are_verified_shared_scoped_and_copied) ... ERROR
+test_filesystem_source_scope_and_rejected_symlink (test_document_source.SourceTests.test_filesystem_source_scope_and_rejected_symlink) ... ok
+test_memory_copies_both_mappings (test_document_source.SourceTests.test_memory_copies_both_mappings) ... ok
+test_memory_read_preserves_file_size_limit (test_document_source.SourceTests.test_memory_read_preserves_file_size_limit) ... ok
+test_missing_document_has_filesystem_compatible_exception (test_document_source.SourceTests.test_missing_document_has_filesystem_compatible_exception) ... ok
+test_missing_or_surplus_oid_is_rejected (test_document_source.SourceTests.test_missing_or_surplus_oid_is_rejected) ... ok
+test_scopes_are_relative_and_keep_byte_identity (test_document_source.SourceTests.test_scopes_are_relative_and_keep_byte_identity) ... ok
+test_values_must_be_immutable_bytes (test_document_source.SourceTests.test_values_must_be_immutable_bytes) ... ok
+
+======================================================================
+ERROR: test_consumed_files_are_verified_shared_scoped_and_copied (test_document_source.SourceTests.test_consumed_files_are_verified_shared_scoped_and_copied)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/replica-gentle-ai/skills/requerimientos-socraticos/tests/test_document_source.py", line 91, in test_consumed_files_are_verified_shared_scoped_and_copied
+    self.assertEqual(source.consumed_files, [])
+                     ^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'MemorySource' object has no attribute 'consumed_files'
+
+----------------------------------------------------------------------
+Ran 17 tests in 0.044s
+
+FAILED (errors=1)
+
+Legacy nonregular receipt diagnostic regression RED
+test_direct_receipt_api_accepts_source (test_document_source.DependencyTests.test_direct_receipt_api_accepts_source) ... ok
+test_each_dependency_and_receipt_is_oid_checked (test_document_source.DependencyTests.test_each_dependency_and_receipt_is_oid_checked) ... ok
+test_existing_dependency_and_receipt_diagnostics_are_preserved (test_document_source.DependencyTests.test_existing_dependency_and_receipt_diagnostics_are_preserved) ... ok
+test_interview_source_without_base_checks_receipts (test_document_source.DependencyTests.test_interview_source_without_base_checks_receipts) ... ok
+test_memory_dependency_escape_rejected (test_document_source.DependencyTests.test_memory_dependency_escape_rejected) ... ok
+test_memory_prd_reads_only_installed_schemas_from_filesystem (test_document_source.DependencyTests.test_memory_prd_reads_only_installed_schemas_from_filesystem) ... ok
+test_nonregular_receipt_preserves_missing_diagnostic (test_document_source.DependencyTests.test_nonregular_receipt_preserves_missing_diagnostic) ... 
+  test_nonregular_receipt_preserves_missing_diagnostic (test_document_source.DependencyTests.test_nonregular_receipt_preserves_missing_diagnostic) (name='q1.txt') ... ERROR
+  test_nonregular_receipt_preserves_missing_diagnostic (test_document_source.DependencyTests.test_nonregular_receipt_preserves_missing_diagnostic) (name='research-1.txt') ... ERROR
+test_prd_scopes_interview_receipts_to_its_subdirectory (test_document_source.DependencyTests.test_prd_scopes_interview_receipts_to_its_subdirectory) ... ok
+test_blob_oid_is_git_sha256_not_content_sha256 (test_document_source.SourceTests.test_blob_oid_is_git_sha256_not_content_sha256) ... ok
+test_canonical_posix_paths_at_all_entrypoints (test_document_source.SourceTests.test_canonical_posix_paths_at_all_entrypoints) ... ok
+test_consumed_files_are_verified_shared_scoped_and_copied (test_document_source.SourceTests.test_consumed_files_are_verified_shared_scoped_and_copied) ... ok
+test_filesystem_source_scope_and_rejected_symlink (test_document_source.SourceTests.test_filesystem_source_scope_and_rejected_symlink) ... ok
+test_memory_copies_both_mappings (test_document_source.SourceTests.test_memory_copies_both_mappings) ... ok
+test_memory_read_preserves_file_size_limit (test_document_source.SourceTests.test_memory_read_preserves_file_size_limit) ... ok
+test_missing_document_has_filesystem_compatible_exception (test_document_source.SourceTests.test_missing_document_has_filesystem_compatible_exception) ... ok
+test_missing_or_surplus_oid_is_rejected (test_document_source.SourceTests.test_missing_or_surplus_oid_is_rejected) ... ok
+test_scopes_are_relative_and_keep_byte_identity (test_document_source.SourceTests.test_scopes_are_relative_and_keep_byte_identity) ... ok
+test_values_must_be_immutable_bytes (test_document_source.SourceTests.test_values_must_be_immutable_bytes) ... ok
+
+======================================================================
+ERROR: test_nonregular_receipt_preserves_missing_diagnostic (test_document_source.DependencyTests.test_nonregular_receipt_preserves_missing_diagnostic) (name='q1.txt')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/replica-gentle-ai/skills/requerimientos-socraticos/tests/test_document_source.py", line 207, in test_nonregular_receipt_preserves_missing_diagnostic
+    self.assert_invalid(code, lambda: prd_validator.validate_prd(path))
+  File "/workspace/replica-gentle-ai/skills/requerimientos-socraticos/tests/test_document_source.py", line 128, in assert_invalid
+    call()
+  File "/workspace/replica-gentle-ai/skills/requerimientos-socraticos/tests/test_document_source.py", line 207, in <lambda>
+    self.assert_invalid(code, lambda: prd_validator.validate_prd(path))
+                                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/replica-gentle-ai/skills/requerimientos-socraticos/scripts/validate_prd.py", line 27, in validate_prd
+    validate(interview, source=source.scope(PurePosixPath(candidate['interview_ref']['path']).parent))
+  File "/workspace/replica-gentle-ai/skills/requerimientos-socraticos/scripts/validate_interview.py", line 94, in validate
+    receipt(base, exchange['question_receipt'], q['text'], source=source)
+  File "/workspace/replica-gentle-ai/skills/requerimientos-socraticos/scripts/validate_interview.py", line 29, in receipt
+    raw = source.read(entry['path'])
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/replica-gentle-ai/skills/requerimientos-socraticos/scripts/document_source.py", line 55, in read
+    return read_regular(self.base, path)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/replica-gentle-ai/skills/requerimientos-socraticos/scripts/safe_io.py", line 31, in read_regular
+    raise ValueError('NOT_REGULAR_FILE')
+ValueError: NOT_REGULAR_FILE
+
+======================================================================
+ERROR: test_nonregular_receipt_preserves_missing_diagnostic (test_document_source.DependencyTests.test_nonregular_receipt_preserves_missing_diagnostic) (name='research-1.txt')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/replica-gentle-ai/skills/requerimientos-socraticos/tests/test_document_source.py", line 207, in test_nonregular_receipt_preserves_missing_diagnostic
+    self.assert_invalid(code, lambda: prd_validator.validate_prd(path))
+  File "/workspace/replica-gentle-ai/skills/requerimientos-socraticos/tests/test_document_source.py", line 128, in assert_invalid
+    call()
+  File "/workspace/replica-gentle-ai/skills/requerimientos-socraticos/tests/test_document_source.py", line 207, in <lambda>
+    self.assert_invalid(code, lambda: prd_validator.validate_prd(path))
+                                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/replica-gentle-ai/skills/requerimientos-socraticos/scripts/validate_prd.py", line 27, in validate_prd
+    validate(interview, source=source.scope(PurePosixPath(candidate['interview_ref']['path']).parent))
+  File "/workspace/replica-gentle-ai/skills/requerimientos-socraticos/scripts/validate_interview.py", line 134, in validate
+    raw = source.read(event['receipt_locator'])
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/replica-gentle-ai/skills/requerimientos-socraticos/scripts/document_source.py", line 55, in read
+    return read_regular(self.base, path)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/replica-gentle-ai/skills/requerimientos-socraticos/scripts/safe_io.py", line 31, in read_regular
+    raise ValueError('NOT_REGULAR_FILE')
+ValueError: NOT_REGULAR_FILE
+
+----------------------------------------------------------------------
+Ran 18 tests in 0.051s
+
+FAILED (errors=2)

@@ -1,0 +1,22 @@
+[
+  {
+    "file": "activation-live.json",
+    "returncode": 0,
+    "elapsed_seconds": 0.027223602999583818,
+    "preflight_status": "READY_FOR_LIVE_ADMISSION",
+    "profile_mib": 512,
+    "control_state": "PENDING",
+    "schema": "PASS",
+    "stderr_empty": true
+  },
+  {
+    "file": "analysis-live.json",
+    "returncode": 0,
+    "elapsed_seconds": 0.13634504199580988,
+    "preflight_status": "READY_FOR_LIVE_ADMISSION",
+    "profile_mib": 512,
+    "control_state": "APPLIED",
+    "schema": "PASS",
+    "stderr_empty": true
+  }
+]

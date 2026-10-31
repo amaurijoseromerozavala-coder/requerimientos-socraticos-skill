@@ -1,0 +1,19 @@
+{
+  "scope": "DOCUMENTARY_ABSTRACTION_ONLY",
+  "cases": [
+    {
+      "id": "RED-GAP-01",
+      "result": "RED",
+      "observed": "material_gap=false",
+      "expected": "material_gap=true",
+      "verified": true
+    },
+    {
+      "id": "RED-GATE-02",
+      "result": "RED",
+      "observed": "guard={} and external textual input contract",
+      "expected": "typed binding required before deriving success",
+      "verified": true
+    }
+  ]
+}

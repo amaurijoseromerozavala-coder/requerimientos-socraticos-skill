@@ -1,0 +1,16 @@
+test_admission_private_nonblocking_and_release (test_memory_budget.MemoryBudgetTests.test_admission_private_nonblocking_and_release) ... ok
+test_inherited_descriptor_holds_lease_until_child_exits (test_memory_budget.MemoryBudgetTests.test_inherited_descriptor_holds_lease_until_child_exits) ... ok
+test_kernel_refusal_is_explicit_and_ordinary_helpers_do_not_set_limits (test_memory_budget.MemoryBudgetTests.test_kernel_refusal_is_explicit_and_ordinary_helpers_do_not_set_limits) ... ok
+test_limit_validation_never_raises_inherited_hard (test_memory_budget.MemoryBudgetTests.test_limit_validation_never_raises_inherited_hard) ... ok
+test_partial_cgroup_rows_block_and_unlimited_visible_scope_is_distinct (test_memory_budget.MemoryBudgetTests.test_partial_cgroup_rows_block_and_unlimited_visible_scope_is_distinct) ... ok
+test_policy_roles_and_validation (test_memory_budget.MemoryBudgetTests.test_policy_roles_and_validation) ... ok
+test_process_observation_distinguishes_virtual_rss_and_high_water (test_memory_budget.MemoryBudgetTests.test_process_observation_distinguishes_virtual_rss_and_high_water) ... ok
+test_small_real_limit_in_child_only (test_memory_budget.MemoryBudgetTests.test_small_real_limit_in_child_only) ... ok
+test_unknown_or_low_headroom_blocks (test_memory_budget.MemoryBudgetTests.test_unknown_or_low_headroom_blocks) ... ok
+test_unsafe_lock_and_directory_are_rejected (test_memory_budget.MemoryBudgetTests.test_unsafe_lock_and_directory_are_rejected) ... ok
+test_unsupported_is_explicit (test_memory_budget.MemoryBudgetTests.test_unsupported_is_explicit) ... ok
+
+----------------------------------------------------------------------
+Ran 11 tests in 0.030s
+
+OK

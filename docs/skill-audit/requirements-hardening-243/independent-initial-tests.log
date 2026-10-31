@@ -1,0 +1,97 @@
+{"group": "test_memory_budget", "returncode": 0, "elapsed_seconds": 0.1007318909978494, "exterior_timeout_seconds": 20}
+test_admission_private_nonblocking_and_release (test_memory_budget.MemoryBudgetTests.test_admission_private_nonblocking_and_release) ... ok
+test_inherited_descriptor_holds_lease_until_child_exits (test_memory_budget.MemoryBudgetTests.test_inherited_descriptor_holds_lease_until_child_exits) ... ok
+test_kernel_refusal_is_explicit_and_ordinary_helpers_do_not_set_limits (test_memory_budget.MemoryBudgetTests.test_kernel_refusal_is_explicit_and_ordinary_helpers_do_not_set_limits) ... ok
+test_limit_validation_never_raises_inherited_hard (test_memory_budget.MemoryBudgetTests.test_limit_validation_never_raises_inherited_hard) ... ok
+test_partial_cgroup_rows_block_and_unlimited_visible_scope_is_distinct (test_memory_budget.MemoryBudgetTests.test_partial_cgroup_rows_block_and_unlimited_visible_scope_is_distinct) ... ok
+test_policy_roles_and_validation (test_memory_budget.MemoryBudgetTests.test_policy_roles_and_validation) ... ok
+test_process_observation_distinguishes_virtual_rss_and_high_water (test_memory_budget.MemoryBudgetTests.test_process_observation_distinguishes_virtual_rss_and_high_water) ... ok
+test_small_real_limit_in_child_only (test_memory_budget.MemoryBudgetTests.test_small_real_limit_in_child_only) ... ok
+test_unknown_or_low_headroom_blocks (test_memory_budget.MemoryBudgetTests.test_unknown_or_low_headroom_blocks) ... ok
+test_unsafe_lock_and_directory_are_rejected (test_memory_budget.MemoryBudgetTests.test_unsafe_lock_and_directory_are_rejected) ... ok
+test_unsupported_is_explicit (test_memory_budget.MemoryBudgetTests.test_unsupported_is_explicit) ... ok
+
+----------------------------------------------------------------------
+Ran 11 tests in 0.030s
+
+OK
+
+{"group": "test_validation_budget", "returncode": 0, "elapsed_seconds": 0.4495800170006987, "exterior_timeout_seconds": 20}
+test_coordinator_memory_error_returns_fixed_failure_record (test_validation_budget.ValidationBudgetTests.test_coordinator_memory_error_returns_fixed_failure_record) ... ok
+test_document_memory_error_returns_fixed_failure_record (test_validation_budget.ValidationBudgetTests.test_document_memory_error_returns_fixed_failure_record) ... ok
+test_explicit_coordinator_memory_failure_blocks (test_validation_budget.ValidationBudgetTests.test_explicit_coordinator_memory_failure_blocks) ... ok
+test_invalid_policy_rejected_before_spawning (test_validation_budget.ValidationBudgetTests.test_invalid_policy_rejected_before_spawning) ... ok
+test_library_caller_limits_unchanged_and_data_workers_capped (test_validation_budget.ValidationBudgetTests.test_library_caller_limits_unchanged_and_data_workers_capped) ... ok
+test_missing_diagnostic_is_not_reported_as_proven_memory_exhaustion (test_validation_budget.ValidationBudgetTests.test_missing_diagnostic_is_not_reported_as_proven_memory_exhaustion) ... ok
+test_public_cli_bounds_owned_caller_and_keeps_byte_identity (test_validation_budget.ValidationBudgetTests.test_public_cli_bounds_owned_caller_and_keeps_byte_identity) ... ok
+
+----------------------------------------------------------------------
+Ran 7 tests in 0.361s
+
+OK
+
+{"group": "test_process_supervision", "returncode": 0, "elapsed_seconds": 0.30952153199905297, "exterior_timeout_seconds": 20}
+{"fixture": "owned child virtual address space", "baseline_vm_bytes": 35381248, "inherited_limits_bytes": [41672704, 43769856], "requested_limits_bytes": [42721280, 43769856], "observed_child_limits_bytes": [42721280, 43769856], "allocated_bytes": 1048576, "caller_limits_unchanged": true}
+test_child_observes_limits_with_small_headroom_and_caller_unchanged (test_process_supervision.ProcessSupervisionTests.test_child_observes_limits_with_small_headroom_and_caller_unchanged) ... ok
+test_each_output_stream_is_bounded_and_worker_reaped (test_process_supervision.ProcessSupervisionTests.test_each_output_stream_is_bounded_and_worker_reaped) ... ok
+test_exact_output_limit_and_empty_input_succeed (test_process_supervision.ProcessSupervisionTests.test_exact_output_limit_and_empty_input_succeed) ... ok
+test_explicit_descriptor_is_inherited (test_process_supervision.ProcessSupervisionTests.test_explicit_descriptor_is_inherited) ... ok
+test_explicit_environment_and_raw_non_utf8_output (test_process_supervision.ProcessSupervisionTests.test_explicit_environment_and_raw_non_utf8_output) ... ok
+test_input_and_output_progress_without_pipe_deadlock (test_process_supervision.ProcessSupervisionTests.test_input_and_output_progress_without_pipe_deadlock) ... ok
+test_input_byte_ceiling_before_spawn_with_small_injected_budget (test_process_supervision.ProcessSupervisionTests.test_input_byte_ceiling_before_spawn_with_small_injected_budget) ... ok
+test_invalid_address_space_limits_start_no_worker (test_process_supervision.ProcessSupervisionTests.test_invalid_address_space_limits_start_no_worker) ... ok
+test_invalid_budget_or_input_starts_no_worker (test_process_supervision.ProcessSupervisionTests.test_invalid_budget_or_input_starts_no_worker) ... ok
+test_missing_memory_adapter_starts_no_worker (test_process_supervision.ProcessSupervisionTests.test_missing_memory_adapter_starts_no_worker) ... ok
+test_no_memory_request_preserves_other_posix_adapter (test_process_supervision.ProcessSupervisionTests.test_no_memory_request_preserves_other_posix_adapter) ... ok
+test_output_budget_upper_bound_and_types_start_no_worker (test_process_supervision.ProcessSupervisionTests.test_output_budget_upper_bound_and_types_start_no_worker) ... ok
+test_requested_limit_cannot_raise_inherited_hard_limit (test_process_supervision.ProcessSupervisionTests.test_requested_limit_cannot_raise_inherited_hard_limit) ... ok
+test_requested_memory_adapter_fails_closed_on_unsupported_platform (test_process_supervision.ProcessSupervisionTests.test_requested_memory_adapter_fails_closed_on_unsupported_platform) ... ok
+test_stdin_write_obeys_total_deadline (test_process_supervision.ProcessSupervisionTests.test_stdin_write_obeys_total_deadline) ... ok
+
+----------------------------------------------------------------------
+Ran 15 tests in 0.238s
+
+OK
+
+{"group": "test_git_memory", "returncode": 0, "elapsed_seconds": 0.436464664999221, "exterior_timeout_seconds": 20}
+test_git_and_document_worker_use_shared_supervision (test_git_memory.GitMemoryTests.test_git_and_document_worker_use_shared_supervision) ... ok
+test_git_consumer_stops_after_parent_termination (test_git_memory.GitMemoryTests.test_git_consumer_stops_after_parent_termination) ... ok
+test_no_candidate_scratch_and_original_status_preserved (test_git_memory.GitMemoryTests.test_no_candidate_scratch_and_original_status_preserved) ... ok
+
+----------------------------------------------------------------------
+Ran 3 tests in 0.351s
+
+OK
+
+{"group": "test_sealed", "returncode": 0, "elapsed_seconds": 1.1029239700001199, "exterior_timeout_seconds": 20}
+test_actual_engine_recovers_after_interruption_during_blob_collection (test_sealed.SealedTests.test_actual_engine_recovers_after_interruption_during_blob_collection) ... ok
+test_bom_rejected (test_sealed.SealedTests.test_bom_rejected) ... ok
+test_committed_symlink_is_rejected (test_sealed.SealedTests.test_committed_symlink_is_rejected) ... ok
+test_component_symlink_rejected (test_sealed.SealedTests.test_component_symlink_rejected) ... ok
+test_crlf_dependency_keeps_byte_identity_gate (test_sealed.SealedTests.test_crlf_dependency_keeps_byte_identity_gate) ... ok
+test_device_rejected_without_reading (test_sealed.SealedTests.test_device_rejected_without_reading) ... ok
+test_direct_fifo_rejected_without_waiting (test_sealed.SealedTests.test_direct_fifo_rejected_without_waiting) ... ok
+test_external_symlink_rejected (test_sealed.SealedTests.test_external_symlink_rejected) ... ok
+test_file_quota_failure_leaves_no_partial_destination_and_retries (test_sealed.SealedTests.test_file_quota_failure_leaves_no_partial_destination_and_retries) ... ok
+test_invalid_commit_fails_closed (test_sealed.SealedTests.test_invalid_commit_fails_closed) ... ok
+test_invalid_prd_path (test_sealed.SealedTests.test_invalid_prd_path) ... ok
+test_invalid_utf8_rejected (test_sealed.SealedTests.test_invalid_utf8_rejected) ... ok
+test_moving_head_does_not_change_requested_commit (test_sealed.SealedTests.test_moving_head_does_not_change_requested_commit) ... ok
+test_normalization_does_not_change_json_escape_semantics (test_sealed.SealedTests.test_normalization_does_not_change_json_escape_semantics) ... ok
+test_normalizer_preserves_source_and_refuses_overwrite (test_sealed.SealedTests.test_normalizer_preserves_source_and_refuses_overwrite) ... ok
+test_pinned_commit_survives_dirty_worktree (test_sealed.SealedTests.test_pinned_commit_survives_dirty_worktree) ... ok
+test_regular_limit (test_sealed.SealedTests.test_regular_limit) ... ok
+test_sha1_rejected_for_crypto_profile (test_sealed.SealedTests.test_sha1_rejected_for_crypto_profile) ... ok
+test_sha256_git_objects (test_sealed.SealedTests.test_sha256_git_objects) ... ok
+test_symbolic_reference_not_accepted (test_sealed.SealedTests.test_symbolic_reference_not_accepted) ... ok
+test_traversal_rejected (test_sealed.SealedTests.test_traversal_rejected) ... ok
+test_tree_oid_not_commit (test_sealed.SealedTests.test_tree_oid_not_commit) ... ok
+test_utf8_lf_normalization (test_sealed.SealedTests.test_utf8_lf_normalization) ... ok
+
+----------------------------------------------------------------------
+Ran 23 tests in 1.042s
+
+OK
+
+{"fixture": "API inherited hard128MiB; tiny document; child only", "returncode": 0, "stdout": "{\"type\": \"ValueError\", \"is_InvalidGit\": false, \"error\": \"address_space_limit exceeds inherited hard RLIMIT_AS\", \"after_limits\": [134217728, 134217728]}\n", "stderr": "", "exterior_timeout_seconds": 5}
+{"fixture": "tiny CLI policy edges, results summarized from executed command", "budget_mib": [256, 264, 1024], "returncodes": [0, 0, 0], "status": ["DOCUMENT_VALIDATED_GIT", "DOCUMENT_VALIDATED_GIT", "DOCUMENT_VALIDATED_GIT"], "exterior_timeout_seconds_per_cli": 5, "caller256_virtual_bytes": 39464960, "caller256_soft_bytes": 33554432, "caller264_virtual_bytes": 39464960, "caller264_soft_bytes": 34603008}

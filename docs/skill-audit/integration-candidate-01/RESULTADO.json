@@ -1,0 +1,26 @@
+{
+  "status": "DRAFT_NATIVE_REVIEW_APPROVED_AND_ACKNOWLEDGED",
+  "native_candidate": "sha256:551a7a33c412f242c3c2c69437f46ef72ce992dec5ebed848af5af28f98384c2",
+  "gentle_version": "4.2.0",
+  "rdd_mode": "ON",
+  "requirements": 23,
+  "local_document_checks": "PASS_WITHIN_SCOPE",
+  "boolean_valuations": 128,
+  "partial_fsm_states": 9,
+  "partial_fsm_edges": 13,
+  "independent_review": "NO_OPEN_FINDINGS_IN_REVIEWED_SCOPE",
+  "independent_issues_resolved": 3,
+  "global_fsm": "INCOMPLETE",
+  "implementation": "NOT_AUTHORIZED_NOT_RUN",
+  "hardware": "NOT_CALIBRATED",
+  "open_gaps": "docs/requirements/integracion-requisitos-qa-supervisor/candidato-v0.1/open-gaps.json",
+  "native_review_execution": "STATIC_PATCH_REVIEW_NO_TEST_EXECUTION",
+  "candidate_integrity": "13_OF_13_MATCH",
+  "advisory_findings": [
+    {
+      "id": "R3-001",
+      "status": "OPEN_NON_BLOCKING_FOLLOWUP",
+      "description": "Documentary checker lacks global revocation handler coverage/priority assertions and a removal negative control."
+    }
+  ]
+}

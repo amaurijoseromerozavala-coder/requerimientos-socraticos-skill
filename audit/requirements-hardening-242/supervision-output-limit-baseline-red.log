@@ -1,0 +1,16 @@
+Observed baseline contrast for output-limit diagnostic; baseline read-only, outer timeout=15s
+returncode=1
+test_worker_output_limit_is_inconclusive (fixture_tests.SupervisorTests.test_worker_output_limit_is_inconclusive) ... FAIL
+
+======================================================================
+FAIL: test_worker_output_limit_is_inconclusive (fixture_tests.SupervisorTests.test_worker_output_limit_is_inconclusive)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/replica-gentle-ai/skills/requerimientos-socraticos/tests/test_supervisor.py", line 40, in test_worker_output_limit_is_inconclusive
+    self.assertEqual(returncode, 3)
+AssertionError: 2 != 3
+
+----------------------------------------------------------------------
+Ran 1 test in 0.009s
+
+FAILED (failures=1)

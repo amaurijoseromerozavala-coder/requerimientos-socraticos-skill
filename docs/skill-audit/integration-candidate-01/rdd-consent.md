@@ -1,0 +1,50 @@
+# Revisión del candidato de integración v0.1
+
+Alcance: borrador documental parcial con23decisiones, contratos, gate booleano y proyecciónFSM. Sin implementación, instalación, CI ni producción.
+
+Candidato: sha256:551a7a33c412f242c3c2c69437f46ef72ce992dec5ebed848af5af28f98384c2
+
+Riesgo medio;13archivos,1133líneas. RDD independiente documental, sin promesa de ejecutar pruebas ni cerrar los unknowns. Consentimiento requerido por runtime; las autorizaciones antiguas no cubren este candidato.
+
+## Solicitud exacta del runtime
+
+```json
+{
+  "schema": "gentle-ai.review-integration.consent/v3",
+  "contract": "gentle-ai.review-integration/v2",
+  "operation": "review.start",
+  "action": "consent_required",
+  "agent": "codex",
+  "blocking": true,
+  "target_identity": "sha256:551a7a33c412f242c3c2c69437f46ef72ce992dec5ebed848af5af28f98384c2",
+  "projection": "workspace",
+  "risk_level": "medium",
+  "changed_files": 13,
+  "changed_lines": 1133,
+  "headline": "Gentle AI can review this change before you call it done.",
+  "reason": "Review can help detect regressions in these changes.",
+  "value": "Reviewing takes a little longer and makes the result safer.",
+  "risk_evidence": [
+    "this change is not purely passive documentation, so it gets one consolidated review.",
+    "a configuration change in docs/requirements/integracion-requisitos-qa-supervisor/candidato-v0.1/contracts.json"
+  ],
+  "choices": [
+    {
+      "answer": "granted",
+      "label": "Review this change",
+      "effect": "Reviews only this change; later medium- or high-risk changes ask again, and delivery needs separate approval.",
+      "invocation": "gentle-ai review start --contract gentle-ai.review-integration/v2 --cwd /workspace/replica-gentle-ai --target sha256:551a7a33c412f242c3c2c69437f46ef72ce992dec5ebed848af5af28f98384c2 --target-evidence v1:base-workspace-overlay:workspace:4b825dc642cb6eb9a060e54bf8d69288fbee4904:40c5e4e4b174106a2cf27a72bc1af14b3939a975:sha256:0b038aa228861fe05395e368c128349ac2eeca5c2a1cbb46554962c70c09543b --projection workspace --agent codex --lineage review-1e21a531f9384c6d --base-ref 4b825dc642cb6eb9a060e54bf8d69288fbee4904 --workspace-overlay --untracked-scope=select --expected-untracked-inventory=sha256:47add380ffb6c5235fc4833d660f53e7f62847eabf253fd1e665cada585676f6 --intended-untracked=docs/requirements/integracion-requisitos-qa-supervisor/candidato-v0.1/README.md --intended-untracked=docs/requirements/integracion-requisitos-qa-supervisor/candidato-v0.1/contracts.json --intended-untracked=docs/requirements/integracion-requisitos-qa-supervisor/candidato-v0.1/fsm.json --intended-untracked=docs/requirements/integracion-requisitos-qa-supervisor/candidato-v0.1/incorporation-gate.json --intended-untracked=docs/requirements/integracion-requisitos-qa-supervisor/candidato-v0.1/open-gaps.json --intended-untracked=docs/requirements/integracion-requisitos-qa-supervisor/candidato-v0.1/requirements.json --intended-untracked=docs/requirements/integracion-requisitos-qa-supervisor/decisiones-confirmadas.json --intended-untracked=docs/skill-audit/integration-candidate-01/check-document-model.py --intended-untracked=docs/skill-audit/integration-candidate-01/green.json --intended-untracked=docs/skill-audit/integration-candidate-01/independent.md --intended-untracked=docs/skill-audit/integration-candidate-01/red.json --intended-untracked=docs/skill-audit/integration-candidate-01/review-green.json --intended-untracked=docs/skill-audit/integration-candidate-01/review-red.json --lenses review-resilience,review-reliability --lenses-reason 'Review partial documentary design grounded in23human decisions; abstract gate and partial incorporation FSM only, explicit gaps; no implementation approval.' --consent granted"
+    },
+    {
+      "answer": "declined",
+      "label": "Skip this time",
+      "effect": "Skips only this change; no review record is created, and future reviews stay enabled.",
+      "invocation": "gentle-ai review start --contract gentle-ai.review-integration/v2 --cwd /workspace/replica-gentle-ai --target sha256:551a7a33c412f242c3c2c69437f46ef72ce992dec5ebed848af5af28f98384c2 --target-evidence v1:base-workspace-overlay:workspace:4b825dc642cb6eb9a060e54bf8d69288fbee4904:40c5e4e4b174106a2cf27a72bc1af14b3939a975:sha256:0b038aa228861fe05395e368c128349ac2eeca5c2a1cbb46554962c70c09543b --projection workspace --agent codex --lineage review-1e21a531f9384c6d --base-ref 4b825dc642cb6eb9a060e54bf8d69288fbee4904 --workspace-overlay --untracked-scope=select --expected-untracked-inventory=sha256:47add380ffb6c5235fc4833d660f53e7f62847eabf253fd1e665cada585676f6 --intended-untracked=docs/requirements/integracion-requisitos-qa-supervisor/candidato-v0.1/README.md --intended-untracked=docs/requirements/integracion-requisitos-qa-supervisor/candidato-v0.1/contracts.json --intended-untracked=docs/requirements/integracion-requisitos-qa-supervisor/candidato-v0.1/fsm.json --intended-untracked=docs/requirements/integracion-requisitos-qa-supervisor/candidato-v0.1/incorporation-gate.json --intended-untracked=docs/requirements/integracion-requisitos-qa-supervisor/candidato-v0.1/open-gaps.json --intended-untracked=docs/requirements/integracion-requisitos-qa-supervisor/candidato-v0.1/requirements.json --intended-untracked=docs/requirements/integracion-requisitos-qa-supervisor/decisiones-confirmadas.json --intended-untracked=docs/skill-audit/integration-candidate-01/check-document-model.py --intended-untracked=docs/skill-audit/integration-candidate-01/green.json --intended-untracked=docs/skill-audit/integration-candidate-01/independent.md --intended-untracked=docs/skill-audit/integration-candidate-01/red.json --intended-untracked=docs/skill-audit/integration-candidate-01/review-green.json --intended-untracked=docs/skill-audit/integration-candidate-01/review-red.json --lenses review-resilience,review-reliability --lenses-reason 'Review partial documentary design grounded in23human decisions; abstract gate and partial incorporation FSM only, explicit gaps; no implementation approval.' --consent declined"
+    }
+  ],
+  "off_path": {
+    "note": "To turn reviews off for good, run 'gentle-ai review mode disable'.",
+    "command": "gentle-ai review mode disable"
+  }
+}
+```

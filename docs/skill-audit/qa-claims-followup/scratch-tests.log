@@ -1,0 +1,17 @@
+test_exception_cleans_bundle (test_scratch.ScratchTests.test_exception_cleans_bundle) ... ok
+test_foreign_namespace_not_touched (test_scratch.ScratchTests.test_foreign_namespace_not_touched) ... ok
+test_hardlinked_lease_rejected (test_scratch.ScratchTests.test_hardlinked_lease_rejected) ... ok
+test_inherited_lease_protects_consumer_after_parent_sigkill (test_scratch.ScratchTests.test_inherited_lease_protects_consumer_after_parent_sigkill) ... ok
+test_invalid_limits (test_scratch.ScratchTests.test_invalid_limits) ... ok
+test_live_slot_never_deleted (test_scratch.ScratchTests.test_live_slot_never_deleted) ... ok
+test_normal_exit_cleans_bundle (test_scratch.ScratchTests.test_normal_exit_cleans_bundle) ... ok
+test_open_namespace_rejected (test_scratch.ScratchTests.test_open_namespace_rejected) ... ok
+test_pool_capacity_is_fixed (test_scratch.ScratchTests.test_pool_capacity_is_fixed) ... ok
+test_sigkill_orphan_reclaimed_on_exclusive_reuse (test_scratch.ScratchTests.test_sigkill_orphan_reclaimed_on_exclusive_reuse) ... ok
+test_symlink_bundle_not_followed (test_scratch.ScratchTests.test_symlink_bundle_not_followed) ... ok
+test_symlink_namespace_rejected (test_scratch.ScratchTests.test_symlink_namespace_rejected) ... ok
+
+----------------------------------------------------------------------
+Ran 12 tests in 0.208s
+
+OK

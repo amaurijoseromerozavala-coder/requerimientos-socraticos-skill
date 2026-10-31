@@ -1,0 +1,322 @@
+{
+  "schema": "gentle-ai.review-integration.status/v9",
+  "contract": "gentle-ai.review-integration/v2",
+  "operation": "review.status",
+  "applicability": "unrelated",
+  "action": "start",
+  "replayability": "not_replayable",
+  "target_identity": "sha256:77778c85936cef6f218a7b53540fbdca3c84e348476919278a2fbfa0830f1ec2",
+  "projection": {
+    "schema": "gentle-ai.review-integration.projection/v1",
+    "kind": "base-workspace-overlay",
+    "projection": "workspace",
+    "base_tree": "4b825dc642cb6eb9a060e54bf8d69288fbee4904",
+    "initial_review_tree": "4377fa1087d8d758f215a3454447ce434cb1d0a3",
+    "current_candidate_tree": "4377fa1087d8d758f215a3454447ce434cb1d0a3",
+    "paths_digest": "sha256:9859d0422b99ed0b527699738838a5c659bfda1e83b642af713ad7d948208dcd",
+    "paths": [
+      "docs/requirements/qa-supervisor/activation-preflight.json",
+      "docs/requirements/qa-supervisor/receipts/context7-result.json",
+      "docs/requirements/qa-supervisor/receipts/python-resource.txt",
+      "docs/requirements/qa-supervisor/receipts/python-subprocess.txt",
+      "docs/requirements/qa-supervisor/receipts/research-discovery.txt",
+      "docs/requirements/qa-supervisor/receipts/web-result.json",
+      "docs/requirements/qa-supervisor/research.json",
+      "docs/requirements/qa-supervisor/verificacion-borrador.json",
+      "docs/requirements/qa-supervisor/verification/RESULTADO.md",
+      "docs/requirements/qa-supervisor/verification/activation-resumed.json",
+      "docs/requirements/qa-supervisor/verification/activation.json",
+      "docs/requirements/qa-supervisor/verification/canonical-independent.md",
+      "docs/requirements/qa-supervisor/verification/canonical-model-results.json",
+      "docs/requirements/qa-supervisor/verification/canonical-validation.json",
+      "docs/requirements/qa-supervisor/verification/check-canonical-model.py",
+      "docs/requirements/qa-supervisor/verification/check-document-model.py",
+      "docs/requirements/qa-supervisor/verification/check-output-contract.py",
+      "docs/requirements/qa-supervisor/verification/closure-independent.md",
+      "docs/requirements/qa-supervisor/verification/green.json",
+      "docs/requirements/qa-supervisor/verification/independent.md",
+      "docs/requirements/qa-supervisor/verification/interview-validation.json",
+      "docs/requirements/qa-supervisor/verification/model-results.json",
+      "docs/requirements/qa-supervisor/verification/output-contract-results.json",
+      "docs/requirements/qa-supervisor/verification/output-contract-run.log",
+      "docs/requirements/qa-supervisor/verification/red.json"
+    ],
+    "intended_untracked": [
+      "docs/requirements/qa-supervisor/activation-preflight.json",
+      "docs/requirements/qa-supervisor/receipts/context7-result.json",
+      "docs/requirements/qa-supervisor/receipts/python-resource.txt",
+      "docs/requirements/qa-supervisor/receipts/python-subprocess.txt",
+      "docs/requirements/qa-supervisor/receipts/research-discovery.txt",
+      "docs/requirements/qa-supervisor/receipts/web-result.json",
+      "docs/requirements/qa-supervisor/research.json",
+      "docs/requirements/qa-supervisor/verificacion-borrador.json",
+      "docs/requirements/qa-supervisor/verification/RESULTADO.md",
+      "docs/requirements/qa-supervisor/verification/activation-resumed.json",
+      "docs/requirements/qa-supervisor/verification/activation.json",
+      "docs/requirements/qa-supervisor/verification/canonical-independent.md",
+      "docs/requirements/qa-supervisor/verification/canonical-model-results.json",
+      "docs/requirements/qa-supervisor/verification/canonical-validation.json",
+      "docs/requirements/qa-supervisor/verification/check-canonical-model.py",
+      "docs/requirements/qa-supervisor/verification/check-document-model.py",
+      "docs/requirements/qa-supervisor/verification/check-output-contract.py",
+      "docs/requirements/qa-supervisor/verification/closure-independent.md",
+      "docs/requirements/qa-supervisor/verification/green.json",
+      "docs/requirements/qa-supervisor/verification/independent.md",
+      "docs/requirements/qa-supervisor/verification/interview-validation.json",
+      "docs/requirements/qa-supervisor/verification/model-results.json",
+      "docs/requirements/qa-supervisor/verification/output-contract-results.json",
+      "docs/requirements/qa-supervisor/verification/output-contract-run.log",
+      "docs/requirements/qa-supervisor/verification/red.json"
+    ],
+    "intended_untracked_proof": "sha256:806fa303ee34e9d346eb3c108f306803c7df90fe5e6f90c97bcb698af3c81c17",
+    "initial_snapshot_identity": "sha256:77778c85936cef6f218a7b53540fbdca3c84e348476919278a2fbfa0830f1ec2",
+    "current_snapshot_identity": "sha256:77778c85936cef6f218a7b53540fbdca3c84e348476919278a2fbfa0830f1ec2"
+  },
+  "eligible_untracked_inventory": "sha256:655f42462086a35c650c76a46f04546b2788a399a546d16ba184cb413a05beb5",
+  "repair": {
+    "schema": "gentle-ai.review-authority-repair-assessment/v1",
+    "status": "unsupported",
+    "counts": {
+      "lineages": 0,
+      "compact_lineages": 0,
+      "legacy_lineages": 0,
+      "events": 0,
+      "bytes": 0,
+      "eligible_candidates": 0,
+      "unsupported_lineages": 0,
+      "conflicts": 0
+    },
+    "supported_operations": [
+      "review/complete-fix",
+      "review/validate-fix"
+    ],
+    "authorization_schema": "gentle-ai.review-repair-authorization/v1"
+  },
+  "candidates": [],
+  "forecast": {
+    "horizon": "partial",
+    "steps": [
+      {
+        "step": 1,
+        "kind": "execute",
+        "reason_code": "fresh_target_ready",
+        "description": "Target is unreviewed and ready for initial review start"
+      }
+    ]
+  },
+  "next_transition": {
+    "kind": "execute",
+    "reason_code": "fresh_target_ready",
+    "execute": {
+      "operation": "review.start",
+      "command": "gentle-ai review start --cwd=/workspace/replica-gentle-ai --contract=gentle-ai.review-integration/v2 --target=sha256:77778c85936cef6f218a7b53540fbdca3c84e348476919278a2fbfa0830f1ec2 --target-evidence=v1:base-workspace-overlay:workspace:4b825dc642cb6eb9a060e54bf8d69288fbee4904:4377fa1087d8d758f215a3454447ce434cb1d0a3:sha256:9859d0422b99ed0b527699738838a5c659bfda1e83b642af713ad7d948208dcd --projection=workspace --base-ref=4b825dc642cb6eb9a060e54bf8d69288fbee4904 --workspace-overlay=true --lineage=review-e3ace361dd26dcf9 --agent=codex --consent=relay --untracked-scope=select --expected-untracked-inventory=sha256:655f42462086a35c650c76a46f04546b2788a399a546d16ba184cb413a05beb5 --intended-untracked=docs/requirements/qa-supervisor/activation-preflight.json --intended-untracked=docs/requirements/qa-supervisor/receipts/context7-result.json --intended-untracked=docs/requirements/qa-supervisor/receipts/python-resource.txt --intended-untracked=docs/requirements/qa-supervisor/receipts/python-subprocess.txt --intended-untracked=docs/requirements/qa-supervisor/receipts/research-discovery.txt --intended-untracked=docs/requirements/qa-supervisor/receipts/web-result.json --intended-untracked=docs/requirements/qa-supervisor/research.json --intended-untracked=docs/requirements/qa-supervisor/verificacion-borrador.json --intended-untracked=docs/requirements/qa-supervisor/verification/RESULTADO.md --intended-untracked=docs/requirements/qa-supervisor/verification/activation-resumed.json --intended-untracked=docs/requirements/qa-supervisor/verification/activation.json --intended-untracked=docs/requirements/qa-supervisor/verification/canonical-independent.md --intended-untracked=docs/requirements/qa-supervisor/verification/canonical-model-results.json --intended-untracked=docs/requirements/qa-supervisor/verification/canonical-validation.json --intended-untracked=docs/requirements/qa-supervisor/verification/check-canonical-model.py --intended-untracked=docs/requirements/qa-supervisor/verification/check-document-model.py --intended-untracked=docs/requirements/qa-supervisor/verification/check-output-contract.py --intended-untracked=docs/requirements/qa-supervisor/verification/closure-independent.md --intended-untracked=docs/requirements/qa-supervisor/verification/green.json --intended-untracked=docs/requirements/qa-supervisor/verification/independent.md --intended-untracked=docs/requirements/qa-supervisor/verification/interview-validation.json --intended-untracked=docs/requirements/qa-supervisor/verification/model-results.json --intended-untracked=docs/requirements/qa-supervisor/verification/output-contract-results.json --intended-untracked=docs/requirements/qa-supervisor/verification/output-contract-run.log --intended-untracked=docs/requirements/qa-supervisor/verification/red.json --lenses=review-resilience,review-reliability '--lenses-reason=Partial PRD review: evidence. Other parts and aggregate integration remain separately required; no implementation approval.'",
+      "arguments": [
+        {
+          "name": "cwd",
+          "value": "/workspace/replica-gentle-ai",
+          "token": "--cwd=/workspace/replica-gentle-ai"
+        },
+        {
+          "name": "contract",
+          "value": "gentle-ai.review-integration/v2",
+          "token": "--contract=gentle-ai.review-integration/v2"
+        },
+        {
+          "name": "target",
+          "value": "sha256:77778c85936cef6f218a7b53540fbdca3c84e348476919278a2fbfa0830f1ec2",
+          "token": "--target=sha256:77778c85936cef6f218a7b53540fbdca3c84e348476919278a2fbfa0830f1ec2"
+        },
+        {
+          "name": "target-evidence",
+          "value": "v1:base-workspace-overlay:workspace:4b825dc642cb6eb9a060e54bf8d69288fbee4904:4377fa1087d8d758f215a3454447ce434cb1d0a3:sha256:9859d0422b99ed0b527699738838a5c659bfda1e83b642af713ad7d948208dcd",
+          "token": "--target-evidence=v1:base-workspace-overlay:workspace:4b825dc642cb6eb9a060e54bf8d69288fbee4904:4377fa1087d8d758f215a3454447ce434cb1d0a3:sha256:9859d0422b99ed0b527699738838a5c659bfda1e83b642af713ad7d948208dcd"
+        },
+        {
+          "name": "projection",
+          "value": "workspace",
+          "token": "--projection=workspace"
+        },
+        {
+          "name": "base-ref",
+          "value": "4b825dc642cb6eb9a060e54bf8d69288fbee4904",
+          "token": "--base-ref=4b825dc642cb6eb9a060e54bf8d69288fbee4904"
+        },
+        {
+          "name": "workspace-overlay",
+          "value": "true",
+          "token": "--workspace-overlay=true"
+        },
+        {
+          "name": "lineage",
+          "value": "review-e3ace361dd26dcf9",
+          "token": "--lineage=review-e3ace361dd26dcf9"
+        },
+        {
+          "name": "agent",
+          "value": "codex",
+          "token": "--agent=codex"
+        },
+        {
+          "name": "consent",
+          "value": "relay",
+          "token": "--consent=relay"
+        },
+        {
+          "name": "untracked-scope",
+          "value": "select",
+          "token": "--untracked-scope=select"
+        },
+        {
+          "name": "expected-untracked-inventory",
+          "value": "sha256:655f42462086a35c650c76a46f04546b2788a399a546d16ba184cb413a05beb5",
+          "token": "--expected-untracked-inventory=sha256:655f42462086a35c650c76a46f04546b2788a399a546d16ba184cb413a05beb5"
+        },
+        {
+          "name": "intended-untracked",
+          "value": "docs/requirements/qa-supervisor/activation-preflight.json",
+          "token": "--intended-untracked=docs/requirements/qa-supervisor/activation-preflight.json"
+        },
+        {
+          "name": "intended-untracked",
+          "value": "docs/requirements/qa-supervisor/receipts/context7-result.json",
+          "token": "--intended-untracked=docs/requirements/qa-supervisor/receipts/context7-result.json"
+        },
+        {
+          "name": "intended-untracked",
+          "value": "docs/requirements/qa-supervisor/receipts/python-resource.txt",
+          "token": "--intended-untracked=docs/requirements/qa-supervisor/receipts/python-resource.txt"
+        },
+        {
+          "name": "intended-untracked",
+          "value": "docs/requirements/qa-supervisor/receipts/python-subprocess.txt",
+          "token": "--intended-untracked=docs/requirements/qa-supervisor/receipts/python-subprocess.txt"
+        },
+        {
+          "name": "intended-untracked",
+          "value": "docs/requirements/qa-supervisor/receipts/research-discovery.txt",
+          "token": "--intended-untracked=docs/requirements/qa-supervisor/receipts/research-discovery.txt"
+        },
+        {
+          "name": "intended-untracked",
+          "value": "docs/requirements/qa-supervisor/receipts/web-result.json",
+          "token": "--intended-untracked=docs/requirements/qa-supervisor/receipts/web-result.json"
+        },
+        {
+          "name": "intended-untracked",
+          "value": "docs/requirements/qa-supervisor/research.json",
+          "token": "--intended-untracked=docs/requirements/qa-supervisor/research.json"
+        },
+        {
+          "name": "intended-untracked",
+          "value": "docs/requirements/qa-supervisor/verificacion-borrador.json",
+          "token": "--intended-untracked=docs/requirements/qa-supervisor/verificacion-borrador.json"
+        },
+        {
+          "name": "intended-untracked",
+          "value": "docs/requirements/qa-supervisor/verification/RESULTADO.md",
+          "token": "--intended-untracked=docs/requirements/qa-supervisor/verification/RESULTADO.md"
+        },
+        {
+          "name": "intended-untracked",
+          "value": "docs/requirements/qa-supervisor/verification/activation-resumed.json",
+          "token": "--intended-untracked=docs/requirements/qa-supervisor/verification/activation-resumed.json"
+        },
+        {
+          "name": "intended-untracked",
+          "value": "docs/requirements/qa-supervisor/verification/activation.json",
+          "token": "--intended-untracked=docs/requirements/qa-supervisor/verification/activation.json"
+        },
+        {
+          "name": "intended-untracked",
+          "value": "docs/requirements/qa-supervisor/verification/canonical-independent.md",
+          "token": "--intended-untracked=docs/requirements/qa-supervisor/verification/canonical-independent.md"
+        },
+        {
+          "name": "intended-untracked",
+          "value": "docs/requirements/qa-supervisor/verification/canonical-model-results.json",
+          "token": "--intended-untracked=docs/requirements/qa-supervisor/verification/canonical-model-results.json"
+        },
+        {
+          "name": "intended-untracked",
+          "value": "docs/requirements/qa-supervisor/verification/canonical-validation.json",
+          "token": "--intended-untracked=docs/requirements/qa-supervisor/verification/canonical-validation.json"
+        },
+        {
+          "name": "intended-untracked",
+          "value": "docs/requirements/qa-supervisor/verification/check-canonical-model.py",
+          "token": "--intended-untracked=docs/requirements/qa-supervisor/verification/check-canonical-model.py"
+        },
+        {
+          "name": "intended-untracked",
+          "value": "docs/requirements/qa-supervisor/verification/check-document-model.py",
+          "token": "--intended-untracked=docs/requirements/qa-supervisor/verification/check-document-model.py"
+        },
+        {
+          "name": "intended-untracked",
+          "value": "docs/requirements/qa-supervisor/verification/check-output-contract.py",
+          "token": "--intended-untracked=docs/requirements/qa-supervisor/verification/check-output-contract.py"
+        },
+        {
+          "name": "intended-untracked",
+          "value": "docs/requirements/qa-supervisor/verification/closure-independent.md",
+          "token": "--intended-untracked=docs/requirements/qa-supervisor/verification/closure-independent.md"
+        },
+        {
+          "name": "intended-untracked",
+          "value": "docs/requirements/qa-supervisor/verification/green.json",
+          "token": "--intended-untracked=docs/requirements/qa-supervisor/verification/green.json"
+        },
+        {
+          "name": "intended-untracked",
+          "value": "docs/requirements/qa-supervisor/verification/independent.md",
+          "token": "--intended-untracked=docs/requirements/qa-supervisor/verification/independent.md"
+        },
+        {
+          "name": "intended-untracked",
+          "value": "docs/requirements/qa-supervisor/verification/interview-validation.json",
+          "token": "--intended-untracked=docs/requirements/qa-supervisor/verification/interview-validation.json"
+        },
+        {
+          "name": "intended-untracked",
+          "value": "docs/requirements/qa-supervisor/verification/model-results.json",
+          "token": "--intended-untracked=docs/requirements/qa-supervisor/verification/model-results.json"
+        },
+        {
+          "name": "intended-untracked",
+          "value": "docs/requirements/qa-supervisor/verification/output-contract-results.json",
+          "token": "--intended-untracked=docs/requirements/qa-supervisor/verification/output-contract-results.json"
+        },
+        {
+          "name": "intended-untracked",
+          "value": "docs/requirements/qa-supervisor/verification/output-contract-run.log",
+          "token": "--intended-untracked=docs/requirements/qa-supervisor/verification/output-contract-run.log"
+        },
+        {
+          "name": "intended-untracked",
+          "value": "docs/requirements/qa-supervisor/verification/red.json",
+          "token": "--intended-untracked=docs/requirements/qa-supervisor/verification/red.json"
+        },
+        {
+          "name": "lenses",
+          "value": "review-resilience,review-reliability",
+          "token": "--lenses=review-resilience,review-reliability"
+        },
+        {
+          "name": "lenses-reason",
+          "value": "Partial PRD review: evidence. Other parts and aggregate integration remain separately required; no implementation approval.",
+          "token": "--lenses-reason=Partial PRD review: evidence. Other parts and aggregate integration remain separately required; no implementation approval."
+        }
+      ],
+      "preconditions": [
+        {
+          "name": "target_identity",
+          "value": "sha256:77778c85936cef6f218a7b53540fbdca3c84e348476919278a2fbfa0830f1ec2"
+        }
+      ],
+      "binding": {
+        "lineage_id": "review-e3ace361dd26dcf9",
+        "target_identity": "sha256:77778c85936cef6f218a7b53540fbdca3c84e348476919278a2fbfa0830f1ec2"
+      }
+    }
+  }
+}

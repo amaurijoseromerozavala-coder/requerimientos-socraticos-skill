@@ -1,0 +1,253 @@
+{
+  "schema_version": "2.0.0",
+  "project": "qa-inquisidor",
+  "mode": "INDEPENDENT_ASSISTANT_INTERVIEW",
+  "status": "INTERROGATING",
+  "actors": [
+    {
+      "id": "INTERROGATOR-QA",
+      "role": "INTERROGATOR",
+      "runtime_refs": [
+        "/root/qa_requirements_resume"
+      ]
+    },
+    {
+      "id": "COORDINATOR",
+      "role": "ASSISTANT_RESPONDER",
+      "runtime_refs": [
+        "/root"
+      ]
+    },
+    {
+      "id": "OWNER",
+      "role": "HUMAN_OWNER",
+      "runtime_refs": []
+    }
+  ],
+  "sources": [
+    {
+      "id": "S-HUMAN-DELEGATION",
+      "kind": "HUMAN",
+      "locator": "receipts/A-HUMAN-006.txt",
+      "verbatim_or_observation": "Delegas esos juicios técnicos a la skill dentro de criterios explícitos; las excepciones vuelven a ti.\n",
+      "observed_at": "2026-10-29"
+    },
+    {
+      "id": "S-BASE",
+      "kind": "LOCAL",
+      "locator": "../qa-inquisidor-v2/registro-skill-asistente.json",
+      "verbatim_or_observation": "Q001–005 y propuestas históricas; no implican implementación.",
+      "observed_at": "2026-10-29"
+    },
+    {
+      "id": "S-CONTRACT",
+      "kind": "LOCAL",
+      "locator": "contrato-evidencia.json",
+      "verbatim_or_observation": "Contrato de diseño y criterios técnicos explícitos, no validación del sistema real.",
+      "observed_at": "2026-10-29"
+    }
+  ],
+  "topics": [
+    {
+      "id": "TOPIC-006",
+      "dimension": "autoridad de alcance/materialidad/suficiencia semántica",
+      "material": true,
+      "applicable": true,
+      "status": "COVERED",
+      "rationale": "Contraste real Q006–008; delegación humana y límites preservados. Cobertura de la pregunta, no del sistema real.",
+      "question_ids": [
+        "Q-QA-006"
+      ],
+      "source_ids": [
+        "S-BASE",
+        "S-CONTRACT",
+        "S-HUMAN-DELEGATION"
+      ]
+    },
+    {
+      "id": "TOPIC-007",
+      "dimension": "tipado y cardinalidad del contrato de evidencia",
+      "material": true,
+      "applicable": true,
+      "status": "COVERED",
+      "rationale": "Contraste real Q006–008; delegación humana y límites preservados. Cobertura de la pregunta, no del sistema real.",
+      "question_ids": [
+        "Q-QA-007"
+      ],
+      "source_ids": [
+        "S-BASE",
+        "S-CONTRACT",
+        "S-HUMAN-DELEGATION"
+      ]
+    },
+    {
+      "id": "TOPIC-008",
+      "dimension": "vigencia de criterios delegados e invalidación",
+      "material": true,
+      "applicable": true,
+      "status": "COVERED",
+      "rationale": "Contraste real Q006–008; delegación humana y límites preservados. Cobertura de la pregunta, no del sistema real.",
+      "question_ids": [
+        "Q-QA-008"
+      ],
+      "source_ids": [
+        "S-BASE",
+        "S-CONTRACT",
+        "S-HUMAN-DELEGATION"
+      ]
+    },
+    {
+      "id": "TOPIC-INTEGRATION",
+      "dimension": "PRD canónico completo y aceptación de runtime",
+      "material": true,
+      "applicable": true,
+      "status": "OPEN",
+      "rationale": "La continuación no migra toda la base v1/v2 ni prueba enforcement global o aplicación objetivo.",
+      "question_ids": [],
+      "source_ids": [
+        "S-BASE"
+      ]
+    }
+  ],
+  "exchanges": [
+    {
+      "question": {
+        "id": "Q-QA-006",
+        "by_actor": "INTERROGATOR-QA",
+        "to_actor": "COORDINATOR",
+        "topic_id": "TOPIC-006",
+        "text": "Q-QA-006 — destinatario: ASSISTANT_RESPONDER; dimensión: autoridad de alcance/materialidad/suficiencia semántica. ¿Qué fuente humana vigente identifica quién puede aceptar esos tres juicios para derivar RECORD_CURRENT_SUCCESS, y qué contrato documental propones para distinguir un juicio técnico del asistente de una decisión autorizada cuando esa delegación no consta? Expón el estado de cada juicio —confirmado, propuesta o UNKNOWN— y un caso concreto que deba conservar RECORD_GAP_OR_STALE aunque IDs, hashes y evidencias estructurales sean válidos. No implementes ni atribuyas una decisión al humano por silencio.\n",
+        "dimension": "autoridad de alcance/materialidad/suficiencia semántica",
+        "required_evidence": [
+          "Fuentes y criterio técnico trazables, con UNKNOWN explícito"
+        ],
+        "answer_kind": "DESIGN_ARGUMENT"
+      },
+      "answer": {
+        "id": "A-QA-006",
+        "by_actor": "COORDINATOR",
+        "question_id": "Q-QA-006",
+        "text": "A-QA-006: No consta una fuente humana que delegue al asistente la aceptación final de alcance, materialidad y suficiencia semántica. Confirmado: el humano pide analizar todo el sistema, evidencia comprobada, repetibilidad con entradas/versiones/entorno fijados y declarar lo no demostrado; default Solo análisis; ejecución con autorización específica. UNKNOWN: quién puede aceptar esos tres juicios en cada evaluación y mediante qué delegación. Juicio técnico del asistente: permitido proponer inventario, materialidad y correspondencia, con fuentes y razones, pero esa propuesta no acredita por sí misma aceptación humana. Contrato propuesto: acceptance registra actor real, role, decision_source_ref humano o delegación explícita vigente, assessment/snapshot/scope_digest/versiones, los tres juicios por separado, evidencia/razón, estado PROPOSED/ACCEPTED/REJECTED y límites. Ningún ACCEPTED se deriva del nombre HUMAN_OWNER en JSON; el runtime debe contrastar la fuente con la instrucción real. Cambiar inventario/alcance/evidencia relevante invalida la aceptación dependiente. Sin delegación o decisión verificable, RECORD_GAP_OR_STALE conserva pendiente aunque la estructura sea válida. Caso: todos los casos de dos módulos pasan y sus hashes coinciden, pero el inventario omite un tercer consumidor conocido, o solo el asistente afirma que el ensayo físico es no material. No hay cobertura aceptada de todo el sistema; no derivar SUCCESS. Recomiendo al humano elegir entre aceptación final humana explícita para esos juicios o delegación técnica acotada por evaluación; no lo decido por silencio. Esto es diseño pendiente, no implementación ni prueba.\n",
+        "classification": "INFERENCE",
+        "source_ids": [
+          "S-BASE",
+          "S-CONTRACT"
+        ],
+        "authoritative_quote": null
+      },
+      "assessment": {
+        "verdict": "ANSWERED",
+        "rationale": "El entrevistador contrastó la respuesta como diseño propuesto; se cierra solo esta dimensión del ciclo técnico. Q006 escaló la política, resuelta posteriormente por fuente humana preservada. No cierra PRD ni evidencia de sistema.",
+        "remaining_gaps": [],
+        "resolved_by": null
+      },
+      "question_receipt": {
+        "path": "receipts/Q-QA-006.txt",
+        "format": "PLAIN_TEXT",
+        "sha256": "5ea3d3cc1646e98cf54dc90e7af1d5aa015a966804284fa88258a96a22a90c52"
+      },
+      "answer_receipt": {
+        "path": "receipts/A-QA-006.txt",
+        "format": "PLAIN_TEXT",
+        "sha256": "7a2121e0b72f7e57901363b0b2c13844e97d58099a1359257f8006373faa0cf0"
+      }
+    },
+    {
+      "question": {
+        "id": "Q-QA-007",
+        "by_actor": "INTERROGATOR-QA",
+        "to_actor": "COORDINATOR",
+        "topic_id": "TOPIC-007",
+        "text": "Q-QA-007 — dimensión: tipado y cardinalidad del contrato de evidencia. ¿Qué predicado total y comprobable propones para derivar exactamente una salida entre REJECT_INPUT, RECORD_CURRENT_FAILURE, RECORD_GAP_OR_STALE y RECORD_CURRENT_SUCCESS desde un inventario no vacío y sus registros, cuando pueden coexistir un contraejemplo vigente y otra obligación NOT_RUN? Define precedencia, claves/cardinalidades/uniones por ID y tratamiento de UNKNOWN; distingue la totalidad de esta función documental de la cobertura del sistema real y deja la aceptación humana parametrizada, no supuesta.\n",
+        "dimension": "tipado y cardinalidad del contrato de evidencia",
+        "required_evidence": [
+          "Fuentes y criterio técnico trazables, con UNKNOWN explícito"
+        ],
+        "answer_kind": "DESIGN_ARGUMENT"
+      },
+      "answer": {
+        "id": "A-QA-007",
+        "by_actor": "COORDINATOR",
+        "question_id": "Q-QA-007",
+        "text": "A-QA-007: Propuesta técnica con precedencia REJECT_INPUT > RECORD_CURRENT_FAILURE > RECORD_GAP_OR_STALE > RECORD_CURRENT_SUCCESS. Primero shape/tipos, claves únicas assessment/obligation/case/evidence/judgment, referencias resueltas sin overwrite y cardinalidades: inventario 1..N, 1 estado derivado por obligación; cada obligación material aplicable tiene al menos un caso/oráculo previo y cada caso requerido tiene exactamente un registro actual (historial aparte), 0..N evidencias identificadas. Duplicados/ref ambigua o huérfana -> REJECT_INPUT, sin transición. NOT_RUN/UNKNOWN válidos son datos pendientes, no errores de sintaxis. Por obligación: CURRENT_FAILURE si hay contraejemplo observado vigente, tipo/snapshot/entorno/versiones coincidentes y oráculo previo contrastado; CURRENT_SUCCESS solo si todos sus casos requeridos favorables, sin contradicción/pendiente y suficiencia justificada; resto GAP. Evidencia FAIL vigente y PASS simultáneo para mismo caso es contradicción de datos => REJECT_INPUT con ambos preservados, no elegir uno. Agregado sobre obligaciones materiales aplicables no vacías: cualquier fallo válido -> FAILURE conservando lista gaps/cobertura incompleta; sin fallos y cualquier gap/juicio pendiente -> GAP; sin fallos/gaps y todas éxito y autoridad válida -> SUCCESS; conjunto material vacío o cobertura no justificada -> GAP. Invariantes FAILURE no implica todo verificado; SUCCESS no implica permiso. Humano acaba de decidir literalmente: 'Delegas esos juicios técnicos a la skill dentro de criterios explícitos; las excepciones vuelven a ti.' La elección de delegación es confirmada, no convierte criterios futuros en hechos. Propongo criterios explícitos conservadores: inventario de todo sistema y contratos trazado a fuentes, ninguna exclusión conocida sin razón/autoridad; materialidad desconocida se conserva requerida; toda obligación requerida con oráculo previo, evidencia vigente del tipo exigido y sin pendiente/contradicción; incertidumbre o conflicto de alcance/autoridad -> ESCALATE_USER/GAP. Delegación no es autoautorización de ensayos. Esta función finita es total sobre resúmenes tipados admitidos, no prueba completitud del sistema real ni fiabilidad universal de fuentes. Tipos y tabla aún se preparan, no ensayos ejecutados.\n",
+        "classification": "INFERENCE",
+        "source_ids": [
+          "S-BASE",
+          "S-CONTRACT",
+          "S-HUMAN-DELEGATION"
+        ],
+        "authoritative_quote": null
+      },
+      "assessment": {
+        "verdict": "ANSWERED",
+        "rationale": "El entrevistador contrastó la respuesta como diseño propuesto; se cierra solo esta dimensión del ciclo técnico. Q006 escaló la política, resuelta posteriormente por fuente humana preservada. No cierra PRD ni evidencia de sistema.",
+        "remaining_gaps": [],
+        "resolved_by": null
+      },
+      "question_receipt": {
+        "path": "receipts/Q-QA-007.txt",
+        "format": "PLAIN_TEXT",
+        "sha256": "c72c4d3912483fe39e57c6c5e0753a782184eb0601d86d254475fd534aff8723"
+      },
+      "answer_receipt": {
+        "path": "receipts/A-QA-007.txt",
+        "format": "PLAIN_TEXT",
+        "sha256": "87d65fffd2ca7a31bdf68254556c40ded35a4d66c6de67f9808daa37323edc2a"
+      }
+    },
+    {
+      "question": {
+        "id": "Q-QA-008",
+        "by_actor": "INTERROGATOR-QA",
+        "to_actor": "COORDINATOR",
+        "topic_id": "TOPIC-008",
+        "text": "Q-QA-008 — dimensión: vigencia de criterios delegados e invalidación. ¿Qué condiciones verificables debe satisfacer un juicio delegado para vincularse al assessment, alcance/inventario, obligaciones/oráculos, candidato y versión previa de criterios, y qué cambio o excepción lo obliga a GAP/ESCALATE_USER en vez de reusar SUCCESS? Incluye el caso de una fuente pendiente que el asistente intenta convertir en NOT_APPLICABLE y cómo registrarás la valoración sin afirmar que inventario trazado demuestra completitud real.\n",
+        "dimension": "vigencia de criterios delegados e invalidación",
+        "required_evidence": [
+          "Fuentes y criterio técnico trazables, con UNKNOWN explícito"
+        ],
+        "answer_kind": "DESIGN_ARGUMENT"
+      },
+      "answer": {
+        "id": "A-QA-008",
+        "by_actor": "COORDINATOR",
+        "question_id": "Q-QA-008",
+        "text": "A-QA-008: Propongo criterios identificados/versionados/fijados antes del juicio; judgment_id único con actor_runtime real, delegation_source_ref humano vigente, assessment_id y content digests de snapshot, scope+inventario, obligations+oracles, evidence_set y criteria. Cada juicio conserva decision SUPPORTED/PENDING/EXCEPTION, razón, fuentes y límites. Guardas mecánicas: referencias únicas, todos los digests recalculados coinciden con los mismos bytes consumidos; criterios existentes previamente por la traza documental (orden de registro, no confiar solo en timestamp autorreportado), todos los predicados definidos comprobados, sin UNKNOWN/excepción relevante. Su verdad externa no se prueba por el hash. ACCEPTED automático se limita al contrato confirmado y criterios conservadores explícitos; una nueva política de negocio o redefinición del alcance necesita fuente humana, no se deriva por delegación técnica. Cambio de candidato/scope/inventario/obligación/oráculo/evidencia/criterio/delegación produce INVALIDATE y nuevos juicios/evaluación; nunca editar un criterio para justificar retroactivamente SUCCESS. Cualquier fuente requerida pendiente conserva UNKNOWN, materialidad conservadora y GAP/consulta; no puede transformarse en NOT_APPLICABLE para completar cobertura. NOT_APPLICABLE solo con razón trazable que no excluya alcance humano conocido, y decisión humana si hay conflicto/excepción. Ejemplo fuente del contrato del consumidor falta: registrar fuente pendiente, obligación requerida, juicio PENDING y consulta; no etiquetarla no aplicable. El juicio describe cobertura del inventario conocido, incluye método de descubrimiento/búsquedas/fronteras y pendientes, y no prueba que no existan componentes desconocidos. No existe sistema objetivo seleccionado ni evidencia de aceptación de sus requisitos; por eso este PRD puede definir guardas sin dar PASS de sistema. La tabla/checks probarán la abstracción finita, no autoridad universal ni privacidad del runtime. Criterios y candidato documental nuevos requieren su propia revisión RDD.\n",
+        "classification": "INFERENCE",
+        "source_ids": [
+          "S-BASE",
+          "S-CONTRACT",
+          "S-HUMAN-DELEGATION"
+        ],
+        "authoritative_quote": null
+      },
+      "assessment": {
+        "verdict": "ANSWERED",
+        "rationale": "El entrevistador contrastó la respuesta como diseño propuesto; se cierra solo esta dimensión del ciclo técnico. Q006 escaló la política, resuelta posteriormente por fuente humana preservada. No cierra PRD ni evidencia de sistema.",
+        "remaining_gaps": [],
+        "resolved_by": null
+      },
+      "question_receipt": {
+        "path": "receipts/Q-QA-008.txt",
+        "format": "PLAIN_TEXT",
+        "sha256": "7cf9c55251acef37e0e4524ea136194882cfd40fa1f84e4c8d9d88f6b5d4a4a4"
+      },
+      "answer_receipt": {
+        "path": "receipts/A-QA-008.txt",
+        "format": "PLAIN_TEXT",
+        "sha256": "ab8de127421288b8033eaabc4d8a0fcd035a50f18fdf5ded4c5e5298001f55df"
+      }
+    }
+  ],
+  "research": [],
+  "active_question_id": null,
+  "budget": {
+    "max_exchanges_this_session": 8,
+    "stop_action": "PAUSE_WITH_OPEN_TOPICS"
+  },
+  "limitations": [
+    "Registro de esta sesión Q006–008, no reemplaza los cinco intercambios históricos.",
+    "La pregunta humana fue emitida por el coordinador y se preserva por separado; no se atribuye al agente independiente.",
+    "Fuentes web y herramientas consultadas se registran en investigacion.md/receipts; no se declara COMPLETE del interrogatorio ni RDD en este registro."
+  ]
+}

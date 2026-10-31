@@ -1,0 +1,73 @@
+{
+  "schema": "gentle-ai.review-last-event-closure/v1",
+  "operation": "review/capture-result",
+  "lineage_id": "review-0965112d2a35a265",
+  "state": "approved",
+  "action": "the approved review completed on the last admitted event and awaits its exact acknowledgement",
+  "reviewer_results": [
+    {
+      "lens": "review-resilience",
+      "findings": [],
+      "evidence": [
+        "Inspected all four supplied immutable patches. No concrete change-caused resilience failure was established.",
+        "skills/qa-inquisidor/scripts/validate_report.py adds explicit authority and execution declarations to the visible success and error outputs; digest invalidation is intentional and covered by the added cases in skills/qa-inquisidor/tests/test_report.py.",
+        "skills/qa-inquisidor/SKILL.md documents handling of obsolete digests and explicitly limits memory guarantees; AGENTS.md updates the advertised version."
+      ],
+      "result_hash": "sha256:1f36bb3a5b40f1b34c7afaf1cea2c5632c55994c4c4b01042575f9ce566c28f2"
+    },
+    {
+      "lens": "review-reliability",
+      "findings": [],
+      "evidence": [
+        "Inspected all four supplied immutable patches. No candidate-caused reliability defect was established from the visible changes.",
+        "skills/qa-inquisidor/scripts/validate_report.py adds schema_version and limitations to the canonical digest and declares authority_verification and execution_authorized in the normal result and both displayed exception outputs.",
+        "skills/qa-inquisidor/tests/test_report.py adds assertions covering changed limitations, schema-version binding, authority declarations, and rejection of an earlier-format digest as current.",
+        "AGENTS.md and skills/qa-inquisidor/SKILL.md consistently identify version 0.1.2-alpha. Review was static; no commands or tests were run."
+      ],
+      "result_hash": "sha256:93c4ef40bec394c807848cfa73760a713c65389f0a9a401299838ed5dcfc8c34"
+    }
+  ],
+  "acknowledgement": {
+    "operation": "review.acknowledge-approved",
+    "command": "gentle-ai review acknowledge-approved --cwd=/workspace/replica-gentle-ai --lineage=review-0965112d2a35a265 --target=sha256:fb1a85f35077a80bc46529458fee6d947fd78745abfd97a5c696c0eec2428b7e --expected-revision=sha256:269bac83ed4d015e98740b1c475df667aa2582e9fc3f84550a8784937cf9a801 --token=fc7fc9164def2bdb94172815520b6b403c125bb421802721ad0a06638dedc7f3",
+    "arguments": [
+      {
+        "name": "cwd",
+        "value": "/workspace/replica-gentle-ai",
+        "token": "--cwd=/workspace/replica-gentle-ai"
+      },
+      {
+        "name": "lineage",
+        "value": "review-0965112d2a35a265",
+        "token": "--lineage=review-0965112d2a35a265"
+      },
+      {
+        "name": "target",
+        "value": "sha256:fb1a85f35077a80bc46529458fee6d947fd78745abfd97a5c696c0eec2428b7e",
+        "token": "--target=sha256:fb1a85f35077a80bc46529458fee6d947fd78745abfd97a5c696c0eec2428b7e"
+      },
+      {
+        "name": "expected-revision",
+        "value": "sha256:269bac83ed4d015e98740b1c475df667aa2582e9fc3f84550a8784937cf9a801",
+        "token": "--expected-revision=sha256:269bac83ed4d015e98740b1c475df667aa2582e9fc3f84550a8784937cf9a801"
+      },
+      {
+        "name": "token",
+        "value": "fc7fc9164def2bdb94172815520b6b403c125bb421802721ad0a06638dedc7f3",
+        "token": "--token=fc7fc9164def2bdb94172815520b6b403c125bb421802721ad0a06638dedc7f3"
+      }
+    ],
+    "preconditions": [
+      {
+        "name": "state",
+        "value": "approved"
+      }
+    ],
+    "binding": {
+      "lineage_id": "review-0965112d2a35a265",
+      "revision": "sha256:269bac83ed4d015e98740b1c475df667aa2582e9fc3f84550a8784937cf9a801",
+      "target_identity": "sha256:fb1a85f35077a80bc46529458fee6d947fd78745abfd97a5c696c0eec2428b7e"
+    }
+  },
+  "store_revision": "sha256:269bac83ed4d015e98740b1c475df667aa2582e9fc3f84550a8784937cf9a801"
+}

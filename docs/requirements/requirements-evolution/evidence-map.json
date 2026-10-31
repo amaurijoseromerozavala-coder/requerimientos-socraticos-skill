@@ -1,0 +1,57 @@
+{
+  "status": "DISCOVERY_NOT_APPROVED",
+  "source_attachment": {
+    "path": "/workspace/attachments/f339196e-6784-4865-acd8-b0c1b1be46a1/skills.txt",
+    "sha256": "2657d765b646d8416cdbdf829f5615ad8baec82d43e6ee4e02a11ef5ab724bbf",
+    "authority": "PROPOSED_DESIGNS_NOT_USER_INSTRUCTIONS"
+  },
+  "local_baseline": {
+    "version_declared": "2.4.6",
+    "files": [
+      {
+        "path": "skills/requerimientos-socraticos/SKILL.md",
+        "sha256": "932dc3b7831f024976274b5fb940440dae1c172b4918f52c932db590e6dcc5ee"
+      },
+      {
+        "path": "skills/requerimientos-socraticos/scripts/logic_engine.py",
+        "sha256": "2bd0623e3291e2a4ca9d0784f24781154fb3239ac87d468071b305d230f62fdb"
+      },
+      {
+        "path": "skills/requerimientos-socraticos/scripts/analyze_logic.py",
+        "sha256": "735959da8c691e5301c046ed4c02ec41be613478226337edec79df7ce96145df"
+      },
+      {
+        "path": "skills/requerimientos-socraticos/scripts/validate_git.py",
+        "sha256": "e5d78f2e3751ca406afdce8fddde00058b2bd9be3d34833ed923dfc4f811becc"
+      },
+      {
+        "path": "docs/skill-audit/qa-supervisor-followup/RESULTADO.json",
+        "sha256": "6898f2fdaad53ef6f51d3fe5947419a7b970322e16f017ab030f863275a50f47"
+      }
+    ]
+  },
+  "other_skill": {
+    "package": "socratic-requirements",
+    "version_declared": "3.2.1",
+    "relationship_to_local": "NOT_ESTABLISHED; do not infer installed upgrade",
+    "reference_read_failure": "references/specialist-evidence-layer.md unavailable via provider"
+  },
+  "engram_history": [
+    3,
+    26,
+    18
+  ],
+  "codegraph": "NO_INDEX; local file inspection used",
+  "external_sources": [
+    {
+      "url": "https://github.com/NASA-SW-VnV/fret",
+      "observed": "Restricted English and formal representations documented; compatibility and performance not evaluated."
+    },
+    {
+      "url": "https://github.com/github/spec-kit",
+      "observed": "Composable workflows and plan/tasks documented; no installation or equivalence claim."
+    }
+  ],
+  "specialist_status": "Prior provider usage limit observed; no fresh specialist result for this design, no retry attempted",
+  "new_specialist_invocations": 0
+}

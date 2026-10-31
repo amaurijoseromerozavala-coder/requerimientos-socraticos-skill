@@ -1,0 +1,22 @@
+{
+  "reviewer": "/root/formal_review_241",
+  "model": "gpt-6-astra",
+  "reasoning_effort": "high",
+  "scope": "Source review and bounded owned-process fixtures in isolated temporary copy; Linux only.",
+  "initial_tests": 28,
+  "initial_finding": "Exited leader skipped group termination, causing pipe wait past budget.",
+  "finding_status": "CLOSED_FOR_REVIEWED_LINUX_SNAPSHOT",
+  "followup_tests": 8,
+  "fixture_results_ref": "independent-group-lifecycle.json",
+  "manifest_ref": "independent-manifest.json",
+  "post_review_changes": [
+    "Added explicit rejection of non-POSIX supervision before starting worker, and corresponding local test.",
+    "Documentation marks native Windows supervision unsupported and macOS NOT_RUN."
+  ],
+  "limits": [
+    "No target i3/WSL acceptance or Lean proof.",
+    "Cleanup grace is not a hard real-time kernel guarantee.",
+    "No claim to manage arbitrary descendants outside owned group.",
+    "Post-review POSIX guard receives local tests and native RDD, not attributed to previous snapshot."
+  ]
+}

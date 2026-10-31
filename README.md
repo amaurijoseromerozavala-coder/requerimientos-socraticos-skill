@@ -1,96 +1,42 @@
-# Requerimientos socráticos
+# Requerimientos Socráticos, QA Inquisidor y Supervisor Local
 
-Skill **2.4.6** para convertir requisitos en lenguaje natural en un PRD JSON
-trazable: interrogatorio socrático, EARS, FSM, análisis booleano y registro de
-evidencia. Incluye métodos de Bunge/Popper, Checkland y Kendall/Kendall.
-Produce documentos; no implementa el producto descrito por el PRD.
+Proyecto integrado de requisitos trazables, revisión de calidad y diseño de un supervisor local. Incluye fuentes, pruebas, esquemas, decisiones humanas, contratos, modelos y evidencias documentales.
 
-## Contenido
+## Estado real
 
-- [Contrato de la skill](skills/requerimientos-socraticos/SKILL.md).
-- `references/`: método, interrogatorio, investigación, validación y límites.
-- `assets/`: schemas JSON y ejemplos sintéticos.
-- `scripts/`: validadores, sondeo local, análisis Z3 y control de recursos.
-- `tests/`: pruebas del tooling, con fixtures sintéticos.
-- [Resumen de verificación y hashes](VERIFICATION.json).
+| Componente | Estado |
+|---|---|
+| Requerimientos Socráticos | Skill 2.4.6 y tooling existente |
+| QA Inquisidor | Skill 0.1.3-alpha y comprobador documental |
+| Supervisor local ampliado | Diseño DRAFT; no implementado |
+| Integración | 23 decisiones, modelo booleano de 128 valoraciones y FSM parcial |
+| RDD del candidato integrado | Aprobado y reconocido; observación R3-001 pendiente |
+| Calibración del hardware objetivo | No realizada |
 
-Las rutas anteriores, salvo el resumen, están bajo `skills/requerimientos-socraticos/`.
+La revisión RDD inspeccionó 13 archivos; no certifica todo el repositorio ni ejecutó pruebas físicas. El diseño conserva brechas técnicas que bloquean READY. CI y producción permanecen diferidos.
 
-## Preparación local
+## Por dónde comenzar
 
-Entorno verificado: Python 3.12 sobre Linux. Los controles RLIMIT_AS, cgroups y
-PDEATHSIG requieren los adaptadores Linux; no se promete soporte equivalente en
-otros sistemas. WSL observa el invitado, no toda la memoria física de Windows.
+- [JSON completo para revisión independiente](exports/proyecto-requerimientos-qa-supervisor-completo.json): 893 archivos incluidos como contenido, índice de lectura y hashes. Es una instantánea anterior a esta preparación de publicación; los nuevos archivos de portada y licencia se entregan en el repositorio.
+- [Informe RDD actual](docs/skill-audit/integration-candidate-01/RESULTADO.md).
+- [Diseño integrado](docs/requirements/integracion-requisitos-qa-supervisor/candidato-v0.1/README.md).
+- [Decisiones confirmadas](docs/requirements/integracion-requisitos-qa-supervisor/decisiones-confirmadas.json).
+- [Catálogo y matriz de integración](docs/requirements/integracion-requisitos-qa-supervisor/matriz-integracion.json).
+- [Brechas pendientes](docs/requirements/integracion-requisitos-qa-supervisor/candidato-v0.1/open-gaps.json).
+- [Skill Requerimientos Socráticos](skills/requerimientos-socraticos/SKILL.md).
+- [Skill QA Inquisidor](skills/qa-inquisidor/SKILL.md).
+- [PRD del supervisor anterior](docs/requirements/qa-supervisor/prd.json), conservado como línea base histórica.
 
-```bash
-python3 -m venv .venv
-.venv/bin/python -m pip install -r requirements.txt
-```
+## Preparación y portabilidad
 
-Instalar dependencias es una decisión explícita del operador. No se ejecuta al
-cargar la skill. Las dependencias son jsonschema y el backend opcional Z3.
+Las fuentes Python y sus pruebas están en `skills/`. `requirements.txt` conserva las dependencias de la distribución anterior. La [guía de esa distribución](docs/publication/previous-skill-release/README.md) se conserva como documento histórico; sus afirmaciones sobre contenido distribuido corresponden a aquella versión.
 
-Para Codex u otro agente que lea skills del filesystem, registra o enlaza
-`skills/requerimientos-socraticos` en su directorio de skills. Conserva juntos
-SKILL.md, references, assets, scripts y tests.
+`bin/gentle-ai` es el wrapper local original, con rutas absolutas de `/workspace/replica-gentle-ai`; no es un instalador portable. El binario upstream y las credenciales no están incluidos. Las invocaciones del revisor tampoco deben asumirse operativas al clonar. Para usar los helpers, preparar explícitamente un entorno Python compatible y ejecutar sus rutas con el intérprete elegido. No se ejecutan instalaciones, calibraciones ni servicios automáticamente.
 
-## Uso del tooling
+Los documentos históricos pueden incluir rutas locales y estados anteriores: consultar los recibos de cada candidato y el informe actual antes de interpretar un PASS. `VERIFICATION.json` en la raíz corresponde a la publicación anterior de Requerimientos Socráticos, no al sistema integrado.
 
-El contrato original nombra `gentle-ai requirements ...`: esos subcomandos son
-una extensión local del wrapper utilizado durante el desarrollo, no una interfaz
-que aporte por sí solo el binario upstream de [Gentle AI](https://github.com/Gentleman-Programming/gentle-ai).
-Ese wrapper y el binario upstream no se distribuyen aquí. Los helpers equivalentes
-son utilizables directamente con un intérprete explícito:
+## Alcance de esta publicación
 
-```bash
-.venv/bin/python -B skills/requerimientos-socraticos/scripts/activation_preflight.py --path .
-.venv/bin/python -B skills/requerimientos-socraticos/scripts/analyze_logic.py skills/requerimientos-socraticos/assets/logic-example.json
-.venv/bin/python -B skills/requerimientos-socraticos/scripts/validate_git.py --help
-```
+Se publican código propio, tests, documentos, evidencias, configuración de réplica y exportación. Se excluyen credenciales, estados privados de herramientas, respaldos del entorno, cachés, descargas y ejecutables externos. No se incorporan workflows de GitHub Actions.
 
-El preflight expone recursos visibles, límites heredados y un perfil provisional
-256–512 MiB. Las entradas públicas de análisis y validación Git vuelven a evaluar
-las condiciones antes del worker. Un informe guardado no autoriza ejecución.
-Los desconocidos críticos bloquean workers, no la entrevista documental.
-
-El intérprete no garantiza por sí solo que un agente respete el contrato de la
-skill. Su instalación tampoco autoriza ensayos, publicación, CI o producción.
-
-## Pruebas y procedencia
-
-La versión de origen completó **238 pruebas**, 194 comparaciones de políticas y
-59.280 comparaciones de admisión, y una revisión RDD de cuatro lentes. La revisión
-RDD fue de fuentes; las ejecuciones de pruebas se registraron por separado.
-VERIFICATION.json resume esas evidencias: no es una firma ni una certificación
-independiente del entorno de quien clone este repositorio.
-
-Para comprobar partes del núcleo con las dependencias instaladas:
-
-```bash
-.venv/bin/python -B -m unittest discover -s skills/requerimientos-socraticos/tests -p test_role_policy_source.py -v
-.venv/bin/python -B -m unittest discover -s skills/requerimientos-socraticos/tests -p test_memory_budget.py -v
-```
-
-La suite completa contiene cuatro casos de integración que requieren
-`bin/gentle-ai`, wrapper del entorno original que no se incluye en esta distribución.
-No se afirma que ejecutar toda la suite en este paquete aislado reproduzca las
-238 pruebas sin esa integración. Las fuentes publicadas de la skill permanecen
-idénticas a las de la versión verificada; se omite `validation.json` local, cuyos
-localizadores apuntaban a artefactos internos no distribuidos.
-
-## Límites
-
-- Hasta 32 variables booleanas en total; tabla exacta hasta 12 entradas.
-- El resultado depende del modelo confirmado, versiones y presupuesto. UNKNOWN
-  por límite de recursos no demuestra una contradicción SAT/UNSAT.
-- RLIMIT_AS limita espacio virtual: no reserva RAM física ni impide todo swap.
-- La calibración del hardware objetivo no está realizada.
-- La normalización mantiene permisos 0600. CI y autoridad global siguen fuera
-  del alcance verificado; BLOCKED_GLOBAL_ENFORCEMENT permanece explícito.
-- No se incluyen telemetría, conversaciones, credenciales, respaldos ni configuración
-  personal del entorno de desarrollo.
-
-## Licencia
-
-Apache-2.0, conforme a la declaración de licencia de SKILL.md. Véase LICENSE.
-Las dependencias conservan sus licencias y no se incluyen sus fuentes o binarios.
+[Licencia del proyecto](LICENSE) y [avisos de terceros](THIRD_PARTY_NOTICES.md).

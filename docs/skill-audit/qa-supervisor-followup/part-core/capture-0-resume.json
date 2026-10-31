@@ -1,0 +1,72 @@
+{
+  "schema": "gentle-ai.review-last-event-closure/v1",
+  "operation": "review/capture-result",
+  "lineage_id": "review-615572b011759538",
+  "state": "approved",
+  "action": "the approved review completed on the last admitted event and awaits its exact acknowledgement",
+  "reviewer_results": [
+    {
+      "lens": "review-resilience",
+      "findings": [],
+      "evidence": [
+        "Inspected all six supplied immutable patches. No concrete candidate-caused resilience failure was established.",
+        "docs/requirements/qa-supervisor/closure-proposal.json specifies atomic capacity reservation, conservative accounting for partial writes, blocked admission on unknown accounting, unconfirmed persistence on write failure, and no automatic checker retry.",
+        "docs/requirements/qa-supervisor/recovery-contract.json preserves the admission journal and INFRA_LOCK independently of manual output cleanup. docs/requirements/qa-supervisor/propuesta-cierre.md keeps implementation and production unauthorized."
+      ],
+      "result_hash": "sha256:53bc4884c864beb9421c01a21fd5c155db2b33b9ede85f409c4b0222b7c17ab5"
+    },
+    {
+      "lens": "review-reliability",
+      "findings": [],
+      "evidence": [
+        "Inspected all six supplied immutable patches. The candidate changes specification documents only; implementation and execution remain unauthorized.",
+        "docs/requirements/qa-supervisor/closure-proposal.json defines consistent stream and receipt limits totaling 335872 bytes per reservation, atomic admission, partial-file accounting, reservation reconciliation, and admission blocking when accounting is unknown.",
+        "docs/requirements/qa-supervisor/recovery-contract.json preserves journal independence and INFRA_LOCK across output cleanup; docs/requirements/qa-supervisor/prd-draft.json retains explicit NOT_RUN execution-test status. No candidate-caused reliability defect was established from the supplied patches."
+      ],
+      "result_hash": "sha256:1d2aec00dc9be7022cb5e218c0b70f1f347c8a58890b0619a8c6cdce49396258"
+    }
+  ],
+  "acknowledgement": {
+    "operation": "review.acknowledge-approved",
+    "command": "gentle-ai review acknowledge-approved --cwd=/workspace/replica-gentle-ai --lineage=review-615572b011759538 --target=sha256:bc55626f42805c8f9cb97349463956daa12526758816cd775f7b2c9ad26fe3f6 --expected-revision=sha256:cc86ded12683580adad0b2fde269e8913f7cf9b5bb65907dd0f22283877cd92b --token=bedd614a2dbc7d70ded4a843d4a9306af1f1f1fe1a8f8db679579223a67fd40a",
+    "arguments": [
+      {
+        "name": "cwd",
+        "value": "/workspace/replica-gentle-ai",
+        "token": "--cwd=/workspace/replica-gentle-ai"
+      },
+      {
+        "name": "lineage",
+        "value": "review-615572b011759538",
+        "token": "--lineage=review-615572b011759538"
+      },
+      {
+        "name": "target",
+        "value": "sha256:bc55626f42805c8f9cb97349463956daa12526758816cd775f7b2c9ad26fe3f6",
+        "token": "--target=sha256:bc55626f42805c8f9cb97349463956daa12526758816cd775f7b2c9ad26fe3f6"
+      },
+      {
+        "name": "expected-revision",
+        "value": "sha256:cc86ded12683580adad0b2fde269e8913f7cf9b5bb65907dd0f22283877cd92b",
+        "token": "--expected-revision=sha256:cc86ded12683580adad0b2fde269e8913f7cf9b5bb65907dd0f22283877cd92b"
+      },
+      {
+        "name": "token",
+        "value": "bedd614a2dbc7d70ded4a843d4a9306af1f1f1fe1a8f8db679579223a67fd40a",
+        "token": "--token=bedd614a2dbc7d70ded4a843d4a9306af1f1f1fe1a8f8db679579223a67fd40a"
+      }
+    ],
+    "preconditions": [
+      {
+        "name": "state",
+        "value": "approved"
+      }
+    ],
+    "binding": {
+      "lineage_id": "review-615572b011759538",
+      "revision": "sha256:cc86ded12683580adad0b2fde269e8913f7cf9b5bb65907dd0f22283877cd92b",
+      "target_identity": "sha256:bc55626f42805c8f9cb97349463956daa12526758816cd775f7b2c9ad26fe3f6"
+    }
+  },
+  "store_revision": "sha256:cc86ded12683580adad0b2fde269e8913f7cf9b5bb65907dd0f22283877cd92b"
+}

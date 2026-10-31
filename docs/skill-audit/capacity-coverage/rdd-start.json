@@ -1,0 +1,67 @@
+{
+  "schema": "gentle-ai.review-integration.start/v4",
+  "contract": "gentle-ai.review-integration/v2",
+  "operation": "review.start",
+  "action": "closed",
+  "lenses_required": false,
+  "lineage_id": "review-0080894a853ac035",
+  "state": "approved",
+  "risk_level": "low",
+  "selected_lenses": [],
+  "projection": "workspace",
+  "target_mode": "base-workspace-overlay",
+  "target_identity": "sha256:5eaa3973fab5ed60777fc1878c9afea0ed75bb7389de5ba0445a9217f36a5b6e",
+  "base_tree": "07ee95fa7718a2cb0a8f54a605cbfea5a6a900d7",
+  "candidate_tree": "32863810eadb280a79a2d7111ed7c877c9526433",
+  "changed_files": 1,
+  "changed_lines": 112,
+  "correction_budget": 56,
+  "risk_reasons": [
+    {
+      "code": "non_executable_only"
+    }
+  ],
+  "artifact_subjects": [],
+  "acknowledgement": {
+    "operation": "review.acknowledge-approved",
+    "command": "gentle-ai review acknowledge-approved --cwd=/workspace/replica-gentle-ai --lineage=review-0080894a853ac035 --target=sha256:5eaa3973fab5ed60777fc1878c9afea0ed75bb7389de5ba0445a9217f36a5b6e --expected-revision=sha256:777cf8d5c87c5169c038317ce0b605244a04720385bb1e3af15f8f9409ca63aa --token=4a72adcd67280729397c1fc1d50c3e5030216880e17e48b6f0d717b62d688e4d",
+    "arguments": [
+      {
+        "name": "cwd",
+        "value": "/workspace/replica-gentle-ai",
+        "token": "--cwd=/workspace/replica-gentle-ai"
+      },
+      {
+        "name": "lineage",
+        "value": "review-0080894a853ac035",
+        "token": "--lineage=review-0080894a853ac035"
+      },
+      {
+        "name": "target",
+        "value": "sha256:5eaa3973fab5ed60777fc1878c9afea0ed75bb7389de5ba0445a9217f36a5b6e",
+        "token": "--target=sha256:5eaa3973fab5ed60777fc1878c9afea0ed75bb7389de5ba0445a9217f36a5b6e"
+      },
+      {
+        "name": "expected-revision",
+        "value": "sha256:777cf8d5c87c5169c038317ce0b605244a04720385bb1e3af15f8f9409ca63aa",
+        "token": "--expected-revision=sha256:777cf8d5c87c5169c038317ce0b605244a04720385bb1e3af15f8f9409ca63aa"
+      },
+      {
+        "name": "token",
+        "value": "4a72adcd67280729397c1fc1d50c3e5030216880e17e48b6f0d717b62d688e4d",
+        "token": "--token=4a72adcd67280729397c1fc1d50c3e5030216880e17e48b6f0d717b62d688e4d"
+      }
+    ],
+    "preconditions": [
+      {
+        "name": "state",
+        "value": "approved"
+      }
+    ],
+    "binding": {
+      "lineage_id": "review-0080894a853ac035",
+      "revision": "sha256:777cf8d5c87c5169c038317ce0b605244a04720385bb1e3af15f8f9409ca63aa",
+      "target_identity": "sha256:5eaa3973fab5ed60777fc1878c9afea0ed75bb7389de5ba0445a9217f36a5b6e"
+    }
+  }
+}

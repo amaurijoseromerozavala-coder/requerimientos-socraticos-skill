@@ -1,0 +1,23 @@
+{
+  "candidate_sha256": "630ce30d78bd36868809e6eb4aec02736dc0e054f450496221a3568c07f13d15",
+  "transitions": 418,
+  "reachable_states": [
+    "ADMISSION",
+    "BLOCKED",
+    "CAPTURED",
+    "CLASSIFYING",
+    "DELIVERED",
+    "INFRA_LOCK",
+    "PERSISTING",
+    "RECONCILING",
+    "RUNNING",
+    "STOPPING",
+    "UNCONFIRMED"
+  ],
+  "errors": [],
+  "negative_controls": {
+    "missing_transition_detected": true,
+    "unauthorized_allow_detected": true
+  },
+  "scope": "All qualified control events; assumes guards are established externally; no OS/clocks/persistence/total-liveness proof."
+}

@@ -1,0 +1,19 @@
+{
+  "state_transition_keys_unique": true,
+  "referenced_states_exist": true,
+  "reachable_without_reconciliation_from_lock": [
+    "INFRA_LOCK"
+  ],
+  "decision_rows": 16,
+  "classes": {
+    "PROTOCOL_FAILURE": 5,
+    "EVALUATED_RECORD": 1,
+    "REJECT_INPUT": 1,
+    "INFRA_FAILURE": 9
+  },
+  "execution_authorized_always_false": true,
+  "limits": "Finite document model only; guard truth, restart durability, timing and process behavior not verified.",
+  "launch_failure_paths_checked": true,
+  "receipt_events_preserve_lock": true,
+  "reconciliation_guard_requires_admission": true
+}

@@ -1,0 +1,28 @@
+test_actual_engine_recovers_after_interruption_during_blob_collection (test_sealed.SealedTests.test_actual_engine_recovers_after_interruption_during_blob_collection) ... ok
+test_bom_rejected (test_sealed.SealedTests.test_bom_rejected) ... ok
+test_committed_symlink_is_rejected (test_sealed.SealedTests.test_committed_symlink_is_rejected) ... ok
+test_component_symlink_rejected (test_sealed.SealedTests.test_component_symlink_rejected) ... ok
+test_crlf_dependency_keeps_byte_identity_gate (test_sealed.SealedTests.test_crlf_dependency_keeps_byte_identity_gate) ... ok
+test_device_rejected_without_reading (test_sealed.SealedTests.test_device_rejected_without_reading) ... ok
+test_direct_fifo_rejected_without_waiting (test_sealed.SealedTests.test_direct_fifo_rejected_without_waiting) ... ok
+test_external_symlink_rejected (test_sealed.SealedTests.test_external_symlink_rejected) ... ok
+test_file_quota_failure_leaves_no_partial_destination_and_retries (test_sealed.SealedTests.test_file_quota_failure_leaves_no_partial_destination_and_retries) ... ok
+test_invalid_commit_fails_closed (test_sealed.SealedTests.test_invalid_commit_fails_closed) ... ok
+test_invalid_prd_path (test_sealed.SealedTests.test_invalid_prd_path) ... ok
+test_invalid_utf8_rejected (test_sealed.SealedTests.test_invalid_utf8_rejected) ... ok
+test_moving_head_does_not_change_requested_commit (test_sealed.SealedTests.test_moving_head_does_not_change_requested_commit) ... ok
+test_normalization_does_not_change_json_escape_semantics (test_sealed.SealedTests.test_normalization_does_not_change_json_escape_semantics) ... ok
+test_normalizer_preserves_source_and_refuses_overwrite (test_sealed.SealedTests.test_normalizer_preserves_source_and_refuses_overwrite) ... ok
+test_pinned_commit_survives_dirty_worktree (test_sealed.SealedTests.test_pinned_commit_survives_dirty_worktree) ... ok
+test_regular_limit (test_sealed.SealedTests.test_regular_limit) ... ok
+test_sha1_rejected_for_crypto_profile (test_sealed.SealedTests.test_sha1_rejected_for_crypto_profile) ... ok
+test_sha256_git_objects (test_sealed.SealedTests.test_sha256_git_objects) ... ok
+test_symbolic_reference_not_accepted (test_sealed.SealedTests.test_symbolic_reference_not_accepted) ... ok
+test_traversal_rejected (test_sealed.SealedTests.test_traversal_rejected) ... ok
+test_tree_oid_not_commit (test_sealed.SealedTests.test_tree_oid_not_commit) ... ok
+test_utf8_lf_normalization (test_sealed.SealedTests.test_utf8_lf_normalization) ... ok
+
+----------------------------------------------------------------------
+Ran 23 tests in 0.821s
+
+OK

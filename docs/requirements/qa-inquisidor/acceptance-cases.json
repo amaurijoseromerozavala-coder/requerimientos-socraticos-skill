@@ -1,0 +1,156 @@
+{
+  "defined_at": "2026-10-26T16:27:46.098942+00:00",
+  "scope": "Documentary contracts only; no target application or QA skill implementation.",
+  "cases": [
+    {
+      "id": "A01",
+      "input": "PRD baseline with missing obligations",
+      "expected": "REJECT",
+      "oracle": "MISSING_REQUIREMENTS"
+    },
+    {
+      "id": "A02",
+      "input": "Valid documentary PRD",
+      "expected": "ACCEPT",
+      "oracle": "SCHEMA_AND_REFERENCES"
+    },
+    {
+      "id": "A03",
+      "input": "PASS_WITHIN_SCOPE with PARTIAL system coverage",
+      "expected": "REJECT",
+      "oracle": "REPORT_SCHEMA"
+    },
+    {
+      "id": "A04",
+      "input": "PASS_WITHIN_SCOPE with an unverified material claim",
+      "expected": "REJECT",
+      "oracle": "REPORT_SCHEMA"
+    },
+    {
+      "id": "A05",
+      "input": "VERIFIED finding without evidence",
+      "expected": "REJECT",
+      "oracle": "REPORT_SCHEMA"
+    },
+    {
+      "id": "A06",
+      "input": "Mock evidence promoted to real execution",
+      "expected": "REJECT",
+      "oracle": "REPORT_SCHEMA"
+    },
+    {
+      "id": "A07",
+      "input": "Missing OTHER rejection",
+      "expected": "REJECT",
+      "oracle": "COVERAGE"
+    },
+    {
+      "id": "A08",
+      "input": "Duplicate enabled transition",
+      "expected": "REJECT",
+      "oracle": "NONDETERMINISM"
+    },
+    {
+      "id": "A09",
+      "input": "OTHER actor advances review",
+      "expected": "REJECT",
+      "oracle": "AUTHORIZATION"
+    },
+    {
+      "id": "A10",
+      "input": "Rejected transition changes state",
+      "expected": "REJECT",
+      "oracle": "REJECT_MUTATES"
+    },
+    {
+      "id": "A11",
+      "input": "Completed review without coverage/evidence",
+      "expected": "REJECT",
+      "oracle": "INVARIANT"
+    },
+    {
+      "id": "A12",
+      "input": "Requirement points to nonexistent IR",
+      "expected": "REJECT",
+      "oracle": "DANGLING_REFERENCE"
+    },
+    {
+      "id": "A13",
+      "input": "Reproducible report with explicit bounded evidence",
+      "expected": "ACCEPT",
+      "oracle": "REPORT_SCHEMA"
+    },
+    {
+      "id": "A14",
+      "input": "Change invalidates prior evidence before new completion",
+      "expected": "ACCEPT",
+      "oracle": "INVALIDATION"
+    },
+    {
+      "id": "A15",
+      "input": "Snapshot hash no longer matches evidence",
+      "expected": "REJECT",
+      "oracle": "STALE_EVIDENCE"
+    },
+    {
+      "id": "A16",
+      "input": "Unknown extra field in report",
+      "expected": "REJECT",
+      "oracle": "REPORT_SCHEMA"
+    },
+    {
+      "id": "A17",
+      "input": "Only positive-path test plan",
+      "expected": "REJECT",
+      "oracle": "REPORT_SCHEMA"
+    },
+    {
+      "id": "A18",
+      "input": "PASS_WITHIN_SCOPE supported by failed evidence",
+      "expected": "REJECT",
+      "oracle": "REPORT_SCHEMA"
+    },
+    {
+      "id": "A19",
+      "input": "Result references nonexistent evidence",
+      "expected": "REJECT",
+      "oracle": "DANGLING_REFERENCE"
+    },
+    {
+      "id": "A20",
+      "input": "REAL_EXECUTION planned test backed only by STATIC_REVIEW",
+      "expected": "REJECT",
+      "oracle": "EVIDENCE_KIND_MISMATCH"
+    },
+    {
+      "id": "A21",
+      "input": "REAL_EXECUTION test with matching execution-kind receipt (synthetic structural positive control)",
+      "expected": "ACCEPT",
+      "oracle": "EVIDENCE_KIND_BINDING"
+    },
+    {
+      "id": "A22",
+      "input": "Same-id REAL_EXECUTION case hidden by later STATIC_REVIEW case",
+      "expected": "REJECT",
+      "oracle": "DUPLICATE_ID"
+    },
+    {
+      "id": "A23",
+      "input": "Duplicate evidence ID",
+      "expected": "REJECT",
+      "oracle": "DUPLICATE_ID"
+    },
+    {
+      "id": "A24",
+      "input": "Duplicate result test_id",
+      "expected": "REJECT",
+      "oracle": "DUPLICATE_ID"
+    },
+    {
+      "id": "A25",
+      "input": "Case without associated result",
+      "expected": "REJECT",
+      "oracle": "MISSING_RESULT"
+    }
+  ]
+}

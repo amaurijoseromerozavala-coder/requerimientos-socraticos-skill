@@ -1,0 +1,12 @@
+{
+  "jsonrpc": "2.0",
+  "id": 2,
+  "result": {
+    "content": [
+      {
+        "type": "text",
+        "text": "{\"candidates\":[{\"id\":13,\"judgment_id\":\"rel-b1fba7062142b5c2\",\"score\":-9.59248559331102e-7,\"sync_id\":\"obs-2e76f242431901ef\",\"title\":\"Gentle AI requerimientos2.2.1: objetos Git fijados y lecturas acotadas\",\"topic_key\":\"odd/sealed-validation/tasks\",\"type\":\"decision\"}],\"id\":19,\"judgment_id\":\"rel-b1fba7062142b5c2\",\"judgment_required\":true,\"judgment_status\":\"pending\",\"project\":\"replica-gentle-ai\",\"project_path\":\"\",\"project_source\":\"explicit_override\",\"result\":\"Memory saved: \\\"Endurecimiento requerimientos socraticos 2.4.1\\\" (progress)\\nCONFLICT REVIEW PENDING — 1 candidate(s); use mem_judge to record verdicts.\",\"state\":\"active\",\"sync_id\":\"obs-e54782ea507876d3\",\"truncation\":{\"original_bytes\":2469,\"limit_bytes\":50000,\"truncated\":false}}"
+      }
+    ]
+  }
+}

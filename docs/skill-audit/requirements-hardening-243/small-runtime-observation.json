@@ -1,0 +1,12 @@
+{
+  "scope": "SMALL_JSONSCHEMA_IMPORT_LOCAL_ONLY",
+  "returncode": 0,
+  "observation": {
+    "status_lines": [
+      "VmSize:\t   42848 kB",
+      "VmRSS:\t   15892 kB"
+    ],
+    "peak_rss_kib": 15820
+  },
+  "limits": "No large document, target hardware, admission reserve or runtime maximum measured."
+}

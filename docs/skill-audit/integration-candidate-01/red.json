@@ -1,0 +1,23 @@
+{
+  "stage": "RED_BEFORE_DOCUMENT_CREATION",
+  "oracle": "El candidato debe contener obligaciones trazadas, contratos, tabla de incorporación y FSM antes de revisión.",
+  "checks": [
+    {
+      "file": "requirements.json",
+      "present": false
+    },
+    {
+      "file": "contracts.json",
+      "present": false
+    },
+    {
+      "file": "incorporation-gate.json",
+      "present": false
+    },
+    {
+      "file": "fsm.json",
+      "present": false
+    }
+  ],
+  "scope": "Missing documentary artifacts only; no claim about executable behavior."
+}

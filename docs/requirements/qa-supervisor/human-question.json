@@ -1,0 +1,7 @@
+{
+  "id": "Q-HUMAN-SUP-001",
+  "status": "ANSWERED",
+  "question": "Para el PRD, ¿el supervisor debe iniciar y controlar únicamente el comprobador QA local, o solo analizar resultados generados por otra herramienta? Esto define si podrá gestionar plazos, terminación y captura de salida. La decisión no autoriza implementación ni ejecución ahora.",
+  "answer": "Ok Únicamente con el qa local",
+  "interpretation": "Supervisor invocador y controlador solo del comprobador QA local, según explicación inmediatamente precedente; documentación, no implementación."
+}

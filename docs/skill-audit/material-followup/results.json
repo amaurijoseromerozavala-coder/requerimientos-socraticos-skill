@@ -1,0 +1,33 @@
+{
+  "scope": "Temporary copies on cloud; real QA untouched; no RAM/swap saturation",
+  "hardware_acceptance": "NOT_RUN_TARGET_UNAVAILABLE",
+  "fake_ci_consumer": {
+    "exit_code": 1,
+    "output": {
+      "status": "BLOCKED",
+      "error": "DOWNSTREAM_NOT_CONFIGURED: advancement blocked; snapshot validation is not READY authority"
+    },
+    "fake_consumer_called": false,
+    "result": "BYPASS_NOT_OBSERVED"
+  },
+  "ordering": {
+    "all_existing_directory_watches_precede_first_content_read": true,
+    "content_read_calls": 28,
+    "directory_count": 3
+  },
+  "fork_writer_during_content_read": {
+    "result": "BLOCKED",
+    "error": "OBSERVED_CHANGE_OR_MONITOR_LOSS:[{\"watch\": 4, \"mask\": 2}, {\"watch\": 4, \"mask\": 8}]",
+    "writer_executed": true,
+    "content_restored": true
+  },
+  "twenty_cloud_validators": {
+    "processes": 20,
+    "all_exit_zero": true,
+    "one_tree_identity": true,
+    "max_seconds": 1.6578857940039597,
+    "memory_pressure": "NOT_INDUCED",
+    "physical_hardware_inference": "NONE"
+  },
+  "guard_sha256": "ebb5c9e3098e700897fd5226e62975873f7dc8d7a40f3f6eebcba223a5df31a3"
+}

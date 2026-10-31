@@ -1,0 +1,196 @@
+{
+  "schema": "gentle-ai.review-integration.status/v9",
+  "contract": "gentle-ai.review-integration/v2",
+  "operation": "review.status",
+  "applicability": "unrelated",
+  "action": "start",
+  "replayability": "not_replayable",
+  "target_identity": "sha256:244addaaaec7698302eadfa32321262beed5f9c341bb5debcb7bd9fadcb7cdb5",
+  "projection": {
+    "schema": "gentle-ai.review-integration.projection/v1",
+    "kind": "base-workspace-overlay",
+    "projection": "workspace",
+    "base_tree": "4b825dc642cb6eb9a060e54bf8d69288fbee4904",
+    "initial_review_tree": "8b05a201b816ef7e5f90151fd209b4a4ba554019",
+    "current_candidate_tree": "8b05a201b816ef7e5f90151fd209b4a4ba554019",
+    "paths_digest": "sha256:94f32f3e53bd4e18adf09c1e25f95ab2e4c1b7877fede605ba29bb1a2900a192",
+    "paths": [
+      "docs/requirements/qa-supervisor/PRD.md",
+      "docs/requirements/qa-supervisor/closure-proposal.json",
+      "docs/requirements/qa-supervisor/fsm-propuesta.json",
+      "docs/requirements/qa-supervisor/prd-draft.json",
+      "docs/requirements/qa-supervisor/propuesta-cierre.md",
+      "docs/requirements/qa-supervisor/recovery-contract.json",
+      "docs/requirements/qa-supervisor/tabla-decision.json"
+    ],
+    "intended_untracked": [
+      "docs/requirements/qa-supervisor/PRD.md",
+      "docs/requirements/qa-supervisor/closure-proposal.json",
+      "docs/requirements/qa-supervisor/fsm-propuesta.json",
+      "docs/requirements/qa-supervisor/prd-draft.json",
+      "docs/requirements/qa-supervisor/propuesta-cierre.md",
+      "docs/requirements/qa-supervisor/recovery-contract.json",
+      "docs/requirements/qa-supervisor/tabla-decision.json"
+    ],
+    "intended_untracked_proof": "sha256:8c805fbb011738e0b43bef3c911ce8480845ca6fa23bf6d244ddfa7991bffa89",
+    "initial_snapshot_identity": "sha256:244addaaaec7698302eadfa32321262beed5f9c341bb5debcb7bd9fadcb7cdb5",
+    "current_snapshot_identity": "sha256:244addaaaec7698302eadfa32321262beed5f9c341bb5debcb7bd9fadcb7cdb5"
+  },
+  "eligible_untracked_inventory": "sha256:655f42462086a35c650c76a46f04546b2788a399a546d16ba184cb413a05beb5",
+  "repair": {
+    "schema": "gentle-ai.review-authority-repair-assessment/v1",
+    "status": "unsupported",
+    "counts": {
+      "lineages": 0,
+      "compact_lineages": 0,
+      "legacy_lineages": 0,
+      "events": 0,
+      "bytes": 0,
+      "eligible_candidates": 0,
+      "unsupported_lineages": 0,
+      "conflicts": 0
+    },
+    "supported_operations": [
+      "review/complete-fix",
+      "review/validate-fix"
+    ],
+    "authorization_schema": "gentle-ai.review-repair-authorization/v1"
+  },
+  "candidates": [],
+  "forecast": {
+    "horizon": "partial",
+    "steps": [
+      {
+        "step": 1,
+        "kind": "execute",
+        "reason_code": "fresh_target_ready",
+        "description": "Target is unreviewed and ready for initial review start"
+      }
+    ]
+  },
+  "next_transition": {
+    "kind": "execute",
+    "reason_code": "fresh_target_ready",
+    "execute": {
+      "operation": "review.start",
+      "command": "gentle-ai review start --cwd=/workspace/replica-gentle-ai --contract=gentle-ai.review-integration/v2 --target=sha256:244addaaaec7698302eadfa32321262beed5f9c341bb5debcb7bd9fadcb7cdb5 --target-evidence=v1:base-workspace-overlay:workspace:4b825dc642cb6eb9a060e54bf8d69288fbee4904:8b05a201b816ef7e5f90151fd209b4a4ba554019:sha256:94f32f3e53bd4e18adf09c1e25f95ab2e4c1b7877fede605ba29bb1a2900a192 --projection=workspace --base-ref=4b825dc642cb6eb9a060e54bf8d69288fbee4904 --workspace-overlay=true --lineage=review-efcc53913bd98b9c --agent=codex --consent=relay --untracked-scope=select --expected-untracked-inventory=sha256:655f42462086a35c650c76a46f04546b2788a399a546d16ba184cb413a05beb5 --intended-untracked=docs/requirements/qa-supervisor/PRD.md --intended-untracked=docs/requirements/qa-supervisor/closure-proposal.json --intended-untracked=docs/requirements/qa-supervisor/fsm-propuesta.json --intended-untracked=docs/requirements/qa-supervisor/prd-draft.json --intended-untracked=docs/requirements/qa-supervisor/propuesta-cierre.md --intended-untracked=docs/requirements/qa-supervisor/recovery-contract.json --intended-untracked=docs/requirements/qa-supervisor/tabla-decision.json --lenses=review-resilience,review-reliability '--lenses-reason=Partial PRD review: core. Other parts and aggregate integration remain separately required; no implementation approval.'",
+      "arguments": [
+        {
+          "name": "cwd",
+          "value": "/workspace/replica-gentle-ai",
+          "token": "--cwd=/workspace/replica-gentle-ai"
+        },
+        {
+          "name": "contract",
+          "value": "gentle-ai.review-integration/v2",
+          "token": "--contract=gentle-ai.review-integration/v2"
+        },
+        {
+          "name": "target",
+          "value": "sha256:244addaaaec7698302eadfa32321262beed5f9c341bb5debcb7bd9fadcb7cdb5",
+          "token": "--target=sha256:244addaaaec7698302eadfa32321262beed5f9c341bb5debcb7bd9fadcb7cdb5"
+        },
+        {
+          "name": "target-evidence",
+          "value": "v1:base-workspace-overlay:workspace:4b825dc642cb6eb9a060e54bf8d69288fbee4904:8b05a201b816ef7e5f90151fd209b4a4ba554019:sha256:94f32f3e53bd4e18adf09c1e25f95ab2e4c1b7877fede605ba29bb1a2900a192",
+          "token": "--target-evidence=v1:base-workspace-overlay:workspace:4b825dc642cb6eb9a060e54bf8d69288fbee4904:8b05a201b816ef7e5f90151fd209b4a4ba554019:sha256:94f32f3e53bd4e18adf09c1e25f95ab2e4c1b7877fede605ba29bb1a2900a192"
+        },
+        {
+          "name": "projection",
+          "value": "workspace",
+          "token": "--projection=workspace"
+        },
+        {
+          "name": "base-ref",
+          "value": "4b825dc642cb6eb9a060e54bf8d69288fbee4904",
+          "token": "--base-ref=4b825dc642cb6eb9a060e54bf8d69288fbee4904"
+        },
+        {
+          "name": "workspace-overlay",
+          "value": "true",
+          "token": "--workspace-overlay=true"
+        },
+        {
+          "name": "lineage",
+          "value": "review-efcc53913bd98b9c",
+          "token": "--lineage=review-efcc53913bd98b9c"
+        },
+        {
+          "name": "agent",
+          "value": "codex",
+          "token": "--agent=codex"
+        },
+        {
+          "name": "consent",
+          "value": "relay",
+          "token": "--consent=relay"
+        },
+        {
+          "name": "untracked-scope",
+          "value": "select",
+          "token": "--untracked-scope=select"
+        },
+        {
+          "name": "expected-untracked-inventory",
+          "value": "sha256:655f42462086a35c650c76a46f04546b2788a399a546d16ba184cb413a05beb5",
+          "token": "--expected-untracked-inventory=sha256:655f42462086a35c650c76a46f04546b2788a399a546d16ba184cb413a05beb5"
+        },
+        {
+          "name": "intended-untracked",
+          "value": "docs/requirements/qa-supervisor/PRD.md",
+          "token": "--intended-untracked=docs/requirements/qa-supervisor/PRD.md"
+        },
+        {
+          "name": "intended-untracked",
+          "value": "docs/requirements/qa-supervisor/closure-proposal.json",
+          "token": "--intended-untracked=docs/requirements/qa-supervisor/closure-proposal.json"
+        },
+        {
+          "name": "intended-untracked",
+          "value": "docs/requirements/qa-supervisor/fsm-propuesta.json",
+          "token": "--intended-untracked=docs/requirements/qa-supervisor/fsm-propuesta.json"
+        },
+        {
+          "name": "intended-untracked",
+          "value": "docs/requirements/qa-supervisor/prd-draft.json",
+          "token": "--intended-untracked=docs/requirements/qa-supervisor/prd-draft.json"
+        },
+        {
+          "name": "intended-untracked",
+          "value": "docs/requirements/qa-supervisor/propuesta-cierre.md",
+          "token": "--intended-untracked=docs/requirements/qa-supervisor/propuesta-cierre.md"
+        },
+        {
+          "name": "intended-untracked",
+          "value": "docs/requirements/qa-supervisor/recovery-contract.json",
+          "token": "--intended-untracked=docs/requirements/qa-supervisor/recovery-contract.json"
+        },
+        {
+          "name": "intended-untracked",
+          "value": "docs/requirements/qa-supervisor/tabla-decision.json",
+          "token": "--intended-untracked=docs/requirements/qa-supervisor/tabla-decision.json"
+        },
+        {
+          "name": "lenses",
+          "value": "review-resilience,review-reliability",
+          "token": "--lenses=review-resilience,review-reliability"
+        },
+        {
+          "name": "lenses-reason",
+          "value": "Partial PRD review: core. Other parts and aggregate integration remain separately required; no implementation approval.",
+          "token": "--lenses-reason=Partial PRD review: core. Other parts and aggregate integration remain separately required; no implementation approval."
+        }
+      ],
+      "preconditions": [
+        {
+          "name": "target_identity",
+          "value": "sha256:244addaaaec7698302eadfa32321262beed5f9c341bb5debcb7bd9fadcb7cdb5"
+        }
+      ],
+      "binding": {
+        "lineage_id": "review-efcc53913bd98b9c",
+        "target_identity": "sha256:244addaaaec7698302eadfa32321262beed5f9c341bb5debcb7bd9fadcb7cdb5"
+      }
+    }
+  }
+}

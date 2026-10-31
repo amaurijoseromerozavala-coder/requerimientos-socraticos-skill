@@ -1,0 +1,9 @@
+{
+  "sources": 62,
+  "json_bytes": 492185,
+  "zip_bytes": 194635,
+  "source_roundtrip": "PASS",
+  "zip": "PASS",
+  "native_rdd": "APPROVED_AND_ACKNOWLEDGED",
+  "selected_sources_unchanged_after_review": true
+}

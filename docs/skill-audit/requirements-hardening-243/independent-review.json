@@ -1,0 +1,159 @@
+{
+  "kind": "INDEPENDENT_SOURCE_AND_BOUNDED_TEST_REVIEW",
+  "created_at": "2026-10-28T16:36:13.925572+00:00",
+  "source_root": "/workspace/replica-gentle-ai/skills/requerimientos-socraticos",
+  "execution_root": "/tmp/independent-review-243-j5hyxzd4",
+  "source_changes": false,
+  "scope": [
+    "S1",
+    "S2",
+    "S3",
+    "S4"
+  ],
+  "reviewed_core": [
+    "scripts/memory_budget.py",
+    "scripts/git_validation_engine.py",
+    "scripts/validate_git.py",
+    "scripts/git_document_worker.py",
+    "scripts/process_supervision.py"
+  ],
+  "supporting_sources": [
+    "AGENTS.md",
+    "odd/tasks/requirements-hardening-243.md",
+    "docs/compliance/openai-codex-cloud.md",
+    "scripts/probe_environment.py",
+    "scripts/git_bundle.py",
+    "scripts/safe_io.py",
+    "scripts/document_source.py"
+  ],
+  "verdict": "NO_OUTSTANDING_FINDINGS_IN_REVIEWED_SCOPE_AFTER_CORRECTIONS",
+  "checks": [
+    {
+      "spec": "S1",
+      "result": "PASS_IN_REVIEWED_SCOPE",
+      "evidence": "RLIMIT_AS, current RSS and lifetime RSS peak are named separately; fixed MemoryError records are propagated; signals/missing structured diagnostics are not labeled proven OOM."
+    },
+    {
+      "spec": "S2",
+      "result": "PASS_IN_REVIEWED_SCOPE",
+      "evidence": "Default roles caller64 soft/coordinator256 hard, coordinator256, consumer128, Git64 MiB; direct workers set RLIMIT_AS before exec; external API caller limits unchanged. Integer256..1024 multiple8 policy; CLI checks currentVmSize before changing its own limits. Postfix tinyCLI256 blocks explicitly because its existing mappings exceed role32MiB; default512 succeeds."
+    },
+    {
+      "spec": "S3",
+      "result": "PASS_IN_REVIEWED_SCOPE",
+      "evidence": "Private UID directory0700/file0600, nonblocking flock and pass_fds through coordinator/Git/consumer; close preserves inherited open-file-description lock; all visible cgroup ancestor memory states checked, minimum headroom compared with2x total; UNKNOWN blocks. No cgroup writes or physical reservation claim."
+    },
+    {
+      "spec": "S4",
+      "result": "PASS_IN_REVIEWED_SCOPE",
+      "evidence": "Git raw bytes/OID and consumed manifest comparison retained; sealed23 regressions pass. BLOCKED_GLOBAL_ENFORCEMENT preserved. CI/QA/production not run."
+    }
+  ],
+  "tests": {
+    "python": "/home/agent/.local/share/requerimientos-socraticos/venv/bin/python",
+    "method": "unittest discover per group; subprocess.run outer timeout20s; copied execution root; groups sequential",
+    "groups": {
+      "test_memory_budget": 11,
+      "test_validation_budget": 10,
+      "test_process_supervision": 15,
+      "test_git_memory": 3,
+      "test_sealed": 23
+    },
+    "total": 62,
+    "passed": 62,
+    "failed": 0,
+    "timed_out": 0,
+    "possible_coordinator_overlap": "None in the final run; coordinator suspended validation until independent tests completed.",
+    "additional_owned_process_probes": [
+      {
+        "fixture": "External API inherited hard128MiB",
+        "result": "InvalidGit RESOURCE_CONTROL_SETUP_FAILED; limits remain134217728/134217728 bytes",
+        "outer_timeout_seconds": 5
+      },
+      {
+        "fixture": "Tiny CLI256MiB",
+        "result": "BLOCKED RESOURCE_BASELINE_EXCEEDS_ROLE_BUDGET before changing CLI limits or spawning coordinator",
+        "outer_timeout_seconds": 5
+      },
+      {
+        "fixture": "Tiny CLI512MiB",
+        "result": "DOCUMENT_VALIDATED_GIT, BLOCKED_GLOBAL_ENFORCEMENT; caller67108864soft/268435456hard, coordinator268435456/268435456, consumer134217728/134217728 bytes",
+        "outer_timeout_seconds": 5
+      }
+    ]
+  },
+  "observations": [
+    {
+      "id": "O1",
+      "kind": "CONFIRMED_API_ERROR_CONTRACT_DEFECT",
+      "severity": "P2",
+      "location": "scripts/validate_git.py:46-77; scripts/process_supervision.py:62-64",
+      "observed": "External API in an owned child with inherited hardRLIMIT_AS128MiB requests default512 profile. It raises plain ValueError(address_space_limit exceeds inherited hard RLIMIT_AS), not InvalidGit. Limits remain128/128MiB; no coordinator starts. CLI catches ValueError and blocks.",
+      "implication": "Containment respects inherited hard. Library callers catching InvalidGit alone do not catch this new rejection path; the API currently has no explicit normalization guarantee.",
+      "suggestion": "Normalize supervisor resource-policy refusals to a named InvalidGit RESOURCE_* diagnostic or document the broader API exception contract.",
+      "reproduction": "Tiny synthetic sealed fixture; owned child changes only its own limit; subprocess.run outer timeout5s; recorded in independent-tests.log.",
+      "status": "CORRECTED_AND_REAL_REPRO_VERIFIED",
+      "postfix_evidence": "Owned child hardRLIMIT_AS128MiB now raises InvalidGit RESOURCE_CONTROL_SETUP_FAILED; own limits remain128/128MiB. No coordinator is started. Independent real probe plus regression test passed."
+    },
+    {
+      "id": "O2",
+      "kind": "CONFIRMED_RLIMIT_AS_SEMANTICS",
+      "severity": "INFORMATIONAL",
+      "observed": "Tiny CLI profile256 succeeds with caller sampledVmSize39464960bytes and softRLIMIT_AS33554432bytes. Limit is applied after imports and does not revoke existing virtual mappings. Profile264 likewise succeeds with soft34603008bytes and same sampledVmSize.",
+      "implication": "The policy is a provisional limit on subsequent virtual allocations, not proof that current mappings or role totals are below configured bytes. Default512 was not observed over its caller cap.",
+      "suggestion": "Retain explicit provisional/local scope; optionally document that lowering RLIMIT_AS below existing mappings does not evict mappings.",
+      "status": "CORRECTED_AND_REAL_CLI_VERIFIED",
+      "postfix_evidence": "CLI checks observe_process_memory virtual_bytes before enforce_address_space: UNKNOWN=>RESOURCE_BASELINE_UNKNOWN, existingVmSize>callerbudget=>RESOURCE_BASELINE_EXCEEDS_ROLE_BUDGET. Real tinyCLI256 now blocks explicitly. DefaultCLI512 sample39456768bytes remains below67108864byte caller soft cap.",
+      "scope": "Guard applies only to owned fresh CLI. Child preexec intentionally may lower RLIMIT_AS before exec replaces inherited mappings; no generic helper guard was added."
+    },
+    {
+      "id": "O3",
+      "kind": "STATIC_BOUND_COVERAGE_LIMIT",
+      "severity": "NOT_REPRODUCED",
+      "location": "scripts/validate_git.py:46; scripts/process_supervision.py:27; scripts/git_validation_engine.py:142-165",
+      "observed": "New coordinator hop has default2MiB output cap. Accepted Git listing and manifest include paths; ensure_ascii=True expands non-ASCII paths. No relation proves all otherwise permitted4096-entry/2MiB-listing manifests fit in2MiB stdout.",
+      "implication": "Potential additional fail-closed COORDINATOR_OUTPUT_LIMIT for large path manifests; large-bound compatibility was not exercised under this review authorization.",
+      "suggestion": "Derive a compatible bounded coordinator output ceiling or explicitly document its additional acceptance limit; use a small injected-cap fixture for future regression coverage.",
+      "status": "ADDRESSED_BY_STATIC_BOUND_AND_CONTRACT_TEST; MAXIMUM_FIXTURE_NOT_RUN",
+      "postfix_evidence": "Coordinator stdout cap is explicitly8MiB. Header at encode_bundle is<=2MiB with the same ensure_ascii path encoding. Final manifest shares these paths and adds at most approximately0.4MiB of fixed4096-entry SHA/field/separator overhead. Consumer stdout is independently<=2MiB; remaining coordinator fields are fixed small metadata. Combined serialized transport stays below8MiB under these contracts; kwarg regression passes without large allocation.",
+      "remaining_limit": "This is source-bound reasoning and a small contract test, not execution at4096 entries/max32MiB content."
+    }
+  ],
+  "limitations": [
+    "No i3/WSL target or global host health/capacity verdict.",
+    "No benchmark, stress, host exhaustion, privilege changes, cgroup writes, network requests or external service writes.",
+    "No sub-agents, source edits or installations.",
+    "Tests use real owned children; no signals are sent to mock PIDs.",
+    "preexec_fn remains intended for single-threaded command-line entry points; arbitrary multithreaded external API use was not established.",
+    "Maximum32MiB content/max4096 entries were not allocated; physical reservation and aggregate kernel quota remain unestablished."
+  ],
+  "temporary_directory_for_coordinator_cleanup": "/tmp/independent-review-243-j5hyxzd4",
+  "review_state": "Final follow-up covers the exact40-file snapshot in independent-manifest.json. Initial findings and test evidence are preserved in independent-initial-* files.",
+  "review_round": "POST_CORRECTION",
+  "source_changes_since_initial_review": [
+    "scripts/validate_git.py",
+    "tests/test_validation_budget.py"
+  ],
+  "limits_exact": {
+    "default_profile_mib": 512,
+    "roles_mib": {
+      "caller_soft": 64,
+      "caller_hard": 256,
+      "coordinator_soft_and_hard": 256,
+      "consumer_soft_and_hard": 128,
+      "git_soft_and_hard": 64
+    },
+    "policy_total_mib": "integer256..1024; multiple8",
+    "coordinator_output_limit_bytes": 8388608,
+    "consumer_output_limit_bytes": 2097152,
+    "admission_reserve_multiplier": 2,
+    "admission_concurrency": "one cooperating validation per UID",
+    "as_semantics": "virtual address space limits; notRSS or aggregate kernel quotas; existing mappings are not revoked",
+    "host_health_or_i3_wsl_verdict": "NOT_ESTABLISHED"
+  },
+  "initial_evidence": [
+    "independent-initial-review.json",
+    "independent-initial-tests.log",
+    "independent-initial-manifest.json"
+  ]
+}
