@@ -1,0 +1,189 @@
+test_current_document (__main__.RevocationContractTests.test_current_document) ... ok
+test_import_has_no_output_or_write (__main__.RevocationContractTests.test_import_has_no_output_or_write) ... FAIL
+test_mutations_rejected_with_contract_diagnostic (__main__.RevocationContractTests.test_mutations_rejected_with_contract_diagnostic) ... 
+  test_mutations_rejected_with_contract_diagnostic (__main__.RevocationContractTests.test_mutations_rejected_with_contract_diagnostic) (mutation='missing_handler') ... FAIL
+  test_mutations_rejected_with_contract_diagnostic (__main__.RevocationContractTests.test_mutations_rejected_with_contract_diagnostic) (mutation='empty_handlers') ... FAIL
+  test_mutations_rejected_with_contract_diagnostic (__main__.RevocationContractTests.test_mutations_rejected_with_contract_diagnostic) (mutation='duplicate_handler') ... FAIL
+  test_mutations_rejected_with_contract_diagnostic (__main__.RevocationContractTests.test_mutations_rejected_with_contract_diagnostic) (mutation='wrong_priority') ... FAIL
+  test_mutations_rejected_with_contract_diagnostic (__main__.RevocationContractTests.test_mutations_rejected_with_contract_diagnostic) (mutation='wrong_event') ... FAIL
+  test_mutations_rejected_with_contract_diagnostic (__main__.RevocationContractTests.test_mutations_rejected_with_contract_diagnostic) (mutation='duplicate_coverage') ... FAIL
+  test_mutations_rejected_with_contract_diagnostic (__main__.RevocationContractTests.test_mutations_rejected_with_contract_diagnostic) (mutation='unknown_coverage') ... FAIL
+  test_mutations_rejected_with_contract_diagnostic (__main__.RevocationContractTests.test_mutations_rejected_with_contract_diagnostic) (mutation='changed_default') ... FAIL
+  test_mutations_rejected_with_contract_diagnostic (__main__.RevocationContractTests.test_mutations_rejected_with_contract_diagnostic) (mutation='missing_coverage_ISOLATED') ... FAIL
+  test_mutations_rejected_with_contract_diagnostic (__main__.RevocationContractTests.test_mutations_rejected_with_contract_diagnostic) (mutation='missing_coverage_VERIFYING') ... FAIL
+  test_mutations_rejected_with_contract_diagnostic (__main__.RevocationContractTests.test_mutations_rejected_with_contract_diagnostic) (mutation='missing_coverage_WAIT_AUTHORIZATION') ... FAIL
+  test_mutations_rejected_with_contract_diagnostic (__main__.RevocationContractTests.test_mutations_rejected_with_contract_diagnostic) (mutation='missing_coverage_READY') ... FAIL
+  test_mutations_rejected_with_contract_diagnostic (__main__.RevocationContractTests.test_mutations_rejected_with_contract_diagnostic) (mutation='missing_coverage_INCORPORATING') ... FAIL
+  test_mutations_rejected_with_contract_diagnostic (__main__.RevocationContractTests.test_mutations_rejected_with_contract_diagnostic) (mutation='missing_coverage_RECOVERING') ... FAIL
+  test_mutations_rejected_with_contract_diagnostic (__main__.RevocationContractTests.test_mutations_rejected_with_contract_diagnostic) (mutation='missing_coverage_INCORPORATED') ... FAIL
+  test_mutations_rejected_with_contract_diagnostic (__main__.RevocationContractTests.test_mutations_rejected_with_contract_diagnostic) (mutation='missing_coverage_BLOCKED') ... FAIL
+  test_mutations_rejected_with_contract_diagnostic (__main__.RevocationContractTests.test_mutations_rejected_with_contract_diagnostic) (mutation='missing_coverage_REBASE_REQUIRED') ... FAIL
+  test_mutations_rejected_with_contract_diagnostic (__main__.RevocationContractTests.test_mutations_rejected_with_contract_diagnostic) (mutation='self_consistent_shrunken_scope') ... FAIL
+
+======================================================================
+FAIL: test_import_has_no_output_or_write (__main__.RevocationContractTests.test_import_has_no_output_or_write)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/publicacion-proyecto-integrado/docs/skill-audit/integration-r3-001/test_revocation_contract.py", line 70, in test_import_has_no_output_or_write
+    self.assertEqual(result.returncode, 0, result.stderr)
+AssertionError: 1 != 0 : Traceback (most recent call last):
+  File "<string>", line 1, in <module>
+  File "<frozen runpy>", line 287, in run_path
+  File "<frozen runpy>", line 98, in _run_module_code
+  File "<frozen runpy>", line 88, in _run_code
+  File "/tmp/document-r3-import-5zgcog71/checker.py", line 3, in <module>
+    r=Path(__file__).resolve().parents[3];p=r/'docs/requirements/integracion-requisitos-qa-supervisor/candidato-v0.1';a=r/'docs/skill-audit/integration-candidate-01'
+      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/pathlib.py", line 282, in __getitem__
+    raise IndexError(idx)
+IndexError: 3
+
+
+======================================================================
+FAIL: test_mutations_rejected_with_contract_diagnostic (__main__.RevocationContractTests.test_mutations_rejected_with_contract_diagnostic) (mutation='missing_handler')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/publicacion-proyecto-integrado/docs/skill-audit/integration-r3-001/test_revocation_contract.py", line 59, in test_mutations_rejected_with_contract_diagnostic
+    self.assertNotEqual(result.returncode, 0, name)
+AssertionError: 0 == 0 : missing_handler
+
+======================================================================
+FAIL: test_mutations_rejected_with_contract_diagnostic (__main__.RevocationContractTests.test_mutations_rejected_with_contract_diagnostic) (mutation='empty_handlers')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/publicacion-proyecto-integrado/docs/skill-audit/integration-r3-001/test_revocation_contract.py", line 59, in test_mutations_rejected_with_contract_diagnostic
+    self.assertNotEqual(result.returncode, 0, name)
+AssertionError: 0 == 0 : empty_handlers
+
+======================================================================
+FAIL: test_mutations_rejected_with_contract_diagnostic (__main__.RevocationContractTests.test_mutations_rejected_with_contract_diagnostic) (mutation='duplicate_handler')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/publicacion-proyecto-integrado/docs/skill-audit/integration-r3-001/test_revocation_contract.py", line 59, in test_mutations_rejected_with_contract_diagnostic
+    self.assertNotEqual(result.returncode, 0, name)
+AssertionError: 0 == 0 : duplicate_handler
+
+======================================================================
+FAIL: test_mutations_rejected_with_contract_diagnostic (__main__.RevocationContractTests.test_mutations_rejected_with_contract_diagnostic) (mutation='wrong_priority')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/publicacion-proyecto-integrado/docs/skill-audit/integration-r3-001/test_revocation_contract.py", line 59, in test_mutations_rejected_with_contract_diagnostic
+    self.assertNotEqual(result.returncode, 0, name)
+AssertionError: 0 == 0 : wrong_priority
+
+======================================================================
+FAIL: test_mutations_rejected_with_contract_diagnostic (__main__.RevocationContractTests.test_mutations_rejected_with_contract_diagnostic) (mutation='wrong_event')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/publicacion-proyecto-integrado/docs/skill-audit/integration-r3-001/test_revocation_contract.py", line 59, in test_mutations_rejected_with_contract_diagnostic
+    self.assertNotEqual(result.returncode, 0, name)
+AssertionError: 0 == 0 : wrong_event
+
+======================================================================
+FAIL: test_mutations_rejected_with_contract_diagnostic (__main__.RevocationContractTests.test_mutations_rejected_with_contract_diagnostic) (mutation='duplicate_coverage')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/publicacion-proyecto-integrado/docs/skill-audit/integration-r3-001/test_revocation_contract.py", line 59, in test_mutations_rejected_with_contract_diagnostic
+    self.assertNotEqual(result.returncode, 0, name)
+AssertionError: 0 == 0 : duplicate_coverage
+
+======================================================================
+FAIL: test_mutations_rejected_with_contract_diagnostic (__main__.RevocationContractTests.test_mutations_rejected_with_contract_diagnostic) (mutation='unknown_coverage')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/publicacion-proyecto-integrado/docs/skill-audit/integration-r3-001/test_revocation_contract.py", line 59, in test_mutations_rejected_with_contract_diagnostic
+    self.assertNotEqual(result.returncode, 0, name)
+AssertionError: 0 == 0 : unknown_coverage
+
+======================================================================
+FAIL: test_mutations_rejected_with_contract_diagnostic (__main__.RevocationContractTests.test_mutations_rejected_with_contract_diagnostic) (mutation='changed_default')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/publicacion-proyecto-integrado/docs/skill-audit/integration-r3-001/test_revocation_contract.py", line 59, in test_mutations_rejected_with_contract_diagnostic
+    self.assertNotEqual(result.returncode, 0, name)
+AssertionError: 0 == 0 : changed_default
+
+======================================================================
+FAIL: test_mutations_rejected_with_contract_diagnostic (__main__.RevocationContractTests.test_mutations_rejected_with_contract_diagnostic) (mutation='missing_coverage_ISOLATED')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/publicacion-proyecto-integrado/docs/skill-audit/integration-r3-001/test_revocation_contract.py", line 59, in test_mutations_rejected_with_contract_diagnostic
+    self.assertNotEqual(result.returncode, 0, name)
+AssertionError: 0 == 0 : missing_coverage_ISOLATED
+
+======================================================================
+FAIL: test_mutations_rejected_with_contract_diagnostic (__main__.RevocationContractTests.test_mutations_rejected_with_contract_diagnostic) (mutation='missing_coverage_VERIFYING')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/publicacion-proyecto-integrado/docs/skill-audit/integration-r3-001/test_revocation_contract.py", line 59, in test_mutations_rejected_with_contract_diagnostic
+    self.assertNotEqual(result.returncode, 0, name)
+AssertionError: 0 == 0 : missing_coverage_VERIFYING
+
+======================================================================
+FAIL: test_mutations_rejected_with_contract_diagnostic (__main__.RevocationContractTests.test_mutations_rejected_with_contract_diagnostic) (mutation='missing_coverage_WAIT_AUTHORIZATION')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/publicacion-proyecto-integrado/docs/skill-audit/integration-r3-001/test_revocation_contract.py", line 59, in test_mutations_rejected_with_contract_diagnostic
+    self.assertNotEqual(result.returncode, 0, name)
+AssertionError: 0 == 0 : missing_coverage_WAIT_AUTHORIZATION
+
+======================================================================
+FAIL: test_mutations_rejected_with_contract_diagnostic (__main__.RevocationContractTests.test_mutations_rejected_with_contract_diagnostic) (mutation='missing_coverage_READY')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/publicacion-proyecto-integrado/docs/skill-audit/integration-r3-001/test_revocation_contract.py", line 59, in test_mutations_rejected_with_contract_diagnostic
+    self.assertNotEqual(result.returncode, 0, name)
+AssertionError: 0 == 0 : missing_coverage_READY
+
+======================================================================
+FAIL: test_mutations_rejected_with_contract_diagnostic (__main__.RevocationContractTests.test_mutations_rejected_with_contract_diagnostic) (mutation='missing_coverage_INCORPORATING')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/publicacion-proyecto-integrado/docs/skill-audit/integration-r3-001/test_revocation_contract.py", line 59, in test_mutations_rejected_with_contract_diagnostic
+    self.assertNotEqual(result.returncode, 0, name)
+AssertionError: 0 == 0 : missing_coverage_INCORPORATING
+
+======================================================================
+FAIL: test_mutations_rejected_with_contract_diagnostic (__main__.RevocationContractTests.test_mutations_rejected_with_contract_diagnostic) (mutation='missing_coverage_RECOVERING')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/publicacion-proyecto-integrado/docs/skill-audit/integration-r3-001/test_revocation_contract.py", line 59, in test_mutations_rejected_with_contract_diagnostic
+    self.assertNotEqual(result.returncode, 0, name)
+AssertionError: 0 == 0 : missing_coverage_RECOVERING
+
+======================================================================
+FAIL: test_mutations_rejected_with_contract_diagnostic (__main__.RevocationContractTests.test_mutations_rejected_with_contract_diagnostic) (mutation='missing_coverage_INCORPORATED')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/publicacion-proyecto-integrado/docs/skill-audit/integration-r3-001/test_revocation_contract.py", line 59, in test_mutations_rejected_with_contract_diagnostic
+    self.assertNotEqual(result.returncode, 0, name)
+AssertionError: 0 == 0 : missing_coverage_INCORPORATED
+
+======================================================================
+FAIL: test_mutations_rejected_with_contract_diagnostic (__main__.RevocationContractTests.test_mutations_rejected_with_contract_diagnostic) (mutation='missing_coverage_BLOCKED')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/publicacion-proyecto-integrado/docs/skill-audit/integration-r3-001/test_revocation_contract.py", line 59, in test_mutations_rejected_with_contract_diagnostic
+    self.assertNotEqual(result.returncode, 0, name)
+AssertionError: 0 == 0 : missing_coverage_BLOCKED
+
+======================================================================
+FAIL: test_mutations_rejected_with_contract_diagnostic (__main__.RevocationContractTests.test_mutations_rejected_with_contract_diagnostic) (mutation='missing_coverage_REBASE_REQUIRED')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/publicacion-proyecto-integrado/docs/skill-audit/integration-r3-001/test_revocation_contract.py", line 59, in test_mutations_rejected_with_contract_diagnostic
+    self.assertNotEqual(result.returncode, 0, name)
+AssertionError: 0 == 0 : missing_coverage_REBASE_REQUIRED
+
+======================================================================
+FAIL: test_mutations_rejected_with_contract_diagnostic (__main__.RevocationContractTests.test_mutations_rejected_with_contract_diagnostic) (mutation='self_consistent_shrunken_scope')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/publicacion-proyecto-integrado/docs/skill-audit/integration-r3-001/test_revocation_contract.py", line 60, in test_mutations_rejected_with_contract_diagnostic
+    self.assertIn('GLOBAL_REVOCATION_CONTRACT', result.stderr, name)
+AssertionError: 'GLOBAL_REVOCATION_CONTRACT' not found in 'Traceback (most recent call last):\n  File "/tmp/document-r3-9b_hvdim/docs/skill-audit/integration-candidate-01/check-document-model.py", line 27, in <module>\n    f=read(\'fsm.json\');keys=[(t[\'from\'],t[\'event\']) for t in f[\'transitions\']];assert len(keys)==len(set(keys));assert all(t[\'from\'] in f[\'states\'] and t[\'to\'] in f[\'states\'] and t[\'event\'] in f[\'events\'] for t in f[\'transitions\'])\n                                                                                                                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError\n' : self_consistent_shrunken_scope
+
+----------------------------------------------------------------------
+Ran 3 tests in 0.353s
+
+FAILED (failures=19)

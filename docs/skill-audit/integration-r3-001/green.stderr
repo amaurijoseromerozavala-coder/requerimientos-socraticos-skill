@@ -1,0 +1,8 @@
+test_current_document (__main__.RevocationContractTests.test_current_document) ... ok
+test_import_has_no_output_or_write (__main__.RevocationContractTests.test_import_has_no_output_or_write) ... ok
+test_mutations_rejected_with_contract_diagnostic (__main__.RevocationContractTests.test_mutations_rejected_with_contract_diagnostic) ... ok
+
+----------------------------------------------------------------------
+Ran 3 tests in 0.351s
+
+OK

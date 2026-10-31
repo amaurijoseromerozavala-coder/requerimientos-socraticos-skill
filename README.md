@@ -10,7 +10,7 @@ Proyecto integrado de requisitos trazables, revisión de calidad y diseño de un
 | QA Inquisidor | Skill 0.1.3-alpha y comprobador documental |
 | Supervisor local ampliado | Diseño DRAFT; no implementado |
 | Integración | 23 decisiones, modelo booleano de 128 valoraciones y FSM parcial |
-| RDD del candidato integrado | Aprobado y reconocido; observación R3-001 pendiente |
+| RDD del candidato integrado | Candidato anterior aprobado; corrección documental R3-001 probada, nuevo RDD pendiente |
 | Calibración del hardware objetivo | No realizada |
 
 La revisión RDD inspeccionó 13 archivos; no certifica todo el repositorio ni ejecutó pruebas físicas. El diseño conserva brechas técnicas que bloquean READY. CI y producción permanecen diferidos.
@@ -18,7 +18,8 @@ La revisión RDD inspeccionó 13 archivos; no certifica todo el repositorio ni e
 ## Por dónde comenzar
 
 - [JSON completo para revisión independiente](exports/proyecto-requerimientos-qa-supervisor-completo.json): 893 archivos incluidos como contenido, índice de lectura y hashes. Es una instantánea anterior a esta preparación de publicación; los nuevos archivos de portada y licencia se entregan en el repositorio.
-- [Informe RDD actual](docs/skill-audit/integration-candidate-01/RESULTADO.md).
+- [Corrección documental R3-001](docs/skill-audit/integration-r3-001/RESULTADO.md).
+- [Informe RDD del candidato anterior](docs/skill-audit/integration-candidate-01/RESULTADO.md).
 - [Diseño integrado](docs/requirements/integracion-requisitos-qa-supervisor/candidato-v0.1/README.md).
 - [Decisiones confirmadas](docs/requirements/integracion-requisitos-qa-supervisor/decisiones-confirmadas.json).
 - [Catálogo y matriz de integración](docs/requirements/integracion-requisitos-qa-supervisor/matriz-integracion.json).

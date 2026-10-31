@@ -1,0 +1,115 @@
+{
+  "schema": "gentle-ai.review-integration.start/v4",
+  "contract": "gentle-ai.review-integration/v2",
+  "operation": "review.start",
+  "action": "created",
+  "lenses_required": true,
+  "lineage_id": "review-ace4fa14a5989f79",
+  "state": "reviewing",
+  "risk_level": "medium",
+  "selected_lenses": [
+    "review-reliability"
+  ],
+  "projection": "workspace",
+  "base_tree": "88aa46991369c3fc3d849fd5571ed45c4e27c5f3",
+  "candidate_tree": "98c44c006597735957ec9adbd7368247a050e7c8",
+  "changed_files": 10,
+  "changed_lines": 469,
+  "correction_budget": 200,
+  "risk_reasons": [
+    {
+      "code": "executable_change",
+      "path": "docs/skill-audit/integration-candidate-01/check-document-model.py"
+    }
+  ],
+  "artifact_subjects": [
+    {
+      "schema": "gentle-ai.review-artifact-subject/v2",
+      "subject_hash": "sha256:f8291f8fe7e0106a169031dabd1bf7df950ec5b309f086b15cb517a6012c7795",
+      "lineage_id": "review-ace4fa14a5989f79",
+      "authority_revision": "sha256:963151a88d00070b21a0eccfc197520e5ccc77ed636acef03a7fefb0bbffcf08",
+      "target_identity": "sha256:1d3e29eb6b8c8481699101141c71088af224bc566649e080df3fed4fc2fce69e",
+      "base_tree": "88aa46991369c3fc3d849fd5571ed45c4e27c5f3",
+      "candidate_tree": "98c44c006597735957ec9adbd7368247a050e7c8",
+      "changed_path_manifest_sha256": "sha256:6a0fd97a35be77d131873204b1002a3872cb02641b899535d0cf72032b29569e",
+      "lens": "review-reliability",
+      "selected_order": 0
+    }
+  ],
+  "changed_path_manifest": [
+    {"path":"README.md","status":"M","old_mode":"100644","new_mode":"100644","deleted":false,"type_changed":false,"mode_only":false,"intended_untracked":false},
+    {"path":"docs/skill-audit/integration-candidate-01/check-document-model.py","status":"M","old_mode":"100644","new_mode":"100644","deleted":false,"type_changed":false,"mode_only":false,"intended_untracked":false},
+    {"path":"docs/skill-audit/integration-r3-001/RESULTADO.md","status":"A","old_mode":"000000","new_mode":"100644","deleted":false,"type_changed":false,"mode_only":false,"intended_untracked":true},
+    {"path":"docs/skill-audit/integration-r3-001/green.stderr","status":"A","old_mode":"000000","new_mode":"100644","deleted":false,"type_changed":false,"mode_only":false,"intended_untracked":true},
+    {"path":"docs/skill-audit/integration-r3-001/independent-review.md","status":"A","old_mode":"000000","new_mode":"100644","deleted":false,"type_changed":false,"mode_only":false,"intended_untracked":true},
+    {"path":"docs/skill-audit/integration-r3-001/interview.json","status":"A","old_mode":"000000","new_mode":"100644","deleted":false,"type_changed":false,"mode_only":false,"intended_untracked":true},
+    {"path":"docs/skill-audit/integration-r3-001/model-green.json","status":"A","old_mode":"000000","new_mode":"100644","deleted":false,"type_changed":false,"mode_only":false,"intended_untracked":true},
+    {"path":"docs/skill-audit/integration-r3-001/red.stderr","status":"A","old_mode":"000000","new_mode":"100644","deleted":false,"type_changed":false,"mode_only":false,"intended_untracked":true},
+    {"path":"docs/skill-audit/integration-r3-001/test_revocation_contract.py","status":"A","old_mode":"000000","new_mode":"100644","deleted":false,"type_changed":false,"mode_only":false,"intended_untracked":true},
+    {"path":"odd/tasks/integracion-requisitos-qa-supervisor.md","status":"M","old_mode":"100644","new_mode":"100644","deleted":false,"type_changed":false,"mode_only":false,"intended_untracked":false}
+  ],
+  "repository_context": {
+    "capability": "review.opaque_repository_context",
+    "handle": "rctx2_4f13135eeecd32789c17ef6ba1c8591f67f9bc9ef08d9f7c8206d4580d2a24a4",
+    "revision": "sha256:963151a88d00070b21a0eccfc197520e5ccc77ed636acef03a7fefb0bbffcf08",
+    "target_identity": "sha256:1d3e29eb6b8c8481699101141c71088af224bc566649e080df3fed4fc2fce69e"
+  },
+  "next_transition": {
+    "kind": "execute",
+    "reason_code": "review_status_required",
+    "execute": {
+      "operation": "review.status",
+      "command": "gentle-ai review status --contract=gentle-ai.review-integration/v2 --next-transition=true --lineage=review-ace4fa14a5989f79 --repository-context=rctx2_4f13135eeecd32789c17ef6ba1c8591f67f9bc9ef08d9f7c8206d4580d2a24a4 --agent=codex --projection=workspace",
+      "arguments": [
+        {
+          "name": "contract",
+          "value": "gentle-ai.review-integration/v2",
+          "token": "--contract=gentle-ai.review-integration/v2"
+        },
+        {
+          "name": "next-transition",
+          "value": "true",
+          "token": "--next-transition=true"
+        },
+        {
+          "name": "lineage",
+          "value": "review-ace4fa14a5989f79",
+          "token": "--lineage=review-ace4fa14a5989f79"
+        },
+        {
+          "name": "repository-context",
+          "value": "rctx2_4f13135eeecd32789c17ef6ba1c8591f67f9bc9ef08d9f7c8206d4580d2a24a4",
+          "token": "--repository-context=rctx2_4f13135eeecd32789c17ef6ba1c8591f67f9bc9ef08d9f7c8206d4580d2a24a4"
+        },
+        {
+          "name": "agent",
+          "value": "codex",
+          "token": "--agent=codex"
+        },
+        {
+          "name": "projection",
+          "value": "workspace",
+          "token": "--projection=workspace"
+        }
+      ],
+      "selector_arguments": [
+        {
+          "name": "projection",
+          "value": "workspace",
+          "token": "--projection=workspace"
+        }
+      ],
+      "preconditions": [
+        {
+          "name": "state",
+          "value": "reviewing"
+        }
+      ],
+      "binding": {
+        "lineage_id": "review-ace4fa14a5989f79",
+        "revision": "sha256:963151a88d00070b21a0eccfc197520e5ccc77ed636acef03a7fefb0bbffcf08",
+        "target_identity": "sha256:1d3e29eb6b8c8481699101141c71088af224bc566649e080df3fed4fc2fce69e"
+      }
+    }
+  }
+}
