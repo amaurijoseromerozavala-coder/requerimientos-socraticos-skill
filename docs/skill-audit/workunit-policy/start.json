@@ -1,0 +1,38 @@
+{
+  "schema": "gentle-ai.review-integration.consent/v3",
+  "contract": "gentle-ai.review-integration/v2",
+  "operation": "review.start",
+  "action": "consent_required",
+  "agent": "codex",
+  "blocking": true,
+  "target_identity": "sha256:e03c8cb5ac128482e823e31ae8cd5a97875070af8383f4c3a9258c7011e13a03",
+  "projection": "workspace",
+  "risk_level": "medium",
+  "changed_files": 5,
+  "changed_lines": 96,
+  "headline": "Gentle AI can review this change before you call it done.",
+  "reason": "Review can help detect regressions in these changes.",
+  "value": "Reviewing takes a little longer and makes the result safer.",
+  "risk_evidence": [
+    "this change is not purely passive documentation, so it gets one consolidated review.",
+    "an executable change in AGENTS.md"
+  ],
+  "choices": [
+    {
+      "answer": "granted",
+      "label": "Review this change",
+      "effect": "Reviews only this change; later medium- or high-risk changes ask again, and delivery needs separate approval.",
+      "invocation": "gentle-ai review start --contract gentle-ai.review-integration/v2 --cwd /workspace/publicacion-proyecto-integrado --target sha256:e03c8cb5ac128482e823e31ae8cd5a97875070af8383f4c3a9258c7011e13a03 --target-evidence v1:current-changes:workspace:5c8340dac2f5fa43a7ebfba499e2526ef1ffd4d6:9966cb21544140a4d2cb99803f5c437fe5fa14e9:sha256:50329f78f9e7d4bbb55b7940366e6a501c22ca83275e6f48dafa74836cbd62ed --projection workspace --agent codex --lineage review-959ebdd64026f7c8 --untracked-scope=select --expected-untracked-inventory=sha256:c9105b0a10fb8cda96a46885157886d250d150426f972b2c23cd80553189b7d2 --intended-untracked=docs/skill-audit/workunit-policy/green.json --intended-untracked=docs/skill-audit/workunit-policy/negative-controls.json --intended-untracked=docs/skill-audit/workunit-policy/red.json --intended-untracked=odd/tasks/workunit-policy.md --consent granted"
+    },
+    {
+      "answer": "declined",
+      "label": "Skip this time",
+      "effect": "Skips only this change; no review record is created, and future reviews stay enabled.",
+      "invocation": "gentle-ai review start --contract gentle-ai.review-integration/v2 --cwd /workspace/publicacion-proyecto-integrado --target sha256:e03c8cb5ac128482e823e31ae8cd5a97875070af8383f4c3a9258c7011e13a03 --target-evidence v1:current-changes:workspace:5c8340dac2f5fa43a7ebfba499e2526ef1ffd4d6:9966cb21544140a4d2cb99803f5c437fe5fa14e9:sha256:50329f78f9e7d4bbb55b7940366e6a501c22ca83275e6f48dafa74836cbd62ed --projection workspace --agent codex --lineage review-959ebdd64026f7c8 --untracked-scope=select --expected-untracked-inventory=sha256:c9105b0a10fb8cda96a46885157886d250d150426f972b2c23cd80553189b7d2 --intended-untracked=docs/skill-audit/workunit-policy/green.json --intended-untracked=docs/skill-audit/workunit-policy/negative-controls.json --intended-untracked=docs/skill-audit/workunit-policy/red.json --intended-untracked=odd/tasks/workunit-policy.md --consent declined"
+    }
+  ],
+  "off_path": {
+    "note": "To turn reviews off for good, run 'gentle-ai review mode disable'.",
+    "command": "gentle-ai review mode disable"
+  }
+}
