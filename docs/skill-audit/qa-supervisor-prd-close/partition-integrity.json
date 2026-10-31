@@ -1,0 +1,7 @@
+{
+  "check": "partition_complete_byte_identity",
+  "files": 64,
+  "errors": [],
+  "result": "PASS",
+  "scope": "Identity and partition coverage only; not implementation or semantic proof."
+}

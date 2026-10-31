@@ -1,0 +1,14 @@
+E....
+======================================================================
+ERROR: test_cgroup_unknown_and_unlimited_are_distinct (test_environment.EnvironmentTests.test_cgroup_unknown_and_unlimited_are_distinct)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/replica-gentle-ai/skills/requerimientos-socraticos/tests/test_environment.py", line 57, in test_cgroup_unknown_and_unlimited_are_distinct
+    self.assertEqual(observation['limit_states'][0]['memory'], expected)
+                     ~~~~~~~~~~~^^^^^^^^^^^^^^^^
+KeyError: 'limit_states'
+
+----------------------------------------------------------------------
+Ran 5 tests in 0.080s
+
+FAILED (errors=1)

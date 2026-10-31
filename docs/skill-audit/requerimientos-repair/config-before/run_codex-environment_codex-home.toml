@@ -1,0 +1,40 @@
+model = "gpt-6-luna"
+model_reasoning_effort = "medium"
+model_verbosity = "low"
+[mcp_servers.codegraph]
+command = "/home/agent/.local/bin/codegraph"
+args = ["serve", "--mcp"]
+
+[mcp_servers.context7]
+url = "https://mcp.context7.com/mcp"
+
+[plugins."engram@engram"]
+enabled = true
+
+[mcp_servers.engram]
+command = "/home/agent/.local/bin/engram"
+args = ["mcp", "--tools=agent"]
+
+[marketplaces.engram]
+source_type = "git"
+source = "https://github.com/Gentleman-Programming/engram.git"
+ref = "main"
+
+[features]
+multi_agent = true
+
+[agents]
+max_threads = 2
+max_depth = 1
+
+[agents.odd-explorer]
+description = "Read-only exploration of one bounded question."
+config_file = "/run/codex-environment/codex-home/agents/odd-explorer.toml"
+
+[agents.odd-worker]
+description = "Implement one bounded task with applicable verification."
+config_file = "/run/codex-environment/codex-home/agents/odd-worker.toml"
+
+[agents.odd-verify]
+description = "Read-only independent verification when the task names a material risk."
+config_file = "/run/codex-environment/codex-home/agents/odd-verify.toml"

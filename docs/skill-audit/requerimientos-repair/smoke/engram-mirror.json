@@ -1,0 +1,12 @@
+{
+  "jsonrpc": "2.0",
+  "id": 3,
+  "result": {
+    "content": [
+      {
+        "type": "text",
+        "text": "{\"candidates\":[{\"id\":2,\"judgment_id\":\"rel-3fe74f36afbea322\",\"score\":-0.000002681155285275248,\"sync_id\":\"obs-22e0a9d7a0040bf1\",\"title\":\"odd/requerimientos-socraticos/tasks\",\"type\":\"progress\"},{\"id\":4,\"judgment_id\":\"rel-f5a8ceed2fe379be\",\"score\":-0.0000026078751645284577,\"sync_id\":\"obs-32716f63625731bd\",\"title\":\"odd/requerimientos-socraticos/tasks\",\"type\":\"progress\"},{\"id\":1,\"judgment_id\":\"rel-3a587be68c3c6d28\",\"score\":-0.000002562883961582786,\"sync_id\":\"obs-cba479a0d951d1a6\",\"title\":\"odd/requerimientos-socraticos/tasks\",\"type\":\"progress\"}],\"id\":9,\"judgment_id\":\"rel-3fe74f36afbea322\",\"judgment_required\":true,\"judgment_status\":\"pending\",\"project\":\"replica-gentle-ai\",\"project_path\":\"\",\"project_source\":\"explicit_override\",\"result\":\"Memory saved: \\\"ODD reparación requerimientos-socraticos\\\" (decision)\\nCONFLICT REVIEW PENDING — 3 candidate(s); use mem_judge to record verdicts.\",\"review_after\":\"2027-04-26 16:56:06\",\"state\":\"active\",\"sync_id\":\"obs-a6f98d54a075f907\",\"truncation\":{\"original_bytes\":2349,\"limit_bytes\":50000,\"truncated\":false}}"
+      }
+    ]
+  }
+}

@@ -1,0 +1,68 @@
+{
+  "version": "2.4.3",
+  "limits_bytes": {
+    "logic_input": 262144,
+    "git_header": 2097152,
+    "git_file": 8388608,
+    "git_total_blobs": 33554432
+  },
+  "early_length_check": {
+    "fixture_bytes": 9,
+    "limit_bytes": 8,
+    "iteration_forbidden": true,
+    "result": "JSON exceeds maximum bytes"
+  },
+  "public_logic_boundary": {
+    "fixture_bytes": 262145,
+    "returncode": 2,
+    "result": {
+      "error": {
+        "code": "INVALID_INPUT",
+        "message": "FILE_SIZE_LIMIT"
+      },
+      "runtime": {
+        "executable": "/home/agent/.local/share/requerimientos-socraticos/venv/bin/python",
+        "python_version": "3.12.14",
+        "executable_sha256": "fa67443527ed9647f760d807e2a38f26340757123e643c4639cf273ed15d5ea7",
+        "artifact": {
+          "status": "OBSERVED",
+          "resolved_path": "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3.12",
+          "sha256": "fa67443527ed9647f760d807e2a38f26340757123e643c4639cf273ed15d5ea7"
+        },
+        "distributions": {
+          "z3-solver": "4.15.4.0",
+          "jsonschema": "4.26.0"
+        },
+        "authentication": "NOT_ESTABLISHED",
+        "limits": "Observed bytes/metadata in a trusted local account; not a signed runtime or dependency attestation."
+      },
+      "supervision": {
+        "worker_elapsed_seconds": 0.041861988000164274,
+        "wall_budget_seconds": 5.0,
+        "parent_death_policy": "LINUX_DIRECT_CHILD_PDEATHSIG",
+        "cleanup_status": "DIRECT_WORKER_REAPED_AND_PIPES_DRAINED",
+        "cleanup_grace_seconds": 1,
+        "limits": "Responsive OS and live supervisor required for deadline handling; Linux death signal covers direct worker only. No arbitrary descendant or hardware isolation guarantee."
+      }
+    },
+    "elapsed_seconds_observed": 0.11947328799578827,
+    "outer_timeout_seconds": 8
+  },
+  "small_integer_observation": {
+    "runtime": "3.12.14",
+    "values": [
+      1,
+      2,
+      1,
+      2
+    ],
+    "distinct_object_ids": 2,
+    "single_int_size_bytes": 28,
+    "list_object_size_bytes": 88
+  },
+  "limits": [
+    "Small local fixtures only; no30MiB file, resource saturation or targeti3/WSL measurement.",
+    "Timing is a single cloud observation, not a target-performance or statistical claim.",
+    "Integer identity observation applies to this CPython execution, not every decoder/runtime."
+  ]
+}

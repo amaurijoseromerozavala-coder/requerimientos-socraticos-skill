@@ -1,0 +1,35 @@
+{
+  "observed_at": "2026-10-26T16:56:29.881425+00:00",
+  "observations": [
+    {
+      "rule": "explicit_senior_role",
+      "expected": true,
+      "observed": false,
+      "stage": "RED_BEFORE_REPAIR"
+    },
+    {
+      "rule": "mandatory_dialogue_reference",
+      "expected": true,
+      "observed": false,
+      "stage": "RED_BEFORE_REPAIR"
+    },
+    {
+      "rule": "interview_schema",
+      "expected": true,
+      "observed": false,
+      "stage": "RED_BEFORE_REPAIR"
+    },
+    {
+      "rule": "design_proposals_schema",
+      "expected": true,
+      "observed": false,
+      "stage": "RED_BEFORE_REPAIR"
+    },
+    {
+      "rule": "reproducible_semantic_validator",
+      "expected": true,
+      "observed": false,
+      "stage": "RED_BEFORE_REPAIR"
+    }
+  ]
+}

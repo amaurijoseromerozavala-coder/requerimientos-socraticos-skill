@@ -1,0 +1,695 @@
+{
+  "kind": "FINITE_DOCUMENTARY_ABSTRACTION",
+  "states": [
+    "CAPTURED",
+    "ANALYSIS",
+    "TEST_PLAN",
+    "VERIFICATION",
+    "REPORTABLE",
+    "REPORT_DELIVERED",
+    "BLOCKED"
+  ],
+  "actors": [
+    "REVIEWER",
+    "HUMAN_OWNER",
+    "EXECUTOR",
+    "OTHER"
+  ],
+  "events": [
+    "ASSEMBLE_ANALYSIS_REPORT",
+    "ASSEMBLE_BLOCKED_REPORT",
+    "ASSEMBLE_REPORT",
+    "BEGIN",
+    "BLOCK",
+    "DELIVER",
+    "EXECUTE",
+    "INVALIDATE",
+    "OTHER",
+    "PLAN",
+    "RECORD_CURRENT_FAILURE",
+    "RECORD_CURRENT_SUCCESS",
+    "RECORD_GAP_OR_STALE",
+    "RECORD_SPECIFIC_AUTHORIZATION",
+    "REGISTER_CONTEXT",
+    "RESUME"
+  ],
+  "initial": {
+    "state": "CAPTURED",
+    "context_ready": false,
+    "specific_authorization": false,
+    "evidence_current": false,
+    "material_success": false,
+    "material_gap": true,
+    "valid_counterexample": false,
+    "report_complete": false,
+    "verdict": "PENDING"
+  },
+  "rules": [
+    {
+      "from": "CAPTURED",
+      "event": "BEGIN",
+      "actor": "REVIEWER",
+      "to": "ANALYSIS",
+      "guard": {},
+      "effects": {}
+    },
+    {
+      "from": "ANALYSIS",
+      "event": "REGISTER_CONTEXT",
+      "actor": "REVIEWER",
+      "to": "ANALYSIS",
+      "guard": {},
+      "effects": {
+        "context_ready": true
+      }
+    },
+    {
+      "from": "ANALYSIS",
+      "event": "PLAN",
+      "actor": "REVIEWER",
+      "to": "TEST_PLAN",
+      "guard": {
+        "context_ready": true
+      },
+      "effects": {}
+    },
+    {
+      "from": "TEST_PLAN",
+      "event": "RECORD_SPECIFIC_AUTHORIZATION",
+      "actor": "HUMAN_OWNER",
+      "to": "TEST_PLAN",
+      "guard": {},
+      "effects": {
+        "specific_authorization": true
+      }
+    },
+    {
+      "from": "TEST_PLAN",
+      "event": "EXECUTE",
+      "actor": "EXECUTOR",
+      "to": "VERIFICATION",
+      "guard": {
+        "specific_authorization": true,
+        "context_ready": true
+      },
+      "effects": {}
+    },
+    {
+      "from": "TEST_PLAN",
+      "event": "ASSEMBLE_ANALYSIS_REPORT",
+      "actor": "REVIEWER",
+      "to": "REPORTABLE",
+      "guard": {
+        "context_ready": true
+      },
+      "effects": {
+        "report_complete": true,
+        "verdict": "INCONCLUSIVE"
+      }
+    },
+    {
+      "from": "ANALYSIS",
+      "event": "RECORD_CURRENT_SUCCESS",
+      "actor": "REVIEWER",
+      "to": "ANALYSIS",
+      "guard": {},
+      "effects": {
+        "material_success": true,
+        "material_gap": false,
+        "evidence_current": true,
+        "valid_counterexample": false
+      }
+    },
+    {
+      "from": "ANALYSIS",
+      "event": "RECORD_CURRENT_FAILURE",
+      "actor": "REVIEWER",
+      "to": "ANALYSIS",
+      "guard": {},
+      "effects": {
+        "material_success": false,
+        "material_gap": false,
+        "evidence_current": true,
+        "valid_counterexample": true
+      }
+    },
+    {
+      "from": "ANALYSIS",
+      "event": "RECORD_GAP_OR_STALE",
+      "actor": "REVIEWER",
+      "to": "ANALYSIS",
+      "guard": {},
+      "effects": {
+        "material_success": false,
+        "material_gap": true,
+        "evidence_current": false,
+        "valid_counterexample": false
+      }
+    },
+    {
+      "from": "TEST_PLAN",
+      "event": "RECORD_CURRENT_SUCCESS",
+      "actor": "REVIEWER",
+      "to": "TEST_PLAN",
+      "guard": {},
+      "effects": {
+        "material_success": true,
+        "material_gap": false,
+        "evidence_current": true,
+        "valid_counterexample": false
+      }
+    },
+    {
+      "from": "TEST_PLAN",
+      "event": "RECORD_CURRENT_FAILURE",
+      "actor": "REVIEWER",
+      "to": "TEST_PLAN",
+      "guard": {},
+      "effects": {
+        "material_success": false,
+        "material_gap": false,
+        "evidence_current": true,
+        "valid_counterexample": true
+      }
+    },
+    {
+      "from": "TEST_PLAN",
+      "event": "RECORD_GAP_OR_STALE",
+      "actor": "REVIEWER",
+      "to": "TEST_PLAN",
+      "guard": {},
+      "effects": {
+        "material_success": false,
+        "material_gap": true,
+        "evidence_current": false,
+        "valid_counterexample": false
+      }
+    },
+    {
+      "from": "VERIFICATION",
+      "event": "RECORD_CURRENT_SUCCESS",
+      "actor": "REVIEWER",
+      "to": "VERIFICATION",
+      "guard": {},
+      "effects": {
+        "material_success": true,
+        "material_gap": false,
+        "evidence_current": true,
+        "valid_counterexample": false
+      }
+    },
+    {
+      "from": "VERIFICATION",
+      "event": "RECORD_CURRENT_FAILURE",
+      "actor": "REVIEWER",
+      "to": "VERIFICATION",
+      "guard": {},
+      "effects": {
+        "material_success": false,
+        "material_gap": false,
+        "evidence_current": true,
+        "valid_counterexample": true
+      }
+    },
+    {
+      "from": "VERIFICATION",
+      "event": "RECORD_GAP_OR_STALE",
+      "actor": "REVIEWER",
+      "to": "VERIFICATION",
+      "guard": {},
+      "effects": {
+        "material_success": false,
+        "material_gap": true,
+        "evidence_current": false,
+        "valid_counterexample": false
+      }
+    },
+    {
+      "from": "VERIFICATION",
+      "event": "ASSEMBLE_REPORT",
+      "actor": "REVIEWER",
+      "to": "REPORTABLE",
+      "guard": {
+        "evidence_current": false,
+        "valid_counterexample": false,
+        "material_success": false,
+        "material_gap": false
+      },
+      "effects": {
+        "report_complete": true,
+        "verdict": "INCONCLUSIVE"
+      }
+    },
+    {
+      "from": "VERIFICATION",
+      "event": "ASSEMBLE_REPORT",
+      "actor": "REVIEWER",
+      "to": "REPORTABLE",
+      "guard": {
+        "evidence_current": false,
+        "valid_counterexample": false,
+        "material_success": false,
+        "material_gap": true
+      },
+      "effects": {
+        "report_complete": true,
+        "verdict": "INCONCLUSIVE"
+      }
+    },
+    {
+      "from": "VERIFICATION",
+      "event": "ASSEMBLE_REPORT",
+      "actor": "REVIEWER",
+      "to": "REPORTABLE",
+      "guard": {
+        "evidence_current": false,
+        "valid_counterexample": false,
+        "material_success": true,
+        "material_gap": false
+      },
+      "effects": {
+        "report_complete": true,
+        "verdict": "INCONCLUSIVE"
+      }
+    },
+    {
+      "from": "VERIFICATION",
+      "event": "ASSEMBLE_REPORT",
+      "actor": "REVIEWER",
+      "to": "REPORTABLE",
+      "guard": {
+        "evidence_current": false,
+        "valid_counterexample": false,
+        "material_success": true,
+        "material_gap": true
+      },
+      "effects": {
+        "report_complete": true,
+        "verdict": "INCONCLUSIVE"
+      }
+    },
+    {
+      "from": "VERIFICATION",
+      "event": "ASSEMBLE_REPORT",
+      "actor": "REVIEWER",
+      "to": "REPORTABLE",
+      "guard": {
+        "evidence_current": false,
+        "valid_counterexample": true,
+        "material_success": false,
+        "material_gap": false
+      },
+      "effects": {
+        "report_complete": true,
+        "verdict": "INCONCLUSIVE"
+      }
+    },
+    {
+      "from": "VERIFICATION",
+      "event": "ASSEMBLE_REPORT",
+      "actor": "REVIEWER",
+      "to": "REPORTABLE",
+      "guard": {
+        "evidence_current": false,
+        "valid_counterexample": true,
+        "material_success": false,
+        "material_gap": true
+      },
+      "effects": {
+        "report_complete": true,
+        "verdict": "INCONCLUSIVE"
+      }
+    },
+    {
+      "from": "VERIFICATION",
+      "event": "ASSEMBLE_REPORT",
+      "actor": "REVIEWER",
+      "to": "REPORTABLE",
+      "guard": {
+        "evidence_current": false,
+        "valid_counterexample": true,
+        "material_success": true,
+        "material_gap": false
+      },
+      "effects": {
+        "report_complete": true,
+        "verdict": "INCONCLUSIVE"
+      }
+    },
+    {
+      "from": "VERIFICATION",
+      "event": "ASSEMBLE_REPORT",
+      "actor": "REVIEWER",
+      "to": "REPORTABLE",
+      "guard": {
+        "evidence_current": false,
+        "valid_counterexample": true,
+        "material_success": true,
+        "material_gap": true
+      },
+      "effects": {
+        "report_complete": true,
+        "verdict": "INCONCLUSIVE"
+      }
+    },
+    {
+      "from": "VERIFICATION",
+      "event": "ASSEMBLE_REPORT",
+      "actor": "REVIEWER",
+      "to": "REPORTABLE",
+      "guard": {
+        "evidence_current": true,
+        "valid_counterexample": false,
+        "material_success": false,
+        "material_gap": false
+      },
+      "effects": {
+        "report_complete": true,
+        "verdict": "INCONCLUSIVE"
+      }
+    },
+    {
+      "from": "VERIFICATION",
+      "event": "ASSEMBLE_REPORT",
+      "actor": "REVIEWER",
+      "to": "REPORTABLE",
+      "guard": {
+        "evidence_current": true,
+        "valid_counterexample": false,
+        "material_success": false,
+        "material_gap": true
+      },
+      "effects": {
+        "report_complete": true,
+        "verdict": "INCONCLUSIVE"
+      }
+    },
+    {
+      "from": "VERIFICATION",
+      "event": "ASSEMBLE_REPORT",
+      "actor": "REVIEWER",
+      "to": "REPORTABLE",
+      "guard": {
+        "evidence_current": true,
+        "valid_counterexample": false,
+        "material_success": true,
+        "material_gap": false
+      },
+      "effects": {
+        "report_complete": true,
+        "verdict": "PASS_WITHIN_SCOPE"
+      }
+    },
+    {
+      "from": "VERIFICATION",
+      "event": "ASSEMBLE_REPORT",
+      "actor": "REVIEWER",
+      "to": "REPORTABLE",
+      "guard": {
+        "evidence_current": true,
+        "valid_counterexample": false,
+        "material_success": true,
+        "material_gap": true
+      },
+      "effects": {
+        "report_complete": true,
+        "verdict": "INCONCLUSIVE"
+      }
+    },
+    {
+      "from": "VERIFICATION",
+      "event": "ASSEMBLE_REPORT",
+      "actor": "REVIEWER",
+      "to": "REPORTABLE",
+      "guard": {
+        "evidence_current": true,
+        "valid_counterexample": true,
+        "material_success": false,
+        "material_gap": false
+      },
+      "effects": {
+        "report_complete": true,
+        "verdict": "FAIL"
+      }
+    },
+    {
+      "from": "VERIFICATION",
+      "event": "ASSEMBLE_REPORT",
+      "actor": "REVIEWER",
+      "to": "REPORTABLE",
+      "guard": {
+        "evidence_current": true,
+        "valid_counterexample": true,
+        "material_success": false,
+        "material_gap": true
+      },
+      "effects": {
+        "report_complete": true,
+        "verdict": "FAIL"
+      }
+    },
+    {
+      "from": "VERIFICATION",
+      "event": "ASSEMBLE_REPORT",
+      "actor": "REVIEWER",
+      "to": "REPORTABLE",
+      "guard": {
+        "evidence_current": true,
+        "valid_counterexample": true,
+        "material_success": true,
+        "material_gap": false
+      },
+      "effects": {
+        "report_complete": true,
+        "verdict": "FAIL"
+      }
+    },
+    {
+      "from": "VERIFICATION",
+      "event": "ASSEMBLE_REPORT",
+      "actor": "REVIEWER",
+      "to": "REPORTABLE",
+      "guard": {
+        "evidence_current": true,
+        "valid_counterexample": true,
+        "material_success": true,
+        "material_gap": true
+      },
+      "effects": {
+        "report_complete": true,
+        "verdict": "FAIL"
+      }
+    },
+    {
+      "from": "REPORTABLE",
+      "event": "DELIVER",
+      "actor": "REVIEWER",
+      "to": "REPORT_DELIVERED",
+      "guard": {
+        "report_complete": true
+      },
+      "effects": {}
+    },
+    {
+      "from": "CAPTURED",
+      "event": "BLOCK",
+      "actor": "REVIEWER",
+      "to": "BLOCKED",
+      "guard": {},
+      "effects": {
+        "report_complete": false,
+        "verdict": "BLOCKED"
+      }
+    },
+    {
+      "from": "ANALYSIS",
+      "event": "BLOCK",
+      "actor": "REVIEWER",
+      "to": "BLOCKED",
+      "guard": {},
+      "effects": {
+        "report_complete": false,
+        "verdict": "BLOCKED"
+      }
+    },
+    {
+      "from": "TEST_PLAN",
+      "event": "INVALIDATE",
+      "actor": "REVIEWER",
+      "to": "ANALYSIS",
+      "guard": {},
+      "effects": {
+        "context_ready": false,
+        "specific_authorization": false,
+        "evidence_current": false,
+        "material_success": false,
+        "material_gap": true,
+        "valid_counterexample": false,
+        "report_complete": false,
+        "verdict": "PENDING"
+      }
+    },
+    {
+      "from": "TEST_PLAN",
+      "event": "BLOCK",
+      "actor": "REVIEWER",
+      "to": "BLOCKED",
+      "guard": {},
+      "effects": {
+        "report_complete": false,
+        "verdict": "BLOCKED"
+      }
+    },
+    {
+      "from": "VERIFICATION",
+      "event": "INVALIDATE",
+      "actor": "REVIEWER",
+      "to": "ANALYSIS",
+      "guard": {},
+      "effects": {
+        "context_ready": false,
+        "specific_authorization": false,
+        "evidence_current": false,
+        "material_success": false,
+        "material_gap": true,
+        "valid_counterexample": false,
+        "report_complete": false,
+        "verdict": "PENDING"
+      }
+    },
+    {
+      "from": "VERIFICATION",
+      "event": "BLOCK",
+      "actor": "REVIEWER",
+      "to": "BLOCKED",
+      "guard": {},
+      "effects": {
+        "report_complete": false,
+        "verdict": "BLOCKED"
+      }
+    },
+    {
+      "from": "REPORTABLE",
+      "event": "INVALIDATE",
+      "actor": "REVIEWER",
+      "to": "ANALYSIS",
+      "guard": {},
+      "effects": {
+        "context_ready": false,
+        "specific_authorization": false,
+        "evidence_current": false,
+        "material_success": false,
+        "material_gap": true,
+        "valid_counterexample": false,
+        "report_complete": false,
+        "verdict": "PENDING"
+      }
+    },
+    {
+      "from": "REPORTABLE",
+      "event": "BLOCK",
+      "actor": "REVIEWER",
+      "to": "BLOCKED",
+      "guard": {},
+      "effects": {
+        "report_complete": false,
+        "verdict": "BLOCKED"
+      }
+    },
+    {
+      "from": "REPORT_DELIVERED",
+      "event": "INVALIDATE",
+      "actor": "REVIEWER",
+      "to": "ANALYSIS",
+      "guard": {},
+      "effects": {
+        "context_ready": false,
+        "specific_authorization": false,
+        "evidence_current": false,
+        "material_success": false,
+        "material_gap": true,
+        "valid_counterexample": false,
+        "report_complete": false,
+        "verdict": "PENDING"
+      }
+    },
+    {
+      "from": "BLOCKED",
+      "event": "INVALIDATE",
+      "actor": "REVIEWER",
+      "to": "ANALYSIS",
+      "guard": {},
+      "effects": {
+        "context_ready": false,
+        "specific_authorization": false,
+        "evidence_current": false,
+        "material_success": false,
+        "material_gap": true,
+        "valid_counterexample": false,
+        "report_complete": false,
+        "verdict": "PENDING"
+      }
+    },
+    {
+      "from": "BLOCKED",
+      "event": "BLOCK",
+      "actor": "REVIEWER",
+      "to": "BLOCKED",
+      "guard": {},
+      "effects": {
+        "report_complete": false,
+        "verdict": "BLOCKED"
+      }
+    },
+    {
+      "from": "BLOCKED",
+      "event": "ASSEMBLE_BLOCKED_REPORT",
+      "actor": "REVIEWER",
+      "to": "REPORTABLE",
+      "guard": {},
+      "effects": {
+        "report_complete": true,
+        "verdict": "BLOCKED"
+      }
+    },
+    {
+      "from": "BLOCKED",
+      "event": "RESUME",
+      "actor": "HUMAN_OWNER",
+      "to": "ANALYSIS",
+      "guard": {},
+      "effects": {
+        "context_ready": false,
+        "specific_authorization": false,
+        "evidence_current": false,
+        "material_success": false,
+        "material_gap": true,
+        "valid_counterexample": false,
+        "report_complete": false,
+        "verdict": "PENDING"
+      }
+    }
+  ],
+  "unlisted_transition": "REJECT_WITHOUT_MUTATION",
+  "guard_semantics": "AND of typed equalities; effects simultaneous; omitted variables retained",
+  "input_contracts": {
+    "REGISTER_CONTEXT": "GATE-CONTEXT: schema/ref/identity checks and human scope/materiality assessment recorded; without assessment no event",
+    "RECORD_SPECIFIC_AUTHORIZATION": "GATE-AUTH: source is a human instruction, sufficient scope/destination/operations, current snapshot and finite execution budget; a QA output is not a source",
+    "RECORD_CURRENT_SUCCESS": "GATE-EVIDENCE: every applicable material obligation has current evidence of required kind; human semantic assessment recorded; no material NOT_RUN/STALE",
+    "RECORD_CURRENT_FAILURE": "GATE-EVIDENCE: current counterexample linked to prior oracle and affected obligation; prediction alone is insufficient",
+    "RECORD_GAP_OR_STALE": "Missing judgment, unsupported kind or stale identity keeps conservative gap",
+    "ASSEMBLE_ANALYSIS_REPORT": "All sections/inventory/claims/cases/limits present; execution cases NOT_RUN with reasons",
+    "ASSEMBLE_REPORT": "Documentary completeness, not truth certification; input summary booleans derive from GATE-EVIDENCE",
+    "DELIVER": "Identified artifact/hash and recorded delivery; abstract event, no transport implemented"
+  },
+  "assumptions": [
+    "Input contract summaries are truthful outputs of future checks/human judgments; model does not prove that external binding.",
+    "EXECUTE is only an abstract event; no program or application is executed by this model.",
+    "REGISTER_CONTEXT asserts completeness of the declared register, not universal discovery of every real component.",
+    "FAIL/current-success summaries require semantically assessed oracles; not inferred from exit0."
+  ],
+  "limits": [
+    "Finite safety/transition analysis only, not runtime isolation, hardware tests or liveness proof.",
+    "No installation/implementation/CI/production authorization."
+  ]
+}

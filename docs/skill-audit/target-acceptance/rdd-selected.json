@@ -1,0 +1,318 @@
+{
+  "schema": "gentle-ai.review-integration.status/v9",
+  "contract": "gentle-ai.review-integration/v2",
+  "operation": "review.status",
+  "applicability": "unrelated",
+  "action": "start",
+  "replayability": "not_replayable",
+  "target_identity": "sha256:6d63ec072779ab01fdd76a138cafaa1a5f9b984e2019bb5f9d9259ed8d7b8fae",
+  "projection": {
+    "schema": "gentle-ai.review-integration.projection/v1",
+    "kind": "base-workspace-overlay",
+    "projection": "workspace",
+    "base_tree": "293bad5c514b6759da37faee4d5707d7c8661123",
+    "initial_review_tree": "07ee95fa7718a2cb0a8f54a605cbfea5a6a900d7",
+    "current_candidate_tree": "07ee95fa7718a2cb0a8f54a605cbfea5a6a900d7",
+    "paths_digest": "sha256:69adb07fe02d01c76a363e2b405d38406142d2acd82971b78bd0e55450b5c7c1",
+    "paths": [
+      "docs/design/requirements-formal-pipeline/ACEPTACION-EN-EQUIPO-OBJETIVO.md"
+    ],
+    "intended_untracked": [
+      "AGENTS.md",
+      "docs/compliance/openai-codex-cloud.md",
+      "docs/design/requirements-formal-pipeline/ACEPTACION-EN-EQUIPO-OBJETIVO.md",
+      "docs/design/requirements-formal-pipeline/CESM-ENTORNO-MATERIAL.md",
+      "docs/design/requirements-formal-pipeline/ENVOLVENTE-TERMICA.md",
+      "docs/design/requirements-formal-pipeline/FILTRO-FUNDAMENTOS.md",
+      "docs/design/requirements-formal-pipeline/FUENTES.md",
+      "docs/design/requirements-formal-pipeline/METODO-CONTRASTE.md",
+      "docs/design/requirements-formal-pipeline/PORTABILIDAD-Y-DETECCION.md",
+      "docs/design/requirements-formal-pipeline/PROPUESTA.md",
+      "docs/design/requirements-formal-pipeline/REVISION-ARQUITECTURA.md",
+      "docs/design/requirements-formal-pipeline/design-proposal.json",
+      "docs/requirements/qa-inquisidor-v2/PRD.md",
+      "docs/requirements/qa-inquisidor-v2/analizar-modelo.py",
+      "docs/requirements/qa-inquisidor-v2/casos-documentales.json",
+      "docs/requirements/qa-inquisidor-v2/contrato-evidencia-propuesto.md",
+      "docs/requirements/qa-inquisidor-v2/fsm-propuesta.json",
+      "docs/requirements/qa-inquisidor-v2/propuesta-prd.json",
+      "docs/requirements/qa-inquisidor-v2/registro-skill-asistente.json",
+      "docs/requirements/qa-inquisidor-v2/registro-skill-asistente.md",
+      "docs/requirements/qa-inquisidor-v2/resultado-modelo.json",
+      "docs/requirements/qa-inquisidor/PRD.md",
+      "docs/requirements/qa-inquisidor/prd.json",
+      "docs/skill-audit/qa-claims-followup/RESULTADO.md",
+      "docs/skill-audit/qa-claims-followup/bounded-observation.json",
+      "docs/skill-audit/qa-claims-followup/integrity.json",
+      "docs/skill-audit/qa-claims-followup/scratch-tests.log",
+      "docs/skill-audit/qa-claims-followup/sealed-tests.log",
+      "docs/skill-audit/qa-output-reassessment/ANALISIS.md",
+      "docs/skill-audit/qa-output-reassessment/sources.json"
+    ],
+    "intended_untracked_proof": "sha256:929eef0afd0c6b1403335e90f4e12bd30ee26e94421fd65c33d3c1651c9c0cda",
+    "initial_snapshot_identity": "sha256:6d63ec072779ab01fdd76a138cafaa1a5f9b984e2019bb5f9d9259ed8d7b8fae",
+    "current_snapshot_identity": "sha256:6d63ec072779ab01fdd76a138cafaa1a5f9b984e2019bb5f9d9259ed8d7b8fae"
+  },
+  "eligible_untracked_inventory": "sha256:264680a5772364962ae1c54d8df8da49453c03a5900d5932753aaa5fbb704c25",
+  "repair": {
+    "schema": "gentle-ai.review-authority-repair-assessment/v1",
+    "status": "unsupported",
+    "counts": {
+      "lineages": 0,
+      "compact_lineages": 0,
+      "legacy_lineages": 0,
+      "events": 0,
+      "bytes": 0,
+      "eligible_candidates": 0,
+      "unsupported_lineages": 0,
+      "conflicts": 0
+    },
+    "supported_operations": [
+      "review/complete-fix",
+      "review/validate-fix"
+    ],
+    "authorization_schema": "gentle-ai.review-repair-authorization/v1"
+  },
+  "candidates": [],
+  "forecast": {
+    "horizon": "partial",
+    "steps": [
+      {
+        "step": 1,
+        "kind": "execute",
+        "reason_code": "fresh_target_ready",
+        "description": "Target is unreviewed and ready for initial review start"
+      }
+    ]
+  },
+  "next_transition": {
+    "kind": "execute",
+    "reason_code": "fresh_target_ready",
+    "execute": {
+      "operation": "review.start",
+      "command": "gentle-ai review start --cwd=/workspace/replica-gentle-ai --contract=gentle-ai.review-integration/v2 --target=sha256:6d63ec072779ab01fdd76a138cafaa1a5f9b984e2019bb5f9d9259ed8d7b8fae --target-evidence=v1:base-workspace-overlay:workspace:293bad5c514b6759da37faee4d5707d7c8661123:07ee95fa7718a2cb0a8f54a605cbfea5a6a900d7:sha256:69adb07fe02d01c76a363e2b405d38406142d2acd82971b78bd0e55450b5c7c1 --projection=workspace --base-ref=293bad5c514b6759da37faee4d5707d7c8661123 --workspace-overlay=true --lineage=review-37d9ab6ef04fa197 --agent=codex --consent=relay --untracked-scope=select --expected-untracked-inventory=sha256:264680a5772364962ae1c54d8df8da49453c03a5900d5932753aaa5fbb704c25 --intended-untracked=AGENTS.md --intended-untracked=docs/compliance/openai-codex-cloud.md --intended-untracked=docs/design/requirements-formal-pipeline/ACEPTACION-EN-EQUIPO-OBJETIVO.md --intended-untracked=docs/design/requirements-formal-pipeline/CESM-ENTORNO-MATERIAL.md --intended-untracked=docs/design/requirements-formal-pipeline/ENVOLVENTE-TERMICA.md --intended-untracked=docs/design/requirements-formal-pipeline/FILTRO-FUNDAMENTOS.md --intended-untracked=docs/design/requirements-formal-pipeline/FUENTES.md --intended-untracked=docs/design/requirements-formal-pipeline/METODO-CONTRASTE.md --intended-untracked=docs/design/requirements-formal-pipeline/PORTABILIDAD-Y-DETECCION.md --intended-untracked=docs/design/requirements-formal-pipeline/PROPUESTA.md --intended-untracked=docs/design/requirements-formal-pipeline/REVISION-ARQUITECTURA.md --intended-untracked=docs/design/requirements-formal-pipeline/design-proposal.json --intended-untracked=docs/requirements/qa-inquisidor-v2/PRD.md --intended-untracked=docs/requirements/qa-inquisidor-v2/analizar-modelo.py --intended-untracked=docs/requirements/qa-inquisidor-v2/casos-documentales.json --intended-untracked=docs/requirements/qa-inquisidor-v2/contrato-evidencia-propuesto.md --intended-untracked=docs/requirements/qa-inquisidor-v2/fsm-propuesta.json --intended-untracked=docs/requirements/qa-inquisidor-v2/propuesta-prd.json --intended-untracked=docs/requirements/qa-inquisidor-v2/registro-skill-asistente.json --intended-untracked=docs/requirements/qa-inquisidor-v2/registro-skill-asistente.md --intended-untracked=docs/requirements/qa-inquisidor-v2/resultado-modelo.json --intended-untracked=docs/requirements/qa-inquisidor/PRD.md --intended-untracked=docs/requirements/qa-inquisidor/prd.json --intended-untracked=docs/skill-audit/qa-claims-followup/RESULTADO.md --intended-untracked=docs/skill-audit/qa-claims-followup/bounded-observation.json --intended-untracked=docs/skill-audit/qa-claims-followup/integrity.json --intended-untracked=docs/skill-audit/qa-claims-followup/scratch-tests.log --intended-untracked=docs/skill-audit/qa-claims-followup/sealed-tests.log --intended-untracked=docs/skill-audit/qa-output-reassessment/ANALISIS.md --intended-untracked=docs/skill-audit/qa-output-reassessment/sources.json",
+      "arguments": [
+        {
+          "name": "cwd",
+          "value": "/workspace/replica-gentle-ai",
+          "token": "--cwd=/workspace/replica-gentle-ai"
+        },
+        {
+          "name": "contract",
+          "value": "gentle-ai.review-integration/v2",
+          "token": "--contract=gentle-ai.review-integration/v2"
+        },
+        {
+          "name": "target",
+          "value": "sha256:6d63ec072779ab01fdd76a138cafaa1a5f9b984e2019bb5f9d9259ed8d7b8fae",
+          "token": "--target=sha256:6d63ec072779ab01fdd76a138cafaa1a5f9b984e2019bb5f9d9259ed8d7b8fae"
+        },
+        {
+          "name": "target-evidence",
+          "value": "v1:base-workspace-overlay:workspace:293bad5c514b6759da37faee4d5707d7c8661123:07ee95fa7718a2cb0a8f54a605cbfea5a6a900d7:sha256:69adb07fe02d01c76a363e2b405d38406142d2acd82971b78bd0e55450b5c7c1",
+          "token": "--target-evidence=v1:base-workspace-overlay:workspace:293bad5c514b6759da37faee4d5707d7c8661123:07ee95fa7718a2cb0a8f54a605cbfea5a6a900d7:sha256:69adb07fe02d01c76a363e2b405d38406142d2acd82971b78bd0e55450b5c7c1"
+        },
+        {
+          "name": "projection",
+          "value": "workspace",
+          "token": "--projection=workspace"
+        },
+        {
+          "name": "base-ref",
+          "value": "293bad5c514b6759da37faee4d5707d7c8661123",
+          "token": "--base-ref=293bad5c514b6759da37faee4d5707d7c8661123"
+        },
+        {
+          "name": "workspace-overlay",
+          "value": "true",
+          "token": "--workspace-overlay=true"
+        },
+        {
+          "name": "lineage",
+          "value": "review-37d9ab6ef04fa197",
+          "token": "--lineage=review-37d9ab6ef04fa197"
+        },
+        {
+          "name": "agent",
+          "value": "codex",
+          "token": "--agent=codex"
+        },
+        {
+          "name": "consent",
+          "value": "relay",
+          "token": "--consent=relay"
+        },
+        {
+          "name": "untracked-scope",
+          "value": "select",
+          "token": "--untracked-scope=select"
+        },
+        {
+          "name": "expected-untracked-inventory",
+          "value": "sha256:264680a5772364962ae1c54d8df8da49453c03a5900d5932753aaa5fbb704c25",
+          "token": "--expected-untracked-inventory=sha256:264680a5772364962ae1c54d8df8da49453c03a5900d5932753aaa5fbb704c25"
+        },
+        {
+          "name": "intended-untracked",
+          "value": "AGENTS.md",
+          "token": "--intended-untracked=AGENTS.md"
+        },
+        {
+          "name": "intended-untracked",
+          "value": "docs/compliance/openai-codex-cloud.md",
+          "token": "--intended-untracked=docs/compliance/openai-codex-cloud.md"
+        },
+        {
+          "name": "intended-untracked",
+          "value": "docs/design/requirements-formal-pipeline/ACEPTACION-EN-EQUIPO-OBJETIVO.md",
+          "token": "--intended-untracked=docs/design/requirements-formal-pipeline/ACEPTACION-EN-EQUIPO-OBJETIVO.md"
+        },
+        {
+          "name": "intended-untracked",
+          "value": "docs/design/requirements-formal-pipeline/CESM-ENTORNO-MATERIAL.md",
+          "token": "--intended-untracked=docs/design/requirements-formal-pipeline/CESM-ENTORNO-MATERIAL.md"
+        },
+        {
+          "name": "intended-untracked",
+          "value": "docs/design/requirements-formal-pipeline/ENVOLVENTE-TERMICA.md",
+          "token": "--intended-untracked=docs/design/requirements-formal-pipeline/ENVOLVENTE-TERMICA.md"
+        },
+        {
+          "name": "intended-untracked",
+          "value": "docs/design/requirements-formal-pipeline/FILTRO-FUNDAMENTOS.md",
+          "token": "--intended-untracked=docs/design/requirements-formal-pipeline/FILTRO-FUNDAMENTOS.md"
+        },
+        {
+          "name": "intended-untracked",
+          "value": "docs/design/requirements-formal-pipeline/FUENTES.md",
+          "token": "--intended-untracked=docs/design/requirements-formal-pipeline/FUENTES.md"
+        },
+        {
+          "name": "intended-untracked",
+          "value": "docs/design/requirements-formal-pipeline/METODO-CONTRASTE.md",
+          "token": "--intended-untracked=docs/design/requirements-formal-pipeline/METODO-CONTRASTE.md"
+        },
+        {
+          "name": "intended-untracked",
+          "value": "docs/design/requirements-formal-pipeline/PORTABILIDAD-Y-DETECCION.md",
+          "token": "--intended-untracked=docs/design/requirements-formal-pipeline/PORTABILIDAD-Y-DETECCION.md"
+        },
+        {
+          "name": "intended-untracked",
+          "value": "docs/design/requirements-formal-pipeline/PROPUESTA.md",
+          "token": "--intended-untracked=docs/design/requirements-formal-pipeline/PROPUESTA.md"
+        },
+        {
+          "name": "intended-untracked",
+          "value": "docs/design/requirements-formal-pipeline/REVISION-ARQUITECTURA.md",
+          "token": "--intended-untracked=docs/design/requirements-formal-pipeline/REVISION-ARQUITECTURA.md"
+        },
+        {
+          "name": "intended-untracked",
+          "value": "docs/design/requirements-formal-pipeline/design-proposal.json",
+          "token": "--intended-untracked=docs/design/requirements-formal-pipeline/design-proposal.json"
+        },
+        {
+          "name": "intended-untracked",
+          "value": "docs/requirements/qa-inquisidor-v2/PRD.md",
+          "token": "--intended-untracked=docs/requirements/qa-inquisidor-v2/PRD.md"
+        },
+        {
+          "name": "intended-untracked",
+          "value": "docs/requirements/qa-inquisidor-v2/analizar-modelo.py",
+          "token": "--intended-untracked=docs/requirements/qa-inquisidor-v2/analizar-modelo.py"
+        },
+        {
+          "name": "intended-untracked",
+          "value": "docs/requirements/qa-inquisidor-v2/casos-documentales.json",
+          "token": "--intended-untracked=docs/requirements/qa-inquisidor-v2/casos-documentales.json"
+        },
+        {
+          "name": "intended-untracked",
+          "value": "docs/requirements/qa-inquisidor-v2/contrato-evidencia-propuesto.md",
+          "token": "--intended-untracked=docs/requirements/qa-inquisidor-v2/contrato-evidencia-propuesto.md"
+        },
+        {
+          "name": "intended-untracked",
+          "value": "docs/requirements/qa-inquisidor-v2/fsm-propuesta.json",
+          "token": "--intended-untracked=docs/requirements/qa-inquisidor-v2/fsm-propuesta.json"
+        },
+        {
+          "name": "intended-untracked",
+          "value": "docs/requirements/qa-inquisidor-v2/propuesta-prd.json",
+          "token": "--intended-untracked=docs/requirements/qa-inquisidor-v2/propuesta-prd.json"
+        },
+        {
+          "name": "intended-untracked",
+          "value": "docs/requirements/qa-inquisidor-v2/registro-skill-asistente.json",
+          "token": "--intended-untracked=docs/requirements/qa-inquisidor-v2/registro-skill-asistente.json"
+        },
+        {
+          "name": "intended-untracked",
+          "value": "docs/requirements/qa-inquisidor-v2/registro-skill-asistente.md",
+          "token": "--intended-untracked=docs/requirements/qa-inquisidor-v2/registro-skill-asistente.md"
+        },
+        {
+          "name": "intended-untracked",
+          "value": "docs/requirements/qa-inquisidor-v2/resultado-modelo.json",
+          "token": "--intended-untracked=docs/requirements/qa-inquisidor-v2/resultado-modelo.json"
+        },
+        {
+          "name": "intended-untracked",
+          "value": "docs/requirements/qa-inquisidor/PRD.md",
+          "token": "--intended-untracked=docs/requirements/qa-inquisidor/PRD.md"
+        },
+        {
+          "name": "intended-untracked",
+          "value": "docs/requirements/qa-inquisidor/prd.json",
+          "token": "--intended-untracked=docs/requirements/qa-inquisidor/prd.json"
+        },
+        {
+          "name": "intended-untracked",
+          "value": "docs/skill-audit/qa-claims-followup/RESULTADO.md",
+          "token": "--intended-untracked=docs/skill-audit/qa-claims-followup/RESULTADO.md"
+        },
+        {
+          "name": "intended-untracked",
+          "value": "docs/skill-audit/qa-claims-followup/bounded-observation.json",
+          "token": "--intended-untracked=docs/skill-audit/qa-claims-followup/bounded-observation.json"
+        },
+        {
+          "name": "intended-untracked",
+          "value": "docs/skill-audit/qa-claims-followup/integrity.json",
+          "token": "--intended-untracked=docs/skill-audit/qa-claims-followup/integrity.json"
+        },
+        {
+          "name": "intended-untracked",
+          "value": "docs/skill-audit/qa-claims-followup/scratch-tests.log",
+          "token": "--intended-untracked=docs/skill-audit/qa-claims-followup/scratch-tests.log"
+        },
+        {
+          "name": "intended-untracked",
+          "value": "docs/skill-audit/qa-claims-followup/sealed-tests.log",
+          "token": "--intended-untracked=docs/skill-audit/qa-claims-followup/sealed-tests.log"
+        },
+        {
+          "name": "intended-untracked",
+          "value": "docs/skill-audit/qa-output-reassessment/ANALISIS.md",
+          "token": "--intended-untracked=docs/skill-audit/qa-output-reassessment/ANALISIS.md"
+        },
+        {
+          "name": "intended-untracked",
+          "value": "docs/skill-audit/qa-output-reassessment/sources.json",
+          "token": "--intended-untracked=docs/skill-audit/qa-output-reassessment/sources.json"
+        }
+      ],
+      "preconditions": [
+        {
+          "name": "target_identity",
+          "value": "sha256:6d63ec072779ab01fdd76a138cafaa1a5f9b984e2019bb5f9d9259ed8d7b8fae"
+        }
+      ],
+      "binding": {
+        "lineage_id": "review-37d9ab6ef04fa197",
+        "target_identity": "sha256:6d63ec072779ab01fdd76a138cafaa1a5f9b984e2019bb5f9d9259ed8d7b8fae"
+      }
+    }
+  }
+}

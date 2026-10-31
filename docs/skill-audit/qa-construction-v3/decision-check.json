@@ -1,0 +1,12 @@
+{
+  "result": "PASS",
+  "enumerated": 64,
+  "counts": {
+    "REJECT_INPUT": 32,
+    "RECORD_GAP_OR_STALE": 15,
+    "RECORD_CURRENT_FAILURE": 16,
+    "RECORD_CURRENT_SUCCESS": 1
+  },
+  "overlapping_guards": 0,
+  "unhandled_valuations": 0
+}

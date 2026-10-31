@@ -1,0 +1,15 @@
+{
+  "save": {
+    "jsonrpc": "2.0",
+    "id": 4,
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"candidates\":[{\"id\":19,\"judgment_id\":\"rel-3754c2bb45752759\",\"score\":-0.12739872889517612,\"sync_id\":\"obs-e54782ea507876d3\",\"title\":\"Endurecimiento requerimientos socraticos 2.4.1\",\"topic_key\":\"odd/requirements-hardening-241/tasks\",\"type\":\"progress\"}],\"id\":21,\"judgment_id\":\"rel-3754c2bb45752759\",\"judgment_required\":true,\"judgment_status\":\"pending\",\"project\":\"replica-gentle-ai\",\"project_path\":\"\",\"project_source\":\"explicit_override\",\"result\":\"Memory saved: \\\"Endurecer requerimientos socraticos 2.4.2\\\" (progress)\\nCONFLICT REVIEW PENDING — 1 candidate(s); use mem_judge to record verdicts.\",\"state\":\"active\",\"sync_id\":\"obs-e6ec26a4f7af5640\",\"truncation\":{\"original_bytes\":3831,\"limit_bytes\":50000,\"truncated\":false}}"
+        }
+      ]
+    }
+  },
+  "read_back_confirmed": true
+}

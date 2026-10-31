@@ -1,0 +1,645 @@
+{
+  "scope": "64 valuations of six documentary summary predicates; not real-system coverage",
+  "rows": [
+    {
+      "input_valid": false,
+      "delegation_current": false,
+      "scope_supported": false,
+      "valid_failure": false,
+      "has_gap": false,
+      "all_success": false,
+      "event": "REJECT_INPUT",
+      "retain_gap": false
+    },
+    {
+      "input_valid": false,
+      "delegation_current": false,
+      "scope_supported": false,
+      "valid_failure": false,
+      "has_gap": false,
+      "all_success": true,
+      "event": "REJECT_INPUT",
+      "retain_gap": false
+    },
+    {
+      "input_valid": false,
+      "delegation_current": false,
+      "scope_supported": false,
+      "valid_failure": false,
+      "has_gap": true,
+      "all_success": false,
+      "event": "REJECT_INPUT",
+      "retain_gap": true
+    },
+    {
+      "input_valid": false,
+      "delegation_current": false,
+      "scope_supported": false,
+      "valid_failure": false,
+      "has_gap": true,
+      "all_success": true,
+      "event": "REJECT_INPUT",
+      "retain_gap": true
+    },
+    {
+      "input_valid": false,
+      "delegation_current": false,
+      "scope_supported": false,
+      "valid_failure": true,
+      "has_gap": false,
+      "all_success": false,
+      "event": "REJECT_INPUT",
+      "retain_gap": false
+    },
+    {
+      "input_valid": false,
+      "delegation_current": false,
+      "scope_supported": false,
+      "valid_failure": true,
+      "has_gap": false,
+      "all_success": true,
+      "event": "REJECT_INPUT",
+      "retain_gap": false
+    },
+    {
+      "input_valid": false,
+      "delegation_current": false,
+      "scope_supported": false,
+      "valid_failure": true,
+      "has_gap": true,
+      "all_success": false,
+      "event": "REJECT_INPUT",
+      "retain_gap": true
+    },
+    {
+      "input_valid": false,
+      "delegation_current": false,
+      "scope_supported": false,
+      "valid_failure": true,
+      "has_gap": true,
+      "all_success": true,
+      "event": "REJECT_INPUT",
+      "retain_gap": true
+    },
+    {
+      "input_valid": false,
+      "delegation_current": false,
+      "scope_supported": true,
+      "valid_failure": false,
+      "has_gap": false,
+      "all_success": false,
+      "event": "REJECT_INPUT",
+      "retain_gap": false
+    },
+    {
+      "input_valid": false,
+      "delegation_current": false,
+      "scope_supported": true,
+      "valid_failure": false,
+      "has_gap": false,
+      "all_success": true,
+      "event": "REJECT_INPUT",
+      "retain_gap": false
+    },
+    {
+      "input_valid": false,
+      "delegation_current": false,
+      "scope_supported": true,
+      "valid_failure": false,
+      "has_gap": true,
+      "all_success": false,
+      "event": "REJECT_INPUT",
+      "retain_gap": true
+    },
+    {
+      "input_valid": false,
+      "delegation_current": false,
+      "scope_supported": true,
+      "valid_failure": false,
+      "has_gap": true,
+      "all_success": true,
+      "event": "REJECT_INPUT",
+      "retain_gap": true
+    },
+    {
+      "input_valid": false,
+      "delegation_current": false,
+      "scope_supported": true,
+      "valid_failure": true,
+      "has_gap": false,
+      "all_success": false,
+      "event": "REJECT_INPUT",
+      "retain_gap": false
+    },
+    {
+      "input_valid": false,
+      "delegation_current": false,
+      "scope_supported": true,
+      "valid_failure": true,
+      "has_gap": false,
+      "all_success": true,
+      "event": "REJECT_INPUT",
+      "retain_gap": false
+    },
+    {
+      "input_valid": false,
+      "delegation_current": false,
+      "scope_supported": true,
+      "valid_failure": true,
+      "has_gap": true,
+      "all_success": false,
+      "event": "REJECT_INPUT",
+      "retain_gap": true
+    },
+    {
+      "input_valid": false,
+      "delegation_current": false,
+      "scope_supported": true,
+      "valid_failure": true,
+      "has_gap": true,
+      "all_success": true,
+      "event": "REJECT_INPUT",
+      "retain_gap": true
+    },
+    {
+      "input_valid": false,
+      "delegation_current": true,
+      "scope_supported": false,
+      "valid_failure": false,
+      "has_gap": false,
+      "all_success": false,
+      "event": "REJECT_INPUT",
+      "retain_gap": false
+    },
+    {
+      "input_valid": false,
+      "delegation_current": true,
+      "scope_supported": false,
+      "valid_failure": false,
+      "has_gap": false,
+      "all_success": true,
+      "event": "REJECT_INPUT",
+      "retain_gap": false
+    },
+    {
+      "input_valid": false,
+      "delegation_current": true,
+      "scope_supported": false,
+      "valid_failure": false,
+      "has_gap": true,
+      "all_success": false,
+      "event": "REJECT_INPUT",
+      "retain_gap": true
+    },
+    {
+      "input_valid": false,
+      "delegation_current": true,
+      "scope_supported": false,
+      "valid_failure": false,
+      "has_gap": true,
+      "all_success": true,
+      "event": "REJECT_INPUT",
+      "retain_gap": true
+    },
+    {
+      "input_valid": false,
+      "delegation_current": true,
+      "scope_supported": false,
+      "valid_failure": true,
+      "has_gap": false,
+      "all_success": false,
+      "event": "REJECT_INPUT",
+      "retain_gap": false
+    },
+    {
+      "input_valid": false,
+      "delegation_current": true,
+      "scope_supported": false,
+      "valid_failure": true,
+      "has_gap": false,
+      "all_success": true,
+      "event": "REJECT_INPUT",
+      "retain_gap": false
+    },
+    {
+      "input_valid": false,
+      "delegation_current": true,
+      "scope_supported": false,
+      "valid_failure": true,
+      "has_gap": true,
+      "all_success": false,
+      "event": "REJECT_INPUT",
+      "retain_gap": true
+    },
+    {
+      "input_valid": false,
+      "delegation_current": true,
+      "scope_supported": false,
+      "valid_failure": true,
+      "has_gap": true,
+      "all_success": true,
+      "event": "REJECT_INPUT",
+      "retain_gap": true
+    },
+    {
+      "input_valid": false,
+      "delegation_current": true,
+      "scope_supported": true,
+      "valid_failure": false,
+      "has_gap": false,
+      "all_success": false,
+      "event": "REJECT_INPUT",
+      "retain_gap": false
+    },
+    {
+      "input_valid": false,
+      "delegation_current": true,
+      "scope_supported": true,
+      "valid_failure": false,
+      "has_gap": false,
+      "all_success": true,
+      "event": "REJECT_INPUT",
+      "retain_gap": false
+    },
+    {
+      "input_valid": false,
+      "delegation_current": true,
+      "scope_supported": true,
+      "valid_failure": false,
+      "has_gap": true,
+      "all_success": false,
+      "event": "REJECT_INPUT",
+      "retain_gap": true
+    },
+    {
+      "input_valid": false,
+      "delegation_current": true,
+      "scope_supported": true,
+      "valid_failure": false,
+      "has_gap": true,
+      "all_success": true,
+      "event": "REJECT_INPUT",
+      "retain_gap": true
+    },
+    {
+      "input_valid": false,
+      "delegation_current": true,
+      "scope_supported": true,
+      "valid_failure": true,
+      "has_gap": false,
+      "all_success": false,
+      "event": "REJECT_INPUT",
+      "retain_gap": false
+    },
+    {
+      "input_valid": false,
+      "delegation_current": true,
+      "scope_supported": true,
+      "valid_failure": true,
+      "has_gap": false,
+      "all_success": true,
+      "event": "REJECT_INPUT",
+      "retain_gap": false
+    },
+    {
+      "input_valid": false,
+      "delegation_current": true,
+      "scope_supported": true,
+      "valid_failure": true,
+      "has_gap": true,
+      "all_success": false,
+      "event": "REJECT_INPUT",
+      "retain_gap": true
+    },
+    {
+      "input_valid": false,
+      "delegation_current": true,
+      "scope_supported": true,
+      "valid_failure": true,
+      "has_gap": true,
+      "all_success": true,
+      "event": "REJECT_INPUT",
+      "retain_gap": true
+    },
+    {
+      "input_valid": true,
+      "delegation_current": false,
+      "scope_supported": false,
+      "valid_failure": false,
+      "has_gap": false,
+      "all_success": false,
+      "event": "RECORD_GAP_OR_STALE",
+      "retain_gap": false
+    },
+    {
+      "input_valid": true,
+      "delegation_current": false,
+      "scope_supported": false,
+      "valid_failure": false,
+      "has_gap": false,
+      "all_success": true,
+      "event": "RECORD_GAP_OR_STALE",
+      "retain_gap": false
+    },
+    {
+      "input_valid": true,
+      "delegation_current": false,
+      "scope_supported": false,
+      "valid_failure": false,
+      "has_gap": true,
+      "all_success": false,
+      "event": "RECORD_GAP_OR_STALE",
+      "retain_gap": true
+    },
+    {
+      "input_valid": true,
+      "delegation_current": false,
+      "scope_supported": false,
+      "valid_failure": false,
+      "has_gap": true,
+      "all_success": true,
+      "event": "RECORD_GAP_OR_STALE",
+      "retain_gap": true
+    },
+    {
+      "input_valid": true,
+      "delegation_current": false,
+      "scope_supported": false,
+      "valid_failure": true,
+      "has_gap": false,
+      "all_success": false,
+      "event": "RECORD_CURRENT_FAILURE",
+      "retain_gap": false
+    },
+    {
+      "input_valid": true,
+      "delegation_current": false,
+      "scope_supported": false,
+      "valid_failure": true,
+      "has_gap": false,
+      "all_success": true,
+      "event": "RECORD_CURRENT_FAILURE",
+      "retain_gap": false
+    },
+    {
+      "input_valid": true,
+      "delegation_current": false,
+      "scope_supported": false,
+      "valid_failure": true,
+      "has_gap": true,
+      "all_success": false,
+      "event": "RECORD_CURRENT_FAILURE",
+      "retain_gap": true
+    },
+    {
+      "input_valid": true,
+      "delegation_current": false,
+      "scope_supported": false,
+      "valid_failure": true,
+      "has_gap": true,
+      "all_success": true,
+      "event": "RECORD_CURRENT_FAILURE",
+      "retain_gap": true
+    },
+    {
+      "input_valid": true,
+      "delegation_current": false,
+      "scope_supported": true,
+      "valid_failure": false,
+      "has_gap": false,
+      "all_success": false,
+      "event": "RECORD_GAP_OR_STALE",
+      "retain_gap": false
+    },
+    {
+      "input_valid": true,
+      "delegation_current": false,
+      "scope_supported": true,
+      "valid_failure": false,
+      "has_gap": false,
+      "all_success": true,
+      "event": "RECORD_GAP_OR_STALE",
+      "retain_gap": false
+    },
+    {
+      "input_valid": true,
+      "delegation_current": false,
+      "scope_supported": true,
+      "valid_failure": false,
+      "has_gap": true,
+      "all_success": false,
+      "event": "RECORD_GAP_OR_STALE",
+      "retain_gap": true
+    },
+    {
+      "input_valid": true,
+      "delegation_current": false,
+      "scope_supported": true,
+      "valid_failure": false,
+      "has_gap": true,
+      "all_success": true,
+      "event": "RECORD_GAP_OR_STALE",
+      "retain_gap": true
+    },
+    {
+      "input_valid": true,
+      "delegation_current": false,
+      "scope_supported": true,
+      "valid_failure": true,
+      "has_gap": false,
+      "all_success": false,
+      "event": "RECORD_CURRENT_FAILURE",
+      "retain_gap": false
+    },
+    {
+      "input_valid": true,
+      "delegation_current": false,
+      "scope_supported": true,
+      "valid_failure": true,
+      "has_gap": false,
+      "all_success": true,
+      "event": "RECORD_CURRENT_FAILURE",
+      "retain_gap": false
+    },
+    {
+      "input_valid": true,
+      "delegation_current": false,
+      "scope_supported": true,
+      "valid_failure": true,
+      "has_gap": true,
+      "all_success": false,
+      "event": "RECORD_CURRENT_FAILURE",
+      "retain_gap": true
+    },
+    {
+      "input_valid": true,
+      "delegation_current": false,
+      "scope_supported": true,
+      "valid_failure": true,
+      "has_gap": true,
+      "all_success": true,
+      "event": "RECORD_CURRENT_FAILURE",
+      "retain_gap": true
+    },
+    {
+      "input_valid": true,
+      "delegation_current": true,
+      "scope_supported": false,
+      "valid_failure": false,
+      "has_gap": false,
+      "all_success": false,
+      "event": "RECORD_GAP_OR_STALE",
+      "retain_gap": false
+    },
+    {
+      "input_valid": true,
+      "delegation_current": true,
+      "scope_supported": false,
+      "valid_failure": false,
+      "has_gap": false,
+      "all_success": true,
+      "event": "RECORD_GAP_OR_STALE",
+      "retain_gap": false
+    },
+    {
+      "input_valid": true,
+      "delegation_current": true,
+      "scope_supported": false,
+      "valid_failure": false,
+      "has_gap": true,
+      "all_success": false,
+      "event": "RECORD_GAP_OR_STALE",
+      "retain_gap": true
+    },
+    {
+      "input_valid": true,
+      "delegation_current": true,
+      "scope_supported": false,
+      "valid_failure": false,
+      "has_gap": true,
+      "all_success": true,
+      "event": "RECORD_GAP_OR_STALE",
+      "retain_gap": true
+    },
+    {
+      "input_valid": true,
+      "delegation_current": true,
+      "scope_supported": false,
+      "valid_failure": true,
+      "has_gap": false,
+      "all_success": false,
+      "event": "RECORD_CURRENT_FAILURE",
+      "retain_gap": false
+    },
+    {
+      "input_valid": true,
+      "delegation_current": true,
+      "scope_supported": false,
+      "valid_failure": true,
+      "has_gap": false,
+      "all_success": true,
+      "event": "RECORD_CURRENT_FAILURE",
+      "retain_gap": false
+    },
+    {
+      "input_valid": true,
+      "delegation_current": true,
+      "scope_supported": false,
+      "valid_failure": true,
+      "has_gap": true,
+      "all_success": false,
+      "event": "RECORD_CURRENT_FAILURE",
+      "retain_gap": true
+    },
+    {
+      "input_valid": true,
+      "delegation_current": true,
+      "scope_supported": false,
+      "valid_failure": true,
+      "has_gap": true,
+      "all_success": true,
+      "event": "RECORD_CURRENT_FAILURE",
+      "retain_gap": true
+    },
+    {
+      "input_valid": true,
+      "delegation_current": true,
+      "scope_supported": true,
+      "valid_failure": false,
+      "has_gap": false,
+      "all_success": false,
+      "event": "RECORD_GAP_OR_STALE",
+      "retain_gap": false
+    },
+    {
+      "input_valid": true,
+      "delegation_current": true,
+      "scope_supported": true,
+      "valid_failure": false,
+      "has_gap": false,
+      "all_success": true,
+      "event": "RECORD_CURRENT_SUCCESS",
+      "retain_gap": false
+    },
+    {
+      "input_valid": true,
+      "delegation_current": true,
+      "scope_supported": true,
+      "valid_failure": false,
+      "has_gap": true,
+      "all_success": false,
+      "event": "RECORD_GAP_OR_STALE",
+      "retain_gap": true
+    },
+    {
+      "input_valid": true,
+      "delegation_current": true,
+      "scope_supported": true,
+      "valid_failure": false,
+      "has_gap": true,
+      "all_success": true,
+      "event": "RECORD_GAP_OR_STALE",
+      "retain_gap": true
+    },
+    {
+      "input_valid": true,
+      "delegation_current": true,
+      "scope_supported": true,
+      "valid_failure": true,
+      "has_gap": false,
+      "all_success": false,
+      "event": "RECORD_CURRENT_FAILURE",
+      "retain_gap": false
+    },
+    {
+      "input_valid": true,
+      "delegation_current": true,
+      "scope_supported": true,
+      "valid_failure": true,
+      "has_gap": false,
+      "all_success": true,
+      "event": "RECORD_CURRENT_FAILURE",
+      "retain_gap": false
+    },
+    {
+      "input_valid": true,
+      "delegation_current": true,
+      "scope_supported": true,
+      "valid_failure": true,
+      "has_gap": true,
+      "all_success": false,
+      "event": "RECORD_CURRENT_FAILURE",
+      "retain_gap": true
+    },
+    {
+      "input_valid": true,
+      "delegation_current": true,
+      "scope_supported": true,
+      "valid_failure": true,
+      "has_gap": true,
+      "all_success": true,
+      "event": "RECORD_CURRENT_FAILURE",
+      "retain_gap": true
+    }
+  ]
+}

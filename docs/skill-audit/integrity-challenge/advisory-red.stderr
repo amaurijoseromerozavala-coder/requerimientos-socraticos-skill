@@ -1,0 +1,119 @@
+test_added_file (__main__.GuardTests.test_added_file) ... ok
+test_budget (__main__.GuardTests.test_budget) ... ok
+test_content (__main__.GuardTests.test_content) ... ok
+test_corrupt_baseline (__main__.GuardTests.test_corrupt_baseline) ... ok
+test_corrupt_document_blocks (__main__.GuardTests.test_corrupt_document_blocks) ... ok
+test_deleted_file (__main__.GuardTests.test_deleted_file) ... ok
+test_depth_limit_is_explicit (__main__.GuardTests.test_depth_limit_is_explicit) ... FAIL
+test_empty_directory (__main__.GuardTests.test_empty_directory) ... ok
+test_fifo_does_not_hang (__main__.GuardTests.test_fifo_does_not_hang) ... ok
+test_five_concurrent_validators (__main__.GuardTests.test_five_concurrent_validators) ... ok
+test_inotify_overflow_is_rejected (__main__.GuardTests.test_inotify_overflow_is_rejected) ... ok
+test_invalid_timeout (__main__.GuardTests.test_invalid_timeout) ... ok
+test_later_subtree_modify_restore_during_first_file_read (__main__.GuardTests.test_later_subtree_modify_restore_during_first_file_read) ... ok
+test_lock_contention_timeout (__main__.GuardTests.test_lock_contention_timeout) ... ok
+test_manual_ready_does_not_advance (__main__.GuardTests.test_manual_ready_does_not_advance) ... ok
+test_modify_restore_observed (__main__.GuardTests.test_modify_restore_observed) ... ok
+test_new_subdirectory_observed (__main__.GuardTests.test_new_subdirectory_observed) ... ok
+test_nonobject_baselines_are_structured_blocked (__main__.GuardTests.test_nonobject_baselines_are_structured_blocked) ... 
+  test_nonobject_baselines_are_structured_blocked (__main__.GuardTests.test_nonobject_baselines_are_structured_blocked) (value=[]) ... ERROR
+  test_nonobject_baselines_are_structured_blocked (__main__.GuardTests.test_nonobject_baselines_are_structured_blocked) (value='text') ... ERROR
+  test_nonobject_baselines_are_structured_blocked (__main__.GuardTests.test_nonobject_baselines_are_structured_blocked) (value=42) ... ERROR
+  test_nonobject_baselines_are_structured_blocked (__main__.GuardTests.test_nonobject_baselines_are_structured_blocked) (value=True) ... ERROR
+  test_nonobject_baselines_are_structured_blocked (__main__.GuardTests.test_nonobject_baselines_are_structured_blocked) (value=None) ... FAIL
+test_permissions (__main__.GuardTests.test_permissions) ... ok
+test_renamed_file (__main__.GuardTests.test_renamed_file) ... ok
+test_root_rename_observed (__main__.GuardTests.test_root_rename_observed) ... ok
+test_symlink_rejected (__main__.GuardTests.test_symlink_rejected) ... ok
+test_unchanged_tree (__main__.GuardTests.test_unchanged_tree) ... ok
+
+======================================================================
+ERROR: test_nonobject_baselines_are_structured_blocked (__main__.GuardTests.test_nonobject_baselines_are_structured_blocked) (value=[])
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/replica-gentle-ai/skills/requerimientos-socraticos/tests/test_guard.py", line 132, in test_nonobject_baselines_are_structured_blocked
+    self.assertEqual(json.loads(p.stdout)['status'], 'BLOCKED')
+                     ^^^^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/json/__init__.py", line 346, in loads
+    return _default_decoder.decode(s)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/json/decoder.py", line 338, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/json/decoder.py", line 356, in raw_decode
+    raise JSONDecodeError("Expecting value", s, err.value) from None
+json.decoder.JSONDecodeError: Expecting value: line 1 column 1 (char 0)
+
+======================================================================
+ERROR: test_nonobject_baselines_are_structured_blocked (__main__.GuardTests.test_nonobject_baselines_are_structured_blocked) (value='text')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/replica-gentle-ai/skills/requerimientos-socraticos/tests/test_guard.py", line 132, in test_nonobject_baselines_are_structured_blocked
+    self.assertEqual(json.loads(p.stdout)['status'], 'BLOCKED')
+                     ^^^^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/json/__init__.py", line 346, in loads
+    return _default_decoder.decode(s)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/json/decoder.py", line 338, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/json/decoder.py", line 356, in raw_decode
+    raise JSONDecodeError("Expecting value", s, err.value) from None
+json.decoder.JSONDecodeError: Expecting value: line 1 column 1 (char 0)
+
+======================================================================
+ERROR: test_nonobject_baselines_are_structured_blocked (__main__.GuardTests.test_nonobject_baselines_are_structured_blocked) (value=42)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/replica-gentle-ai/skills/requerimientos-socraticos/tests/test_guard.py", line 132, in test_nonobject_baselines_are_structured_blocked
+    self.assertEqual(json.loads(p.stdout)['status'], 'BLOCKED')
+                     ^^^^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/json/__init__.py", line 346, in loads
+    return _default_decoder.decode(s)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/json/decoder.py", line 338, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/json/decoder.py", line 356, in raw_decode
+    raise JSONDecodeError("Expecting value", s, err.value) from None
+json.decoder.JSONDecodeError: Expecting value: line 1 column 1 (char 0)
+
+======================================================================
+ERROR: test_nonobject_baselines_are_structured_blocked (__main__.GuardTests.test_nonobject_baselines_are_structured_blocked) (value=True)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/replica-gentle-ai/skills/requerimientos-socraticos/tests/test_guard.py", line 132, in test_nonobject_baselines_are_structured_blocked
+    self.assertEqual(json.loads(p.stdout)['status'], 'BLOCKED')
+                     ^^^^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/json/__init__.py", line 346, in loads
+    return _default_decoder.decode(s)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/json/decoder.py", line 338, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/json/decoder.py", line 356, in raw_decode
+    raise JSONDecodeError("Expecting value", s, err.value) from None
+json.decoder.JSONDecodeError: Expecting value: line 1 column 1 (char 0)
+
+======================================================================
+FAIL: test_depth_limit_is_explicit (__main__.GuardTests.test_depth_limit_is_explicit)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/replica-gentle-ai/skills/requerimientos-socraticos/tests/test_guard.py", line 140, in test_depth_limit_is_explicit
+    with self.assertRaisesRegex(g.GuardError, 'DEPTH_LIMIT'):
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: GuardError not raised
+
+======================================================================
+FAIL: test_nonobject_baselines_are_structured_blocked (__main__.GuardTests.test_nonobject_baselines_are_structured_blocked) (value=None)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/replica-gentle-ai/skills/requerimientos-socraticos/tests/test_guard.py", line 131, in test_nonobject_baselines_are_structured_blocked
+    self.assertEqual(p.returncode, 1, p.stdout)
+AssertionError: 0 != 1 : {"format": "full-tree-sha256/v1", "tree_sha256": "72d9e9cc6b39165360299bef38501a5baab37d1b70d54215234931fdb09f0a04", "entries": [{"path": ".", "mode": 448, "kind": "directory"}, {"path": "a.json", "mode": 384, "kind": "file", "size": 7, "sha256": "015abd7f5cc57a2dd94b7590f04ad8084273905ee33ec5cebeae62276a97f862"}], "bytes": 7, "status": "OBSERVED_SNAPSHOT", "document_validation": null, "armed_at_unix_ns": 1793046218504206373, "final_check_unix_ns": 1793046218504310869, "limits": ["Coverage only after all watches are armed through final check; preparation, past and future excluded.", "Linux local filesystem, trusted validator/kernel/account; no hostile same-UID guarantee.", "Cooperative lock only; no cryptographic proof of RDD or downstream enforcement."]}
+
+
+----------------------------------------------------------------------
+Ran 23 tests in 1.001s
+
+FAILED (failures=2, errors=4)

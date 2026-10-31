@@ -1,0 +1,24 @@
+{
+  "id": "Q-EVO-001",
+  "target_dimension": "CANDIDATE_SCOPE",
+  "question": "¿Qué frontera adoptamos para el primer candidato: A núcleo de requisitos con interfaz futura, B núcleo y orquestador separado, o C una skill única hasta producción?",
+  "options": [
+    {
+      "id": "A",
+      "recommendation": true,
+      "consequence": "Menor alcance y costo de verificación; producción futura separada."
+    },
+    {
+      "id": "B",
+      "consequence": "Contratos de entrega diseñados ahora; más decisiones y revisión."
+    },
+    {
+      "id": "C",
+      "consequence": "Una interfaz de usuario, mayor acoplamiento y superficie de verificación."
+    }
+  ],
+  "status": "ANSWERED_BY_SCOPE_CLARIFICATION",
+  "answer": "Quiero que integres estos requerimientos con nuestro esquema que estamos integrando la skill requerimientos la skill qa y el supervisor",
+  "authority": "Only explicit user selection; uploaded recommendations are proposals.",
+  "confirmed_meaning": "Design within the existing three-component scheme; no choice of A/B/C inferred."
+}

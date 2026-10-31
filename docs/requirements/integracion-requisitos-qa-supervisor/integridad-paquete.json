@@ -1,0 +1,32 @@
+[
+  {
+    "file": "prd_to_produccion_requisitos_v0_1.pdf",
+    "expected": "6c1619944f084086dc92d83be12896e18f8d873ad79653654fae91cd7d8d745c",
+    "actual": "6c1619944f084086dc92d83be12896e18f8d873ad79653654fae91cd7d8d745c",
+    "matches": true
+  },
+  {
+    "file": "prd_to_produccion_requisitos_v0_1.docx",
+    "expected": "17d48b786556b4fe625450a65feda1f39b8f9ca9b49bec7396eee89217098c69",
+    "actual": "17d48b786556b4fe625450a65feda1f39b8f9ca9b49bec7396eee89217098c69",
+    "matches": true
+  },
+  {
+    "file": "prd_to_produccion_requisitos_v0_1.md",
+    "expected": "91a0555fdfadee05a2cf98147deccc75a858ab01eebc0ea1e76f86437861fffd",
+    "actual": "91a0555fdfadee05a2cf98147deccc75a858ab01eebc0ea1e76f86437861fffd",
+    "matches": true
+  },
+  {
+    "file": "prd_to_produccion_requisitos_v0_1.json",
+    "expected": "8c15d9470f64c8881fd08eb23f0c1ed975d75b25e67b2e2f115754ad2e2d7053",
+    "actual": "8c15d9470f64c8881fd08eb23f0c1ed975d75b25e67b2e2f115754ad2e2d7053",
+    "matches": true
+  },
+  {
+    "file": "prd_to_produccion_requisitos_v0_1_matriz.csv",
+    "expected": "82502239ba71f1ffd61c6f4212b2dcb7e426b24983ed2d04f7de122507ed99f1",
+    "actual": "82502239ba71f1ffd61c6f4212b2dcb7e426b24983ed2d04f7de122507ed99f1",
+    "matches": true
+  }
+]

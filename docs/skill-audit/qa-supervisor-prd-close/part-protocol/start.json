@@ -1,0 +1,38 @@
+{
+  "schema": "gentle-ai.review-integration.consent/v3",
+  "contract": "gentle-ai.review-integration/v2",
+  "operation": "review.start",
+  "action": "consent_required",
+  "agent": "codex",
+  "blocking": true,
+  "target_identity": "sha256:4815366453a183d1de513cebf5c97cd96582c147652da479f6d69b20fec3c487",
+  "projection": "workspace",
+  "risk_level": "medium",
+  "changed_files": 8,
+  "changed_lines": 1686,
+  "headline": "Gentle AI can review this change before you call it done.",
+  "reason": "Review can help detect regressions in these changes.",
+  "value": "Reviewing takes a little longer and makes the result safer.",
+  "risk_evidence": [
+    "this change is not purely passive documentation, so it gets one consolidated review.",
+    "a configuration change in docs/requirements/qa-supervisor/checker-binding.json"
+  ],
+  "choices": [
+    {
+      "answer": "granted",
+      "label": "Review this change",
+      "effect": "Reviews only this change; later medium- or high-risk changes ask again, and delivery needs separate approval.",
+      "invocation": "gentle-ai review start --contract gentle-ai.review-integration/v2 --cwd /workspace/replica-gentle-ai --target sha256:4815366453a183d1de513cebf5c97cd96582c147652da479f6d69b20fec3c487 --target-evidence v1:base-workspace-overlay:workspace:4b825dc642cb6eb9a060e54bf8d69288fbee4904:ff3d0f7e5c3f9dfa0792647a4f62ed2012a9561b:sha256:7adc9dcd839331faef69af6bd0b4d5ab1208780c3f585d0105c61d6117546663 --projection workspace --agent codex --lineage review-f820aca952a82557 --base-ref 4b825dc642cb6eb9a060e54bf8d69288fbee4904 --workspace-overlay --untracked-scope=select --expected-untracked-inventory=sha256:655f42462086a35c650c76a46f04546b2788a399a546d16ba184cb413a05beb5 --intended-untracked=docs/requirements/qa-supervisor/checker-binding.json --intended-untracked=docs/requirements/qa-supervisor/checker-output.schema.json --intended-untracked=docs/requirements/qa-supervisor/protocol-contract.json --intended-untracked=skills/qa-inquisidor/SKILL.md --intended-untracked=skills/qa-inquisidor/assets/report.schema.json --intended-untracked=skills/qa-inquisidor/scripts/validate_report.py --intended-untracked=skills/requerimientos-socraticos/scripts/json_preflight.py --intended-untracked=skills/requerimientos-socraticos/scripts/safe_io.py --lenses review-resilience,review-reliability --lenses-reason 'Partial PRD review: protocol. Other parts and aggregate integration remain separately required; no implementation approval.' --consent granted"
+    },
+    {
+      "answer": "declined",
+      "label": "Skip this time",
+      "effect": "Skips only this change; no review record is created, and future reviews stay enabled.",
+      "invocation": "gentle-ai review start --contract gentle-ai.review-integration/v2 --cwd /workspace/replica-gentle-ai --target sha256:4815366453a183d1de513cebf5c97cd96582c147652da479f6d69b20fec3c487 --target-evidence v1:base-workspace-overlay:workspace:4b825dc642cb6eb9a060e54bf8d69288fbee4904:ff3d0f7e5c3f9dfa0792647a4f62ed2012a9561b:sha256:7adc9dcd839331faef69af6bd0b4d5ab1208780c3f585d0105c61d6117546663 --projection workspace --agent codex --lineage review-f820aca952a82557 --base-ref 4b825dc642cb6eb9a060e54bf8d69288fbee4904 --workspace-overlay --untracked-scope=select --expected-untracked-inventory=sha256:655f42462086a35c650c76a46f04546b2788a399a546d16ba184cb413a05beb5 --intended-untracked=docs/requirements/qa-supervisor/checker-binding.json --intended-untracked=docs/requirements/qa-supervisor/checker-output.schema.json --intended-untracked=docs/requirements/qa-supervisor/protocol-contract.json --intended-untracked=skills/qa-inquisidor/SKILL.md --intended-untracked=skills/qa-inquisidor/assets/report.schema.json --intended-untracked=skills/qa-inquisidor/scripts/validate_report.py --intended-untracked=skills/requerimientos-socraticos/scripts/json_preflight.py --intended-untracked=skills/requerimientos-socraticos/scripts/safe_io.py --lenses review-resilience,review-reliability --lenses-reason 'Partial PRD review: protocol. Other parts and aggregate integration remain separately required; no implementation approval.' --consent declined"
+    }
+  ],
+  "off_path": {
+    "note": "To turn reviews off for good, run 'gentle-ai review mode disable'.",
+    "command": "gentle-ai review mode disable"
+  }
+}

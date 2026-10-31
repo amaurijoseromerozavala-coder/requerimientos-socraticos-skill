@@ -1,0 +1,137 @@
+{
+  "schema": "gentle-ai.review-integration.start/v4",
+  "contract": "gentle-ai.review-integration/v2",
+  "operation": "review.start",
+  "action": "created",
+  "lenses_required": true,
+  "lineage_id": "review-efcc53913bd98b9c",
+  "state": "reviewing",
+  "risk_level": "medium",
+  "selected_lenses": [
+    "review-resilience",
+    "review-reliability"
+  ],
+  "projection": "workspace",
+  "target_mode": "base-workspace-overlay",
+  "target_identity": "sha256:244addaaaec7698302eadfa32321262beed5f9c341bb5debcb7bd9fadcb7cdb5",
+  "base_tree": "4b825dc642cb6eb9a060e54bf8d69288fbee4904",
+  "candidate_tree": "8b05a201b816ef7e5f90151fd209b4a4ba554019",
+  "changed_files": 7,
+  "changed_lines": 890,
+  "correction_budget": 200,
+  "risk_reasons": [
+    {
+      "code": "configuration_change",
+      "path": "docs/requirements/qa-supervisor/closure-proposal.json"
+    }
+  ],
+  "artifact_subjects": [
+    {
+      "schema": "gentle-ai.review-artifact-subject/v2",
+      "subject_hash": "sha256:660212654d068c3f22294621f20745bc07863e04a773688f838b178a17d6fe42",
+      "lineage_id": "review-efcc53913bd98b9c",
+      "authority_revision": "sha256:4ceaab29de7e95dc1c0cf1776d9ad5f9afeb82a068ae920258e390dbfcd8f8f3",
+      "target_identity": "sha256:244addaaaec7698302eadfa32321262beed5f9c341bb5debcb7bd9fadcb7cdb5",
+      "base_tree": "4b825dc642cb6eb9a060e54bf8d69288fbee4904",
+      "candidate_tree": "8b05a201b816ef7e5f90151fd209b4a4ba554019",
+      "changed_path_manifest_sha256": "sha256:7ce002825d3dc80012632c59369938e7ef585d91aff4373fa697d769e267cca6",
+      "lens": "review-resilience",
+      "selected_order": 0
+    },
+    {
+      "schema": "gentle-ai.review-artifact-subject/v2",
+      "subject_hash": "sha256:bd00212ab7eebacad95159ff3c9e4e7dde9dbd991186185995a6c754aedc956b",
+      "lineage_id": "review-efcc53913bd98b9c",
+      "authority_revision": "sha256:4ceaab29de7e95dc1c0cf1776d9ad5f9afeb82a068ae920258e390dbfcd8f8f3",
+      "target_identity": "sha256:244addaaaec7698302eadfa32321262beed5f9c341bb5debcb7bd9fadcb7cdb5",
+      "base_tree": "4b825dc642cb6eb9a060e54bf8d69288fbee4904",
+      "candidate_tree": "8b05a201b816ef7e5f90151fd209b4a4ba554019",
+      "changed_path_manifest_sha256": "sha256:7ce002825d3dc80012632c59369938e7ef585d91aff4373fa697d769e267cca6",
+      "lens": "review-reliability",
+      "selected_order": 1
+    }
+  ],
+  "changed_path_manifest": [
+    {"path":"docs/requirements/qa-supervisor/PRD.md","status":"A","old_mode":"000000","new_mode":"100644","deleted":false,"type_changed":false,"mode_only":false,"intended_untracked":true},
+    {"path":"docs/requirements/qa-supervisor/closure-proposal.json","status":"A","old_mode":"000000","new_mode":"100644","deleted":false,"type_changed":false,"mode_only":false,"intended_untracked":true},
+    {"path":"docs/requirements/qa-supervisor/fsm-propuesta.json","status":"A","old_mode":"000000","new_mode":"100644","deleted":false,"type_changed":false,"mode_only":false,"intended_untracked":true},
+    {"path":"docs/requirements/qa-supervisor/prd-draft.json","status":"A","old_mode":"000000","new_mode":"100644","deleted":false,"type_changed":false,"mode_only":false,"intended_untracked":true},
+    {"path":"docs/requirements/qa-supervisor/propuesta-cierre.md","status":"A","old_mode":"000000","new_mode":"100644","deleted":false,"type_changed":false,"mode_only":false,"intended_untracked":true},
+    {"path":"docs/requirements/qa-supervisor/recovery-contract.json","status":"A","old_mode":"000000","new_mode":"100644","deleted":false,"type_changed":false,"mode_only":false,"intended_untracked":true},
+    {"path":"docs/requirements/qa-supervisor/tabla-decision.json","status":"A","old_mode":"000000","new_mode":"100644","deleted":false,"type_changed":false,"mode_only":false,"intended_untracked":true}
+  ],
+  "repository_context": {
+    "capability": "review.opaque_repository_context",
+    "handle": "rctx2_cadd228bb01b412654fd6200a4600a351c07a7697f60a4c7135b193bffbfcbc0",
+    "revision": "sha256:4ceaab29de7e95dc1c0cf1776d9ad5f9afeb82a068ae920258e390dbfcd8f8f3",
+    "target_identity": "sha256:244addaaaec7698302eadfa32321262beed5f9c341bb5debcb7bd9fadcb7cdb5"
+  },
+  "next_transition": {
+    "kind": "execute",
+    "reason_code": "review_status_required",
+    "execute": {
+      "operation": "review.status",
+      "command": "gentle-ai review status --contract=gentle-ai.review-integration/v2 --next-transition=true --lineage=review-efcc53913bd98b9c --repository-context=rctx2_cadd228bb01b412654fd6200a4600a351c07a7697f60a4c7135b193bffbfcbc0 --agent=codex --base-ref=4b825dc642cb6eb9a060e54bf8d69288fbee4904 --workspace-overlay=true",
+      "arguments": [
+        {
+          "name": "contract",
+          "value": "gentle-ai.review-integration/v2",
+          "token": "--contract=gentle-ai.review-integration/v2"
+        },
+        {
+          "name": "next-transition",
+          "value": "true",
+          "token": "--next-transition=true"
+        },
+        {
+          "name": "lineage",
+          "value": "review-efcc53913bd98b9c",
+          "token": "--lineage=review-efcc53913bd98b9c"
+        },
+        {
+          "name": "repository-context",
+          "value": "rctx2_cadd228bb01b412654fd6200a4600a351c07a7697f60a4c7135b193bffbfcbc0",
+          "token": "--repository-context=rctx2_cadd228bb01b412654fd6200a4600a351c07a7697f60a4c7135b193bffbfcbc0"
+        },
+        {
+          "name": "agent",
+          "value": "codex",
+          "token": "--agent=codex"
+        },
+        {
+          "name": "base-ref",
+          "value": "4b825dc642cb6eb9a060e54bf8d69288fbee4904",
+          "token": "--base-ref=4b825dc642cb6eb9a060e54bf8d69288fbee4904"
+        },
+        {
+          "name": "workspace-overlay",
+          "value": "true",
+          "token": "--workspace-overlay=true"
+        }
+      ],
+      "selector_arguments": [
+        {
+          "name": "base-ref",
+          "value": "4b825dc642cb6eb9a060e54bf8d69288fbee4904",
+          "token": "--base-ref=4b825dc642cb6eb9a060e54bf8d69288fbee4904"
+        },
+        {
+          "name": "workspace-overlay",
+          "value": "true",
+          "token": "--workspace-overlay=true"
+        }
+      ],
+      "preconditions": [
+        {
+          "name": "state",
+          "value": "reviewing"
+        }
+      ],
+      "binding": {
+        "lineage_id": "review-efcc53913bd98b9c",
+        "revision": "sha256:4ceaab29de7e95dc1c0cf1776d9ad5f9afeb82a068ae920258e390dbfcd8f8f3",
+        "target_identity": "sha256:244addaaaec7698302eadfa32321262beed5f9c341bb5debcb7bd9fadcb7cdb5"
+      }
+    }
+  }
+}

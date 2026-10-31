@@ -1,0 +1,12 @@
+{
+  "jsonrpc": "2.0",
+  "id": 2,
+  "result": {
+    "content": [
+      {
+        "type": "text",
+        "text": "{\"candidates\":[{\"id\":6,\"judgment_id\":\"rel-1bdaceeae2d292cd\",\"score\":-3.1825503717268355,\"sync_id\":\"obs-52b358566c2f791f\",\"title\":\"PRD QA Inquisidor: ensayos acotados y RDD documental cerrado\",\"topic_key\":\"odd/qa-inquisidor-prd/tasks\",\"type\":\"progress\"},{\"id\":10,\"judgment_id\":\"rel-22d3aaa18ca457fd\",\"score\":-2.8555866632410893,\"sync_id\":\"obs-e7247ad758f252eb\",\"title\":\"ODD falsación de integridad y gates documentales\",\"topic_key\":\"odd/integrity-challenge/tasks\",\"type\":\"decision\"},{\"id\":5,\"judgment_id\":\"rel-519c95e23e418f09\",\"score\":-0.0000019284749040930955,\"sync_id\":\"obs-a6551f02fc306048\",\"title\":\"RDD autenticado y operativo\",\"type\":\"decision\"}],\"id\":16,\"judgment_id\":\"rel-1bdaceeae2d292cd\",\"judgment_required\":true,\"judgment_status\":\"pending\",\"project\":\"replica-gentle-ai\",\"project_path\":\"\",\"project_source\":\"explicit_override\",\"result\":\"Memory saved: \\\"Propuesta formal de requisitos: investigación y RDD documental\\\" (progress)\\nCONFLICT REVIEW PENDING — 3 candidate(s); use mem_judge to record verdicts.\",\"state\":\"active\",\"sync_id\":\"obs-8b0e3aece4a5d948\",\"truncation\":{\"original_bytes\":1432,\"limit_bytes\":50000,\"truncated\":false}}"
+      }
+    ]
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "jsonrpc": "2.0",
+  "id": 2,
+  "result": {
+    "content": [
+      {
+        "type": "text",
+        "text": "{\"candidates\":[{\"id\":7,\"judgment_id\":\"rel-1ce923c80aaf9504\",\"score\":-1.2985705491032637,\"sync_id\":\"obs-699d7dd3ddd27ef6\",\"title\":\"QA Inquisidor: registro de entrevista obligatorio\",\"type\":\"decision\"}],\"id\":6,\"judgment_id\":\"rel-1ce923c80aaf9504\",\"judgment_required\":true,\"judgment_status\":\"pending\",\"project\":\"replica-gentle-ai\",\"project_path\":\"\",\"project_source\":\"explicit_override\",\"result\":\"Memory saved: \\\"PRD QA Inquisidor reanudado: solo análisis por defecto\\\" (decision)\\n⚠ WARNING: Content contains an absolute filesystem path that may not be portable across machines. Use a repository-relative path instead.\\nCONFLICT REVIEW PENDING — 1 candidate(s); use mem_judge to record verdicts.\",\"review_after\":\"2027-04-26 16:23:21\",\"state\":\"active\",\"sync_id\":\"obs-52b358566c2f791f\",\"truncation\":{\"original_bytes\":7168,\"limit_bytes\":50000,\"truncated\":false}}"
+      }
+    ]
+  }
+}

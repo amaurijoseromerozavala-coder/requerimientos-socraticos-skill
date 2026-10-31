@@ -1,0 +1,18 @@
+{
+  "rdd_mode": "ON_EXPLICIT_GLOBAL",
+  "reviewer_auth": "AUTHENTICATED_AND_NATIVE_REVIEW_COMPLETED",
+  "credential_store": "/home/agent/.local/share/gentle-ai-reviewer/codex",
+  "original_environment_auth": "preserved",
+  "entrypoint": "/workspace/replica-gentle-ai/bin/gentle-ai",
+  "native_binary": "/workspace/replica-gentle-ai/libexec/gentle-ai-4.2.0",
+  "reviewer_launcher": "/workspace/replica-gentle-ai/libexec/reviewer-bin/codex",
+  "checks": [
+    "bash syntax passed",
+    "ordinary version output preserved",
+    "review-mode output preserved",
+    "global RDD explicitly ON"
+  ],
+  "remaining": [],
+  "updated_at": "2026-10-26T16:12:02.704339+00:00",
+  "receipt": "/workspace/replica-gentle-ai/docs/skill-audit/rdd-receipt.json"
+}

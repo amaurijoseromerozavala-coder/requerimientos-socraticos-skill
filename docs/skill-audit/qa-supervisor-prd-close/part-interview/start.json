@@ -1,0 +1,38 @@
+{
+  "schema": "gentle-ai.review-integration.consent/v3",
+  "contract": "gentle-ai.review-integration/v2",
+  "operation": "review.start",
+  "action": "consent_required",
+  "agent": "codex",
+  "blocking": true,
+  "target_identity": "sha256:55a0dc546e2a860a42b1d2c389f948ed403aea8c82d070adeaf1cef856a6a011",
+  "projection": "workspace",
+  "risk_level": "medium",
+  "changed_files": 23,
+  "changed_lines": 738,
+  "headline": "Gentle AI can review this change before you call it done.",
+  "reason": "Review can help detect regressions in these changes.",
+  "value": "Reviewing takes a little longer and makes the result safer.",
+  "risk_evidence": [
+    "this change is not purely passive documentation, so it gets one consolidated review.",
+    "a configuration change in docs/requirements/qa-supervisor/design-proposals.json"
+  ],
+  "choices": [
+    {
+      "answer": "granted",
+      "label": "Review this change",
+      "effect": "Reviews only this change; later medium- or high-risk changes ask again, and delivery needs separate approval.",
+      "invocation": "gentle-ai review start --contract gentle-ai.review-integration/v2 --cwd /workspace/replica-gentle-ai --target sha256:55a0dc546e2a860a42b1d2c389f948ed403aea8c82d070adeaf1cef856a6a011 --target-evidence v1:base-workspace-overlay:workspace:4b825dc642cb6eb9a060e54bf8d69288fbee4904:f3e1cb4b709326cbf4e2a697bd4af26d68ca3f84:sha256:dd38e730ff78e0fbca37d412f45de0fa7068165546c5deeafdd302c9197816a7 --projection workspace --agent codex --lineage review-84f615eebfc2ae7d --base-ref 4b825dc642cb6eb9a060e54bf8d69288fbee4904 --workspace-overlay --untracked-scope=select --expected-untracked-inventory=sha256:655f42462086a35c650c76a46f04546b2788a399a546d16ba184cb413a05beb5 --intended-untracked=docs/requirements/qa-supervisor/design-proposals.json --intended-untracked=docs/requirements/qa-supervisor/human-question.json --intended-untracked=docs/requirements/qa-supervisor/interview.json --intended-untracked=docs/requirements/qa-supervisor/receipts/A-HUMAN-SUP-001.txt --intended-untracked=docs/requirements/qa-supervisor/receipts/A-SUP-001.txt --intended-untracked=docs/requirements/qa-supervisor/receipts/A-SUP-002.txt --intended-untracked=docs/requirements/qa-supervisor/receipts/A-SUP-003.txt --intended-untracked=docs/requirements/qa-supervisor/receipts/A-SUP-004.txt --intended-untracked=docs/requirements/qa-supervisor/receipts/A-SUP-005.txt --intended-untracked=docs/requirements/qa-supervisor/receipts/A-SUP-006.txt --intended-untracked=docs/requirements/qa-supervisor/receipts/A-SUP-007.txt --intended-untracked=docs/requirements/qa-supervisor/receipts/A-SUP-008.txt --intended-untracked=docs/requirements/qa-supervisor/receipts/Q-HUMAN-SUP-001.txt --intended-untracked=docs/requirements/qa-supervisor/receipts/Q-SUP-001.txt --intended-untracked=docs/requirements/qa-supervisor/receipts/Q-SUP-002.txt --intended-untracked=docs/requirements/qa-supervisor/receipts/Q-SUP-003.txt --intended-untracked=docs/requirements/qa-supervisor/receipts/Q-SUP-004.txt --intended-untracked=docs/requirements/qa-supervisor/receipts/Q-SUP-005.txt --intended-untracked=docs/requirements/qa-supervisor/receipts/Q-SUP-006.txt --intended-untracked=docs/requirements/qa-supervisor/receipts/Q-SUP-007.txt --intended-untracked=docs/requirements/qa-supervisor/receipts/Q-SUP-008.txt --intended-untracked=docs/requirements/qa-supervisor/receipts/RETENTION-OPTIONS.txt --intended-untracked=docs/requirements/qa-supervisor/registro-skill-asistente.md --lenses review-resilience,review-reliability --lenses-reason 'Partial PRD review: interview. Other parts and aggregate integration remain separately required; no implementation approval.' --consent granted"
+    },
+    {
+      "answer": "declined",
+      "label": "Skip this time",
+      "effect": "Skips only this change; no review record is created, and future reviews stay enabled.",
+      "invocation": "gentle-ai review start --contract gentle-ai.review-integration/v2 --cwd /workspace/replica-gentle-ai --target sha256:55a0dc546e2a860a42b1d2c389f948ed403aea8c82d070adeaf1cef856a6a011 --target-evidence v1:base-workspace-overlay:workspace:4b825dc642cb6eb9a060e54bf8d69288fbee4904:f3e1cb4b709326cbf4e2a697bd4af26d68ca3f84:sha256:dd38e730ff78e0fbca37d412f45de0fa7068165546c5deeafdd302c9197816a7 --projection workspace --agent codex --lineage review-84f615eebfc2ae7d --base-ref 4b825dc642cb6eb9a060e54bf8d69288fbee4904 --workspace-overlay --untracked-scope=select --expected-untracked-inventory=sha256:655f42462086a35c650c76a46f04546b2788a399a546d16ba184cb413a05beb5 --intended-untracked=docs/requirements/qa-supervisor/design-proposals.json --intended-untracked=docs/requirements/qa-supervisor/human-question.json --intended-untracked=docs/requirements/qa-supervisor/interview.json --intended-untracked=docs/requirements/qa-supervisor/receipts/A-HUMAN-SUP-001.txt --intended-untracked=docs/requirements/qa-supervisor/receipts/A-SUP-001.txt --intended-untracked=docs/requirements/qa-supervisor/receipts/A-SUP-002.txt --intended-untracked=docs/requirements/qa-supervisor/receipts/A-SUP-003.txt --intended-untracked=docs/requirements/qa-supervisor/receipts/A-SUP-004.txt --intended-untracked=docs/requirements/qa-supervisor/receipts/A-SUP-005.txt --intended-untracked=docs/requirements/qa-supervisor/receipts/A-SUP-006.txt --intended-untracked=docs/requirements/qa-supervisor/receipts/A-SUP-007.txt --intended-untracked=docs/requirements/qa-supervisor/receipts/A-SUP-008.txt --intended-untracked=docs/requirements/qa-supervisor/receipts/Q-HUMAN-SUP-001.txt --intended-untracked=docs/requirements/qa-supervisor/receipts/Q-SUP-001.txt --intended-untracked=docs/requirements/qa-supervisor/receipts/Q-SUP-002.txt --intended-untracked=docs/requirements/qa-supervisor/receipts/Q-SUP-003.txt --intended-untracked=docs/requirements/qa-supervisor/receipts/Q-SUP-004.txt --intended-untracked=docs/requirements/qa-supervisor/receipts/Q-SUP-005.txt --intended-untracked=docs/requirements/qa-supervisor/receipts/Q-SUP-006.txt --intended-untracked=docs/requirements/qa-supervisor/receipts/Q-SUP-007.txt --intended-untracked=docs/requirements/qa-supervisor/receipts/Q-SUP-008.txt --intended-untracked=docs/requirements/qa-supervisor/receipts/RETENTION-OPTIONS.txt --intended-untracked=docs/requirements/qa-supervisor/registro-skill-asistente.md --lenses review-resilience,review-reliability --lenses-reason 'Partial PRD review: interview. Other parts and aggregate integration remain separately required; no implementation approval.' --consent declined"
+    }
+  ],
+  "off_path": {
+    "note": "To turn reviews off for good, run 'gentle-ai review mode disable'.",
+    "command": "gentle-ai review mode disable"
+  }
+}

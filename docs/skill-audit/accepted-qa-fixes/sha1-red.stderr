@@ -1,0 +1,15 @@
+test_sha1_rejected_for_crypto_profile (__main__.SealedTests.test_sha1_rejected_for_crypto_profile) ... FAIL
+
+======================================================================
+FAIL: test_sha1_rejected_for_crypto_profile (__main__.SealedTests.test_sha1_rejected_for_crypto_profile)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/replica-gentle-ai/skills/requerimientos-socraticos/tests/test_sealed.py", line 101, in test_sha1_rejected_for_crypto_profile
+    with self.assertRaisesRegex(InvalidGit,'SHA256_REQUIRED'):
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: InvalidGit not raised
+
+----------------------------------------------------------------------
+Ran 1 test in 0.095s
+
+FAILED (failures=1)

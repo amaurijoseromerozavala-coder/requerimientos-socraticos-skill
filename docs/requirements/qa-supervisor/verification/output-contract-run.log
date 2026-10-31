@@ -1,0 +1,86 @@
+{
+  "method": "Local checker helpers over bounded synthetic files; no supervisor implementation or resource pressure",
+  "schema_sha256": "3530bc8b7ea8bb3ec968f0c44cd9b23389d534383f1215e75e92de29a6ba8c6d",
+  "cases": [
+    {
+      "case": "actual_checker_synthetic_success",
+      "expected_admission": true,
+      "actual_admission": true,
+      "pass": true
+    },
+    {
+      "case": "actual_checker_contradiction",
+      "expected_admission": true,
+      "actual_admission": true,
+      "pass": true
+    },
+    {
+      "case": "actual_checker_invalid_json",
+      "expected_admission": true,
+      "actual_admission": true,
+      "pass": true
+    },
+    {
+      "case": "actual_checker_controlled_oserror",
+      "expected_admission": true,
+      "actual_admission": true,
+      "pass": true
+    },
+    {
+      "case": "actual_checker_partial",
+      "expected_admission": true,
+      "actual_admission": true,
+      "pass": true
+    },
+    {
+      "case": "wrong_exit",
+      "expected_admission": false,
+      "actual_admission": false,
+      "pass": true
+    },
+    {
+      "case": "extra_field",
+      "expected_admission": false,
+      "actual_admission": false,
+      "pass": true
+    },
+    {
+      "case": "authorization_true",
+      "expected_admission": false,
+      "actual_admission": false,
+      "pass": true
+    },
+    {
+      "case": "wrong_verdict",
+      "expected_admission": false,
+      "actual_admission": false,
+      "pass": true
+    },
+    {
+      "case": "gap_without_gap",
+      "expected_admission": false,
+      "actual_admission": false,
+      "pass": true
+    },
+    {
+      "case": "count_exceeds_scanned",
+      "expected_admission": false,
+      "actual_admission": false,
+      "pass": true
+    },
+    {
+      "case": "partial_as_absence",
+      "expected_admission": false,
+      "actual_admission": false,
+      "pass": true
+    },
+    {
+      "case": "missing_field",
+      "expected_admission": false,
+      "actual_admission": false,
+      "pass": true
+    }
+  ],
+  "negative_control_permissive_schema_accepts_extra_field": true,
+  "pass": true
+}

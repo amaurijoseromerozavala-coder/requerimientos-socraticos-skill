@@ -1,0 +1,10 @@
+{
+  "sources": 61,
+  "json_bytes": 488750,
+  "zip_bytes": 247599,
+  "source_roundtrip": "PASS",
+  "zip_test": "PASS",
+  "native_rdd": "APPROVED_AND_ACKNOWLEDGED",
+  "target": "sha256:43be837abe970455604de70e08c2c25a7dbf1cc2cff667c64b6f6aa42c2bcfec",
+  "selected_sources_unchanged_after_review": true
+}

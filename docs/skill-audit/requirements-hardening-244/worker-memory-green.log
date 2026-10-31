@@ -1,0 +1,7 @@
+test_non_memory_input_failure_retains_invalid_input (test_logic_worker_memory.LogicWorkerMemoryTests.test_non_memory_input_failure_retains_invalid_input) ... ok
+test_observed_memory_error_returns_inconclusive_without_results (test_logic_worker_memory.LogicWorkerMemoryTests.test_observed_memory_error_returns_inconclusive_without_results) ... ok
+
+----------------------------------------------------------------------
+Ran 2 tests in 0.001s
+
+OK

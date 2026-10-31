@@ -1,0 +1,14 @@
+{
+  "portability": {
+    "expected": "must not validate original workspace when copied without documents",
+    "observed_exit": 0,
+    "red": true
+  },
+  "scenario_oracles": {
+    "observed": "Existing positive cases assert only admitted(output); contract-valid INFRA_FAILURE can satisfy all five.",
+    "red": true
+  },
+  "historical_proposal": {
+    "red": true
+  }
+}

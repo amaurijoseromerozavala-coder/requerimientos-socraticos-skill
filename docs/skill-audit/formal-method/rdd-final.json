@@ -1,0 +1,10 @@
+{
+  "lineage": "review-fa2926b3c17d2750",
+  "records": [
+    {
+      "exit_code": 0,
+      "stdout": "{\n  \"schema\": \"gentle-ai.review-acknowledged/v1\",\n  \"operation\": \"review/acknowledge-approved\",\n  \"action\": \"acknowledged\",\n  \"lineage_id\": \"review-fa2926b3c17d2750\",\n  \"target_identity\": \"sha256:db0dfd3277bcb81060028d2c947f1caca6948756e62af3e31e27d899da84e844\",\n  \"consumed_revision\": \"sha256:3418b50bedd8e2c54b5c6b22058de2d9ead4a22ddde3e235c4a99d963d14b883\",\n  \"authority\": \"burned\"\n}\n",
+      "stderr": ""
+    }
+  ]
+}

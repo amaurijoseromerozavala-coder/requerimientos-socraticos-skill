@@ -1,0 +1,25 @@
+{
+  "version": "1.0",
+  "bound_checker_version": "0.1.3-alpha",
+  "classification": "DESIGN_CONTRACT_NOT_IMPLEMENTATION",
+  "decode_rules": [
+    "Read stdout/stderr separately in bounded chunks; cap cumulative bytes at configured limits, never collect unlimited communicate output.",
+    "Stdout must decode UTF-8, exactly one JSON object, no duplicate keys/nonfinite numbers/trailing non-whitespace; structural depth<=32 before recursive decode.",
+    "Build envelope with observed subprocess returncode, never a code extracted from child JSON.",
+    "Reject missing required fields and unknown properties; code/output mismatch is PROTOCOL_FAILURE unless an execution fault was independently observed."
+  ],
+  "post_schema_predicates": [
+    "declared_failure_count is null OR <= scanned_records",
+    "All lists of identifiers contain unique items.",
+    "gaps is a subset of required_obligations; material_gap iff gap_reasons is nonempty.",
+    "Failure event requires nonempty failure_cases; success requires no gaps, all_success, delegation_current, scope_supported and at least one required obligation.",
+    "PARTIAL/NOT_ASSESSED never establishes absence of failures; evidence_verification remains NOT_ESTABLISHED."
+  ],
+  "manifest": "checker-binding.json pins source files; Python and dependency versions recorded at implementation/deployment; unsupported versions refused, not silently accepted.",
+  "privacy": "Raw payload only transient. Receipt stores whitelisted enum/count/digest fields; never free-text error/limits/observation/rationale or absolute paths.",
+  "limits": [
+    "Source-reviewed adapter and synthetic examples, not exhaustiveness proof of every possible checker execution.",
+    "Oversized error output is a protocol/capture failure, not silently truncated valid JSON.",
+    "Runtime child failure takes precedence over payload validity."
+  ]
+}

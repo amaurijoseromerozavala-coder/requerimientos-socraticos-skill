@@ -1,0 +1,147 @@
+{
+  "schema": "gentle-ai.review-integration.status/v9",
+  "contract": "gentle-ai.review-integration/v2",
+  "operation": "review.status",
+  "applicability": "current_target",
+  "authority": {
+    "version": "compact-v2",
+    "lineage_id": "review-b2e0f4114b5f5bb8",
+    "state": "reviewing",
+    "generation": 1,
+    "revision": "sha256:e4b27a9a5b64adea21c7e6ef7339b64a900248114ecb150b69f0369c53adf71e"
+  },
+  "action": "collect",
+  "replayability": "manual_action_required",
+  "frozen": {
+    "tier": "medium",
+    "original_changed_lines": 1,
+    "correction_budget": 1,
+    "changed_path_manifest_sha256": "sha256:0439c5151aa541fc28d401e572a4ea79375c468eb6354a5a7cac8f7017ecd721"
+  },
+  "target_identity": "sha256:709145f50fc44cae5a2a573df58f99ee6509865996a11a8fc22d5d60953f5f11",
+  "projection": {
+    "schema": "gentle-ai.review-integration.projection/v1",
+    "kind": "base-workspace-overlay",
+    "projection": "workspace",
+    "base_tree": "4b825dc642cb6eb9a060e54bf8d69288fbee4904",
+    "initial_review_tree": "6bce9e84046fd49bf5200bec9fcb697bb99f930f",
+    "current_candidate_tree": "6bce9e84046fd49bf5200bec9fcb697bb99f930f",
+    "paths_digest": "sha256:0320457a93238ccdb19282280251a90864e6637f35435a808dd1803085c063f4",
+    "paths": [
+      "docs/requirements/qa-supervisor/prd.json"
+    ],
+    "intended_untracked": [
+      "docs/requirements/qa-supervisor/prd.json"
+    ],
+    "intended_untracked_proof": "sha256:95279e97c3c8b3134930d7b083a7de918d3fd043cd3de17380f75d1969b6f8d7",
+    "initial_snapshot_identity": "sha256:709145f50fc44cae5a2a573df58f99ee6509865996a11a8fc22d5d60953f5f11",
+    "current_snapshot_identity": "sha256:709145f50fc44cae5a2a573df58f99ee6509865996a11a8fc22d5d60953f5f11"
+  },
+  "eligible_untracked_inventory": "sha256:998786899a19ac4d1c6bd77736c8df3f621ed5dfd885b00fdc77b62c0919d7d2",
+  "repair": {
+    "schema": "gentle-ai.review-authority-repair-assessment/v1",
+    "status": "unsupported",
+    "counts": {
+      "lineages": 0,
+      "compact_lineages": 0,
+      "legacy_lineages": 0,
+      "events": 0,
+      "bytes": 0,
+      "eligible_candidates": 0,
+      "unsupported_lineages": 0,
+      "conflicts": 0
+    },
+    "supported_operations": [
+      "review/complete-fix",
+      "review/validate-fix"
+    ],
+    "authorization_schema": "gentle-ai.review-repair-authorization/v1"
+  },
+  "candidates": [],
+  "forecast": {
+    "horizon": "partial",
+    "steps": [
+      {
+        "step": 1,
+        "kind": "collect",
+        "reason_code": "reviewer_results_required",
+        "description": "Reviewer lens artifacts required for current revision"
+      }
+    ]
+  },
+  "next_transition": {
+    "kind": "collect",
+    "reason_code": "reviewer_results_required",
+    "collect": {
+      "inputs": [
+        {
+          "name": "reviewer_result",
+          "schema": "https://gentle-ai.dev/schema/review/reviewer/v1",
+          "capture_operation": "review.capture-result",
+          "arguments": [
+            {
+              "name": "lineage",
+              "value": "review-b2e0f4114b5f5bb8",
+              "token": "--lineage=review-b2e0f4114b5f5bb8"
+            },
+            {
+              "name": "expected-revision",
+              "value": "sha256:43140bdfaedd0bd21be8598926d262c926923fa85fcb1c65748fbe938d315036",
+              "token": "--expected-revision=sha256:43140bdfaedd0bd21be8598926d262c926923fa85fcb1c65748fbe938d315036"
+            },
+            {
+              "name": "target",
+              "value": "sha256:709145f50fc44cae5a2a573df58f99ee6509865996a11a8fc22d5d60953f5f11",
+              "token": "--target=sha256:709145f50fc44cae5a2a573df58f99ee6509865996a11a8fc22d5d60953f5f11"
+            },
+            {
+              "name": "repository-context",
+              "value": "rctx2_27121343164f0ec4a0ecbc09bb145780ef02ea7f850d3dd1f2bfa9cf643dea2e",
+              "token": "--repository-context=rctx2_27121343164f0ec4a0ecbc09bb145780ef02ea7f850d3dd1f2bfa9cf643dea2e"
+            },
+            {
+              "name": "lens",
+              "value": "review-reliability",
+              "token": "--lens=review-reliability"
+            },
+            {
+              "name": "order",
+              "value": "1",
+              "token": "--order=1"
+            },
+            {
+              "name": "subject-hash",
+              "value": "sha256:9387dcf5ac12c0d395003cbfc664d641356e85e9354326c6dfdf039b4ae081f4",
+              "token": "--subject-hash=sha256:9387dcf5ac12c0d395003cbfc664d641356e85e9354326c6dfdf039b4ae081f4"
+            },
+            {
+              "name": "agent",
+              "value": "codex",
+              "token": "--agent=codex"
+            }
+          ],
+          "artifact_subject": {
+            "schema": "gentle-ai.review-artifact-subject/v2",
+            "subject_hash": "sha256:9387dcf5ac12c0d395003cbfc664d641356e85e9354326c6dfdf039b4ae081f4",
+            "lineage_id": "review-b2e0f4114b5f5bb8",
+            "authority_revision": "sha256:43140bdfaedd0bd21be8598926d262c926923fa85fcb1c65748fbe938d315036",
+            "target_identity": "sha256:709145f50fc44cae5a2a573df58f99ee6509865996a11a8fc22d5d60953f5f11",
+            "base_tree": "4b825dc642cb6eb9a060e54bf8d69288fbee4904",
+            "candidate_tree": "6bce9e84046fd49bf5200bec9fcb697bb99f930f",
+            "changed_path_manifest_sha256": "sha256:0439c5151aa541fc28d401e572a4ea79375c468eb6354a5a7cac8f7017ecd721",
+            "lens": "review-reliability",
+            "selected_order": 1
+          },
+          "base_tree": "4b825dc642cb6eb9a060e54bf8d69288fbee4904",
+          "candidate_tree": "6bce9e84046fd49bf5200bec9fcb697bb99f930f"
+        }
+      ]
+    }
+  },
+  "repository_context": {
+    "capability": "review.opaque_repository_context",
+    "handle": "rctx2_27121343164f0ec4a0ecbc09bb145780ef02ea7f850d3dd1f2bfa9cf643dea2e",
+    "revision": "sha256:43140bdfaedd0bd21be8598926d262c926923fa85fcb1c65748fbe938d315036",
+    "target_identity": "sha256:709145f50fc44cae5a2a573df58f99ee6509865996a11a8fc22d5d60953f5f11"
+  }
+}

@@ -1,0 +1,52 @@
+{
+  "schema_version": "1.0.0",
+  "scope": "Endurecimiento local de requerimientos-socraticos2.4.0; helpers y proceso, no producto objetivo.",
+  "snapshot_ref": "validation.json source_sha256 / native candidate receipt external",
+  "sections": {
+    "ANALYSIS": [
+      {
+        "id": "A1",
+        "classification": "FORMAL_RESULT",
+        "text": "Ejemplo sintético tiene entrada con reglas incompatibles y otra sin guarda activa; no certifica PRD ni implementación.",
+        "source_refs": [
+          "logic-example-result.json"
+        ],
+        "status": "REFUTED_WITHIN_SCOPE"
+      }
+    ],
+    "TEST PLAN": [
+      {
+        "id": "T1",
+        "classification": "PROPOSAL",
+        "text": "Calibración de capacidad y ensayos materiales requieren objetivo y presupuesto suficientes; no ejecutados aquí.",
+        "source_refs": [
+          "local-profile.json"
+        ],
+        "status": "NOT_RUN"
+      }
+    ],
+    "VERIFICATION": [
+      {
+        "id": "V1",
+        "classification": "OBSERVATION",
+        "text": "116 tests locales finalizados OK. Revisor independiente contrasta pequeños modelos en copia temporal según alcance histórico registrado; corrección posterior del launcher cubierta por pruebas nuevas y continuación RDD.",
+        "source_refs": [
+          "full-tests.log",
+          "independent-review.json"
+        ],
+        "status": "OBSERVED"
+      }
+    ]
+  },
+  "limitations": [
+    "Cobertura de tabla mide guardas, no corrección de implementación ni cumplimiento DO-178C.",
+    "Sondeo local no es réplica física ni capacidad calibrada.",
+    "Presupuesto cooperativo del solver, no deadline garantizado del SO."
+  ],
+  "open_questions": [
+    "Autoridad de suficiencia semántica del PRD; no resuelta por estos helpers.",
+    "Presupuestos y aceptación material del PC objetivo aún pendientes."
+  ],
+  "lean_status": "NOT_RUN",
+  "target_hardware_status": "NOT_RUN"
+}

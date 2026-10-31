@@ -1,0 +1,134 @@
+{
+  "schema": "gentle-ai.review-integration.start/v4",
+  "contract": "gentle-ai.review-integration/v2",
+  "operation": "review.start",
+  "action": "created",
+  "lenses_required": true,
+  "lineage_id": "review-2383ffa61c4de09b",
+  "state": "reviewing",
+  "risk_level": "medium",
+  "selected_lenses": [
+    "review-resilience",
+    "review-reliability"
+  ],
+  "projection": "workspace",
+  "target_mode": "base-workspace-overlay",
+  "target_identity": "sha256:dcdc8ae7f0da32cf4d52ba441df3869f95448c58b275e65d917260b32a8a4fbf",
+  "base_tree": "4377fa1087d8d758f215a3454447ce434cb1d0a3",
+  "candidate_tree": "967e110109efee286d41ec5dd1bb5a9f11ff5102",
+  "changed_files": 4,
+  "changed_lines": 146,
+  "correction_budget": 73,
+  "risk_reasons": [
+    {
+      "code": "configuration_change",
+      "path": "docs/requirements/qa-supervisor/verification/canonical-model-results.json"
+    }
+  ],
+  "artifact_subjects": [
+    {
+      "schema": "gentle-ai.review-artifact-subject/v2",
+      "subject_hash": "sha256:ae6ab031ec103da7f5cbe055b4b6422bd2c9f1f5d88bb1c7fd26dc9e721205b5",
+      "lineage_id": "review-2383ffa61c4de09b",
+      "authority_revision": "sha256:f9b33a24cc7f4fe65dfe21453dba617e192ef324093fb857f711921d3baa6e33",
+      "target_identity": "sha256:dcdc8ae7f0da32cf4d52ba441df3869f95448c58b275e65d917260b32a8a4fbf",
+      "base_tree": "4377fa1087d8d758f215a3454447ce434cb1d0a3",
+      "candidate_tree": "967e110109efee286d41ec5dd1bb5a9f11ff5102",
+      "changed_path_manifest_sha256": "sha256:f9017fa89cfe423ae2ed33989d710e4e553bec57eed7ea94ee85d1a56a4853b4",
+      "lens": "review-resilience",
+      "selected_order": 0
+    },
+    {
+      "schema": "gentle-ai.review-artifact-subject/v2",
+      "subject_hash": "sha256:4f51ba08d7da59fe998652cc3d5df4204fbaf9027a3b9282613192f843fd5ff6",
+      "lineage_id": "review-2383ffa61c4de09b",
+      "authority_revision": "sha256:f9b33a24cc7f4fe65dfe21453dba617e192ef324093fb857f711921d3baa6e33",
+      "target_identity": "sha256:dcdc8ae7f0da32cf4d52ba441df3869f95448c58b275e65d917260b32a8a4fbf",
+      "base_tree": "4377fa1087d8d758f215a3454447ce434cb1d0a3",
+      "candidate_tree": "967e110109efee286d41ec5dd1bb5a9f11ff5102",
+      "changed_path_manifest_sha256": "sha256:f9017fa89cfe423ae2ed33989d710e4e553bec57eed7ea94ee85d1a56a4853b4",
+      "lens": "review-reliability",
+      "selected_order": 1
+    }
+  ],
+  "changed_path_manifest": [
+    {"path":"docs/requirements/qa-supervisor/verification/canonical-model-results.json","status":"M","old_mode":"100644","new_mode":"100644","deleted":false,"type_changed":false,"mode_only":false,"intended_untracked":true},
+    {"path":"docs/requirements/qa-supervisor/verification/check-document-model.py","status":"M","old_mode":"100644","new_mode":"100644","deleted":false,"type_changed":false,"mode_only":false,"intended_untracked":true},
+    {"path":"docs/requirements/qa-supervisor/verification/check-output-contract.py","status":"M","old_mode":"100644","new_mode":"100644","deleted":false,"type_changed":false,"mode_only":false,"intended_untracked":true},
+    {"path":"docs/requirements/qa-supervisor/verification/output-contract-results.json","status":"M","old_mode":"100644","new_mode":"100644","deleted":false,"type_changed":false,"mode_only":false,"intended_untracked":true}
+  ],
+  "repository_context": {
+    "capability": "review.opaque_repository_context",
+    "handle": "rctx2_b5d6b8d20a54e4257865b69b14a2a1e474d7b8e208c87b394ad3ab8d5f0e1027",
+    "revision": "sha256:f9b33a24cc7f4fe65dfe21453dba617e192ef324093fb857f711921d3baa6e33",
+    "target_identity": "sha256:dcdc8ae7f0da32cf4d52ba441df3869f95448c58b275e65d917260b32a8a4fbf"
+  },
+  "next_transition": {
+    "kind": "execute",
+    "reason_code": "review_status_required",
+    "execute": {
+      "operation": "review.status",
+      "command": "gentle-ai review status --contract=gentle-ai.review-integration/v2 --next-transition=true --lineage=review-2383ffa61c4de09b --repository-context=rctx2_b5d6b8d20a54e4257865b69b14a2a1e474d7b8e208c87b394ad3ab8d5f0e1027 --agent=codex --base-ref=4377fa1087d8d758f215a3454447ce434cb1d0a3 --workspace-overlay=true",
+      "arguments": [
+        {
+          "name": "contract",
+          "value": "gentle-ai.review-integration/v2",
+          "token": "--contract=gentle-ai.review-integration/v2"
+        },
+        {
+          "name": "next-transition",
+          "value": "true",
+          "token": "--next-transition=true"
+        },
+        {
+          "name": "lineage",
+          "value": "review-2383ffa61c4de09b",
+          "token": "--lineage=review-2383ffa61c4de09b"
+        },
+        {
+          "name": "repository-context",
+          "value": "rctx2_b5d6b8d20a54e4257865b69b14a2a1e474d7b8e208c87b394ad3ab8d5f0e1027",
+          "token": "--repository-context=rctx2_b5d6b8d20a54e4257865b69b14a2a1e474d7b8e208c87b394ad3ab8d5f0e1027"
+        },
+        {
+          "name": "agent",
+          "value": "codex",
+          "token": "--agent=codex"
+        },
+        {
+          "name": "base-ref",
+          "value": "4377fa1087d8d758f215a3454447ce434cb1d0a3",
+          "token": "--base-ref=4377fa1087d8d758f215a3454447ce434cb1d0a3"
+        },
+        {
+          "name": "workspace-overlay",
+          "value": "true",
+          "token": "--workspace-overlay=true"
+        }
+      ],
+      "selector_arguments": [
+        {
+          "name": "base-ref",
+          "value": "4377fa1087d8d758f215a3454447ce434cb1d0a3",
+          "token": "--base-ref=4377fa1087d8d758f215a3454447ce434cb1d0a3"
+        },
+        {
+          "name": "workspace-overlay",
+          "value": "true",
+          "token": "--workspace-overlay=true"
+        }
+      ],
+      "preconditions": [
+        {
+          "name": "state",
+          "value": "reviewing"
+        }
+      ],
+      "binding": {
+        "lineage_id": "review-2383ffa61c4de09b",
+        "revision": "sha256:f9b33a24cc7f4fe65dfe21453dba617e192ef324093fb857f711921d3baa6e33",
+        "target_identity": "sha256:dcdc8ae7f0da32cf4d52ba441df3869f95448c58b275e65d917260b32a8a4fbf"
+      }
+    }
+  }
+}

@@ -1,0 +1,37 @@
+{
+  "skill": "skills/requerimientos-socraticos/SKILL.md",
+  "mcp_calls_observed": [
+    {
+      "tool": "Engram mem_search",
+      "transport": "stdio MCP",
+      "result": "Memoria histórica #5 sobre RDD autenticado; contrastada con modo actual."
+    },
+    {
+      "tool": "Engram mem_save",
+      "transport": "stdio MCP",
+      "result": "Espejo ODD #6, topic odd/qa-inquisidor-prd/tasks."
+    },
+    {
+      "tool": "Context7 resolve_library_id",
+      "query": "python-jsonschema Draft202012Validator and strict document validation",
+      "selected": "/python-jsonschema/jsonschema"
+    },
+    {
+      "tool": "Context7 query_docs",
+      "selected": "/python-jsonschema/jsonschema",
+      "material_sources": [
+        "https://github.com/python-jsonschema/jsonschema/blob/main/docs/validate.rst",
+        "https://github.com/python-jsonschema/jsonschema/blob/main/docs/errors.rst"
+      ],
+      "observation": "check_schema validates meta-schema; iter_errors enumerates structural errors; application semantics require separate checks."
+    }
+  ],
+  "not_used": [
+    {
+      "tool": "CodeGraph",
+      "reason": "No hay aplicación objetivo que inspeccionar; no se crea un índice sin código."
+    }
+  ],
+  "privacy": "No se envió hardware identificador, código privado ni credenciales a Context7.",
+  "observed_at": "2026-10-26T16:34:16.702236+00:00"
+}

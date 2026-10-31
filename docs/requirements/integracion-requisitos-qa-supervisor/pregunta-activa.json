@@ -1,0 +1,8 @@
+{
+  "id": "Q-INT-023",
+  "question": "Revocación cuando la incorporación ya comenzó: A terminar incorporación iniciada; B detener nuevas escrituras y aplicar recuperación condicionada.",
+  "target_dimension": "REVOCATION_DURING_INCORPORATION",
+  "status": "ANSWERED",
+  "answer": "B",
+  "resolved_by": "INT-D23"
+}

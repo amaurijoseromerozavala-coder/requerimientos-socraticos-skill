@@ -1,0 +1,12 @@
+{
+  "jsonrpc": "2.0",
+  "id": 3,
+  "result": {
+    "content": [
+      {
+        "type": "text",
+        "text": "{\"id\":10,\"judgment_required\":false,\"project\":\"replica-gentle-ai\",\"project_path\":\"\",\"project_source\":\"explicit_override\",\"result\":\"Memory saved: \\\"ODD falsación de integridad y gates documentales\\\" (decision)\",\"review_after\":\"2027-04-26 20:25:45\",\"state\":\"active\",\"sync_id\":\"obs-e7247ad758f252eb\",\"truncation\":{\"original_bytes\":3470,\"limit_bytes\":50000,\"truncated\":false}}"
+      }
+    ]
+  }
+}

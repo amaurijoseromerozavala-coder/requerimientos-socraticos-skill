@@ -1,0 +1,266 @@
+{
+  "schema": "integration-requirements-draft/v0.1",
+  "status": "DRAFT_NOT_CANONICAL_PRD_V2",
+  "scope": "Documentary expansion; no implementation authorization",
+  "source_sha256": "1d651708b6bd3ae3917f7e785c69fc222aa4178d82a61e589e4d53f733bf2688",
+  "requirements": [
+    {
+      "id": "INT-R01",
+      "decision_refs": [
+        "INT-D01"
+      ],
+      "status": "DRAFT_CONFIRMED_MEANING",
+      "ears": "El diseño deberá incluir núcleo, verificación formal y planificación/implementación con activación progresiva y sin autorización operativa implícita.",
+      "falsifier": "Activar una herramienta solo porque figura en el diseño.",
+      "implementation_verification": "NOT_RUN",
+      "source_authority": "CONFIRMED"
+    },
+    {
+      "id": "INT-R02",
+      "decision_refs": [
+        "INT-D02"
+      ],
+      "status": "DRAFT_CONFIRMED_MEANING",
+      "ears": "El supervisor ampliado deberá coordinar los contratos del esquema integrado manteniendo separadas coordinación y ejecución.",
+      "falsifier": "Transferir autoridad humana a una salida del coordinador.",
+      "implementation_verification": "NOT_RUN",
+      "source_authority": "CONFIRMED"
+    },
+    {
+      "id": "INT-R03",
+      "decision_refs": [
+        "INT-D03"
+      ],
+      "status": "DRAFT_INTERPRETATION_REQUIRES_REVIEW",
+      "ears": "Cuando se solicite una herramienta, el supervisor deberá exigir un adaptador registrado y su contrato de capacidades.",
+      "falsifier": "Ejecutar un comando general no contenido en el contrato habilitado.",
+      "implementation_verification": "NOT_RUN",
+      "source_authority": "INTERPRETATION_EXPLICITLY_PRESENTED"
+    },
+    {
+      "id": "INT-R04",
+      "decision_refs": [
+        "INT-D04"
+      ],
+      "status": "DRAFT_CONFIRMED_MEANING",
+      "ears": "Antes de habilitar un adaptador, el supervisor deberá exigir revisión técnica y aprobación humana de versión y permisos.",
+      "falsifier": "Cambiar versión o permisos sin aprobación aplicable.",
+      "implementation_verification": "NOT_RUN",
+      "source_authority": "CONFIRMED"
+    },
+    {
+      "id": "INT-R05",
+      "decision_refs": [
+        "INT-D05"
+      ],
+      "status": "DRAFT_CONFIRMED_MEANING",
+      "ears": "Mientras una tarea conserve autorización suficiente, el supervisor deberá permitir únicamente operaciones contenidas en su alcance sin repetir permisos ya cubiertos.",
+      "falsifier": "Extender alcance por interpretar habilitación como autorización de toda tarea.",
+      "implementation_verification": "NOT_RUN",
+      "source_authority": "CONFIRMED"
+    },
+    {
+      "id": "INT-R06",
+      "decision_refs": [
+        "INT-D06"
+      ],
+      "status": "DRAFT_CONFIRMED_MEANING",
+      "ears": "Mientras exista una ejecución supervisada activa no terminada, el supervisor no deberá admitir otra ejecución supervisada.",
+      "falsifier": "Admitir otro trabajo mientras el anterior conserva ejecución incierta.",
+      "implementation_verification": "NOT_RUN",
+      "source_authority": "CONFIRMED"
+    },
+    {
+      "id": "INT-R07",
+      "decision_refs": [
+        "INT-D07"
+      ],
+      "status": "DRAFT_CONFIRMED_MEANING",
+      "ears": "Cuando falle una tarea, el supervisor deberá registrar el fallo, detenerla y comprobar terminación y limpieza antes de admitir otra, sin reintento automático.",
+      "falsifier": "Reiniciar automáticamente una tarea fallida o declarar limpieza por haber enviado una señal.",
+      "implementation_verification": "NOT_RUN",
+      "source_authority": "CONFIRMED"
+    },
+    {
+      "id": "INT-R08",
+      "decision_refs": [
+        "INT-D08"
+      ],
+      "status": "DRAFT_CONFIRMED_MEANING",
+      "ears": "Cuando un adaptador autorizado necesite escribir, el supervisor deberá dirigir el trabajo a un espacio aislado y tratar incorporación como operación distinta.",
+      "falsifier": "Una escritura de trabajo modifica directamente el proyecto principal.",
+      "implementation_verification": "NOT_RUN",
+      "source_authority": "CONFIRMED"
+    },
+    {
+      "id": "INT-R09",
+      "decision_refs": [
+        "INT-D09"
+      ],
+      "status": "DRAFT_CONFIRMED_MEANING",
+      "ears": "Cuando falle una tarea aislada, el supervisor deberá conservar sus cambios parciales y evidencias sin incorporarlos al proyecto.",
+      "falsifier": "Borrar automáticamente el trabajo fallido o incorporarlo como resultado válido.",
+      "implementation_verification": "NOT_RUN",
+      "source_authority": "CONFIRMED"
+    },
+    {
+      "id": "INT-R10",
+      "decision_refs": [
+        "INT-D10"
+      ],
+      "status": "DRAFT_CONFIRMED_MEANING",
+      "ears": "Cuando la tarea autorice incorporación y todos sus criterios verificables estén satisfechos, el supervisor deberá permitir incorporación automática salvo restricciones sobrevenidas, sin autorizar commit, push o despliegue.",
+      "falsifier": "Una incorporación emite push implícito o ignora revocación posterior.",
+      "implementation_verification": "NOT_RUN",
+      "source_authority": "CONFIRMED"
+    },
+    {
+      "id": "INT-R11",
+      "decision_refs": [
+        "INT-D11"
+      ],
+      "status": "DRAFT_CONFIRMED_MEANING",
+      "ears": "Si cambia la base del proyecto, el supervisor deberá detener incorporación, conservar el resultado y requerir reevaluación sobre la nueva base.",
+      "falsifier": "Aplicar candidato sobre base distinta usando evidencia anterior como vigente.",
+      "implementation_verification": "NOT_RUN",
+      "source_authority": "CONFIRMED"
+    },
+    {
+      "id": "INT-R12",
+      "decision_refs": [
+        "INT-D12"
+      ],
+      "status": "DRAFT_CONFIRMED_MEANING",
+      "ears": "Cuando una incorporación quede parcial, el supervisor deberá restaurar solo si la base es recuperable y no se sobrescriben cambios ajenos; si no puede comprobarlo, deberá bloquear y escalar.",
+      "falsifier": "Restaurar sobre escritura ajena o afirmar restauración con resultado incierto.",
+      "implementation_verification": "NOT_RUN",
+      "source_authority": "CONFIRMED"
+    },
+    {
+      "id": "INT-R13",
+      "decision_refs": [
+        "INT-D13"
+      ],
+      "status": "DRAFT_CONFIRMED_MEANING",
+      "ears": "Antes de iniciar escritura, el supervisor deberá comprobar presupuesto de tarea y límite global, bloqueando por insuficiencia sin borrar trabajos conservados.",
+      "falsifier": "Admitir trabajo que cumple tarea pero excede límite global.",
+      "implementation_verification": "NOT_RUN",
+      "source_authority": "CONFIRMED"
+    },
+    {
+      "id": "INT-R14",
+      "decision_refs": [
+        "INT-D14"
+      ],
+      "status": "DRAFT_CONFIRMED_MEANING",
+      "ears": "Antes de solicitar una ampliación, el supervisor deberá comprobar disponibilidad del espacio requerido y no presentarla como viable si no está comprobada.",
+      "falsifier": "Solicitar ampliación como viable con capacidad desconocida o insuficiente.",
+      "implementation_verification": "NOT_RUN",
+      "source_authority": "CONFIRMED"
+    },
+    {
+      "id": "INT-R15",
+      "decision_refs": [
+        "INT-D15"
+      ],
+      "status": "DRAFT_CONFIRMED_MEANING",
+      "ears": "Cuando una ampliación de tarea necesite ampliar también el total, el supervisor deberá presentar ambos cambios y exigir autorización explícita de ambos.",
+      "falsifier": "Una aprobación del monto de tarea eleva silenciosamente el total.",
+      "implementation_verification": "NOT_RUN",
+      "source_authority": "CONFIRMED"
+    },
+    {
+      "id": "INT-R16",
+      "decision_refs": [
+        "INT-D16"
+      ],
+      "status": "DRAFT_CONFIRMED_MEANING",
+      "ears": "Antes de autorizar una tarea, el supervisor deberá proponer estimación inicial explicada, comprobar viabilidad e incluir el presupuesto en su solicitud.",
+      "falsifier": "Comenzar con presupuesto ausente o descripción que oculta componentes materiales.",
+      "implementation_verification": "NOT_RUN",
+      "source_authority": "CONFIRMED"
+    },
+    {
+      "id": "INT-R17",
+      "decision_refs": [
+        "INT-D17"
+      ],
+      "status": "DRAFT_CONFIRMED_MEANING",
+      "ears": "Cuando falte estimación material, el supervisor deberá proponer exploración con presupuesto y autorización propios, manteniendo bloqueada la tarea principal mientras falte evidencia suficiente.",
+      "falsifier": "La necesidad de estimar habilita exploración ilimitada o trabajo principal.",
+      "implementation_verification": "NOT_RUN",
+      "source_authority": "CONFIRMED"
+    },
+    {
+      "id": "INT-R18",
+      "decision_refs": [
+        "INT-D18"
+      ],
+      "status": "DRAFT_CONFIRMED_MEANING",
+      "ears": "Durante exploración, el supervisor deberá limitarse a inspección y muestras pequeñas mediante adaptadores habilitados sin ejecutar código del proyecto ni modificarlo.",
+      "falsifier": "Un inspector importa o ejecuta módulos/hooks del proyecto como parte de la lectura.",
+      "implementation_verification": "NOT_RUN",
+      "source_authority": "CONFIRMED"
+    },
+    {
+      "id": "INT-R19",
+      "decision_refs": [
+        "INT-D19"
+      ],
+      "status": "DRAFT_CONFIRMED_MEANING",
+      "ears": "Cuando la exploración agote presupuesto, el supervisor deberá detenerla y solo proponer ampliación tras preflight, sin continuar hasta autorización suficiente.",
+      "falsifier": "Un timeout de exploración amplía automáticamente recursos.",
+      "implementation_verification": "NOT_RUN",
+      "source_authority": "CONFIRMED"
+    },
+    {
+      "id": "INT-R20",
+      "decision_refs": [
+        "INT-D20"
+      ],
+      "status": "DRAFT_CONFIRMED_MEANING",
+      "ears": "Cuando acepte revocación ordinaria, el supervisor deberá impedir nuevas tareas permitiendo únicamente finalizar la tarea en curso dentro de su autorización existente.",
+      "falsifier": "Iniciar una tarea nueva tras revocación o continuar fuera del alcance original.",
+      "implementation_verification": "NOT_RUN",
+      "source_authority": "CONFIRMED"
+    },
+    {
+      "id": "INT-R21",
+      "decision_refs": [
+        "INT-D21"
+      ],
+      "status": "DRAFT_CONFIRMED_MEANING",
+      "ears": "Durante revocación diferida, el supervisor deberá identificar la tarea completa previamente admitida como unidad, aunque requiera varias invocaciones autorizadas.",
+      "falsifier": "Renombrar trabajo nuevo como continuación de la tarea original.",
+      "implementation_verification": "NOT_RUN",
+      "source_authority": "CONFIRMED"
+    },
+    {
+      "id": "INT-R22",
+      "decision_refs": [
+        "INT-D22"
+      ],
+      "status": "DRAFT_CONFIRMED_MEANING",
+      "ears": "Cuando una tarea termine después de revocación diferida, el supervisor deberá conservar el resultado aislado y exigir nueva autorización para incorporarlo.",
+      "falsifier": "Verificaciones favorables reactivan incorporación automática tras revocación.",
+      "implementation_verification": "NOT_RUN",
+      "source_authority": "CONFIRMED"
+    },
+    {
+      "id": "INT-R23",
+      "decision_refs": [
+        "INT-D23"
+      ],
+      "status": "DRAFT_CONFIRMED_MEANING",
+      "ears": "Cuando acepte revocación durante incorporación, el supervisor deberá impedir nuevas escrituras de incorporación y aplicar recuperación condicionada, bloqueando si no es segura.",
+      "falsifier": "Emitir escritura de incorporación posterior a aceptación o restaurar mientras una escritura previa es incierta.",
+      "implementation_verification": "NOT_RUN",
+      "source_authority": "CONFIRMED"
+    }
+  ],
+  "limitations": [
+    "EARS captures decisions, not full operational acceptance.",
+    "INT-D03 was letter A responding to a numbered list; interpretation was explicitly presented, not a fabricated exact selection.",
+    "Known technical gaps remain open."
+  ]
+}

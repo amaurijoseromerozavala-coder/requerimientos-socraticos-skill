@@ -1,0 +1,236 @@
+{
+  "skill_resolution": "paths-injected",
+  "baseline_tree": "e01bc80fe4bee58c5ceec372423a7c1f34698fc2",
+  "started_utc": "2026-10-28T23:47:02Z",
+  "native_RDD": "NOT_RUN",
+  "physical_calibration": "NOT_RUN",
+  "CI": "NOT_RUN",
+  "source_before": {
+    "scripts/activation_preflight.py": "b51624fa5dd305de596759337bc994cc4bb6b4b2036e74901eb075ee4533a584",
+    "scripts/analyze_logic.py": "735959da8c691e5301c046ed4c02ec41be613478226337edec79df7ce96145df",
+    "scripts/document_source.py": "42d233be87cd091b8a1d740115c8813386454be756acb477ede084004b855d35",
+    "scripts/git_bundle.py": "5c053dc1856c4a43e93716f0c5e5ecd50ee6c21fefd63924a7314985d172a9ba",
+    "scripts/git_document_worker.py": "73af82f01ed57271b116be70480aff8196075c101e59df963222bc47ec803aeb",
+    "scripts/git_validation_engine.py": "929650f3b94f69741afefb978167b6c4e453b6d87de62346d28d08ea17a14312",
+    "scripts/json_preflight.py": "1aba3975e3696c82cf8689ab15721572ab55c7c2eeeae7b1f2a87bbe32c2a295",
+    "scripts/logic_engine.py": "2bd0623e3291e2a4ca9d0784f24781154fb3239ac87d468071b305d230f62fdb",
+    "scripts/memory_budget.py": "c8c17977284f50316bea0ea6fec9b210d7ece60bc7f5e12e1bc13269ad29e6a8",
+    "scripts/normalize_text.py": "d0ab7ffd503f095082f816d50fab99023950585f11cb5eb39aadd1a07e894fe9",
+    "scripts/probe_environment.py": "3c179d25439a3599d78ebf3059564561ea8127563804db68dc7b3461296787b2",
+    "scripts/process_supervision.py": "80dc44c9abe1eceb0c11c741c2b7ecab4fd51d9c83b2650b1c6bdedd6f79d05e",
+    "scripts/requirements_guard.py": "ebb5c9e3098e700897fd5226e62975873f7dc8d7a40f3f6eebcba223a5df31a3",
+    "scripts/safe_io.py": "c40bfd51fb5ef89af85622ef662116aaf9cc2300783d09170f7258e0d43379e0",
+    "scripts/scratch_pool.py": "554c9c054c286b8bbc989c8e0e3b2cc4aebf493d07d90d5bf52079922ed7ade1",
+    "scripts/validate_git.py": "e5d78f2e3751ca406afdce8fddde00058b2bd9be3d34833ed923dfc4f811becc",
+    "scripts/validate_interview.py": "71a1ab503ef6fca520152b5afe2e1bcd3c60ed254936fbe28454e2cb4632099a",
+    "scripts/validate_prd.py": "a457346ae791dd8563214ef4e206b334edb1bf79dd993bca9011554072a53f66",
+    "tests/test_activation_preflight.py": "60597986a1dd1859fc35b0e6a8f40590bbc4215eb50c58043ffd11afc5517b70",
+    "tests/test_document_source.py": "9e705d8df50ff25dbe5ff7fa292517b95e37265d71230cbd671ce611f1b9053d",
+    "tests/test_environment.py": "23b926634e199bbde32f7262eded2b9f6967e192d3299fb0b58c1c56b4779d7b",
+    "tests/test_git_bundle.py": "c3313c24159e2224eada98c05591ce5fd9262fbb01bb1ab6dd77ad7e0011e67f",
+    "tests/test_git_memory.py": "2d6019e38cbed37ac271865341d28c5a23221ce6d56035d3ee97d14310f485f5",
+    "tests/test_guard.py": "84bacd9a71290fb4fde076f7379653ab6b9edf94ca7712c6f1f4fd7e08e37974",
+    "tests/test_interview.py": "8b6d023a248c4bb9a4d44af6b06bebf7d33779617e9cdcf30a3ba66d986cf273",
+    "tests/test_logic.py": "4259edee3995760dd6d1ccefcaf2381616e1fc0b45a1bf65a57a6a73ad4f4321",
+    "tests/test_logic_memory.py": "881aeb9d549369d29f3c86208e5d8ef4b394670ddc444494978c4bf5b42c6aa5",
+    "tests/test_logic_worker_memory.py": "b3d1ffd531bc7e5b0422de7d31bd5659206e4ceb5c76fea1c925402c9c24d983",
+    "tests/test_memory_budget.py": "71633fbb4265408abaac86d80a19f1aa51a3f06321eb305894232ee3627e3d7a",
+    "tests/test_preflight.py": "84f953e343f9dfb737da9a06b43d3dc65b1ee873b9bcca04f6bde086142acd86",
+    "tests/test_process_supervision.py": "7dedef8012846e71fa0fb03cb8b764b08377e6665e640103993cd64fa7a66951",
+    "tests/test_role_policy_source.py": "d275e1ccad8246ad0a215420900225ae212af6cae665c0e3dab4d52bcaaf4e53",
+    "tests/test_scratch.py": "d89f5ab1eac2cd1c7fd43fa0308a5c5925456d7ada3f60b504334f8d35d45ed0",
+    "tests/test_sealed.py": "cad469d63134abc0b6439122b40f47f71955fe9d1fe47ba9e8732d66a161ee7d",
+    "tests/test_supervisor.py": "32d10ab492c87f6753105077ee71171f7f6eda099a58903070ad894227131790",
+    "tests/test_validation_budget.py": "2cfb1ce5abfecd41a06cc1b22da32bf2fcdbb7dd31623f5d52b75b1629f4cb05",
+    "assets/activation-preflight.schema.json": "8b2a24151143af81bc254479962d2f6ede7fb30adf2b952f2c1231fd8662851f",
+    "assets/analysis-report.schema.json": "bc9fca234245184459f68552db8c4571dfc02cd310ebce8433b6ba68499858a7",
+    "assets/design-proposals.schema.json": "950be8ad944d07ff5b26cb5245377ad6587da28746d7c4f1837121bae66121f5",
+    "assets/example.prd.json": "cc997d76a52570795c786918276372f436130669576ce3802980978001a5b527",
+    "assets/gitattributes.example": "da4e98b8d85e0097acda607c5657f631741e4d9d484a6efc8ea61411c21e0a40",
+    "assets/interrogator-packet.schema.json": "422acb95aad107f1fc70a202859ed89631d44e40bbac9a9d464bdd0ca8aa7c02",
+    "assets/interview.schema.json": "35492aefbc67d9861244f1e534d01f4fe9bae172c7da5389130a44d073ddfcc6",
+    "assets/logic-example.json": "bcd115fa67a8be5b38a53565a60bbc7762ac2c39f3fe395a0a382afea59f0bb4",
+    "assets/logic-input.schema.json": "7d84a4206aef40594e81cf091b15104de9d9dfe2043643ea1af352b79c411067",
+    "assets/prd.schema.json": "37b2c6b4af2eeee7c39c892a5b057e7b9ee0eab5d7963310be2de7029a5df99b",
+    "references/activation-preflight.md": "517465b555dbde5b7ebc66b68b54e8689073e5b00af45ce020730b106c87091b",
+    "references/formal-analysis.md": "bd47a78d292b2600429edb1b6ca9bb0da57ac28b1b6d0151c96a90cc3156d341",
+    "references/integrity-boundary.md": "1a79193b51f5c9f15c63df0c4fd17f7daf1ae0f5976360a6a64de493c31d1eea",
+    "references/interrogation.md": "392ca6095271afa4f8cc23fa9723de6dc4700442c919dd9489f499538a712b19",
+    "references/memory-budget.md": "967f3f12d4ee879f4f1ee15106be284a91fad68cd4fd28450532c5fe42587afb",
+    "references/method.md": "719287bb488bac04b682b17a82b39dfb7fee7dc135bc39d7f330ba25a49487c8",
+    "references/research-design.md": "68f84f8d6f25be5e9a0373a2f8bc7eeb73d26374c25751c7be7cfc3b9ba529bc",
+    "references/sealed-validation.md": "c800ad5d82851a708d57ea29f020734ebf5a057228f9304ed5a085da38e066a1",
+    "references/validation.md": "72debcfebf9a0c5690da5ff56762d5e3cb3327fed9074d1f61ab49705a79685d",
+    "references/workflow.md": "987cb5371c4b6b60e177e903d415ec244bd40e69cc057a9ff3f7952d166ba780"
+  },
+  "snapshot_path": "/tmp/independent-246-qucikyww",
+  "wrapper_rewrite": "Only absolute requirements skill path redirected to isolated snapshot; original wrapper untouched.",
+  "activation_diff_unified": "--- /tmp/independent-246-qucikyww/approved/activation_preflight.py\t2026-10-28 23:47:02.261971745 +0000\n+++ /tmp/independent-246-qucikyww/skills/requerimientos-socraticos/scripts/activation_preflight.py\t2026-10-28 23:45:34.176581863 +0000\n@@ -77,26 +77,22 @@\n         return memory_budget.logic_memory_policy(total_mib)['roles_mib']\n     if workload == 'git':\n         return memory_budget.memory_policy(total_mib)['roles_mib']\n-    logic = memory_budget.logic_memory_policy(total_mib)['roles_mib']\n-    git = memory_budget.memory_policy(total_mib)['roles_mib']\n-    return {**git, 'solver': logic['solver']}\n-\n-\n-def _role_fractions(workload):\n-    if workload == 'logic':\n-        return {'caller': 1/8, 'solver': 7/8}\n-    if workload == 'git':\n-        return {'caller': 1/8, 'coordinator': 4/8, 'consumer': 2/8, 'git': 1/8}\n-    return {'caller': 1/8, 'coordinator': 4/8, 'consumer': 2/8, 'git': 1/8, 'solver': 7/8}\n+    combined = {}\n+    for policy in (memory_budget.logic_memory_policy(total_mib),\n+                   memory_budget.memory_policy(total_mib)):\n+        for role, amount in policy['roles_mib'].items():\n+            combined[role] = max(combined.get(role, 0), amount)\n+    return combined\n \n \n def _profile_cap_for_hard(hard_bytes, workload):\n-    fractions = _role_fractions(workload)\n-    cap = MAX_MIB\n-    for fraction in fractions.values():\n-        role_cap = int((hard_bytes / MIB) / fraction)\n-        cap = min(cap, (role_cap // 8) * 8)\n-    return cap\n+    # At most33 supported profiles; use the same role amounts as the report\n+    # and execution policies, without a second set of allocation fractions.\n+    for profile in range(MAX_MIB, MIN_MIB - 1, -8):\n+        roles = _workload_roles(profile, workload)\n+        if all(amount * MIB <= hard_bytes for amount in roles.values()):\n+            return profile\n+    return 0\n \n \n def evaluate(path='.', requested_mib=None, *, workload='all', caller_scope=OWNED,\n",
+  "changed_symbols": [
+    "_profile_cap_for_hard",
+    "_role_fractions",
+    "_workload_roles"
+  ],
+  "memory_budget_source_identical": true,
+  "code_diff_counts": {
+    "changed_existing": 1,
+    "added": 1,
+    "changed_files": [
+      "scripts/activation_preflight.py"
+    ],
+    "added_files": [
+      "tests/test_role_policy_source.py"
+    ],
+    "modified_helpers": 2,
+    "removed_helpers": 1,
+    "new_test_cases": 4
+  },
+  "suite": {
+    "returncode": 0,
+    "seconds": 8.692,
+    "runs": 1,
+    "sequential": true,
+    "timeout_seconds": 55,
+    "tests_observed": 238,
+    "status": "PASS"
+  },
+  "profile_comparison": {
+    "policy_outputs_compared": 194,
+    "profiles_each": 97,
+    "range": "256..1024 step8",
+    "byte_exact_canonical_json": true,
+    "512_logic_bytes": {
+      "caller": 67108864,
+      "solver": 469762048
+    },
+    "512_git_bytes": {
+      "caller": 67108864,
+      "coordinator": 268435456,
+      "consumer": 134217728,
+      "git": 67108864
+    }
+  },
+  "public_equivalence": {
+    "evaluations_compared": 59280,
+    "differences": 0,
+    "examples": [],
+    "private_cap_differences_below_min": 560,
+    "private_difference_public_impact": "None observed; both reject unsupported sub-MIN capacity",
+    "normalization": "Excluded observed_at; probe replaced by same deterministic observation for both versions.",
+    "evaluate_calls": 118560
+  },
+  "red_reproduction": {
+    "run": 4,
+    "failures": 3,
+    "errors": 0,
+    "expected": "3 policy-tracking failures, byte-exact regression passes"
+  },
+  "specs": {
+    "S1": "PASS: bounded authorized R2-001 maintenance only; no sources edited by reviewer.",
+    "S2": "PASS: canonical memory policy source unchanged; 194 exact policy outputs; all max merges shared roles; hard cap enumerates <=33 supported profiles.",
+    "S3": "PASS within executed coverage: original three failures reproduced; full suite recorded once; exact public equivalence matrix and byte boundaries recorded. No native RDD or physical approval asserted."
+  },
+  "limitations": [
+    "Finite deterministic equivalence matrix does not prove all environmental states.",
+    "No host stress, PC measurements, CI, native RDD or approval of this candidate.",
+    "SMT UNKNOWN due to timeout is inconclusive, not SAT/UNSAT contradiction."
+  ],
+  "source_after": {
+    "scripts/activation_preflight.py": "b51624fa5dd305de596759337bc994cc4bb6b4b2036e74901eb075ee4533a584",
+    "scripts/analyze_logic.py": "735959da8c691e5301c046ed4c02ec41be613478226337edec79df7ce96145df",
+    "scripts/document_source.py": "42d233be87cd091b8a1d740115c8813386454be756acb477ede084004b855d35",
+    "scripts/git_bundle.py": "5c053dc1856c4a43e93716f0c5e5ecd50ee6c21fefd63924a7314985d172a9ba",
+    "scripts/git_document_worker.py": "73af82f01ed57271b116be70480aff8196075c101e59df963222bc47ec803aeb",
+    "scripts/git_validation_engine.py": "929650f3b94f69741afefb978167b6c4e453b6d87de62346d28d08ea17a14312",
+    "scripts/json_preflight.py": "1aba3975e3696c82cf8689ab15721572ab55c7c2eeeae7b1f2a87bbe32c2a295",
+    "scripts/logic_engine.py": "2bd0623e3291e2a4ca9d0784f24781154fb3239ac87d468071b305d230f62fdb",
+    "scripts/memory_budget.py": "c8c17977284f50316bea0ea6fec9b210d7ece60bc7f5e12e1bc13269ad29e6a8",
+    "scripts/normalize_text.py": "d0ab7ffd503f095082f816d50fab99023950585f11cb5eb39aadd1a07e894fe9",
+    "scripts/probe_environment.py": "3c179d25439a3599d78ebf3059564561ea8127563804db68dc7b3461296787b2",
+    "scripts/process_supervision.py": "80dc44c9abe1eceb0c11c741c2b7ecab4fd51d9c83b2650b1c6bdedd6f79d05e",
+    "scripts/requirements_guard.py": "ebb5c9e3098e700897fd5226e62975873f7dc8d7a40f3f6eebcba223a5df31a3",
+    "scripts/safe_io.py": "c40bfd51fb5ef89af85622ef662116aaf9cc2300783d09170f7258e0d43379e0",
+    "scripts/scratch_pool.py": "554c9c054c286b8bbc989c8e0e3b2cc4aebf493d07d90d5bf52079922ed7ade1",
+    "scripts/validate_git.py": "e5d78f2e3751ca406afdce8fddde00058b2bd9be3d34833ed923dfc4f811becc",
+    "scripts/validate_interview.py": "71a1ab503ef6fca520152b5afe2e1bcd3c60ed254936fbe28454e2cb4632099a",
+    "scripts/validate_prd.py": "a457346ae791dd8563214ef4e206b334edb1bf79dd993bca9011554072a53f66",
+    "tests/test_activation_preflight.py": "60597986a1dd1859fc35b0e6a8f40590bbc4215eb50c58043ffd11afc5517b70",
+    "tests/test_document_source.py": "9e705d8df50ff25dbe5ff7fa292517b95e37265d71230cbd671ce611f1b9053d",
+    "tests/test_environment.py": "23b926634e199bbde32f7262eded2b9f6967e192d3299fb0b58c1c56b4779d7b",
+    "tests/test_git_bundle.py": "c3313c24159e2224eada98c05591ce5fd9262fbb01bb1ab6dd77ad7e0011e67f",
+    "tests/test_git_memory.py": "2d6019e38cbed37ac271865341d28c5a23221ce6d56035d3ee97d14310f485f5",
+    "tests/test_guard.py": "84bacd9a71290fb4fde076f7379653ab6b9edf94ca7712c6f1f4fd7e08e37974",
+    "tests/test_interview.py": "8b6d023a248c4bb9a4d44af6b06bebf7d33779617e9cdcf30a3ba66d986cf273",
+    "tests/test_logic.py": "4259edee3995760dd6d1ccefcaf2381616e1fc0b45a1bf65a57a6a73ad4f4321",
+    "tests/test_logic_memory.py": "881aeb9d549369d29f3c86208e5d8ef4b394670ddc444494978c4bf5b42c6aa5",
+    "tests/test_logic_worker_memory.py": "b3d1ffd531bc7e5b0422de7d31bd5659206e4ceb5c76fea1c925402c9c24d983",
+    "tests/test_memory_budget.py": "71633fbb4265408abaac86d80a19f1aa51a3f06321eb305894232ee3627e3d7a",
+    "tests/test_preflight.py": "84f953e343f9dfb737da9a06b43d3dc65b1ee873b9bcca04f6bde086142acd86",
+    "tests/test_process_supervision.py": "7dedef8012846e71fa0fb03cb8b764b08377e6665e640103993cd64fa7a66951",
+    "tests/test_role_policy_source.py": "d275e1ccad8246ad0a215420900225ae212af6cae665c0e3dab4d52bcaaf4e53",
+    "tests/test_scratch.py": "d89f5ab1eac2cd1c7fd43fa0308a5c5925456d7ada3f60b504334f8d35d45ed0",
+    "tests/test_sealed.py": "cad469d63134abc0b6439122b40f47f71955fe9d1fe47ba9e8732d66a161ee7d",
+    "tests/test_supervisor.py": "32d10ab492c87f6753105077ee71171f7f6eda099a58903070ad894227131790",
+    "tests/test_validation_budget.py": "2cfb1ce5abfecd41a06cc1b22da32bf2fcdbb7dd31623f5d52b75b1629f4cb05",
+    "assets/activation-preflight.schema.json": "8b2a24151143af81bc254479962d2f6ede7fb30adf2b952f2c1231fd8662851f",
+    "assets/analysis-report.schema.json": "bc9fca234245184459f68552db8c4571dfc02cd310ebce8433b6ba68499858a7",
+    "assets/design-proposals.schema.json": "950be8ad944d07ff5b26cb5245377ad6587da28746d7c4f1837121bae66121f5",
+    "assets/example.prd.json": "cc997d76a52570795c786918276372f436130669576ce3802980978001a5b527",
+    "assets/gitattributes.example": "da4e98b8d85e0097acda607c5657f631741e4d9d484a6efc8ea61411c21e0a40",
+    "assets/interrogator-packet.schema.json": "422acb95aad107f1fc70a202859ed89631d44e40bbac9a9d464bdd0ca8aa7c02",
+    "assets/interview.schema.json": "35492aefbc67d9861244f1e534d01f4fe9bae172c7da5389130a44d073ddfcc6",
+    "assets/logic-example.json": "bcd115fa67a8be5b38a53565a60bbc7762ac2c39f3fe395a0a382afea59f0bb4",
+    "assets/logic-input.schema.json": "7d84a4206aef40594e81cf091b15104de9d9dfe2043643ea1af352b79c411067",
+    "assets/prd.schema.json": "37b2c6b4af2eeee7c39c892a5b057e7b9ee0eab5d7963310be2de7029a5df99b",
+    "references/activation-preflight.md": "517465b555dbde5b7ebc66b68b54e8689073e5b00af45ce020730b106c87091b",
+    "references/formal-analysis.md": "bd47a78d292b2600429edb1b6ca9bb0da57ac28b1b6d0151c96a90cc3156d341",
+    "references/integrity-boundary.md": "1a79193b51f5c9f15c63df0c4fd17f7daf1ae0f5976360a6a64de493c31d1eea",
+    "references/interrogation.md": "392ca6095271afa4f8cc23fa9723de6dc4700442c919dd9489f499538a712b19",
+    "references/memory-budget.md": "967f3f12d4ee879f4f1ee15106be284a91fad68cd4fd28450532c5fe42587afb",
+    "references/method.md": "719287bb488bac04b682b17a82b39dfb7fee7dc135bc39d7f330ba25a49487c8",
+    "references/research-design.md": "68f84f8d6f25be5e9a0373a2f8bc7eeb73d26374c25751c7be7cfc3b9ba529bc",
+    "references/sealed-validation.md": "c800ad5d82851a708d57ea29f020734ebf5a057228f9304ed5a085da38e066a1",
+    "references/validation.md": "72debcfebf9a0c5690da5ff56762d5e3cb3327fed9074d1f61ab49705a79685d",
+    "references/workflow.md": "987cb5371c4b6b60e177e903d415ec244bd40e69cc057a9ff3f7952d166ba780"
+  },
+  "reviewed_scripts_tests_unchanged": true,
+  "source_manifest_changes": [],
+  "snapshot_cleanup": {
+    "path": "/tmp/independent-246-qucikyww",
+    "removed": true,
+    "method": "shutil.rmtree exact reviewer-owned TemporaryDirectory path"
+  },
+  "ended_utc": "2026-10-28T23:47:12Z",
+  "status": "PASS_WITHIN_DECLARED_COVERAGE",
+  "review_type": "INDEPENDENT_SOURCE_AND_REGRESSION_REVIEW",
+  "all_shared_caller_verification": {
+    "status": "PASS",
+    "evidence": "test_all_uses_largest_shared_role_from_both_policies passes in current full suite and fails against approved helper; synthetic logic caller384MiB exceeds Git caller64MiB at512, combined caller384MiB asserted.",
+    "current_real_quotas_changed": false
+  },
+  "risk_scope": {
+    "items": [
+      2,
+      3
+    ],
+    "reason": "shared admission decision guard changed; independent public decision and role-boundary review performed"
+  },
+  "baseline_and_candidate_script_sha256": {
+    "scripts/activation_preflight.py": {
+      "before": "b51624fa5dd305de596759337bc994cc4bb6b4b2036e74901eb075ee4533a584",
+      "after": "b51624fa5dd305de596759337bc994cc4bb6b4b2036e74901eb075ee4533a584"
+    },
+    "scripts/memory_budget.py": {
+      "before": "c8c17977284f50316bea0ea6fec9b210d7ece60bc7f5e12e1bc13269ad29e6a8",
+      "after": "c8c17977284f50316bea0ea6fec9b210d7ece60bc7f5e12e1bc13269ad29e6a8"
+    },
+    "tests/test_role_policy_source.py": {
+      "before": "d275e1ccad8246ad0a215420900225ae212af6cae665c0e3dab4d52bcaaf4e53",
+      "after": "d275e1ccad8246ad0a215420900225ae212af6cae665c0e3dab4d52bcaaf4e53"
+    }
+  },
+  "cleanup_harness": {
+    "path": "/tmp/independent-246.py",
+    "removed": true
+  }
+}

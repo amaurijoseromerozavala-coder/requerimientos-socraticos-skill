@@ -1,0 +1,72 @@
+test_explicit_coordinator_memory_failure_blocks (test_validation_budget.ValidationBudgetTests.test_explicit_coordinator_memory_failure_blocks) ... ERROR
+test_invalid_policy_rejected_before_spawning (test_validation_budget.ValidationBudgetTests.test_invalid_policy_rejected_before_spawning) ... 
+  test_invalid_policy_rejected_before_spawning (test_validation_budget.ValidationBudgetTests.test_invalid_policy_rejected_before_spawning) (value=0) ... ERROR
+  test_invalid_policy_rejected_before_spawning (test_validation_budget.ValidationBudgetTests.test_invalid_policy_rejected_before_spawning) (value=257) ... ERROR
+  test_invalid_policy_rejected_before_spawning (test_validation_budget.ValidationBudgetTests.test_invalid_policy_rejected_before_spawning) (value=True) ... ERROR
+  test_invalid_policy_rejected_before_spawning (test_validation_budget.ValidationBudgetTests.test_invalid_policy_rejected_before_spawning) (value=2048) ... ERROR
+test_library_caller_limits_unchanged_and_data_workers_capped (test_validation_budget.ValidationBudgetTests.test_library_caller_limits_unchanged_and_data_workers_capped) ... ERROR
+test_public_cli_bounds_owned_caller_and_keeps_byte_identity (test_validation_budget.ValidationBudgetTests.test_public_cli_bounds_owned_caller_and_keeps_byte_identity) ... FAIL
+
+======================================================================
+ERROR: test_explicit_coordinator_memory_failure_blocks (test_validation_budget.ValidationBudgetTests.test_explicit_coordinator_memory_failure_blocks)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/replica-gentle-ai/skills/requerimientos-socraticos/tests/test_validation_budget.py", line 60, in test_explicit_coordinator_memory_failure_blocks
+    validate_git.validate_commit(self.fixture.repo, self.commit, 'prd.json', memory_budget_mib=512)
+TypeError: validate_commit() got an unexpected keyword argument 'memory_budget_mib'
+
+======================================================================
+ERROR: test_invalid_policy_rejected_before_spawning (test_validation_budget.ValidationBudgetTests.test_invalid_policy_rejected_before_spawning) (value=0)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/replica-gentle-ai/skills/requerimientos-socraticos/tests/test_validation_budget.py", line 51, in test_invalid_policy_rejected_before_spawning
+    validate_git.validate_commit(self.fixture.repo, self.commit, 'prd.json', memory_budget_mib=value)
+TypeError: validate_commit() got an unexpected keyword argument 'memory_budget_mib'
+
+======================================================================
+ERROR: test_invalid_policy_rejected_before_spawning (test_validation_budget.ValidationBudgetTests.test_invalid_policy_rejected_before_spawning) (value=257)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/replica-gentle-ai/skills/requerimientos-socraticos/tests/test_validation_budget.py", line 51, in test_invalid_policy_rejected_before_spawning
+    validate_git.validate_commit(self.fixture.repo, self.commit, 'prd.json', memory_budget_mib=value)
+TypeError: validate_commit() got an unexpected keyword argument 'memory_budget_mib'
+
+======================================================================
+ERROR: test_invalid_policy_rejected_before_spawning (test_validation_budget.ValidationBudgetTests.test_invalid_policy_rejected_before_spawning) (value=True)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/replica-gentle-ai/skills/requerimientos-socraticos/tests/test_validation_budget.py", line 51, in test_invalid_policy_rejected_before_spawning
+    validate_git.validate_commit(self.fixture.repo, self.commit, 'prd.json', memory_budget_mib=value)
+TypeError: validate_commit() got an unexpected keyword argument 'memory_budget_mib'
+
+======================================================================
+ERROR: test_invalid_policy_rejected_before_spawning (test_validation_budget.ValidationBudgetTests.test_invalid_policy_rejected_before_spawning) (value=2048)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/replica-gentle-ai/skills/requerimientos-socraticos/tests/test_validation_budget.py", line 51, in test_invalid_policy_rejected_before_spawning
+    validate_git.validate_commit(self.fixture.repo, self.commit, 'prd.json', memory_budget_mib=value)
+TypeError: validate_commit() got an unexpected keyword argument 'memory_budget_mib'
+
+======================================================================
+ERROR: test_library_caller_limits_unchanged_and_data_workers_capped (test_validation_budget.ValidationBudgetTests.test_library_caller_limits_unchanged_and_data_workers_capped)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/replica-gentle-ai/skills/requerimientos-socraticos/tests/test_validation_budget.py", line 26, in test_library_caller_limits_unchanged_and_data_workers_capped
+    result = validate_git.validate_commit(self.fixture.repo, self.commit, 'prd.json', memory_budget_mib=512)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: validate_commit() got an unexpected keyword argument 'memory_budget_mib'
+
+======================================================================
+FAIL: test_public_cli_bounds_owned_caller_and_keeps_byte_identity (test_validation_budget.ValidationBudgetTests.test_public_cli_bounds_owned_caller_and_keeps_byte_identity)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/replica-gentle-ai/skills/requerimientos-socraticos/tests/test_validation_budget.py", line 42, in test_public_cli_bounds_owned_caller_and_keeps_byte_identity
+    self.assertEqual(run.returncode, 0, run.stdout+run.stderr)
+AssertionError: 2 != 0 : usage: validate_git.py [-h] --commit COMMIT --prd PRD [--timeout TIMEOUT] repo
+validate_git.py: error: unrecognized arguments: --memory-budget-mib 512
+
+
+----------------------------------------------------------------------
+Ran 4 tests in 0.057s
+
+FAILED (failures=1, errors=6)

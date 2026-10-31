@@ -1,0 +1,335 @@
+{
+  "observed_at": "2026-10-26T16:39:00.641446+00:00",
+  "command": "python3 /tmp/validate-qa-prd.py",
+  "python_version": "3.12.14",
+  "checker_sha256": "cdc7b3aa072db33b5b9b1e4cbed40817899cd7130eefd5561a871e6ef797c3fb",
+  "checker_retained_at": "evidence/document-checker.txt",
+  "scope": "Document/schema/reference/FSM validation only, not application QA.",
+  "tests": [
+    {
+      "id": "A01",
+      "status": "PASS",
+      "observed": "REJECT",
+      "expected_reason": "MISSING_REQUIREMENTS",
+      "witness": {
+        "requirements": [],
+        "expected_minimum": 18
+      }
+    },
+    {
+      "id": "A02",
+      "status": "PASS",
+      "observed": "ACCEPT",
+      "detail": [
+        null,
+        {
+          "requirements": 20,
+          "falsifiers": 21,
+          "semantic_ir": 20
+        }
+      ]
+    },
+    {
+      "id": "A03",
+      "status": "PASS",
+      "observed": "REJECT",
+      "expected_reason": "REPORT_SCHEMA",
+      "witness": {
+        "path": [
+          "VERIFICATION",
+          "coverage"
+        ],
+        "message": "'COMPLETE' was expected"
+      }
+    },
+    {
+      "id": "A04",
+      "status": "PASS",
+      "observed": "REJECT",
+      "expected_reason": "REPORT_SCHEMA",
+      "witness": {
+        "path": [
+          "ANALYSIS",
+          "claims"
+        ],
+        "message": "[{'id': 'CL-synthetic', 'statement_es': 'Afirmación sintética de prueba estructural.', 'classification': 'FACT', 'verification': 'UNVERIFIED', 'material': True, 'evidence_ids': ['E-synthetic'], 'limitations_es': ['Fixture; no constituye conocimiento sobre un sistema real.']}] should not be valid under {'contains': {'properties': {'material': {'const': True}, 'verification': {'enum': ['UNVERIFIED', 'REFUTED']}}, 'required': ['material', 'verification']}}"
+      }
+    },
+    {
+      "id": "A05",
+      "status": "PASS",
+      "observed": "REJECT",
+      "expected_reason": "REPORT_SCHEMA",
+      "witness": {
+        "path": [
+          "ANALYSIS",
+          "claims",
+          0,
+          "evidence_ids"
+        ],
+        "message": "[] should be non-empty"
+      }
+    },
+    {
+      "id": "A06",
+      "status": "PASS",
+      "observed": "REJECT",
+      "expected_reason": "REPORT_SCHEMA",
+      "witness": {
+        "path": [
+          "VERIFICATION",
+          "evidence",
+          0,
+          "kind"
+        ],
+        "message": "'REAL_EXECUTION' was expected"
+      }
+    },
+    {
+      "id": "A07",
+      "status": "PASS",
+      "observed": "REJECT",
+      "expected_reason": "COVERAGE",
+      "witness": {
+        "state": "DONE",
+        "actor": "OTHER",
+        "event": "OTHER",
+        "values": {
+          "evidence_complete": false,
+          "scope_complete": false
+        },
+        "matching": []
+      }
+    },
+    {
+      "id": "A08",
+      "status": "PASS",
+      "observed": "REJECT",
+      "expected_reason": "NONDETERMINISM",
+      "witness": {
+        "state": "CAPTURED",
+        "actor": "QA",
+        "event": "PROGRESS",
+        "values": {
+          "evidence_complete": false,
+          "scope_complete": false
+        },
+        "matching": [
+          "T1",
+          "T-duplicate"
+        ]
+      }
+    },
+    {
+      "id": "A09",
+      "status": "PASS",
+      "observed": "REJECT",
+      "expected_reason": "AUTHORIZATION",
+      "witness": "T6"
+    },
+    {
+      "id": "A10",
+      "status": "PASS",
+      "observed": "REJECT",
+      "expected_reason": "REJECT_MUTATES",
+      "witness": "T3"
+    },
+    {
+      "id": "A11",
+      "status": "PASS",
+      "observed": "REJECT",
+      "expected_reason": "INVARIANT",
+      "witness": {
+        "invariant": "I1",
+        "trace": [
+          "T1"
+        ],
+        "state": "DONE",
+        "values": {
+          "evidence_complete": false,
+          "scope_complete": false
+        }
+      }
+    },
+    {
+      "id": "A12",
+      "status": "PASS",
+      "observed": "REJECT",
+      "expected_reason": "DANGLING_REFERENCE",
+      "witness": [
+        "IR-NONEXISTENT"
+      ]
+    },
+    {
+      "id": "A13",
+      "status": "PASS",
+      "observed": "ACCEPT",
+      "detail": [
+        null,
+        "hashes, cross-references and planned/evidence execution kinds match"
+      ]
+    },
+    {
+      "id": "A14",
+      "status": "PASS",
+      "observed": "ACCEPT",
+      "detail": {
+        "all_configuration_inputs_checked": 280,
+        "reachable_configurations": 8,
+        "reachable_edges_checked": 80,
+        "finite_completion_witness": [
+          "T1",
+          "T11",
+          "T21",
+          "T31",
+          "T41"
+        ],
+        "invalidation_edges_checked": 8,
+        "limitations": "Finite control model only; external phase oracles and real application behavior are not proved."
+      }
+    },
+    {
+      "id": "A15",
+      "status": "PASS",
+      "observed": "REJECT",
+      "expected_reason": "STALE_EVIDENCE",
+      "witness": {
+        "evidence": "E-synthetic",
+        "evidence_snapshot": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+        "target_snapshot": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+      }
+    },
+    {
+      "id": "A16",
+      "status": "PASS",
+      "observed": "REJECT",
+      "expected_reason": "REPORT_SCHEMA",
+      "witness": {
+        "path": [],
+        "message": "Additional properties are not allowed ('hidden_override' was unexpected)"
+      }
+    },
+    {
+      "id": "A17",
+      "status": "PASS",
+      "observed": "REJECT",
+      "expected_reason": "REPORT_SCHEMA",
+      "witness": {
+        "path": [
+          "TEST PLAN",
+          "cases"
+        ],
+        "message": "[{'id': 'TEST-synthetic', 'requirement_ids': ['R02'], 'category': 'POSITIVE', 'counterexample_es': 'Claim verificado sin evidencia.', 'oracle_es': 'Contrato de salida', 'execution_kind': 'STATIC_REVIEW', 'authorization_status': 'NOT_APPLICABLE', 'resource_budget_es': 'Fixture en memoria; sin ejecución de aplicación.'}] does not contain items matching the given schema"
+      }
+    },
+    {
+      "id": "A18",
+      "status": "PASS",
+      "observed": "REJECT",
+      "expected_reason": "REPORT_SCHEMA",
+      "witness": {
+        "path": [
+          "VERIFICATION",
+          "evidence",
+          0,
+          "result"
+        ],
+        "message": "'PASS' was expected"
+      }
+    },
+    {
+      "id": "A19",
+      "status": "PASS",
+      "observed": "REJECT",
+      "expected_reason": "DANGLING_REFERENCE",
+      "witness": "TEST-synthetic"
+    },
+    {
+      "id": "A20",
+      "status": "PASS",
+      "observed": "REJECT",
+      "expected_reason": "EVIDENCE_KIND_MISMATCH",
+      "witness": {
+        "test_id": "TEST-synthetic",
+        "planned": "REAL_EXECUTION",
+        "supporting_kinds": [
+          "STATIC_REVIEW"
+        ]
+      }
+    },
+    {
+      "id": "A21",
+      "status": "PASS",
+      "observed": "ACCEPT",
+      "detail": "hashes, cross-references and planned/evidence execution kinds match"
+    },
+    {
+      "id": "A22",
+      "status": "PASS",
+      "observed": "REJECT",
+      "expected_reason": "DUPLICATE_ID",
+      "witness": {
+        "category": "cases",
+        "ids": [
+          "TEST-synthetic",
+          "TEST-synthetic"
+        ]
+      }
+    },
+    {
+      "id": "A23",
+      "status": "PASS",
+      "observed": "REJECT",
+      "expected_reason": "DUPLICATE_ID",
+      "witness": {
+        "category": "evidence",
+        "ids": [
+          "E-synthetic",
+          "E-synthetic"
+        ]
+      }
+    },
+    {
+      "id": "A24",
+      "status": "PASS",
+      "observed": "REJECT",
+      "expected_reason": "DUPLICATE_ID",
+      "witness": {
+        "category": "results",
+        "ids": [
+          "TEST-synthetic",
+          "TEST-synthetic"
+        ]
+      }
+    },
+    {
+      "id": "A25",
+      "status": "PASS",
+      "observed": "REJECT",
+      "expected_reason": "MISSING_RESULT",
+      "witness": "TEST-synthetic"
+    }
+  ],
+  "formal_result": {
+    "all_configuration_inputs_checked": 280,
+    "reachable_configurations": 8,
+    "reachable_edges_checked": 80,
+    "finite_completion_witness": [
+      "T1",
+      "T11",
+      "T21",
+      "T31",
+      "T41"
+    ],
+    "invalidation_edges_checked": 8,
+    "limitations": "Finite control model only; external phase oracles and real application behavior are not proved."
+  },
+  "source_sha256": {
+    "prd.json": "272773be62ece255c48aa117ccd55a9319df4cd2ce381168e3c0fb8e161933ef",
+    "qa-report.schema.json": "bb938680349981d263b194a6d8cf82aab6ed47aba67e9342052c7be8671443b7",
+    "environment-target.json": "575f8e1405c712a51e124a3bbf29d4b25e00dc820db47eef7aeac3c07ff65371",
+    "acceptance-cases.json": "33f6f786ed82d21269c21c2e206ebc0e1d89a19c5def5f8a1eb3a879cf4df4cd",
+    "PRD.md": "b84429cb06cb259603e0f7d24a51d03e084fbb63b1ca194a35d9ce110457e3c0"
+  },
+  "native_rdd": "NOT_RUN"
+}

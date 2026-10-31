@@ -1,0 +1,15 @@
+{
+  "version": "0.1.3-alpha",
+  "status": "APPROVED_AND_ACKNOWLEDGED",
+  "target_identity": "sha256:aabfa52ad49dd986576f01d7d43eec90e283e553c8aba859e94e750b01683ebf",
+  "tests_local": 62,
+  "tests_independent": 62,
+  "additional_independent_checks": 2,
+  "native_risk": "medium",
+  "changed_files": 4,
+  "changed_lines": 149,
+  "production": "NOT_AUTHORIZED",
+  "physical_calibration": "NOT_RUN",
+  "lineage_id": "review-7a9416af43bbf95b",
+  "native_review": "Static review of the correction; no findings; no test execution by native reviewers"
+}

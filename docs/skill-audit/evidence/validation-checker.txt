@@ -1,0 +1,101 @@
+import json,hashlib,copy,re,itertools,collections,datetime,sys
+from pathlib import Path
+from jsonschema import Draft202012Validator
+R=Path('/workspace/replica-gentle-ai/skills/requerimientos-socraticos')
+S=json.loads((R/'assets/prd.schema.json').read_text());P=json.loads((R/'assets/example.prd.json').read_text());checks=[]
+def record(name,fn):
+ fn();checks.append({'name':name,'result':'PASS'})
+def require(x,msg):
+ if not x:raise AssertionError(msg)
+def invalid(x):return bool(list(Draft202012Validator(S).iter_errors(x)))
+def mutation(fn):
+ x=copy.deepcopy(P);fn(x);require(invalid(x),'Schema mutation escaped')
+def inspect_fsm(c):
+ f=c['fsm'];states=f['states'];actors=f['actors'];events=f['events'];domains=f['variables'];ts=f['transitions']
+ require('OTHER' in actors and 'OTHER' in events,'OTHER missing')
+ for xs in [states,actors,events,[t['id'] for t in ts]]:require(len(xs)==len(set(xs)),'duplicate ID')
+ def val_ok(v,complete=False):
+  require(set(v)<=set(domains),'unknown variable')
+  if complete:require(set(v)==set(domains),'incomplete valuation')
+  for k,vv in v.items():require(vv in domains[k],'out of domain')
+ val_ok(f['initial']['values'],True)
+ for t in ts:
+  require(t['from'] in states and t['to'] in states and t['actor'] in actors and t['event'] in events,'bad reference')
+  val_ok(t['effects'])
+  for g in t['guard_dnf']:val_ok(g)
+  if t['outcome']=='REJECT':require(t['from']==t['to'] and not t['effects'],'reject mutates')
+  if t['from'] in f['terminal_states']:require(t['outcome']=='REJECT','terminal allows')
+ def key(s,v):return(s,json.dumps(v,sort_keys=True))
+ initial=key(f['initial']['state'],f['initial']['values']);seen={initial};queue=collections.deque([(initial,[])])
+ explored=0
+ while queue:
+  (state,serialized),trace=queue.popleft();v=json.loads(serialized)
+  for inv in f['invariants']:
+   for pattern in inv['forbidden_patterns']:
+    require(not(pattern['state']==state and all(v.get(k)==vv for k,vv in pattern['values'].items())),f'invariant witness {trace}')
+  for actor,event in itertools.product(actors,events):
+   enabled=[t for t in ts if t['from']==state and t['actor']==actor and t['event']==event and any(all(v[k]==vv for k,vv in g.items()) for g in t['guard_dnf'])]
+   require(len(enabled)==1,f'coverage/determinism witness {trace+[actor+":"+event]}, matches={len(enabled)}')
+   t=enabled[0];explored+=1
+   # This is an example-specific oracle, not a parser for arbitrary natural-language logic.
+   if t['outcome']=='ALLOW':require((state,actor,event)==('inactive','operator','enable'),'authorization witness '+str(trace+[t['id']]))
+   w=dict(v);w.update(t['effects']);n=key(t['to'],w)
+   if n not in seen:seen.add(n);queue.append((n,trace+[t['id']]))
+ require({s for s,_ in seen}==set(states),'unreachable state')
+ return {'reachable_configurations':len(seen),'evaluated_inputs':explored}
+def fsm_bad(change):
+ c=copy.deepcopy(P['candidate']);change(c['fsm'])
+ try:inspect_fsm(c)
+ except AssertionError:return
+ raise AssertionError('FSM mutation escaped')
+def basic():
+ text=(R/'SKILL.md').read_text();require(text.startswith('---\nname: requerimientos-socraticos\n'),'frontmatter')
+ desc=next(l for l in text.splitlines() if l.startswith('description:'))
+ require(desc.startswith('description: "Trigger:') and len(desc.split(': ',1)[1])-2<=250,'description')
+ sections=['Activation Contract','Hard Rules','Decision Gates','Execution Steps','Output Contract','References']
+ positions=[text.index('## '+x) for x in sections];require(positions==sorted(positions),'section order')
+ for loc in re.findall(r'\]\(([^)]+)\)',text):require((R/loc).exists(),'missing ref '+loc)
+ for x in ['name:','description:','license:','metadata:','  author:','  version:']:require(x in text,'metadata')
+record('frontmatter, section order and all local references',basic)
+record('JSON Schema Draft 2020-12 meta-validation',lambda:Draft202012Validator.check_schema(S))
+record('DRAFT example validates',lambda:Draft202012Validator(S).validate(P))
+record('READY promotion without evidence is rejected',lambda:mutation(lambda x:x.update(status='READY')))
+record('Unknown normative property is rejected',lambda:mutation(lambda x:x['candidate']['requirements'][0].update(hidden_bypass=True)))
+record('Missing falsifier oracle is rejected',lambda:mutation(lambda x:x['candidate']['falsifiers'][0].pop('oracle')))
+record('Nonfunctional requirement without metrics is rejected',lambda:mutation(lambda x:x['candidate']['requirements'][0].update(kind='NONFUNCTIONAL')))
+# Structural READY tests use explicitly synthetic in-memory declarations, never real native receipts.
+ready=copy.deepcopy(P);ready['status']='READY';a=ready['assurance'];a['formal_status']='PASS_BOUNDED';a['checks']={k:'PASS' for k in a['checks']};a['rdd']={'mode':'ON','status':'NATIVE_PASS','receipt_locator':'SYNTHETIC-TEST-ONLY','candidate_identity':'SYNTHETIC-TEST-ONLY','independent_reviewer':'SYNTHETIC-TEST-ONLY'}
+a['evidence']=[{'id':'E-test','candidate_sha256':a['candidate_sha256'],'command_or_tool':'synthetic schema branch test','version':'1','cwd_or_url':'in-memory','observed_at':'synthetic','exit_code':0,'result':'PASS','output_locator':'none: synthetic schema branch test','scope_and_limits':'Not actual review evidence.'}]
+for f in ready['candidate']['falsifiers']:f.update(status='NOT_REFUTED_UNDER_TEST',evidence_ids=['E-test'])
+record('READY branch can validate a structurally complete synthetic declaration',lambda:Draft202012Validator(S).validate(ready))
+def bad_ready(name,change):
+ def check():
+  x=copy.deepcopy(ready);change(x);require(invalid(x),'READY gate escaped')
+ record(name,check)
+bad_ready('READY rejects open material question',lambda x:x['candidate']['questions'].append({'id':'Q1','question':'Who authorizes?','dimension':'authority','blocking':True,'status':'OPEN','answer_source_ids':[]}))
+bad_ready('READY rejects deferred material question',lambda x:x['candidate']['questions'].append({'id':'Q1','question':'Who authorizes?','dimension':'authority','blocking':True,'status':'DEFERRED','answer_source_ids':[]}))
+bad_ready('READY rejects material gap',lambda x:x['candidate']['gaps'].append({'id':'G1','kind':'ASSURANCE','description':'review missing','material':True,'status':'OPEN','requirement_ids':['R1'],'resolution_source_ids':[]}))
+bad_ready('READY rejects partial formal check',lambda x:x['assurance'].update(formal_status='PARTIAL'))
+bad_ready('READY rejects incomplete abstraction',lambda x:x['candidate']['fsm'].update(abstraction_complete=False))
+bad_ready('READY rejects RDD OFF',lambda x:x['assurance']['rdd'].update(mode='OFF',status='DISABLED'))
+bad_ready('READY rejects missing native receipt',lambda x:x['assurance']['rdd'].update(receipt_locator=None))
+bad_ready('READY rejects pending counterexample',lambda x:x['assurance']['counterexamples'].append({'id':'CE1','property':'authorization','trace':['OTHER:enable'],'observation':'unauthorized','resolved':False}))
+bad_ready('READY rejects not-run evidence',lambda x:x['assurance']['evidence'][0].update(result='NOT_RUN'))
+record('Finite FSM positive enumeration',lambda:inspect_fsm(P['candidate']))
+record('FSM RED: missing rejection yields coverage witness',lambda:fsm_bad(lambda f:f['transitions'].pop()))
+record('FSM RED: duplicate transition yields nondeterminism witness',lambda:fsm_bad(lambda f:f['transitions'].append(dict(f['transitions'][0],id='T-duplicate'))))
+record('FSM RED: unauthorized ALLOW is detected',lambda:fsm_bad(lambda f:f['transitions'][2].update(outcome='ALLOW')))
+record('FSM RED: rejection with side effect is detected',lambda:fsm_bad(lambda f:f['transitions'][2].update(to='active')))
+record('FSM RED: reachable forbidden state is detected',lambda:fsm_bad(lambda f:f['invariants'].append({'id':'I-bad','requirement_ids':['R1'],'forbidden_patterns':[{'state':'active','values':{}}]})))
+def traces():
+ c=P['candidate'];rids={x['id'] for x in c['requirements']};irs={x['id'] for x in c['semantic_ir']};inputs={x['id'] for x in c['raw_inputs']};fids={x['id'] for x in c['falsifiers']};tids={x['id'] for x in c['fsm']['transitions']}
+ for r in c['requirements']:
+  require(set(r['ir_ids'])<=irs and set(r['falsifier_ids'])<=fids and set(r['transition_ids'])<=tids,'traceability')
+ for ir in c['semantic_ir']:require(set(ir['input_ids'])<=inputs,'input refs')
+ for f in c['falsifiers']:require(set(f['claim_ids'])<=rids,'falsifier refs')
+ for t in c['fsm']['transitions']:require(set(t['requirement_ids'])<=rids,'transition refs')
+ h=hashlib.sha256(json.dumps(c,ensure_ascii=False,sort_keys=True,separators=(',',':')).encode()).hexdigest();require(h==P['assurance']['candidate_sha256'],'candidate hash')
+record('Example IDs, trace references and canonical candidate hash',traces)
+result={'artifact':'skill-validation; not a PRD/native RDD receipt','observed_at':datetime.datetime.now(datetime.timezone.utc).isoformat(),'command':'python3 /tmp/check-socratic-skill.py','checker_sha256':hashlib.sha256(Path(__file__).read_bytes()).hexdigest(),'checker_location':'/tmp/check-socratic-skill.py (temporary session verifier, not product code)','python_version':sys.version.split()[0],'checks':checks,'model_scope':inspect_fsm(P['candidate']),'limits':['Synthetic finite example only.','Authorization oracle is example-specific.','Natural-language semantic equivalence and completeness are not mechanically proved.','No native RDD receipt or independent-review PASS claimed.'],'artifact_hashes':{str(p.relative_to(R)):hashlib.sha256(p.read_bytes()).hexdigest() for p in sorted(R.rglob('*')) if p.is_file() and p.name != 'validation.json'}}
+(R/'validation.json').write_text(json.dumps(result,ensure_ascii=False,indent=2)+'\n')
+print(json.dumps({'passed':len(checks),'failed':0,'fsm':result['model_scope'],'native_rdd':'NOT_PERFORMED'},indent=2))

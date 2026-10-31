@@ -1,6 +1,13 @@
+# Local runtime and credentials
+.atl/
 .venv/
+venv/
 __pycache__/
 *.py[cod]
 .env
 .env.*
-*.log
+!.env.example
+.codex/
+backups/
+downloads/
+libexec/gentle-ai-*

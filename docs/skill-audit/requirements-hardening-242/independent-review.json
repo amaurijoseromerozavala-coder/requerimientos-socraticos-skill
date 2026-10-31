@@ -1,0 +1,199 @@
+{
+  "status": "PASS_WITHIN_REVIEWED_SCOPE",
+  "temporary_copy": "/tmp/requirements-242-independent-ltk3x_0z",
+  "tests": [
+    {
+      "subset": "test_git_bundle",
+      "command": [
+        "/home/agent/.local/share/requerimientos-socraticos/venv/bin/python",
+        "-B",
+        "-m",
+        "unittest",
+        "-v",
+        "test_git_bundle"
+      ],
+      "timeout_seconds": 20,
+      "returncode": 0,
+      "elapsed_seconds": 0.059638361999986955,
+      "stdout": "",
+      "stderr": "test_binary_round_trip_and_nested_path (test_git_bundle.BundleTests.test_binary_round_trip_and_nested_path) ... ok\ntest_changed_blob_bytes_rejected (test_git_bundle.BundleTests.test_changed_blob_bytes_rejected) ... ok\ntest_invalid_metadata_rejected_before_body_read (test_git_bundle.BundleTests.test_invalid_metadata_rejected_before_body_read) ... ok\ntest_truncation_and_trailing_data_rejected (test_git_bundle.BundleTests.test_truncation_and_trailing_data_rejected) ... ok\ntest_unsafe_path_and_missing_prd_rejected (test_git_bundle.BundleTests.test_unsafe_path_and_missing_prd_rejected) ... ok\n\n----------------------------------------------------------------------\nRan 5 tests in 0.001s\n\nOK\n"
+    },
+    {
+      "subset": "test_document_source",
+      "command": [
+        "/home/agent/.local/share/requerimientos-socraticos/venv/bin/python",
+        "-B",
+        "-m",
+        "unittest",
+        "-v",
+        "test_document_source"
+      ],
+      "timeout_seconds": 20,
+      "returncode": 0,
+      "elapsed_seconds": 0.15794261300004564,
+      "stdout": "",
+      "stderr": "test_direct_receipt_api_accepts_source (test_document_source.DependencyTests.test_direct_receipt_api_accepts_source) ... ok\ntest_each_dependency_and_receipt_is_oid_checked (test_document_source.DependencyTests.test_each_dependency_and_receipt_is_oid_checked) ... ok\ntest_existing_dependency_and_receipt_diagnostics_are_preserved (test_document_source.DependencyTests.test_existing_dependency_and_receipt_diagnostics_are_preserved) ... ok\ntest_interview_source_without_base_checks_receipts (test_document_source.DependencyTests.test_interview_source_without_base_checks_receipts) ... ok\ntest_memory_dependency_escape_rejected (test_document_source.DependencyTests.test_memory_dependency_escape_rejected) ... ok\ntest_memory_prd_reads_only_installed_schemas_from_filesystem (test_document_source.DependencyTests.test_memory_prd_reads_only_installed_schemas_from_filesystem) ... ok\ntest_nonregular_receipt_preserves_missing_diagnostic (test_document_source.DependencyTests.test_nonregular_receipt_preserves_missing_diagnostic) ... ok\ntest_prd_scopes_interview_receipts_to_its_subdirectory (test_document_source.DependencyTests.test_prd_scopes_interview_receipts_to_its_subdirectory) ... ok\ntest_blob_oid_is_git_sha256_not_content_sha256 (test_document_source.SourceTests.test_blob_oid_is_git_sha256_not_content_sha256) ... ok\ntest_canonical_posix_paths_at_all_entrypoints (test_document_source.SourceTests.test_canonical_posix_paths_at_all_entrypoints) ... ok\ntest_consumed_files_are_verified_shared_scoped_and_copied (test_document_source.SourceTests.test_consumed_files_are_verified_shared_scoped_and_copied) ... ok\ntest_filesystem_source_scope_and_rejected_symlink (test_document_source.SourceTests.test_filesystem_source_scope_and_rejected_symlink) ... ok\ntest_memory_copies_both_mappings (test_document_source.SourceTests.test_memory_copies_both_mappings) ... ok\ntest_memory_read_preserves_file_size_limit (test_document_source.SourceTests.test_memory_read_preserves_file_size_limit) ... ok\ntest_missing_document_has_filesystem_compatible_exception (test_document_source.SourceTests.test_missing_document_has_filesystem_compatible_exception) ... ok\ntest_missing_or_surplus_oid_is_rejected (test_document_source.SourceTests.test_missing_or_surplus_oid_is_rejected) ... ok\ntest_scopes_are_relative_and_keep_byte_identity (test_document_source.SourceTests.test_scopes_are_relative_and_keep_byte_identity) ... ok\ntest_values_must_be_immutable_bytes (test_document_source.SourceTests.test_values_must_be_immutable_bytes) ... ok\n\n----------------------------------------------------------------------\nRan 18 tests in 0.048s\n\nOK\n"
+    },
+    {
+      "subset": "test_git_memory",
+      "command": [
+        "/home/agent/.local/share/requerimientos-socraticos/venv/bin/python",
+        "-B",
+        "-m",
+        "unittest",
+        "-v",
+        "test_git_memory"
+      ],
+      "timeout_seconds": 20,
+      "returncode": 0,
+      "elapsed_seconds": 0.3789477249999891,
+      "stdout": "",
+      "stderr": "test_git_and_document_worker_use_shared_supervision (test_git_memory.GitMemoryTests.test_git_and_document_worker_use_shared_supervision) ... ok\ntest_git_consumer_stops_after_parent_termination (test_git_memory.GitMemoryTests.test_git_consumer_stops_after_parent_termination) ... ok\ntest_no_candidate_scratch_and_original_status_preserved (test_git_memory.GitMemoryTests.test_no_candidate_scratch_and_original_status_preserved) ... ok\n\n----------------------------------------------------------------------\nRan 3 tests in 0.293s\n\nOK\n"
+    },
+    {
+      "subset": "test_process_supervision",
+      "command": [
+        "/home/agent/.local/share/requerimientos-socraticos/venv/bin/python",
+        "-B",
+        "-m",
+        "unittest",
+        "-v",
+        "test_process_supervision"
+      ],
+      "timeout_seconds": 20,
+      "returncode": 0,
+      "elapsed_seconds": 0.2524368770000365,
+      "stdout": "",
+      "stderr": "test_each_output_stream_is_bounded_and_worker_reaped (test_process_supervision.ProcessSupervisionTests.test_each_output_stream_is_bounded_and_worker_reaped) ... ok\ntest_exact_output_limit_and_empty_input_succeed (test_process_supervision.ProcessSupervisionTests.test_exact_output_limit_and_empty_input_succeed) ... ok\ntest_explicit_descriptor_is_inherited (test_process_supervision.ProcessSupervisionTests.test_explicit_descriptor_is_inherited) ... ok\ntest_explicit_environment_and_raw_non_utf8_output (test_process_supervision.ProcessSupervisionTests.test_explicit_environment_and_raw_non_utf8_output) ... ok\ntest_input_and_output_progress_without_pipe_deadlock (test_process_supervision.ProcessSupervisionTests.test_input_and_output_progress_without_pipe_deadlock) ... ok\ntest_input_byte_ceiling_before_spawn_with_small_injected_budget (test_process_supervision.ProcessSupervisionTests.test_input_byte_ceiling_before_spawn_with_small_injected_budget) ... ok\ntest_invalid_budget_or_input_starts_no_worker (test_process_supervision.ProcessSupervisionTests.test_invalid_budget_or_input_starts_no_worker) ... ok\ntest_output_budget_upper_bound_and_types_start_no_worker (test_process_supervision.ProcessSupervisionTests.test_output_budget_upper_bound_and_types_start_no_worker) ... ok\ntest_stdin_write_obeys_total_deadline (test_process_supervision.ProcessSupervisionTests.test_stdin_write_obeys_total_deadline) ... ok\n\n----------------------------------------------------------------------\nRan 9 tests in 0.180s\n\nOK\n"
+    }
+  ],
+  "reviewed_at_utc": "2026-10-28T11:30:41.569794+00:00",
+  "findings": [],
+  "source_drift_since_snapshot": [],
+  "copy_drift": [],
+  "test_total": 35,
+  "skipped": 0,
+  "all_test_subsets_passed": true,
+  "scope": [
+    "S1 process_supervision.py and shared callers analyze_logic.py, validate_git.py; bounded stdin/stdout/stderr, owned-group timeout cleanup and Linux direct-child policy",
+    "S2 git_bundle.py framed metadata/body bounds and SHA256 Git blob identity; git_document_worker.py MemorySource transfer; dependency/receipt reads through same verified source",
+    "S3 inspection: normalize_text.py explicit output0600; no CI execution or changes, advance remains BLOCKED_GLOBAL_ENFORCEMENT; human authority remains document requirement"
+  ],
+  "static_evidence": [
+    {
+      "file": "skills/requerimientos-socraticos/scripts/process_supervision.py",
+      "lines": [
+        24,
+        33,
+        63,
+        78,
+        86,
+        130,
+        161
+      ],
+      "observation": "Checks budgets before spawning; Popen creates owned session; selector loop pumps full duplex and kills owned group on timeout/output limit. PIDs originate in successful Popen. Linux child sets PDEATHSIG and checks original parent."
+    },
+    {
+      "file": "skills/requerimientos-socraticos/scripts/analyze_logic.py",
+      "lines": [
+        18,
+        100
+      ],
+      "observation": "Analyzer calls shared supervision primitive."
+    },
+    {
+      "file": "skills/requerimientos-socraticos/scripts/validate_git.py",
+      "lines": [
+        32,
+        43,
+        62,
+        67,
+        83,
+        85,
+        98,
+        105,
+        115,
+        126
+      ],
+      "observation": "Git commit/tree/blob objects rehashed with Git SHA256 framing; same verified blobs encoded to worker; worker consumed manifest compared against source object manifest; Git commands and worker call same supervisor; advance blocked."
+    },
+    {
+      "file": "skills/requerimientos-socraticos/scripts/git_bundle.py",
+      "lines": [
+        13,
+        32,
+        60,
+        101,
+        113
+      ],
+      "observation": "Frame limits header 2MiB, file8MiB, total32MiB,4096 entries; metadata canonicality and duplicate paths/keys rejected; encode and decode both verify framed Git blob OIDs; trailing/truncated data rejected."
+    },
+    {
+      "file": "skills/requerimientos-socraticos/scripts/git_document_worker.py",
+      "lines": [
+        13,
+        14,
+        15
+      ],
+      "observation": "Reads transport from stdin, constructs in-memory source, validates installed engine with scoped source; no candidate writes."
+    },
+    {
+      "file": "skills/requerimientos-socraticos/scripts/document_source.py",
+      "lines": [
+        62,
+        85,
+        94,
+        100
+      ],
+      "observation": "Copies mappings into mapping proxies with immutable bytes; every consumed read checks framed OID and records both Git OID and content hash; scopes share verified consumption registry."
+    },
+    {
+      "file": "skills/requerimientos-socraticos/scripts/validate_prd.py",
+      "lines": [
+        10,
+        12,
+        22,
+        27
+      ],
+      "observation": "PRD, interview and design reads use same source and interview receipts use source scoped to interview parent."
+    },
+    {
+      "file": "skills/requerimientos-socraticos/scripts/validate_interview.py",
+      "lines": [
+        26,
+        36,
+        42,
+        100,
+        139
+      ],
+      "observation": "Original receipt/dependency diagnoses retained by tests; question, answer and research receipts read through provided source; positional legacy API remains accepted."
+    },
+    {
+      "file": "skills/requerimientos-socraticos/scripts/normalize_text.py",
+      "lines": [
+        22,
+        41
+      ],
+      "observation": "Output0600 remains explicit; inspection only, independent subset did not execute normalization."
+    }
+  ],
+  "limitations": [
+    "No exhaustive suite, stress/exhaustion experiment or production deployment performed by independent reviewer.",
+    "No new RED result claimed; this independent run provides GREEN reproduction of 35 existing candidate tests.",
+    "Linux owned direct-child parent-death behavior executed in bounded synthetic test; not universal descendant, kernel, same-UID or hard real-time containment.",
+    "Physical i3/WSL hardware NOT_RUN; no hardware coverage claim.",
+    "S3 normalize output0600 inspected statically here; parent reports separately executed normalizer regression, not counted as independent execution.",
+    "Historical API behavior beyond existing focused compatibility tests was not exhaustively reconstructed.",
+    "Trusted installed scripts, schemas, Python/Git and OS remain declared trust boundary."
+  ],
+  "cleanup": {
+    "temporary_copy": "/tmp/requirements-242-independent-ltk3x_0z",
+    "owner": "parent agent",
+    "pending": "Parent requested retention until review handoff and will remove copy at end."
+  },
+  "mutations": [
+    "docs/skill-audit/requirements-hardening-242/independent-review.json",
+    "docs/skill-audit/requirements-hardening-242/independent-tests.log",
+    "docs/skill-audit/requirements-hardening-242/independent-manifest.json"
+  ]
+}

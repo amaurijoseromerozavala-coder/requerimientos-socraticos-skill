@@ -1,0 +1,12 @@
+{
+  "skills/requerimientos-socraticos/scripts/analyze_logic.py": "00808ad2df9a6aab8a0b30161a897ff7a4be977024e42adcac868e27979a2014",
+  "skills/requerimientos-socraticos/scripts/logic_engine.py": "6bae53fe4d50447b84b9f5a972e18193b56c60dbb35cc9c2c5d04f8793a40296",
+  "skills/requerimientos-socraticos/scripts/json_preflight.py": "1aba3975e3696c82cf8689ab15721572ab55c7c2eeeae7b1f2a87bbe32c2a295",
+  "skills/requerimientos-socraticos/scripts/probe_environment.py": "2e7a2b189441edb1ecf72b40230c00d316a7a46d5f8a8fd5d7e69f69a67a9b01",
+  "skills/requerimientos-socraticos/tests/test_supervisor.py": "3db78d559c8000bf4ec98f68f0e8f17d0be4660a98982333f9ccd5e303003398",
+  "skills/requerimientos-socraticos/tests/test_preflight.py": "84f953e343f9dfb737da9a06b43d3dc65b1ee873b9bcca04f6bde086142acd86",
+  "skills/requerimientos-socraticos/tests/test_logic.py": "4259edee3995760dd6d1ccefcaf2381616e1fc0b45a1bf65a57a6a73ad4f4321",
+  "skills/requerimientos-socraticos/tests/test_environment.py": "301e7b85642ead742365171d33cf670a03cdb4fd0baeefec5ed3b290ed4334cf",
+  "bin/gentle-ai": "4af07e2c09cc1a115cb12aa5d385766682229c65746c6b7700d2b3d5febf51fb",
+  "skills/requerimientos-socraticos/references/formal-analysis.md": "0014911568d198833d0dfd0b707f5e6e1fe9d43123c652a8baf9cff8e2ef4475"
+}

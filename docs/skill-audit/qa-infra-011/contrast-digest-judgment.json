@@ -1,0 +1,29 @@
+{
+  "method": "Controlled synthetic fixture; no application execution or hardware stress",
+  "observations": [
+    {
+      "case": "baseline",
+      "same_inputs_digest": true,
+      "document_validation": "VALID",
+      "proposed_event": "RECORD_CURRENT_SUCCESS"
+    },
+    {
+      "case": "limitations_changed",
+      "same_inputs_digest": true,
+      "document_validation": "VALID",
+      "proposed_event": "RECORD_CURRENT_SUCCESS"
+    },
+    {
+      "case": "judgment_pending",
+      "same_inputs_digest": true,
+      "document_validation": "VALID",
+      "proposed_event": "RECORD_GAP_OR_STALE"
+    },
+    {
+      "case": "judgment_supported_changed_actor",
+      "same_inputs_digest": true,
+      "document_validation": "VALID",
+      "proposed_event": "RECORD_CURRENT_SUCCESS"
+    }
+  ]
+}

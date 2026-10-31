@@ -1,0 +1,574 @@
+{
+  "schema_version": "2.0.0",
+  "mode": "INDEPENDENT_ASSISTANT_INTERVIEW",
+  "budget": {
+    "max_exchanges_this_session": 12,
+    "stop_action": "PAUSE_WITH_OPEN_TOPICS"
+  },
+  "project": "qa-supervisor-local",
+  "status": "COMPLETE",
+  "actors": [
+    {
+      "id": "I",
+      "role": "INTERROGATOR",
+      "runtime_refs": [
+        "/root/supervisor_interrogator"
+      ]
+    },
+    {
+      "id": "A",
+      "role": "ASSISTANT_RESPONDER",
+      "runtime_refs": [
+        "/root"
+      ]
+    },
+    {
+      "id": "H",
+      "role": "HUMAN_OWNER",
+      "runtime_refs": []
+    }
+  ],
+  "sources": [
+    {
+      "id": "S-QA",
+      "kind": "LOCAL",
+      "locator": "../../../skills/qa-inquisidor/SKILL.md",
+      "verbatim_or_observation": "Contrato0.1.3 del checker, no supervisor externo.",
+      "observed_at": "2026-10-29"
+    },
+    {
+      "id": "S-HUMAN",
+      "kind": "HUMAN",
+      "locator": "conversation/latest-user",
+      "verbatim_or_observation": "Prepara el PRD",
+      "observed_at": "2026-10-29"
+    },
+    {
+      "id": "S-HUMAN-LOCAL",
+      "kind": "HUMAN",
+      "locator": "receipts/A-HUMAN-SUP-001.txt",
+      "verbatim_or_observation": "Ok Únicamente con el qa local\n",
+      "observed_at": "2026-10-29"
+    },
+    {
+      "id": "S-RETENTION",
+      "kind": "HUMAN",
+      "locator": "receipts/A-SUP-004.txt",
+      "verbatim_or_observation": "1\n",
+      "observed_at": "2026-10-29"
+    },
+    {
+      "id": "S-RETENTION-CONTEXT",
+      "kind": "LOCAL",
+      "locator": "receipts/RETENTION-OPTIONS.txt",
+      "verbatim_or_observation": "Contexto de opciones emitidas por coordinador; respuesta humana separada.",
+      "observed_at": "2026-10-29"
+    },
+    {
+      "id": "S-PYTHON-PRIMARY",
+      "kind": "WEB_PRIMARY",
+      "locator": "https://docs.python.org/3.12/library/subprocess.html",
+      "verbatim_or_observation": "Creación no siempre interrumpible; returncode negativo indica señal POSIX; timeout de communicate requiere limpieza explícita. No demuestra causa OOM ni implementación.",
+      "observed_at": "2026-10-30"
+    }
+  ],
+  "topics": [
+    {
+      "id": "T-001",
+      "dimension": "contratos/dependencias",
+      "material": true,
+      "applicable": true,
+      "status": "COVERED",
+      "rationale": "Contrato concretado y contrastado por entrevistador independiente.",
+      "question_ids": [
+        "Q-SUP-001",
+        "Q-SUP-005"
+      ],
+      "source_ids": [
+        "S-QA",
+        "S-HUMAN"
+      ]
+    },
+    {
+      "id": "T-002",
+      "dimension": "fronteras/actores",
+      "material": true,
+      "applicable": true,
+      "status": "COVERED",
+      "rationale": "Humano confirma invocador únicamente checker local, no otros comandos.",
+      "question_ids": [
+        "Q-SUP-002",
+        "Q-SUP-008"
+      ],
+      "source_ids": [
+        "S-HUMAN-LOCAL"
+      ]
+    },
+    {
+      "id": "T-003",
+      "dimension": "seguridad/fallos/recuperación",
+      "material": true,
+      "applicable": true,
+      "status": "COVERED",
+      "rationale": "Contrato concretado y contrastado por entrevistador independiente.",
+      "question_ids": [
+        "Q-SUP-003",
+        "Q-SUP-006"
+      ],
+      "source_ids": [
+        "S-QA"
+      ]
+    },
+    {
+      "id": "T-004",
+      "dimension": "datos/ciclo de vida",
+      "material": true,
+      "applicable": true,
+      "status": "COVERED",
+      "rationale": "Decisión histórica opción1 sustituida por retención de stdout/stderr,32MiB y borrado Manual; ver retention-change.json y registro-skill-asistente.md. Exchanges originales preservados.",
+      "question_ids": [
+        "Q-SUP-004"
+      ],
+      "source_ids": [
+        "S-RETENTION",
+        "S-RETENTION-CONTEXT"
+      ]
+    },
+    {
+      "id": "T-007",
+      "dimension": "calidad/recursos",
+      "material": true,
+      "applicable": true,
+      "status": "COVERED",
+      "rationale": "Contrato temporal y presupuestos provisionales explícitos, no mediciones.",
+      "question_ids": [
+        "Q-SUP-007"
+      ],
+      "source_ids": [
+        "S-QA"
+      ]
+    }
+  ],
+  "exchanges": [
+    {
+      "question": {
+        "id": "Q-SUP-001",
+        "by_actor": "I",
+        "to_actor": "A",
+        "topic_id": "T-001",
+        "text": "Q-SUP-001 | Destinatario: ASSISTANT_RESPONDER (/root) | Dimensión: contratos/dependencias | Estado: WAITING_ASSISTANT. ¿Qué evidencia existente define el contrato observable entre el supervisor y QA0.1.3 para distinguir una evaluación válida de una terminación sin stdout, en particular la precedencia entre código de salida (0/2/3), JSON disponible y cobertura parcial NOT_ASSESSED? Indica fuente y fragmento comprobable, o UNKNOWN donde el contrato no esté definido. No propongo una política nueva.\n",
+        "dimension": "contratos/dependencias",
+        "required_evidence": [
+          "Contrato existente o UNKNOWN explícito"
+        ],
+        "answer_kind": "DESIGN_ARGUMENT"
+      },
+      "answer": {
+        "id": "A-SUP-001",
+        "by_actor": "A",
+        "question_id": "Q-SUP-001",
+        "text": "A-SUP-001: FACT: skills/qa-inquisidor/scripts/validate_report.py main retorna 0 tras validate_report y JSON, 2 para ValueError con document_validation INVALID y REJECT_INPUT, 3 para OSError/MemoryError/RecursionError con NOT_ASSESSED y evento/veredicto null. Todas las salidas JSON declaran execution_authorized false. observe_failure_declarations produce PARTIAL y NOT_ASSESSED si el prefijo de128 no contiene FAIL y hay más registros; es observación independiente, no veredicto. SKILL.md Resultado del proceso0.1.1: «Exit0 indica evaluación completada, no éxito del sistema» y «Un invocador debe registrar exit/señal/stdout/stderr y tratar ausencia de resultado como ejecución no acreditada». FACT de límite: no existe supervisor externo en este alpha. UNKNOWN: contrato externo exacto de validación de salida, precedencia frente a señal/JSON contradictorio, persistencia y escalada. PROPOSED: observación de terminación y protocolo íntegro prevalece para admisión del resultado; señal, timeout, salida faltante/inválida o incoherencia exit/JSON -> resultado no aceptado sin juicio semántico. PARTIAL nunca equivale a ausencia de fallos. Mantener autorización false independiente de todo resultado. Esto es propuesta para el PRD, no implementación ni decisión humana de alertas.\n",
+        "classification": "INFERENCE",
+        "source_ids": [
+          "S-QA",
+          "S-HUMAN"
+        ],
+        "authoritative_quote": null
+      },
+      "assessment": {
+        "verdict": "INCOMPLETE",
+        "rationale": "Contraste real del entrevistador; no hay contrato externo confirmado.",
+        "remaining_gaps": [
+          "Decisión de frontera y contrato externo"
+        ],
+        "resolved_by": "Q-SUP-005"
+      },
+      "question_receipt": {
+        "path": "receipts/Q-SUP-001.txt",
+        "format": "PLAIN_TEXT",
+        "sha256": "ddb5a0fdf6414921c4539899b619b6dc3a5e89cab558d5bd5fae0762831e547c"
+      },
+      "answer_receipt": {
+        "path": "receipts/A-SUP-001.txt",
+        "format": "PLAIN_TEXT",
+        "sha256": "c3fa3b52a36af7197406ba78741b8cbbc8bfa990f9f3d0bc8c70e6e47ae069ac"
+      }
+    },
+    {
+      "question": {
+        "id": "Q-SUP-002",
+        "by_actor": "I",
+        "to_actor": "A",
+        "topic_id": "T-002",
+        "text": "Q-SUP-002 | Destinatario ASSISTANT_RESPONDER (/root) | Dimensión fronteras/actores | Estado WAITING_ASSISTANT: ¿Qué instrucción humana o requisito existente determina si este supervisor local inicia QA0.1.3 y gobierna su proceso, o únicamente recibe evidencias de una ejecución iniciada por otro actor? Cita fuente literal y actor responsable de iniciar/terminar; si no está decidido, devuelve UNKNOWN para remitir esa frontera al HUMAN_OWNER. Esta distinción condiciona timeout, señales y atribución de ausencia de stdout.\n",
+        "dimension": "fronteras/actores",
+        "required_evidence": [
+          "Contrato existente o UNKNOWN explícito"
+        ],
+        "answer_kind": "DESIGN_ARGUMENT"
+      },
+      "answer": {
+        "id": "A-SUP-002",
+        "by_actor": "A",
+        "question_id": "Q-SUP-002",
+        "text": "A-SUP-002: UNKNOWN como decisión humana explícita. El humano pidió literalmente «Prepara el PRD» tras recomendación de supervisor local, manteniendo CI/producción fuera. Esa instrucción autoriza documentos, no ejecución ni resuelve quién inicia el checker. PROPOSED: supervisor como invocador local exclusivo del comprobador QA, con proceso hijo propio, plazo y salida acotados, sin comandos arbitrarios ni ensayos de aplicación. Alternativa: receptor de recibos; no controla el proceso ni puede inferir señal o ausencia de salida sin observador de confianza. La elección de frontera se escala al humano antes de canonicalizar requisitos de lanzamiento/parada.\n",
+        "classification": "INFERENCE",
+        "source_ids": [
+          "S-QA",
+          "S-HUMAN"
+        ],
+        "authoritative_quote": null
+      },
+      "assessment": {
+        "verdict": "ESCALATE_USER",
+        "rationale": "Contraste real del entrevistador; no hay contrato externo confirmado. Resolución humana posterior conservada separadamente en human-question.json y fuente S-HUMAN-LOCAL; no se atribuye pregunta del coordinador al interrogador.",
+        "remaining_gaps": [
+          "Decisión de frontera y contrato externo"
+        ],
+        "resolved_by": "Q-SUP-008"
+      },
+      "question_receipt": {
+        "path": "receipts/Q-SUP-002.txt",
+        "format": "PLAIN_TEXT",
+        "sha256": "d47fe6be8a64e4b075211ec2c958fc439480fac519fe3d64874b96ac8a9088f3"
+      },
+      "answer_receipt": {
+        "path": "receipts/A-SUP-002.txt",
+        "format": "PLAIN_TEXT",
+        "sha256": "4b7998d271eb7a3c675c44c81ebf352005f1350029c1286dd1a79ffd0c92ad31"
+      }
+    },
+    {
+      "question": {
+        "id": "Q-SUP-003",
+        "by_actor": "I",
+        "to_actor": "A",
+        "topic_id": "T-003",
+        "text": "Q-SUP-003 | Destinatario: ASSISTANT_RESPONDER (/root) | Dimensión: seguridad/fallos/recuperación | Estado: WAITING_ASSISTANT. ¿Qué evidencia y criterios técnicos delegados permiten especificar una finalización verificable del checker cuando vence el plazo o se alcanza el límite de salida, incluyendo limpieza del proceso y tratamiento del resultado si no puede confirmarse su terminación? Distingue capacidades demostradas, propuestas y UNKNOWN; necesitamos un falsador observable de cualquier afirmación «ejecución terminada».\n",
+        "dimension": "seguridad/fallos/recuperación",
+        "required_evidence": [
+          "Fuentes o decisión humana explícita"
+        ],
+        "answer_kind": "DESIGN_ARGUMENT"
+      },
+      "answer": {
+        "id": "A-SUP-003",
+        "by_actor": "A",
+        "question_id": "Q-SUP-003",
+        "text": "A-SUP-003: EXTERNAL_FACT: receipts/python-subprocess.txt, documentación primaria Python: communicate puede almacenar salida en memoria; timeout de communicate no termina al hijo; returncode negativo -N indica señal en POSIX. Estos contratos no demuestran implementación del supervisor. FACT: checker0.1.3 no inicia procesos de aplicación según fuente actual; no existe supervisor QA implementado. PROPOSED dentro frontera confirmada: controlar solo el hijo propio con captura concurrente acotada y plazos monotónicos; al exceder límite, registrar motivo, solicitar parada, esperar plazo de limpieza acotado y observar terminación mediante API de espera del proceso. Solo resultado de wait/poll que confirma fin del hijo permite cleanup CONFIRMED. Enviar señal o vencer plazo no prueba fin. Si no hay confirmación, cleanup UNCONFIRMED, no aceptar evaluación, no reintento ni segunda ejecución automática; escalar la situación. Señal sin evidencia adicional: causa NOT_DETERMINED. Se conservan por separado bytes capturados/truncados y recepción completa; no aceptar JSON parcial. UNKNOWN: presupuestos numéricos, cobertura por SO, persistencia ante muerte del supervisor, procesos descendientes futuros. No prometer limpieza universal ni tiempo real. Falsador: ante un observador de proceso que nunca confirma terminación, recibo declara cleanup CONFIRMED o inicia un reemplazo; eso refuta la regla. Ensayo futuro con proceso controlado y límites, NOT_RUN hoy. Propuesta no exige ensayos físicos ni modificación del host.\n",
+        "classification": "INFERENCE",
+        "source_ids": [
+          "S-QA"
+        ],
+        "authoritative_quote": null
+      },
+      "assessment": {
+        "verdict": "ANSWERED",
+        "rationale": "Contraste independiente: solo observación de fin confirma limpieza; presupuestos y persistencia quedan separados.",
+        "remaining_gaps": [],
+        "resolved_by": null
+      },
+      "question_receipt": {
+        "path": "receipts/Q-SUP-003.txt",
+        "format": "PLAIN_TEXT",
+        "sha256": "481622acc67f19fe6719d56f57b4b299a802b23f05948b345740c4584b4abac8"
+      },
+      "answer_receipt": {
+        "path": "receipts/A-SUP-003.txt",
+        "format": "PLAIN_TEXT",
+        "sha256": "1ccaa73f9bfde4d30d6b93a9326b7d0b5de3db676a700ebe0d5d5ad1e482adeb"
+      }
+    },
+    {
+      "question": {
+        "id": "Q-SUP-004",
+        "by_actor": "I",
+        "to_actor": "H",
+        "topic_id": "T-004",
+        "text": "Q-SUP-004 | Destinatario: HUMAN_OWNER, mediante coordinador | Dimensión: datos/ciclo de vida | Estado: WAITING_USER. ¿Qué política debe tener el PRD para stdout/stderr del checker: mantenerlos solo durante la ejecución y guardar un recibo mínimo sin su contenido, o conservar además su contenido acotado en disco para diagnóstico? Recomiendo la primera como propuesta inicial; la segunda requiere que fijes cuánto tiempo conservarlo. No hay evidencia aportada que autorice escoger retención persistente de salida por delegación técnica.\n",
+        "dimension": "datos/ciclo de vida",
+        "required_evidence": [
+          "Decisión humana de retención"
+        ],
+        "answer_kind": "HUMAN_DECISION"
+      },
+      "answer": {
+        "id": "A-SUP-004",
+        "by_actor": "H",
+        "question_id": "Q-SUP-004",
+        "text": "1\n",
+        "classification": "USER_DECISION",
+        "source_ids": [
+          "S-RETENTION",
+          "S-RETENTION-CONTEXT"
+        ],
+        "authoritative_quote": "1"
+      },
+      "assessment": {
+        "verdict": "ANSWERED",
+        "rationale": "Elección explícita de opción1 tras explicación de consecuencias; no retención bruta.",
+        "remaining_gaps": [],
+        "resolved_by": null
+      },
+      "question_receipt": {
+        "path": "receipts/Q-SUP-004.txt",
+        "format": "PLAIN_TEXT",
+        "sha256": "7cdd5ed2cbeef54fb4f13c2c5c75cfeb397ff41d00d74e9f7101735461130740"
+      },
+      "answer_receipt": {
+        "path": "receipts/A-SUP-004.txt",
+        "format": "PLAIN_TEXT",
+        "sha256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865"
+      }
+    },
+    {
+      "question": {
+        "id": "Q-SUP-005",
+        "by_actor": "I",
+        "to_actor": "A",
+        "topic_id": "T-001",
+        "text": "Q-SUP-005 | Destinatario ASSISTANT_RESPONDER | Dimensión contratos/dependencias | WAITING_ASSISTANT: ¿Qué artefacto concreto y verificación del candidato fijan ahora la admisión exhaustiva para cada salida real de QA0.1.3 (exit0/2/3 y failure_observation tipada), y demuestran rechazo de contradicciones, JSON truncado y campos no admitidos sin convertir PARTIAL/NOT_ASSESSED en ausencia de fallos? closure-proposal.json todavía declara pendiente el esquema; aporta rutas, correspondencia con el checker y resultados o UNKNOWN. Esta respuesta puede resolver la precedencia externa pendiente de Q-SUP-001 si cubre la misma dimensión.\n",
+        "dimension": "contratos/dependencias",
+        "required_evidence": [
+          "Contrato y evidencia documental delimitada"
+        ],
+        "answer_kind": "DESIGN_ARGUMENT"
+      },
+      "answer": {
+        "id": "A-SUP-005",
+        "by_actor": "A",
+        "question_id": "Q-SUP-005",
+        "text": "A-SUP-005: FACT documental: checker-output.schema.json fija envoltorio observado returncode/payload con ramas estrictas0/2/3 y failure_observation tipada. protocol-contract.json fija decodificación completa UTF8 sin duplicados/no finitos/JSON truncado y predicados posteriores como contador<=filas; checker-binding.json conserva hashes de las cuatro dependencias fuente. verification/output-contract-results.json:12 controles PASS,5 salidas del checker actual con archivos sintéticos (normal, contradicción, entrada JSON inválida, OSError controlado y prefijo parcial),7 mutaciones rechazadas. Un esquema mutante permisivo acepta campo extra; contrato estricto lo rechaza. El esquema rechaza exit incompatible, veredicto incompatible, campos extra/ausentes, authorization true y PARTIAL presentado como ausencia. Límite: no prueba exhaustividad de toda ejecución real; reglas de transporte (bytes/UTF8/duplicados/profundidad) son requisitos futuros del adaptador, no implementados como supervisor. El checker no recibe versión de protocolo nueva: el adaptador fija versión0.1.3 por manifiesto, sin interpretar automáticamente cambios. Propuesta de precedencia externa en tabla-decision.json: fallo de ejecución observado -> INFRA_FAILURE; sin tal observación, salida incompleta/no admitida/incoherente -> PROTOCOL_FAILURE; protocolo coherente exit3 -> INFRA_FAILURE, exit2 -> REJECT_INPUT, exit0 -> EVALUATED_RECORD. EVALUATED_RECORD no es PASS; execution_authorized siempre false. Fuente de autoridad: correcciones explícitamente autorizadas por humano, no un hash por sí solo. Contrato documental cubre casos tipados; adaptación al SO y proceso sigue NOT_RUN.\n",
+        "classification": "INFERENCE",
+        "source_ids": [
+          "S-QA"
+        ],
+        "authoritative_quote": null
+      },
+      "assessment": {
+        "verdict": "ANSWERED",
+        "rationale": "Contraste independiente real: definición contractual suficiente para PRD condicionado; implementación/ensayos NOT_RUN.",
+        "remaining_gaps": [],
+        "resolved_by": null
+      },
+      "question_receipt": {
+        "path": "receipts/Q-SUP-005.txt",
+        "format": "PLAIN_TEXT",
+        "sha256": "a5070dc2dd44d8b41408ff539ee137a5cf56627acfc5a125875722dd381fce36"
+      },
+      "answer_receipt": {
+        "path": "receipts/A-SUP-005.txt",
+        "format": "PLAIN_TEXT",
+        "sha256": "63d28c99e113bb5bd3327391a380a7358e1200d9fe5b298b02b0f6ca043267cd"
+      }
+    },
+    {
+      "question": {
+        "id": "Q-SUP-006",
+        "by_actor": "I",
+        "to_actor": "A",
+        "topic_id": "T-003",
+        "text": "Q-SUP-006 | Destinatario ASSISTANT_RESPONDER | Dimensión seguridad/fallos/recuperación | WAITING_ASSISTANT: ¿Qué contrato documental verificable resuelve la ventana de caída entre persistir RESERVED, crear el hijo y registrar PID+identidad de inicio, de modo que una recuperación nunca libere INFRA_LOCK con un hijo huérfano o un PID reutilizado? Explicita evidencia necesaria para desbloquear y qué ocurre cuando esa evidencia es irrecuperable, con casos de falsación y resultados documentales; el recibo mínimo y su eliminación humana no deben servir por sí solos de prueba de ausencia.\n",
+        "dimension": "seguridad/fallos/recuperación",
+        "required_evidence": [
+          "Contrato y evidencia documental delimitada"
+        ],
+        "answer_kind": "DESIGN_ARGUMENT"
+      },
+      "answer": {
+        "id": "A-SUP-006",
+        "by_actor": "A",
+        "question_id": "Q-SUP-006",
+        "text": "A-SUP-006: recovery-contract.json fija orden durable RESERVED antes de spawn, luego ACTIVE con run_id/boot/namespace/owner/PID/start identity y manifiestos. Diario separado de recibos; eliminar recibos no elimina diario. RESERVED sin identidad completa tras caída en mismo boot permanece INFRA_LOCK aunque quizá nunca se lanzó hijo. No se despeja por timeout, PID ausente, búsqueda por nombre ni reconocimiento humano. Fin observado por padre vivo sobre objeto hijo exacto permite confirmar; recuperación de ACTIVE requiere identidad completa y observación autorizada concluyente (no permission denied). Cambio de boot solo califica si se prueba mismo ámbito guest no restaurado; namespace/migración/snapshot ambiguos bloquean. Evidencia irrecuperable mantiene bloqueo indefinido local, sin reinicio automático ni disponibilidad garantizada. checker actual no crea descendientes de aplicación; cambio de ese contrato invalida adaptador. Casos documentados: caída antes RESERVED (spawn prohibido), después RESERVED/antes spawn y después spawn/antes ACTIVE (bloqueo conservador), después ACTIVE (identidad), después wait antes escritura (no reconstruir prueba perdida), borrado recibo (sin efecto en gate). Pruebas de ejecución siguen NOT_RUN. verification/model-results.json ya comprueba que no hay salida del lock sin reconciliación; no demuestra verdad de sus guardas. Falsadores de implementación precisos en recovery-contract.json. Esta respuesta especifica fallo seguro acotado, no elimina físicamente todas las ventanas de caída.\n",
+        "classification": "INFERENCE",
+        "source_ids": [
+          "S-QA"
+        ],
+        "authoritative_quote": null
+      },
+      "assessment": {
+        "verdict": "ANSWERED",
+        "rationale": "Contraste independiente real: definición contractual suficiente para PRD condicionado; implementación/ensayos NOT_RUN.",
+        "remaining_gaps": [],
+        "resolved_by": null
+      },
+      "question_receipt": {
+        "path": "receipts/Q-SUP-006.txt",
+        "format": "PLAIN_TEXT",
+        "sha256": "65308615c59edd722ffa6280163cb9c4e0897f18d18bff50473d5d17ec5c2f09"
+      },
+      "answer_receipt": {
+        "path": "receipts/A-SUP-006.txt",
+        "format": "PLAIN_TEXT",
+        "sha256": "56c08a0485aade56f8feefdb2e87d0d68d6447201908bb81f67fd326bef12a24"
+      }
+    },
+    {
+      "question": {
+        "id": "Q-SUP-007",
+        "by_actor": "I",
+        "to_actor": "A",
+        "topic_id": "T-007",
+        "text": "Q-SUP-007 | Destinatario ASSISTANT_RESPONDER | Dimensión calidad/recursos | WAITING_ASSISTANT. ¿Cuál es la secuencia temporal exacta que significan wall_deadline_seconds=30, cleanup_grace_seconds=2 y post_stop_observation_seconds=2: desde qué evento se mide cada plazo monotónico, qué transición provoca y qué significa excederlo durante creación no interrumpible? Fija si se suman y cuándo se declara INFRA_LOCK, sin prometer una cota real de 34 segundos ni convertir valores provisionales en mediciones. El artefacto actual enumera valores pero deja ambiguo el contrato temporal observable.\n",
+        "dimension": "calidad/recursos",
+        "required_evidence": [
+          "Contrato y evidencia documental delimitada"
+        ],
+        "answer_kind": "DESIGN_ARGUMENT"
+      },
+      "answer": {
+        "id": "A-SUP-007",
+        "by_actor": "A",
+        "question_id": "Q-SUP-007",
+        "text": "A-SUP-007: closure-proposal.json temporal_contract fija reloj monotónico. t0 inmediatamente antes de crear proceso, después de admisión y RESERVED durable; deadline t0+30 incluye creación, ejecución y captura. Creación que devuelve después: clasificar exceso y limpiar, no aceptar éxito tardío. Al primer plazo/límite de salida/cancelación comienza parada del hijo exacto, t_stop; gracia hasta t_stop+2. Fin confirmado: clasificar interrupción original. Si no termina, solicitar terminación forzada solo del hijo propio; t_force momento de esa solicitud, observación hasta t_force+2. Sin fin confirmado: INFRA_LOCK, sin lanzamiento nuevo. Identidad o resultado de creación desconocidos: INFRA_LOCK sin señalar PID arbitrario. Captura no reinicia reloj; límites tempranos comienzan parada antes de30. Los30+2+2 son presupuestos nominales, no cota física34s: creación, planificación y kernel pueden impedir observarlos a tiempo. Al recuperar control aplicar vencimientos, nunca éxito retrospectivo. Parámetros provisionales no medidos; falta de controles requeridos bloquea admisión. Ensayos temporales NOT_RUN; no garantía de progreso si el SO no responde.\n",
+        "classification": "INFERENCE",
+        "source_ids": [
+          "S-QA"
+        ],
+        "authoritative_quote": null
+      },
+      "assessment": {
+        "verdict": "ANSWERED",
+        "rationale": "Contraste independiente real: definición contractual suficiente para PRD condicionado; implementación/ensayos NOT_RUN.",
+        "remaining_gaps": [],
+        "resolved_by": null
+      },
+      "question_receipt": {
+        "path": "receipts/Q-SUP-007.txt",
+        "format": "PLAIN_TEXT",
+        "sha256": "c8d402c7ab4deb44561ff36ced82b71e18002e51e62a3b35ee19c3df2eb9f148"
+      },
+      "answer_receipt": {
+        "path": "receipts/A-SUP-007.txt",
+        "format": "PLAIN_TEXT",
+        "sha256": "d9fa24fa9785907911512c02d21779e623060f64c902fb95435dd17961b99502"
+      }
+    },
+    {
+      "question": {
+        "id": "Q-SUP-008",
+        "by_actor": "I",
+        "to_actor": "A",
+        "topic_id": "T-002",
+        "text": "Q-SUP-008 | Destinatario: ASSISTANT_RESPONDER (/root) | Dimensión: fronteras/actores | Estado: WAITING_ASSISTANT | Seguimiento de Q-SUP-002. ¿Qué respuesta humana registrada resuelve quién inicia y controla QA0.1.3, y cuál es exactamente la frontera confirmada? Cita el texto literal, el contexto de la opción presentada y la ruta del recibo para enlazar la resolución sin modificar la respuesta UNKNOWN ni la valoración histórica ESCALATE_USER de Q-SUP-002. Esta pregunta solicita evidencia de una decisión existente, no una política nueva.\n",
+        "dimension": "fronteras/actores",
+        "required_evidence": [
+          "Decisión humana y recibo"
+        ],
+        "answer_kind": "EVIDENCE"
+      },
+      "answer": {
+        "id": "A-SUP-008",
+        "by_actor": "A",
+        "question_id": "Q-SUP-008",
+        "text": "A-SUP-008: USER_DECISION ya registrada: «Ok Únicamente con el qa local», recibo receipts/A-HUMAN-SUP-001.txt y contexto human-question.json. Respondió después de explicación que recomendó supervisor invocador que inicia/controla solo checker QA local frente a receptor de recibos externos. Frontera confirmada: inicia y supervisa únicamente comprobador local, no aplicación objetivo, comandos arbitrarios, CI ni producción. «Prepara el PRD» autoriza documentación, no implementación. Q002 UNKNOWN/ESCALATE se conserva histórico; esta fuente resuelve aquella dimensión.\n",
+        "classification": "USER_DECISION",
+        "source_ids": [
+          "S-HUMAN-LOCAL"
+        ],
+        "authoritative_quote": "Ok Únicamente con el qa local"
+      },
+      "assessment": {
+        "verdict": "ANSWERED",
+        "rationale": "Entrevistador verificó decisión humana existente en su contexto; no implementación.",
+        "remaining_gaps": [],
+        "resolved_by": null
+      },
+      "question_receipt": {
+        "path": "receipts/Q-SUP-008.txt",
+        "format": "PLAIN_TEXT",
+        "sha256": "14116e6010dc6e46ce2c3801d77d4dfaba256e21494dd9e2ed6bbd2a3eff76b9"
+      },
+      "answer_receipt": {
+        "path": "receipts/A-SUP-008.txt",
+        "format": "PLAIN_TEXT",
+        "sha256": "da344e1568fe0c2abec317bf626a085756114af5ee15f15c9bce2e4ddbd912a8"
+      }
+    }
+  ],
+  "research": [
+    {
+      "id": "RES-1",
+      "kind": "SKILL_DISCOVERY",
+      "status": "OK",
+      "tool": "exec/catalog",
+      "query_or_action": "Identificar requerimientos-socraticos existente",
+      "source_ids": [
+        "S-QA"
+      ],
+      "receipt_locator": "receipts/research-discovery.txt",
+      "receipt_sha256": "bbe11febc2e69710601f91810585f7aabbbe79591d5bd3b30d6a3aaf0b1f4fee",
+      "reason": "Investigar contrato de proceso del supervisor; hechos externos separados de política humana."
+    },
+    {
+      "id": "RES-2",
+      "kind": "SKILL_READ",
+      "status": "OK",
+      "tool": "exec",
+      "query_or_action": "Leer SKILL.md y referencias",
+      "source_ids": [
+        "S-QA"
+      ],
+      "receipt_locator": "receipts/research-discovery.txt",
+      "receipt_sha256": "bbe11febc2e69710601f91810585f7aabbbe79591d5bd3b30d6a3aaf0b1f4fee",
+      "reason": "Investigar contrato de proceso del supervisor; hechos externos separados de política humana."
+    },
+    {
+      "id": "RES-3",
+      "kind": "MCP_DISCOVERY",
+      "status": "OK",
+      "tool": "ALL_TOOLS",
+      "query_or_action": "Filtrar context7/engram/codegraph/web_search",
+      "source_ids": [
+        "S-QA"
+      ],
+      "receipt_locator": "receipts/research-discovery.txt",
+      "receipt_sha256": "bbe11febc2e69710601f91810585f7aabbbe79591d5bd3b30d6a3aaf0b1f4fee",
+      "reason": "Investigar contrato de proceso del supervisor; hechos externos separados de política humana."
+    },
+    {
+      "id": "RES-4",
+      "kind": "MCP_QUERY",
+      "status": "OK",
+      "tool": "context7 query_docs",
+      "query_or_action": "/python/cpython Popen timeout/cleanup/returncode",
+      "source_ids": [
+        "S-PYTHON-PRIMARY"
+      ],
+      "receipt_locator": "receipts/context7-result.json",
+      "receipt_sha256": "9ad769ffd2991c884e2572e25229dac02ce3ae54fdfb08fac7d34a1624a29e0a",
+      "reason": "Investigar contrato de proceso del supervisor; hechos externos separados de política humana."
+    },
+    {
+      "id": "RES-5",
+      "kind": "WEB_SEARCH",
+      "status": "OK",
+      "tool": "web_run",
+      "query_or_action": "site.docs.python.org/3.12/library/subprocess.html Popen communicate timeout returncode",
+      "source_ids": [
+        "S-PYTHON-PRIMARY"
+      ],
+      "receipt_locator": "receipts/web-result.json",
+      "receipt_sha256": "70d54dfc85d9d92c959f6dbf8b942f753e0ea4699bc58cc6632820dc9cd50274",
+      "reason": "Investigar contrato de proceso del supervisor; hechos externos separados de política humana."
+    },
+    {
+      "id": "RES-6",
+      "kind": "WEB_OPEN",
+      "status": "OK",
+      "tool": "web_run",
+      "query_or_action": "https://docs.python.org/3.12/library/subprocess.html",
+      "source_ids": [
+        "S-PYTHON-PRIMARY"
+      ],
+      "receipt_locator": "receipts/web-result.json",
+      "receipt_sha256": "70d54dfc85d9d92c959f6dbf8b942f753e0ea4699bc58cc6632820dc9cd50274",
+      "reason": "Investigar contrato de proceso del supervisor; hechos externos separados de política humana."
+    }
+  ],
+  "active_question_id": null,
+  "limitations": [
+    "Cierre documental condicionado; implementación, calibración y comportamiento del SO no verificados.",
+    "Historical eight-exchange interview supplemented by human retention correction in retention-change.json: 32 MiB and manual deletion. Prior minimal-only decision superseded."
+  ]
+}

@@ -1,0 +1,227 @@
+{
+  "schema": "gentle-ai.review-integration.start/v4",
+  "contract": "gentle-ai.review-integration/v2",
+  "operation": "review.start",
+  "action": "created",
+  "lenses_required": true,
+  "lineage_id": "review-69b5e127cef65086",
+  "state": "reviewing",
+  "risk_level": "high",
+  "selected_lenses": [
+    "review-risk",
+    "review-resilience",
+    "review-readability",
+    "review-reliability"
+  ],
+  "projection": "workspace",
+  "target_mode": "base-workspace-overlay",
+  "target_identity": "sha256:3a64e45b771862dad652586d120fa98e1aa577db818587a9d92f40c39a2b2758",
+  "base_tree": "64cd173d894280bcba5e73f29a9790a1bb5d0696",
+  "candidate_tree": "af83f3aa13919b30aa68164add26beb3fa1f82ec",
+  "changed_files": 7,
+  "changed_lines": 64,
+  "correction_budget": 32,
+  "risk_reasons": [
+    {
+      "code": "process_boundary",
+      "signal": "shell_process",
+      "path": "skills/requerimientos-socraticos/scripts/requirements_guard.py"
+    }
+  ],
+  "artifact_subjects": [
+    {
+      "schema": "gentle-ai.review-artifact-subject/v2",
+      "subject_hash": "sha256:2f887e5c68b3260106ef5ef81eb3035e9a599db8aa990b7b28459678372e346d",
+      "lineage_id": "review-69b5e127cef65086",
+      "authority_revision": "sha256:99a03d17a06698b11972828b585604fd1ace8f941faa675379dc5697561e548b",
+      "target_identity": "sha256:3a64e45b771862dad652586d120fa98e1aa577db818587a9d92f40c39a2b2758",
+      "base_tree": "64cd173d894280bcba5e73f29a9790a1bb5d0696",
+      "candidate_tree": "af83f3aa13919b30aa68164add26beb3fa1f82ec",
+      "changed_path_manifest_sha256": "sha256:17ca215f4b4e1e6aa6f3e165ee6195f368126ec8d302d56f578be737dd51493e",
+      "lens": "review-risk",
+      "selected_order": 0
+    },
+    {
+      "schema": "gentle-ai.review-artifact-subject/v2",
+      "subject_hash": "sha256:aa694c44d25ce5b2dfe0f340c6f16a2b252ee37ca67e5e0d8b48a932a36d104a",
+      "lineage_id": "review-69b5e127cef65086",
+      "authority_revision": "sha256:99a03d17a06698b11972828b585604fd1ace8f941faa675379dc5697561e548b",
+      "target_identity": "sha256:3a64e45b771862dad652586d120fa98e1aa577db818587a9d92f40c39a2b2758",
+      "base_tree": "64cd173d894280bcba5e73f29a9790a1bb5d0696",
+      "candidate_tree": "af83f3aa13919b30aa68164add26beb3fa1f82ec",
+      "changed_path_manifest_sha256": "sha256:17ca215f4b4e1e6aa6f3e165ee6195f368126ec8d302d56f578be737dd51493e",
+      "lens": "review-resilience",
+      "selected_order": 1
+    },
+    {
+      "schema": "gentle-ai.review-artifact-subject/v2",
+      "subject_hash": "sha256:de1a5e523ad3b03ec38fd39054db4af7463523333859747f1ee5c622050aac80",
+      "lineage_id": "review-69b5e127cef65086",
+      "authority_revision": "sha256:99a03d17a06698b11972828b585604fd1ace8f941faa675379dc5697561e548b",
+      "target_identity": "sha256:3a64e45b771862dad652586d120fa98e1aa577db818587a9d92f40c39a2b2758",
+      "base_tree": "64cd173d894280bcba5e73f29a9790a1bb5d0696",
+      "candidate_tree": "af83f3aa13919b30aa68164add26beb3fa1f82ec",
+      "changed_path_manifest_sha256": "sha256:17ca215f4b4e1e6aa6f3e165ee6195f368126ec8d302d56f578be737dd51493e",
+      "lens": "review-readability",
+      "selected_order": 2
+    },
+    {
+      "schema": "gentle-ai.review-artifact-subject/v2",
+      "subject_hash": "sha256:b3d1573cddca509959eef20a2c493cecca62de54fc0d38a2e0102fbca7251906",
+      "lineage_id": "review-69b5e127cef65086",
+      "authority_revision": "sha256:99a03d17a06698b11972828b585604fd1ace8f941faa675379dc5697561e548b",
+      "target_identity": "sha256:3a64e45b771862dad652586d120fa98e1aa577db818587a9d92f40c39a2b2758",
+      "base_tree": "64cd173d894280bcba5e73f29a9790a1bb5d0696",
+      "candidate_tree": "af83f3aa13919b30aa68164add26beb3fa1f82ec",
+      "changed_path_manifest_sha256": "sha256:17ca215f4b4e1e6aa6f3e165ee6195f368126ec8d302d56f578be737dd51493e",
+      "lens": "review-reliability",
+      "selected_order": 3
+    }
+  ],
+  "changed_path_manifest": [
+    {
+      "path": "docs/skill-audit/integrity-challenge/ANALISIS.md",
+      "status": "M",
+      "old_mode": "100644",
+      "new_mode": "100644",
+      "deleted": false,
+      "type_changed": false,
+      "mode_only": false,
+      "intended_untracked": true
+    },
+    {
+      "path": "docs/skill-audit/integrity-challenge/guard-tests.stderr",
+      "status": "M",
+      "old_mode": "100644",
+      "new_mode": "100644",
+      "deleted": false,
+      "type_changed": false,
+      "mode_only": false,
+      "intended_untracked": true
+    },
+    {
+      "path": "skills/requerimientos-socraticos/SKILL.md",
+      "status": "M",
+      "old_mode": "100644",
+      "new_mode": "100644",
+      "deleted": false,
+      "type_changed": false,
+      "mode_only": false,
+      "intended_untracked": true
+    },
+    {
+      "path": "skills/requerimientos-socraticos/references/integrity-boundary.md",
+      "status": "M",
+      "old_mode": "100644",
+      "new_mode": "100644",
+      "deleted": false,
+      "type_changed": false,
+      "mode_only": false,
+      "intended_untracked": true
+    },
+    {
+      "path": "skills/requerimientos-socraticos/scripts/requirements_guard.py",
+      "status": "M",
+      "old_mode": "100644",
+      "new_mode": "100644",
+      "deleted": false,
+      "type_changed": false,
+      "mode_only": false,
+      "intended_untracked": true
+    },
+    {
+      "path": "skills/requerimientos-socraticos/tests/test_guard.py",
+      "status": "M",
+      "old_mode": "100644",
+      "new_mode": "100644",
+      "deleted": false,
+      "type_changed": false,
+      "mode_only": false,
+      "intended_untracked": true
+    },
+    {
+      "path": "skills/requerimientos-socraticos/validation.json",
+      "status": "M",
+      "old_mode": "100644",
+      "new_mode": "100644",
+      "deleted": false,
+      "type_changed": false,
+      "mode_only": false,
+      "intended_untracked": true
+    }
+  ],
+  "repository_context": {
+    "capability": "review.opaque_repository_context",
+    "handle": "rctx2_0a33acd488676e2d4c1260bbe676cb16103e79a7c0483acf6f61f6df99511dd0",
+    "revision": "sha256:99a03d17a06698b11972828b585604fd1ace8f941faa675379dc5697561e548b",
+    "target_identity": "sha256:3a64e45b771862dad652586d120fa98e1aa577db818587a9d92f40c39a2b2758"
+  },
+  "next_transition": {
+    "kind": "execute",
+    "reason_code": "review_status_required",
+    "execute": {
+      "operation": "review.status",
+      "command": "gentle-ai review status --contract=gentle-ai.review-integration/v2 --next-transition=true --lineage=review-69b5e127cef65086 --repository-context=rctx2_0a33acd488676e2d4c1260bbe676cb16103e79a7c0483acf6f61f6df99511dd0 --agent=codex --base-ref=64cd173d894280bcba5e73f29a9790a1bb5d0696 --workspace-overlay=true",
+      "arguments": [
+        {
+          "name": "contract",
+          "value": "gentle-ai.review-integration/v2",
+          "token": "--contract=gentle-ai.review-integration/v2"
+        },
+        {
+          "name": "next-transition",
+          "value": "true",
+          "token": "--next-transition=true"
+        },
+        {
+          "name": "lineage",
+          "value": "review-69b5e127cef65086",
+          "token": "--lineage=review-69b5e127cef65086"
+        },
+        {
+          "name": "repository-context",
+          "value": "rctx2_0a33acd488676e2d4c1260bbe676cb16103e79a7c0483acf6f61f6df99511dd0",
+          "token": "--repository-context=rctx2_0a33acd488676e2d4c1260bbe676cb16103e79a7c0483acf6f61f6df99511dd0"
+        },
+        {
+          "name": "agent",
+          "value": "codex",
+          "token": "--agent=codex"
+        },
+        {
+          "name": "base-ref",
+          "value": "64cd173d894280bcba5e73f29a9790a1bb5d0696",
+          "token": "--base-ref=64cd173d894280bcba5e73f29a9790a1bb5d0696"
+        },
+        {
+          "name": "workspace-overlay",
+          "value": "true",
+          "token": "--workspace-overlay=true"
+        }
+      ],
+      "selector_arguments": [
+        {
+          "name": "base-ref",
+          "value": "64cd173d894280bcba5e73f29a9790a1bb5d0696",
+          "token": "--base-ref=64cd173d894280bcba5e73f29a9790a1bb5d0696"
+        },
+        {
+          "name": "workspace-overlay",
+          "value": "true",
+          "token": "--workspace-overlay=true"
+        }
+      ],
+      "preconditions": [
+        {
+          "name": "state",
+          "value": "reviewing"
+        }
+      ],
+      "binding": {
+        "lineage_id": "review-69b5e127cef65086",
+        "revision": "sha256:99a03d17a06698b11972828b585604fd1ace8f941faa675379dc5697561e548b",
+        "target_identity": "sha256:3a64e45b771862dad652586d120fa98e1aa577db818587a9d92f40c39a2b2758"
+      }
+    }
+  }
+}

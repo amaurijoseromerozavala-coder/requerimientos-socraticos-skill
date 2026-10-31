@@ -1,0 +1,46 @@
+flag provided but not defined: -workspace-overlay
+Usage: gentle-ai review assess [flags]
+
+Print the read-only candidate risk assessment review start would use to select lenses, without creating any review authority.
+
+Flags:
+  --agent <value>
+      optional generated active runtime identity to carry on the next_transition preflight
+  --base-ref <value>
+      optional base revision for an immutable base-to-HEAD assessment
+  --committed-only
+      acknowledge that --base-ref excludes dirty tracked changes (default "false")
+  --cwd <value>
+      repository path (default ".")
+  --escalate-item <value>
+      raise the risk to high by citing one high-risk item (1-6); never lowers a tier
+  --escalate-reason <value>
+      one-line reason for --escalate-item
+  --expected-untracked-inventory <value>
+      sha256 inventory digest from review status
+  --intended-untracked <value>
+      repo-relative untracked path to include; repeat for each path
+  --json
+      print the gentle-ai.review-assessment/v1 envelope as JSON instead of human-readable text (default "false")
+  --untracked-scope <value>
+      explicit untracked scope: exclude or select
+  -h, --help
+      show this help
+{
+  "schema": "gentle-ai.review-assessment/v1",
+  "risk": "high",
+  "reasons": [
+    {
+      "code": "unassessable",
+      "detail": "flag provided but not defined: -workspace-overlay"
+    }
+  ],
+  "changed_paths": 0,
+  "changed_lines": 0,
+  "candidate": {
+    "kind": "current-changes",
+    "consumed": false
+  },
+  "review_due": true,
+  "review_due_reason": "high_risk"
+}

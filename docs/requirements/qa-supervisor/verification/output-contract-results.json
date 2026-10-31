@@ -1,0 +1,208 @@
+{
+  "method": "Local checker helpers over bounded synthetic files; no supervisor implementation or resource pressure",
+  "schema_sha256": "3530bc8b7ea8bb3ec968f0c44cd9b23389d534383f1215e75e92de29a6ba8c6d",
+  "cases": [
+    {
+      "case": "actual_checker_synthetic_success",
+      "expected_admission": true,
+      "actual_admission": true,
+      "expected_state": [
+        0,
+        "COMPLETED",
+        "VALID",
+        "RECORD_CURRENT_SUCCESS",
+        "SUPPORTED_WITHIN_DECLARED_EVIDENCE",
+        "NO_DECLARATIONS_FOUND",
+        "COMPLETE",
+        0
+      ],
+      "actual_state": [
+        0,
+        "COMPLETED",
+        "VALID",
+        "RECORD_CURRENT_SUCCESS",
+        "SUPPORTED_WITHIN_DECLARED_EVIDENCE",
+        "NO_DECLARATIONS_FOUND",
+        "COMPLETE",
+        0
+      ],
+      "pass": true
+    },
+    {
+      "case": "actual_checker_contradiction",
+      "expected_admission": true,
+      "actual_admission": true,
+      "expected_state": [
+        2,
+        "COMPLETED",
+        "INVALID",
+        "REJECT_INPUT",
+        null,
+        "UNVERIFIED_DECLARATIONS_FOUND",
+        "COMPLETE",
+        1
+      ],
+      "actual_state": [
+        2,
+        "COMPLETED",
+        "INVALID",
+        "REJECT_INPUT",
+        null,
+        "UNVERIFIED_DECLARATIONS_FOUND",
+        "COMPLETE",
+        1
+      ],
+      "pass": true
+    },
+    {
+      "case": "actual_checker_invalid_json",
+      "expected_admission": true,
+      "actual_admission": true,
+      "expected_state": [
+        2,
+        "COMPLETED",
+        "INVALID",
+        "REJECT_INPUT",
+        null,
+        "NOT_ASSESSED",
+        "NOT_ASSESSED",
+        null
+      ],
+      "actual_state": [
+        2,
+        "COMPLETED",
+        "INVALID",
+        "REJECT_INPUT",
+        null,
+        "NOT_ASSESSED",
+        "NOT_ASSESSED",
+        null
+      ],
+      "pass": true
+    },
+    {
+      "case": "actual_checker_controlled_oserror",
+      "expected_admission": true,
+      "actual_admission": true,
+      "expected_state": [
+        3,
+        "INFRA_FAILURE",
+        "NOT_ASSESSED",
+        null,
+        null,
+        "NOT_ASSESSED",
+        "NOT_ASSESSED",
+        null
+      ],
+      "actual_state": [
+        3,
+        "INFRA_FAILURE",
+        "NOT_ASSESSED",
+        null,
+        null,
+        "NOT_ASSESSED",
+        "NOT_ASSESSED",
+        null
+      ],
+      "pass": true
+    },
+    {
+      "case": "actual_checker_partial",
+      "expected_admission": true,
+      "actual_admission": true,
+      "expected_state": [
+        2,
+        "COMPLETED",
+        "INVALID",
+        "REJECT_INPUT",
+        null,
+        "NOT_ASSESSED",
+        "PARTIAL",
+        0
+      ],
+      "actual_state": [
+        2,
+        "COMPLETED",
+        "INVALID",
+        "REJECT_INPUT",
+        null,
+        "NOT_ASSESSED",
+        "PARTIAL",
+        0
+      ],
+      "pass": true
+    },
+    {
+      "case": "wrong_exit",
+      "expected_admission": false,
+      "actual_admission": false,
+      "expected_state": null,
+      "actual_state": null,
+      "pass": true
+    },
+    {
+      "case": "extra_field",
+      "expected_admission": false,
+      "actual_admission": false,
+      "expected_state": null,
+      "actual_state": null,
+      "pass": true
+    },
+    {
+      "case": "authorization_true",
+      "expected_admission": false,
+      "actual_admission": false,
+      "expected_state": null,
+      "actual_state": null,
+      "pass": true
+    },
+    {
+      "case": "wrong_verdict",
+      "expected_admission": false,
+      "actual_admission": false,
+      "expected_state": null,
+      "actual_state": null,
+      "pass": true
+    },
+    {
+      "case": "gap_without_gap",
+      "expected_admission": false,
+      "actual_admission": false,
+      "expected_state": null,
+      "actual_state": null,
+      "pass": true
+    },
+    {
+      "case": "count_exceeds_scanned",
+      "expected_admission": false,
+      "actual_admission": false,
+      "expected_state": null,
+      "actual_state": null,
+      "pass": true
+    },
+    {
+      "case": "partial_as_absence",
+      "expected_admission": false,
+      "actual_admission": false,
+      "expected_state": null,
+      "actual_state": null,
+      "pass": true
+    },
+    {
+      "case": "missing_field",
+      "expected_admission": false,
+      "actual_admission": false,
+      "expected_state": null,
+      "actual_state": null,
+      "pass": true
+    }
+  ],
+  "negative_control_uniform_infra_rejected_for": [
+    "actual_checker_synthetic_success",
+    "actual_checker_contradiction",
+    "actual_checker_invalid_json",
+    "actual_checker_partial"
+  ],
+  "negative_control_permissive_schema_accepts_extra_field": true,
+  "pass": true
+}

@@ -1,0 +1,283 @@
+{
+  "source_root": "/workspace/replica-gentle-ai",
+  "temporary_copy": "/tmp/requirements-242-independent-ltk3x_0z",
+  "files": [
+    {
+      "path": "skills/requerimientos-socraticos/scripts/__pycache__/analyze_logic.cpython-312.pyc",
+      "sha256": "23a00296413c92adc61876671343974cc60820cd849f8d895ceb0bf1f4a5a499",
+      "bytes": 9756,
+      "mode": "0o600"
+    },
+    {
+      "path": "skills/requerimientos-socraticos/scripts/__pycache__/document_source.cpython-312.pyc",
+      "sha256": "88dbe33eedfae6babe36f51536e8ef7536579765a7c1ef03e13e5311a01933a8",
+      "bytes": 7022,
+      "mode": "0o600"
+    },
+    {
+      "path": "skills/requerimientos-socraticos/scripts/__pycache__/process_supervision.cpython-312.pyc",
+      "sha256": "87e052f0aad36fbf53d23cc1ab8f5ebe0e29383f08c57866afd11eecab43daa1",
+      "bytes": 9333,
+      "mode": "0o600"
+    },
+    {
+      "path": "skills/requerimientos-socraticos/scripts/__pycache__/safe_io.cpython-312.pyc",
+      "sha256": "bc9330821bb9655e56b812f6800a247356cb0facbfd80069f4514fbc010f3ea1",
+      "bytes": 4108,
+      "mode": "0o600"
+    },
+    {
+      "path": "skills/requerimientos-socraticos/scripts/__pycache__/validate_interview.cpython-312.pyc",
+      "sha256": "79a122a00406ad534af7ed565e5b0c0ff60b8570a3d87913c51a2742165ac98c",
+      "bytes": 17724,
+      "mode": "0o600"
+    },
+    {
+      "path": "skills/requerimientos-socraticos/scripts/__pycache__/validate_prd.cpython-312.pyc",
+      "sha256": "0545a7a012246a29f3740cdff63c67d0b64b1d0745f960c49d9f50f6945e9e23",
+      "bytes": 4389,
+      "mode": "0o600"
+    },
+    {
+      "path": "skills/requerimientos-socraticos/scripts/analyze_logic.py",
+      "sha256": "21addd2ef1e8fdb33477211f58bcd92444779538c3bb1af645a9609552f71f66",
+      "bytes": 6945,
+      "mode": "0o600"
+    },
+    {
+      "path": "skills/requerimientos-socraticos/scripts/document_source.py",
+      "sha256": "42d233be87cd091b8a1d740115c8813386454be756acb477ede084004b855d35",
+      "bytes": 4079,
+      "mode": "0o600"
+    },
+    {
+      "path": "skills/requerimientos-socraticos/scripts/git_bundle.py",
+      "sha256": "5c053dc1856c4a43e93716f0c5e5ecd50ee6c21fefd63924a7314985d172a9ba",
+      "bytes": 4229,
+      "mode": "0o600"
+    },
+    {
+      "path": "skills/requerimientos-socraticos/scripts/git_document_worker.py",
+      "sha256": "ad973899c734ad7723eba90f43b130b09b5ec59ada8a18e00433435233703247",
+      "bytes": 866,
+      "mode": "0o600"
+    },
+    {
+      "path": "skills/requerimientos-socraticos/scripts/json_preflight.py",
+      "sha256": "1aba3975e3696c82cf8689ab15721572ab55c7c2eeeae7b1f2a87bbe32c2a295",
+      "bytes": 1843,
+      "mode": "0o600"
+    },
+    {
+      "path": "skills/requerimientos-socraticos/scripts/logic_engine.py",
+      "sha256": "6bae53fe4d50447b84b9f5a972e18193b56c60dbb35cc9c2c5d04f8793a40296",
+      "bytes": 10072,
+      "mode": "0o600"
+    },
+    {
+      "path": "skills/requerimientos-socraticos/scripts/normalize_text.py",
+      "sha256": "d0ab7ffd503f095082f816d50fab99023950585f11cb5eb39aadd1a07e894fe9",
+      "bytes": 1934,
+      "mode": "0o600"
+    },
+    {
+      "path": "skills/requerimientos-socraticos/scripts/probe_environment.py",
+      "sha256": "2e7a2b189441edb1ecf72b40230c00d316a7a46d5f8a8fd5d7e69f69a67a9b01",
+      "bytes": 8288,
+      "mode": "0o600"
+    },
+    {
+      "path": "skills/requerimientos-socraticos/scripts/process_supervision.py",
+      "sha256": "8ec43a41b6d02018469875db0862a5f0363341f540b499ad5ecb3ad41af21358",
+      "bytes": 7572,
+      "mode": "0o600"
+    },
+    {
+      "path": "skills/requerimientos-socraticos/scripts/requirements_guard.py",
+      "sha256": "ebb5c9e3098e700897fd5226e62975873f7dc8d7a40f3f6eebcba223a5df31a3",
+      "bytes": 10497,
+      "mode": "0o600"
+    },
+    {
+      "path": "skills/requerimientos-socraticos/scripts/safe_io.py",
+      "sha256": "c40bfd51fb5ef89af85622ef662116aaf9cc2300783d09170f7258e0d43379e0",
+      "bytes": 2600,
+      "mode": "0o600"
+    },
+    {
+      "path": "skills/requerimientos-socraticos/scripts/scratch_pool.py",
+      "sha256": "554c9c054c286b8bbc989c8e0e3b2cc4aebf493d07d90d5bf52079922ed7ade1",
+      "bytes": 3173,
+      "mode": "0o600"
+    },
+    {
+      "path": "skills/requerimientos-socraticos/scripts/validate_git.py",
+      "sha256": "8ae905d7b8a19d45f09139e4ea7fa29cee61b89313e38f3f4c0d2154a6e2ae10",
+      "bytes": 6934,
+      "mode": "0o600"
+    },
+    {
+      "path": "skills/requerimientos-socraticos/scripts/validate_interview.py",
+      "sha256": "71a1ab503ef6fca520152b5afe2e1bcd3c60ed254936fbe28454e2cb4632099a",
+      "bytes": 11800,
+      "mode": "0o600"
+    },
+    {
+      "path": "skills/requerimientos-socraticos/scripts/validate_prd.py",
+      "sha256": "a457346ae791dd8563214ef4e206b334edb1bf79dd993bca9011554072a53f66",
+      "bytes": 2550,
+      "mode": "0o600"
+    },
+    {
+      "path": "skills/requerimientos-socraticos/tests/__pycache__/test_document_source.cpython-312.pyc",
+      "sha256": "4bac05a89120422b2841cc5bb51733f594aca3a2c3d76d1a6db0b0af3d832c39",
+      "bytes": 20922,
+      "mode": "0o600"
+    },
+    {
+      "path": "skills/requerimientos-socraticos/tests/__pycache__/test_interview.cpython-312.pyc",
+      "sha256": "d699cad01839f3b10f424a6d8d6c6ce5de4d27d61e3a6341e7b5d48cdff47e57",
+      "bytes": 43468,
+      "mode": "0o600"
+    },
+    {
+      "path": "skills/requerimientos-socraticos/tests/__pycache__/test_logic.cpython-312.pyc",
+      "sha256": "7cdc63b4c344df34dc57c3f7c45daa30b06fb4b80bba9cdc5c3e6104af9c26c6",
+      "bytes": 12136,
+      "mode": "0o600"
+    },
+    {
+      "path": "skills/requerimientos-socraticos/tests/test_document_source.py",
+      "sha256": "9e705d8df50ff25dbe5ff7fa292517b95e37265d71230cbd671ce611f1b9053d",
+      "bytes": 9806,
+      "mode": "0o600"
+    },
+    {
+      "path": "skills/requerimientos-socraticos/tests/test_environment.py",
+      "sha256": "301e7b85642ead742365171d33cf670a03cdb4fd0baeefec5ed3b290ed4334cf",
+      "bytes": 5051,
+      "mode": "0o600"
+    },
+    {
+      "path": "skills/requerimientos-socraticos/tests/test_git_bundle.py",
+      "sha256": "c3313c24159e2224eada98c05591ce5fd9262fbb01bb1ab6dd77ad7e0011e67f",
+      "bytes": 2379,
+      "mode": "0o600"
+    },
+    {
+      "path": "skills/requerimientos-socraticos/tests/test_git_memory.py",
+      "sha256": "a9ef27cd8e428e5ca8398c525b65c2ad8710f3c042bd738c052df065442956f2",
+      "bytes": 4674,
+      "mode": "0o600"
+    },
+    {
+      "path": "skills/requerimientos-socraticos/tests/test_guard.py",
+      "sha256": "84bacd9a71290fb4fde076f7379653ab6b9edf94ca7712c6f1f4fd7e08e37974",
+      "bytes": 8533,
+      "mode": "0o600"
+    },
+    {
+      "path": "skills/requerimientos-socraticos/tests/test_interview.py",
+      "sha256": "8b6d023a248c4bb9a4d44af6b06bebf7d33779617e9cdcf30a3ba66d986cf273",
+      "bytes": 20689,
+      "mode": "0o600"
+    },
+    {
+      "path": "skills/requerimientos-socraticos/tests/test_logic.py",
+      "sha256": "4259edee3995760dd6d1ccefcaf2381616e1fc0b45a1bf65a57a6a73ad4f4321",
+      "bytes": 6575,
+      "mode": "0o600"
+    },
+    {
+      "path": "skills/requerimientos-socraticos/tests/test_preflight.py",
+      "sha256": "84f953e343f9dfb737da9a06b43d3dc65b1ee873b9bcca04f6bde086142acd86",
+      "bytes": 2295,
+      "mode": "0o600"
+    },
+    {
+      "path": "skills/requerimientos-socraticos/tests/test_process_supervision.py",
+      "sha256": "5c0def5b49a88ea070a51584040fc0355487108d8e71a0db49ea3f7f0f4e3768",
+      "bytes": 6489,
+      "mode": "0o600"
+    },
+    {
+      "path": "skills/requerimientos-socraticos/tests/test_scratch.py",
+      "sha256": "d89f5ab1eac2cd1c7fd43fa0308a5c5925456d7ada3f60b504334f8d35d45ed0",
+      "bytes": 6575,
+      "mode": "0o600"
+    },
+    {
+      "path": "skills/requerimientos-socraticos/tests/test_sealed.py",
+      "sha256": "7b9bfed099f44687e011708572af0aac5d41064214ee41ae5c1fb1f4a6f278ed",
+      "bytes": 10027,
+      "mode": "0o600"
+    },
+    {
+      "path": "skills/requerimientos-socraticos/tests/test_supervisor.py",
+      "sha256": "0a962bcb454999ca5ae8281fc47d9405671b109c0fbe28a038701d52419fb417",
+      "bytes": 9277,
+      "mode": "0o600"
+    },
+    {
+      "path": "skills/requerimientos-socraticos/assets/analysis-report.schema.json",
+      "sha256": "bc9fca234245184459f68552db8c4571dfc02cd310ebce8433b6ba68499858a7",
+      "bytes": 1865,
+      "mode": "0o600"
+    },
+    {
+      "path": "skills/requerimientos-socraticos/assets/design-proposals.schema.json",
+      "sha256": "950be8ad944d07ff5b26cb5245377ad6587da28746d7c4f1837121bae66121f5",
+      "bytes": 3866,
+      "mode": "0o600"
+    },
+    {
+      "path": "skills/requerimientos-socraticos/assets/example.prd.json",
+      "sha256": "cc997d76a52570795c786918276372f436130669576ce3802980978001a5b527",
+      "bytes": 11981,
+      "mode": "0o600"
+    },
+    {
+      "path": "skills/requerimientos-socraticos/assets/gitattributes.example",
+      "sha256": "da4e98b8d85e0097acda607c5657f631741e4d9d484a6efc8ea61411c21e0a40",
+      "bytes": 149,
+      "mode": "0o600"
+    },
+    {
+      "path": "skills/requerimientos-socraticos/assets/interrogator-packet.schema.json",
+      "sha256": "422acb95aad107f1fc70a202859ed89631d44e40bbac9a9d464bdd0ca8aa7c02",
+      "bytes": 1092,
+      "mode": "0o600"
+    },
+    {
+      "path": "skills/requerimientos-socraticos/assets/interview.schema.json",
+      "sha256": "35492aefbc67d9861244f1e534d01f4fe9bae172c7da5389130a44d073ddfcc6",
+      "bytes": 13150,
+      "mode": "0o600"
+    },
+    {
+      "path": "skills/requerimientos-socraticos/assets/logic-example.json",
+      "sha256": "bcd115fa67a8be5b38a53565a60bbc7762ac2c39f3fe395a0a382afea59f0bb4",
+      "bytes": 564,
+      "mode": "0o600"
+    },
+    {
+      "path": "skills/requerimientos-socraticos/assets/logic-input.schema.json",
+      "sha256": "7d84a4206aef40594e81cf091b15104de9d9dfe2043643ea1af352b79c411067",
+      "bytes": 2291,
+      "mode": "0o600"
+    },
+    {
+      "path": "skills/requerimientos-socraticos/assets/prd.schema.json",
+      "sha256": "37b2c6b4af2eeee7c39c892a5b057e7b9ee0eab5d7963310be2de7029a5df99b",
+      "bytes": 40505,
+      "mode": "0o600"
+    },
+    {
+      "path": "bin/gentle-ai",
+      "sha256": "4af07e2c09cc1a115cb12aa5d385766682229c65746c6b7700d2b3d5febf51fb",
+      "bytes": 2288,
+      "mode": "0o755"
+    }
+  ],
+  "policy": "copy exact bytes; tests only in temporary copy; no candidate modifications"
+}

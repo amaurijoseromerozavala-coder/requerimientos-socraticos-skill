@@ -1,0 +1,63 @@
+{
+  "rdd_mode": "ON_EXPLICIT_GLOBAL",
+  "reviewer_auth": "VERIFIED_BY_SUCCESSFUL_NATIVE_REVIEW",
+  "native_review": {
+    "state": "approved",
+    "lineage": "review-1bc489242685d51e",
+    "target_identity": "sha256:2ba5963795268d750570745cadd35c036380892c3b1cb334af5d034d83ce6b76",
+    "candidate_tree": "5293217315e7a629a60ecb928c146a375ba6374c",
+    "lens": [
+      "review-reliability"
+    ],
+    "reviewer_results": [
+      {
+        "lens": "review-reliability",
+        "findings": [
+          {
+            "id": "R3-001",
+            "lens": "reliability",
+            "location": "skills/requerimientos-socraticos/validation.json:4-6",
+            "severity": "WARNING",
+            "claim": "The reported validation cannot be reproduced from the candidate: its checker exists only at a temporary session location, and neither its assertions nor observed output are included. Consequently, the PASS declarations do not establish that the negative cases failed for their intended reasons. Include a reusable documentation validator or retained assertion-level evidence for these checks.",
+            "proof_refs": [
+              "skills/requerimientos-socraticos/validation.json:4-6 identifies only an external temporary checker and its hash.",
+              "skills/requerimientos-socraticos/validation.json:8-105 lists test names and PASS declarations without assertions or observed failure witnesses.",
+              "skills/requerimientos-socraticos/references/workflow.md:29-31 requires executed tests and negative controls that fail for the intended reason.",
+              "skills/requerimientos-socraticos/references/validation.md:3-5 explicitly distinguishes declared PASS fields from execution evidence."
+            ],
+            "evidence_class": "insufficient",
+            "causal_disposition": "introduced"
+          }
+        ],
+        "evidence": [
+          "Inspected all seven supplied immutable patches; no commands were run and no external files were read.",
+          "skills/requerimientos-socraticos/assets/prd.schema.json provides structural READY restrictions; skills/requerimientos-socraticos/references/validation.md explicitly assigns cross-reference, semantic, and model correctness checks to separate validation.",
+          "skills/requerimientos-socraticos/assets/example.prd.json remains DRAFT with NOT_RUN assurance, so it does not falsely claim completed native review."
+        ],
+        "result_hash": "sha256:037ba4e48f058c198c08c75e5960e9e3eb09fe0665c28048ed4e8d844546b06a"
+      }
+    ],
+    "acknowledgement": {
+      "schema": "gentle-ai.review-acknowledged/v1",
+      "operation": "review/acknowledge-approved",
+      "action": "acknowledged",
+      "lineage_id": "review-1bc489242685d51e",
+      "target_identity": "sha256:2ba5963795268d750570745cadd35c036380892c3b1cb334af5d034d83ce6b76",
+      "consumed_revision": "sha256:dba4a311d543e9cc712876289257f110b1ddeefba99db848f095734d8fb2446a",
+      "authority": "burned"
+    }
+  },
+  "advisory_findings": {
+    "statement": "This review is approved and its receipt stands. Every finding listed here is non-blocking: none opened a correction, none reopens this review, and no correction transition is offered for this candidate. Treat them as separate later work, never as a reason to re-run review on this candidate.",
+    "findings": [
+      {
+        "id": "R3-001",
+        "lens": "reliability",
+        "location": "skills/requerimientos-socraticos/validation.json:4-6",
+        "severity": "WARNING",
+        "disposition": "informational"
+      }
+    ]
+  },
+  "observed_at": "2026-10-26T16:12:02.704339+00:00"
+}

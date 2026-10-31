@@ -1,0 +1,891 @@
+
+Cargando mensajes anteriores…
+Cual es más confiable en su resultado
+Para obtener requisitos correctos, verificables y fieles a lo que realmente quiere el usuario, elegiría tu skill requerimientos-socraticos v2.4.6 como base. Pero no puedo afirmar que sea estadísticamente más confiable que las alternativas: todavía faltan pruebas comparativas independientes.
+
+La respuesta cambia según qué entendamos por confiabilidad.
+
+Comparación por tipo de resultado
+Criterio
+
+Proyecto que elegiría
+
+Motivo
+
+Fidelidad a las decisiones humanas
+
+Tu skill v2.4.6
+
+Exige respuestas reales, evidencia y autoridad explícita
+
+Rigor matemático de requisitos temporales
+
+NASA FRET
+
+Utiliza semántica formal y herramientas de comprobación
+
+Verificación de productos implementados
+
+Ouroboros
+
+Exige verificaciones mecánicas ejecutadas para conceder aprobación
+
+Descubrimiento conversacional de necesidades
+
+Ouroboros / Symposium
+
+Entrevistas iterativas orientadas a aclarar ambigüedades
+
+Trazabilidad e integridad documental
+
+Tu skill v2.4.6
+
+Identificación Git, hashes y dependencias verificadas
+
+FRET dispone de formalización temporal, comprobaciones de consistencia y realizabilidad. Ouroboros distingue la evaluación mediante modelos de las pruebas mecánicas y no permite que el consenso de modelos conceda aprobación por sí solo. 
+
+GitHub
++1
+
+Lo que realmente diferencia a tu skill
+Tu implementación tiene una ventaja metodológica importante:
+
+No considera que una respuesta convincente de la IA sea necesariamente verdadera, ni que una demostración matemática pruebe que el humano expresó correctamente su intención.
+
+Esa distinción es fundamental.
+
+Por ejemplo, si un agente interpreta equivocadamente un requisito y después Z3 demuestra que su fórmula es consistente, la demostración puede ser correcta aunque el requisito esté mal entendido.
+
+Tu skill intenta prevenir precisamente ese problema mediante interrogatorio, confirmaciones y trazabilidad.
+
+Sin embargo, presenta una debilidad: los documentos pueden declarar resultados PASS que todavía no han sido autenticados por una autoridad independiente. Su bloqueo global de avance está correctamente reconocido, pero no resuelto.
+
+Mi elección para tu caso
+Mantener tu skill como núcleo de requisitos.
+
+No sustituiría sus reglas de autoridad, entrevista, trazabilidad y validación.
+
+Incorporar capacidades de Ouroboros.
+
+Principalmente descubrimiento de ambigüedades y evaluación independiente, sin importar permisos automáticos.
+
+Añadir FRET como verificador complementario.
+
+Para propiedades temporales y de comportamiento que excedan las capacidades actuales de Z3 booleano.
+
+¿Cuál produce menos alucinaciones?
+Todavía no está demostrado. Ni los 238 tests reportados de tu skill ni las miles de estrellas de otros proyectos miden directamente la tasa de requisitos inventados.
+
+Para determinarlo necesitamos un benchmark con requisitos ambiguos, decisiones humanas conocidas de antemano, contradicciones introducidas deliberadamente y un evaluador independiente.
+
+Mi conclusión: tu skill tiene una arquitectura especialmente conservadora para evitar conclusiones injustificadas; FRET ofrece garantías formales más fuertes dentro de su lenguaje; Ouroboros tiene un sistema más completo para comprobar resultados de ejecución. La combinación puede ser superior, pero eso también debe verificarse, no presumirse.
+
+Es viable combinarlos cual seria el workflow correcto y más determinista
+Arquitectura integrada: Requerimientos Socráticos + Ouroboros + NASA FRET
+Sí, es técnicamente viable combinarlos, y mi recomendación es hacerlo mediante una arquitectura de tres motores independientes, gobernados por un controlador determinista.
+
+La idea central es que ninguna IA tenga autoridad para declarar que un requisito es correcto, aceptado o listo para implementar por el simple hecho de que su respuesta resulte convincente.
+
+1. Arquitectura recomendada
+Humano decisor
+
+Objetivos, políticas, aceptación y autorizaciones
+Controlador determinista — autoridad central
+
+FSM · permisos · precedencias · evidencia · hashes · bloqueo de avances
+Tu skill v2.4.6
+
+Autoridad semántica y PRD
+
+Ouroboros
+
+Contraste y descubrimiento
+
+NASA FRET
+
+Lógica temporal y realizabilidad
+
+PRD congelado + expediente de verificación
+
+Evidencia reproducible, contradicciones, decisiones y pendientes
+Gate de autorización humana
+
+Validado no significa autorizado para implementar
+Esta es una arquitectura propuesta, no una integración ya existente entre los tres repositorios.
+
+La separación correcta sería:
+
+Tu skill: mantiene la única fuente de verdad sobre la intención humana, interrogatorio, EARS, FSM y PRD.
+
+Ouroboros: actúa como entrevistador o revisor auxiliar. No puede cambiar requisitos canónicos ni activar su ciclo de ejecución autónoma.
+
+FRET: analiza únicamente requisitos cuya semántica sea compatible con FRETish y cuyo significado haya sido confirmado.
+
+Controlador: ejecuta verificaciones, establece precedencias y rechaza resultados sin evidencia suficiente.
+
+2. Dos incompatibilidades que debemos resolver primero
+A. Ouroboros y los permisos de OpenCode
+
+Ouroboros admite OpenCode y otros runtimes, pero su documentación explica que la integración no interactiva puede utilizar permisos amplios y que ciertas ejecuciones delegadas omiten solicitudes de aprobación interactivas. 
+
+GitHub
+
+Por eso no recomiendo utilizar ooo auto, ooo run ni ooo evolve directamente sobre el proyecto principal. Primero debe existir un adaptador limitado a interrogatorio y revisión documental, probado en un entorno aislado.
+
+B. FRET y tu equipo WSL2
+
+La documentación oficial de FRET indica Node.js 16.16.x–20.19.x y Python 3.10–3.13, además de dependencias adicionales para algunas verificaciones. Tu instalación habitual de Node.js 26 no está dentro del intervalo documentado. 
+
+GitHub
+
+La estrategia sería utilizar un entorno separado con versiones compatibles y, preferentemente, su interfaz CLI antes que cargar toda la interfaz gráfica Electron. FRET documenta funciones CLI de formalización y realizabilidad. 
+
+GitHub
+
+No instalaría ni modificaría tu entorno principal para comenzar esta integración.
+
+3. Hallazgo adicional: Ouroboros todavía no tiene integración nativa completa con OpenCode 2.x
+La documentación actual confirma que el puente de plugins de Ouroboros para OpenCode 2.x sigue pendiente. La alternativa publicada es utilizar el modo subprocess, que no ofrece la misma integración nativa de subagentes. 
+
+GitHub
+
+Dado que tu entorno utiliza OpenCode 2.x, no diseñaría la primera versión alrededor del plugin Ouroboros. Usaría un proceso externo limitado, con entrada y salida verificadas, sin permisos para editar el proyecto principal.
+
+También hay una incompatibilidad de identidad Git: tu validador v2.4.6 exige commits de repositorios configurados con SHA-256, mientras que el commit publicado que revisamos en GitHub usa un identificador de 40 caracteres. No podemos pasarlo directamente a validate_git.py. La solución es mantener separadas la identidad del código fuente publicado y la identidad de un futuro repositorio documental SHA-256, vinculándolas mediante un manifiesto de procedencia verificado.
+
+Estas dos fronteras deben resolverse antes de hablar de una integración operativa.
+
+4. Workflow de requisitos más determinista
+Fase 0 — Admisión y autoridad
+
+Congelar el alcance de la tarea, fuentes permitidas, versiones, modelos disponibles, presupuesto de recursos y permisos. Ejecutar el preflight local antes de lanzar motores.
+
+Gate: ADMITTED o BLOCKED. Ningún modelo puede ampliar el alcance.
+
+Fase 1 — Interrogatorio socrático
+
+Tu skill conserva el registro principal. Ouroboros recibe contexto mínimo y propone supuestos ocultos o preguntas alternativas. El controlador selecciona una pregunta material cada vez, según reglas de prioridad fijadas.
+
+Gate: ninguna respuesta sin respaldo se convierte en decisión humana.
+
+Fase 2 — Cierre semántico
+
+Clasificar cada proposición como hecho, decisión, hipótesis, inferencia o desconocido. Comprobar cobertura de dimensiones materiales y conflictos pendientes.
+
+Gate: SEMANTIC_CONFIRMED únicamente con evidencia suficiente.
+
+Fase 3 — Formalización
+
+Transformar requisitos confirmados en EARS, restricciones booleanas, configuraciones FSM e invariantes. Crear propuestas FRETish para obligaciones temporales, sujetas a revisión de equivalencia semántica.
+
+Gate: ninguna traducción al lenguaje formal se acepta solamente porque la generó una IA.
+
+Fase 4 — Verificación matemática
+
+Ejecutar pruebas de esquema, referencias, FSM y Z3. FRET se utiliza para las obligaciones temporales compatibles; comprobar realizabilidad únicamente cuando estén definidas las interfaces, el entorno y sus supuestos.
+
+Gate: PASS, FAIL, UNKNOWN, NOT_RUN o NOT_APPLICABLE, con alcance y evidencia explícitos.
+
+Fase 5 — Falsación y revisión independiente
+
+Un revisor diferente busca contraejemplos, contradicciones y decisiones inferidas indebidamente. Los hallazgos vuelven al interrogatorio o a la formalización según su causa.
+
+Gate: un resultado del revisor es evidencia propuesta, no autorización.
+
+Fase 6 — Congelación y verificación de identidad
+
+Validar el candidato exacto, sus dependencias, hashes y recibos. Una modificación material exige nueva revisión y reevaluar toda prueba afectada.
+
+Gate: VERIFIED_CANDIDATE solo si se verifica el mismo conjunto de bytes y el cierre de todas las obligaciones aplicables.
+
+Fase 7 — Aceptación y autorización
+
+Entregar el PRD y el expediente al humano. La aceptación documental no concede permisos de implementación, despliegue ni publicación.
+
+Gate: una autorización nueva, explícita y acotada es necesaria para iniciar trabajo posterior.
+
+La propiedad fundamental del flujo es que un fallo o UNKNOWN no puede transformarse automáticamente en PASS por una respuesta posterior del LLM. Debe corregirse la causa y repetirse la verificación correspondiente.
+
+5. Contrato de decisión determinista
+El controlador debe evaluar un conjunto cerrado de condiciones. Por ejemplo:
+
+
+def decidir_cierre(expediente):
+    if expediente.get("pausado"):
+        return "PAUSED"
+
+    if not expediente["autoridad_verificada"]:
+        return "BLOCKED_AUTHORITY"
+
+    if expediente["contradicciones_materiales"]:
+        return "BLOCKED_CONTRADICTION"
+
+    if expediente["decisiones_humanas_pendientes"]:
+        return "WAITING_USER"
+
+    if expediente["traducciones_no_confirmadas"]:
+        return "BLOCKED_SEMANTICS"
+
+    for prueba in expediente["pruebas_obligatorias"]:
+        if prueba["estado"] != "PASS":
+            return "BLOCKED_VERIFICATION"
+
+    if not expediente["evidencia_vigente"]:
+        return "BLOCKED_STALE_EVIDENCE"
+
+    if not expediente["revision_independiente_autenticada"]:
+        return "BLOCKED_REVIEW"
+
+    return "DOCUMENT_VERIFIED_NOT_AUTHORIZED"
+
+Este código es pseudocódigo de política propuesto, no un reemplazo ejecutable de los validadores actuales. El expediente de entrada debe validarse contra un esquema estricto, todas las obligaciones aplicables deben estar enumeradas y una lista vacía no puede producir aprobación por vacuidad.
+
+Ouroboros puede proponer que el trabajo está listo. FRET puede demostrar una propiedad bajo sus supuestos. Pero solo el controlador, después de comprobar el expediente, puede asignar el estado documental correspondiente.
+
+6. Ejemplo de funcionamiento con tu Supervisor Local
+Supongamos este requisito:
+
+Un supervisor no debe permitir que una tarea pase de SCOPED a EXECUTING si no existe una autorización válida.
+
+La skill interroga qué significa autorización válida: quién la concede, cómo se comprueba, cuánto dura y qué ocurre cuando se revoca.
+
+Ouroboros puede descubrir una pregunta adicional: ¿qué sucede cuando la autorización vence entre la validación y la transición?
+
+Tras confirmar esos significados, construimos el modelo formal. Una de sus propiedades, representada ilustrativamente en LTL, podría ser:
+
+G
+(
+(
+S
+C
+O
+P
+E
+D
+∧
+¬
+A
+U
+T
+H
+O
+R
+I
+Z
+E
+D
+)
+→
+X
+(
+¬
+E
+X
+E
+C
+U
+T
+I
+N
+G
+)
+)
+G((SCOPED∧¬AUTHORIZED)→X(¬EXECUTING))
+Esto significa que siempre que el sistema esté en SCOPED sin autorización, el estado siguiente no debe ser EXECUTING.
+
+Contraejemplo de verificación
+
+Estado inicial
+SCOPED
+
+Autorización
+FALSE
+
+EXECUTING
+
+Transición prohibida por el requisito
+Resultado esperado del oráculo: FAIL
+
+El controlador debe rechazar cualquier modelo que admita esta transición en las condiciones fijadas. FRET podría verificar una formalización temporal compatible, después de revisar su traducción a FRETish y su semántica de trazas. Ningún éxito del solver demostraría por sí solo que la implementación real respeta la propiedad.
+
+7. Pruebas RED obligatorias de la integración
+Caso
+
+Inyección controlada
+
+Resultado esperado
+
+T01
+
+Ouroboros inventa una decisión humana
+
+BLOCKED_AUTHORITY
+
+T02
+
+Una traducción EARS → FRETish cambia el significado
+
+BLOCKED_SEMANTICS
+
+T03
+
+Z3 devuelve UNKNOWN por recursos
+
+BLOCKED_VERIFICATION
+
+T04
+
+Cambia un requisito después de la revisión
+
+BLOCKED_STALE_EVIDENCE
+
+T05
+
+FRET devuelve un contraejemplo válido
+
+BLOCKED_VERIFICATION
+
+T06
+
+Se intenta ejecutar sin autorización
+
+DENY, sin mutaciones
+
+T07
+
+Falta evidencia de una prueba obligatoria
+
+BLOCKED_VERIFICATION
+
+T08
+
+Una IA declara PASS sin recibo autenticado
+
+BLOCKED_REVIEW
+
+Estos son casos de prueba propuestos, no resultados de pruebas ya ejecutadas.
+
+8. Orden de implementación más seguro
+No intentaría integrar los tres motores simultáneamente.
+
+Etapa A — Controlador y tu skill
+
+Definir el contrato de entrada/salida, la FSM del workflow y los bloqueos. Usar el validador existente sin debilitar sus gates.
+
+Etapa B — Ouroboros como asesor aislado
+
+Habilitar únicamente entrevistas y revisión, con restricciones verificadas fuera del prompt. Sin ejecución automática ni acceso de escritura al repositorio principal.
+
+Etapa C — FRET CLI
+
+Comenzar con la formalización de un solo requisito temporal, contrastar su semántica y después evaluar realizabilidad con las dependencias necesarias. FRET documenta los comandos formalize y realizability para estos propósitos. 
+
+GitHub
+
+Etapa D — Benchmark independiente
+
+Ejecutar casos adversariales y comparar el workflow integrado con tu skill original. No adoptar el nuevo sistema si pierde trazabilidad, permite avances indebidos o no aporta una mejora verificable.
+
+La construcción del controlador puede ser ligera y secuencial, apropiada para tu PC. Evitaría cargar simultáneamente varios modelos o herramientas de análisis pesadas.
+
+9. Qué determinismo podemos alcanzar
+Conviene establecer el límite correcto: no podemos garantizar que distintos modelos de IA produzcan siempre las mismas preguntas o interpretaciones, incluso con temperatura cero. Tampoco podemos garantizar tiempos exactos de respuesta bajo WSL2.
+
+Lo que sí podemos diseñar y comprobar es determinismo en las reglas de admisión, transiciones de la FSM, referencias de evidencia, interpretación de resultados estructurados y decisiones de avance. Para una entrada y política idénticas, el controlador debe producir la misma decisión lógica, salvo que haya cambiado alguna dependencia relevante.
+
+Además, fijaría versiones exactas de motores y dependencias, orden estable de evaluación, identificadores y hashes canónicos, límites de recursos y criterios de parada.
+
+Recomendación final
+Mantendría Requerimientos Socráticos v2.4.6 como fuente de verdad y construiría un controlador independiente antes de integrar Ouroboros o FRET.
+
+El primer objetivo verificable no sería producir un PRD más largo, sino demostrar que ninguna combinación de respuestas de IA, resultados formales incompletos o recibos falsificados permite un avance no autorizado.
+
+No he instalado componentes, modificado repositorios ni ejecutado pruebas en tu equipo.
+
+Esta sería la base más defendible para conseguir resultados rigurosos, reproducibles y progresivamente verificables sin confundir determinismo lógico con infalibilidad de la IA.
+
+Entonces es mejor opción mejorar mi skill en ves de integrar con ouroboros y nasafret
+Sí. Para tu objetivo de conseguir requisitos rigurosos, deterministas, trazables y con la menor dependencia posible de las interpretaciones de una IA, considero mejor mejorar tu propia skill v2.4.6 antes que integrarla con Ouroboros y NASA FRET.
+
+Pero hay una distinción importante: mejorarla no significa desarrollar desde cero todas las capacidades de esos proyectos. Significa fortalecer su núcleo y utilizar herramientas externas solamente cuando aporten una capacidad verificable que todavía no posee.
+
+¿Por qué mejoraría tu skill primero?
+Criterio
+
+Mejorar tu skill
+
+Integrar los tres
+
+Control de autoridad humana
+
+Alto, con los gates actuales
+
+Exige reconciliar políticas
+
+Complejidad arquitectónica
+
+Menor
+
+Mayor
+
+Riesgo de incompatibilidades
+
+Menor
+
+Mayor
+
+Consumo de recursos
+
+Más controlable
+
+Potencialmente mayor
+
+Trazabilidad
+
+Un contrato principal
+
+Requiere traducciones entre contratos
+
+Verificación temporal avanzada
+
+Limitada actualmente
+
+FRET ofrece más capacidades
+
+Mantenimiento
+
+Más sencillo
+
+Tres proyectos y sus dependencias
+
+Qué mejoraría en tu v2.4.6
+Recomiendo cuatro etapas, en este orden:
+
+1. Cerrar las brechas de aseguramiento
+
+Reproducibilidad independiente, recibos RDD autenticados, validación de cobertura real, integridad de evidencias y pruebas de rechazo ante autorizaciones inexistentes.
+
+Prioridad máxima.
+
+2. Mejorar el interrogatorio socrático
+
+Incorporar detección sistemática de contradicciones, hipótesis ocultas, preguntas redundantes, dependencias y ambigüedades.
+
+Aprovechar ideas de Ouroboros y Symposium sin integrar sus motores completos.
+
+3. Ampliar progresivamente la verificación formal
+
+Conservar Z3 para el análisis booleano y mejorar la verificación de FSM, propiedades de seguridad, alcanzabilidad y condiciones de progreso.
+
+Para lógica temporal avanzada, evaluar posteriormente FRET o un model checker apropiado. No sería riguroso afirmar que el motor booleano actual puede demostrar todas esas propiedades.
+
+4. Hacer la skill independiente del modelo
+
+Configurar proveedor, modelo y esfuerzo de razonamiento para trabajar con Codex, OpenCode, OpenRouter o modelos locales compatibles.
+
+El cambio de modelo no debe alterar las reglas de aceptación ni las decisiones humanas registradas.
+
+Mi propuesta arquitectónica
+Conservaría el núcleo actual y dejaría dos interfaces futuras, desactivadas por defecto:
+
+Una interfaz de revisión socrática externa, para comparar preguntas y detectar omisiones.
+
+Una interfaz de verificación formal externa, para delegar propiedades que excedan las capacidades del motor interno.
+
+Así, Ouroboros y FRET serían herramientas opcionales, nunca autoridades sobre tu PRD.
+
+La prueba definitiva
+Antes de desarrollar nuevas funciones, establecería un benchmark con requisitos ambiguos, contradictorios y deliberadamente incompletos. Compararíamos tu v2.4.6 original con cada mejora.
+
+Si una mejora no reduce errores, descubre contradicciones adicionales o aumenta la evidencia verificable sin introducir nuevos fallos, no se adopta.
+
+Mi recomendación es evolucionar tu skill hacia una v2.5 con mayor confiabilidad demostrada, no con más complejidad por sí misma.
+
+Y comenzaría por una sola unidad RED_ONLY: intentar falsificar el gate de aceptación documental mediante recibos fabricados, evidencias obsoletas y contradicciones semánticas.
+
+Ese trabajo aportaría más confianza al núcleo que incorporar inmediatamente dos frameworks completos.
+
+Que otra skill sugieres que encaje con el diseño de esta skill o cuáles skills sugieres para continuar el flujo con el mismo rigor desde el PRD hasta producción
+Skills recomendadas para construir software desde el PRD hasta producción
+Mi primera recomendación es combinar tu skill requerimientos-socraticos v2.4.6 con habilidades seleccionadas de tres proyectos: Spec Kit, Superpowers y Trail of Bits Skills.
+
+No recomiendo sustituir tu metodología ni instalar frameworks completos indiscriminadamente. Lo más importante es que cada etapa tenga un contrato verificable, un responsable definido y una prohibición de avanzar cuando falte evidencia.
+
+1. Las seis capacidades que priorizaría
+1. speckit-plan + speckit-analyze — Arquitectura y consistencia
+
+GitHub Spec Kit
+
+Transforman una especificación en un plan arquitectónico y comprueban contradicciones entre especificación, plan y tareas. También existe speckit-tasks para organizar actividades según dependencias.
+
+Encajan después de tu PRD, sin repetir el interrogatorio inicial. 
+
+Spec Kit Documentation
+
+Ver Spec Kit
+2. writing-plans + test-driven-development — Plan y TDD
+
+obra/superpowers
+
+Descomponen el diseño aprobado en pequeñas unidades de trabajo y aplican RED → GREEN → REFACTOR, con comprobación de pruebas reales.
+
+Son especialmente compatibles con tu preferencia por unidades de trabajo acotadas. 
+
+GitHub
+
+Ver Superpowers
+3. spec-to-code-compliance — Conformidad código–PRD
+
+Trail of Bits
+
+Es posiblemente la skill individual que mejor complementa tu proyecto. Examina cada requisito frente al código, identifica obligaciones ausentes y busca refutar las discrepancias detectadas antes de reportarlas.
+
+Su capacidad de distinguir requisitos no comprobados de incumplimientos confirmados encaja con tu metodología Bunge–Popper. 
+
+GitHub
+
+Ver skill de conformidad
+4. differential-review — Revisión adversarial de cambios
+
+Trail of Bits
+
+Analiza diferencias Git, historial, superficie afectada, rutas de ataque y vacíos de pruebas. Es una buena referencia para construir tu gate de revisión independiente. 
+
+GitHub
+
+Ver revisión diferencial
+5. verification-before-completion — Evidencia antes del cierre
+
+obra/superpowers
+
+Exige ejecutar los comprobadores pertinentes, leer sus resultados y no anunciar éxito sin evidencia reciente. Es directamente compatible con tus reglas de no convertir declaraciones del agente en PASS. 
+
+GitHub
+
+Ver skill de verificación
+6. agent-supply-chain — Integridad de dependencias y herramientas
+
+github/awesome-copilot
+
+Permite crear manifiestos de integridad, detectar modificaciones y auditar dependencias. Sería útil para la cadena que conecta skills, MCP, herramientas y artefactos. 
+
+GitHub
+
+Ver skill de cadena de suministro
+Estas son capacidades documentadas, no garantías certificadas. Las skills de Trail of Bits están orientadas principalmente a su ecosistema de plugins; adaptarlas a OpenCode o Codex exige comprobar que disponen de las herramientas, subagentes y permisos esperados.
+
+2. Workflow completo recomendado
+Lo organizaría en ocho etapas, sin permitir que una skill posterior modifique silenciosamente las decisiones de una anterior.
+
+01
+
+Requisitos
+
+Tu skill v2.4.6
+
+PRD confirmado y candidato identificado
+
+02
+
+Arquitectura
+
+Spec Kit: plan + analyze
+
+ADR, contratos y trazabilidad aprobados
+
+03
+
+Planificación
+
+Spec Kit: tasks + Superpowers: writing-plans
+
+Tareas acotadas, precedencias y oráculos
+
+04
+
+Implementación
+
+Superpowers: test-driven-development
+
+RED observado → GREEN → regresión
+
+05
+
+Conformidad
+
+Trail of Bits: spec-to-code-compliance
+
+Requisitos comprobados contra código real
+
+06
+
+Seguridad y revisión
+
+Differential Review + análisis estático
+
+Hallazgos resueltos o aceptados por autoridad
+
+07
+
+Integración y release
+
+CI, verificaciones independientes y procedencia
+
+Artefacto verificado e identificado
+
+08
+
+Producción
+
+Aprobación humana + despliegue + observabilidad
+
+Smoke tests, monitoreo y rollback
+
+Cada gate es una condición propuesta que debe implementarse y probarse; no es una garantía proporcionada automáticamente por las skills.
+
+3. Una skill adicional que considero especialmente valiosa
+Para tus sistemas basados en FSM, validadores y contratos de bytes, incorporaría también:
+
+property-based-testing — Trail of Bits
+
+Esta skill trabaja con Hypothesis para Python, proptest para Rust y otras bibliotecas similares. Permite generar múltiples entradas válidas y buscar contraejemplos de propiedades previamente definidas. 
+
+GitHub
+
+Por ejemplo, a partir de tu PRD, se podrían comprobar propiedades como:
+
+Ninguna transición no autorizada altera el estado.
+
+Normalizar dos veces un documento produce los mismos bytes que normalizarlo una vez.
+
+Un cambio en una dependencia invalida las evidencias ligadas a su identidad anterior.
+
+Ningún error de recursos se convierte en aprobación.
+
+Estas pruebas serían complementarias a los tests unitarios y al análisis con Z3. No convierten una muestra de casos en demostración universal.
+
+4. Para producción, las skills no son suficientes
+Esta es la separación más importante de toda la arquitectura.
+
+Una skill puede revisar código y recomendar que se publique, pero el permiso efectivo de fusionar, liberar y desplegar debe depender de mecanismos externos al agente.
+
+Recomiendo tres controles concretos:
+
+GitHub Rulesets + verificaciones obligatorias
+
+Proteger la rama principal, exigir verificaciones de CI y restringir quién puede aprobar cambios. Los rulesets permiten comprobar estados antes de aceptar una fusión. 
+
+GitHub Docs
+
+GitHub Artifact Attestations
+
+Relacionar el artefacto compilado con su proceso de construcción y verificar su procedencia antes del despliegue. 
+
+GitHub Docs
+
+Esto no sustituye las pruebas ni convierte una compilación en código correcto.
+
+Entornos protegidos y aprobación de producción
+
+GitHub permite configurar aprobadores para ejecutar trabajos asociados a un entorno protegido, según el tipo de repositorio y plan. 
+
+GitHub Docs
+
+Después del despliegue deben existir comprobaciones de salud, registros, alertas y un procedimiento de reversión verificable.
+
+Una precaución: no elegiría el antiguo slsa-github-generator para una integración nueva. Sus responsables indican que ya no recibe mantenimiento activo y recomiendan las attestations integradas de GitHub. 
+
+GitHub
+
+5. Compatibilidad con tu OpenCode y tu metodología
+Encontré una ventaja concreta: tanto Spec Kit como Superpowers documentan integración con OpenCode.
+
+Spec Kit para OpenCode admite la integración opencode, aunque modifica archivos de configuración y comandos al instalarse.
+
+Superpowers para OpenCode V2 tiene instrucciones específicas para OpenCode 2.x. 
+
+Spec Kit Documentation
++1
+
+No obstante, existen incompatibilidades metodológicas que debes resolver antes de adoptar estas skills:
+
+Comportamiento de terceros
+
+Política que recomiendo
+
+Superpowers puede crear commits durante la ejecución
+
+Solo staging y commit con autorización específica
+
+Spec Kit puede gestionar su propia especificación
+
+Tu PRD continúa siendo la autoridad normativa
+
+Trail of Bits puede lanzar numerosos subagentes
+
+Ejecutar revisiones acotadas y secuenciales
+
+Skills externas pueden escribir informes o modificar tareas
+
+Escrituras limitadas al alcance autorizado
+
+Un agente declara que el trabajo está terminado
+
+Comprobadores externos y evidencia vigente deciden
+
+Para mantener compatibilidad con tu PC de recursos limitados, comenzaría con una sola unidad de trabajo a la vez. Las revisiones paralelas masivas de algunas skills de Trail of Bits no serían mi configuración inicial.
+
+También mantendría explícita la diferencia entre los commits Git normales y los commits SHA-256 exigidos por el validador de tu skill. Hace falta un contrato de procedencia que vincule ambos mundos; no deben confundirse sus identificadores.
+
+6. Mi propuesta: crear una skill propia que gobierne todo el flujo
+En lugar de dejar que Spec Kit, Superpowers y Trail of Bits se coordinen libremente, diseñaría una nueva skill:
+
+prd-to-production-gate
+Skill de orquestación y aseguramiento
+Su responsabilidad no sería implementar código, sino seleccionar el siguiente trabajo permitido y exigir evidencia verificable antes de cambiar de fase.
+
+Contrato mínimo de cada etapa
+
+INPUT_IDENTITY → AUTHORITY → REQUIREMENT_IDS → WORK_UNIT → EXPECTED_EVIDENCE → VALIDATION → REVIEW → GATE_DECISION
+
+Invariante central
+
+Ningún agente puede aprobar su propio resultado ni ampliar sus permisos.
+
+Para que esta política sea efectiva, la skill debería contar con un pequeño motor determinista independiente del LLM, y las etapas de integración y producción necesitarían controles externos de confianza.
+
+Además, cada requisito tendría una cadena trazable:
+
+REQ-001 → ADR-001 → TASK-001 → TEST-001 → código → REVIEW-001 → BUILD-001 → RELEASE-001
+
+La cobertura se calcularía sobre el conjunto completo de requisitos aplicables, manteniendo explícitos los que estén sin comprobar. No se reduciría artificialmente el denominador para obtener un porcentaje favorable.
+
+7. Orden de adopción que recomiendo
+No instalaría todas las herramientas al mismo tiempo.
+
+Primero probaría speckit-plan y speckit-analyze como siguiente etapa de tu PRD. Después incorporaría test-driven-development, spec-to-code-compliance y verification-before-completion, con contratos de entrada y salida acotados.
+
+Solo después de demostrar que esos traspasos mantienen la autoridad y la evidencia, añadiría seguridad, CI y los controles efectivos de producción.
+
+Mi elección definitiva: tu skill socrática como autoridad de requisitos, Spec Kit para planificación, Superpowers para implementación disciplinada, Trail of Bits para verificación adversarial y GitHub CI/CD para imponer los gates de publicación.
+
+Así obtendrías una metodología continua desde la intención humana hasta el software desplegado, conservando una distinción esencial: las IA proponen y ejecutan dentro de límites; las pruebas fundamentan los resultados y los controles externos determinan qué puede avanzar.
+
+Todo lo anterior es una propuesta arquitectónica respaldada por documentación de los proyectos; no he instalado, conectado ni modificado ninguno de ellos.
+
+Esa skill puede operar en gentle-ai
+Sí. La skill prd-to-production-gate que te propuse puede diseñarse para funcionar con Gentle-AI, OpenCode y Codex. De hecho, considero que Gentle-AI es una buena base para integrarla con tu metodología de desarrollo.
+
+Hay una distinción importante: Gentle-AI no es el ejecutor de la skill. Es el entorno que configura agentes, skills, memoria, MCP y procesos de revisión. OpenCode o Codex ejecutan las instrucciones de la skill. 
+
+GitHub
++1
+
+Arquitectura que recomiendo
+Gentle-AI
+
+ODD · Engram · Skill Registry · RDD · MCP
+OpenCode / Codex
+
+Agentes y modelos de IA configurables
+prd-to-production-gate
+
+Orquestador de contratos, FSM y verificaciones
+Requerimientos socráticos
+
+PRD y autoridad humana
+
+Spec Kit
+
+Arquitectura y planificación
+
+Superpowers
+
+TDD y ejecución acotada
+
+Trail of Bits
+
+Conformidad y auditoría
+
+CI/CD y autoridad externa
+
+Verificación independiente · aprobación humana · producción
+Compatibilidad con Gentle-AI
+La documentación oficial confirma que Gentle-AI permite descubrir skills instaladas en directorios de proyecto y globales. También dispone de un registro de skills y de capacidades de memoria y revisión. 
+
+GitHub
++1
+
+Componente
+
+Integración propuesta
+
+ODD
+
+Control de unidades de trabajo y alcance
+
+Engram
+
+Historial y decisiones vinculadas a evidencias
+
+RDD
+
+Revisión independiente antes de aceptar cambios
+
+Skill Registry
+
+Descubrimiento y carga de skills
+
+MCP
+
+Acceso controlado a herramientas externas
+
+OpenCode / Codex
+
+Ejecución de tareas con modelos intercambiables
+
+Motor FSM propio
+
+Autorizaciones y transiciones deterministas
+
+Cómo se instalaría
+Para OpenCode, la estructura podría ser:
+
+~/.config/opencode/skills/
+├── requerimientos-socraticos/
+│   └── SKILL.md
+└── prd-to-production-gate/
+    ├── SKILL.md
+    ├── references/
+    ├── assets/
+    ├── scripts/
+    └── tests/
+La guía oficial de Gentle-AI establece una estructura de skills con contrato de activación, reglas obligatorias, condiciones de decisión, pasos de ejecución y contrato de salida. 
+
+GitHub
+
+Para actualizar el registro, la documentación actual indica:
+
+gentle-ai skill-registry refresh
+
+Este comando modifica archivos del registro, por lo que no lo ejecutaría sin tu autorización. Además, habría que confirmar su disponibilidad en tu instalación exacta de Gentle-AI 4.2.0, ya que la documentación consultada corresponde a la rama principal y puede incluir cambios posteriores.
+
+La condición indispensable
+No permitiría que prd-to-production-gate sustituya la autoridad de Gentle-AI ni que Gentle-AI interprete una aprobación de la skill como autorización para desplegar.
+
+La nueva skill debe ser el orquestador lógico, mientras que las verificaciones ejecutables, los permisos del sistema operativo, Git y CI/CD imponen los bloqueos efectivos.
+
+Por ejemplo, un resultado RDD_PASS solo podría contribuir al cierre si corresponde al candidato exacto y dispone de evidencia verificable. No debe convertirse automáticamente en permiso de producción.
+
+Mi recomendación
+Sí construiría esa skill específicamente para Gentle-AI, reutilizando ODD, Engram, RDD y sus mecanismos existentes, en lugar de desarrollar otro framework completo que duplique esas funciones.
+
+Comenzaría con una versión mínima que reciba un PRD congelado de tu skill socrática y determine, mediante reglas verificables, si está autorizado comenzar la fase de arquitectura.
+
+Después ampliaría el flujo hasta producción, una etapa y una prueba RED/GREEN por vez.
+
+Esto preservaría tu objetivo principal: una cadena de ingeniería continua, auditable y fail-closed, desde los requisitos hasta el despliegue, sin que las decisiones de los LLM sustituyan las pruebas ni la autoridad humana.
+
+
+
+

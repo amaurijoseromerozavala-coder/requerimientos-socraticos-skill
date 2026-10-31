@@ -1,0 +1,30 @@
+{
+  "finding": "R3-001",
+  "planned_changed_lines": 160,
+  "observed_changed_lines": 42,
+  "changed_files": [
+    {
+      "path": "docs/skill-audit/requerimientos-repair/tests-green.stderr",
+      "changed_lines": 6
+    },
+    {
+      "path": "skills/requerimientos-socraticos/validation.json",
+      "changed_lines": 10
+    },
+    {
+      "path": "skills/requerimientos-socraticos/tests/test_interview.py",
+      "changed_lines": 23
+    },
+    {
+      "path": "skills/requerimientos-socraticos/scripts/validate_interview.py",
+      "changed_lines": 2
+    },
+    {
+      "path": "skills/requerimientos-socraticos/scripts/validate_prd.py",
+      "changed_lines": 1
+    }
+  ],
+  "red": "40 tests, 4 genuine failures before fix",
+  "green": "40 tests OK after fix",
+  "scope": "Applicability/status consistency and same-project authority binding; QA unchanged."
+}

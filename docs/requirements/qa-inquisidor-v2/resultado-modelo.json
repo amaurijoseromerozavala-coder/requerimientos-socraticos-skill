@@ -1,0 +1,175 @@
+{
+  "scope": "STATIC_DOCUMENTARY_MODEL_ONLY",
+  "model_sha256": "5c04f76e8338947474ae2e9436904b9ecab548f2840dc681392f6938871aae53",
+  "negative_control": {
+    "result": "EXPECTED_REJECTION",
+    "counterexample": "UNAUTHORIZED_EXECUTION_EVENT"
+  },
+  "unmodified_model": {
+    "reachable_configurations": 59,
+    "accepted_transitions": 202,
+    "rejections": 3574,
+    "delivery_with_material_gap_without_PASS": "REACHABLE",
+    "abstract_delivery_witnesses": {
+      "BLOCKED": [
+        {
+          "actor": "REVIEWER",
+          "event": "BLOCK",
+          "from": "CAPTURED",
+          "to": "BLOCKED"
+        },
+        {
+          "actor": "REVIEWER",
+          "event": "ASSEMBLE_BLOCKED_REPORT",
+          "from": "BLOCKED",
+          "to": "REPORTABLE"
+        },
+        {
+          "actor": "REVIEWER",
+          "event": "DELIVER",
+          "from": "REPORTABLE",
+          "to": "REPORT_DELIVERED"
+        }
+      ],
+      "INCONCLUSIVE": [
+        {
+          "actor": "REVIEWER",
+          "event": "BEGIN",
+          "from": "CAPTURED",
+          "to": "ANALYSIS"
+        },
+        {
+          "actor": "REVIEWER",
+          "event": "REGISTER_CONTEXT",
+          "from": "ANALYSIS",
+          "to": "ANALYSIS"
+        },
+        {
+          "actor": "REVIEWER",
+          "event": "PLAN",
+          "from": "ANALYSIS",
+          "to": "TEST_PLAN"
+        },
+        {
+          "actor": "REVIEWER",
+          "event": "ASSEMBLE_ANALYSIS_REPORT",
+          "from": "TEST_PLAN",
+          "to": "REPORTABLE"
+        },
+        {
+          "actor": "REVIEWER",
+          "event": "DELIVER",
+          "from": "REPORTABLE",
+          "to": "REPORT_DELIVERED"
+        }
+      ],
+      "FAIL": [
+        {
+          "actor": "REVIEWER",
+          "event": "BEGIN",
+          "from": "CAPTURED",
+          "to": "ANALYSIS"
+        },
+        {
+          "actor": "REVIEWER",
+          "event": "RECORD_CURRENT_FAILURE",
+          "from": "ANALYSIS",
+          "to": "ANALYSIS"
+        },
+        {
+          "actor": "REVIEWER",
+          "event": "REGISTER_CONTEXT",
+          "from": "ANALYSIS",
+          "to": "ANALYSIS"
+        },
+        {
+          "actor": "REVIEWER",
+          "event": "PLAN",
+          "from": "ANALYSIS",
+          "to": "TEST_PLAN"
+        },
+        {
+          "actor": "HUMAN_OWNER",
+          "event": "RECORD_SPECIFIC_AUTHORIZATION",
+          "from": "TEST_PLAN",
+          "to": "TEST_PLAN"
+        },
+        {
+          "actor": "EXECUTOR",
+          "event": "EXECUTE",
+          "from": "TEST_PLAN",
+          "to": "VERIFICATION"
+        },
+        {
+          "actor": "REVIEWER",
+          "event": "ASSEMBLE_REPORT",
+          "from": "VERIFICATION",
+          "to": "REPORTABLE"
+        },
+        {
+          "actor": "REVIEWER",
+          "event": "DELIVER",
+          "from": "REPORTABLE",
+          "to": "REPORT_DELIVERED"
+        }
+      ],
+      "PASS_WITHIN_SCOPE": [
+        {
+          "actor": "REVIEWER",
+          "event": "BEGIN",
+          "from": "CAPTURED",
+          "to": "ANALYSIS"
+        },
+        {
+          "actor": "REVIEWER",
+          "event": "RECORD_CURRENT_SUCCESS",
+          "from": "ANALYSIS",
+          "to": "ANALYSIS"
+        },
+        {
+          "actor": "REVIEWER",
+          "event": "REGISTER_CONTEXT",
+          "from": "ANALYSIS",
+          "to": "ANALYSIS"
+        },
+        {
+          "actor": "REVIEWER",
+          "event": "PLAN",
+          "from": "ANALYSIS",
+          "to": "TEST_PLAN"
+        },
+        {
+          "actor": "HUMAN_OWNER",
+          "event": "RECORD_SPECIFIC_AUTHORIZATION",
+          "from": "TEST_PLAN",
+          "to": "TEST_PLAN"
+        },
+        {
+          "actor": "EXECUTOR",
+          "event": "EXECUTE",
+          "from": "TEST_PLAN",
+          "to": "VERIFICATION"
+        },
+        {
+          "actor": "REVIEWER",
+          "event": "ASSEMBLE_REPORT",
+          "from": "VERIFICATION",
+          "to": "REPORTABLE"
+        },
+        {
+          "actor": "REVIEWER",
+          "event": "DELIVER",
+          "from": "REPORTABLE",
+          "to": "REPORT_DELIVERED"
+        }
+      ]
+    }
+  },
+  "not_proven": [
+    "External truth/authority/coverage bindings",
+    "Runtime implementation",
+    "Hardware properties",
+    "Liveness/fairness",
+    "Complete canonical PRD migration"
+  ]
+}

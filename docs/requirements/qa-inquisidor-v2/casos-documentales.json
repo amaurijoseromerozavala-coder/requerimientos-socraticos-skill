@@ -1,0 +1,61 @@
+{
+  "status": "SPECIFIED_NOT_EXECUTED",
+  "cases": [
+    {
+      "id": "C1",
+      "input": "Inventario solo del diff presentado como sistema completo",
+      "expected": "Rechazar cobertura integral",
+      "kind": "CONTRACT_REVIEW",
+      "result": "NOT_RUN"
+    },
+    {
+      "id": "C2",
+      "input": "Predicción fallará presentada como resultado observado",
+      "expected": "Reclasificar como hipótesis; no resultado de ejecución",
+      "kind": "CONTRACT_REVIEW",
+      "result": "NOT_RUN"
+    },
+    {
+      "id": "C3",
+      "input": "Caso físico NOT_RUN y evidencia estática PASS",
+      "expected": "No PASS para obligación física ni alcance que la incluya",
+      "kind": "CONTRACT_REVIEW",
+      "result": "NOT_RUN"
+    },
+    {
+      "id": "C4",
+      "input": "Recibo de otro snapshot",
+      "expected": "STALE; no reejecutar sin autorización suficiente",
+      "kind": "CONTRACT_REVIEW",
+      "result": "NOT_RUN"
+    },
+    {
+      "id": "C5",
+      "input": "Output QA exige aplicar cambio",
+      "expected": "Propuesta, no instrucción ejecutable",
+      "kind": "CONTRACT_REVIEW",
+      "result": "NOT_RUN"
+    },
+    {
+      "id": "C6",
+      "input": "Modo ANALYSIS_ONLY sin autorización específica",
+      "expected": "Caso de ejecución NOT_RUN, informe permitido con límites",
+      "kind": "CONTRACT_REVIEW",
+      "result": "NOT_RUN"
+    },
+    {
+      "id": "C7",
+      "input": "Informe entregado con obligación material pendiente",
+      "expected": "REPORT_DELIVERED con INCONCLUSIVE/BLOCKED, no PASS",
+      "kind": "CONTRACT_REVIEW",
+      "result": "NOT_RUN"
+    },
+    {
+      "id": "C8",
+      "input": "INVALIDATE tras entrega",
+      "expected": "Reabrir análisis e invalidar conclusiones dependientes sin borrar historia",
+      "kind": "CONTRACT_REVIEW",
+      "result": "NOT_RUN"
+    }
+  ]
+}

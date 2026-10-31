@@ -1,0 +1,144 @@
+import json,copy,itertools,collections,hashlib,datetime,sys
+from pathlib import Path
+from jsonschema import Draft202012Validator
+R=Path('/workspace/replica-gentle-ai/docs/requirements/qa-inquisidor')
+P=json.loads((R/'prd.json').read_text());RS=json.loads((R/'qa-report.schema.json').read_text());PS=json.load(open('/workspace/replica-gentle-ai/skills/requerimientos-socraticos/assets/prd.schema.json'))
+results=[]
+def reject(reason,witness):raise ValueError(json.dumps({'reason':reason,'witness':witness},ensure_ascii=False))
+def check_schema(x,s):
+ errs=sorted(Draft202012Validator(s).iter_errors(x),key=lambda e:str(list(e.path)))
+ if errs:reject('REPORT_SCHEMA' if s is RS else 'PRD_SCHEMA',{'path':list(errs[0].path),'message':errs[0].message})
+def refs(p):
+ c=p['candidate'];groups={k:{x['id'] for x in c[k]} for k in ['raw_inputs','semantic_ir','requirements','falsifiers','claims','sources']}
+ allids=[]
+ for k in groups:
+  allids += [x['id'] for x in c[k]]
+ if len(allids)!=len(set(allids)):reject('DUPLICATE_ID',allids)
+ def subset(v,target):
+  if not set(v)<=target:reject('DANGLING_REFERENCE',sorted(set(v)-target))
+ for ir in c['semantic_ir']:subset(ir['input_ids'],groups['raw_inputs'])
+ for req in c['requirements']:
+  subset(req['ir_ids'],groups['semantic_ir']);subset(req['falsifier_ids'],groups['falsifiers']);subset(req['transition_ids'],{t['id'] for t in c['fsm']['transitions']});subset(req['invariant_ids'],{i['id'] for i in c['fsm']['invariants']})
+ for f in c['falsifiers']:subset(f['claim_ids'],groups['requirements']|groups['claims'])
+ for t in c['fsm']['transitions']:subset(t['requirement_ids'],groups['requirements'])
+ for i in c['fsm']['invariants']:subset(i['requirement_ids'],groups['requirements'])
+ for cl in c['claims']:subset(cl['source_ids'],groups['sources'])
+ for q in c['questions']:subset(q['answer_source_ids'],groups['sources'])
+ return {'requirements':len(c['requirements']),'falsifiers':len(c['falsifiers']),'semantic_ir':len(c['semantic_ir'])}
+def formal(f):
+ states=f['states'];vars=f['variables'];keys=sorted(vars)
+ def valid(v,complete=False):
+  if not set(v)<=set(vars) or (complete and set(v)!=set(vars)):reject('VALUATION',v)
+  for k,value in v.items():
+   if value not in vars[k]:reject('VALUATION',{k:value})
+ valid(f['initial']['values'],True)
+ for t in f['transitions']:
+  if t['from'] not in states or t['to'] not in states:reject('DANGLING_REFERENCE',t['id'])
+  valid(t['effects'])
+  for clause in t['guard_dnf']:valid(clause)
+  if t['actor']=='OTHER' and t['outcome']!='REJECT':reject('AUTHORIZATION',t['id'])
+  if t['outcome']=='REJECT' and (t['from']!=t['to'] or t['effects']):reject('REJECT_MUTATES',t['id'])
+ def matching(state,vals,a,e):return [t for t in f['transitions'] if t['from']==state and t['actor']==a and t['event']==e and any(all(vals[k]==v for k,v in g.items()) for g in t['guard_dnf'])]
+ # Exhaustive guard coverage/exclusivity even for unreachable boolean valuations.
+ total=0
+ for state,a,e,values in itertools.product(states,f['actors'],f['events'],list(itertools.product(*(vars[k] for k in keys)))):
+  v=dict(zip(keys,values));ts=matching(state,v,a,e);total+=1
+  if len(ts)!=1:reject('COVERAGE' if not ts else 'NONDETERMINISM',{'state':state,'actor':a,'event':e,'values':v,'matching':[t['id'] for t in ts]})
+ def key(state,v):return state,tuple(v[k] for k in keys)
+ first=key(f['initial']['state'],f['initial']['values']);seen={first};q=collections.deque([(first,[])]);edge_count=0;done_trace=None;invalidations=0
+ while q:
+  (state,values),trace=q.popleft();v=dict(zip(keys,values))
+  for inv in f['invariants']:
+   for pattern in inv['forbidden_patterns']:
+    if pattern['state']==state and all(v[k]==value for k,value in pattern['values'].items()):reject('INVARIANT',{'invariant':inv['id'],'trace':trace,'state':state,'values':v})
+  if state=='DONE' and done_trace is None:done_trace=trace
+  for a,e in itertools.product(f['actors'],f['events']):
+   t=matching(state,v,a,e)[0];w={**v,**t['effects']};edge_count+=1
+   if a=='QA' and e=='INVALIDATE':
+    if t['to']!='ANALYSIS' or w['scope_complete'] or w['evidence_complete']:reject('INVALIDATION',t['id'])
+    invalidations+=1
+   nxt=key(t['to'],w)
+   if nxt not in seen:seen.add(nxt);q.append((nxt,trace+[t['id']]))
+ if set(s for s,_ in seen)!=set(states):reject('REACHABILITY',sorted(set(states)-{s for s,_ in seen}))
+ if done_trace is None:reject('PROGRESS','No finite path to DONE')
+ return {'all_configuration_inputs_checked':total,'reachable_configurations':len(seen),'reachable_edges_checked':edge_count,'finite_completion_witness':done_trace,'invalidation_edges_checked':invalidations,'limitations':'Finite control model only; external phase oracles and real application behavior are not proved.'}
+def fresh(report):
+ for category,items,key in [('claims',report['ANALYSIS']['claims'],'id'),('components',report['ANALYSIS']['system_inventory'],'component_id'),('evidence',report['VERIFICATION']['evidence'],'id'),('cases',report['TEST PLAN']['cases'],'id'),('results',report['VERIFICATION']['results'],'test_id')]:
+  ids=[item[key] for item in items]
+  if len(ids)!=len(set(ids)):reject('DUPLICATE_ID',{'category':category,'ids':ids})
+ for e in report['VERIFICATION']['evidence']:
+  if e['snapshot_sha256']!=report['target_snapshot_sha256']:reject('STALE_EVIDENCE',{'evidence':e['id'],'evidence_snapshot':e['snapshot_sha256'],'target_snapshot':report['target_snapshot_sha256']})
+ evidence={e['id'] for e in report['VERIFICATION']['evidence']}
+ for cl in report['ANALYSIS']['claims']:
+  if not set(cl['evidence_ids'])<=evidence:reject('DANGLING_REFERENCE',cl['id'])
+ for x in report['VERIFICATION']['results']:
+  if not set(x['evidence_ids'])<=evidence:reject('DANGLING_REFERENCE',x['test_id'])
+ for result in report['VERIFICATION']['results']:
+  if result['test_id'] not in {t['id'] for t in report['TEST PLAN']['cases']}:reject('DANGLING_REFERENCE',result['test_id'])
+ for t in report['TEST PLAN']['cases']:
+  if t['id'] not in {x['test_id'] for x in report['VERIFICATION']['results']}:reject('MISSING_RESULT',t['id'])
+ if report['VERIFICATION']['verdict']=='PASS_WITHIN_SCOPE' and any(t['authorization_status']=='PENDING' for t in report['TEST PLAN']['cases']):reject('AUTHORIZATION','pending test authorization')
+ by_id={e['id']:e for e in report['VERIFICATION']['evidence']}
+ by_test={t['id']:t for t in report['TEST PLAN']['cases']}
+ for result in report['VERIFICATION']['results']:
+  if result['outcome']!='PASS':continue
+  planned=by_test[result['test_id']]['execution_kind']
+  matches=[by_id[i] for i in result['evidence_ids'] if by_id[i]['kind']==planned and by_id[i]['result']=='PASS']
+  if planned=='REAL_EXECUTION':
+   matches=[e for e in matches if e['proves_real_execution'] and isinstance(e['exit_code'],int)]
+  if not matches:reject('EVIDENCE_KIND_MISMATCH',{'test_id':result['test_id'],'planned':planned,'supporting_kinds':[by_id[i]['kind'] for i in result['evidence_ids']]})
+ return 'hashes, cross-references and planned/evidence execution kinds match'
+def test(id,expect,fn):
+ try:
+  value=fn()
+  if expect!='ACCEPT':raise AssertionError('Expected rejection '+expect)
+  results.append({'id':id,'status':'PASS','observed':'ACCEPT','detail':value})
+ except ValueError as err:
+  detail=json.loads(str(err))
+  if detail['reason']!=expect:raise AssertionError((id,expect,detail))
+  results.append({'id':id,'status':'PASS','observed':'REJECT','expected_reason':expect,'witness':detail['witness']})
+def mut(obj,change,check):
+ x=copy.deepcopy(obj);change(x);return check(x)
+H='a'*64
+fixture={'contract_version':'1.0.0','language':'es','section_order':['ANALYSIS','TEST PLAN','VERIFICATION'],'target_snapshot_sha256':H,'ANALYSIS':{'summary_es':'Fixture documental sintético; no representa una auditoría de producto ni evidencia real.','system_inventory':[{'component_id':'documento-sintetico','boundary_es':'Solo fixture de contrato JSON','status':'EXAMINED','requirement_ids':['R02'],'evidence_ids':['E-synthetic'],'reason_es':'Datos sintéticos para probar el schema.'}],'contracts_and_cross_component_conflicts':[],'claims':[{'id':'CL-synthetic','statement_es':'Afirmación sintética de prueba estructural.','classification':'FACT','verification':'VERIFIED','material':True,'evidence_ids':['E-synthetic'],'limitations_es':['Fixture; no constituye conocimiento sobre un sistema real.']}],'architecture_recommendations':[]},'TEST PLAN':{'strategy_es':'Validación documental de un caso negativo sintético.','cases':[{'id':'TEST-synthetic','requirement_ids':['R02'],'category':'NEGATIVE','counterexample_es':'Claim verificado sin evidencia.','oracle_es':'Contrato de salida','execution_kind':'STATIC_REVIEW','authorization_status':'NOT_APPLICABLE','resource_budget_es':'Fixture en memoria; sin ejecución de aplicación.'}],'uncovered_or_blocked_es':[]},'VERIFICATION':{'verdict':'PASS_WITHIN_SCOPE','coverage':'COMPLETE','evidence':[{'id':'E-synthetic','snapshot_sha256':H,'kind':'STATIC_REVIEW','command_or_tool':'synthetic fixture, not an executed application command','tool_version':'fixture-1','observed_at':'synthetic-not-an-observation','environment_fingerprint':'fixture-memory','exit_code':None,'result':'PASS','output_sha256':'b'*64,'output_locator':'synthetic fixture only','proves_real_execution':False,'limitations_es':['Los valores son sintéticos, no recibos de una ejecución real.']}],'results':[{'test_id':'TEST-synthetic','outcome':'PASS','evidence_ids':['E-synthetic'],'actual_observation_es':'Valor sintético para ejercitar el contrato.'}],'reproducibility':{'inputs_and_versions_pinned':True,'same_environment':True,'repetitions':2,'comparison_oracle_es':'Igualdad estructural en fixture sintético.','observed_variations_es':[],'unproved_es':['No certifica producto ni runtime.']},'limitations_es':['Fixture de schema; ningún PASS se atribuye a la skill futura.'],'next_actions_es':[]}}
+Draft202012Validator.check_schema(PS);Draft202012Validator.check_schema(RS)
+def enough_requirements(p):
+ if len(p['candidate']['requirements'])<18:reject('MISSING_REQUIREMENTS',{'requirements':p['candidate']['requirements'],'expected_minimum':18})
+ return True
+test('A01','MISSING_REQUIREMENTS',lambda:enough_requirements({'candidate':{'requirements':[]}}))
+test('A02','ACCEPT',lambda:(check_schema(P,PS),refs(P)))
+test('A03','REPORT_SCHEMA',lambda:mut(fixture,lambda x:x['VERIFICATION'].update(coverage='PARTIAL'),lambda x:check_schema(x,RS)))
+test('A04','REPORT_SCHEMA',lambda:mut(fixture,lambda x:x['ANALYSIS']['claims'][0].update(verification='UNVERIFIED'),lambda x:check_schema(x,RS)))
+test('A05','REPORT_SCHEMA',lambda:mut(fixture,lambda x:x['ANALYSIS']['claims'][0].update(evidence_ids=[]),lambda x:check_schema(x,RS)))
+test('A06','REPORT_SCHEMA',lambda:mut(fixture,lambda x:x['VERIFICATION']['evidence'][0].update(kind='MOCK',proves_real_execution=True,exit_code=0),lambda x:check_schema(x,RS)))
+test('A07','COVERAGE',lambda:mut(P['candidate']['fsm'],lambda x:x['transitions'].pop(),formal))
+test('A08','NONDETERMINISM',lambda:mut(P['candidate']['fsm'],lambda x:x['transitions'].append(dict(x['transitions'][0],id='T-duplicate')),formal))
+test('A09','AUTHORIZATION',lambda:mut(P['candidate']['fsm'],lambda x:next(t for t in x['transitions'] if t['actor']=='OTHER').update(outcome='ALLOW'),formal))
+test('A10','REJECT_MUTATES',lambda:mut(P['candidate']['fsm'],lambda x:next(t for t in x['transitions'] if t['outcome']=='REJECT').update(to='DONE'),formal))
+test('A11','INVARIANT',lambda:mut(P['candidate']['fsm'],lambda x:x['transitions'][0].update(to='DONE'),formal))
+test('A12','DANGLING_REFERENCE',lambda:mut(P,lambda x:x['candidate']['requirements'][0].update(ir_ids=['IR-NONEXISTENT']),refs))
+test('A13','ACCEPT',lambda:(check_schema(fixture,RS),fresh(fixture)))
+test('A14','ACCEPT',lambda:formal(P['candidate']['fsm']))
+test('A15','STALE_EVIDENCE',lambda:mut(fixture,lambda x:x['VERIFICATION']['evidence'][0].update(snapshot_sha256='c'*64),fresh))
+test('A16','REPORT_SCHEMA',lambda:mut(fixture,lambda x:x.update(hidden_override=True),lambda x:check_schema(x,RS)))
+test('A17','REPORT_SCHEMA',lambda:mut(fixture,lambda x:x['TEST PLAN']['cases'][0].update(category='POSITIVE'),lambda x:check_schema(x,RS)))
+test('A18','REPORT_SCHEMA',lambda:mut(fixture,lambda x:x['VERIFICATION']['evidence'][0].update(result='FAIL'),lambda x:check_schema(x,RS)))
+test('A19','DANGLING_REFERENCE',lambda:mut(fixture,lambda x:x['VERIFICATION']['results'][0].update(evidence_ids=['E-missing']),fresh))
+test('A20','EVIDENCE_KIND_MISMATCH',lambda:mut(fixture,lambda x:x['TEST PLAN']['cases'][0].update(execution_kind='REAL_EXECUTION',authorization_status='AUTHORIZED'),fresh))
+# Positive control: real execution with a retained execution receipt is structurally bindable.
+def real_fixture(x):
+ x['TEST PLAN']['cases'][0].update(execution_kind='REAL_EXECUTION',authorization_status='AUTHORIZED')
+ x['VERIFICATION']['evidence'][0].update(kind='REAL_EXECUTION',proves_real_execution=True,exit_code=0)
+test('A21','ACCEPT',lambda:mut(fixture,real_fixture,fresh))
+def duplicate_real_case(x):
+ case=copy.deepcopy(x['TEST PLAN']['cases'][0]);case.update(execution_kind='REAL_EXECUTION',authorization_status='AUTHORIZED');x['TEST PLAN']['cases'].insert(0,case)
+test('A22','DUPLICATE_ID',lambda:mut(fixture,duplicate_real_case,fresh))
+test('A23','DUPLICATE_ID',lambda:mut(fixture,lambda x:x['VERIFICATION']['evidence'].append(dict(x['VERIFICATION']['evidence'][0])),fresh))
+test('A24','DUPLICATE_ID',lambda:mut(fixture,lambda x:x['VERIFICATION']['results'].append(dict(x['VERIFICATION']['results'][0])),fresh))
+test('A25','MISSING_RESULT',lambda:mut(fixture,lambda x:x['VERIFICATION'].update(results=[]),fresh))
+report={'observed_at':datetime.datetime.now(datetime.timezone.utc).isoformat(),'command':'python3 /tmp/validate-qa-prd.py','python_version':sys.version.split()[0],'checker_sha256':hashlib.sha256(Path(__file__).read_bytes()).hexdigest(),'checker_retained_at':'evidence/document-checker.txt','scope':'Document/schema/reference/FSM validation only, not application QA.','tests':results,'formal_result':formal(P['candidate']['fsm']),'source_sha256':{name:hashlib.sha256((R/name).read_bytes()).hexdigest() for name in ['prd.json','qa-report.schema.json','environment-target.json','acceptance-cases.json','PRD.md']},'native_rdd':'NOT_RUN'}
+(R/'validation.json').write_text(json.dumps(report,ensure_ascii=False,indent=2)+'\n')
+(R/'evidence/report-fixture.json').write_text(json.dumps(fixture,ensure_ascii=False,indent=2)+'\n')
+(R/'evidence/document-checker.txt').write_bytes(Path(__file__).read_bytes())
+for result in results:print(json.dumps(result,ensure_ascii=False))
+print(json.dumps({'passed':len(results),'failed':0,'formal':report['formal_result']},ensure_ascii=False))

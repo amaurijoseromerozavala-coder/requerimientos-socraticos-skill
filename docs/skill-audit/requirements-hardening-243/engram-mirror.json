@@ -1,0 +1,15 @@
+{
+  "save": {
+    "jsonrpc": "2.0",
+    "id": 4,
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"candidates\":[{\"id\":9,\"judgment_id\":\"rel-46751290a46aa7b4\",\"score\":-0.0000029907564758784418,\"sync_id\":\"obs-a6f98d54a075f907\",\"title\":\"ODD reparación requerimientos-socraticos\",\"topic_key\":\"odd/reparar-requerimientos-socraticos/tasks\",\"type\":\"decision\"},{\"id\":19,\"judgment_id\":\"rel-2df36fd1eaedd9ec\",\"score\":-0.0000028199244071876517,\"sync_id\":\"obs-e54782ea507876d3\",\"title\":\"Endurecimiento requerimientos socraticos 2.4.1\",\"topic_key\":\"odd/requirements-hardening-241/tasks\",\"type\":\"progress\"}],\"id\":22,\"judgment_id\":\"rel-46751290a46aa7b4\",\"judgment_required\":true,\"judgment_status\":\"pending\",\"project\":\"replica-gentle-ai\",\"project_path\":\"\",\"project_source\":\"explicit_override\",\"result\":\"Memory saved: \\\"Endurecer requerimientos socraticos 2.4.3\\\" (progress)\\nCONFLICT REVIEW PENDING — 2 candidate(s); use mem_judge to record verdicts.\",\"state\":\"active\",\"sync_id\":\"obs-80979533097b4ceb\",\"truncation\":{\"original_bytes\":4216,\"limit_bytes\":50000,\"truncated\":false}}"
+        }
+      ]
+    }
+  },
+  "read_back_confirmed": true
+}

@@ -1,0 +1,15 @@
+{
+  "save": {
+    "jsonrpc": "2.0",
+    "id": 4,
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"candidates\":[{\"id\":3,\"judgment_id\":\"rel-2741e2a0631aa0d7\",\"score\":-0.000003845708869066427,\"sync_id\":\"obs-dafd48719c924911\",\"title\":\"Skill requerimientos-socraticos instalada\",\"type\":\"decision\"},{\"id\":2,\"judgment_id\":\"rel-a5694539a059f5c8\",\"score\":-0.000003239902453766938,\"sync_id\":\"obs-22e0a9d7a0040bf1\",\"title\":\"odd/requerimientos-socraticos/tasks\",\"type\":\"progress\"},{\"id\":4,\"judgment_id\":\"rel-50538bc7e108af7e\",\"score\":-0.0000031812539289151955,\"sync_id\":\"obs-32716f63625731bd\",\"title\":\"odd/requerimientos-socraticos/tasks\",\"type\":\"progress\"}],\"id\":23,\"judgment_id\":\"rel-2741e2a0631aa0d7\",\"judgment_required\":true,\"judgment_status\":\"pending\",\"project\":\"replica-gentle-ai\",\"project_path\":\"\",\"project_source\":\"explicit_override\",\"result\":\"Memory saved: \\\"Endurecer requerimientos socraticos 2.4.4\\\" (progress)\\nCONFLICT REVIEW PENDING — 3 candidate(s); use mem_judge to record verdicts.\",\"state\":\"active\",\"sync_id\":\"obs-d0f524429c0d9cdd\",\"truncation\":{\"original_bytes\":4009,\"limit_bytes\":50000,\"truncated\":false}}"
+        }
+      ]
+    }
+  },
+  "read_back_confirmed": true
+}

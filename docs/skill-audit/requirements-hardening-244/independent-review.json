@@ -1,0 +1,96 @@
+{
+  "review": "requirements-hardening-244 independent source and bounded-regression review",
+  "scope": [
+    "S1",
+    "S2",
+    "S3",
+    "S4",
+    "root AGENTS.md"
+  ],
+  "verdict": "NO_CONFIRMED_FINDINGS_IN_REVIEWED_SCOPE",
+  "product_sources_modified": false,
+  "snapshot": "/tmp/requirements-244-independent-erd2ny8h",
+  "source_changed_after_snapshot": [],
+  "validation": {
+    "interpreter": "/home/agent/.local/share/requerimientos-socraticos/venv/bin/python",
+    "outer_timeout_seconds_per_group": 20,
+    "groups": {
+      "test_logic_memory": 17,
+      "test_logic_worker_memory": 2,
+      "test_memory_budget": 19,
+      "test_logic": 7,
+      "test_validation_budget": 10,
+      "test_supervisor": 11,
+      "test_preflight": 6
+    },
+    "unique_tests_passed": 72,
+    "harness_correction": "First supervisor run had 1 FileNotFoundError because snapshot omitted bin/gentle-ai. Copied identical launcher with SHA; all 11 supervisor tests passed on rerun. Original harness error remains in log.",
+    "real_api_cases": [
+      {
+        "case": "minimal model, main() external caller",
+        "returncode": 0,
+        "caller_rlimit_as_unchanged": true,
+        "observed_solver_soft_bytes": 469762048,
+        "observed_solver_hard_bytes": 469762048
+      },
+      {
+        "case": "dedicated API subprocess, inherited hard=384MiB",
+        "returncode": 3,
+        "status": "INCONCLUSIVE",
+        "error": "RESOURCE_CONTROL_SETUP_FAILED",
+        "caller_rlimit_as_unchanged": true
+      }
+    ],
+    "safe_scope": "Sequential small owned processes and fixtures; 8MiB allocation rejection only within preexisting process-local 4MiB headroom fixture; no host exhaustion, CI, deployment, platform changes or product edits."
+  },
+  "findings": [],
+  "observations": [
+    {
+      "id": "OBS-1",
+      "classification": "NONBLOCKING_DEFENSE_IN_DEPTH",
+      "topic": "_own_cli guard asymmetry",
+      "fact": "Success limit-observation validation in analyze_logic.main is conditional on _own_cli, while pre-exec worker enforcement is unconditional for both CLI and API. Existing API unit mock returns success without an observation and is accepted.",
+      "reachability": "No unchanged-production-worker execution reproducing success beyond requested limits was found. Both paths invoke the same run_supervised RLIMIT_AS adapter. Real API observed exact soft/hard448MiB and unchanged caller limits.",
+      "assessment": "Do not report a confirmed API limit bypass. Making successful-worker observation validation independent of _own_cli would consistently strengthen provenance for both paths and require updating API mocks; currently it is optional hardening pending an explicit identical-observation contract."
+    },
+    {
+      "id": "OBS-2",
+      "classification": "EXPECTED_BEHAVIOR",
+      "topic": "inherited hard limits",
+      "fact": "Exact solver role is not reduced to fit an inherited lower hard limit. Owned CLI rejects it through enforce_address_space; external API rejects supervisor setup without changing its own limit.",
+      "assessment": "Consistent with exact provisional profile and no raising inherited hard. Error code differs by failure stage; no requirement for identical codes between these stages was found."
+    },
+    {
+      "id": "OBS-3",
+      "classification": "EXPECTED_BEHAVIOR",
+      "topic": "ordinary worker errors and missing observations",
+      "fact": "The success guard deliberately does not replace INVALID_INPUT, SOLVER_UNAVAILABLE or SOLVER_ERROR with RESOURCE_LIMIT_NOT_OBSERVED when worker returns an error.",
+      "assessment": "Preserves S3/S4 error contracts. MemoryError diagnostics instead produce INCONCLUSIVE and strip queries/table/coverage; a signal alone remains WORKER_FAILED, not proven OOM."
+    },
+    {
+      "id": "OBS-4",
+      "classification": "LIMITATION",
+      "topic": "unknown or unsupported platforms",
+      "fact": "Linux adapter and baseline/headroom checks fail closed before starting a solver when controls/observations are unavailable. Existing tests mock unsupported adapter and baseline branches.",
+      "assessment": "No real non-Linux machine was used; cross-platform execution is NOT_RUN. This is no claim of universal recovery or descendant containment."
+    }
+  ],
+  "requirements_assessment": {
+    "S1": "Analyzer/Z3 direct worker receives address_space_limit before exec; model logic remains bounded and existing logical regression tests pass.",
+    "S2": "512MiB default splits caller64/solver448; totals256..1024 multiple8; Git default dict exact regression passes. Canonical policy validates exact nested types and returns fresh snapshot, so later caller mutation does not change 2x-total headroom. Git/logic share same per-UID nonblocking lease. Caller limit changes only for owned CLI, with measured baseline; API real calls preserve limits.",
+    "S3": "Observed Python MemoryError branches return fixed INCONCLUSIVE/no-coverage payload. Resource rejection yields INCONCLUSIVE. Signals/missing diagnostics are not called OOM. Observations distinguish virtual/RSS/peak lifetime and do not assert aggregate RSS quota or calibrated hardware capacity.",
+    "S4": "72 relevant tests pass, including logical/argument/error/AST/bytes/deadline regressions. Admission elapsed time is subtracted and command setup checked again before spawning. No release-doc version claim or RDD approval inferred from this independent subset."
+  },
+  "not_run": [
+    "CI, QA deployment, production",
+    "host stress/saturation",
+    "physical i3/WSL capacity calibration",
+    "real unsupported-platform machine",
+    "arbitrary descendant or native-failure universal containment"
+  ],
+  "evidence": {
+    "manifest": "independent-manifest.json",
+    "tests_and_api_records": "independent-tests.log"
+  },
+  "cleanup": "Snapshot can be deleted after parent captures report; no child remains owned by this review."
+}

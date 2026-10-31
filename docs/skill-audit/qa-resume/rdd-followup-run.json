@@ -1,0 +1,167 @@
+{
+  "schema": "gentle-ai.review-integration.start/v4",
+  "contract": "gentle-ai.review-integration/v2",
+  "operation": "review.start",
+  "action": "created",
+  "lenses_required": true,
+  "lineage_id": "review-c42574e0bc88b48c",
+  "state": "reviewing",
+  "risk_level": "medium",
+  "selected_lenses": [
+    "review-reliability"
+  ],
+  "projection": "workspace",
+  "target_mode": "base-workspace-overlay",
+  "target_identity": "sha256:31f18f4dd1d1d47d6c2bd8292d5433ec0cfde76b687c4bc8994dbbcde3100178",
+  "base_tree": "5898eb29e2bd2e1b4f2a9d4337a5cfd0486379ba",
+  "candidate_tree": "13b1fb1321e16fc664032c8b53c93a47a2fe7509",
+  "changed_files": 5,
+  "changed_lines": 964,
+  "correction_budget": 200,
+  "risk_reasons": [
+    {
+      "code": "executable_change",
+      "path": "docs/requirements/qa-inquisidor-v2/analizar-modelo.py"
+    }
+  ],
+  "artifact_subjects": [
+    {
+      "schema": "gentle-ai.review-artifact-subject/v2",
+      "subject_hash": "sha256:ff0be7d872d88755690e1a84d22195f190dfea57f3a124fe7316b33502c3f4bc",
+      "lineage_id": "review-c42574e0bc88b48c",
+      "authority_revision": "sha256:fd2ab40d94907c04f3bc6dea5249f243ad93a5d599d567c272bed02992991200",
+      "target_identity": "sha256:31f18f4dd1d1d47d6c2bd8292d5433ec0cfde76b687c4bc8994dbbcde3100178",
+      "base_tree": "5898eb29e2bd2e1b4f2a9d4337a5cfd0486379ba",
+      "candidate_tree": "13b1fb1321e16fc664032c8b53c93a47a2fe7509",
+      "changed_path_manifest_sha256": "sha256:9c6c0fd69b463ffd60f96dc44a51df3dff4d00742ed270eaf792fc1d27b55521",
+      "lens": "review-reliability",
+      "selected_order": 0
+    }
+  ],
+  "changed_path_manifest": [
+    {
+      "path": "docs/requirements/qa-inquisidor-v2/PRD.md",
+      "status": "M",
+      "old_mode": "100644",
+      "new_mode": "100644",
+      "deleted": false,
+      "type_changed": false,
+      "mode_only": false,
+      "intended_untracked": true
+    },
+    {
+      "path": "docs/requirements/qa-inquisidor-v2/analizar-modelo.py",
+      "status": "A",
+      "old_mode": "000000",
+      "new_mode": "100644",
+      "deleted": false,
+      "type_changed": false,
+      "mode_only": false,
+      "intended_untracked": true
+    },
+    {
+      "path": "docs/requirements/qa-inquisidor-v2/fsm-propuesta.json",
+      "status": "A",
+      "old_mode": "000000",
+      "new_mode": "100644",
+      "deleted": false,
+      "type_changed": false,
+      "mode_only": false,
+      "intended_untracked": true
+    },
+    {
+      "path": "docs/requirements/qa-inquisidor-v2/propuesta-prd.json",
+      "status": "M",
+      "old_mode": "100644",
+      "new_mode": "100644",
+      "deleted": false,
+      "type_changed": false,
+      "mode_only": false,
+      "intended_untracked": true
+    },
+    {
+      "path": "docs/requirements/qa-inquisidor-v2/resultado-modelo.json",
+      "status": "A",
+      "old_mode": "000000",
+      "new_mode": "100644",
+      "deleted": false,
+      "type_changed": false,
+      "mode_only": false,
+      "intended_untracked": true
+    }
+  ],
+  "repository_context": {
+    "capability": "review.opaque_repository_context",
+    "handle": "rctx2_727eae8725656f801b0d6d8ef44e59482f32870ca26ee5547c412fa7d5cc601c",
+    "revision": "sha256:fd2ab40d94907c04f3bc6dea5249f243ad93a5d599d567c272bed02992991200",
+    "target_identity": "sha256:31f18f4dd1d1d47d6c2bd8292d5433ec0cfde76b687c4bc8994dbbcde3100178"
+  },
+  "next_transition": {
+    "kind": "execute",
+    "reason_code": "review_status_required",
+    "execute": {
+      "operation": "review.status",
+      "command": "gentle-ai review status --contract=gentle-ai.review-integration/v2 --next-transition=true --lineage=review-c42574e0bc88b48c --repository-context=rctx2_727eae8725656f801b0d6d8ef44e59482f32870ca26ee5547c412fa7d5cc601c --agent=codex --base-ref=5898eb29e2bd2e1b4f2a9d4337a5cfd0486379ba --workspace-overlay=true",
+      "arguments": [
+        {
+          "name": "contract",
+          "value": "gentle-ai.review-integration/v2",
+          "token": "--contract=gentle-ai.review-integration/v2"
+        },
+        {
+          "name": "next-transition",
+          "value": "true",
+          "token": "--next-transition=true"
+        },
+        {
+          "name": "lineage",
+          "value": "review-c42574e0bc88b48c",
+          "token": "--lineage=review-c42574e0bc88b48c"
+        },
+        {
+          "name": "repository-context",
+          "value": "rctx2_727eae8725656f801b0d6d8ef44e59482f32870ca26ee5547c412fa7d5cc601c",
+          "token": "--repository-context=rctx2_727eae8725656f801b0d6d8ef44e59482f32870ca26ee5547c412fa7d5cc601c"
+        },
+        {
+          "name": "agent",
+          "value": "codex",
+          "token": "--agent=codex"
+        },
+        {
+          "name": "base-ref",
+          "value": "5898eb29e2bd2e1b4f2a9d4337a5cfd0486379ba",
+          "token": "--base-ref=5898eb29e2bd2e1b4f2a9d4337a5cfd0486379ba"
+        },
+        {
+          "name": "workspace-overlay",
+          "value": "true",
+          "token": "--workspace-overlay=true"
+        }
+      ],
+      "selector_arguments": [
+        {
+          "name": "base-ref",
+          "value": "5898eb29e2bd2e1b4f2a9d4337a5cfd0486379ba",
+          "token": "--base-ref=5898eb29e2bd2e1b4f2a9d4337a5cfd0486379ba"
+        },
+        {
+          "name": "workspace-overlay",
+          "value": "true",
+          "token": "--workspace-overlay=true"
+        }
+      ],
+      "preconditions": [
+        {
+          "name": "state",
+          "value": "reviewing"
+        }
+      ],
+      "binding": {
+        "lineage_id": "review-c42574e0bc88b48c",
+        "revision": "sha256:fd2ab40d94907c04f3bc6dea5249f243ad93a5d599d567c272bed02992991200",
+        "target_identity": "sha256:31f18f4dd1d1d47d6c2bd8292d5433ec0cfde76b687c4bc8994dbbcde3100178"
+      }
+    }
+  }
+}

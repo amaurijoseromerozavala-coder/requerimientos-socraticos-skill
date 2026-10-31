@@ -1,0 +1,203 @@
+{
+  "schema": "gentle-ai.review-integration.status/v9",
+  "contract": "gentle-ai.review-integration/v2",
+  "operation": "review.status",
+  "applicability": "unrelated",
+  "action": "start",
+  "replayability": "not_replayable",
+  "target_identity": "sha256:4815366453a183d1de513cebf5c97cd96582c147652da479f6d69b20fec3c487",
+  "projection": {
+    "schema": "gentle-ai.review-integration.projection/v1",
+    "kind": "base-workspace-overlay",
+    "projection": "workspace",
+    "base_tree": "4b825dc642cb6eb9a060e54bf8d69288fbee4904",
+    "initial_review_tree": "ff3d0f7e5c3f9dfa0792647a4f62ed2012a9561b",
+    "current_candidate_tree": "ff3d0f7e5c3f9dfa0792647a4f62ed2012a9561b",
+    "paths_digest": "sha256:7adc9dcd839331faef69af6bd0b4d5ab1208780c3f585d0105c61d6117546663",
+    "paths": [
+      "docs/requirements/qa-supervisor/checker-binding.json",
+      "docs/requirements/qa-supervisor/checker-output.schema.json",
+      "docs/requirements/qa-supervisor/protocol-contract.json",
+      "skills/qa-inquisidor/SKILL.md",
+      "skills/qa-inquisidor/assets/report.schema.json",
+      "skills/qa-inquisidor/scripts/validate_report.py",
+      "skills/requerimientos-socraticos/scripts/json_preflight.py",
+      "skills/requerimientos-socraticos/scripts/safe_io.py"
+    ],
+    "intended_untracked": [
+      "docs/requirements/qa-supervisor/checker-binding.json",
+      "docs/requirements/qa-supervisor/checker-output.schema.json",
+      "docs/requirements/qa-supervisor/protocol-contract.json",
+      "skills/qa-inquisidor/SKILL.md",
+      "skills/qa-inquisidor/assets/report.schema.json",
+      "skills/qa-inquisidor/scripts/validate_report.py",
+      "skills/requerimientos-socraticos/scripts/json_preflight.py",
+      "skills/requerimientos-socraticos/scripts/safe_io.py"
+    ],
+    "intended_untracked_proof": "sha256:653800d558d9c16585c26dfc4ce90ce764b007c8447986054911f0a0cbcaf7a2",
+    "initial_snapshot_identity": "sha256:4815366453a183d1de513cebf5c97cd96582c147652da479f6d69b20fec3c487",
+    "current_snapshot_identity": "sha256:4815366453a183d1de513cebf5c97cd96582c147652da479f6d69b20fec3c487"
+  },
+  "eligible_untracked_inventory": "sha256:655f42462086a35c650c76a46f04546b2788a399a546d16ba184cb413a05beb5",
+  "repair": {
+    "schema": "gentle-ai.review-authority-repair-assessment/v1",
+    "status": "unsupported",
+    "counts": {
+      "lineages": 0,
+      "compact_lineages": 0,
+      "legacy_lineages": 0,
+      "events": 0,
+      "bytes": 0,
+      "eligible_candidates": 0,
+      "unsupported_lineages": 0,
+      "conflicts": 0
+    },
+    "supported_operations": [
+      "review/complete-fix",
+      "review/validate-fix"
+    ],
+    "authorization_schema": "gentle-ai.review-repair-authorization/v1"
+  },
+  "candidates": [],
+  "forecast": {
+    "horizon": "partial",
+    "steps": [
+      {
+        "step": 1,
+        "kind": "execute",
+        "reason_code": "fresh_target_ready",
+        "description": "Target is unreviewed and ready for initial review start"
+      }
+    ]
+  },
+  "next_transition": {
+    "kind": "execute",
+    "reason_code": "fresh_target_ready",
+    "execute": {
+      "operation": "review.start",
+      "command": "gentle-ai review start --cwd=/workspace/replica-gentle-ai --contract=gentle-ai.review-integration/v2 --target=sha256:4815366453a183d1de513cebf5c97cd96582c147652da479f6d69b20fec3c487 --target-evidence=v1:base-workspace-overlay:workspace:4b825dc642cb6eb9a060e54bf8d69288fbee4904:ff3d0f7e5c3f9dfa0792647a4f62ed2012a9561b:sha256:7adc9dcd839331faef69af6bd0b4d5ab1208780c3f585d0105c61d6117546663 --projection=workspace --base-ref=4b825dc642cb6eb9a060e54bf8d69288fbee4904 --workspace-overlay=true --lineage=review-f820aca952a82557 --agent=codex --consent=relay --untracked-scope=select --expected-untracked-inventory=sha256:655f42462086a35c650c76a46f04546b2788a399a546d16ba184cb413a05beb5 --intended-untracked=docs/requirements/qa-supervisor/checker-binding.json --intended-untracked=docs/requirements/qa-supervisor/checker-output.schema.json --intended-untracked=docs/requirements/qa-supervisor/protocol-contract.json --intended-untracked=skills/qa-inquisidor/SKILL.md --intended-untracked=skills/qa-inquisidor/assets/report.schema.json --intended-untracked=skills/qa-inquisidor/scripts/validate_report.py --intended-untracked=skills/requerimientos-socraticos/scripts/json_preflight.py --intended-untracked=skills/requerimientos-socraticos/scripts/safe_io.py --lenses=review-resilience,review-reliability '--lenses-reason=Partial PRD review: protocol. Other parts and aggregate integration remain separately required; no implementation approval.'",
+      "arguments": [
+        {
+          "name": "cwd",
+          "value": "/workspace/replica-gentle-ai",
+          "token": "--cwd=/workspace/replica-gentle-ai"
+        },
+        {
+          "name": "contract",
+          "value": "gentle-ai.review-integration/v2",
+          "token": "--contract=gentle-ai.review-integration/v2"
+        },
+        {
+          "name": "target",
+          "value": "sha256:4815366453a183d1de513cebf5c97cd96582c147652da479f6d69b20fec3c487",
+          "token": "--target=sha256:4815366453a183d1de513cebf5c97cd96582c147652da479f6d69b20fec3c487"
+        },
+        {
+          "name": "target-evidence",
+          "value": "v1:base-workspace-overlay:workspace:4b825dc642cb6eb9a060e54bf8d69288fbee4904:ff3d0f7e5c3f9dfa0792647a4f62ed2012a9561b:sha256:7adc9dcd839331faef69af6bd0b4d5ab1208780c3f585d0105c61d6117546663",
+          "token": "--target-evidence=v1:base-workspace-overlay:workspace:4b825dc642cb6eb9a060e54bf8d69288fbee4904:ff3d0f7e5c3f9dfa0792647a4f62ed2012a9561b:sha256:7adc9dcd839331faef69af6bd0b4d5ab1208780c3f585d0105c61d6117546663"
+        },
+        {
+          "name": "projection",
+          "value": "workspace",
+          "token": "--projection=workspace"
+        },
+        {
+          "name": "base-ref",
+          "value": "4b825dc642cb6eb9a060e54bf8d69288fbee4904",
+          "token": "--base-ref=4b825dc642cb6eb9a060e54bf8d69288fbee4904"
+        },
+        {
+          "name": "workspace-overlay",
+          "value": "true",
+          "token": "--workspace-overlay=true"
+        },
+        {
+          "name": "lineage",
+          "value": "review-f820aca952a82557",
+          "token": "--lineage=review-f820aca952a82557"
+        },
+        {
+          "name": "agent",
+          "value": "codex",
+          "token": "--agent=codex"
+        },
+        {
+          "name": "consent",
+          "value": "relay",
+          "token": "--consent=relay"
+        },
+        {
+          "name": "untracked-scope",
+          "value": "select",
+          "token": "--untracked-scope=select"
+        },
+        {
+          "name": "expected-untracked-inventory",
+          "value": "sha256:655f42462086a35c650c76a46f04546b2788a399a546d16ba184cb413a05beb5",
+          "token": "--expected-untracked-inventory=sha256:655f42462086a35c650c76a46f04546b2788a399a546d16ba184cb413a05beb5"
+        },
+        {
+          "name": "intended-untracked",
+          "value": "docs/requirements/qa-supervisor/checker-binding.json",
+          "token": "--intended-untracked=docs/requirements/qa-supervisor/checker-binding.json"
+        },
+        {
+          "name": "intended-untracked",
+          "value": "docs/requirements/qa-supervisor/checker-output.schema.json",
+          "token": "--intended-untracked=docs/requirements/qa-supervisor/checker-output.schema.json"
+        },
+        {
+          "name": "intended-untracked",
+          "value": "docs/requirements/qa-supervisor/protocol-contract.json",
+          "token": "--intended-untracked=docs/requirements/qa-supervisor/protocol-contract.json"
+        },
+        {
+          "name": "intended-untracked",
+          "value": "skills/qa-inquisidor/SKILL.md",
+          "token": "--intended-untracked=skills/qa-inquisidor/SKILL.md"
+        },
+        {
+          "name": "intended-untracked",
+          "value": "skills/qa-inquisidor/assets/report.schema.json",
+          "token": "--intended-untracked=skills/qa-inquisidor/assets/report.schema.json"
+        },
+        {
+          "name": "intended-untracked",
+          "value": "skills/qa-inquisidor/scripts/validate_report.py",
+          "token": "--intended-untracked=skills/qa-inquisidor/scripts/validate_report.py"
+        },
+        {
+          "name": "intended-untracked",
+          "value": "skills/requerimientos-socraticos/scripts/json_preflight.py",
+          "token": "--intended-untracked=skills/requerimientos-socraticos/scripts/json_preflight.py"
+        },
+        {
+          "name": "intended-untracked",
+          "value": "skills/requerimientos-socraticos/scripts/safe_io.py",
+          "token": "--intended-untracked=skills/requerimientos-socraticos/scripts/safe_io.py"
+        },
+        {
+          "name": "lenses",
+          "value": "review-resilience,review-reliability",
+          "token": "--lenses=review-resilience,review-reliability"
+        },
+        {
+          "name": "lenses-reason",
+          "value": "Partial PRD review: protocol. Other parts and aggregate integration remain separately required; no implementation approval.",
+          "token": "--lenses-reason=Partial PRD review: protocol. Other parts and aggregate integration remain separately required; no implementation approval."
+        }
+      ],
+      "preconditions": [
+        {
+          "name": "target_identity",
+          "value": "sha256:4815366453a183d1de513cebf5c97cd96582c147652da479f6d69b20fec3c487"
+        }
+      ],
+      "binding": {
+        "lineage_id": "review-f820aca952a82557",
+        "target_identity": "sha256:4815366453a183d1de513cebf5c97cd96582c147652da479f6d69b20fec3c487"
+      }
+    }
+  }
+}

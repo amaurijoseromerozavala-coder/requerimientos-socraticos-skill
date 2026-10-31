@@ -1,0 +1,38 @@
+{
+  "schema": "gentle-ai.review-integration.consent/v3",
+  "contract": "gentle-ai.review-integration/v2",
+  "operation": "review.start",
+  "action": "consent_required",
+  "agent": "codex",
+  "blocking": true,
+  "target_identity": "sha256:fff814fc0c47bb600d329ee7653510a28b41fcf806f1fffae8d9cb53e3e7ed1c",
+  "projection": "workspace",
+  "risk_level": "medium",
+  "changed_files": 1,
+  "changed_lines": 2,
+  "headline": "Gentle AI can review this change before you call it done.",
+  "reason": "Review can help detect regressions in these changes.",
+  "value": "Reviewing takes a little longer and makes the result safer.",
+  "risk_evidence": [
+    "this change is not purely passive documentation, so it gets one consolidated review.",
+    "a configuration change in docs/requirements/qa-supervisor/prd.json"
+  ],
+  "choices": [
+    {
+      "answer": "granted",
+      "label": "Review this change",
+      "effect": "Reviews only this change; later medium- or high-risk changes ask again, and delivery needs separate approval.",
+      "invocation": "gentle-ai review start --contract gentle-ai.review-integration/v2 --cwd /workspace/replica-gentle-ai --target sha256:fff814fc0c47bb600d329ee7653510a28b41fcf806f1fffae8d9cb53e3e7ed1c --target-evidence v1:base-workspace-overlay:workspace:6bce9e84046fd49bf5200bec9fcb697bb99f930f:00de2774d90901b880920b2b92849c03df4598f9:sha256:0320457a93238ccdb19282280251a90864e6637f35435a808dd1803085c063f4 --projection workspace --agent codex --lineage review-b0c6940b9bfa0dc6 --base-ref 6bce9e84046fd49bf5200bec9fcb697bb99f930f --workspace-overlay --untracked-scope=select --expected-untracked-inventory=sha256:d46edaf41aa3f47bba21a06ad726bc31218dda1911f6e355d651432bf7f45200 --intended-untracked=docs/requirements/qa-supervisor/prd.json --lenses review-resilience,review-reliability --lenses-reason 'Documentary follow-up: manual raw QA output retention32MiB and three advisories. Other partitions separate; no implementation approval.' --consent granted"
+    },
+    {
+      "answer": "declined",
+      "label": "Skip this time",
+      "effect": "Skips only this change; no review record is created, and future reviews stay enabled.",
+      "invocation": "gentle-ai review start --contract gentle-ai.review-integration/v2 --cwd /workspace/replica-gentle-ai --target sha256:fff814fc0c47bb600d329ee7653510a28b41fcf806f1fffae8d9cb53e3e7ed1c --target-evidence v1:base-workspace-overlay:workspace:6bce9e84046fd49bf5200bec9fcb697bb99f930f:00de2774d90901b880920b2b92849c03df4598f9:sha256:0320457a93238ccdb19282280251a90864e6637f35435a808dd1803085c063f4 --projection workspace --agent codex --lineage review-b0c6940b9bfa0dc6 --base-ref 6bce9e84046fd49bf5200bec9fcb697bb99f930f --workspace-overlay --untracked-scope=select --expected-untracked-inventory=sha256:d46edaf41aa3f47bba21a06ad726bc31218dda1911f6e355d651432bf7f45200 --intended-untracked=docs/requirements/qa-supervisor/prd.json --lenses review-resilience,review-reliability --lenses-reason 'Documentary follow-up: manual raw QA output retention32MiB and three advisories. Other partitions separate; no implementation approval.' --consent declined"
+    }
+  ],
+  "off_path": {
+    "note": "To turn reviews off for good, run 'gentle-ai review mode disable'.",
+    "command": "gentle-ai review mode disable"
+  }
+}

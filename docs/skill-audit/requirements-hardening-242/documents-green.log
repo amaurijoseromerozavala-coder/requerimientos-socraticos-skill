@@ -1,0 +1,74 @@
+Legacy interview/PRD regression; subprocess timeout=15s
+test_assistant_cannot_invent_policy (test_interview.ContractTests.test_assistant_cannot_invent_policy) ... ok
+test_changed_interview_invalidates_bound_prd (test_interview.ContractTests.test_changed_interview_invalidates_bound_prd) ... ok
+test_cli_complete_record_is_positive_integrity_control (test_interview.ContractTests.test_cli_complete_record_is_positive_integrity_control) ... ok
+test_cli_rejects_ready_with_paused_interview (test_interview.ContractTests.test_cli_rejects_ready_with_paused_interview) ... ok
+test_dangling_source (test_interview.ContractTests.test_dangling_source) ... ok
+test_design_acceptance_needs_human_source (test_interview.ContractTests.test_design_acceptance_needs_human_source) ... ok
+test_design_cannot_use_foreign_project_sources (test_interview.ContractTests.test_design_cannot_use_foreign_project_sources) ... ok
+test_duplicate_ids_rejected_before_index (test_interview.ContractTests.test_duplicate_ids_rejected_before_index) ... ok
+test_existing_literal_human_decision_can_be_cited (test_interview.ContractTests.test_existing_literal_human_decision_can_be_cited) ... ok
+test_fake_covered_topic (test_interview.ContractTests.test_fake_covered_topic) ... ok
+test_fake_independent_runtime (test_interview.ContractTests.test_fake_independent_runtime) ... ok
+test_false_applicability_cannot_hide_open_material_topic (test_interview.ContractTests.test_false_applicability_cannot_hide_open_material_topic) ... ok
+test_false_applicability_cannot_keep_covered_status (test_interview.ContractTests.test_false_applicability_cannot_keep_covered_status) ... ok
+test_false_quote_rejected (test_interview.ContractTests.test_false_quote_rejected) ... ok
+test_followup_cannot_resolve_different_topic (test_interview.ContractTests.test_followup_cannot_resolve_different_topic) ... ok
+test_inference_is_not_confirmed_fact (test_interview.ContractTests.test_inference_is_not_confirmed_fact) ... ok
+test_legacy_draft_still_valid_and_ready_loophole_closed (test_interview.ContractTests.test_legacy_draft_still_valid_and_ready_loophole_closed) ... ok
+test_material_scope_cannot_be_dismissed_without_owner (test_interview.ContractTests.test_material_scope_cannot_be_dismissed_without_owner) ... ok
+test_missing_web_exploration_blocks_complete (test_interview.ContractTests.test_missing_web_exploration_blocks_complete) ... ok
+test_no_empty_design_review (test_interview.ContractTests.test_no_empty_design_review) ... ok
+test_no_next_question_before_answer (test_interview.ContractTests.test_no_next_question_before_answer) ... ok
+test_no_next_question_before_assessment (test_interview.ContractTests.test_no_next_question_before_assessment) ... ok
+test_one_answer_is_not_total_coverage (test_interview.ContractTests.test_one_answer_is_not_total_coverage) ... ok
+test_pause_remains_incomplete_but_valid (test_interview.ContractTests.test_pause_remains_incomplete_but_valid) ... ok
+test_prd_cannot_use_foreign_project_interview (test_interview.ContractTests.test_prd_cannot_use_foreign_project_interview) ... ok
+test_prd_design_can_reference_its_requirement (test_interview.ContractTests.test_prd_design_can_reference_its_requirement) ... ok
+test_prd_ref_cannot_escape_project (test_interview.ContractTests.test_prd_ref_cannot_escape_project) ... ok
+test_receipt_path_escape (test_interview.ContractTests.test_receipt_path_escape) ... ok
+test_receipts_checked_not_just_declared (test_interview.ContractTests.test_receipts_checked_not_just_declared) ... ok
+test_research_receipt_missing_is_not_success (test_interview.ContractTests.test_research_receipt_missing_is_not_success) ... ok
+test_same_topic_different_dimension_does_not_resolve (test_interview.ContractTests.test_same_topic_different_dimension_does_not_resolve) ... ok
+test_same_topic_same_dimension_can_resolve (test_interview.ContractTests.test_same_topic_same_dimension_can_resolve) ... ok
+test_stale_candidate_hash_rejected (test_interview.ContractTests.test_stale_candidate_hash_rejected) ... ok
+test_tool_unavailability_is_not_success (test_interview.ContractTests.test_tool_unavailability_is_not_success) ... ok
+test_unanswered_blocks_complete (test_interview.ContractTests.test_unanswered_blocks_complete) ... ok
+test_unanswered_question_cannot_be_addressed_to_self (test_interview.ContractTests.test_unanswered_question_cannot_be_addressed_to_self) ... ok
+test_unknown_is_not_answered (test_interview.ContractTests.test_unknown_is_not_answered) ... ok
+test_unresolved_followup_rejected (test_interview.ContractTests.test_unresolved_followup_rejected) ... ok
+test_v2_dependency_hashes_and_receipts (test_interview.ContractTests.test_v2_dependency_hashes_and_receipts) ... ok
+test_valid_bounded_interview (test_interview.ContractTests.test_valid_bounded_interview) ... ok
+test_wait_state_matches_active_recipient (test_interview.ContractTests.test_wait_state_matches_active_recipient) ... ok
+test_web_requires_discovery_first (test_interview.ContractTests.test_web_requires_discovery_first) ... ok
+test_wrong_respondent (test_interview.ContractTests.test_wrong_respondent) ... ok
+
+----------------------------------------------------------------------
+Ran 43 tests in 0.207s
+
+OK
+
+Document source contracts; subprocess timeout=15s
+test_direct_receipt_api_accepts_source (test_document_source.DependencyTests.test_direct_receipt_api_accepts_source) ... ok
+test_each_dependency_and_receipt_is_oid_checked (test_document_source.DependencyTests.test_each_dependency_and_receipt_is_oid_checked) ... ok
+test_existing_dependency_and_receipt_diagnostics_are_preserved (test_document_source.DependencyTests.test_existing_dependency_and_receipt_diagnostics_are_preserved) ... ok
+test_interview_source_without_base_checks_receipts (test_document_source.DependencyTests.test_interview_source_without_base_checks_receipts) ... ok
+test_memory_dependency_escape_rejected (test_document_source.DependencyTests.test_memory_dependency_escape_rejected) ... ok
+test_memory_prd_reads_only_installed_schemas_from_filesystem (test_document_source.DependencyTests.test_memory_prd_reads_only_installed_schemas_from_filesystem) ... ok
+test_nonregular_receipt_preserves_missing_diagnostic (test_document_source.DependencyTests.test_nonregular_receipt_preserves_missing_diagnostic) ... ok
+test_prd_scopes_interview_receipts_to_its_subdirectory (test_document_source.DependencyTests.test_prd_scopes_interview_receipts_to_its_subdirectory) ... ok
+test_blob_oid_is_git_sha256_not_content_sha256 (test_document_source.SourceTests.test_blob_oid_is_git_sha256_not_content_sha256) ... ok
+test_canonical_posix_paths_at_all_entrypoints (test_document_source.SourceTests.test_canonical_posix_paths_at_all_entrypoints) ... ok
+test_consumed_files_are_verified_shared_scoped_and_copied (test_document_source.SourceTests.test_consumed_files_are_verified_shared_scoped_and_copied) ... ok
+test_filesystem_source_scope_and_rejected_symlink (test_document_source.SourceTests.test_filesystem_source_scope_and_rejected_symlink) ... ok
+test_memory_copies_both_mappings (test_document_source.SourceTests.test_memory_copies_both_mappings) ... ok
+test_memory_read_preserves_file_size_limit (test_document_source.SourceTests.test_memory_read_preserves_file_size_limit) ... ok
+test_missing_document_has_filesystem_compatible_exception (test_document_source.SourceTests.test_missing_document_has_filesystem_compatible_exception) ... ok
+test_missing_or_surplus_oid_is_rejected (test_document_source.SourceTests.test_missing_or_surplus_oid_is_rejected) ... ok
+test_scopes_are_relative_and_keep_byte_identity (test_document_source.SourceTests.test_scopes_are_relative_and_keep_byte_identity) ... ok
+test_values_must_be_immutable_bytes (test_document_source.SourceTests.test_values_must_be_immutable_bytes) ... ok
+
+----------------------------------------------------------------------
+Ran 18 tests in 0.056s
+
+OK

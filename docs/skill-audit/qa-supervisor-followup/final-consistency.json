@@ -1,0 +1,8 @@
+{
+  "scope": "Local consistency only, not native RDD or implementation",
+  "source_hashes": 10,
+  "dependency_hashes": 2,
+  "requirements_correspondence": 17,
+  "candidate_hash": "630ce30d78bd36868809e6eb4aec02736dc0e054f450496221a3568c07f13d15",
+  "result": "PASS"
+}

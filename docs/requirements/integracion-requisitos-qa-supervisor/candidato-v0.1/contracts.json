@@ -1,0 +1,146 @@
+{
+  "schema": "integration-contracts-draft/v0.1",
+  "status": "PROPOSED_TECHNICAL_MECHANISMS",
+  "requirements_refs": [
+    "INT-R01",
+    "INT-R02",
+    "INT-R03",
+    "INT-R04",
+    "INT-R05",
+    "INT-R06",
+    "INT-R07",
+    "INT-R08",
+    "INT-R09",
+    "INT-R10",
+    "INT-R11",
+    "INT-R12",
+    "INT-R13",
+    "INT-R14",
+    "INT-R15",
+    "INT-R16",
+    "INT-R17",
+    "INT-R18",
+    "INT-R19",
+    "INT-R20",
+    "INT-R21",
+    "INT-R22",
+    "INT-R23"
+  ],
+  "adapter": {
+    "identity": [
+      "adapter_id",
+      "version",
+      "content_digest",
+      "capability_contract_digest"
+    ],
+    "admission": [
+      "technical_review_reference",
+      "human_approval_reference",
+      "approved_actions",
+      "approved_resources"
+    ],
+    "request": [
+      "task_id",
+      "input_manifest",
+      "base_identity",
+      "allowed_paths",
+      "budget",
+      "expected_evidence"
+    ],
+    "completion": [
+      "observed_exit",
+      "protocol_admission",
+      "semantic_result",
+      "termination_confirmation",
+      "cleanup_confirmation",
+      "side_effect_manifest",
+      "output_identity"
+    ],
+    "unknowns": [
+      "concrete initial adapters and external contracts",
+      "enforcement on each platform",
+      "version update and emergency revocation semantics"
+    ]
+  },
+  "task_authority": {
+    "scope": "task_authorized in the gate means task identity and scope have applicable sufficient authority for the contemplated incorporation. After revocation this may be a new incorporation authorization; it does not require the revoked original grant to remain active. Original grant remains provenance and upper bound absent explicit scope change.",
+    "revocation": "deferred_for_current_task_but_incorporation_requires_fresh_permission",
+    "concurrency": "one supervised execution at a time",
+    "retry": "no automatic retry",
+    "not_implied": [
+      "commit",
+      "push",
+      "deployment",
+      "production",
+      "new permissions"
+    ]
+  },
+  "storage": {
+    "budget_dimensions": [
+      "per_task",
+      "global"
+    ],
+    "initial_estimate": "proposed by supervisor, justified and checked before task consent",
+    "enlargement": "preflight -> explicit consent for affected dimensions -> revalidate admission",
+    "preserve": "failed isolated work and evidence",
+    "qa_outputs_only": {
+      "capacity_bytes": 33554432,
+      "deletion": "MANUAL_ONLY"
+    },
+    "unknowns": [
+      "physical versus logical accounting per filesystem",
+      "margin and reservation mechanism",
+      "initial exploration budget estimation"
+    ]
+  },
+  "promotion": {
+    "base": "unchanged and verified under a coordination mechanism; a prior hash alone is insufficient",
+    "evidence": "all applicable criteria current and satisfied",
+    "authority": "current task permission, plus fresh incorporation authorization after revocation",
+    "write_ownership": "no claim of protection from uncoordinated third-party writers without enforcement",
+    "rollback": "only recoverable base and proven preservation of unrelated changes; otherwise blocked",
+    "unknowns": [
+      "enforcement mechanism for writer coordination",
+      "durable write journal and recovery protocol",
+      "logical commit point of multi-file incorporation"
+    ]
+  },
+  "revocation_order": {
+    "origin": "independent interrogation Q-INT-T01; proposal adjudicated ANSWERED for documents",
+    "rule": "single coordinator serializes acceptance of revocation and issuance of incorporation writes by task",
+    "acceptance": "local acknowledgement only after durable revocation event; UI send is not local acceptance",
+    "after_acceptance": "Deny incorporation writes relying on the revoked authority epoch; separately scoped recovery remains permitted. New incorporation requires a later sufficient authorization bound to the latest epoch, task, candidate, base and operation.",
+    "in_flight": "earlier emitted operations are not assumed cancelled; observe completion before restoration",
+    "crash": "emission without durable completion becomes UNKNOWN/IN_FLIGHT after restart and blocks restoration until reconciliation",
+    "limitations": [
+      "ordering mechanism not implemented",
+      "durability does not prove no OS write happened",
+      "remote cancellation semantics not established",
+      "uncoordinated external writers prevent a blanket safety guarantee"
+    ],
+    "authorization_epoch": "Every accepted revocation advances epoch and invalidates any previous fresh-incorporation eligibility; derive eligibility from identified, applicable approvals, never an unversioned boolean."
+  },
+  "negative_scenarios": [
+    {
+      "id": "C01",
+      "violation": "Incorporation write relies on revoked authority epoch without sufficient later applicable authorization; excludes separately authorized recovery writes.",
+      "expected": "DENY_WRITE"
+    },
+    {
+      "id": "C02",
+      "violation": "restore while previous write uncertain",
+      "expected": "BLOCK_RECOVERY"
+    },
+    {
+      "id": "C03",
+      "violation": "acknowledge revocation before durable record",
+      "expected": "REJECT_ACK"
+    },
+    {
+      "id": "C04",
+      "violation": "third-party base change is overwritten",
+      "expected": "BLOCK_PROMOTION_OR_RECOVERY"
+    }
+  ],
+  "implementation_status": "NOT_RUN"
+}

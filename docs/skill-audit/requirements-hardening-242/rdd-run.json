@@ -1,0 +1,337 @@
+{
+  "schema": "gentle-ai.review-integration.start/v4",
+  "contract": "gentle-ai.review-integration/v2",
+  "operation": "review.start",
+  "action": "created",
+  "lenses_required": true,
+  "lineage_id": "review-c7092036da2c5504",
+  "state": "reviewing",
+  "risk_level": "high",
+  "selected_lenses": [
+    "review-risk",
+    "review-resilience",
+    "review-readability",
+    "review-reliability"
+  ],
+  "projection": "workspace",
+  "target_mode": "base-workspace-overlay",
+  "target_identity": "sha256:4e5755c816af2357d5f9e2f60235e0f3b2f27f108bfcb1d3adab8c2d11f4dc1b",
+  "base_tree": "1cd43ffb10c560151a73326560cc81552c902fcb",
+  "candidate_tree": "d5f96ce4a6b9e8130e0cd6d7c3940e0dd83ce82a",
+  "changed_files": 18,
+  "changed_lines": 1350,
+  "correction_budget": 200,
+  "risk_reasons": [
+    {
+      "code": "process_boundary",
+      "signal": "shell_process",
+      "path": "skills/requerimientos-socraticos/scripts/analyze_logic.py"
+    }
+  ],
+  "artifact_subjects": [
+    {
+      "schema": "gentle-ai.review-artifact-subject/v2",
+      "subject_hash": "sha256:95660bd65cbfcd29b2ca51457a07896a047ebb8b015042aa272209a2b3931c55",
+      "lineage_id": "review-c7092036da2c5504",
+      "authority_revision": "sha256:5106a605131d4ad6d15f103e1448445695ee8b7edba994c1aec89c7a79c71c51",
+      "target_identity": "sha256:4e5755c816af2357d5f9e2f60235e0f3b2f27f108bfcb1d3adab8c2d11f4dc1b",
+      "base_tree": "1cd43ffb10c560151a73326560cc81552c902fcb",
+      "candidate_tree": "d5f96ce4a6b9e8130e0cd6d7c3940e0dd83ce82a",
+      "changed_path_manifest_sha256": "sha256:8f0edf3802a5bd64137c23e5777a179957df98b85c12846d8c2544a9519f5af6",
+      "lens": "review-risk",
+      "selected_order": 0
+    },
+    {
+      "schema": "gentle-ai.review-artifact-subject/v2",
+      "subject_hash": "sha256:f42646911529c6de2897b6e2d1770fd5165ba95a1ac7cb2bf25d9042343768cf",
+      "lineage_id": "review-c7092036da2c5504",
+      "authority_revision": "sha256:5106a605131d4ad6d15f103e1448445695ee8b7edba994c1aec89c7a79c71c51",
+      "target_identity": "sha256:4e5755c816af2357d5f9e2f60235e0f3b2f27f108bfcb1d3adab8c2d11f4dc1b",
+      "base_tree": "1cd43ffb10c560151a73326560cc81552c902fcb",
+      "candidate_tree": "d5f96ce4a6b9e8130e0cd6d7c3940e0dd83ce82a",
+      "changed_path_manifest_sha256": "sha256:8f0edf3802a5bd64137c23e5777a179957df98b85c12846d8c2544a9519f5af6",
+      "lens": "review-resilience",
+      "selected_order": 1
+    },
+    {
+      "schema": "gentle-ai.review-artifact-subject/v2",
+      "subject_hash": "sha256:ddbdbd456d63c727914ece7b3b40697766cacbaf5fa3158599c8a7a2f4f018b6",
+      "lineage_id": "review-c7092036da2c5504",
+      "authority_revision": "sha256:5106a605131d4ad6d15f103e1448445695ee8b7edba994c1aec89c7a79c71c51",
+      "target_identity": "sha256:4e5755c816af2357d5f9e2f60235e0f3b2f27f108bfcb1d3adab8c2d11f4dc1b",
+      "base_tree": "1cd43ffb10c560151a73326560cc81552c902fcb",
+      "candidate_tree": "d5f96ce4a6b9e8130e0cd6d7c3940e0dd83ce82a",
+      "changed_path_manifest_sha256": "sha256:8f0edf3802a5bd64137c23e5777a179957df98b85c12846d8c2544a9519f5af6",
+      "lens": "review-readability",
+      "selected_order": 2
+    },
+    {
+      "schema": "gentle-ai.review-artifact-subject/v2",
+      "subject_hash": "sha256:f0916e435a0dad1b344ce2a14b0da915339de7a4655bac5d1d5bbb72fa16c7f8",
+      "lineage_id": "review-c7092036da2c5504",
+      "authority_revision": "sha256:5106a605131d4ad6d15f103e1448445695ee8b7edba994c1aec89c7a79c71c51",
+      "target_identity": "sha256:4e5755c816af2357d5f9e2f60235e0f3b2f27f108bfcb1d3adab8c2d11f4dc1b",
+      "base_tree": "1cd43ffb10c560151a73326560cc81552c902fcb",
+      "candidate_tree": "d5f96ce4a6b9e8130e0cd6d7c3940e0dd83ce82a",
+      "changed_path_manifest_sha256": "sha256:8f0edf3802a5bd64137c23e5777a179957df98b85c12846d8c2544a9519f5af6",
+      "lens": "review-reliability",
+      "selected_order": 3
+    }
+  ],
+  "changed_path_manifest": [
+    {
+      "path": "skills/requerimientos-socraticos/SKILL.md",
+      "status": "M",
+      "old_mode": "100644",
+      "new_mode": "100644",
+      "deleted": false,
+      "type_changed": false,
+      "mode_only": false,
+      "intended_untracked": true
+    },
+    {
+      "path": "skills/requerimientos-socraticos/references/formal-analysis.md",
+      "status": "M",
+      "old_mode": "100644",
+      "new_mode": "100644",
+      "deleted": false,
+      "type_changed": false,
+      "mode_only": false,
+      "intended_untracked": true
+    },
+    {
+      "path": "skills/requerimientos-socraticos/references/sealed-validation.md",
+      "status": "M",
+      "old_mode": "100644",
+      "new_mode": "100644",
+      "deleted": false,
+      "type_changed": false,
+      "mode_only": false,
+      "intended_untracked": true
+    },
+    {
+      "path": "skills/requerimientos-socraticos/scripts/analyze_logic.py",
+      "status": "M",
+      "old_mode": "100644",
+      "new_mode": "100644",
+      "deleted": false,
+      "type_changed": false,
+      "mode_only": false,
+      "intended_untracked": true
+    },
+    {
+      "path": "skills/requerimientos-socraticos/scripts/document_source.py",
+      "status": "A",
+      "old_mode": "000000",
+      "new_mode": "100644",
+      "deleted": false,
+      "type_changed": false,
+      "mode_only": false,
+      "intended_untracked": true
+    },
+    {
+      "path": "skills/requerimientos-socraticos/scripts/git_bundle.py",
+      "status": "A",
+      "old_mode": "000000",
+      "new_mode": "100644",
+      "deleted": false,
+      "type_changed": false,
+      "mode_only": false,
+      "intended_untracked": true
+    },
+    {
+      "path": "skills/requerimientos-socraticos/scripts/git_document_worker.py",
+      "status": "A",
+      "old_mode": "000000",
+      "new_mode": "100644",
+      "deleted": false,
+      "type_changed": false,
+      "mode_only": false,
+      "intended_untracked": true
+    },
+    {
+      "path": "skills/requerimientos-socraticos/scripts/process_supervision.py",
+      "status": "A",
+      "old_mode": "000000",
+      "new_mode": "100644",
+      "deleted": false,
+      "type_changed": false,
+      "mode_only": false,
+      "intended_untracked": true
+    },
+    {
+      "path": "skills/requerimientos-socraticos/scripts/validate_git.py",
+      "status": "M",
+      "old_mode": "100644",
+      "new_mode": "100644",
+      "deleted": false,
+      "type_changed": false,
+      "mode_only": false,
+      "intended_untracked": true
+    },
+    {
+      "path": "skills/requerimientos-socraticos/scripts/validate_interview.py",
+      "status": "M",
+      "old_mode": "100644",
+      "new_mode": "100644",
+      "deleted": false,
+      "type_changed": false,
+      "mode_only": false,
+      "intended_untracked": true
+    },
+    {
+      "path": "skills/requerimientos-socraticos/scripts/validate_prd.py",
+      "status": "M",
+      "old_mode": "100644",
+      "new_mode": "100644",
+      "deleted": false,
+      "type_changed": false,
+      "mode_only": false,
+      "intended_untracked": true
+    },
+    {
+      "path": "skills/requerimientos-socraticos/tests/test_document_source.py",
+      "status": "A",
+      "old_mode": "000000",
+      "new_mode": "100644",
+      "deleted": false,
+      "type_changed": false,
+      "mode_only": false,
+      "intended_untracked": true
+    },
+    {
+      "path": "skills/requerimientos-socraticos/tests/test_git_bundle.py",
+      "status": "A",
+      "old_mode": "000000",
+      "new_mode": "100644",
+      "deleted": false,
+      "type_changed": false,
+      "mode_only": false,
+      "intended_untracked": true
+    },
+    {
+      "path": "skills/requerimientos-socraticos/tests/test_git_memory.py",
+      "status": "A",
+      "old_mode": "000000",
+      "new_mode": "100644",
+      "deleted": false,
+      "type_changed": false,
+      "mode_only": false,
+      "intended_untracked": true
+    },
+    {
+      "path": "skills/requerimientos-socraticos/tests/test_process_supervision.py",
+      "status": "A",
+      "old_mode": "000000",
+      "new_mode": "100644",
+      "deleted": false,
+      "type_changed": false,
+      "mode_only": false,
+      "intended_untracked": true
+    },
+    {
+      "path": "skills/requerimientos-socraticos/tests/test_sealed.py",
+      "status": "M",
+      "old_mode": "100644",
+      "new_mode": "100644",
+      "deleted": false,
+      "type_changed": false,
+      "mode_only": false,
+      "intended_untracked": true
+    },
+    {
+      "path": "skills/requerimientos-socraticos/tests/test_supervisor.py",
+      "status": "M",
+      "old_mode": "100644",
+      "new_mode": "100644",
+      "deleted": false,
+      "type_changed": false,
+      "mode_only": false,
+      "intended_untracked": true
+    },
+    {
+      "path": "skills/requerimientos-socraticos/validation.json",
+      "status": "M",
+      "old_mode": "100644",
+      "new_mode": "100644",
+      "deleted": false,
+      "type_changed": false,
+      "mode_only": false,
+      "intended_untracked": true
+    }
+  ],
+  "repository_context": {
+    "capability": "review.opaque_repository_context",
+    "handle": "rctx2_d931762f378233cdb45f3695452660a1782b3b695ba6bb875a0c8cef7b09470b",
+    "revision": "sha256:5106a605131d4ad6d15f103e1448445695ee8b7edba994c1aec89c7a79c71c51",
+    "target_identity": "sha256:4e5755c816af2357d5f9e2f60235e0f3b2f27f108bfcb1d3adab8c2d11f4dc1b"
+  },
+  "next_transition": {
+    "kind": "execute",
+    "reason_code": "review_status_required",
+    "execute": {
+      "operation": "review.status",
+      "command": "gentle-ai review status --contract=gentle-ai.review-integration/v2 --next-transition=true --lineage=review-c7092036da2c5504 --repository-context=rctx2_d931762f378233cdb45f3695452660a1782b3b695ba6bb875a0c8cef7b09470b --agent=codex --base-ref=1cd43ffb10c560151a73326560cc81552c902fcb --workspace-overlay=true",
+      "arguments": [
+        {
+          "name": "contract",
+          "value": "gentle-ai.review-integration/v2",
+          "token": "--contract=gentle-ai.review-integration/v2"
+        },
+        {
+          "name": "next-transition",
+          "value": "true",
+          "token": "--next-transition=true"
+        },
+        {
+          "name": "lineage",
+          "value": "review-c7092036da2c5504",
+          "token": "--lineage=review-c7092036da2c5504"
+        },
+        {
+          "name": "repository-context",
+          "value": "rctx2_d931762f378233cdb45f3695452660a1782b3b695ba6bb875a0c8cef7b09470b",
+          "token": "--repository-context=rctx2_d931762f378233cdb45f3695452660a1782b3b695ba6bb875a0c8cef7b09470b"
+        },
+        {
+          "name": "agent",
+          "value": "codex",
+          "token": "--agent=codex"
+        },
+        {
+          "name": "base-ref",
+          "value": "1cd43ffb10c560151a73326560cc81552c902fcb",
+          "token": "--base-ref=1cd43ffb10c560151a73326560cc81552c902fcb"
+        },
+        {
+          "name": "workspace-overlay",
+          "value": "true",
+          "token": "--workspace-overlay=true"
+        }
+      ],
+      "selector_arguments": [
+        {
+          "name": "base-ref",
+          "value": "1cd43ffb10c560151a73326560cc81552c902fcb",
+          "token": "--base-ref=1cd43ffb10c560151a73326560cc81552c902fcb"
+        },
+        {
+          "name": "workspace-overlay",
+          "value": "true",
+          "token": "--workspace-overlay=true"
+        }
+      ],
+      "preconditions": [
+        {
+          "name": "state",
+          "value": "reviewing"
+        }
+      ],
+      "binding": {
+        "lineage_id": "review-c7092036da2c5504",
+        "revision": "sha256:5106a605131d4ad6d15f103e1448445695ee8b7edba994c1aec89c7a79c71c51",
+        "target_identity": "sha256:4e5755c816af2357d5f9e2f60235e0f3b2f27f108bfcb1d3adab8c2d11f4dc1b"
+      }
+    }
+  }
+}

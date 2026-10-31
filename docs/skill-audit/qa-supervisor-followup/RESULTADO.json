@@ -1,0 +1,82 @@
+{
+  "status": "CORRECTED_PARTIAL_RDD",
+  "retention": {
+    "raw_qa_outputs": true,
+    "capacity_bytes": 33554432,
+    "deletion": "MANUAL_ONLY",
+    "auto_expiry": false,
+    "owner_only": true,
+    "full": "BLOCK_NEW_WORK",
+    "journal": "SEPARATE"
+  },
+  "checks": {
+    "output_contract_cases": 13,
+    "document_checks": 9,
+    "retention_boundary_cases": 6,
+    "qualified_fsm_transitions": 418
+  },
+  "native_rdd": "THREE_APPROVED_CANONICAL_NOT_STARTED_CONTEXT_BUDGET",
+  "candidates": [
+    {
+      "target_identity": "sha256:bc55626f42805c8f9cb97349463956daa12526758816cd775f7b2c9ad26fe3f6",
+      "risk_level": "medium",
+      "changed_files": 6,
+      "changed_lines": 102
+    },
+    {
+      "target_identity": "sha256:253ee548817ed343bb1b152d174e2c3967ce88fce3d8142be990aeefc0ac00fd",
+      "risk_level": "medium",
+      "changed_files": 2,
+      "changed_lines": 13
+    },
+    {
+      "target_identity": "sha256:dcdc8ae7f0da32cf4d52ba441df3869f95448c58b275e65d917260b32a8a4fbf",
+      "risk_level": "medium",
+      "changed_files": 4,
+      "changed_lines": 146
+    },
+    {
+      "target_identity": "sha256:fff814fc0c47bb600d329ee7653510a28b41fcf806f1fffae8d9cb53e3e7ed1c",
+      "risk_level": "medium",
+      "changed_files": 1,
+      "changed_lines": 2
+    }
+  ],
+  "implementation_authorized": false,
+  "hardware_tests": "NOT_RUN",
+  "independent_review": {
+    "status": "PARTIAL_FINAL_PENDING_PROVIDER_USAGE_LIMIT",
+    "completed": "Prior two verifier fixes independently reviewed; retention hashes and requirement agreement checked in agent messages.",
+    "pending": "Final review after explicit reservation lifecycle clarification",
+    "retry": "No retry or alternative credential/profile attempted."
+  },
+  "consent": "GRANTED_ALL_FOUR",
+  "reviewed_parts": [
+    {
+      "part": "core",
+      "state": "APPROVED_AND_ACKNOWLEDGED",
+      "target": "sha256:bc55626f42805c8f9cb97349463956daa12526758816cd775f7b2c9ad26fe3f6",
+      "lineage": "review-615572b011759538"
+    },
+    {
+      "part": "interview",
+      "state": "APPROVED_AND_ACKNOWLEDGED",
+      "target": "sha256:253ee548817ed343bb1b152d174e2c3967ce88fce3d8142be990aeefc0ac00fd",
+      "lineage": "review-55dd99a391c31587"
+    },
+    {
+      "part": "evidence",
+      "state": "APPROVED_AND_ACKNOWLEDGED",
+      "target": "sha256:dcdc8ae7f0da32cf4d52ba441df3869f95448c58b275e65d917260b32a8a4fbf",
+      "lineage": "review-2383ffa61c4de09b"
+    }
+  ],
+  "advisory_findings": [],
+  "canonical_review": {
+    "state": "NOT_STARTED",
+    "code": "lens_context_budget_exceeded",
+    "same_candidate_retry": "NOT_ATTEMPTED",
+    "evidence_truncation": false
+  },
+  "current_prd_status": "DRAFT"
+}

@@ -1,0 +1,88 @@
+{
+  "status": "SPECIFIED_AWAITING_REVIEW",
+  "scope": "Local QA checker only; document specification, not implementation permission",
+  "technical_defaults": {
+    "platform": "Linux with required process-observation and resource controls available; WSL is guest scope only; otherwise UNSUPPORTED_ENVIRONMENT",
+    "concurrency": 1,
+    "automatic_retries": 0,
+    "wall_deadline_seconds": 30,
+    "cleanup_grace_seconds": 2,
+    "post_stop_observation_seconds": 2,
+    "stdout_max_bytes": 262144,
+    "stderr_max_bytes": 65536,
+    "worker_address_space_max_mib": 256,
+    "supervisor_address_space_max_mib": 128,
+    "calibration": "PROVISIONAL_NOT_MEASURED; inability to run within limits yields bounded refusal/failure, never automatic limit expansion",
+    "creation_limit": "Process creation and uninterruptible kernel operations have no guaranteed wall-time bound; report observed overrun without real-time guarantee.",
+    "diagnostic_os_max_bytes": 65536,
+    "diagnostic_os_timeout_seconds": 1,
+    "diagnostic_os_default": "DISABLED; explicit authorized configured source required"
+  },
+  "admission_and_identity": {
+    "journal": "Persist run_id, boot identity, owner identity, checker/version digest, policy digest and RESERVED before attempting launch; then attach PID plus start identity. No report content in journal.",
+    "coordination": "Single cooperating supervisor owner per local state directory; account-wide or unrelated-process exclusivity not claimed.",
+    "recovery": "Unresolved RESERVED/ACTIVE/STOPPING or unavailable/corrupt journal -> INFRA_LOCK. PID alone or human acknowledgement cannot unlock.",
+    "release": "Require identity-bound evidence no prior owned process remains and complete admission reconciliation. If unavailable remain locked; no automatic host restart.",
+    "durability": "No launch until required journal persistence confirmed; failure blocks admission. Crash-window tests are mandatory acceptance tests, not completed evidence.",
+    "journal_budget": "Separate state journal maximum64KiB; not a receipt and never cleared by receipt cleanup. Corrupt/oversized/unavailable state blocks new launches."
+  },
+  "protocol": {
+    "binding": "Checker0.1.3 exact approved file/dependency digests recorded in manifest; changed bytes require new adapter review.",
+    "json": "Exactly one bounded UTF-8 JSON object; reject duplicate keys, nonfinite numbers, trailing non-whitespace, incomplete or unsupported fields.",
+    "output_contract": "checker-output.schema.json plus protocol-contract.json; observed returncode envelope, not child-controlled code.",
+    "observation": "Complete typed failure_observation; no inferred authenticity. Do not recover malformed output by substring searching.",
+    "manifest": "checker-binding.json"
+  },
+  "notification_policy": {
+    "channel": "Local response/receipt only; no email, external messages or platform integrations.",
+    "always_visible": [
+      "INFRA_LOCK",
+      "INFRA_FAILURE",
+      "PROTOCOL_FAILURE",
+      "REJECT_INPUT",
+      "PARTIAL/NOT_ASSESSED",
+      "UNVERIFIED_DECLARATIONS_FOUND"
+    ],
+    "blocking": "All incomplete or failed evaluations prohibit acceptance of that evaluation. INFRA_LOCK additionally prohibits new launches.",
+    "urgency": "Do not assign domain-critical severity without target-system criteria; label unverified/pending distinctly. Request human decision on exceptions.",
+    "retry": "No automatic retry; require corrected/reconciled conditions and a fresh request."
+  },
+  "retention_proposal": {
+    "status": "CONFIRMED_WITH_TECHNICAL_DEFAULTS",
+    "human_decisions": "Retain raw local QA stdout/stderr; 32 MiB capacity; manual deletion. No time-based expiration.",
+    "stdout_stderr": "Persist bounded bytes separately from structured receipt; stdout<=262144 bytes, stderr<=65536 bytes. Untrusted data, never commands. No raw OS logs.",
+    "receipt": "Typed outcome/exit/signal/limits/digests/run identity and fixed codes only; <=8192 bytes; raw output stored separately and bound to run identity and byte digest. Hashes do not authenticate or anonymize.",
+    "file_permissions": "Owner-only files 0600, directories 0700; no automatic external transfer.",
+    "capacity_bytes": 33554432,
+    "max_runs": 100,
+    "stdout_max_bytes": 262144,
+    "stderr_max_bytes": 65536,
+    "receipt_max_bytes": 8192,
+    "reservation_bytes_per_run": 335872,
+    "capacity": "Single shared 32 MiB logical byte budget for receipts, raw output, staging and orphan files; max100 run slots including reservations. This is not a physical disk quota; filesystem overhead/ENOSPC remain infrastructure failures.",
+    "reservation": "Before launch reconcile storage; require count+1<=100 and accounted_bytes+reserved_bytes+335872<=33554432. Reserve one slot and 335872 bytes atomically among cooperating invokers. Unknown accounting or insufficient capacity blocks new work.",
+    "deletion": "MANUAL_ONLY; no automatic expiry, purge, overwrite or oldest-record eviction. Manual export does not delete originals. No deletion command executed by this design.",
+    "manual_cleanup": "Only completed/unreserved run artifacts may be removed through the authorized local operation. Reconcile resulting accounting before admission; deleting output/receipts never clears INFRA_LOCK or changes the separate journal.",
+    "failure": "Write failure leaves persistence UNCONFIRMED; count existing partial/staging bytes, preserve lock and original evaluation status, never claim durable output. No automatic checker retry.",
+    "journal": "Separate journal <=65536 bytes excluded from 32 MiB output budget and never deleted by output cleanup.",
+    "technical_default": "100 runs and per-stream/receipt caps are conservative engineering bounds, not throughput or physical-capacity measurements.",
+    "reservation_lifecycle": "Reservation is outstanding not-yet-materialized bytes. Under the cooperating admission lock, each committed byte moves from reservation to accounted storage without double counting. Uncertain partial writes are conservatively counted; unknown balance blocks admission. Release unused reservation only after exact run completion and storage reconciliation, never merely on a signal, receipt deletion or human acknowledgement."
+  },
+  "final_gates": [
+    "Schema and document/model checks",
+    "Independent review",
+    "Native Gentle RDD if available and consented"
+  ],
+  "implementation": "NOT_AUTHORIZED",
+  "temporal_contract": {
+    "clock": "Monotonic; recorded duration observations not real-time guarantees.",
+    "t0": "Immediately before invoking process creation, after admission and durable RESERVED.",
+    "work_deadline": "t0+30s includes launch attempt, execution and capture. If process creation returns after this deadline, classify WALL_DEADLINE_EXCEEDED and enter cleanup immediately; do not accept a late favorable result.",
+    "first_stop": "Upon first deadline, output cap or cancel event, record reason and request graceful termination of exact owned child; t_stop is monotonic time the stop sequence begins.",
+    "grace_deadline": "t_stop+2s. If termination confirmed before then, classify original interruption and persist. Otherwise request forced termination of exact owned child, record attempt; t_force is time this request is issued.",
+    "confirmation_deadline": "t_force+2s. Confirmed termination -> CLASSIFYING with original interruption reason; otherwise INFRA_LOCK. Sending a request is not confirmation.",
+    "unknown_child": "If creation outcome/identity cannot be established, INFRA_LOCK without targeting arbitrary PID.",
+    "sum": "Nominal budgets30+2+2 do not imply total observed<=34s; scheduling, process creation and kernel waits can delay observation. On regaining control apply overdue transitions; never relabel overrun as success.",
+    "early_trigger": "Output limit or cancellation may start cleanup before t0+30. No timeout restart when chunks arrive."
+  }
+}

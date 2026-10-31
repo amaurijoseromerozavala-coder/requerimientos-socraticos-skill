@@ -1,0 +1,12 @@
+test_coordinator_memory_error_returns_fixed_failure_record (test_validation_budget.ValidationBudgetTests.test_coordinator_memory_error_returns_fixed_failure_record) ... ok
+test_document_memory_error_returns_fixed_failure_record (test_validation_budget.ValidationBudgetTests.test_document_memory_error_returns_fixed_failure_record) ... ok
+test_explicit_coordinator_memory_failure_blocks (test_validation_budget.ValidationBudgetTests.test_explicit_coordinator_memory_failure_blocks) ... ok
+test_invalid_policy_rejected_before_spawning (test_validation_budget.ValidationBudgetTests.test_invalid_policy_rejected_before_spawning) ... ok
+test_library_caller_limits_unchanged_and_data_workers_capped (test_validation_budget.ValidationBudgetTests.test_library_caller_limits_unchanged_and_data_workers_capped) ... ok
+test_missing_diagnostic_is_not_reported_as_proven_memory_exhaustion (test_validation_budget.ValidationBudgetTests.test_missing_diagnostic_is_not_reported_as_proven_memory_exhaustion) ... ok
+test_public_cli_bounds_owned_caller_and_keeps_byte_identity (test_validation_budget.ValidationBudgetTests.test_public_cli_bounds_owned_caller_and_keeps_byte_identity) ... ok
+
+----------------------------------------------------------------------
+Ran 7 tests in 0.357s
+
+OK

@@ -1,0 +1,12 @@
+{
+  "jsonrpc": "2.0",
+  "id": 2,
+  "result": {
+    "content": [
+      {
+        "type": "text",
+        "text": "{\"id\":16,\"judgment_required\":false,\"project\":\"replica-gentle-ai\",\"project_path\":\"\",\"project_source\":\"explicit_override\",\"result\":\"Memory saved: \\\"Propuesta formal de requisitos: investigación y RDD documental\\\" (progress)\",\"state\":\"active\",\"sync_id\":\"obs-8b0e3aece4a5d948\",\"truncation\":{\"original_bytes\":3728,\"limit_bytes\":50000,\"truncated\":false}}"
+      }
+    ]
+  }
+}

@@ -1,0 +1,19 @@
+Final GREEN; owned bounded fixtures; outer timeout=15s
+command=['/home/agent/.local/share/requerimientos-socraticos/venv/bin/python', '-B', '-m', 'unittest', 'discover', '-s', 'skills/requerimientos-socraticos/tests', '-p', 'test_supervisor.py', '-v']
+returncode=0
+test_cli_depth_is_rejected_before_decoder_recursion (test_supervisor.SupervisorTests.test_cli_depth_is_rejected_before_decoder_recursion) ... ok
+test_cli_short_budget_is_inconclusive (test_supervisor.SupervisorTests.test_cli_short_budget_is_inconclusive) ... ok
+test_exited_leader_does_not_leave_group_pipes_waiting (test_supervisor.SupervisorTests.test_exited_leader_does_not_leave_group_pipes_waiting) ... ok
+test_linux_direct_worker_follows_parent_lifecycle (test_supervisor.SupervisorTests.test_linux_direct_worker_follows_parent_lifecycle) ... ok
+test_no_implicit_interpreter_fallback (test_supervisor.SupervisorTests.test_no_implicit_interpreter_fallback) ... ok
+test_public_argument_errors_preserve_invalid_input_contract (test_supervisor.SupervisorTests.test_public_argument_errors_preserve_invalid_input_contract) ... ok
+test_runtime_identity_is_observed_not_authenticated (test_supervisor.SupervisorTests.test_runtime_identity_is_observed_not_authenticated) ... ok
+test_successful_worker_is_preserved (test_supervisor.SupervisorTests.test_successful_worker_is_preserved) ... ok
+test_unsupported_supervision_adapter_starts_no_worker (test_supervisor.SupervisorTests.test_unsupported_supervision_adapter_starts_no_worker) ... ok
+test_waiting_worker_stops_and_is_reaped (test_supervisor.SupervisorTests.test_waiting_worker_stops_and_is_reaped) ... ok
+test_worker_output_limit_is_inconclusive (test_supervisor.SupervisorTests.test_worker_output_limit_is_inconclusive) ... ok
+
+----------------------------------------------------------------------
+Ran 11 tests in 0.719s
+
+OK

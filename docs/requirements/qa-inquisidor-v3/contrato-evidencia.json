@@ -1,0 +1,262 @@
+{
+  "schema_version": "0.3.0",
+  "kind": "PROPOSED_DOCUMENTARY_EVIDENCE_GATE",
+  "status": "DRAFT",
+  "not_runtime": true,
+  "human_delegation": {
+    "source_ref": "receipts/A-HUMAN-006.txt",
+    "text": "Delegas esos juicios técnicos a la skill dentro de criterios explícitos; las excepciones vuelven a ti.",
+    "execution_authorized": false
+  },
+  "variables": [
+    {
+      "name": "input_valid",
+      "meaning": "Tipos, IDs, cardinalidades y uniones válidos; no resúmenes autorreportados.",
+      "unknown": "Rechazar entrada malformada; UNKNOWN explícito y bien tipado se conserva como pendiente."
+    },
+    {
+      "name": "delegation_current",
+      "meaning": "Fuente humana vigente más criterios fijados antes del juicio y bindings íntegros; sin excepción.",
+      "unknown": "false para admisibilidad de la delegación, no como negación del hecho desconocido."
+    },
+    {
+      "name": "scope_supported",
+      "meaning": "Juicio técnico justificado sobre inventario completo conocido, contratos y alcance humano, sin exclusión pendiente.",
+      "unknown": "false para soporte del alcance; registrar UNKNOWN y motivo, no prueba de ausencia."
+    },
+    {
+      "name": "valid_failure",
+      "meaning": "Existe contraejemplo observado contra requisito material confirmado, oráculo previo y evidencia vigente suficiente del tipo requerido.",
+      "unknown": "false para existencia de fallo demostrado; no significa ausencia de defectos."
+    },
+    {
+      "name": "has_gap",
+      "meaning": "Existe pendiente, UNKNOWN, NOT_RUN, STALE, excepción o materialidad no resuelta entre obligaciones requeridas.",
+      "unknown": "true si hay incertidumbre requerida."
+    },
+    {
+      "name": "all_success",
+      "meaning": "Conjunto material aplicable no vacío y todos sus casos requeridos favorables con evidencia suficiente y vigente.",
+      "unknown": "false para éxito demostrado; conservar causa UNKNOWN."
+    }
+  ],
+  "decision_rules": [
+    {
+      "id": "reject",
+      "event": "REJECT_INPUT",
+      "guard": {
+        "op": "not",
+        "args": [
+          {
+            "var": "input_valid"
+          }
+        ]
+      },
+      "on_reject": "REJECT_INPUT",
+      "retains_gap_information": true
+    },
+    {
+      "id": "failure",
+      "event": "RECORD_CURRENT_FAILURE",
+      "guard": {
+        "op": "and",
+        "args": [
+          {
+            "var": "input_valid"
+          },
+          {
+            "var": "valid_failure"
+          }
+        ]
+      },
+      "on_reject": "REJECT_INPUT",
+      "retains_gap_information": true
+    },
+    {
+      "id": "gap",
+      "event": "RECORD_GAP_OR_STALE",
+      "guard": {
+        "op": "and",
+        "args": [
+          {
+            "var": "input_valid"
+          },
+          {
+            "op": "not",
+            "args": [
+              {
+                "var": "valid_failure"
+              }
+            ]
+          },
+          {
+            "op": "or",
+            "args": [
+              {
+                "op": "not",
+                "args": [
+                  {
+                    "var": "delegation_current"
+                  }
+                ]
+              },
+              {
+                "op": "not",
+                "args": [
+                  {
+                    "var": "scope_supported"
+                  }
+                ]
+              },
+              {
+                "var": "has_gap"
+              },
+              {
+                "op": "not",
+                "args": [
+                  {
+                    "var": "all_success"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "on_reject": "REJECT_INPUT",
+      "retains_gap_information": true
+    },
+    {
+      "id": "success",
+      "event": "RECORD_CURRENT_SUCCESS",
+      "guard": {
+        "op": "and",
+        "args": [
+          {
+            "var": "input_valid"
+          },
+          {
+            "op": "not",
+            "args": [
+              {
+                "var": "valid_failure"
+              }
+            ]
+          },
+          {
+            "var": "delegation_current"
+          },
+          {
+            "var": "scope_supported"
+          },
+          {
+            "op": "not",
+            "args": [
+              {
+                "var": "has_gap"
+              }
+            ]
+          },
+          {
+            "var": "all_success"
+          }
+        ]
+      },
+      "on_reject": "REJECT_INPUT",
+      "retains_gap_information": true
+    }
+  ],
+  "precedence": [
+    "REJECT_INPUT",
+    "RECORD_CURRENT_FAILURE",
+    "RECORD_GAP_OR_STALE",
+    "RECORD_CURRENT_SUCCESS"
+  ],
+  "fsm_bridge": [
+    {
+      "event": "REJECT_INPUT",
+      "effect": "REJECT_WITHOUT_MUTATION",
+      "diagnostics": "Preservar entrada y errores; no modificar estado ni evidencia."
+    },
+    {
+      "event": "RECORD_CURRENT_FAILURE",
+      "effects": {
+        "valid_counterexample": true,
+        "material_success": false,
+        "material_gap": "$input.has_gap"
+      },
+      "coverage_complete": "No se deduce de FAIL; conservar todas las obligaciones pendientes y alcance."
+    },
+    {
+      "event": "RECORD_GAP_OR_STALE",
+      "effects": {
+        "material_success": false,
+        "material_gap": true
+      },
+      "exceptions": "Solicitar decisión humana solo si es necesaria; no repetir autorizaciones suficientes."
+    },
+    {
+      "event": "RECORD_CURRENT_SUCCESS",
+      "effects": {
+        "valid_counterexample": false,
+        "material_success": true,
+        "material_gap": false
+      },
+      "guard": "Debe derivarse por la regla success; el nombre del evento no es evidencia."
+    },
+    {
+      "event": "INVALIDATE",
+      "effects": {
+        "material_success": false,
+        "material_gap": true,
+        "delegation_current": false,
+        "verdict": "PENDING"
+      },
+      "history": "Conservar juicios y recibos previos como históricos; invalidar conclusiones dependientes."
+    }
+  ],
+  "record_contract": {
+    "assessment": "assessment_id único, snapshot_ref, environment_ref, versions_ref, scope_ref y criterios_ref fijos.",
+    "inventory": "1..N obligation_id únicos; aplicabilidad y materialidad TRUE/FALSE/UNKNOWN con razones/fuentes; UNKNOWN requerido. Conjunto material aplicable vacío no produce éxito.",
+    "cases": "Toda obligación requerida enlaza 1..N case_id únicos con oracle_ref previo y evidence_kind. Cada caso requerido tiene exactamente un registro actual; si falta se representa NOT_RUN. Historial aparte, no sobrescribir ni mezclar.",
+    "evidence": "0..N evidence_id únicos, SHA256 de mismos bytes consumidos, source_ref, case_ref, snapshot/entorno/versiones/tipo/resultado. Referencias huérfanas o duplicadas rechazan antes de indexar.",
+    "results": "Estados PASS/FAIL/NOT_RUN/UNKNOWN/STALE por caso. PASS y FAIL simultáneos del mismo caso/revisión son contradicción de entrada y se preservan como diagnóstico, no se selecciona el favorable.",
+    "judgments": "Judgment_id, actor_runtime real, delegation_source_ref, assessment_id, digests snapshot/scope+inventario/obligaciones+oráculos/evidencia/criterios; SUPPORTED/PENDING/EXCEPTION con razón y fuentes.",
+    "authority": "Los campos JSON no autentican al humano ni al runtime. Contrastar fuente de delegación con instrucción real; sin vínculo comprobable no SUCCESS.",
+    "prior_criteria": "Fijar criterios antes de evaluar, por secuencia de registro observable; timestamp autorreportado no basta. Todo cambio material invalida antes de reevaluar, sin aceptación retroactiva.",
+    "not_applicable": "No usar N/A para eliminar fuente pendiente. Exclusión incompatible con alcance humano o caso dudoso se consulta al humano y queda GAP."
+  },
+  "criteria": [
+    {
+      "id": "K1",
+      "requirement": "Trazar inventario de componentes, entradas/salidas y contratos del sistema entero conocido; explicar método y fronteras.",
+      "exception": "Componente conocido omitido, alcance contradictorio o fuente necesaria ausente."
+    },
+    {
+      "id": "K2",
+      "requirement": "Tratar materialidad/aplicabilidad UNKNOWN como obligación requerida; exclusiones justificadas sin contradecir intención.",
+      "exception": "Redefinir intención, exclusión dudosa o nueva política de negocio."
+    },
+    {
+      "id": "K3",
+      "requirement": "Todos los casos requeridos con oráculo previo, identidad/tipo concordantes y evidencia vigente suficiente para su afirmación.",
+      "exception": "Evidencia ambigua, contradictoria o insuficiente; ensayo físico NOT_RUN no se transforma en estático."
+    },
+    {
+      "id": "K4",
+      "requirement": "Juicios dentro de delegación humana vigente y criterios previos fijados, con bindings conservados.",
+      "exception": "Criterio cambiado después, juicio de otra revisión o delegación no verificable."
+    },
+    {
+      "id": "K5",
+      "requirement": "Permitir entregar informe con pendientes; PASS solo dentro del alcance respaldado; nunca implica permiso de ejecutar.",
+      "exception": "Intento de confundir entrega, revisión RDD, autorización y éxito."
+    }
+  ],
+  "limitations": [
+    "Este contrato y su tabla son documentos de diseño, no un validador de evidencia del sistema objetivo.",
+    "La tabla solo prueba totalidad/exclusividad sobre resúmenes booleanos; no demuestra extracción correcta ni verdad de los predicados.",
+    "La traza no prueba completitud del inventario real ni identidad autenticada del actor.",
+    "CI diferido, hardware objetivo no medido, sin garantías de tiempo real ni producción."
+  ]
+}

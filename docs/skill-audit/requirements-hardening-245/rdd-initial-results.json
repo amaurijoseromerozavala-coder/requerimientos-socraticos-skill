@@ -1,0 +1,440 @@
+{
+  "schema": "gentle-ai.review-integration.status/v9",
+  "contract": "gentle-ai.review-integration/v2",
+  "operation": "review.status",
+  "applicability": "current_target",
+  "authority": {
+    "version": "compact-v2",
+    "lineage_id": "review-f33ed053a4836d37",
+    "state": "reviewing",
+    "generation": 1,
+    "revision": "sha256:feb8e4aef59b461a473a374b23f116d72bdb1bcbf2266e3743ad2119e9325d40"
+  },
+  "action": "collect",
+  "replayability": "manual_action_required",
+  "frozen": {
+    "tier": "high",
+    "original_changed_lines": 1031,
+    "correction_budget": 200,
+    "changed_path_manifest_sha256": "sha256:a8580c77d032b642b3a15fdee64de5881edcd9e349c9761490124e652b5a8cdd"
+  },
+  "target_identity": "sha256:43be837abe970455604de70e08c2c25a7dbf1cc2cff667c64b6f6aa42c2bcfec",
+  "projection": {
+    "schema": "gentle-ai.review-integration.projection/v1",
+    "kind": "base-workspace-overlay",
+    "projection": "workspace",
+    "base_tree": "40cb93653c9ac7f493445e9e16dc18e5c031cf1e",
+    "initial_review_tree": "e01bc80fe4bee58c5ceec372423a7c1f34698fc2",
+    "current_candidate_tree": "e01bc80fe4bee58c5ceec372423a7c1f34698fc2",
+    "paths_digest": "sha256:7b62036a1017f6c7da39f87292446cb829b9765a2c6e0dc2c437968623106ff3",
+    "paths": [
+      "bin/gentle-ai",
+      "skills/requerimientos-socraticos/SKILL.md",
+      "skills/requerimientos-socraticos/assets/activation-preflight.schema.json",
+      "skills/requerimientos-socraticos/references/activation-preflight.md",
+      "skills/requerimientos-socraticos/references/memory-budget.md",
+      "skills/requerimientos-socraticos/scripts/activation_preflight.py",
+      "skills/requerimientos-socraticos/scripts/analyze_logic.py",
+      "skills/requerimientos-socraticos/scripts/probe_environment.py",
+      "skills/requerimientos-socraticos/scripts/validate_git.py",
+      "skills/requerimientos-socraticos/tests/test_activation_preflight.py",
+      "skills/requerimientos-socraticos/tests/test_environment.py",
+      "skills/requerimientos-socraticos/tests/test_logic_memory.py",
+      "skills/requerimientos-socraticos/tests/test_validation_budget.py",
+      "skills/requerimientos-socraticos/validation.json"
+    ],
+    "intended_untracked": [
+      "AGENTS.md",
+      "bin/gentle-ai",
+      "docs/skill-audit/accepted-qa-fixes/ANALISIS.md",
+      "docs/skill-audit/accepted-qa-fixes/guard.stderr",
+      "docs/skill-audit/accepted-qa-fixes/interview.stderr",
+      "docs/skill-audit/accepted-qa-fixes/scratch.stderr",
+      "docs/skill-audit/accepted-qa-fixes/sealed.stderr",
+      "docs/skill-audit/accepted-qa-fixes/sha1-red.stderr",
+      "docs/skill-audit/integrity-challenge/ANALISIS.md",
+      "docs/skill-audit/integrity-challenge/guard-tests.stderr",
+      "docs/skill-audit/integrity-challenge/interview-tests.stderr",
+      "docs/skill-audit/integrity-challenge/red-baseline.json",
+      "docs/skill-audit/requerimientos-repair/smoke/assessment-final.json",
+      "docs/skill-audit/requerimientos-repair/smoke/registro-skill-asistente.md",
+      "docs/skill-audit/requerimientos-repair/tests-green.stderr",
+      "docs/skill-audit/requirements-hardening-24/analysis-report.json",
+      "docs/skill-audit/requirements-hardening-24/cgroup-red.log",
+      "docs/skill-audit/requirements-hardening-24/dependencies.txt",
+      "docs/skill-audit/requirements-hardening-24/environment-green.log",
+      "docs/skill-audit/requirements-hardening-24/environment-red.log",
+      "docs/skill-audit/requirements-hardening-24/full-tests.log",
+      "docs/skill-audit/requirements-hardening-24/independent-review.json",
+      "docs/skill-audit/requirements-hardening-24/local-profile.json",
+      "docs/skill-audit/requirements-hardening-24/logic-example-result.json",
+      "docs/skill-audit/requirements-hardening-241/full-tests.log",
+      "docs/skill-audit/requirements-hardening-241/group-red.log",
+      "docs/skill-audit/requirements-hardening-241/independent-group-lifecycle.json",
+      "docs/skill-audit/requirements-hardening-241/independent-manifest.json",
+      "docs/skill-audit/requirements-hardening-241/independent-review.json",
+      "docs/skill-audit/requirements-hardening-241/independent-tests.log",
+      "docs/skill-audit/requirements-hardening-241/logic-example.json",
+      "docs/skill-audit/requirements-hardening-241/profile.json",
+      "docs/skill-audit/requirements-hardening-241/supervisor-green.log",
+      "docs/skill-audit/requirements-hardening-241/supervisor-red.log",
+      "docs/skill-audit/sealed-validation/ANALISIS.md",
+      "docs/skill-audit/sealed-validation/guard.stderr",
+      "docs/skill-audit/sealed-validation/interview.stderr",
+      "docs/skill-audit/sealed-validation/red-baseline.json",
+      "docs/skill-audit/sealed-validation/tests.stderr",
+      "skills/requerimientos-socraticos/SKILL.md",
+      "skills/requerimientos-socraticos/agents/requirements-interrogator.toml",
+      "skills/requerimientos-socraticos/assets/activation-preflight.schema.json",
+      "skills/requerimientos-socraticos/assets/analysis-report.schema.json",
+      "skills/requerimientos-socraticos/assets/design-proposals.schema.json",
+      "skills/requerimientos-socraticos/assets/example.prd.json",
+      "skills/requerimientos-socraticos/assets/gitattributes.example",
+      "skills/requerimientos-socraticos/assets/interrogator-packet.schema.json",
+      "skills/requerimientos-socraticos/assets/interview.schema.json",
+      "skills/requerimientos-socraticos/assets/logic-example.json",
+      "skills/requerimientos-socraticos/assets/logic-input.schema.json",
+      "skills/requerimientos-socraticos/assets/prd.schema.json",
+      "skills/requerimientos-socraticos/references/activation-preflight.md",
+      "skills/requerimientos-socraticos/references/formal-analysis.md",
+      "skills/requerimientos-socraticos/references/integrity-boundary.md",
+      "skills/requerimientos-socraticos/references/interrogation.md",
+      "skills/requerimientos-socraticos/references/memory-budget.md",
+      "skills/requerimientos-socraticos/references/method.md",
+      "skills/requerimientos-socraticos/references/research-design.md",
+      "skills/requerimientos-socraticos/references/sealed-validation.md",
+      "skills/requerimientos-socraticos/references/validation.md",
+      "skills/requerimientos-socraticos/references/workflow.md",
+      "skills/requerimientos-socraticos/requirements-analysis.txt",
+      "skills/requerimientos-socraticos/scripts/activation_preflight.py",
+      "skills/requerimientos-socraticos/scripts/analyze_logic.py",
+      "skills/requerimientos-socraticos/scripts/document_source.py",
+      "skills/requerimientos-socraticos/scripts/git_bundle.py",
+      "skills/requerimientos-socraticos/scripts/git_document_worker.py",
+      "skills/requerimientos-socraticos/scripts/git_validation_engine.py",
+      "skills/requerimientos-socraticos/scripts/json_preflight.py",
+      "skills/requerimientos-socraticos/scripts/logic_engine.py",
+      "skills/requerimientos-socraticos/scripts/memory_budget.py",
+      "skills/requerimientos-socraticos/scripts/normalize_text.py",
+      "skills/requerimientos-socraticos/scripts/probe_environment.py",
+      "skills/requerimientos-socraticos/scripts/process_supervision.py",
+      "skills/requerimientos-socraticos/scripts/requirements_guard.py",
+      "skills/requerimientos-socraticos/scripts/safe_io.py",
+      "skills/requerimientos-socraticos/scripts/scratch_pool.py",
+      "skills/requerimientos-socraticos/scripts/validate_git.py",
+      "skills/requerimientos-socraticos/scripts/validate_interview.py",
+      "skills/requerimientos-socraticos/scripts/validate_prd.py",
+      "skills/requerimientos-socraticos/tests/test_activation_preflight.py",
+      "skills/requerimientos-socraticos/tests/test_document_source.py",
+      "skills/requerimientos-socraticos/tests/test_environment.py",
+      "skills/requerimientos-socraticos/tests/test_git_bundle.py",
+      "skills/requerimientos-socraticos/tests/test_git_memory.py",
+      "skills/requerimientos-socraticos/tests/test_guard.py",
+      "skills/requerimientos-socraticos/tests/test_interview.py",
+      "skills/requerimientos-socraticos/tests/test_logic.py",
+      "skills/requerimientos-socraticos/tests/test_logic_memory.py",
+      "skills/requerimientos-socraticos/tests/test_logic_worker_memory.py",
+      "skills/requerimientos-socraticos/tests/test_memory_budget.py",
+      "skills/requerimientos-socraticos/tests/test_preflight.py",
+      "skills/requerimientos-socraticos/tests/test_process_supervision.py",
+      "skills/requerimientos-socraticos/tests/test_scratch.py",
+      "skills/requerimientos-socraticos/tests/test_sealed.py",
+      "skills/requerimientos-socraticos/tests/test_supervisor.py",
+      "skills/requerimientos-socraticos/tests/test_validation_budget.py",
+      "skills/requerimientos-socraticos/validation.json"
+    ],
+    "intended_untracked_proof": "sha256:65a67da23d24009e6fc99c9c99a1d124a0ffee364188401a7e180de08e221d2c",
+    "initial_snapshot_identity": "sha256:43be837abe970455604de70e08c2c25a7dbf1cc2cff667c64b6f6aa42c2bcfec",
+    "current_snapshot_identity": "sha256:43be837abe970455604de70e08c2c25a7dbf1cc2cff667c64b6f6aa42c2bcfec"
+  },
+  "eligible_untracked_inventory": "sha256:971a0e375d8dbab5745db9356555f73ca98517c28c0d5ffeea0987da0bc17639",
+  "repair": {
+    "schema": "gentle-ai.review-authority-repair-assessment/v1",
+    "status": "unsupported",
+    "counts": {
+      "lineages": 0,
+      "compact_lineages": 0,
+      "legacy_lineages": 0,
+      "events": 0,
+      "bytes": 0,
+      "eligible_candidates": 0,
+      "unsupported_lineages": 0,
+      "conflicts": 0
+    },
+    "supported_operations": [
+      "review/complete-fix",
+      "review/validate-fix"
+    ],
+    "authorization_schema": "gentle-ai.review-repair-authorization/v1"
+  },
+  "candidates": [],
+  "forecast": {
+    "horizon": "partial",
+    "steps": [
+      {
+        "step": 1,
+        "kind": "collect",
+        "reason_code": "reviewer_results_required",
+        "description": "Reviewer lens artifacts required for current revision"
+      }
+    ]
+  },
+  "next_transition": {
+    "kind": "collect",
+    "reason_code": "reviewer_results_required",
+    "collect": {
+      "inputs": [
+        {
+          "name": "reviewer_result",
+          "schema": "https://gentle-ai.dev/schema/review/reviewer/v1",
+          "capture_operation": "review.capture-result",
+          "arguments": [
+            {
+              "name": "lineage",
+              "value": "review-f33ed053a4836d37",
+              "token": "--lineage=review-f33ed053a4836d37"
+            },
+            {
+              "name": "expected-revision",
+              "value": "sha256:15323a27a1aa2fd08fe424432b6ae87ac1b92a83acd970201f61f4d5eef2fe05",
+              "token": "--expected-revision=sha256:15323a27a1aa2fd08fe424432b6ae87ac1b92a83acd970201f61f4d5eef2fe05"
+            },
+            {
+              "name": "target",
+              "value": "sha256:43be837abe970455604de70e08c2c25a7dbf1cc2cff667c64b6f6aa42c2bcfec",
+              "token": "--target=sha256:43be837abe970455604de70e08c2c25a7dbf1cc2cff667c64b6f6aa42c2bcfec"
+            },
+            {
+              "name": "repository-context",
+              "value": "rctx2_cca83232e72c340e633c886e381d07aa188958dc16e37556ba3752ad085b93e8",
+              "token": "--repository-context=rctx2_cca83232e72c340e633c886e381d07aa188958dc16e37556ba3752ad085b93e8"
+            },
+            {
+              "name": "lens",
+              "value": "review-risk",
+              "token": "--lens=review-risk"
+            },
+            {
+              "name": "order",
+              "value": "0",
+              "token": "--order=0"
+            },
+            {
+              "name": "subject-hash",
+              "value": "sha256:eb0f429e53e339d59519b95783bf69aad294e4fc9a4c8487693d2dbea1f17cc6",
+              "token": "--subject-hash=sha256:eb0f429e53e339d59519b95783bf69aad294e4fc9a4c8487693d2dbea1f17cc6"
+            },
+            {
+              "name": "agent",
+              "value": "codex",
+              "token": "--agent=codex"
+            }
+          ],
+          "artifact_subject": {
+            "schema": "gentle-ai.review-artifact-subject/v2",
+            "subject_hash": "sha256:eb0f429e53e339d59519b95783bf69aad294e4fc9a4c8487693d2dbea1f17cc6",
+            "lineage_id": "review-f33ed053a4836d37",
+            "authority_revision": "sha256:15323a27a1aa2fd08fe424432b6ae87ac1b92a83acd970201f61f4d5eef2fe05",
+            "target_identity": "sha256:43be837abe970455604de70e08c2c25a7dbf1cc2cff667c64b6f6aa42c2bcfec",
+            "base_tree": "40cb93653c9ac7f493445e9e16dc18e5c031cf1e",
+            "candidate_tree": "e01bc80fe4bee58c5ceec372423a7c1f34698fc2",
+            "changed_path_manifest_sha256": "sha256:a8580c77d032b642b3a15fdee64de5881edcd9e349c9761490124e652b5a8cdd",
+            "lens": "review-risk",
+            "selected_order": 0
+          },
+          "base_tree": "40cb93653c9ac7f493445e9e16dc18e5c031cf1e",
+          "candidate_tree": "e01bc80fe4bee58c5ceec372423a7c1f34698fc2"
+        },
+        {
+          "name": "reviewer_result",
+          "schema": "https://gentle-ai.dev/schema/review/reviewer/v1",
+          "capture_operation": "review.capture-result",
+          "arguments": [
+            {
+              "name": "lineage",
+              "value": "review-f33ed053a4836d37",
+              "token": "--lineage=review-f33ed053a4836d37"
+            },
+            {
+              "name": "expected-revision",
+              "value": "sha256:15323a27a1aa2fd08fe424432b6ae87ac1b92a83acd970201f61f4d5eef2fe05",
+              "token": "--expected-revision=sha256:15323a27a1aa2fd08fe424432b6ae87ac1b92a83acd970201f61f4d5eef2fe05"
+            },
+            {
+              "name": "target",
+              "value": "sha256:43be837abe970455604de70e08c2c25a7dbf1cc2cff667c64b6f6aa42c2bcfec",
+              "token": "--target=sha256:43be837abe970455604de70e08c2c25a7dbf1cc2cff667c64b6f6aa42c2bcfec"
+            },
+            {
+              "name": "repository-context",
+              "value": "rctx2_cca83232e72c340e633c886e381d07aa188958dc16e37556ba3752ad085b93e8",
+              "token": "--repository-context=rctx2_cca83232e72c340e633c886e381d07aa188958dc16e37556ba3752ad085b93e8"
+            },
+            {
+              "name": "lens",
+              "value": "review-resilience",
+              "token": "--lens=review-resilience"
+            },
+            {
+              "name": "order",
+              "value": "1",
+              "token": "--order=1"
+            },
+            {
+              "name": "subject-hash",
+              "value": "sha256:d48dcf815bedaa300d1a67a995976fd85acce1d7ca8e002bcc7310973febe3e8",
+              "token": "--subject-hash=sha256:d48dcf815bedaa300d1a67a995976fd85acce1d7ca8e002bcc7310973febe3e8"
+            },
+            {
+              "name": "agent",
+              "value": "codex",
+              "token": "--agent=codex"
+            }
+          ],
+          "artifact_subject": {
+            "schema": "gentle-ai.review-artifact-subject/v2",
+            "subject_hash": "sha256:d48dcf815bedaa300d1a67a995976fd85acce1d7ca8e002bcc7310973febe3e8",
+            "lineage_id": "review-f33ed053a4836d37",
+            "authority_revision": "sha256:15323a27a1aa2fd08fe424432b6ae87ac1b92a83acd970201f61f4d5eef2fe05",
+            "target_identity": "sha256:43be837abe970455604de70e08c2c25a7dbf1cc2cff667c64b6f6aa42c2bcfec",
+            "base_tree": "40cb93653c9ac7f493445e9e16dc18e5c031cf1e",
+            "candidate_tree": "e01bc80fe4bee58c5ceec372423a7c1f34698fc2",
+            "changed_path_manifest_sha256": "sha256:a8580c77d032b642b3a15fdee64de5881edcd9e349c9761490124e652b5a8cdd",
+            "lens": "review-resilience",
+            "selected_order": 1
+          },
+          "base_tree": "40cb93653c9ac7f493445e9e16dc18e5c031cf1e",
+          "candidate_tree": "e01bc80fe4bee58c5ceec372423a7c1f34698fc2"
+        },
+        {
+          "name": "reviewer_result",
+          "schema": "https://gentle-ai.dev/schema/review/reviewer/v1",
+          "capture_operation": "review.capture-result",
+          "arguments": [
+            {
+              "name": "lineage",
+              "value": "review-f33ed053a4836d37",
+              "token": "--lineage=review-f33ed053a4836d37"
+            },
+            {
+              "name": "expected-revision",
+              "value": "sha256:15323a27a1aa2fd08fe424432b6ae87ac1b92a83acd970201f61f4d5eef2fe05",
+              "token": "--expected-revision=sha256:15323a27a1aa2fd08fe424432b6ae87ac1b92a83acd970201f61f4d5eef2fe05"
+            },
+            {
+              "name": "target",
+              "value": "sha256:43be837abe970455604de70e08c2c25a7dbf1cc2cff667c64b6f6aa42c2bcfec",
+              "token": "--target=sha256:43be837abe970455604de70e08c2c25a7dbf1cc2cff667c64b6f6aa42c2bcfec"
+            },
+            {
+              "name": "repository-context",
+              "value": "rctx2_cca83232e72c340e633c886e381d07aa188958dc16e37556ba3752ad085b93e8",
+              "token": "--repository-context=rctx2_cca83232e72c340e633c886e381d07aa188958dc16e37556ba3752ad085b93e8"
+            },
+            {
+              "name": "lens",
+              "value": "review-readability",
+              "token": "--lens=review-readability"
+            },
+            {
+              "name": "order",
+              "value": "2",
+              "token": "--order=2"
+            },
+            {
+              "name": "subject-hash",
+              "value": "sha256:9fc4688682d71de4e2d56d9f96accf241600d1b65dc5c3f1cb8393d46e50d1e9",
+              "token": "--subject-hash=sha256:9fc4688682d71de4e2d56d9f96accf241600d1b65dc5c3f1cb8393d46e50d1e9"
+            },
+            {
+              "name": "agent",
+              "value": "codex",
+              "token": "--agent=codex"
+            }
+          ],
+          "artifact_subject": {
+            "schema": "gentle-ai.review-artifact-subject/v2",
+            "subject_hash": "sha256:9fc4688682d71de4e2d56d9f96accf241600d1b65dc5c3f1cb8393d46e50d1e9",
+            "lineage_id": "review-f33ed053a4836d37",
+            "authority_revision": "sha256:15323a27a1aa2fd08fe424432b6ae87ac1b92a83acd970201f61f4d5eef2fe05",
+            "target_identity": "sha256:43be837abe970455604de70e08c2c25a7dbf1cc2cff667c64b6f6aa42c2bcfec",
+            "base_tree": "40cb93653c9ac7f493445e9e16dc18e5c031cf1e",
+            "candidate_tree": "e01bc80fe4bee58c5ceec372423a7c1f34698fc2",
+            "changed_path_manifest_sha256": "sha256:a8580c77d032b642b3a15fdee64de5881edcd9e349c9761490124e652b5a8cdd",
+            "lens": "review-readability",
+            "selected_order": 2
+          },
+          "base_tree": "40cb93653c9ac7f493445e9e16dc18e5c031cf1e",
+          "candidate_tree": "e01bc80fe4bee58c5ceec372423a7c1f34698fc2"
+        },
+        {
+          "name": "reviewer_result",
+          "schema": "https://gentle-ai.dev/schema/review/reviewer/v1",
+          "capture_operation": "review.capture-result",
+          "arguments": [
+            {
+              "name": "lineage",
+              "value": "review-f33ed053a4836d37",
+              "token": "--lineage=review-f33ed053a4836d37"
+            },
+            {
+              "name": "expected-revision",
+              "value": "sha256:15323a27a1aa2fd08fe424432b6ae87ac1b92a83acd970201f61f4d5eef2fe05",
+              "token": "--expected-revision=sha256:15323a27a1aa2fd08fe424432b6ae87ac1b92a83acd970201f61f4d5eef2fe05"
+            },
+            {
+              "name": "target",
+              "value": "sha256:43be837abe970455604de70e08c2c25a7dbf1cc2cff667c64b6f6aa42c2bcfec",
+              "token": "--target=sha256:43be837abe970455604de70e08c2c25a7dbf1cc2cff667c64b6f6aa42c2bcfec"
+            },
+            {
+              "name": "repository-context",
+              "value": "rctx2_cca83232e72c340e633c886e381d07aa188958dc16e37556ba3752ad085b93e8",
+              "token": "--repository-context=rctx2_cca83232e72c340e633c886e381d07aa188958dc16e37556ba3752ad085b93e8"
+            },
+            {
+              "name": "lens",
+              "value": "review-reliability",
+              "token": "--lens=review-reliability"
+            },
+            {
+              "name": "order",
+              "value": "3",
+              "token": "--order=3"
+            },
+            {
+              "name": "subject-hash",
+              "value": "sha256:443361eea1b6da79351e686b95731f937a8d0275d5fdee8a1e8755baa8961e96",
+              "token": "--subject-hash=sha256:443361eea1b6da79351e686b95731f937a8d0275d5fdee8a1e8755baa8961e96"
+            },
+            {
+              "name": "agent",
+              "value": "codex",
+              "token": "--agent=codex"
+            }
+          ],
+          "artifact_subject": {
+            "schema": "gentle-ai.review-artifact-subject/v2",
+            "subject_hash": "sha256:443361eea1b6da79351e686b95731f937a8d0275d5fdee8a1e8755baa8961e96",
+            "lineage_id": "review-f33ed053a4836d37",
+            "authority_revision": "sha256:15323a27a1aa2fd08fe424432b6ae87ac1b92a83acd970201f61f4d5eef2fe05",
+            "target_identity": "sha256:43be837abe970455604de70e08c2c25a7dbf1cc2cff667c64b6f6aa42c2bcfec",
+            "base_tree": "40cb93653c9ac7f493445e9e16dc18e5c031cf1e",
+            "candidate_tree": "e01bc80fe4bee58c5ceec372423a7c1f34698fc2",
+            "changed_path_manifest_sha256": "sha256:a8580c77d032b642b3a15fdee64de5881edcd9e349c9761490124e652b5a8cdd",
+            "lens": "review-reliability",
+            "selected_order": 3
+          },
+          "base_tree": "40cb93653c9ac7f493445e9e16dc18e5c031cf1e",
+          "candidate_tree": "e01bc80fe4bee58c5ceec372423a7c1f34698fc2"
+        }
+      ]
+    }
+  },
+  "repository_context": {
+    "capability": "review.opaque_repository_context",
+    "handle": "rctx2_cca83232e72c340e633c886e381d07aa188958dc16e37556ba3752ad085b93e8",
+    "revision": "sha256:15323a27a1aa2fd08fe424432b6ae87ac1b92a83acd970201f61f4d5eef2fe05",
+    "target_identity": "sha256:43be837abe970455604de70e08c2c25a7dbf1cc2cff667c64b6f6aa42c2bcfec"
+  }
+}

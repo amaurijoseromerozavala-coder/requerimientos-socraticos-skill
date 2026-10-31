@@ -1,0 +1,65 @@
+{
+  "schema": "boolean-gate-proposal/v0.1",
+  "status": "PROPOSED",
+  "scope": "Admission to begin incorporation only; not revocation during an OS operation",
+  "variables": [
+    "task_authorized",
+    "criteria_current_and_pass",
+    "base_unchanged",
+    "resources_admitted",
+    "process_state_known",
+    "revoked",
+    "fresh_incorporation_authorized"
+  ],
+  "rules": [
+    {
+      "id": "G1",
+      "when_false_any": [
+        "task_authorized",
+        "criteria_current_and_pass",
+        "base_unchanged",
+        "resources_admitted",
+        "process_state_known"
+      ],
+      "result": "BLOCK"
+    },
+    {
+      "id": "G2",
+      "when_true": [
+        "revoked"
+      ],
+      "when_false": [
+        "fresh_incorporation_authorized"
+      ],
+      "result": "WAIT_NEW_AUTHORIZATION"
+    },
+    {
+      "id": "G3",
+      "otherwise": true,
+      "result": "ELIGIBLE_NOT_EXECUTED"
+    }
+  ],
+  "precedence": [
+    "G1",
+    "G2",
+    "G3"
+  ],
+  "unknown_input": "BLOCK_UNKNOWN; no coercion of UNKNOWN to false",
+  "authority": "ELIGIBLE is a documentary judgment, not execution permission granted by this draft",
+  "requirement_refs": [
+    "INT-R10",
+    "INT-R11",
+    "INT-R13",
+    "INT-R22"
+  ],
+  "variable_definitions": {
+    "task_authorized": "Identified task and contemplated incorporation are covered by applicable sufficient authority within the declared scope; may be a replacement incorporation grant after revocation.",
+    "criteria_current_and_pass": "All applicable nonempty criteria have current sufficient evidence; no silent exclusion or stale approval.",
+    "base_unchanged": "The base bound to the candidate/evidence and destination agree under the required coordination; old hash comparison alone does not establish this.",
+    "resources_admitted": "Current resource admission covers this exact operation and its recovery requirements; a historical preflight alone does not establish it.",
+    "process_state_known": "Required predecessor termination/cleanup and in-flight write status reconciled; no unresolved blocking execution.",
+    "revoked": "At least one applicable revocation was accepted for this task; retained as history/latch, not silently erased by a new grant.",
+    "fresh_incorporation_authorized": "A sufficient identified incorporation approval postdates the latest accepted revocation and matches current authority epoch, task,candidate,base and operation; later revocation or invalidated binding makes it false/unknown."
+  },
+  "concrete_derivation_status": "NOT_IMPLEMENTED; truth values require receipt/scope/durability checks, not caller assertion."
+}

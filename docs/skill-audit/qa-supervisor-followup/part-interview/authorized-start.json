@@ -1,0 +1,132 @@
+{
+  "schema": "gentle-ai.review-integration.start/v4",
+  "contract": "gentle-ai.review-integration/v2",
+  "operation": "review.start",
+  "action": "created",
+  "lenses_required": true,
+  "lineage_id": "review-55dd99a391c31587",
+  "state": "reviewing",
+  "risk_level": "medium",
+  "selected_lenses": [
+    "review-resilience",
+    "review-reliability"
+  ],
+  "projection": "workspace",
+  "target_mode": "base-workspace-overlay",
+  "target_identity": "sha256:253ee548817ed343bb1b152d174e2c3967ce88fce3d8142be990aeefc0ac00fd",
+  "base_tree": "f3e1cb4b709326cbf4e2a697bd4af26d68ca3f84",
+  "candidate_tree": "eafb7412dc4b5433b3db7533fcd63cc723554151",
+  "changed_files": 2,
+  "changed_lines": 13,
+  "correction_budget": 7,
+  "risk_reasons": [
+    {
+      "code": "configuration_change",
+      "path": "docs/requirements/qa-supervisor/interview.json"
+    }
+  ],
+  "artifact_subjects": [
+    {
+      "schema": "gentle-ai.review-artifact-subject/v2",
+      "subject_hash": "sha256:7e4cbf5efbb3b327449c1564a35b70b3ee0b36b5c7d42d724a847b87b9a10ffa",
+      "lineage_id": "review-55dd99a391c31587",
+      "authority_revision": "sha256:2a9332478a38e3d0b997e0ea5c5ec65e3471c4b4076bf965961e5cdc74e4ccd3",
+      "target_identity": "sha256:253ee548817ed343bb1b152d174e2c3967ce88fce3d8142be990aeefc0ac00fd",
+      "base_tree": "f3e1cb4b709326cbf4e2a697bd4af26d68ca3f84",
+      "candidate_tree": "eafb7412dc4b5433b3db7533fcd63cc723554151",
+      "changed_path_manifest_sha256": "sha256:43c3cba5511ae3bacef725b199b944afc484b7d1cbf31434d2f5a14d72e1c5bd",
+      "lens": "review-resilience",
+      "selected_order": 0
+    },
+    {
+      "schema": "gentle-ai.review-artifact-subject/v2",
+      "subject_hash": "sha256:7f774f87427997432a70fa20531c88239b08de7c20b4c41d9f51595c40de18c9",
+      "lineage_id": "review-55dd99a391c31587",
+      "authority_revision": "sha256:2a9332478a38e3d0b997e0ea5c5ec65e3471c4b4076bf965961e5cdc74e4ccd3",
+      "target_identity": "sha256:253ee548817ed343bb1b152d174e2c3967ce88fce3d8142be990aeefc0ac00fd",
+      "base_tree": "f3e1cb4b709326cbf4e2a697bd4af26d68ca3f84",
+      "candidate_tree": "eafb7412dc4b5433b3db7533fcd63cc723554151",
+      "changed_path_manifest_sha256": "sha256:43c3cba5511ae3bacef725b199b944afc484b7d1cbf31434d2f5a14d72e1c5bd",
+      "lens": "review-reliability",
+      "selected_order": 1
+    }
+  ],
+  "changed_path_manifest": [
+    {"path":"docs/requirements/qa-supervisor/interview.json","status":"M","old_mode":"100644","new_mode":"100644","deleted":false,"type_changed":false,"mode_only":false,"intended_untracked":true},
+    {"path":"docs/requirements/qa-supervisor/registro-skill-asistente.md","status":"M","old_mode":"100644","new_mode":"100644","deleted":false,"type_changed":false,"mode_only":false,"intended_untracked":true}
+  ],
+  "repository_context": {
+    "capability": "review.opaque_repository_context",
+    "handle": "rctx2_b36412a678b67b9591cd3bef83a8ae03380ab84856afb206cfc6a38580bd3b9c",
+    "revision": "sha256:2a9332478a38e3d0b997e0ea5c5ec65e3471c4b4076bf965961e5cdc74e4ccd3",
+    "target_identity": "sha256:253ee548817ed343bb1b152d174e2c3967ce88fce3d8142be990aeefc0ac00fd"
+  },
+  "next_transition": {
+    "kind": "execute",
+    "reason_code": "review_status_required",
+    "execute": {
+      "operation": "review.status",
+      "command": "gentle-ai review status --contract=gentle-ai.review-integration/v2 --next-transition=true --lineage=review-55dd99a391c31587 --repository-context=rctx2_b36412a678b67b9591cd3bef83a8ae03380ab84856afb206cfc6a38580bd3b9c --agent=codex --base-ref=f3e1cb4b709326cbf4e2a697bd4af26d68ca3f84 --workspace-overlay=true",
+      "arguments": [
+        {
+          "name": "contract",
+          "value": "gentle-ai.review-integration/v2",
+          "token": "--contract=gentle-ai.review-integration/v2"
+        },
+        {
+          "name": "next-transition",
+          "value": "true",
+          "token": "--next-transition=true"
+        },
+        {
+          "name": "lineage",
+          "value": "review-55dd99a391c31587",
+          "token": "--lineage=review-55dd99a391c31587"
+        },
+        {
+          "name": "repository-context",
+          "value": "rctx2_b36412a678b67b9591cd3bef83a8ae03380ab84856afb206cfc6a38580bd3b9c",
+          "token": "--repository-context=rctx2_b36412a678b67b9591cd3bef83a8ae03380ab84856afb206cfc6a38580bd3b9c"
+        },
+        {
+          "name": "agent",
+          "value": "codex",
+          "token": "--agent=codex"
+        },
+        {
+          "name": "base-ref",
+          "value": "f3e1cb4b709326cbf4e2a697bd4af26d68ca3f84",
+          "token": "--base-ref=f3e1cb4b709326cbf4e2a697bd4af26d68ca3f84"
+        },
+        {
+          "name": "workspace-overlay",
+          "value": "true",
+          "token": "--workspace-overlay=true"
+        }
+      ],
+      "selector_arguments": [
+        {
+          "name": "base-ref",
+          "value": "f3e1cb4b709326cbf4e2a697bd4af26d68ca3f84",
+          "token": "--base-ref=f3e1cb4b709326cbf4e2a697bd4af26d68ca3f84"
+        },
+        {
+          "name": "workspace-overlay",
+          "value": "true",
+          "token": "--workspace-overlay=true"
+        }
+      ],
+      "preconditions": [
+        {
+          "name": "state",
+          "value": "reviewing"
+        }
+      ],
+      "binding": {
+        "lineage_id": "review-55dd99a391c31587",
+        "revision": "sha256:2a9332478a38e3d0b997e0ea5c5ec65e3471c4b4076bf965961e5cdc74e4ccd3",
+        "target_identity": "sha256:253ee548817ed343bb1b152d174e2c3967ce88fce3d8142be990aeefc0ac00fd"
+      }
+    }
+  }
+}

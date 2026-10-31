@@ -1,0 +1,12 @@
+{
+  "jsonrpc": "2.0",
+  "id": 3,
+  "result": {
+    "content": [
+      {
+        "type": "text",
+        "text": "{\"candidates\":[{\"id\":10,\"judgment_id\":\"rel-c8e4971bc380e25f\",\"score\":-0.0000021403334684922705,\"sync_id\":\"obs-e7247ad758f252eb\",\"title\":\"ODD falsación de integridad y gates documentales\",\"topic_key\":\"odd/integrity-challenge/tasks\",\"type\":\"decision\"}],\"id\":11,\"judgment_id\":\"rel-c8e4971bc380e25f\",\"judgment_required\":true,\"judgment_status\":\"pending\",\"project\":\"replica-gentle-ai\",\"project_path\":\"\",\"project_source\":\"explicit_override\",\"result\":\"Memory saved: \\\"ODD CI diferido y validación material pendiente\\\" (decision)\\nCONFLICT REVIEW PENDING — 1 candidate(s); use mem_judge to record verdicts.\",\"review_after\":\"2027-04-26 22:02:15\",\"state\":\"active\",\"sync_id\":\"obs-5be2aac4ddc73866\",\"truncation\":{\"original_bytes\":1416,\"limit_bytes\":50000,\"truncated\":false}}"
+      }
+    ]
+  }
+}

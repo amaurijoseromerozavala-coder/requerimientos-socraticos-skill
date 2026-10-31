@@ -1,0 +1,350 @@
+{
+  "schema": "gentle-ai.review-integration.status/v9",
+  "contract": "gentle-ai.review-integration/v2",
+  "operation": "review.status",
+  "applicability": "current_target",
+  "authority": {
+    "version": "compact-v2",
+    "lineage_id": "review-afc5fe83dd67b2e3",
+    "state": "correction_required",
+    "generation": 1,
+    "revision": "sha256:500268f4b45342eafb329274b73646a131d33854a97f3f7ee68cbbfbd317f8ad"
+  },
+  "action": "collect",
+  "replayability": "manual_action_required",
+  "frozen": {
+    "tier": "high",
+    "original_changed_lines": 1106,
+    "correction_budget": 200
+  },
+  "target_identity": "sha256:40d3bd2a3a5c4be2be8a0c62f0acbd70d8c2864cbf93f26411206953f891a5b5",
+  "authority_target_identity": "sha256:169b6d325ebbf34f76cd9ddf7620d2e7c770d967233f7da8999fb7d7115d4ae2",
+  "projection": {
+    "schema": "gentle-ai.review-integration.projection/v1",
+    "kind": "base-workspace-overlay",
+    "projection": "workspace",
+    "base_tree": "c24007f72ea84e86c54bc470cc256c8444928419",
+    "initial_review_tree": "a34c85258892e8521f1597a58c87716c8bfdbad9",
+    "current_candidate_tree": "16500340ab2da63681e46eedbac12b3d2caf10d7",
+    "paths_digest": "sha256:1d574927c4cbee24fdff7e0adfd3abd0330eaf7eecb493d86be1457070c4e429",
+    "paths": [
+      "AGENTS.md",
+      "bin/gentle-ai",
+      "docs/skill-audit/requirements-hardening-24/analysis-report.json",
+      "docs/skill-audit/requirements-hardening-24/cgroup-red.log",
+      "docs/skill-audit/requirements-hardening-24/dependencies.txt",
+      "docs/skill-audit/requirements-hardening-24/environment-green.log",
+      "docs/skill-audit/requirements-hardening-24/environment-red.log",
+      "docs/skill-audit/requirements-hardening-24/full-tests.log",
+      "docs/skill-audit/requirements-hardening-24/independent-review.json",
+      "docs/skill-audit/requirements-hardening-24/local-profile.json",
+      "docs/skill-audit/requirements-hardening-24/logic-example-result.json",
+      "skills/requerimientos-socraticos/SKILL.md",
+      "skills/requerimientos-socraticos/assets/analysis-report.schema.json",
+      "skills/requerimientos-socraticos/assets/logic-example.json",
+      "skills/requerimientos-socraticos/assets/logic-input.schema.json",
+      "skills/requerimientos-socraticos/references/formal-analysis.md",
+      "skills/requerimientos-socraticos/requirements-analysis.txt",
+      "skills/requerimientos-socraticos/scripts/analyze_logic.py",
+      "skills/requerimientos-socraticos/scripts/probe_environment.py",
+      "skills/requerimientos-socraticos/tests/test_environment.py",
+      "skills/requerimientos-socraticos/tests/test_logic.py",
+      "skills/requerimientos-socraticos/validation.json"
+    ],
+    "intended_untracked": [
+      "AGENTS.md",
+      "bin/gentle-ai",
+      "docs/skill-audit/accepted-qa-fixes/ANALISIS.md",
+      "docs/skill-audit/accepted-qa-fixes/guard.stderr",
+      "docs/skill-audit/accepted-qa-fixes/interview.stderr",
+      "docs/skill-audit/accepted-qa-fixes/scratch.stderr",
+      "docs/skill-audit/accepted-qa-fixes/sealed.stderr",
+      "docs/skill-audit/accepted-qa-fixes/sha1-red.stderr",
+      "docs/skill-audit/integrity-challenge/ANALISIS.md",
+      "docs/skill-audit/integrity-challenge/guard-tests.stderr",
+      "docs/skill-audit/integrity-challenge/interview-tests.stderr",
+      "docs/skill-audit/integrity-challenge/red-baseline.json",
+      "docs/skill-audit/requerimientos-repair/smoke/assessment-final.json",
+      "docs/skill-audit/requerimientos-repair/smoke/registro-skill-asistente.md",
+      "docs/skill-audit/requerimientos-repair/tests-green.stderr",
+      "docs/skill-audit/requirements-hardening-24/analysis-report.json",
+      "docs/skill-audit/requirements-hardening-24/cgroup-red.log",
+      "docs/skill-audit/requirements-hardening-24/dependencies.txt",
+      "docs/skill-audit/requirements-hardening-24/environment-green.log",
+      "docs/skill-audit/requirements-hardening-24/environment-red.log",
+      "docs/skill-audit/requirements-hardening-24/full-tests.log",
+      "docs/skill-audit/requirements-hardening-24/independent-review.json",
+      "docs/skill-audit/requirements-hardening-24/local-profile.json",
+      "docs/skill-audit/requirements-hardening-24/logic-example-result.json",
+      "docs/skill-audit/sealed-validation/ANALISIS.md",
+      "docs/skill-audit/sealed-validation/guard.stderr",
+      "docs/skill-audit/sealed-validation/interview.stderr",
+      "docs/skill-audit/sealed-validation/red-baseline.json",
+      "docs/skill-audit/sealed-validation/tests.stderr",
+      "skills/requerimientos-socraticos/SKILL.md",
+      "skills/requerimientos-socraticos/agents/requirements-interrogator.toml",
+      "skills/requerimientos-socraticos/assets/analysis-report.schema.json",
+      "skills/requerimientos-socraticos/assets/design-proposals.schema.json",
+      "skills/requerimientos-socraticos/assets/example.prd.json",
+      "skills/requerimientos-socraticos/assets/gitattributes.example",
+      "skills/requerimientos-socraticos/assets/interrogator-packet.schema.json",
+      "skills/requerimientos-socraticos/assets/interview.schema.json",
+      "skills/requerimientos-socraticos/assets/logic-example.json",
+      "skills/requerimientos-socraticos/assets/logic-input.schema.json",
+      "skills/requerimientos-socraticos/assets/prd.schema.json",
+      "skills/requerimientos-socraticos/references/formal-analysis.md",
+      "skills/requerimientos-socraticos/references/integrity-boundary.md",
+      "skills/requerimientos-socraticos/references/interrogation.md",
+      "skills/requerimientos-socraticos/references/method.md",
+      "skills/requerimientos-socraticos/references/research-design.md",
+      "skills/requerimientos-socraticos/references/sealed-validation.md",
+      "skills/requerimientos-socraticos/references/validation.md",
+      "skills/requerimientos-socraticos/references/workflow.md",
+      "skills/requerimientos-socraticos/requirements-analysis.txt",
+      "skills/requerimientos-socraticos/scripts/analyze_logic.py",
+      "skills/requerimientos-socraticos/scripts/normalize_text.py",
+      "skills/requerimientos-socraticos/scripts/probe_environment.py",
+      "skills/requerimientos-socraticos/scripts/requirements_guard.py",
+      "skills/requerimientos-socraticos/scripts/safe_io.py",
+      "skills/requerimientos-socraticos/scripts/scratch_pool.py",
+      "skills/requerimientos-socraticos/scripts/validate_git.py",
+      "skills/requerimientos-socraticos/scripts/validate_interview.py",
+      "skills/requerimientos-socraticos/scripts/validate_prd.py",
+      "skills/requerimientos-socraticos/tests/test_environment.py",
+      "skills/requerimientos-socraticos/tests/test_guard.py",
+      "skills/requerimientos-socraticos/tests/test_interview.py",
+      "skills/requerimientos-socraticos/tests/test_logic.py",
+      "skills/requerimientos-socraticos/tests/test_scratch.py",
+      "skills/requerimientos-socraticos/tests/test_sealed.py",
+      "skills/requerimientos-socraticos/validation.json"
+    ],
+    "intended_untracked_proof": "sha256:e04854443c7bfb8379aff42de4f5f13e6d8edfcc4e702cf39a1b4ceefe961674",
+    "initial_snapshot_identity": "sha256:169b6d325ebbf34f76cd9ddf7620d2e7c770d967233f7da8999fb7d7115d4ae2",
+    "current_snapshot_identity": "sha256:40d3bd2a3a5c4be2be8a0c62f0acbd70d8c2864cbf93f26411206953f891a5b5"
+  },
+  "repair": {
+    "schema": "gentle-ai.review-authority-repair-assessment/v1",
+    "status": "unsupported",
+    "counts": {
+      "lineages": 0,
+      "compact_lineages": 0,
+      "legacy_lineages": 0,
+      "events": 0,
+      "bytes": 0,
+      "eligible_candidates": 0,
+      "unsupported_lineages": 0,
+      "conflicts": 0
+    },
+    "supported_operations": [
+      "review/complete-fix",
+      "review/validate-fix"
+    ],
+    "authorization_schema": "gentle-ai.review-repair-authorization/v1"
+  },
+  "candidates": [],
+  "forecast": {
+    "horizon": "partial",
+    "steps": [
+      {
+        "step": 1,
+        "kind": "collect",
+        "reason_code": "targeted_validation_required",
+        "description": "Targeted validation run required for correction plan"
+      }
+    ]
+  },
+  "next_transition": {
+    "kind": "collect",
+    "reason_code": "targeted_validation_required",
+    "collect": {
+      "inputs": [
+        {
+          "name": "provider_targeted_validator",
+          "schema": "https://gentle-ai.dev/schema/review/validator/v1",
+          "capture_operation": "review.capture-validation",
+          "arguments": [
+            {
+              "name": "lineage",
+              "value": "review-afc5fe83dd67b2e3",
+              "token": "--lineage=review-afc5fe83dd67b2e3"
+            },
+            {
+              "name": "expected-revision",
+              "value": "sha256:b3e0bf86a4d8d86af30901330600166b3e77dbaadc6cf89c5c29c787b96da64e",
+              "token": "--expected-revision=sha256:b3e0bf86a4d8d86af30901330600166b3e77dbaadc6cf89c5c29c787b96da64e"
+            },
+            {
+              "name": "target",
+              "value": "sha256:0b5285c82c86bf6f7953d354c187513a7c0ca987e74d1f046f0bf5b9129bb239",
+              "token": "--target=sha256:0b5285c82c86bf6f7953d354c187513a7c0ca987e74d1f046f0bf5b9129bb239"
+            },
+            {
+              "name": "repository-context",
+              "value": "rctx2_cb18c37e67eba9ab7cfdd474e01be55c25c79d695004543b572597bbbb9a8f55",
+              "token": "--repository-context=rctx2_cb18c37e67eba9ab7cfdd474e01be55c25c79d695004543b572597bbbb9a8f55"
+            },
+            {
+              "name": "request-hash",
+              "value": "sha256:14e30436d6bad0ac399a210d27132456e8225d5d1de0ab952a77f60b3e9d4eba",
+              "token": "--request-hash=sha256:14e30436d6bad0ac399a210d27132456e8225d5d1de0ab952a77f60b3e9d4eba"
+            },
+            {
+              "name": "agent",
+              "value": "codex",
+              "token": "--agent=codex"
+            },
+            {
+              "name": "execute",
+              "value": "true",
+              "token": "--execute=true"
+            }
+          ],
+          "validation_request": {
+            "schema": "gentle-ai.review-targeted-validation-request/v1",
+            "request_hash": "sha256:14e30436d6bad0ac399a210d27132456e8225d5d1de0ab952a77f60b3e9d4eba",
+            "lineage_id": "review-afc5fe83dd67b2e3",
+            "expected_revision": "sha256:b3e0bf86a4d8d86af30901330600166b3e77dbaadc6cf89c5c29c787b96da64e",
+            "target_identity": "sha256:169b6d325ebbf34f76cd9ddf7620d2e7c770d967233f7da8999fb7d7115d4ae2",
+            "fix_finding_ids": [
+              "R3-runtime-selection",
+              "R4-runtime-fallback"
+            ],
+            "policy_content": "Gentle AI native bounded review policy.\n\nOnly candidate-caused BLOCKER or CRITICAL findings may require correction. Pre-existing and base-only findings are follow-ups. One correction is bounded by the frozen original scope. Gates are informational and unmanaged; ordinary repository policy decides delivery.\n",
+            "fix_findings": [
+              {
+                "id": "R3-runtime-selection",
+                "lens": "reliability",
+                "location": "bin/gentle-ai:10-11",
+                "severity": "CRITICAL",
+                "claim": "An explicit REQUIREMENTS_PYTHON selection is silently discarded when it is unavailable or supplied as an interpreter name resolved through PATH. The launcher substitutes python3, so probe can report success under a different interpreter and analyze can use a different solver installation. Preserve fallback only for the implicit default; resolve or reject an explicit selection instead.",
+                "proof_refs": [
+                  "bin/gentle-ai:10-11 selects the explicit environment value and then unconditionally replaces any value failing the executable-path test with python3.",
+                  "skills/requerimientos-socraticos/references/formal-analysis.md:116-117 documents REQUIREMENTS_PYTHON as selecting the installed interpreter.",
+                  "skills/requerimientos-socraticos/tests/test_environment.py:14-17 and skills/requerimientos-socraticos/tests/test_logic.py:16-21 invoke scripts directly, leaving launcher interpreter selection untested."
+                ],
+                "evidence_class": "deterministic",
+                "causal_disposition": "introduced"
+              },
+              {
+                "id": "R4-runtime-fallback",
+                "lens": "resilience",
+                "location": "bin/gentle-ai:11",
+                "severity": "CRITICAL",
+                "claim": "An explicitly selected REQUIREMENTS_PYTHON interpreter is silently discarded when it is missing or not executable. For example, after a configured virtual environment is removed during an upgrade, probe still succeeds using python3, and analyze can succeed using a different installed solver environment. This hides the broken runtime configuration and violates the documented interpreter selection. Fall back only when no explicit override was supplied; otherwise report the unavailable interpreter and exit nonzero.",
+                "proof_refs": [
+                  "bin/gentle-ai:10-16",
+                  "skills/requerimientos-socraticos/references/formal-analysis.md:115-119"
+                ],
+                "evidence_class": "deterministic",
+                "causal_disposition": "introduced"
+              }
+            ],
+            "fix_classifications": [
+              {
+                "finding_id": "R3-runtime-selection",
+                "severity": "CRITICAL",
+                "class": "deterministic",
+                "causal_disposition": "introduced",
+                "proof": "bin/gentle-ai:10-11 selects the explicit environment value and then unconditionally replaces any value failing the executable-path test with python3.\nskills/requerimientos-socraticos/references/formal-analysis.md:116-117 documents REQUIREMENTS_PYTHON as selecting the installed interpreter.\nskills/requerimientos-socraticos/tests/test_environment.py:14-17 and skills/requerimientos-socraticos/tests/test_logic.py:16-21 invoke scripts directly, leaving launcher interpreter selection untested."
+              },
+              {
+                "finding_id": "R4-runtime-fallback",
+                "severity": "CRITICAL",
+                "class": "deterministic",
+                "causal_disposition": "introduced",
+                "proof": "bin/gentle-ai:10-16\nskills/requerimientos-socraticos/references/formal-analysis.md:115-119"
+              }
+            ],
+            "projection": "workspace",
+            "correction_candidate_tree": "16500340ab2da63681e46eedbac12b3d2caf10d7",
+            "correction_target_identity": "sha256:0b5285c82c86bf6f7953d354c187513a7c0ca987e74d1f046f0bf5b9129bb239",
+            "correction_paths": [
+              "bin/gentle-ai",
+              "docs/skill-audit/requirements-hardening-24/analysis-report.json",
+              "docs/skill-audit/requirements-hardening-24/full-tests.log",
+              "skills/requerimientos-socraticos/references/formal-analysis.md",
+              "skills/requerimientos-socraticos/tests/test_environment.py",
+              "skills/requerimientos-socraticos/validation.json"
+            ],
+            "correction_paths_digest": "sha256:b53f5e68d67a16ba3f98fb12eb45c874fb1755a4353f730e77b0030554eccb81"
+          }
+        }
+      ]
+    }
+  },
+  "repository_context": {
+    "capability": "review.opaque_repository_context",
+    "handle": "rctx2_cb18c37e67eba9ab7cfdd474e01be55c25c79d695004543b572597bbbb9a8f55",
+    "revision": "sha256:b3e0bf86a4d8d86af30901330600166b3e77dbaadc6cf89c5c29c787b96da64e",
+    "target_identity": "sha256:0b5285c82c86bf6f7953d354c187513a7c0ca987e74d1f046f0bf5b9129bb239"
+  },
+  "validation_request": {
+    "schema": "gentle-ai.review-targeted-validation-request/v1",
+    "request_hash": "sha256:14e30436d6bad0ac399a210d27132456e8225d5d1de0ab952a77f60b3e9d4eba",
+    "lineage_id": "review-afc5fe83dd67b2e3",
+    "expected_revision": "sha256:b3e0bf86a4d8d86af30901330600166b3e77dbaadc6cf89c5c29c787b96da64e",
+    "target_identity": "sha256:169b6d325ebbf34f76cd9ddf7620d2e7c770d967233f7da8999fb7d7115d4ae2",
+    "fix_finding_ids": [
+      "R3-runtime-selection",
+      "R4-runtime-fallback"
+    ],
+    "policy_content": "Gentle AI native bounded review policy.\n\nOnly candidate-caused BLOCKER or CRITICAL findings may require correction. Pre-existing and base-only findings are follow-ups. One correction is bounded by the frozen original scope. Gates are informational and unmanaged; ordinary repository policy decides delivery.\n",
+    "fix_findings": [
+      {
+        "id": "R3-runtime-selection",
+        "lens": "reliability",
+        "location": "bin/gentle-ai:10-11",
+        "severity": "CRITICAL",
+        "claim": "An explicit REQUIREMENTS_PYTHON selection is silently discarded when it is unavailable or supplied as an interpreter name resolved through PATH. The launcher substitutes python3, so probe can report success under a different interpreter and analyze can use a different solver installation. Preserve fallback only for the implicit default; resolve or reject an explicit selection instead.",
+        "proof_refs": [
+          "bin/gentle-ai:10-11 selects the explicit environment value and then unconditionally replaces any value failing the executable-path test with python3.",
+          "skills/requerimientos-socraticos/references/formal-analysis.md:116-117 documents REQUIREMENTS_PYTHON as selecting the installed interpreter.",
+          "skills/requerimientos-socraticos/tests/test_environment.py:14-17 and skills/requerimientos-socraticos/tests/test_logic.py:16-21 invoke scripts directly, leaving launcher interpreter selection untested."
+        ],
+        "evidence_class": "deterministic",
+        "causal_disposition": "introduced"
+      },
+      {
+        "id": "R4-runtime-fallback",
+        "lens": "resilience",
+        "location": "bin/gentle-ai:11",
+        "severity": "CRITICAL",
+        "claim": "An explicitly selected REQUIREMENTS_PYTHON interpreter is silently discarded when it is missing or not executable. For example, after a configured virtual environment is removed during an upgrade, probe still succeeds using python3, and analyze can succeed using a different installed solver environment. This hides the broken runtime configuration and violates the documented interpreter selection. Fall back only when no explicit override was supplied; otherwise report the unavailable interpreter and exit nonzero.",
+        "proof_refs": [
+          "bin/gentle-ai:10-16",
+          "skills/requerimientos-socraticos/references/formal-analysis.md:115-119"
+        ],
+        "evidence_class": "deterministic",
+        "causal_disposition": "introduced"
+      }
+    ],
+    "fix_classifications": [
+      {
+        "finding_id": "R3-runtime-selection",
+        "severity": "CRITICAL",
+        "class": "deterministic",
+        "causal_disposition": "introduced",
+        "proof": "bin/gentle-ai:10-11 selects the explicit environment value and then unconditionally replaces any value failing the executable-path test with python3.\nskills/requerimientos-socraticos/references/formal-analysis.md:116-117 documents REQUIREMENTS_PYTHON as selecting the installed interpreter.\nskills/requerimientos-socraticos/tests/test_environment.py:14-17 and skills/requerimientos-socraticos/tests/test_logic.py:16-21 invoke scripts directly, leaving launcher interpreter selection untested."
+      },
+      {
+        "finding_id": "R4-runtime-fallback",
+        "severity": "CRITICAL",
+        "class": "deterministic",
+        "causal_disposition": "introduced",
+        "proof": "bin/gentle-ai:10-16\nskills/requerimientos-socraticos/references/formal-analysis.md:115-119"
+      }
+    ],
+    "projection": "workspace",
+    "correction_candidate_tree": "16500340ab2da63681e46eedbac12b3d2caf10d7",
+    "correction_target_identity": "sha256:0b5285c82c86bf6f7953d354c187513a7c0ca987e74d1f046f0bf5b9129bb239",
+    "correction_paths": [
+      "bin/gentle-ai",
+      "docs/skill-audit/requirements-hardening-24/analysis-report.json",
+      "docs/skill-audit/requirements-hardening-24/full-tests.log",
+      "skills/requerimientos-socraticos/references/formal-analysis.md",
+      "skills/requerimientos-socraticos/tests/test_environment.py",
+      "skills/requerimientos-socraticos/validation.json"
+    ],
+    "correction_paths_digest": "sha256:b53f5e68d67a16ba3f98fb12eb45c874fb1755a4353f730e77b0030554eccb81"
+  }
+}

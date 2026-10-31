@@ -1,0 +1,467 @@
+{
+  "type": "object",
+  "properties": {
+    "schema_version": {
+      "const": "0.1.0"
+    },
+    "assessment_id": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 4096
+    },
+    "mode": {
+      "const": "ANALYSIS_ONLY"
+    },
+    "context": {
+      "type": "object",
+      "properties": {
+        "snapshot": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        },
+        "environment": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        },
+        "versions": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        },
+        "scope": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        },
+        "criteria": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        }
+      },
+      "required": [
+        "snapshot",
+        "environment",
+        "versions",
+        "scope",
+        "criteria"
+      ],
+      "additionalProperties": false
+    },
+    "delegation": {
+      "type": "object",
+      "properties": {
+        "source": {
+          "type": "object",
+          "properties": {
+            "path": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 4096
+            },
+            "sha256": {
+              "type": "string",
+              "pattern": "^[0-9a-f]{64}$"
+            }
+          },
+          "required": [
+            "path",
+            "sha256"
+          ],
+          "additionalProperties": false
+        },
+        "status": {
+          "enum": [
+            "CONFIRMED",
+            "PENDING"
+          ]
+        },
+        "exceptions_pending": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "source",
+        "status",
+        "exceptions_pending"
+      ],
+      "additionalProperties": false
+    },
+    "judgment": {
+      "type": "object",
+      "properties": {
+        "context": {
+          "type": "object",
+          "properties": {
+            "snapshot": {
+              "type": "string",
+              "pattern": "^[0-9a-f]{64}$"
+            },
+            "environment": {
+              "type": "string",
+              "pattern": "^[0-9a-f]{64}$"
+            },
+            "versions": {
+              "type": "string",
+              "pattern": "^[0-9a-f]{64}$"
+            },
+            "scope": {
+              "type": "string",
+              "pattern": "^[0-9a-f]{64}$"
+            },
+            "criteria": {
+              "type": "string",
+              "pattern": "^[0-9a-f]{64}$"
+            }
+          },
+          "required": [
+            "snapshot",
+            "environment",
+            "versions",
+            "scope",
+            "criteria"
+          ],
+          "additionalProperties": false
+        },
+        "scope": {
+          "enum": [
+            "SUPPORTED",
+            "PENDING"
+          ]
+        },
+        "materiality": {
+          "enum": [
+            "SUPPORTED",
+            "PENDING"
+          ]
+        },
+        "sufficiency": {
+          "enum": [
+            "SUPPORTED",
+            "PENDING"
+          ]
+        },
+        "criteria_sequence": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "judgment_sequence": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "rationale": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 4096
+        },
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 4096
+        },
+        "actor_runtime": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 4096
+        },
+        "assessment_id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 4096
+        },
+        "inputs_sha256": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        }
+      },
+      "required": [
+        "context",
+        "scope",
+        "materiality",
+        "sufficiency",
+        "criteria_sequence",
+        "judgment_sequence",
+        "rationale",
+        "id",
+        "actor_runtime",
+        "assessment_id",
+        "inputs_sha256"
+      ],
+      "additionalProperties": false
+    },
+    "inventory": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 4096
+          },
+          "component": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 4096
+          },
+          "applicability": {
+            "enum": [
+              "APPLICABLE",
+              "NOT_APPLICABLE",
+              "UNKNOWN"
+            ]
+          },
+          "materiality": {
+            "enum": [
+              "REQUIRED",
+              "OPTIONAL",
+              "UNKNOWN"
+            ]
+          },
+          "rationale": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 4096
+          },
+          "source_refs": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "path": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 4096
+                },
+                "sha256": {
+                  "type": "string",
+                  "pattern": "^[0-9a-f]{64}$"
+                }
+              },
+              "required": [
+                "path",
+                "sha256"
+              ],
+              "additionalProperties": false
+            },
+            "minItems": 1,
+            "maxItems": 32
+          },
+          "cases": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 4096
+                },
+                "kind": {
+                  "enum": [
+                    "STATIC",
+                    "EXECUTION",
+                    "PHYSICAL"
+                  ]
+                },
+                "oracle": {
+                  "type": "object",
+                  "properties": {
+                    "path": {
+                      "type": "string",
+                      "minLength": 1,
+                      "maxLength": 4096
+                    },
+                    "sha256": {
+                      "type": "string",
+                      "pattern": "^[0-9a-f]{64}$"
+                    }
+                  },
+                  "required": [
+                    "path",
+                    "sha256"
+                  ],
+                  "additionalProperties": false
+                },
+                "status": {
+                  "enum": [
+                    "PASS",
+                    "FAIL",
+                    "NOT_RUN",
+                    "UNKNOWN",
+                    "STALE"
+                  ]
+                },
+                "evidence_id": {
+                  "type": [
+                    "string",
+                    "null"
+                  ]
+                },
+                "oracle_sequence": {
+                  "type": "integer",
+                  "minimum": 0
+                },
+                "reason": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 4096
+                }
+              },
+              "required": [
+                "id",
+                "kind",
+                "oracle",
+                "status",
+                "evidence_id",
+                "oracle_sequence",
+                "reason"
+              ],
+              "additionalProperties": false
+            },
+            "minItems": 0,
+            "maxItems": 64
+          }
+        },
+        "required": [
+          "id",
+          "component",
+          "applicability",
+          "materiality",
+          "rationale",
+          "source_refs",
+          "cases"
+        ],
+        "additionalProperties": false
+      },
+      "minItems": 1,
+      "maxItems": 128
+    },
+    "evidence": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 4096
+          },
+          "case_id": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 4096
+          },
+          "kind": {
+            "enum": [
+              "STATIC",
+              "EXECUTION",
+              "PHYSICAL"
+            ]
+          },
+          "context": {
+            "type": "object",
+            "properties": {
+              "snapshot": {
+                "type": "string",
+                "pattern": "^[0-9a-f]{64}$"
+              },
+              "environment": {
+                "type": "string",
+                "pattern": "^[0-9a-f]{64}$"
+              },
+              "versions": {
+                "type": "string",
+                "pattern": "^[0-9a-f]{64}$"
+              },
+              "scope": {
+                "type": "string",
+                "pattern": "^[0-9a-f]{64}$"
+              },
+              "criteria": {
+                "type": "string",
+                "pattern": "^[0-9a-f]{64}$"
+              }
+            },
+            "required": [
+              "snapshot",
+              "environment",
+              "versions",
+              "scope",
+              "criteria"
+            ],
+            "additionalProperties": false
+          },
+          "outcome": {
+            "enum": [
+              "PASS",
+              "FAIL"
+            ]
+          },
+          "artifact": {
+            "type": "object",
+            "properties": {
+              "path": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 4096
+              },
+              "sha256": {
+                "type": "string",
+                "pattern": "^[0-9a-f]{64}$"
+              }
+            },
+            "required": [
+              "path",
+              "sha256"
+            ],
+            "additionalProperties": false
+          },
+          "observation": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 4096
+          },
+          "observed_sequence": {
+            "type": "integer",
+            "minimum": 0
+          }
+        },
+        "required": [
+          "id",
+          "case_id",
+          "kind",
+          "context",
+          "outcome",
+          "artifact",
+          "observation",
+          "observed_sequence"
+        ],
+        "additionalProperties": false
+      },
+      "minItems": 0,
+      "maxItems": 128
+    },
+    "limitations": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 4096
+      },
+      "minItems": 1,
+      "maxItems": 64
+    }
+  },
+  "required": [
+    "schema_version",
+    "assessment_id",
+    "mode",
+    "context",
+    "delegation",
+    "judgment",
+    "inventory",
+    "evidence",
+    "limitations"
+  ],
+  "additionalProperties": false,
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "QA Inquisidor — reporte documental local 0.1"
+}

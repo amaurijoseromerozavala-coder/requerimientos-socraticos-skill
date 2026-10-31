@@ -1,0 +1,238 @@
+{
+  "schema": "gentle-ai.review-integration.status/v9",
+  "contract": "gentle-ai.review-integration/v2",
+  "operation": "review.status",
+  "applicability": "unrelated",
+  "action": "start",
+  "replayability": "not_replayable",
+  "target_identity": "sha256:551a7a33c412f242c3c2c69437f46ef72ce992dec5ebed848af5af28f98384c2",
+  "projection": {
+    "schema": "gentle-ai.review-integration.projection/v1",
+    "kind": "base-workspace-overlay",
+    "projection": "workspace",
+    "base_tree": "4b825dc642cb6eb9a060e54bf8d69288fbee4904",
+    "initial_review_tree": "40c5e4e4b174106a2cf27a72bc1af14b3939a975",
+    "current_candidate_tree": "40c5e4e4b174106a2cf27a72bc1af14b3939a975",
+    "paths_digest": "sha256:0b038aa228861fe05395e368c128349ac2eeca5c2a1cbb46554962c70c09543b",
+    "paths": [
+      "docs/requirements/integracion-requisitos-qa-supervisor/candidato-v0.1/README.md",
+      "docs/requirements/integracion-requisitos-qa-supervisor/candidato-v0.1/contracts.json",
+      "docs/requirements/integracion-requisitos-qa-supervisor/candidato-v0.1/fsm.json",
+      "docs/requirements/integracion-requisitos-qa-supervisor/candidato-v0.1/incorporation-gate.json",
+      "docs/requirements/integracion-requisitos-qa-supervisor/candidato-v0.1/open-gaps.json",
+      "docs/requirements/integracion-requisitos-qa-supervisor/candidato-v0.1/requirements.json",
+      "docs/requirements/integracion-requisitos-qa-supervisor/decisiones-confirmadas.json",
+      "docs/skill-audit/integration-candidate-01/check-document-model.py",
+      "docs/skill-audit/integration-candidate-01/green.json",
+      "docs/skill-audit/integration-candidate-01/independent.md",
+      "docs/skill-audit/integration-candidate-01/red.json",
+      "docs/skill-audit/integration-candidate-01/review-green.json",
+      "docs/skill-audit/integration-candidate-01/review-red.json"
+    ],
+    "intended_untracked": [
+      "docs/requirements/integracion-requisitos-qa-supervisor/candidato-v0.1/README.md",
+      "docs/requirements/integracion-requisitos-qa-supervisor/candidato-v0.1/contracts.json",
+      "docs/requirements/integracion-requisitos-qa-supervisor/candidato-v0.1/fsm.json",
+      "docs/requirements/integracion-requisitos-qa-supervisor/candidato-v0.1/incorporation-gate.json",
+      "docs/requirements/integracion-requisitos-qa-supervisor/candidato-v0.1/open-gaps.json",
+      "docs/requirements/integracion-requisitos-qa-supervisor/candidato-v0.1/requirements.json",
+      "docs/requirements/integracion-requisitos-qa-supervisor/decisiones-confirmadas.json",
+      "docs/skill-audit/integration-candidate-01/check-document-model.py",
+      "docs/skill-audit/integration-candidate-01/green.json",
+      "docs/skill-audit/integration-candidate-01/independent.md",
+      "docs/skill-audit/integration-candidate-01/red.json",
+      "docs/skill-audit/integration-candidate-01/review-green.json",
+      "docs/skill-audit/integration-candidate-01/review-red.json"
+    ],
+    "intended_untracked_proof": "sha256:d7b5dc708d13318e5b379138c122f6b50af5bbbf02d529a50489be1e4c55f99a",
+    "initial_snapshot_identity": "sha256:551a7a33c412f242c3c2c69437f46ef72ce992dec5ebed848af5af28f98384c2",
+    "current_snapshot_identity": "sha256:551a7a33c412f242c3c2c69437f46ef72ce992dec5ebed848af5af28f98384c2"
+  },
+  "eligible_untracked_inventory": "sha256:47add380ffb6c5235fc4833d660f53e7f62847eabf253fd1e665cada585676f6",
+  "repair": {
+    "schema": "gentle-ai.review-authority-repair-assessment/v1",
+    "status": "unsupported",
+    "counts": {
+      "lineages": 0,
+      "compact_lineages": 0,
+      "legacy_lineages": 0,
+      "events": 0,
+      "bytes": 0,
+      "eligible_candidates": 0,
+      "unsupported_lineages": 0,
+      "conflicts": 0
+    },
+    "supported_operations": [
+      "review/complete-fix",
+      "review/validate-fix"
+    ],
+    "authorization_schema": "gentle-ai.review-repair-authorization/v1"
+  },
+  "candidates": [],
+  "forecast": {
+    "horizon": "partial",
+    "steps": [
+      {
+        "step": 1,
+        "kind": "execute",
+        "reason_code": "fresh_target_ready",
+        "description": "Target is unreviewed and ready for initial review start"
+      }
+    ]
+  },
+  "next_transition": {
+    "kind": "execute",
+    "reason_code": "fresh_target_ready",
+    "execute": {
+      "operation": "review.start",
+      "command": "gentle-ai review start --cwd=/workspace/replica-gentle-ai --contract=gentle-ai.review-integration/v2 --target=sha256:551a7a33c412f242c3c2c69437f46ef72ce992dec5ebed848af5af28f98384c2 --target-evidence=v1:base-workspace-overlay:workspace:4b825dc642cb6eb9a060e54bf8d69288fbee4904:40c5e4e4b174106a2cf27a72bc1af14b3939a975:sha256:0b038aa228861fe05395e368c128349ac2eeca5c2a1cbb46554962c70c09543b --projection=workspace --base-ref=4b825dc642cb6eb9a060e54bf8d69288fbee4904 --workspace-overlay=true --lineage=review-1e21a531f9384c6d --agent=codex --consent=relay --untracked-scope=select --expected-untracked-inventory=sha256:47add380ffb6c5235fc4833d660f53e7f62847eabf253fd1e665cada585676f6 --intended-untracked=docs/requirements/integracion-requisitos-qa-supervisor/candidato-v0.1/README.md --intended-untracked=docs/requirements/integracion-requisitos-qa-supervisor/candidato-v0.1/contracts.json --intended-untracked=docs/requirements/integracion-requisitos-qa-supervisor/candidato-v0.1/fsm.json --intended-untracked=docs/requirements/integracion-requisitos-qa-supervisor/candidato-v0.1/incorporation-gate.json --intended-untracked=docs/requirements/integracion-requisitos-qa-supervisor/candidato-v0.1/open-gaps.json --intended-untracked=docs/requirements/integracion-requisitos-qa-supervisor/candidato-v0.1/requirements.json --intended-untracked=docs/requirements/integracion-requisitos-qa-supervisor/decisiones-confirmadas.json --intended-untracked=docs/skill-audit/integration-candidate-01/check-document-model.py --intended-untracked=docs/skill-audit/integration-candidate-01/green.json --intended-untracked=docs/skill-audit/integration-candidate-01/independent.md --intended-untracked=docs/skill-audit/integration-candidate-01/red.json --intended-untracked=docs/skill-audit/integration-candidate-01/review-green.json --intended-untracked=docs/skill-audit/integration-candidate-01/review-red.json --lenses=review-resilience,review-reliability '--lenses-reason=Review partial documentary design grounded in23human decisions; abstract gate and partial incorporation FSM only, explicit gaps; no implementation approval.'",
+      "arguments": [
+        {
+          "name": "cwd",
+          "value": "/workspace/replica-gentle-ai",
+          "token": "--cwd=/workspace/replica-gentle-ai"
+        },
+        {
+          "name": "contract",
+          "value": "gentle-ai.review-integration/v2",
+          "token": "--contract=gentle-ai.review-integration/v2"
+        },
+        {
+          "name": "target",
+          "value": "sha256:551a7a33c412f242c3c2c69437f46ef72ce992dec5ebed848af5af28f98384c2",
+          "token": "--target=sha256:551a7a33c412f242c3c2c69437f46ef72ce992dec5ebed848af5af28f98384c2"
+        },
+        {
+          "name": "target-evidence",
+          "value": "v1:base-workspace-overlay:workspace:4b825dc642cb6eb9a060e54bf8d69288fbee4904:40c5e4e4b174106a2cf27a72bc1af14b3939a975:sha256:0b038aa228861fe05395e368c128349ac2eeca5c2a1cbb46554962c70c09543b",
+          "token": "--target-evidence=v1:base-workspace-overlay:workspace:4b825dc642cb6eb9a060e54bf8d69288fbee4904:40c5e4e4b174106a2cf27a72bc1af14b3939a975:sha256:0b038aa228861fe05395e368c128349ac2eeca5c2a1cbb46554962c70c09543b"
+        },
+        {
+          "name": "projection",
+          "value": "workspace",
+          "token": "--projection=workspace"
+        },
+        {
+          "name": "base-ref",
+          "value": "4b825dc642cb6eb9a060e54bf8d69288fbee4904",
+          "token": "--base-ref=4b825dc642cb6eb9a060e54bf8d69288fbee4904"
+        },
+        {
+          "name": "workspace-overlay",
+          "value": "true",
+          "token": "--workspace-overlay=true"
+        },
+        {
+          "name": "lineage",
+          "value": "review-1e21a531f9384c6d",
+          "token": "--lineage=review-1e21a531f9384c6d"
+        },
+        {
+          "name": "agent",
+          "value": "codex",
+          "token": "--agent=codex"
+        },
+        {
+          "name": "consent",
+          "value": "relay",
+          "token": "--consent=relay"
+        },
+        {
+          "name": "untracked-scope",
+          "value": "select",
+          "token": "--untracked-scope=select"
+        },
+        {
+          "name": "expected-untracked-inventory",
+          "value": "sha256:47add380ffb6c5235fc4833d660f53e7f62847eabf253fd1e665cada585676f6",
+          "token": "--expected-untracked-inventory=sha256:47add380ffb6c5235fc4833d660f53e7f62847eabf253fd1e665cada585676f6"
+        },
+        {
+          "name": "intended-untracked",
+          "value": "docs/requirements/integracion-requisitos-qa-supervisor/candidato-v0.1/README.md",
+          "token": "--intended-untracked=docs/requirements/integracion-requisitos-qa-supervisor/candidato-v0.1/README.md"
+        },
+        {
+          "name": "intended-untracked",
+          "value": "docs/requirements/integracion-requisitos-qa-supervisor/candidato-v0.1/contracts.json",
+          "token": "--intended-untracked=docs/requirements/integracion-requisitos-qa-supervisor/candidato-v0.1/contracts.json"
+        },
+        {
+          "name": "intended-untracked",
+          "value": "docs/requirements/integracion-requisitos-qa-supervisor/candidato-v0.1/fsm.json",
+          "token": "--intended-untracked=docs/requirements/integracion-requisitos-qa-supervisor/candidato-v0.1/fsm.json"
+        },
+        {
+          "name": "intended-untracked",
+          "value": "docs/requirements/integracion-requisitos-qa-supervisor/candidato-v0.1/incorporation-gate.json",
+          "token": "--intended-untracked=docs/requirements/integracion-requisitos-qa-supervisor/candidato-v0.1/incorporation-gate.json"
+        },
+        {
+          "name": "intended-untracked",
+          "value": "docs/requirements/integracion-requisitos-qa-supervisor/candidato-v0.1/open-gaps.json",
+          "token": "--intended-untracked=docs/requirements/integracion-requisitos-qa-supervisor/candidato-v0.1/open-gaps.json"
+        },
+        {
+          "name": "intended-untracked",
+          "value": "docs/requirements/integracion-requisitos-qa-supervisor/candidato-v0.1/requirements.json",
+          "token": "--intended-untracked=docs/requirements/integracion-requisitos-qa-supervisor/candidato-v0.1/requirements.json"
+        },
+        {
+          "name": "intended-untracked",
+          "value": "docs/requirements/integracion-requisitos-qa-supervisor/decisiones-confirmadas.json",
+          "token": "--intended-untracked=docs/requirements/integracion-requisitos-qa-supervisor/decisiones-confirmadas.json"
+        },
+        {
+          "name": "intended-untracked",
+          "value": "docs/skill-audit/integration-candidate-01/check-document-model.py",
+          "token": "--intended-untracked=docs/skill-audit/integration-candidate-01/check-document-model.py"
+        },
+        {
+          "name": "intended-untracked",
+          "value": "docs/skill-audit/integration-candidate-01/green.json",
+          "token": "--intended-untracked=docs/skill-audit/integration-candidate-01/green.json"
+        },
+        {
+          "name": "intended-untracked",
+          "value": "docs/skill-audit/integration-candidate-01/independent.md",
+          "token": "--intended-untracked=docs/skill-audit/integration-candidate-01/independent.md"
+        },
+        {
+          "name": "intended-untracked",
+          "value": "docs/skill-audit/integration-candidate-01/red.json",
+          "token": "--intended-untracked=docs/skill-audit/integration-candidate-01/red.json"
+        },
+        {
+          "name": "intended-untracked",
+          "value": "docs/skill-audit/integration-candidate-01/review-green.json",
+          "token": "--intended-untracked=docs/skill-audit/integration-candidate-01/review-green.json"
+        },
+        {
+          "name": "intended-untracked",
+          "value": "docs/skill-audit/integration-candidate-01/review-red.json",
+          "token": "--intended-untracked=docs/skill-audit/integration-candidate-01/review-red.json"
+        },
+        {
+          "name": "lenses",
+          "value": "review-resilience,review-reliability",
+          "token": "--lenses=review-resilience,review-reliability"
+        },
+        {
+          "name": "lenses-reason",
+          "value": "Review partial documentary design grounded in23human decisions; abstract gate and partial incorporation FSM only, explicit gaps; no implementation approval.",
+          "token": "--lenses-reason=Review partial documentary design grounded in23human decisions; abstract gate and partial incorporation FSM only, explicit gaps; no implementation approval."
+        }
+      ],
+      "preconditions": [
+        {
+          "name": "target_identity",
+          "value": "sha256:551a7a33c412f242c3c2c69437f46ef72ce992dec5ebed848af5af28f98384c2"
+        }
+      ],
+      "binding": {
+        "lineage_id": "review-1e21a531f9384c6d",
+        "target_identity": "sha256:551a7a33c412f242c3c2c69437f46ef72ce992dec5ebed848af5af28f98384c2"
+      }
+    }
+  }
+}

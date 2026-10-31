@@ -1,0 +1,726 @@
+{
+  "type": "object",
+  "properties": {
+    "contract_version": {
+      "const": "1.0.0"
+    },
+    "language": {
+      "const": "es"
+    },
+    "section_order": {
+      "const": [
+        "ANALYSIS",
+        "TEST PLAN",
+        "VERIFICATION"
+      ]
+    },
+    "target_snapshot_sha256": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "ANALYSIS": {
+      "type": "object",
+      "properties": {
+        "summary_es": {
+          "type": "string",
+          "minLength": 1
+        },
+        "system_inventory": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "component_id": {
+                "type": "string",
+                "minLength": 1
+              },
+              "boundary_es": {
+                "type": "string",
+                "minLength": 1
+              },
+              "status": {
+                "enum": [
+                  "EXAMINED",
+                  "BLOCKED",
+                  "NOT_EXAMINED",
+                  "NOT_APPLICABLE"
+                ]
+              },
+              "requirement_ids": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "minItems": 0
+              },
+              "evidence_ids": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "minItems": 0
+              },
+              "reason_es": {
+                "type": "string",
+                "minLength": 1
+              }
+            },
+            "required": [
+              "component_id",
+              "boundary_es",
+              "status",
+              "requirement_ids",
+              "evidence_ids",
+              "reason_es"
+            ],
+            "additionalProperties": false
+          },
+          "minItems": 1
+        },
+        "contracts_and_cross_component_conflicts": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "minItems": 0
+        },
+        "claims": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string",
+                "minLength": 1
+              },
+              "statement_es": {
+                "type": "string",
+                "minLength": 1
+              },
+              "classification": {
+                "enum": [
+                  "FACT",
+                  "HYPOTHESIS",
+                  "INFERENCE",
+                  "DECISION",
+                  "RECOMMENDATION",
+                  "UNKNOWN"
+                ]
+              },
+              "verification": {
+                "enum": [
+                  "VERIFIED",
+                  "REFUTED",
+                  "UNVERIFIED",
+                  "NOT_APPLICABLE"
+                ]
+              },
+              "material": {
+                "type": "boolean"
+              },
+              "evidence_ids": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "minItems": 0
+              },
+              "limitations_es": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "minItems": 1
+              }
+            },
+            "required": [
+              "id",
+              "statement_es",
+              "classification",
+              "verification",
+              "material",
+              "evidence_ids",
+              "limitations_es"
+            ],
+            "additionalProperties": false,
+            "allOf": [
+              {
+                "if": {
+                  "properties": {
+                    "verification": {
+                      "const": "VERIFIED"
+                    }
+                  }
+                },
+                "then": {
+                  "properties": {
+                    "evidence_ids": {
+                      "minItems": 1
+                    }
+                  }
+                }
+              }
+            ]
+          },
+          "minItems": 0
+        },
+        "architecture_recommendations": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "proposal_es": {
+                "type": "string",
+                "minLength": 1
+              },
+              "status": {
+                "const": "PROPOSED"
+              },
+              "alternatives_es": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "minItems": 1
+              },
+              "criteria_es": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "minItems": 1
+              },
+              "evidence_ids": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "minItems": 0
+              },
+              "assumptions_es": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "minItems": 0
+              },
+              "tradeoffs_es": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "minItems": 1
+              }
+            },
+            "required": [
+              "proposal_es",
+              "status",
+              "alternatives_es",
+              "criteria_es",
+              "evidence_ids",
+              "assumptions_es",
+              "tradeoffs_es"
+            ],
+            "additionalProperties": false
+          },
+          "minItems": 0
+        }
+      },
+      "required": [
+        "summary_es",
+        "system_inventory",
+        "contracts_and_cross_component_conflicts",
+        "claims",
+        "architecture_recommendations"
+      ],
+      "additionalProperties": false
+    },
+    "TEST PLAN": {
+      "type": "object",
+      "properties": {
+        "strategy_es": {
+          "type": "string",
+          "minLength": 1
+        },
+        "cases": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string",
+                "minLength": 1
+              },
+              "requirement_ids": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "minItems": 1
+              },
+              "category": {
+                "enum": [
+                  "NEGATIVE",
+                  "BOUNDARY",
+                  "PROPERTY",
+                  "CONCURRENCY",
+                  "FAULT",
+                  "RECOVERY",
+                  "INTEGRATION",
+                  "END_TO_END",
+                  "REGRESSION",
+                  "POSITIVE"
+                ]
+              },
+              "counterexample_es": {
+                "type": "string",
+                "minLength": 1
+              },
+              "oracle_es": {
+                "type": "string",
+                "minLength": 1
+              },
+              "execution_kind": {
+                "enum": [
+                  "REAL_EXECUTION",
+                  "FORMAL_MODEL",
+                  "MOCK",
+                  "SIMULATION",
+                  "STATIC_REVIEW"
+                ]
+              },
+              "authorization_status": {
+                "enum": [
+                  "AUTHORIZED",
+                  "PENDING",
+                  "NOT_APPLICABLE"
+                ]
+              },
+              "resource_budget_es": {
+                "type": "string",
+                "minLength": 1
+              }
+            },
+            "required": [
+              "id",
+              "requirement_ids",
+              "category",
+              "counterexample_es",
+              "oracle_es",
+              "execution_kind",
+              "authorization_status",
+              "resource_budget_es"
+            ],
+            "additionalProperties": false
+          },
+          "minItems": 1,
+          "contains": {
+            "properties": {
+              "category": {
+                "enum": [
+                  "NEGATIVE",
+                  "BOUNDARY",
+                  "FAULT",
+                  "RECOVERY"
+                ]
+              }
+            },
+            "required": [
+              "category"
+            ]
+          },
+          "minContains": 1
+        },
+        "uncovered_or_blocked_es": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "minItems": 0
+        }
+      },
+      "required": [
+        "strategy_es",
+        "cases",
+        "uncovered_or_blocked_es"
+      ],
+      "additionalProperties": false
+    },
+    "VERIFICATION": {
+      "type": "object",
+      "properties": {
+        "verdict": {
+          "enum": [
+            "PASS_WITHIN_SCOPE",
+            "FAIL",
+            "INCONCLUSIVE",
+            "BLOCKED"
+          ]
+        },
+        "coverage": {
+          "enum": [
+            "COMPLETE",
+            "PARTIAL",
+            "UNKNOWN"
+          ]
+        },
+        "evidence": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string",
+                "minLength": 1
+              },
+              "snapshot_sha256": {
+                "type": "string",
+                "pattern": "^[a-f0-9]{64}$"
+              },
+              "kind": {
+                "enum": [
+                  "REAL_EXECUTION",
+                  "FORMAL_MODEL",
+                  "MOCK",
+                  "SIMULATION",
+                  "STATIC_REVIEW",
+                  "AUTHORITATIVE_DOCUMENTATION"
+                ]
+              },
+              "command_or_tool": {
+                "type": "string",
+                "minLength": 1
+              },
+              "tool_version": {
+                "type": "string",
+                "minLength": 1
+              },
+              "observed_at": {
+                "type": "string",
+                "minLength": 1
+              },
+              "environment_fingerprint": {
+                "type": "string",
+                "minLength": 1
+              },
+              "exit_code": {
+                "type": [
+                  "integer",
+                  "null"
+                ]
+              },
+              "result": {
+                "enum": [
+                  "PASS",
+                  "FAIL",
+                  "UNKNOWN",
+                  "NOT_RUN"
+                ]
+              },
+              "output_sha256": {
+                "type": "string",
+                "pattern": "^[a-f0-9]{64}$"
+              },
+              "output_locator": {
+                "type": "string",
+                "minLength": 1
+              },
+              "proves_real_execution": {
+                "type": "boolean"
+              },
+              "limitations_es": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "minItems": 1
+              }
+            },
+            "required": [
+              "id",
+              "snapshot_sha256",
+              "kind",
+              "command_or_tool",
+              "tool_version",
+              "observed_at",
+              "environment_fingerprint",
+              "exit_code",
+              "result",
+              "output_sha256",
+              "output_locator",
+              "proves_real_execution",
+              "limitations_es"
+            ],
+            "additionalProperties": false,
+            "allOf": [
+              {
+                "if": {
+                  "properties": {
+                    "proves_real_execution": {
+                      "const": true
+                    }
+                  }
+                },
+                "then": {
+                  "properties": {
+                    "kind": {
+                      "const": "REAL_EXECUTION"
+                    },
+                    "exit_code": {
+                      "type": "integer"
+                    }
+                  }
+                }
+              }
+            ]
+          },
+          "minItems": 0
+        },
+        "results": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "test_id": {
+                "type": "string",
+                "minLength": 1
+              },
+              "outcome": {
+                "enum": [
+                  "PASS",
+                  "FAIL",
+                  "UNKNOWN",
+                  "NOT_RUN"
+                ]
+              },
+              "evidence_ids": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "minItems": 0
+              },
+              "actual_observation_es": {
+                "type": "string",
+                "minLength": 1
+              }
+            },
+            "required": [
+              "test_id",
+              "outcome",
+              "evidence_ids",
+              "actual_observation_es"
+            ],
+            "additionalProperties": false
+          },
+          "minItems": 0
+        },
+        "reproducibility": {
+          "type": "object",
+          "properties": {
+            "inputs_and_versions_pinned": {
+              "type": "boolean"
+            },
+            "same_environment": {
+              "type": "boolean"
+            },
+            "repetitions": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "comparison_oracle_es": {
+              "type": "string",
+              "minLength": 1
+            },
+            "observed_variations_es": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "minLength": 1
+              },
+              "minItems": 0
+            },
+            "unproved_es": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "minLength": 1
+              },
+              "minItems": 0
+            }
+          },
+          "required": [
+            "inputs_and_versions_pinned",
+            "same_environment",
+            "repetitions",
+            "comparison_oracle_es",
+            "observed_variations_es",
+            "unproved_es"
+          ],
+          "additionalProperties": false
+        },
+        "limitations_es": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "minItems": 1
+        },
+        "next_actions_es": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "minItems": 0
+        }
+      },
+      "required": [
+        "verdict",
+        "coverage",
+        "evidence",
+        "results",
+        "reproducibility",
+        "limitations_es",
+        "next_actions_es"
+      ],
+      "additionalProperties": false
+    }
+  },
+  "required": [
+    "contract_version",
+    "language",
+    "section_order",
+    "target_snapshot_sha256",
+    "ANALYSIS",
+    "TEST PLAN",
+    "VERIFICATION"
+  ],
+  "additionalProperties": false,
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "QA Inquisidor report — proposed documentary contract",
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "VERIFICATION": {
+            "properties": {
+              "verdict": {
+                "const": "PASS_WITHIN_SCOPE"
+              }
+            }
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "ANALYSIS": {
+            "properties": {
+              "system_inventory": {
+                "items": {
+                  "properties": {
+                    "status": {
+                      "enum": [
+                        "EXAMINED",
+                        "NOT_APPLICABLE"
+                      ]
+                    }
+                  }
+                }
+              },
+              "claims": {
+                "not": {
+                  "contains": {
+                    "properties": {
+                      "material": {
+                        "const": true
+                      },
+                      "verification": {
+                        "enum": [
+                          "UNVERIFIED",
+                          "REFUTED"
+                        ]
+                      }
+                    },
+                    "required": [
+                      "material",
+                      "verification"
+                    ]
+                  }
+                }
+              }
+            }
+          },
+          "TEST PLAN": {
+            "properties": {
+              "uncovered_or_blocked_es": {
+                "maxItems": 0
+              }
+            }
+          },
+          "VERIFICATION": {
+            "properties": {
+              "coverage": {
+                "const": "COMPLETE"
+              },
+              "evidence": {
+                "minItems": 1,
+                "items": {
+                  "properties": {
+                    "result": {
+                      "const": "PASS"
+                    }
+                  }
+                }
+              },
+              "results": {
+                "minItems": 1,
+                "items": {
+                  "properties": {
+                    "outcome": {
+                      "const": "PASS"
+                    },
+                    "evidence_ids": {
+                      "minItems": 1
+                    }
+                  }
+                }
+              },
+              "reproducibility": {
+                "properties": {
+                  "inputs_and_versions_pinned": {
+                    "const": true
+                  },
+                  "same_environment": {
+                    "const": true
+                  },
+                  "repetitions": {
+                    "minimum": 2
+                  },
+                  "observed_variations_es": {
+                    "maxItems": 0
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  ]
+}

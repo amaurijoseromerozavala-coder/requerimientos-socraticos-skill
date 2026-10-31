@@ -1,0 +1,938 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+# ============================================================================
+# Gentle-AI — Install Script
+# Ecosystem, Frameworks, Workflows for AI coding agents.
+#
+# Usage:
+#   curl -sL https://raw.githubusercontent.com/Gentleman-Programming/gentle-ai/main/scripts/install.sh | bash
+#
+# Or download and run:
+#   curl -sLO https://raw.githubusercontent.com/Gentleman-Programming/gentle-ai/main/scripts/install.sh
+#   chmod +x install.sh
+#   ./install.sh
+# ============================================================================
+
+GITHUB_OWNER="Gentleman-Programming"
+GITHUB_REPO="gentle-ai"
+BINARY_NAME="gentle-ai"
+BREW_TAP="Gentleman-Programming/homebrew-tap"
+BREW_FORMULA_REF="gentleman-programming/tap/${BINARY_NAME}"
+
+# ============================================================================
+# Color support
+# ============================================================================
+
+setup_colors() {
+    if [ -t 1 ] && [ "${TERM:-}" != "dumb" ]; then
+        RED='\033[0;31m'
+        GREEN='\033[0;32m'
+        YELLOW='\033[1;33m'
+        BLUE='\033[0;34m'
+        CYAN='\033[0;36m'
+        BOLD='\033[1m'
+        DIM='\033[2m'
+        NC='\033[0m'
+    else
+        RED='' GREEN='' YELLOW='' BLUE='' CYAN='' BOLD='' DIM='' NC=''
+    fi
+}
+
+# ============================================================================
+# Logging helpers
+# ============================================================================
+
+info()    { echo -e "${BLUE}[info]${NC}    $*"; }
+success() { echo -e "${GREEN}[ok]${NC}      $*"; }
+warn()    { echo -e "${YELLOW}[warn]${NC}    $*"; }
+error()   { echo -e "${RED}[error]${NC}   $*" >&2; }
+fatal()   { error "$@"; exit 1; }
+step()    { echo -e "\n${CYAN}${BOLD}==>${NC} ${BOLD}$*${NC}"; }
+
+homebrew_trust_gentle_ai_formula() {
+    if brew help trust &>/dev/null; then
+        info "Trusting ${BREW_FORMULA_REF} for Homebrew tap-trust enforcement"
+        brew trust --formula "$BREW_FORMULA_REF" &>/dev/null || true
+    fi
+}
+
+print_homebrew_failure_help() {
+    local output="$1"
+    local lower
+    lower="$(printf '%s' "$output" | tr '[:upper:]' '[:lower:]')"
+
+    if [[ "$lower" == *"untrusted tap"* || "$lower" == *"tap trust is required"* || "$lower" == *"homebrew_require_tap_trust"* ]]; then
+        warn "Homebrew requires explicit trust for external taps."
+        echo "Trust only the Gentle AI formula, then retry:" >&2
+        echo "  brew trust --formula ${BREW_FORMULA_REF}" >&2
+        echo "  brew upgrade ${BINARY_NAME}" >&2
+    fi
+
+    if [[ "$lower" == *"bubblewrap is installed but cannot create a rootless sandbox"* || "$lower" == *"rootless sandbox"* || "$lower" == *"homebrew_no_sandbox_linux"* ]]; then
+        warn "Homebrew on Linux could not create its Bubblewrap rootless sandbox."
+        echo "This requires an explicit admin/security decision: enabling unprivileged user namespaces lets Homebrew use its sandbox but changes host kernel/AppArmor policy." >&2
+        echo "If acceptable, run:" >&2
+        echo "  sudo sysctl -w kernel.unprivileged_userns_clone=1" >&2
+        echo "  sudo sysctl -w user.max_user_namespaces=28633" >&2
+        echo "  sudo sysctl -w kernel.apparmor_restrict_unprivileged_userns=0 || true" >&2
+        echo >&2
+        echo "Final workaround if your distro policy forbids this sandbox:" >&2
+        echo "  HOMEBREW_NO_SANDBOX_LINUX=1 brew upgrade ${BINARY_NAME}" >&2
+    fi
+}
+
+# ============================================================================
+# Help
+# ============================================================================
+
+show_help() {
+    cat <<EOF
+${BOLD}Gentle-AI installer${NC}
+
+Usage: install.sh [OPTIONS]
+
+Options:
+  --method METHOD   Force install method: brew, go, binary (default: auto-detect)
+  --channel CHANNEL Gentle AI channel: stable (default), beta, or nightly (env: GENTLE_AI_CHANNEL)
+  --dir DIR         Custom install directory for binary method
+  --insecure        Skip checksum verification (not recommended)
+  -h, --help        Show this help
+
+Install methods (auto-detected in priority order):
+  1. brew    — Homebrew tap (recommended)
+  2. go      — go install from source
+  3. binary  — Pre-built binary from GitHub Releases
+
+Examples:
+  curl -sL https://raw.githubusercontent.com/${GITHUB_OWNER}/${GITHUB_REPO}/main/scripts/install.sh | bash
+  ./install.sh --method binary
+  ./install.sh --channel beta
+  ./install.sh --method binary --dir \$HOME/.local/bin
+  ./install.sh --method binary --insecure   # skip checksum (not recommended)
+
+EOF
+}
+
+# ============================================================================
+# Platform detection
+# ============================================================================
+
+detect_platform() {
+    local uname_os uname_arch
+
+    uname_os="$(uname -s)"
+    uname_arch="$(uname -m)"
+
+    case "$uname_os" in
+        Darwin) OS="darwin"; OS_LABEL="macOS"; GORELEASER_OS="darwin" ;;
+        Linux)  OS="linux";  OS_LABEL="Linux"; GORELEASER_OS="linux" ;;
+        *)      fatal "Unsupported OS: $uname_os. Only macOS and Linux are supported." ;;
+    esac
+
+    case "$uname_arch" in
+        x86_64|amd64)   ARCH="amd64" ;;
+        arm64|aarch64)  ARCH="arm64" ;;
+        *)              fatal "Unsupported architecture: $uname_arch. Only amd64 and arm64 are supported." ;;
+    esac
+
+    success "Platform: ${OS_LABEL} (${OS}/${ARCH})"
+}
+
+# ============================================================================
+# GoReleaser archive naming
+#
+# From .goreleaser.yaml:
+#   name_template: "{{ .ProjectName }}_{{ .Version }}_{{ .Os }}_{{ .Arch }}"
+#
+# GoReleaser v2 {{ .Os }} produces GOOS values (lowercase: darwin, linux)
+# GoReleaser {{ .Arch }} produces GOARCH values (amd64, arm64)
+# Examples:
+#   gentle-ai_1.0.0_darwin_arm64.tar.gz
+#   gentle-ai_1.0.0_linux_amd64.tar.gz
+# ============================================================================
+
+get_archive_name() {
+    local version="$1"
+    echo "${BINARY_NAME}_${version}_${GORELEASER_OS}_${ARCH}.tar.gz"
+}
+
+# ============================================================================
+# Prerequisites
+# ============================================================================
+
+check_prerequisites() {
+    step "Checking prerequisites"
+
+    local missing=()
+
+    if ! command -v curl &>/dev/null; then
+        missing+=("curl")
+    fi
+
+    if ! command -v git &>/dev/null; then
+        missing+=("git")
+    fi
+
+    if [ ${#missing[@]} -gt 0 ]; then
+        fatal "Missing required tools: ${missing[*]}. Please install them and try again."
+    fi
+
+    success "curl and git are available"
+}
+
+# ============================================================================
+# Install method detection
+# ============================================================================
+
+detect_install_method() {
+    if [ "${CHANNEL}" = "beta" ]; then
+        if [ -n "${FORCE_METHOD:-}" ] && [ "${FORCE_METHOD}" != "go" ]; then
+            fatal "--channel beta installs Gentle AI from main and only supports --method go"
+        fi
+        INSTALL_METHOD="go"
+        info "Using beta channel — will install ${BINARY_NAME} from main via go install"
+        return
+    fi
+
+    if [ -n "${FORCE_METHOD:-}" ]; then
+        case "$FORCE_METHOD" in
+            brew|go|binary) INSTALL_METHOD="$FORCE_METHOD" ;;
+            *) fatal "Unknown install method: $FORCE_METHOD. Use: brew, go, or binary" ;;
+        esac
+        info "Using forced method: $INSTALL_METHOD"
+        return
+    fi
+
+    step "Detecting best install method"
+
+    # Priority: brew > binary > go
+    # Brew handles upgrades natively and is instant.
+    # Binary download from GitHub Releases is always up-to-date.
+    # go install is last resort because the Go module proxy can lag
+    # behind new tags for up to 30 minutes, causing @latest to install
+    # a stale version.
+    if command -v brew &>/dev/null; then
+        INSTALL_METHOD="brew"
+        success "Homebrew found — will install via brew tap"
+    else
+        INSTALL_METHOD="binary"
+        info "Will download pre-built binary from GitHub Releases"
+    fi
+}
+
+# ============================================================================
+# Install via Homebrew
+# ============================================================================
+
+install_brew() {
+    step "Installing via Homebrew"
+
+    # Always refresh the tap to pick up new releases
+    info "Refreshing ${BREW_TAP}..."
+    brew untap "$BREW_TAP" 2>/dev/null || true
+    if ! brew tap "$BREW_TAP"; then
+        fatal "Failed to tap $BREW_TAP"
+    fi
+
+    homebrew_trust_gentle_ai_formula
+
+    if brew list "$BINARY_NAME" &>/dev/null; then
+        info "Already installed, upgrading ${BINARY_NAME}..."
+        local output
+        if output="$(brew upgrade "$BINARY_NAME" 2>&1)"; then
+            success "Upgraded ${BINARY_NAME} via Homebrew"
+        elif printf '%s' "$output" | grep -Eiq 'already.*(up-to-date|installed)|not outdated'; then
+            success "${BINARY_NAME} is already at the latest version"
+        else
+            printf '%s\n' "$output" >&2
+            print_homebrew_failure_help "$output"
+            fatal "Failed to upgrade ${BINARY_NAME} via Homebrew"
+        fi
+    else
+        info "Installing ${BINARY_NAME}..."
+        local output
+        if output="$(brew install "$BINARY_NAME" 2>&1)"; then
+            success "Installed ${BINARY_NAME} via Homebrew"
+        else
+            printf '%s\n' "$output" >&2
+            print_homebrew_failure_help "$output"
+            fatal "Failed to install ${BINARY_NAME} via Homebrew"
+        fi
+    fi
+}
+
+# ============================================================================
+# Module path derivation
+#
+# The go.mod at the resolved git ref (latest release tag for stable, main
+# commit SHA for beta) declares the module's import path. Reading it there
+# is the only way to stay correct across future major versions: a /v3
+# installer hard-codes the answer and breaks the day the repo bumps to /v4.
+# The helpers below fail closed on every signal — non-200, empty body, or
+# no `module` line — so a transient ref-mismatch aborts the installer
+# instead of silently installing from the wrong path.
+# ============================================================================
+
+get_main_commit_sha() {
+    local url="https://api.github.com/repos/${GITHUB_OWNER}/${GITHUB_REPO}/commits/main"
+
+    info "Resolving main commit SHA from GitHub..."
+
+    local response
+    response="$(curl -sL -w "\n%{http_code}" "$url")" || fatal "Failed to fetch main commit"
+
+    local http_code body
+    http_code="$(printf '%s\n' "$response" | tail -n1)"
+    body="$(printf '%s\n' "$response" | sed '$d')"
+
+    if [ "$http_code" != "200" ]; then
+        fatal "GitHub API returned HTTP $http_code resolving main commit"
+    fi
+
+    # Parse "sha":"<hex>" — first match wins, identical style to
+    # get_latest_version's tag_name extraction below.
+    local sha
+    sha="$(printf '%s\n' "$body" | sed -n 's/.*"sha"[[:space:]]*:[[:space:]]*"\([^"]*\)".*/\1/p' | head -1)"
+
+    if [ -z "$sha" ]; then
+        fatal "Could not parse commit SHA from GitHub API response"
+    fi
+
+    printf '%s\n' "$sha"
+}
+
+resolve_module_path() {
+    local ref="$1"
+    local url="https://raw.githubusercontent.com/${GITHUB_OWNER}/${GITHUB_REPO}/${ref}/go.mod"
+
+    info "Resolving module path from go.mod at ${ref}..."
+
+    local response
+    response="$(curl -sL -w "\n%{http_code}" "$url")" || fatal "Failed to fetch go.mod at ${ref}"
+
+    local http_code body
+    http_code="$(printf '%s\n' "$response" | tail -n1)"
+    body="$(printf '%s\n' "$response" | sed '$d')"
+
+    if [ "$http_code" != "200" ]; then
+        fatal "go.mod fetch returned HTTP $http_code for ref ${ref}"
+    fi
+
+    if [ -z "$body" ]; then
+        fatal "Empty go.mod body at ref ${ref}"
+    fi
+
+    # First `module ...` line — Go modules accept only one.
+    MODULE_PATH="$(printf '%s\n' "$body" | sed -n 's/^module \(.*\)$/\1/p' | head -1)"
+
+    if [ -z "$MODULE_PATH" ]; then
+        fatal "Could not parse module declaration from go.mod at ref ${ref}"
+    fi
+}
+
+# ============================================================================
+# Install via go install
+# ============================================================================
+
+install_go() {
+    step "Installing via go install"
+
+    # Lowercase the owner portably: ${var,,} needs bash 4+, but macOS ships
+    # bash 3.2, so piping `| bash` would fail with "bad substitution". Kept
+    # in place (per the D1 design intent: owner_lc stays available to
+    # compose the env pattern) even though the current implementation
+    # derives the pattern from ${module} directly — the previous code
+    # hard-coded "github.com/gentleman-programming/..." here, which the
+    # D1 forbids.
+    local owner_lc
+    owner_lc="$(printf '%s' "$GITHUB_OWNER" | tr '[:upper:]' '[:lower:]')"
+
+    # Resolve the ref first (release tag for stable, main SHA for beta), then
+    # derive the module path from go.mod at that ref. The result replaces the
+    # previous hard-coded "/v3" — a future /v4 source must keep working
+    # without touching this script.
+    local module ref
+    if [ "${CHANNEL}" = "beta" ]; then
+        ref="$(get_main_commit_sha)"
+    else
+        get_latest_version
+        ref="${LATEST_VERSION}"
+    fi
+
+    resolve_module_path "$ref"
+    module="${MODULE_PATH}"
+
+    # /vN is part of the module path, not decoration: Go refuses to resolve
+    # a module whose tags are vN.x unless the import path carries the major
+    # version suffix. The path is now derived from go.mod at ${ref}, so the
+    # suffix travels with whatever the repo actually declares.
+    local go_package="${module}/cmd/${BINARY_NAME}@${ref}"
+
+    info "Running: go install ${go_package}"
+    if [ "${CHANNEL}" = "beta" ]; then
+        # Use the derived module path (whatever major version go.mod at
+        # ${ref} declares, e.g. github.com/<owner>/<repo>/vN) so the
+        # pattern tracks the source and never embeds the old hard-coded
+        # "/v3" literal. owner_lc above stays available for any future
+        # composition that needs the bare repo without the version.
+        local env_pattern="${module}"
+        prepend_go_env_pattern GONOSUMDB "${env_pattern}"
+        prepend_go_env_pattern GOPRIVATE "${env_pattern}"
+        prepend_go_env_pattern GONOPROXY "${env_pattern}"
+        export GONOSUMDB GOPRIVATE GONOPROXY
+
+        if ! go install "$go_package"; then
+            fatal "Failed to install via go install. Make sure Go is properly configured."
+        fi
+    elif ! go install "$go_package"; then
+        fatal "Failed to install via go install. Make sure Go is properly configured."
+    fi
+
+    # Verify GOBIN / GOPATH/bin is in PATH
+    local gobin
+    gobin="$(go env GOBIN)"
+    if [ -z "$gobin" ]; then
+        gobin="$(go env GOPATH)/bin"
+    fi
+
+    success "Installed ${BINARY_NAME} via go install"
+
+    ensure_install_dir_on_path "$gobin"
+}
+
+prepend_go_env_pattern() {
+    local name="$1"
+    local pattern="$2"
+    local current="${!name:-}"
+
+    if [ -z "$current" ]; then
+        printf -v "$name" '%s' "$pattern"
+        return
+    fi
+
+    case ",$current," in
+        *",$pattern,"*) return ;;
+        *) printf -v "$name" '%s,%s' "$pattern" "$current" ;;
+    esac
+}
+
+# ============================================================================
+# Install via binary download
+# ============================================================================
+
+get_latest_version() {
+    local url="https://api.github.com/repos/${GITHUB_OWNER}/${GITHUB_REPO}/releases/latest"
+
+    info "Fetching latest release from GitHub..."
+
+    local response
+    response="$(curl -sL -w "\n%{http_code}" "$url")" || fatal "Failed to fetch latest release"
+
+    local http_code body
+    http_code="$(echo "$response" | tail -n1)"
+    body="$(echo "$response" | sed '$d')"
+
+    if [ "$http_code" != "200" ]; then
+        fatal "GitHub API returned HTTP $http_code. Rate limited? Try again later or use --method brew/go"
+    fi
+
+    # Extract tag_name — works without jq
+    LATEST_VERSION="$(echo "$body" | sed -n 's/.*"tag_name"[[:space:]]*:[[:space:]]*"\([^"]*\)".*/\1/p' | head -1)"
+
+    if [ -z "$LATEST_VERSION" ]; then
+        fatal "Could not determine latest version from GitHub API response"
+    fi
+
+    # Strip leading 'v' for archive naming (goreleaser uses version without v prefix)
+    VERSION_NUMBER="${LATEST_VERSION#v}"
+
+    success "Latest version: ${LATEST_VERSION}"
+}
+
+install_binary() {
+    step "Installing pre-built binary"
+
+    get_latest_version
+
+    local archive_name
+    archive_name="$(get_archive_name "$VERSION_NUMBER")"
+    local download_url="https://github.com/${GITHUB_OWNER}/${GITHUB_REPO}/releases/download/${LATEST_VERSION}/${archive_name}"
+    local checksums_url="https://github.com/${GITHUB_OWNER}/${GITHUB_REPO}/releases/download/${LATEST_VERSION}/checksums.txt"
+
+    # Create temp directory — clean up on exit
+    local tmpdir
+    tmpdir="$(mktemp -d)"
+    trap '[ -n "${tmpdir:-}" ] && rm -rf "$tmpdir"' EXIT
+
+    # Download archive
+    info "Downloading ${archive_name}..."
+    if ! curl -sfL -o "${tmpdir}/${archive_name}" "$download_url"; then
+        fatal "Failed to download ${download_url}"
+    fi
+
+    # Verify file was actually downloaded (not a 404 HTML page)
+    local file_size
+    file_size="$(wc -c < "${tmpdir}/${archive_name}" | tr -d '[:space:]')"
+    if [ "$file_size" -lt 1000 ]; then
+        fatal "Downloaded file is suspiciously small (${file_size} bytes). Archive may not exist for this platform."
+    fi
+
+    success "Downloaded ${archive_name} (${file_size} bytes)"
+
+    # Download and verify checksum — fail closed unless --insecure is set
+    info "Verifying checksum..."
+    if curl -sL -o "${tmpdir}/checksums.txt" "$checksums_url"; then
+        local expected_checksum
+        expected_checksum="$(grep "${archive_name}" "${tmpdir}/checksums.txt" 2>/dev/null | awk '{print $1}' || true)"
+
+        if [ -n "$expected_checksum" ]; then
+            local actual_checksum
+            if command -v sha256sum &>/dev/null; then
+                actual_checksum="$(sha256sum "${tmpdir}/${archive_name}" | awk '{print $1}')"
+            elif command -v shasum &>/dev/null; then
+                actual_checksum="$(shasum -a 256 "${tmpdir}/${archive_name}" | awk '{print $1}')"
+            else
+                if [ "$INSECURE" = "true" ]; then
+                    warn "No sha256sum or shasum found — checksum verification skipped (--insecure)"
+                    actual_checksum="$expected_checksum"
+                else
+                    fatal "No sha256sum or shasum tool found. Cannot verify checksum.\nInstall coreutils (sha256sum) or use --insecure to skip (not recommended)."
+                fi
+            fi
+
+            if [ "$actual_checksum" != "$expected_checksum" ]; then
+                fatal "Checksum mismatch!\n  Expected: ${expected_checksum}\n  Got:      ${actual_checksum}"
+            fi
+            success "Checksum verified"
+        else
+            if [ "$INSECURE" = "true" ]; then
+                warn "Archive '${archive_name}' not found in checksums.txt — checksum verification skipped (--insecure)"
+            else
+                fatal "Archive '${archive_name}' not found in checksums.txt. Refusing to install unverified binary.\nUse --insecure to skip (not recommended)."
+            fi
+        fi
+    else
+        if [ "$INSECURE" = "true" ]; then
+            warn "Could not download checksums.txt — checksum verification skipped (--insecure)"
+        else
+            fatal "Could not download checksums.txt from:\n  ${checksums_url}\nRefusing to install without integrity verification.\nUse --insecure to skip (not recommended)."
+        fi
+    fi
+
+    # Extract binary
+    info "Extracting ${BINARY_NAME}..."
+    if ! tar -xzf "${tmpdir}/${archive_name}" -C "$tmpdir"; then
+        fatal "Failed to extract archive"
+    fi
+
+    if [ ! -f "${tmpdir}/${BINARY_NAME}" ]; then
+        fatal "Binary '${BINARY_NAME}' not found in archive"
+    fi
+
+    # Determine install directory
+    local install_dir="${INSTALL_DIR:-}"
+
+    if [ -z "$install_dir" ]; then
+        if [ -d "/usr/local/bin" ] && [ -w "/usr/local/bin" ]; then
+            install_dir="/usr/local/bin"
+        elif [ "$(id -u)" = "0" ]; then
+            install_dir="/usr/local/bin"
+        else
+            install_dir="${HOME}/.local/bin"
+        fi
+    fi
+
+    # Create install dir if needed
+    mkdir -p "$install_dir"
+
+    # Atomic install: stage next to the destination and rename in place.
+    # POSIX rename within one filesystem is atomic, so the previous binary
+    # either survives intact or is fully replaced — never half-written.
+    local staging="${install_dir}/${BINARY_NAME}.staging.$$"
+    local final="${install_dir}/${BINARY_NAME}"
+    trap 'rm -f -- "$staging" 2>/dev/null || true' EXIT TERM INT
+
+    info "Installing to ${final}..."
+    if install -m 0755 -- "${tmpdir}/${BINARY_NAME}" "$staging" 2>/dev/null; then
+        mv -f -- "$staging" "$final"
+    elif command -v sudo &>/dev/null; then
+        warn "Permission denied. Trying with sudo..."
+        # Positional args so $()/backtick substitutions in the path are not commands.
+        sudo -- bash -c 'install -m 0755 -- "$1" "$2" && mv -f -- "$2" "$3"' _ "${tmpdir}/${BINARY_NAME}" "$staging" "$final"
+    else
+        rm -f -- "$staging" 2>/dev/null || true
+        fatal "Cannot write to ${install_dir}. Run with sudo or use --dir to specify a writable directory."
+    fi
+    trap - EXIT TERM INT
+
+    success "Installed ${BINARY_NAME} to ${final}"
+
+    ensure_install_dir_on_path "$install_dir"
+}
+
+# ============================================================================
+# Shell PATH setup
+#
+# Mirrors the Gentle Shell web installer (gentle-pi scripts/bundled-install.mjs
+# profileFor/profileState/pathEntryPlan): when the install dir is not on the
+# terminal's PATH, append one marked line to the startup file the user's shell
+# reads for new terminals. The line is never duplicated and never written
+# through a symlink (stow, chezmoi and home-manager lay dotfiles out as links).
+# ============================================================================
+
+PATH_SETUP_MARK="# gentle-ai installer"
+
+# Whether dir is an entry of the current PATH (trailing slashes ignored).
+path_has_dir() {
+    local dir="${1%/}" entry
+    local IFS=:
+    for entry in $PATH; do
+        [ "${entry%/}" = "$dir" ] && return 0
+    done
+    return 1
+}
+
+# The startup file the user's shell reads for the terminals they open:
+# - zsh: $ZDOTDIR/.zshrc (or ~/.zshrc);
+# - bash on macOS, where terminals start login shells: the first existing of
+#   ~/.bash_profile, ~/.bash_login and ~/.profile (login bash reads exactly
+#   one), else ~/.bash_profile;
+# - bash elsewhere: ~/.bashrc, read by interactive non-login bash;
+# - fish: our own conf.d file; anything else: ~/.profile.
+shell_profile_for() {
+    local shell os name config
+    shell="$(basename -- "${SHELL:-}")"
+    os="${OS:-}"
+    if [ -z "$os" ]; then
+        case "$(uname -s)" in
+            Darwin) os="darwin" ;;
+            *) os="linux" ;;
+        esac
+    fi
+
+    case "$shell" in
+        zsh)
+            case "${ZDOTDIR:-}" in
+                /*) printf '%s\n' "${ZDOTDIR%/}/.zshrc" ;;
+                *) printf '%s\n' "${HOME}/.zshrc" ;;
+            esac
+            ;;
+        bash)
+            if [ "$os" = "darwin" ]; then
+                for name in .bash_profile .bash_login .profile; do
+                    if [ -e "${HOME}/${name}" ] || [ -L "${HOME}/${name}" ]; then
+                        printf '%s\n' "${HOME}/${name}"
+                        return
+                    fi
+                done
+                printf '%s\n' "${HOME}/.bash_profile"
+            else
+                printf '%s\n' "${HOME}/.bashrc"
+            fi
+            ;;
+        fish)
+            case "${XDG_CONFIG_HOME:-}" in
+                /*) config="${XDG_CONFIG_HOME%/}" ;;
+                *) config="${HOME}/.config" ;;
+            esac
+            printf '%s\n' "${config}/fish/conf.d/${BINARY_NAME}.fish"
+            ;;
+        *)
+            printf '%s\n' "${HOME}/.profile"
+            ;;
+    esac
+}
+
+# Whether folder (an existing directory) is reached without symlinks below HOME.
+profile_folder_is_real() {
+    local folder="$1" relative real_home real_folder
+    case "$folder" in
+        "$HOME") relative="" ;;
+        "$HOME"/*) relative="${folder#"$HOME"}" ;;
+        *) return 0 ;;
+    esac
+    real_home="$(cd -- "$HOME" && pwd -P)" || return 1
+    real_folder="$(cd -- "$folder" && pwd -P)" || return 1
+    [ "$real_folder" = "${real_home}${relative}" ]
+}
+
+# Whether the installer may edit file: "file" (a writable regular file in real
+# folders) or "absent" (creatable inside real, writable folders); otherwise why
+# not: "symlink", "not-a-file" or "not-writable".
+profile_state() {
+    local file="$1" folder
+    if [ -L "$file" ]; then
+        echo "symlink"; return
+    fi
+    if [ -e "$file" ]; then
+        if [ ! -f "$file" ]; then echo "not-a-file"; return; fi
+        if ! profile_folder_is_real "$(dirname -- "$file")"; then echo "symlink"; return; fi
+        if [ -w "$file" ]; then echo "file"; else echo "not-writable"; fi
+        return
+    fi
+
+    folder="$(dirname -- "$file")"
+    while [ ! -e "$folder" ] && [ ! -L "$folder" ]; do
+        if [ "$(dirname -- "$folder")" = "$folder" ]; then echo "not-a-file"; return; fi
+        folder="$(dirname -- "$folder")"
+    done
+    if [ -L "$folder" ]; then echo "symlink"; return; fi
+    if [ ! -d "$folder" ]; then echo "not-a-file"; return; fi
+    if ! profile_folder_is_real "$folder"; then echo "symlink"; return; fi
+    if [ -w "$folder" ]; then echo "absent"; else echo "not-writable"; fi
+}
+
+# Quotes value for a single-quoted shell word: POSIX sh closes and reopens the
+# quotes around a ', fish escapes ' and \ inside them.
+shell_single_quote() {
+    local style="$1" value="$2" quoted="" ch i
+    for ((i = 0; i < ${#value}; i++)); do
+        ch="${value:i:1}"
+        case "$style:$ch" in
+            "sh:'") quoted+="'\\''" ;;
+            "fish:'"|"fish:\\") quoted+="\\${ch}" ;;
+            *) quoted+="$ch" ;;
+        esac
+    done
+    printf "'%s'" "$quoted"
+}
+
+# Puts dir on PATH for future terminals by appending one marked line to the
+# shell startup file. Writes nothing when dir is already on PATH. A dir that
+# cannot be written verbatim (quotes, $, backticks) is only printed, quoted.
+ensure_install_dir_on_path() {
+    local dir="${1%/}"
+    [ -n "$dir" ] || return 0
+    path_has_dir "$dir" && return 0
+
+    local profile command reason=""
+    profile="$(shell_profile_for)"
+    case "$profile" in
+        *.fish)
+            case "$dir" in
+                *"'"*|*"\\"*|*$'\n'*)
+                    reason="unsafe path"
+                    command="set -gx PATH $(shell_single_quote fish "$dir") \$PATH"
+                    ;;
+                *) command="set -gx PATH '${dir}' \$PATH" ;;
+            esac
+            ;;
+        *)
+            case "$dir" in
+                *'"'*|*"\\"*|*'$'*|*'`'*|*$'\n'*)
+                    reason="unsafe path"
+                    command="export PATH=$(shell_single_quote sh "$dir"):\"\$PATH\""
+                    ;;
+                *) command="export PATH=\"${dir}:\$PATH\"" ;;
+            esac
+            ;;
+    esac
+    local line="${command} ${PATH_SETUP_MARK}"
+
+    echo ""
+    printf 'Current terminal: %b%s%b\n' "$BOLD" "$command" "$NC"
+
+    # Let verify_installation find the binary in this process.
+    export PATH="${dir}:${PATH}"
+
+    if [ -z "$reason" ] && [ -f "$profile" ] && grep -Fxq -- "$line" "$profile" 2>/dev/null; then
+        echo "Future terminals: open a new terminal"
+        info "PATH is already configured in ${profile}"
+        echo ""
+        return 0
+    fi
+
+    if [ -z "$reason" ]; then
+        case "$(profile_state "$profile")" in
+            absent)
+                # noclobber: never write through a file or link created meanwhile.
+                if mkdir -p -- "$(dirname -- "$profile")" && (set -C; printf '%s\n' "$line" > "$profile") 2>/dev/null; then
+                    echo "Future terminals: open a new terminal"
+                    success "PATH was added to ${profile}"
+                    echo ""
+                    return 0
+                fi
+                reason="could not create it"
+                ;;
+            file)
+                local separator=""
+                if [ -s "$profile" ] && [ -n "$(tail -c 1 -- "$profile")" ]; then
+                    separator=$'\n'
+                fi
+                if [ ! -L "$profile" ] && printf '%s%s\n' "$separator" "$line" >> "$profile"; then
+                    echo "Future terminals: open a new terminal"
+                    success "PATH was added to ${profile}"
+                    echo ""
+                    return 0
+                fi
+                reason="could not edit it"
+                ;;
+            *)
+                reason="$(profile_state "$profile")"
+                ;;
+        esac
+    fi
+
+    warn "${profile} was not edited (${reason})."
+    echo "Add this line to ${profile}, then open a new terminal:"
+    printf '  %s\n' "$line"
+    echo ""
+}
+
+# ============================================================================
+# Verify installation
+# ============================================================================
+
+verify_installation() {
+    step "Verifying installation"
+
+    # Allow PATH changes to take effect
+    hash -r 2>/dev/null || true
+
+    if command -v "$BINARY_NAME" &>/dev/null; then
+        local version_output
+        version_output="$("$BINARY_NAME" version 2>&1 || true)"
+        success "${BINARY_NAME} is installed: ${version_output}"
+        return 0
+    fi
+
+    # Check common locations even if not in PATH
+    local locations=(
+        "/usr/local/bin/${BINARY_NAME}"
+        "${HOME}/.local/bin/${BINARY_NAME}"
+        "$(go env GOPATH 2>/dev/null || echo "")/bin/${BINARY_NAME}"
+    )
+
+    for loc in "${locations[@]}"; do
+        if [ -n "$loc" ] && [ -x "$loc" ]; then
+            local version_output
+            version_output="$("$loc" version 2>&1 || true)"
+            success "Found ${BINARY_NAME} at ${loc}: ${version_output}"
+            warn "Binary location is not in your PATH. Add it to use '${BINARY_NAME}' directly."
+            return 0
+        fi
+    done
+
+    warn "Could not verify installation. You may need to restart your shell."
+    return 0
+}
+
+# ============================================================================
+# Print next steps
+# ============================================================================
+
+print_banner() {
+    echo ""
+    echo -e "${CYAN}${BOLD}"
+    echo "   ____            _   _              _    ___ "
+    echo "  / ___| ___ _ __ | |_| | ___        / \  |_ _|"
+    echo " | |  _ / _ \ '_ \| __| |/ _ \_____ / _ \  | | "
+    echo " | |_| |  __/ | | | |_| |  __/_____/ ___ \ | | "
+    echo "  \____|\___|_| |_|\__|_|\___|    /_/   \_\___|"
+    echo -e "${NC}"
+    echo -e "  ${DIM}Gentle-AI — Ecosystem, Frameworks, Workflows${NC}"
+    echo ""
+}
+
+print_next_steps() {
+    echo ""
+    echo -e "${GREEN}${BOLD}Installation complete!${NC}"
+    echo ""
+    echo -e "${BOLD}Next steps:${NC}"
+    if [ "${CHANNEL}" = "beta" ]; then
+        echo -e "  ${CYAN}1.${NC} Run ${BOLD}GENTLE_AI_CHANNEL=beta ${BINARY_NAME} install${NC} to keep using the beta channel"
+    else
+        echo -e "  ${CYAN}1.${NC} Run ${BOLD}${BINARY_NAME}${NC} to start the TUI installer"
+    fi
+    echo -e "  ${CYAN}2.${NC} Select your AI agent(s) and tools to configure"
+    echo -e "  ${CYAN}3.${NC} Follow the interactive prompts"
+    echo ""
+    echo -e "${DIM}For help: ${BINARY_NAME} --help${NC}"
+    echo -e "${DIM}Docs:     https://github.com/${GITHUB_OWNER}/${GITHUB_REPO}${NC}"
+    echo ""
+}
+
+# ============================================================================
+# Main
+# ============================================================================
+
+main() {
+    setup_colors
+
+    # Parse arguments
+    FORCE_METHOD=""
+    INSTALL_DIR=""
+    INSECURE="false"
+    CHANNEL="${GENTLE_AI_CHANNEL:-stable}"
+
+    while [ $# -gt 0 ]; do
+        case "$1" in
+            --method)
+                [ $# -lt 2 ] && fatal "--method requires an argument"
+                FORCE_METHOD="$2"; shift 2
+                ;;
+            --channel)
+                [ $# -lt 2 ] && fatal "--channel requires an argument"
+                CHANNEL="$2"; shift 2
+                ;;
+            --dir)
+                [ $# -lt 2 ] && fatal "--dir requires an argument"
+                INSTALL_DIR="$2"; shift 2
+                ;;
+            --insecure)
+                INSECURE="true"; shift
+                ;;
+            -h|--help)
+                setup_colors
+                show_help
+                exit 0
+                ;;
+            *)
+                fatal "Unknown option: $1. Use --help for usage."
+                ;;
+        esac
+    done
+
+    case "${CHANNEL}" in
+        stable|beta|nightly) ;;
+        *) fatal "Unknown channel: ${CHANNEL}. Use: stable, beta, or nightly" ;;
+    esac
+    if [ "${CHANNEL}" = "nightly" ]; then
+        CHANNEL="beta"
+    fi
+
+    print_banner
+
+    step "Detecting platform"
+    detect_platform
+
+    check_prerequisites
+    detect_install_method
+
+    case "$INSTALL_METHOD" in
+        brew)   install_brew ;;
+        go)     install_go ;;
+        binary) install_binary ;;
+    esac
+
+    verify_installation
+    print_next_steps
+}
+
+# ============================================================================
+# Execution guard: run main when this script is executed, skip when sourced.
+#
+# Two execution paths must reach main:
+#   1. `bash install.sh ...` / `./install.sh ...` — BASH_SOURCE[0] equals $0.
+#   2. `curl -sL .../install.sh | bash` — bash reads the program from stdin,
+#      so BASH_SOURCE[0] is EMPTY and $0 is "bash". Skipping main here would
+#      silently no-op the installer's documented primary invocation, so the
+#      empty-BASH_SOURCE case must also run main.
+# Sourcing (tests) never matches: BASH_SOURCE[0] is this file's path while $0
+# is the sourcing shell's program, and the two differ.
+# ============================================================================
+if [ -z "${BASH_SOURCE[0]:-}" ] || [ "${BASH_SOURCE[0]}" = "$0" ]; then
+    main "$@"
+fi
+

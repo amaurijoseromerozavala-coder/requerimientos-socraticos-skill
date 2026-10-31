@@ -1,0 +1,119 @@
+{
+  "document_phase": "REQUIREMENTS_DEFINED",
+  "canonical_prd_status": "DRAFT",
+  "interview": "COMPLETE",
+  "design": "REVIEWED",
+  "independent_review": "No new inconsistencies; incomplete abstraction explicitly preserved",
+  "native_rdd": "FIVE_PARTS_APPROVED_AND_ACKNOWLEDGED",
+  "candidate": "sha256:93ce53299f5140bce1c5da3a61322167e774855d4e7ce95a24d8443d86de0e41",
+  "checks": {
+    "output_contract_cases": 13,
+    "document_model_checks": 9,
+    "decision_combinations": 16,
+    "qualified_fsm_transitions": 418
+  },
+  "not_demonstrated": [
+    "OS observation guards",
+    "durable recovery implementation",
+    "timing/resource enforcement",
+    "physical i3/WSL calibration"
+  ],
+  "implementation_authorized": false,
+  "original_consent": "GRANTED",
+  "partition_consent": "GRANTED",
+  "partitions": [
+    {
+      "part": "core",
+      "state": "APPROVED_AND_ACKNOWLEDGED",
+      "target": "sha256:244addaaaec7698302eadfa32321262beed5f9c341bb5debcb7bd9fadcb7cdb5",
+      "lineage": "review-efcc53913bd98b9c",
+      "receipt": "docs/skill-audit/qa-supervisor-prd-close/part-core/final.json"
+    },
+    {
+      "part": "protocol",
+      "state": "APPROVED_AND_ACKNOWLEDGED",
+      "target": "sha256:4815366453a183d1de513cebf5c97cd96582c147652da479f6d69b20fec3c487",
+      "lineage": "review-f820aca952a82557",
+      "receipt": "docs/skill-audit/qa-supervisor-prd-close/part-protocol/final.json"
+    },
+    {
+      "part": "interview",
+      "state": "APPROVED_AND_ACKNOWLEDGED",
+      "target": "sha256:55a0dc546e2a860a42b1d2c389f948ed403aea8c82d070adeaf1cef856a6a011",
+      "lineage": "review-84f615eebfc2ae7d",
+      "receipt": "docs/skill-audit/qa-supervisor-prd-close/part-interview/final.json"
+    },
+    {
+      "part": "evidence",
+      "state": "APPROVED_AND_ACKNOWLEDGED",
+      "target": "sha256:77778c85936cef6f218a7b53540fbdca3c84e348476919278a2fbfa0830f1ec2",
+      "lineage": "review-e3ace361dd26dcf9",
+      "receipt": "docs/skill-audit/qa-supervisor-prd-close/part-evidence/final.json"
+    },
+    {
+      "part": "canonical",
+      "state": "APPROVED_AND_ACKNOWLEDGED",
+      "target": "sha256:709145f50fc44cae5a2a573df58f99ee6509865996a11a8fc22d5d60953f5f11",
+      "lineage": "review-b2e0f4114b5f5bb8",
+      "receipt": "docs/skill-audit/qa-supervisor-prd-close/part-canonical/final.json"
+    }
+  ],
+  "consent_literal": "Ok autorizo",
+  "advisory_findings": [
+    {
+      "part": "core",
+      "id": "R3-001",
+      "lens": "reliability",
+      "location": "docs/requirements/qa-supervisor/propuesta-cierre.md:17-24",
+      "severity": "WARNING",
+      "claim": "The closure proposal treats retention as an outstanding human decision and offers raw-output retention as an alternative, while the PRD and policy confirm minimal receipts and prohibit persisting raw output. This leaves contradictory acceptance criteria: a reviewer following this proposal could reopen an already confirmed decision or approve retention that violates SUP-014. Update the proposal to reflect the confirmed policy and remaining gates.",
+      "proof_refs": [
+        "docs/requirements/qa-supervisor/propuesta-cierre.md:17-24",
+        "docs/requirements/qa-supervisor/PRD.md:7",
+        "docs/requirements/qa-supervisor/PRD.md:96-100",
+        "docs/requirements/qa-supervisor/closure-proposal.json:49-57"
+      ],
+      "evidence_class": "deterministic",
+      "causal_disposition": "introduced",
+      "disposition": "NON_BLOCKING_FOLLOWUP"
+    },
+    {
+      "part": "evidence",
+      "id": "R3-001",
+      "lens": "reliability",
+      "location": "docs/requirements/qa-supervisor/verification/check-document-model.py:3",
+      "severity": "WARNING",
+      "claim": "The document checker reads a fixed absolute checkout directory. Running it from another checkout either fails before checking anything or checks unrelated files if that directory exists. Resolve the document directory relative to __file__ so the reported checks describe the candidate being reviewed.",
+      "proof_refs": [
+        "docs/requirements/qa-supervisor/verification/check-document-model.py:3-4"
+      ],
+      "evidence_class": "deterministic",
+      "causal_disposition": "introduced",
+      "disposition": "NON_BLOCKING_FOLLOWUP"
+    },
+    {
+      "part": "evidence",
+      "id": "R3-002",
+      "lens": "reliability",
+      "location": "docs/requirements/qa-supervisor/verification/check-output-contract.py:29-33",
+      "severity": "WARNING",
+      "claim": "The five checker scenarios assert only that their outputs are admitted by the contract, without asserting the expected return code, verdict, event, or observation for each scenario. A checker that returns the same valid infrastructure-failure envelope for every input could pass all five positive cases. Add scenario-specific assertions on externally observable output so synthetic success, contradiction, invalid input, read failure, and partial scanning are actually distinguished.",
+      "proof_refs": [
+        "docs/requirements/qa-supervisor/verification/check-output-contract.py:29-36",
+        "docs/requirements/qa-supervisor/verification/output-contract-results.json:5-34"
+      ],
+      "evidence_class": "deterministic",
+      "causal_disposition": "introduced",
+      "disposition": "NON_BLOCKING_FOLLOWUP"
+    }
+  ],
+  "aggregate_native_review": "NOT_PERFORMED_AS_SINGLE_CANDIDATE",
+  "integration_evidence": {
+    "partition_identity": "64/64 unchanged",
+    "independent_review": "verification/canonical-independent.md and closure-independent.md; scope and historical byte-hash caveat preserved",
+    "limitation": "Part approvals are not a native aggregate receipt or implementation evidence."
+  },
+  "next_work": "Resolve documentary verification advisories in a new candidate; implementation remains unauthorized.",
+  "current_applicability": "HISTORICAL_CANDIDATES_ONLY; user reopened retention and verification files changed",
+  "current_work": "docs/skill-audit/qa-supervisor-followup/RESULTADO.json"
+}

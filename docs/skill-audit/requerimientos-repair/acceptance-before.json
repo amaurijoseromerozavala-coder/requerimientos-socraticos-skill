@@ -1,0 +1,53 @@
+{
+  "defined_at": "2026-10-26T16:56:29.881134+00:00",
+  "specs": [
+    {
+      "id": "R01",
+      "criterion": "Senior architect and software scientist role must be explicit."
+    },
+    {
+      "id": "R02",
+      "criterion": "Interrogator must issue a focused question, wait, evaluate an actual answer, and continue when material gaps remain."
+    },
+    {
+      "id": "R03",
+      "criterion": "Distinct interlocutors and actual runtime references; no fabricated skill-assistant dialogue."
+    },
+    {
+      "id": "R04",
+      "criterion": "Assistant cannot decide missing human business policy or upgrade its inference to confirmed intent."
+    },
+    {
+      "id": "R05",
+      "criterion": "No READY with missing interview, open question, uncovered material dimension or unresolved contradiction."
+    },
+    {
+      "id": "R06",
+      "criterion": "Transcript records skill-role question and assistant answer verbatim, with evidence and disposition."
+    },
+    {
+      "id": "R07",
+      "criterion": "Every relevant architectural review records MCP-first and skills-first research and primary web exploration or actual tool failures."
+    },
+    {
+      "id": "R08",
+      "criterion": "Design improvements require alternatives, evaluation criteria, tradeoffs, falsifier and explicit proposed/accepted/rejected status."
+    },
+    {
+      "id": "R09",
+      "criterion": "Interrupted, paused, missing-runtime and unanswered states are fail-closed; one question at a time, not a fixed total."
+    },
+    {
+      "id": "R10",
+      "criterion": "Source QA files remain hash-identical; legacy PRD cannot claim the new interrogation completed."
+    },
+    {
+      "id": "R11",
+      "criterion": "Every transcript/reference ID is unique and resolves; rejection counterexamples retained."
+    },
+    {
+      "id": "R12",
+      "criterion": "Installed links and skill registry point at repaired source; real bounded multi-turn role smoke test and native RDD evidence."
+    }
+  ]
+}

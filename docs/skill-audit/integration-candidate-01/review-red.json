@@ -1,0 +1,5 @@
+{
+  "global_revocation_handler_present": false,
+  "authority_epoch_binding_present": false,
+  "task_authority_definition_present": false
+}

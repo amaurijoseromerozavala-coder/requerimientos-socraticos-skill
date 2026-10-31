@@ -1,0 +1,55 @@
+test_invalid_data_stays_rejected (test_infrastructure.InfrastructureChecks.test_invalid_data_stays_rejected) ... ok
+test_io_failure (test_infrastructure.InfrastructureChecks.test_io_failure) ... ok
+test_memory_failure (test_infrastructure.InfrastructureChecks.test_memory_failure) ... ok
+test_missing_artifact (test_infrastructure.InfrastructureChecks.test_missing_artifact) ... ok
+test_no_oom_claim_from_io_error (test_infrastructure.InfrastructureChecks.test_no_oom_claim_from_io_error) ... ok
+test_permission_failure (test_infrastructure.InfrastructureChecks.test_permission_failure) ... ok
+test_recursion_resource_failure (test_infrastructure.InfrastructureChecks.test_recursion_resource_failure) ... ok
+test_changed_artifact_bytes (test_report.ReportChecks.test_changed_artifact_bytes) ... ok
+test_changed_artifact_reference_requires_new_judgment (test_report.ReportChecks.test_changed_artifact_reference_requires_new_judgment) ... ok
+test_changed_assessment_requires_new_judgment (test_report.ReportChecks.test_changed_assessment_requires_new_judgment) ... ok
+test_changed_criteria (test_report.ReportChecks.test_changed_criteria) ... ok
+test_changed_inventory_requires_new_judgment (test_report.ReportChecks.test_changed_inventory_requires_new_judgment) ... ok
+test_cli_report_and_readonly_behavior (test_report.ReportChecks.test_cli_report_and_readonly_behavior) ... ok
+test_cli_structured_rejection (test_report.ReportChecks.test_cli_structured_rejection) ... ok
+test_contradictory_result (test_report.ReportChecks.test_contradictory_result) ... ok
+test_criteria_not_prior (test_report.ReportChecks.test_criteria_not_prior) ... ok
+test_dangling_case_evidence (test_report.ReportChecks.test_dangling_case_evidence) ... ok
+test_digest_is_independent_of_json_key_order (test_report.ReportChecks.test_digest_is_independent_of_json_key_order) ... ok
+test_duplicate_case_rejected (test_report.ReportChecks.test_duplicate_case_rejected) ... ok
+test_duplicate_evidence_rejected (test_report.ReportChecks.test_duplicate_evidence_rejected) ... ok
+test_duplicate_json_key (test_report.ReportChecks.test_duplicate_json_key) ... ok
+test_duplicate_obligation_rejected (test_report.ReportChecks.test_duplicate_obligation_rejected) ... ok
+test_empty_inventory_rejected (test_report.ReportChecks.test_empty_inventory_rejected) ... ok
+test_exception_pending (test_report.ReportChecks.test_exception_pending) ... ok
+test_failure_preserves_other_not_run (test_report.ReportChecks.test_failure_preserves_other_not_run) ... ok
+test_missing_actor_rejected (test_report.ReportChecks.test_missing_actor_rejected) ... ok
+test_missing_evidence (test_report.ReportChecks.test_missing_evidence) ... ok
+test_missing_source (test_report.ReportChecks.test_missing_source) ... ok
+test_na_cannot_remove_required_obligation (test_report.ReportChecks.test_na_cannot_remove_required_obligation) ... ok
+test_nested_json_rejected_before_decoder (test_report.ReportChecks.test_nested_json_rejected_before_decoder) ... ok
+test_no_delegation (test_report.ReportChecks.test_no_delegation) ... ok
+test_nonfinite_json_rejected (test_report.ReportChecks.test_nonfinite_json_rejected) ... ok
+test_not_run_is_gap (test_report.ReportChecks.test_not_run_is_gap) ... ok
+test_not_run_requires_case_reason (test_report.ReportChecks.test_not_run_requires_case_reason) ... ok
+test_optional_only_no_vacuous_success (test_report.ReportChecks.test_optional_only_no_vacuous_success) ... ok
+test_oracle_not_prior (test_report.ReportChecks.test_oracle_not_prior) ... ok
+test_orphan_evidence (test_report.ReportChecks.test_orphan_evidence) ... ok
+test_outside_path_rejected (test_report.ReportChecks.test_outside_path_rejected) ... ok
+test_oversized_json_rejected (test_report.ReportChecks.test_oversized_json_rejected) ... ok
+test_policy_gap_propagates_to_material_gap (test_report.ReportChecks.test_policy_gap_propagates_to_material_gap) ... ok
+test_stale_environment (test_report.ReportChecks.test_stale_environment) ... ok
+test_stale_snapshot (test_report.ReportChecks.test_stale_snapshot) ... ok
+test_stale_versions (test_report.ReportChecks.test_stale_versions) ... ok
+test_static_evidence_not_physical (test_report.ReportChecks.test_static_evidence_not_physical) ... ok
+test_supported_fixture_is_not_system_certificate (test_report.ReportChecks.test_supported_fixture_is_not_system_certificate) ... ok
+test_symlink_rejected (test_report.ReportChecks.test_symlink_rejected) ... ok
+test_unexpected_field (test_report.ReportChecks.test_unexpected_field) ... ok
+test_unjustified_scope (test_report.ReportChecks.test_unjustified_scope) ... ok
+test_unknown_applicability_is_required (test_report.ReportChecks.test_unknown_applicability_is_required) ... ok
+test_unknown_materiality_is_required (test_report.ReportChecks.test_unknown_materiality_is_required) ... ok
+
+----------------------------------------------------------------------
+Ran 50 tests in 0.155s
+
+OK

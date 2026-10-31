@@ -1,0 +1,80 @@
+{
+  "lineage": "review-e7d174d14d0c8002",
+  "target": "sha256:44020c98294501359766e743b9f5c90521d534ca2776c6e65855a61435bba5a3",
+  "git_tree": "8beafd718d74763d79b76548a9027740d3e3be31",
+  "status": "ALL_SELECTED_FILES_MATCH_REVIEWED_TREE",
+  "files": [
+    {
+      "path": "AGENTS.md",
+      "sha256": "958aa3f57cf99d4e6124859cc524d7d6d32942a5a72ffa017f266813b30b33f2"
+    },
+    {
+      "path": "docs/compliance/openai-codex-cloud.md",
+      "sha256": "ab656ff682b2f19d93ab3a9b2e32a83c1e92356466246a6b95ec6166afd0d690"
+    },
+    {
+      "path": "docs/requirements/qa-inquisidor-v2/PRD.md",
+      "sha256": "4a80523f5b1d089acd68cab1cf7381c533a06dc2cd3889922e54bc2b164f145a"
+    },
+    {
+      "path": "docs/requirements/qa-inquisidor-v2/analizar-modelo.py",
+      "sha256": "4e18f21344ea5fab84d64b772ec10e8b4e58d6cb52d26139330d70b4ab9c2874"
+    },
+    {
+      "path": "docs/requirements/qa-inquisidor-v2/casos-documentales.json",
+      "sha256": "e8de6579f10fd8f7d1d8908f3702ca24273d981cdd55c2347774021133a4836e"
+    },
+    {
+      "path": "docs/requirements/qa-inquisidor-v2/contrato-evidencia-propuesto.md",
+      "sha256": "90c689905223b3dbab250874b48e7d37ee105e1e01837be08e884830ca9980c3"
+    },
+    {
+      "path": "docs/requirements/qa-inquisidor-v2/fsm-propuesta.json",
+      "sha256": "5c04f76e8338947474ae2e9436904b9ecab548f2840dc681392f6938871aae53"
+    },
+    {
+      "path": "docs/requirements/qa-inquisidor-v2/propuesta-prd.json",
+      "sha256": "b1a3c2a7641c16e1fd0570b054d1cb224a64b66d900e0ec0422e964e2deab793"
+    },
+    {
+      "path": "docs/requirements/qa-inquisidor-v2/registro-skill-asistente.json",
+      "sha256": "4464f7337076ae61806ff820aa7242854ec67ba3bc641017fc51524deaaa5f71"
+    },
+    {
+      "path": "docs/requirements/qa-inquisidor-v2/registro-skill-asistente.md",
+      "sha256": "ad1b5f3e07f4ce6ed48381d1f143799345b1497bdcf4afd82774dbca16a81ab1"
+    },
+    {
+      "path": "docs/requirements/qa-inquisidor-v2/resultado-modelo.json",
+      "sha256": "97b8cb00595b0e31f5dcd4313a2d8e0a42ee8c9027e571d0ef25ab883e74fd8c"
+    },
+    {
+      "path": "docs/requirements/qa-inquisidor/PRD.md",
+      "sha256": "b84429cb06cb259603e0f7d24a51d03e084fbb63b1ca194a35d9ce110457e3c0"
+    },
+    {
+      "path": "docs/requirements/qa-inquisidor/prd.json",
+      "sha256": "272773be62ece255c48aa117ccd55a9319df4cd2ce381168e3c0fb8e161933ef"
+    },
+    {
+      "path": "docs/skill-audit/qa-claims-followup/RESULTADO.md",
+      "sha256": "081d7714b9f4664cfc5077ea4b3ed110658947e3a8512e8ad8addcd4f11c07a2"
+    },
+    {
+      "path": "docs/skill-audit/qa-claims-followup/bounded-observation.json",
+      "sha256": "e6905631b657ac63a6193ac93d8b1b69d7c0c4f3b146ecf37557fe814d6777b0"
+    },
+    {
+      "path": "docs/skill-audit/qa-claims-followup/integrity.json",
+      "sha256": "835d34841a4741201b00a5424a67b68de0d35b7379867367cd72e5c398d8a583"
+    },
+    {
+      "path": "docs/skill-audit/qa-claims-followup/scratch-tests.log",
+      "sha256": "4bbe1e079a6a5363e28beaf743805a710c183867713c51ff77aff6a3291df9dd"
+    },
+    {
+      "path": "docs/skill-audit/qa-claims-followup/sealed-tests.log",
+      "sha256": "bb1b5f012170710e814bbf1e1c7ea55d81bd49ee8cdede0e7ee82ed8db6aa44d"
+    }
+  ]
+}

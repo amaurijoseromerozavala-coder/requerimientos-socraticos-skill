@@ -1,0 +1,158 @@
+test_admission_private_nonblocking_and_release (test_memory_budget.MemoryBudgetTests.test_admission_private_nonblocking_and_release) ... ok
+test_admission_rejects_changed_or_type_coerced_profiles (test_memory_budget.MemoryBudgetTests.test_admission_rejects_changed_or_type_coerced_profiles) ... 
+  test_admission_rejects_changed_or_type_coerced_profiles (test_memory_budget.MemoryBudgetTests.test_admission_rejects_changed_or_type_coerced_profiles) (factory='memory_policy', profile={'total_mib': 512, 'total_bytes': 536870912.0, 'roles_mib': {'caller': 64, 'coordinator': 256, 'consumer': 128, 'git': 64}, 'roles_bytes': {'caller': 67108864, 'coordinator': 268435456, 'consumer': 134217728, 'git': 67108864}, 'kind': 'PROVISIONAL_ENGINEERING_POLICY', 'hardware_capacity_calibrated': False, 'aggregate_kernel_quota': False}) ... FAIL
+  test_admission_rejects_changed_or_type_coerced_profiles (test_memory_budget.MemoryBudgetTests.test_admission_rejects_changed_or_type_coerced_profiles) (factory='memory_policy', profile={'total_mib': 512, 'total_bytes': 536870912, 'roles_mib': {'caller': 64, 'coordinator': 256, 'consumer': 128, 'git': 64}, 'roles_bytes': {'caller': 67108864, 'coordinator': 268435456, 'consumer': 134217728, 'git': 67108864}, 'kind': 'PROVISIONAL_ENGINEERING_POLICY', 'hardware_capacity_calibrated': 0, 'aggregate_kernel_quota': False}) ... FAIL
+  test_admission_rejects_changed_or_type_coerced_profiles (test_memory_budget.MemoryBudgetTests.test_admission_rejects_changed_or_type_coerced_profiles) (factory='memory_policy', profile={'total_mib': 512, 'total_bytes': 536870912, 'roles_mib': {'caller': 64, 'coordinator': 256, 'consumer': 128, 'git': 64}, 'roles_bytes': {'caller': 67108864, 'coordinator': 268435456, 'consumer': 134217728, 'git': 67108864}, 'kind': 'PROVISIONAL_ENGINEERING_POLICY', 'hardware_capacity_calibrated': False, 'aggregate_kernel_quota': 0}) ... FAIL
+  test_admission_rejects_changed_or_type_coerced_profiles (test_memory_budget.MemoryBudgetTests.test_admission_rejects_changed_or_type_coerced_profiles) (factory='memory_policy', profile={'total_mib': 512, 'total_bytes': 536870912, 'roles_mib': {'caller': 64, 'coordinator': 256, 'consumer': 128, 'git': 64}, 'roles_bytes': {'caller': 67108864.0, 'coordinator': 268435456, 'consumer': 134217728, 'git': 67108864}, 'kind': 'PROVISIONAL_ENGINEERING_POLICY', 'hardware_capacity_calibrated': False, 'aggregate_kernel_quota': False}) ... FAIL
+test_admission_uses_canonical_snapshot_after_validation (test_memory_budget.MemoryBudgetTests.test_admission_uses_canonical_snapshot_after_validation) ... ERROR
+test_git_policy_contract_243_is_unchanged (test_memory_budget.MemoryBudgetTests.test_git_policy_contract_243_is_unchanged) ... ok
+test_inherited_descriptor_holds_lease_until_child_exits (test_memory_budget.MemoryBudgetTests.test_inherited_descriptor_holds_lease_until_child_exits) ... ok
+test_kernel_refusal_is_explicit_and_ordinary_helpers_do_not_set_limits (test_memory_budget.MemoryBudgetTests.test_kernel_refusal_is_explicit_and_ordinary_helpers_do_not_set_limits) ... ok
+test_limit_validation_never_raises_inherited_hard (test_memory_budget.MemoryBudgetTests.test_limit_validation_never_raises_inherited_hard) ... ok
+test_logic_admission_rejects_changed_or_type_coerced_profiles (test_memory_budget.MemoryBudgetTests.test_logic_admission_rejects_changed_or_type_coerced_profiles) ... ERROR
+test_logic_and_git_share_one_account_lease (test_memory_budget.MemoryBudgetTests.test_logic_and_git_share_one_account_lease) ... ERROR
+test_logic_headroom_uses_twice_total_at_exact_boundary (test_memory_budget.MemoryBudgetTests.test_logic_headroom_uses_twice_total_at_exact_boundary) ... ERROR
+test_logic_policy_roles_flags_and_validation (test_memory_budget.MemoryBudgetTests.test_logic_policy_roles_flags_and_validation) ... ERROR
+test_partial_cgroup_rows_block_and_unlimited_visible_scope_is_distinct (test_memory_budget.MemoryBudgetTests.test_partial_cgroup_rows_block_and_unlimited_visible_scope_is_distinct) ... ok
+test_policy_roles_and_validation (test_memory_budget.MemoryBudgetTests.test_policy_roles_and_validation) ... ok
+test_process_observation_distinguishes_virtual_rss_and_high_water (test_memory_budget.MemoryBudgetTests.test_process_observation_distinguishes_virtual_rss_and_high_water) ... ok
+test_small_real_limit_in_child_only (test_memory_budget.MemoryBudgetTests.test_small_real_limit_in_child_only) ... ok
+test_unknown_or_low_headroom_blocks (test_memory_budget.MemoryBudgetTests.test_unknown_or_low_headroom_blocks) ... ok
+test_unsafe_lock_and_directory_are_rejected (test_memory_budget.MemoryBudgetTests.test_unsafe_lock_and_directory_are_rejected) ... ok
+test_unsupported_is_explicit (test_memory_budget.MemoryBudgetTests.test_unsupported_is_explicit) ... ok
+
+======================================================================
+ERROR: test_admission_uses_canonical_snapshot_after_validation (test_memory_budget.MemoryBudgetTests.test_admission_uses_canonical_snapshot_after_validation)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/replica-gentle-ai/skills/requerimientos-socraticos/tests/test_memory_budget.py", line 126, in test_admission_uses_canonical_snapshot_after_validation
+    for factory in (budget.memory_policy, budget.logic_memory_policy):
+                                          ^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: module 'memory_budget' has no attribute 'logic_memory_policy'
+
+======================================================================
+ERROR: test_logic_admission_rejects_changed_or_type_coerced_profiles (test_memory_budget.MemoryBudgetTests.test_logic_admission_rejects_changed_or_type_coerced_profiles)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/replica-gentle-ai/skills/requerimientos-socraticos/tests/test_memory_budget.py", line 90, in test_logic_admission_rejects_changed_or_type_coerced_profiles
+    self.assert_changed_profiles_rejected(budget.logic_memory_policy)
+                                          ^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: module 'memory_budget' has no attribute 'logic_memory_policy'
+
+======================================================================
+ERROR: test_logic_and_git_share_one_account_lease (test_memory_budget.MemoryBudgetTests.test_logic_and_git_share_one_account_lease)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/replica-gentle-ai/skills/requerimientos-socraticos/tests/test_memory_budget.py", line 59, in test_logic_and_git_share_one_account_lease
+    profiles = (budget.memory_policy(), budget.logic_memory_policy())
+                                        ^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: module 'memory_budget' has no attribute 'logic_memory_policy'
+
+======================================================================
+ERROR: test_logic_headroom_uses_twice_total_at_exact_boundary (test_memory_budget.MemoryBudgetTests.test_logic_headroom_uses_twice_total_at_exact_boundary)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/replica-gentle-ai/skills/requerimientos-socraticos/tests/test_memory_budget.py", line 72, in test_logic_headroom_uses_twice_total_at_exact_boundary
+    profile = budget.logic_memory_policy(264)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: module 'memory_budget' has no attribute 'logic_memory_policy'
+
+======================================================================
+ERROR: test_logic_policy_roles_flags_and_validation (test_memory_budget.MemoryBudgetTests.test_logic_policy_roles_flags_and_validation)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/replica-gentle-ai/skills/requerimientos-socraticos/tests/test_memory_budget.py", line 43, in test_logic_policy_roles_flags_and_validation
+    self.assertEqual(budget.logic_memory_policy(), {
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: module 'memory_budget' has no attribute 'logic_memory_policy'
+
+======================================================================
+FAIL: test_admission_rejects_changed_or_type_coerced_profiles (test_memory_budget.MemoryBudgetTests.test_admission_rejects_changed_or_type_coerced_profiles) (factory='memory_policy', profile={'total_mib': 512, 'total_bytes': 536870912.0, 'roles_mib': {'caller': 64, 'coordinator': 256, 'consumer': 128, 'git': 64}, 'roles_bytes': {'caller': 67108864, 'coordinator': 268435456, 'consumer': 134217728, 'git': 67108864}, 'kind': 'PROVISIONAL_ENGINEERING_POLICY', 'hardware_capacity_calibrated': False, 'aggregate_kernel_quota': False})
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/replica-gentle-ai/skills/requerimientos-socraticos/scripts/memory_budget.py", line 154, in admission
+    directory_fd = os.open(directory, os.O_RDONLY | os.O_DIRECTORY | os.O_NOFOLLOW | os.O_CLOEXEC)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'MagicMock/_admission_directory()/140492880265296'
+
+The above exception was the direct cause of the following exception:
+
+memory_budget.ResourceBudgetError: RESOURCE_ADMISSION_UNSAFE
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/workspace/replica-gentle-ai/skills/requerimientos-socraticos/tests/test_memory_budget.py", line 110, in assert_changed_profiles_rejected
+    with self.assertRaisesRegex(budget.ResourceBudgetError, 'RESOURCE_POLICY_INVALID'):
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: "RESOURCE_POLICY_INVALID" does not match "RESOURCE_ADMISSION_UNSAFE"
+
+======================================================================
+FAIL: test_admission_rejects_changed_or_type_coerced_profiles (test_memory_budget.MemoryBudgetTests.test_admission_rejects_changed_or_type_coerced_profiles) (factory='memory_policy', profile={'total_mib': 512, 'total_bytes': 536870912, 'roles_mib': {'caller': 64, 'coordinator': 256, 'consumer': 128, 'git': 64}, 'roles_bytes': {'caller': 67108864, 'coordinator': 268435456, 'consumer': 134217728, 'git': 67108864}, 'kind': 'PROVISIONAL_ENGINEERING_POLICY', 'hardware_capacity_calibrated': 0, 'aggregate_kernel_quota': False})
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/replica-gentle-ai/skills/requerimientos-socraticos/scripts/memory_budget.py", line 154, in admission
+    directory_fd = os.open(directory, os.O_RDONLY | os.O_DIRECTORY | os.O_NOFOLLOW | os.O_CLOEXEC)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'MagicMock/_admission_directory()/140492880300896'
+
+The above exception was the direct cause of the following exception:
+
+memory_budget.ResourceBudgetError: RESOURCE_ADMISSION_UNSAFE
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/workspace/replica-gentle-ai/skills/requerimientos-socraticos/tests/test_memory_budget.py", line 110, in assert_changed_profiles_rejected
+    with self.assertRaisesRegex(budget.ResourceBudgetError, 'RESOURCE_POLICY_INVALID'):
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: "RESOURCE_POLICY_INVALID" does not match "RESOURCE_ADMISSION_UNSAFE"
+
+======================================================================
+FAIL: test_admission_rejects_changed_or_type_coerced_profiles (test_memory_budget.MemoryBudgetTests.test_admission_rejects_changed_or_type_coerced_profiles) (factory='memory_policy', profile={'total_mib': 512, 'total_bytes': 536870912, 'roles_mib': {'caller': 64, 'coordinator': 256, 'consumer': 128, 'git': 64}, 'roles_bytes': {'caller': 67108864, 'coordinator': 268435456, 'consumer': 134217728, 'git': 67108864}, 'kind': 'PROVISIONAL_ENGINEERING_POLICY', 'hardware_capacity_calibrated': False, 'aggregate_kernel_quota': 0})
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/replica-gentle-ai/skills/requerimientos-socraticos/scripts/memory_budget.py", line 154, in admission
+    directory_fd = os.open(directory, os.O_RDONLY | os.O_DIRECTORY | os.O_NOFOLLOW | os.O_CLOEXEC)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'MagicMock/_admission_directory()/140492880327696'
+
+The above exception was the direct cause of the following exception:
+
+memory_budget.ResourceBudgetError: RESOURCE_ADMISSION_UNSAFE
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/workspace/replica-gentle-ai/skills/requerimientos-socraticos/tests/test_memory_budget.py", line 110, in assert_changed_profiles_rejected
+    with self.assertRaisesRegex(budget.ResourceBudgetError, 'RESOURCE_POLICY_INVALID'):
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: "RESOURCE_POLICY_INVALID" does not match "RESOURCE_ADMISSION_UNSAFE"
+
+======================================================================
+FAIL: test_admission_rejects_changed_or_type_coerced_profiles (test_memory_budget.MemoryBudgetTests.test_admission_rejects_changed_or_type_coerced_profiles) (factory='memory_policy', profile={'total_mib': 512, 'total_bytes': 536870912, 'roles_mib': {'caller': 64, 'coordinator': 256, 'consumer': 128, 'git': 64}, 'roles_bytes': {'caller': 67108864.0, 'coordinator': 268435456, 'consumer': 134217728, 'git': 67108864}, 'kind': 'PROVISIONAL_ENGINEERING_POLICY', 'hardware_capacity_calibrated': False, 'aggregate_kernel_quota': False})
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/replica-gentle-ai/skills/requerimientos-socraticos/scripts/memory_budget.py", line 154, in admission
+    directory_fd = os.open(directory, os.O_RDONLY | os.O_DIRECTORY | os.O_NOFOLLOW | os.O_CLOEXEC)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'MagicMock/_admission_directory()/140492879829600'
+
+The above exception was the direct cause of the following exception:
+
+memory_budget.ResourceBudgetError: RESOURCE_ADMISSION_UNSAFE
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/workspace/replica-gentle-ai/skills/requerimientos-socraticos/tests/test_memory_budget.py", line 110, in assert_changed_profiles_rejected
+    with self.assertRaisesRegex(budget.ResourceBudgetError, 'RESOURCE_POLICY_INVALID'):
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: "RESOURCE_POLICY_INVALID" does not match "RESOURCE_ADMISSION_UNSAFE"
+
+----------------------------------------------------------------------
+Ran 18 tests in 0.034s
+
+FAILED (failures=4, errors=5)
+
+EXIT_CODE=1

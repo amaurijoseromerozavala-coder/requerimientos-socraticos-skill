@@ -1,0 +1,286 @@
+{
+  "lineage": "review-65b72cd5614b2220",
+  "records": [
+    {
+      "exit_code": 0,
+      "stdout": "{\n  \"schema\": \"gentle-ai.review-result-artifact/v2\",\n  \"capability\": \"review.native_result_artifact\",\n  \"reference\": \"rart1_084f2debb14ad927618b8b7fb111378309d8afb288fa1e24bdb90ce14196c024\",\n  \"sha256\": \"sha256:e9e3a544c45c2996ba032d0953d30a6bc1d345590a4fd08e7ed04a69e2c4bf47\",\n  \"lineage_id\": \"review-65b72cd5614b2220\",\n  \"target_identity\": \"sha256:7f07ef901f9dc9f6bec34afeecf7f5cf63d5ee3712721680b55aa7f6cc816e3d\",\n  \"lens\": \"review-risk\",\n  \"selected_order\": 0,\n  \"subject_hash\": \"sha256:ac11ec4a4c730b1ac9b7021decb7358fad36a7b245c0e76418f7e8a111f918d4\",\n  \"admission_decision\": \"completed\"\n}\n",
+      "stderr": ""
+    },
+    {
+      "exit_code": 0,
+      "stdout": "{\n  \"schema\": \"gentle-ai.review-result-artifact/v2\",\n  \"capability\": \"review.native_result_artifact\",\n  \"reference\": \"rart1_e4571244e021c09f13b9cc58fbc12739294bd7bb1d4cf6c3bcdfe158b9071846\",\n  \"sha256\": \"sha256:7480ebb5a3d9d4fe4966e6407ffe87457117a0d66233ff460f08f36f75d5f351\",\n  \"lineage_id\": \"review-65b72cd5614b2220\",\n  \"target_identity\": \"sha256:7f07ef901f9dc9f6bec34afeecf7f5cf63d5ee3712721680b55aa7f6cc816e3d\",\n  \"lens\": \"review-resilience\",\n  \"selected_order\": 1,\n  \"subject_hash\": \"sha256:8c38e69393cf7027e01632bf2f67cd31a0ac3a9697d7feee250c66f3972cb490\",\n  \"admission_decision\": \"completed\"\n}\n",
+      "stderr": ""
+    },
+    {
+      "exit_code": 0,
+      "stdout": "{\n  \"schema\": \"gentle-ai.review-result-artifact/v2\",\n  \"capability\": \"review.native_result_artifact\",\n  \"reference\": \"rart1_c679409d846a24aa5e66331d6aad1719af3deb6d18378c61334f9821624fedd9\",\n  \"sha256\": \"sha256:a6aad3d0bc281801e56eda45ed089eead5dc9c4f8d3e572a77a1a830e0437ee0\",\n  \"lineage_id\": \"review-65b72cd5614b2220\",\n  \"target_identity\": \"sha256:7f07ef901f9dc9f6bec34afeecf7f5cf63d5ee3712721680b55aa7f6cc816e3d\",\n  \"lens\": \"review-readability\",\n  \"selected_order\": 2,\n  \"subject_hash\": \"sha256:8a1619a903f5f6684dc38d6a73ca16545343be8c373f233aa9c0320f9b591a83\",\n  \"admission_decision\": \"completed\"\n}\n",
+      "stderr": ""
+    },
+    {
+      "exit_code": 0,
+      "stdout": "{\n  \"schema\": \"gentle-ai.review-last-event-closure/v1\",\n  \"operation\": \"review/capture-result\",\n  \"lineage_id\": \"review-65b72cd5614b2220\",\n  \"state\": \"correction_required\",\n  \"action\": \"candidate-caused severe findings require one bounded correction\",\n  \"status_continuation\": {\n    \"operation\": \"review.status\",\n    \"command\": \"gentle-ai review status --cwd=/workspace/replica-gentle-ai --contract=gentle-ai.review-integration/v2 --next-transition=true --lineage=review-65b72cd5614b2220 --agent=codex --base-ref=16500340ab2da63681e46eedbac12b3d2caf10d7 --workspace-overlay=true\",\n    \"arguments\": [\n      {\n        \"name\": \"cwd\",\n        \"value\": \"/workspace/replica-gentle-ai\",\n        \"token\": \"--cwd=/workspace/replica-gentle-ai\"\n      },\n      {\n        \"name\": \"contract\",\n        \"value\": \"gentle-ai.review-integration/v2\",\n        \"token\": \"--contract=gentle-ai.review-integration/v2\"\n      },\n      {\n        \"name\": \"next-transition\",\n        \"value\": \"true\",\n        \"token\": \"--next-transition=true\"\n      },\n      {\n        \"name\": \"lineage\",\n        \"value\": \"review-65b72cd5614b2220\",\n        \"token\": \"--lineage=review-65b72cd5614b2220\"\n      },\n      {\n        \"name\": \"agent\",\n        \"value\": \"codex\",\n        \"token\": \"--agent=codex\"\n      },\n      {\n        \"name\": \"base-ref\",\n        \"value\": \"16500340ab2da63681e46eedbac12b3d2caf10d7\",\n        \"token\": \"--base-ref=16500340ab2da63681e46eedbac12b3d2caf10d7\"\n      },\n      {\n        \"name\": \"workspace-overlay\",\n        \"value\": \"true\",\n        \"token\": \"--workspace-overlay=true\"\n      }\n    ],\n    \"preconditions\": [\n      {\n        \"name\": \"state\",\n        \"value\": \"correction_required\"\n      }\n    ],\n    \"binding\": {\n      \"lineage_id\": \"review-65b72cd5614b2220\",\n      \"revision\": \"sha256:089b2b87319c84e69a0314e9941dab6633639c989c753379cb00785fc5612e46\",\n      \"target_identity\": \"sha256:7f07ef901f9dc9f6bec34afeecf7f5cf63d5ee3712721680b55aa7f6cc816e3d\"\n    }\n  },\n  \"store_revision\": \"sha256:089b2b87319c84e69a0314e9941dab6633639c989c753379cb00785fc5612e46\"\n}\n",
+      "stderr": ""
+    },
+    {
+      "schema": "gentle-ai.review-integration.status/v9",
+      "contract": "gentle-ai.review-integration/v2",
+      "operation": "review.status",
+      "applicability": "current_target",
+      "authority": {
+        "version": "compact-v2",
+        "lineage_id": "review-65b72cd5614b2220",
+        "state": "correction_required",
+        "generation": 1,
+        "revision": "sha256:089b2b87319c84e69a0314e9941dab6633639c989c753379cb00785fc5612e46"
+      },
+      "action": "collect",
+      "replayability": "manual_action_required",
+      "frozen": {
+        "tier": "high",
+        "original_changed_lines": 1218,
+        "correction_budget": 200
+      },
+      "target_identity": "sha256:7f07ef901f9dc9f6bec34afeecf7f5cf63d5ee3712721680b55aa7f6cc816e3d",
+      "projection": {
+        "schema": "gentle-ai.review-integration.projection/v1",
+        "kind": "base-workspace-overlay",
+        "projection": "workspace",
+        "base_tree": "16500340ab2da63681e46eedbac12b3d2caf10d7",
+        "initial_review_tree": "30860e973cb3954995ad7de358944696128388c9",
+        "current_candidate_tree": "30860e973cb3954995ad7de358944696128388c9",
+        "paths_digest": "sha256:89a3a654cbbaf0a13a2c5dc54354c5c1fe8c75742e714b8de8e012fee26d2300",
+        "paths": [
+          "bin/gentle-ai",
+          "docs/skill-audit/requirements-hardening-241/full-tests.log",
+          "docs/skill-audit/requirements-hardening-241/group-red.log",
+          "docs/skill-audit/requirements-hardening-241/independent-group-lifecycle.json",
+          "docs/skill-audit/requirements-hardening-241/independent-manifest.json",
+          "docs/skill-audit/requirements-hardening-241/independent-review.json",
+          "docs/skill-audit/requirements-hardening-241/independent-tests.log",
+          "docs/skill-audit/requirements-hardening-241/logic-example.json",
+          "docs/skill-audit/requirements-hardening-241/profile.json",
+          "docs/skill-audit/requirements-hardening-241/supervisor-green.log",
+          "docs/skill-audit/requirements-hardening-241/supervisor-red.log",
+          "skills/requerimientos-socraticos/SKILL.md",
+          "skills/requerimientos-socraticos/references/formal-analysis.md",
+          "skills/requerimientos-socraticos/scripts/analyze_logic.py",
+          "skills/requerimientos-socraticos/scripts/json_preflight.py",
+          "skills/requerimientos-socraticos/scripts/logic_engine.py",
+          "skills/requerimientos-socraticos/scripts/probe_environment.py",
+          "skills/requerimientos-socraticos/tests/test_environment.py",
+          "skills/requerimientos-socraticos/tests/test_logic.py",
+          "skills/requerimientos-socraticos/tests/test_preflight.py",
+          "skills/requerimientos-socraticos/tests/test_supervisor.py",
+          "skills/requerimientos-socraticos/validation.json"
+        ],
+        "intended_untracked": [
+          "AGENTS.md",
+          "bin/gentle-ai",
+          "docs/skill-audit/accepted-qa-fixes/ANALISIS.md",
+          "docs/skill-audit/accepted-qa-fixes/guard.stderr",
+          "docs/skill-audit/accepted-qa-fixes/interview.stderr",
+          "docs/skill-audit/accepted-qa-fixes/scratch.stderr",
+          "docs/skill-audit/accepted-qa-fixes/sealed.stderr",
+          "docs/skill-audit/accepted-qa-fixes/sha1-red.stderr",
+          "docs/skill-audit/integrity-challenge/ANALISIS.md",
+          "docs/skill-audit/integrity-challenge/guard-tests.stderr",
+          "docs/skill-audit/integrity-challenge/interview-tests.stderr",
+          "docs/skill-audit/integrity-challenge/red-baseline.json",
+          "docs/skill-audit/requerimientos-repair/smoke/assessment-final.json",
+          "docs/skill-audit/requerimientos-repair/smoke/registro-skill-asistente.md",
+          "docs/skill-audit/requerimientos-repair/tests-green.stderr",
+          "docs/skill-audit/requirements-hardening-24/analysis-report.json",
+          "docs/skill-audit/requirements-hardening-24/cgroup-red.log",
+          "docs/skill-audit/requirements-hardening-24/dependencies.txt",
+          "docs/skill-audit/requirements-hardening-24/environment-green.log",
+          "docs/skill-audit/requirements-hardening-24/environment-red.log",
+          "docs/skill-audit/requirements-hardening-24/full-tests.log",
+          "docs/skill-audit/requirements-hardening-24/independent-review.json",
+          "docs/skill-audit/requirements-hardening-24/local-profile.json",
+          "docs/skill-audit/requirements-hardening-24/logic-example-result.json",
+          "docs/skill-audit/requirements-hardening-241/full-tests.log",
+          "docs/skill-audit/requirements-hardening-241/group-red.log",
+          "docs/skill-audit/requirements-hardening-241/independent-group-lifecycle.json",
+          "docs/skill-audit/requirements-hardening-241/independent-manifest.json",
+          "docs/skill-audit/requirements-hardening-241/independent-review.json",
+          "docs/skill-audit/requirements-hardening-241/independent-tests.log",
+          "docs/skill-audit/requirements-hardening-241/logic-example.json",
+          "docs/skill-audit/requirements-hardening-241/profile.json",
+          "docs/skill-audit/requirements-hardening-241/supervisor-green.log",
+          "docs/skill-audit/requirements-hardening-241/supervisor-red.log",
+          "docs/skill-audit/sealed-validation/ANALISIS.md",
+          "docs/skill-audit/sealed-validation/guard.stderr",
+          "docs/skill-audit/sealed-validation/interview.stderr",
+          "docs/skill-audit/sealed-validation/red-baseline.json",
+          "docs/skill-audit/sealed-validation/tests.stderr",
+          "skills/requerimientos-socraticos/SKILL.md",
+          "skills/requerimientos-socraticos/agents/requirements-interrogator.toml",
+          "skills/requerimientos-socraticos/assets/analysis-report.schema.json",
+          "skills/requerimientos-socraticos/assets/design-proposals.schema.json",
+          "skills/requerimientos-socraticos/assets/example.prd.json",
+          "skills/requerimientos-socraticos/assets/gitattributes.example",
+          "skills/requerimientos-socraticos/assets/interrogator-packet.schema.json",
+          "skills/requerimientos-socraticos/assets/interview.schema.json",
+          "skills/requerimientos-socraticos/assets/logic-example.json",
+          "skills/requerimientos-socraticos/assets/logic-input.schema.json",
+          "skills/requerimientos-socraticos/assets/prd.schema.json",
+          "skills/requerimientos-socraticos/references/formal-analysis.md",
+          "skills/requerimientos-socraticos/references/integrity-boundary.md",
+          "skills/requerimientos-socraticos/references/interrogation.md",
+          "skills/requerimientos-socraticos/references/method.md",
+          "skills/requerimientos-socraticos/references/research-design.md",
+          "skills/requerimientos-socraticos/references/sealed-validation.md",
+          "skills/requerimientos-socraticos/references/validation.md",
+          "skills/requerimientos-socraticos/references/workflow.md",
+          "skills/requerimientos-socraticos/requirements-analysis.txt",
+          "skills/requerimientos-socraticos/scripts/analyze_logic.py",
+          "skills/requerimientos-socraticos/scripts/json_preflight.py",
+          "skills/requerimientos-socraticos/scripts/logic_engine.py",
+          "skills/requerimientos-socraticos/scripts/normalize_text.py",
+          "skills/requerimientos-socraticos/scripts/probe_environment.py",
+          "skills/requerimientos-socraticos/scripts/requirements_guard.py",
+          "skills/requerimientos-socraticos/scripts/safe_io.py",
+          "skills/requerimientos-socraticos/scripts/scratch_pool.py",
+          "skills/requerimientos-socraticos/scripts/validate_git.py",
+          "skills/requerimientos-socraticos/scripts/validate_interview.py",
+          "skills/requerimientos-socraticos/scripts/validate_prd.py",
+          "skills/requerimientos-socraticos/tests/test_environment.py",
+          "skills/requerimientos-socraticos/tests/test_guard.py",
+          "skills/requerimientos-socraticos/tests/test_interview.py",
+          "skills/requerimientos-socraticos/tests/test_logic.py",
+          "skills/requerimientos-socraticos/tests/test_preflight.py",
+          "skills/requerimientos-socraticos/tests/test_scratch.py",
+          "skills/requerimientos-socraticos/tests/test_sealed.py",
+          "skills/requerimientos-socraticos/tests/test_supervisor.py",
+          "skills/requerimientos-socraticos/validation.json"
+        ],
+        "intended_untracked_proof": "sha256:760cdd48495ebd5c7223cc6e30ba9cf827c2bc4cf251bff20cbc9502836d17dd",
+        "initial_snapshot_identity": "sha256:7f07ef901f9dc9f6bec34afeecf7f5cf63d5ee3712721680b55aa7f6cc816e3d",
+        "current_snapshot_identity": "sha256:7f07ef901f9dc9f6bec34afeecf7f5cf63d5ee3712721680b55aa7f6cc816e3d"
+      },
+      "eligible_untracked_inventory": "sha256:5937ecb5f140730112eb54503d021f24baa681d581bde3372e4a9f8e530c11ce",
+      "repair": {
+        "schema": "gentle-ai.review-authority-repair-assessment/v1",
+        "status": "unsupported",
+        "counts": {
+          "lineages": 0,
+          "compact_lineages": 0,
+          "legacy_lineages": 0,
+          "events": 0,
+          "bytes": 0,
+          "eligible_candidates": 0,
+          "unsupported_lineages": 0,
+          "conflicts": 0
+        },
+        "supported_operations": [
+          "review/complete-fix",
+          "review/validate-fix"
+        ],
+        "authorization_schema": "gentle-ai.review-repair-authorization/v1"
+      },
+      "candidates": [],
+      "forecast": {
+        "horizon": "partial",
+        "steps": [
+          {
+            "step": 1,
+            "kind": "collect",
+            "reason_code": "correction_plan_required",
+            "description": "Correction plan required to resolve review findings"
+          }
+        ]
+      },
+      "next_transition": {
+        "kind": "collect",
+        "reason_code": "correction_plan_required",
+        "collect": {
+          "inputs": [
+            {
+              "name": "correction_lines",
+              "schema": "gentle-ai.review-correction-plan/v1",
+              "capture_operation": "review.capture-correction-plan",
+              "arguments": [
+                {
+                  "name": "lineage",
+                  "value": "review-65b72cd5614b2220",
+                  "token": "--lineage=review-65b72cd5614b2220"
+                },
+                {
+                  "name": "expected-revision",
+                  "value": "sha256:27721362dc9ff9827ef262fbc2cc6416a4c2fc06f2dfaa05b58e678927f08014",
+                  "token": "--expected-revision=sha256:27721362dc9ff9827ef262fbc2cc6416a4c2fc06f2dfaa05b58e678927f08014"
+                },
+                {
+                  "name": "target",
+                  "value": "sha256:7f07ef901f9dc9f6bec34afeecf7f5cf63d5ee3712721680b55aa7f6cc816e3d",
+                  "token": "--target=sha256:7f07ef901f9dc9f6bec34afeecf7f5cf63d5ee3712721680b55aa7f6cc816e3d"
+                },
+                {
+                  "name": "repository-context",
+                  "value": "rctx2_76477049898edd0143840bf2787e26587c8bd15ff30956673080707bfe27dc32",
+                  "token": "--repository-context=rctx2_76477049898edd0143840bf2787e26587c8bd15ff30956673080707bfe27dc32"
+                },
+                {
+                  "name": "request-hash",
+                  "value": "sha256:0190e06ba9c38671eb2ab08b7c144809b2c92f1b59a7a719d2a59bc4fb84f865",
+                  "token": "--request-hash=sha256:0190e06ba9c38671eb2ab08b7c144809b2c92f1b59a7a719d2a59bc4fb84f865"
+                }
+              ],
+              "submission": {
+                "operation_token": "capture-correction-plan",
+                "argument_tokens": [
+                  "--lineage=review-65b72cd5614b2220",
+                  "--expected-revision=sha256:27721362dc9ff9827ef262fbc2cc6416a4c2fc06f2dfaa05b58e678927f08014",
+                  "--target=sha256:7f07ef901f9dc9f6bec34afeecf7f5cf63d5ee3712721680b55aa7f6cc816e3d",
+                  "--request-hash=sha256:0190e06ba9c38671eb2ab08b7c144809b2c92f1b59a7a719d2a59bc4fb84f865",
+                  "--repository-context=rctx2_76477049898edd0143840bf2787e26587c8bd15ff30956673080707bfe27dc32",
+                  "--correction-lines={{value}}"
+                ],
+                "value": {
+                  "slot": "correction_lines",
+                  "domain": "positive_correction_lines",
+                  "minimum": 1,
+                  "maximum": 200,
+                  "substitution_location": 5
+                }
+              }
+            }
+          ]
+        },
+        "correction_request": {
+          "schema": "gentle-ai.review-correction-plan-request/v1",
+          "request_hash": "sha256:0190e06ba9c38671eb2ab08b7c144809b2c92f1b59a7a719d2a59bc4fb84f865",
+          "lineage_id": "review-65b72cd5614b2220",
+          "expected_revision": "sha256:27721362dc9ff9827ef262fbc2cc6416a4c2fc06f2dfaa05b58e678927f08014",
+          "target_identity": "sha256:7f07ef901f9dc9f6bec34afeecf7f5cf63d5ee3712721680b55aa7f6cc816e3d",
+          "correction_budget": 200,
+          "fix_finding_ids": [
+            "R3-error-contract"
+          ],
+          "findings": [
+            {
+              "id": "R3-error-contract",
+              "lens": "reliability",
+              "location": "skills/requerimientos-socraticos/scripts/analyze_logic.py:183-184",
+              "severity": "CRITICAL",
+              "claim": "CLI input errors now report SUPERVISOR_ERROR instead of the baseline INVALID_INPUT. For example, supplying --timeout 0 raises ValueError in the public parser and reaches this handler before any worker starts. Missing arguments and unknown options take the same path. This unrequested machine-readable output change breaks callers that distinguish invalid requests from supervision failures. Preserve INVALID_INPUT for argument parsing and timeout validation, and test the public CLI error code.",
+              "proof_refs": [
+                "skills/requerimientos-socraticos/scripts/analyze_logic.py:183-184",
+                "skills/requerimientos-socraticos/scripts/analyze_logic.py"
+              ],
+              "evidence": "skills/requerimientos-socraticos/scripts/analyze_logic.py:183-184\nskills/requerimientos-socraticos/scripts/analyze_logic.py",
+              "evidence_class": "deterministic",
+              "causal_disposition": "introduced"
+            }
+          ]
+        }
+      },
+      "repository_context": {
+        "capability": "review.opaque_repository_context",
+        "handle": "rctx2_76477049898edd0143840bf2787e26587c8bd15ff30956673080707bfe27dc32",
+        "revision": "sha256:27721362dc9ff9827ef262fbc2cc6416a4c2fc06f2dfaa05b58e678927f08014",
+        "target_identity": "sha256:7f07ef901f9dc9f6bec34afeecf7f5cf63d5ee3712721680b55aa7f6cc816e3d"
+      }
+    }
+  ]
+}

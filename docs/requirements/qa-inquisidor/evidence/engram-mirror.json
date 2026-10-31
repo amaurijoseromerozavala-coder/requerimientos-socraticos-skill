@@ -1,0 +1,12 @@
+{
+  "jsonrpc": "2.0",
+  "id": 3,
+  "result": {
+    "content": [
+      {
+        "type": "text",
+        "text": "{\"id\":6,\"judgment_required\":false,\"project\":\"replica-gentle-ai\",\"project_path\":\"\",\"project_source\":\"explicit_override\",\"result\":\"Memory saved: \\\"ODD PRD QA Inquisidor\\\" (decision)\\n⚠ WARNING: Content contains an absolute filesystem path that may not be portable across machines. Use a repository-relative path instead.\",\"review_after\":\"2027-04-26 16:23:21\",\"state\":\"active\",\"sync_id\":\"obs-52b358566c2f791f\",\"truncation\":{\"original_bytes\":4429,\"limit_bytes\":50000,\"truncated\":false}}"
+      }
+    ]
+  }
+}

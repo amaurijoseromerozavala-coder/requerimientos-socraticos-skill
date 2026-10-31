@@ -1,0 +1,44 @@
+{
+  "status": "PROPOSED",
+  "implementation_authorized": false,
+  "recommended_stack": [
+    "Python",
+    "JSON Schema / jsonschema",
+    "Z3 / z3-solver",
+    "pytest",
+    "Hypothesis"
+  ],
+  "optional": [
+    "TLA+/TLC",
+    "Lark",
+    "cvc5",
+    "pySMT"
+  ],
+  "not_selected_initially": [
+    "Alloy: per-artifact license review and additional modeling cost"
+  ],
+  "architecture": "local modular monolith with pure typed core and separate authorized execution adapters",
+  "unknowns": [
+    "semantic assessment authority",
+    "precise domains and temporal requirements",
+    "physical hardware budgets and measurements",
+    "pinned versions and transitive notices"
+  ],
+  "pipeline": [
+    "raw_utterance",
+    "confirmed_meaning",
+    "ears_and_typed_ast",
+    "domain_and_property_queries",
+    "counterexample_or_gap",
+    "socratic_question",
+    "model_revision",
+    "test_specification",
+    "authorized_execution",
+    "evidence",
+    "issue_or_regression"
+  ],
+  "proof_boundary": "Properties only under the declared model/domain; no automatic confirmation of human meaning.",
+  "source_document": "PROPUESTA.md",
+  "source_registry": "FUENTES.md",
+  "reuse_candidate": "NASA FRET v3 (Apache-2.0 declared); evaluate FRETish mapping and hardware before a custom textual formalizer"
+}

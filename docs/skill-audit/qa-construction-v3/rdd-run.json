@@ -1,0 +1,16 @@
+{
+  "schema": "gentle-ai.review-integration.failure/v2",
+  "contract": "gentle-ai.review-integration/v2",
+  "operation": "review.start",
+  "phase": "preflight",
+  "code": "invalid_request",
+  "message": "The negotiated review request is invalid.",
+  "mutation_outcome": "not_started",
+  "authority_applicability": "not_evaluated",
+  "retry_safe": true,
+  "replayability": "not_replayable",
+  "lineage_id": "review-49b09408ba4188ae",
+  "required_inputs": [],
+  "next_action": "correct_request",
+  "cause": "untracked inventory changed; rerun `gentle-ai review status --cwd <repo> --contract gentle-ai.review-integration/v2 --agent <runtime> --next-transition` before selecting paths"
+}

@@ -1,0 +1,148 @@
+{
+  "project": "qa-inquisidor",
+  "scope": "PRD and documentary contract only; skill implementation not created.",
+  "prd_status": "DRAFT",
+  "local_checks": 25,
+  "formal_scope": "280 input configurations, 8 reachable configurations, 80 reachable edges of the finite control model.",
+  "native_rdd": "APPROVED_AND_ACKNOWLEDGED_FOR_BOTH_PARTS",
+  "reviews": [
+    {
+      "part": "contracts",
+      "state": "approved",
+      "acknowledgement": {
+        "schema": "gentle-ai.review-acknowledged/v1",
+        "operation": "review/acknowledge-approved",
+        "action": "acknowledged",
+        "lineage_id": "review-abeca36a711c2a96",
+        "target_identity": "sha256:1307f7c8e6c3716fab9759ecb9b53371791f01c195def05c70a7c9fc60a552ae",
+        "consumed_revision": "sha256:16a5e69f604d7b5f9094d2a4e10432f83ce234611b96ebf0363dbf42dcd457b9",
+        "authority": "burned"
+      },
+      "reviewer_results": [
+        {
+          "lens": "review-reliability",
+          "findings": [],
+          "evidence": [
+            "Se inspeccionaron íntegramente los cinco parches documentales suministrados, sin acceder al repositorio ni ejecutar comandos.",
+            "docs/requirements/qa-inquisidor/PRD.md distingue validación estructural de comprobación semántica y exige correspondencia entre casos, resultados y evidencias, rechazo de identificadores duplicados y recibos del tipo de ejecución previsto.",
+            "docs/requirements/qa-inquisidor/acceptance-cases.json incluye controles negativos para cobertura incompleta, evidencia fallida o inexistente, incompatibilidad del tipo de ejecución, colisiones de identificadores y resultados faltantes.",
+            "docs/requirements/qa-inquisidor/prd.json conserva DRAFT, declara incompleta la abstracción de los oráculos reales y limita las afirmaciones formales al modelo documental. La inspección estática de las transiciones no identificó una ruta alcanzable a DONE con cobertura o evidencia incompletas.",
+            "docs/requirements/qa-inquisidor/environment-target.json identifica los recursos como declaraciones del usuario pendientes de medición. docs/requirements/qa-inquisidor/qa-report.schema.json restringe el cierre satisfactorio estructuralmente; los controles semánticos adicionales se especifican explícitamente en el contrato documental. No se verificaron las ejecuciones históricas declaradas porque sus comprobadores y salidas no forman parte del candidato."
+          ],
+          "result_hash": "sha256:c74efcd4b608abf187c9867765c6350f4fdec8b9893d928e18dd29a5bcb2554c"
+        }
+      ],
+      "advisory_findings": {},
+      "reviewed_paths": [
+        "docs/requirements/qa-inquisidor/PRD.md",
+        "docs/requirements/qa-inquisidor/acceptance-cases.json",
+        "docs/requirements/qa-inquisidor/environment-target.json",
+        "docs/requirements/qa-inquisidor/prd.json",
+        "docs/requirements/qa-inquisidor/qa-report.schema.json"
+      ],
+      "candidate_tree": "053d7955056ec8af6881d8666749c88e47723739"
+    },
+    {
+      "part": "evidence",
+      "state": "approved",
+      "acknowledgement": {
+        "schema": "gentle-ai.review-acknowledged/v1",
+        "operation": "review/acknowledge-approved",
+        "action": "acknowledged",
+        "lineage_id": "review-1995e4daf2195caa",
+        "target_identity": "sha256:01580e5495b02f91617637be2e29932db822ba5b05dff7584b1672a24699b30c",
+        "consumed_revision": "sha256:e171aacb24d57f1e8a2774a8f752091b97aa7445ae2f8f0f7d499efc303852ff",
+        "authority": "burned"
+      },
+      "reviewer_results": [
+        {
+          "lens": "review-reliability",
+          "findings": [
+            {
+              "id": "R3-incomplete-evidence-references",
+              "lens": "reliability",
+              "location": "docs/requirements/qa-inquisidor/evidence/document-checker.txt:70-74",
+              "severity": "WARNING",
+              "claim": "El comprobador omite las referencias de evidencia del inventario y de las recomendaciones. Al sustituir únicamente evidence_ids del componente del fixture por un ID inexistente, tanto el esquema como fresh siguen aceptando PASS_WITHIN_SCOPE: el componente permanece EXAMINED aunque su respaldo no existe. Comprobar también esas dos colecciones y añadir controles negativos que esperen DANGLING_REFERENCE.",
+              "proof_refs": [
+                "docs/requirements/qa-inquisidor/evidence/document-checker.txt:70-74",
+                "docs/requirements/qa-inquisidor/evidence/report-fixture.json:13-24",
+                "docs/requirements/qa-inquisidor/qa-report.schema.json:57-64",
+                "docs/requirements/qa-inquisidor/qa-report.schema.json:202-209"
+              ],
+              "evidence_class": "deterministic",
+              "causal_disposition": "introduced"
+            }
+          ],
+          "evidence": [
+            "Se inspeccionaron las doce secciones de parche suministradas, incluida la salida stderr vacía, sin ejecutar comandos ni consultar archivos externos.",
+            "docs/requirements/qa-inquisidor/evidence/document-checker.txt:65-90 rechaza duplicados antes de indexar, exige correspondencia entre casos y resultados y vincula los resultados PASS con evidencia del tipo planificado.",
+            "docs/requirements/qa-inquisidor/evidence/validation.stdout:20-26 conserva resultados positivos para los controles de tipo de evidencia, duplicados y resultados faltantes; son recibos aportados, no ejecuciones realizadas durante esta revisión.",
+            "El contraejemplo del hallazgo se deduce del flujo visible: las referencias del inventario solo tienen restricciones estructurales y fresh recorre las referencias de claims y resultados, pero omite las del inventario y las recomendaciones."
+          ],
+          "result_hash": "sha256:7fb6456997d8e91c936f5b988ec0efd92472185b8de1212f64c5196ca3c23a1e"
+        }
+      ],
+      "advisory_findings": {
+        "statement": "This review is approved and its receipt stands. Every finding listed here is non-blocking: none opened a correction, none reopens this review, and no correction transition is offered for this candidate. Treat them as separate later work, never as a reason to re-run review on this candidate.",
+        "findings": [
+          {
+            "id": "R3-incomplete-evidence-references",
+            "lens": "reliability",
+            "location": "docs/requirements/qa-inquisidor/evidence/document-checker.txt:70-74",
+            "severity": "WARNING",
+            "disposition": "informational"
+          }
+        ]
+      },
+      "reviewed_paths": [
+        "docs/requirements/qa-inquisidor/PRD.md",
+        "docs/requirements/qa-inquisidor/acceptance-cases.json",
+        "docs/requirements/qa-inquisidor/evidence/document-checker.txt",
+        "docs/requirements/qa-inquisidor/evidence/duplicate-id-red.json",
+        "docs/requirements/qa-inquisidor/evidence/evidence-kind-red.json",
+        "docs/requirements/qa-inquisidor/evidence/red-baseline.json",
+        "docs/requirements/qa-inquisidor/evidence/report-fixture.json",
+        "docs/requirements/qa-inquisidor/evidence/source-register.json",
+        "docs/requirements/qa-inquisidor/evidence/validation.stderr",
+        "docs/requirements/qa-inquisidor/evidence/validation.stdout",
+        "docs/requirements/qa-inquisidor/qa-report.schema.json",
+        "docs/requirements/qa-inquisidor/validation.json"
+      ],
+      "candidate_tree": "d1bc3bc846d830853c3a8b80effd49e9d9ddffbb"
+    }
+  ],
+  "reviewed_file_sha256": {
+    "docs/requirements/qa-inquisidor/PRD.md": "b84429cb06cb259603e0f7d24a51d03e084fbb63b1ca194a35d9ce110457e3c0",
+    "docs/requirements/qa-inquisidor/acceptance-cases.json": "33f6f786ed82d21269c21c2e206ebc0e1d89a19c5def5f8a1eb3a879cf4df4cd",
+    "docs/requirements/qa-inquisidor/environment-target.json": "575f8e1405c712a51e124a3bbf29d4b25e00dc820db47eef7aeac3c07ff65371",
+    "docs/requirements/qa-inquisidor/evidence/document-checker.txt": "cdc7b3aa072db33b5b9b1e4cbed40817899cd7130eefd5561a871e6ef797c3fb",
+    "docs/requirements/qa-inquisidor/evidence/duplicate-id-red.json": "7e93f9202aff017a58bf38e4fd2e3b1a687e0014129a16db29a0301c1c9339f9",
+    "docs/requirements/qa-inquisidor/evidence/evidence-kind-red.json": "3e99155333ce24f4d9580fbcf8e792fbe792f107765386ca5bb65ce9750139bd",
+    "docs/requirements/qa-inquisidor/evidence/red-baseline.json": "ab3397fa719ce5a96756f819a9959cbdc46d2c1d87e712392426cda9fe7feb0e",
+    "docs/requirements/qa-inquisidor/evidence/report-fixture.json": "e73f23b747a8e552c11788bd8b5105dc1032f4c5878b9140d7ec1cee4b8bcfce",
+    "docs/requirements/qa-inquisidor/evidence/source-register.json": "2d423e72eec0c7853e509eb77827096b3fb8d56d1e00db5b66871bd67a47e598",
+    "docs/requirements/qa-inquisidor/evidence/validation.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "docs/requirements/qa-inquisidor/evidence/validation.stdout": "13b155bdded5e658acc4c64e7dfc8daffc45a4461055bc953c077998d03f140b",
+    "docs/requirements/qa-inquisidor/prd.json": "272773be62ece255c48aa117ccd55a9319df4cd2ce381168e3c0fb8e161933ef",
+    "docs/requirements/qa-inquisidor/qa-report.schema.json": "bb938680349981d263b194a6d8cf82aab6ed47aba67e9342052c7be8671443b7",
+    "docs/requirements/qa-inquisidor/validation.json": "b0c7ba9af0f91b8fd23a52755a7ab543f487e19ebff49cb7f2f82a07fa9ab76a"
+  },
+  "open_items": [
+    {
+      "id": "G1",
+      "status": "OPEN_MATERIAL",
+      "description": "Specify the real phase-completion oracles before declaring the PRD READY."
+    },
+    {
+      "id": "R3-incomplete-evidence-references",
+      "status": "OPEN_NONBLOCKING_ADVISORY",
+      "description": "Auxiliary report checker does not yet validate evidence_ids of system inventory and architecture recommendations; keep this limitation visible and add negative controls in follow-up. No complete semantic-validation claim."
+    }
+  ],
+  "resolved_findings": [
+    "Static evidence cannot support a real-execution PASS.",
+    "Duplicate IDs cannot shadow real tests or overwrite records."
+  ],
+  "observed_at": "2026-10-26T16:43:08.773395+00:00"
+}

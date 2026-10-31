@@ -1,0 +1,37 @@
+{
+  "schema": "gentle-ai.review-integration.consent/v3",
+  "contract": "gentle-ai.review-integration/v2",
+  "operation": "review.start",
+  "action": "consent_required",
+  "agent": "codex",
+  "blocking": true,
+  "target_identity": "sha256:3a64e45b771862dad652586d120fa98e1aa577db818587a9d92f40c39a2b2758",
+  "projection": "workspace",
+  "risk_level": "high",
+  "changed_files": 7,
+  "changed_lines": 64,
+  "headline": "Gentle AI can review this change before you call it done.",
+  "reason": "Review can help detect execution issues in these changes.",
+  "value": "Reviewing takes a little longer and makes the result safer.",
+  "risk_evidence": [
+    "code that starts other processes in skills/requerimientos-socraticos/scripts/requirements_guard.py"
+  ],
+  "choices": [
+    {
+      "answer": "granted",
+      "label": "Review this change",
+      "effect": "Reviews only this change; later medium- or high-risk changes ask again, and delivery needs separate approval.",
+      "invocation": "gentle-ai review start --contract gentle-ai.review-integration/v2 --cwd /workspace/replica-gentle-ai --target sha256:3a64e45b771862dad652586d120fa98e1aa577db818587a9d92f40c39a2b2758 --target-evidence v1:base-workspace-overlay:workspace:64cd173d894280bcba5e73f29a9790a1bb5d0696:af83f3aa13919b30aa68164add26beb3fa1f82ec:sha256:9301e9e84c997df193298c9f47726b7c4cb42baf3e298cf097b470286be4a3ba --projection workspace --agent codex --lineage review-69b5e127cef65086 --base-ref 64cd173d894280bcba5e73f29a9790a1bb5d0696 --workspace-overlay --untracked-scope=select --expected-untracked-inventory=sha256:e2a254adbfc09cd6a712b488caa9aeeaf6ad585750974563d58e5839253c4358 --intended-untracked=bin/gentle-ai --intended-untracked=docs/skill-audit/integrity-challenge/ANALISIS.md --intended-untracked=docs/skill-audit/integrity-challenge/guard-tests.stderr --intended-untracked=docs/skill-audit/integrity-challenge/interview-tests.stderr --intended-untracked=docs/skill-audit/integrity-challenge/red-baseline.json --intended-untracked=docs/skill-audit/requerimientos-repair/smoke/assessment-final.json --intended-untracked=docs/skill-audit/requerimientos-repair/smoke/registro-skill-asistente.md --intended-untracked=docs/skill-audit/requerimientos-repair/tests-green.stderr --intended-untracked=skills/requerimientos-socraticos/SKILL.md --intended-untracked=skills/requerimientos-socraticos/agents/requirements-interrogator.toml --intended-untracked=skills/requerimientos-socraticos/assets/design-proposals.schema.json --intended-untracked=skills/requerimientos-socraticos/assets/example.prd.json --intended-untracked=skills/requerimientos-socraticos/assets/interrogator-packet.schema.json --intended-untracked=skills/requerimientos-socraticos/assets/interview.schema.json --intended-untracked=skills/requerimientos-socraticos/assets/prd.schema.json --intended-untracked=skills/requerimientos-socraticos/references/integrity-boundary.md --intended-untracked=skills/requerimientos-socraticos/references/interrogation.md --intended-untracked=skills/requerimientos-socraticos/references/method.md --intended-untracked=skills/requerimientos-socraticos/references/research-design.md --intended-untracked=skills/requerimientos-socraticos/references/validation.md --intended-untracked=skills/requerimientos-socraticos/references/workflow.md --intended-untracked=skills/requerimientos-socraticos/scripts/requirements_guard.py --intended-untracked=skills/requerimientos-socraticos/scripts/validate_interview.py --intended-untracked=skills/requerimientos-socraticos/scripts/validate_prd.py --intended-untracked=skills/requerimientos-socraticos/tests/test_guard.py --intended-untracked=skills/requerimientos-socraticos/tests/test_interview.py --intended-untracked=skills/requerimientos-socraticos/validation.json --consent granted"
+    },
+    {
+      "answer": "declined",
+      "label": "Skip this time",
+      "effect": "Skips only this change; no review record is created, and future reviews stay enabled.",
+      "invocation": "gentle-ai review start --contract gentle-ai.review-integration/v2 --cwd /workspace/replica-gentle-ai --target sha256:3a64e45b771862dad652586d120fa98e1aa577db818587a9d92f40c39a2b2758 --target-evidence v1:base-workspace-overlay:workspace:64cd173d894280bcba5e73f29a9790a1bb5d0696:af83f3aa13919b30aa68164add26beb3fa1f82ec:sha256:9301e9e84c997df193298c9f47726b7c4cb42baf3e298cf097b470286be4a3ba --projection workspace --agent codex --lineage review-69b5e127cef65086 --base-ref 64cd173d894280bcba5e73f29a9790a1bb5d0696 --workspace-overlay --untracked-scope=select --expected-untracked-inventory=sha256:e2a254adbfc09cd6a712b488caa9aeeaf6ad585750974563d58e5839253c4358 --intended-untracked=bin/gentle-ai --intended-untracked=docs/skill-audit/integrity-challenge/ANALISIS.md --intended-untracked=docs/skill-audit/integrity-challenge/guard-tests.stderr --intended-untracked=docs/skill-audit/integrity-challenge/interview-tests.stderr --intended-untracked=docs/skill-audit/integrity-challenge/red-baseline.json --intended-untracked=docs/skill-audit/requerimientos-repair/smoke/assessment-final.json --intended-untracked=docs/skill-audit/requerimientos-repair/smoke/registro-skill-asistente.md --intended-untracked=docs/skill-audit/requerimientos-repair/tests-green.stderr --intended-untracked=skills/requerimientos-socraticos/SKILL.md --intended-untracked=skills/requerimientos-socraticos/agents/requirements-interrogator.toml --intended-untracked=skills/requerimientos-socraticos/assets/design-proposals.schema.json --intended-untracked=skills/requerimientos-socraticos/assets/example.prd.json --intended-untracked=skills/requerimientos-socraticos/assets/interrogator-packet.schema.json --intended-untracked=skills/requerimientos-socraticos/assets/interview.schema.json --intended-untracked=skills/requerimientos-socraticos/assets/prd.schema.json --intended-untracked=skills/requerimientos-socraticos/references/integrity-boundary.md --intended-untracked=skills/requerimientos-socraticos/references/interrogation.md --intended-untracked=skills/requerimientos-socraticos/references/method.md --intended-untracked=skills/requerimientos-socraticos/references/research-design.md --intended-untracked=skills/requerimientos-socraticos/references/validation.md --intended-untracked=skills/requerimientos-socraticos/references/workflow.md --intended-untracked=skills/requerimientos-socraticos/scripts/requirements_guard.py --intended-untracked=skills/requerimientos-socraticos/scripts/validate_interview.py --intended-untracked=skills/requerimientos-socraticos/scripts/validate_prd.py --intended-untracked=skills/requerimientos-socraticos/tests/test_guard.py --intended-untracked=skills/requerimientos-socraticos/tests/test_interview.py --intended-untracked=skills/requerimientos-socraticos/validation.json --consent declined"
+    }
+  ],
+  "off_path": {
+    "note": "To turn reviews off for good, run 'gentle-ai review mode disable'.",
+    "command": "gentle-ai review mode disable"
+  }
+}

@@ -1,0 +1,31 @@
+{
+  "status": "UPLOADED_PRIVATE_PUBLIC_VISIBILITY_BLOCKED",
+  "verified_at": "2026-10-29T02:46:05.814Z",
+  "destination": "amaurijoseromerozavala-coder/requerimientos-socraticos-skill",
+  "url": "https://github.com/amaurijoseromerozavala-coder/requerimientos-socraticos-skill",
+  "version": "2.4.6",
+  "requested_visibility": "public",
+  "observed_visibility": "private",
+  "upload_confirmed": true,
+  "public_publication_confirmed": false,
+  "files_verified": 65,
+  "branch": "main",
+  "commit": "54ca8344789725a1e2602c7e2476c17a86b16a84",
+  "tree": "4c4097c1e4f122242e76289aaaf9ce13c0c8e78d",
+  "checks": {
+    "remote_head_matches_uploaded_commit": true,
+    "remote_tree_not_truncated": true,
+    "all_remote_blob_hashes_and_modes_match_reviewed_local_files": true,
+    "all_local_sha256_match_independent_review_manifest": true,
+    "gentle_ai_version": "4.2.0",
+    "rdd": "on"
+  },
+  "visibility_change": {
+    "http_status": 403,
+    "error": "Resource not accessible by integration",
+    "retried": false
+  },
+  "next_step": "Owner changes repository visibility in GitHub Settings > General > Danger Zone > Change repository visibility > Public.",
+  "settings_url": "https://github.com/amaurijoseromerozavala-coder/requerimientos-socraticos-skill/settings",
+  "scope": "Upload/readback verification only. No new native RDD receipt, CI, production deployment or physical hardware calibration."
+}

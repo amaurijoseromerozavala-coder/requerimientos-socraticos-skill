@@ -1,0 +1,48 @@
+.........................F.........F......F....E......
+======================================================================
+ERROR: test_success_does_not_authenticate_or_authorize (test_report.ReportChecks.test_success_does_not_authenticate_or_authorize)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/replica-gentle-ai/skills/qa-inquisidor/tests/test_report.py", line 239, in test_success_does_not_authenticate_or_authorize
+    self.assertEqual(r['authority_verification'], 'NOT_PERFORMED')
+                     ~^^^^^^^^^^^^^^^^^^^^^^^^^^
+KeyError: 'authority_verification'
+
+======================================================================
+FAIL: test_limitations_change_invalidates_judgment (test_report.ReportChecks.test_limitations_change_invalidates_judgment)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/replica-gentle-ai/skills/qa-inquisidor/tests/test_report.py", line 228, in test_limitations_change_invalidates_judgment
+    self.gap()
+  File "/workspace/replica-gentle-ai/skills/qa-inquisidor/tests/test_report.py", line 63, in gap
+    self.assertEqual(r['proposed_event'], 'RECORD_GAP_OR_STALE')
+AssertionError: 'RECORD_CURRENT_SUCCESS' != 'RECORD_GAP_OR_STALE'
+- RECORD_CURRENT_SUCCESS
++ RECORD_GAP_OR_STALE
+
+
+======================================================================
+FAIL: test_old_digest_is_not_current (test_report.ReportChecks.test_old_digest_is_not_current)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/replica-gentle-ai/skills/qa-inquisidor/tests/test_report.py", line 247, in test_old_digest_is_not_current
+    self.gap()
+  File "/workspace/replica-gentle-ai/skills/qa-inquisidor/tests/test_report.py", line 63, in gap
+    self.assertEqual(r['proposed_event'], 'RECORD_GAP_OR_STALE')
+AssertionError: 'RECORD_CURRENT_SUCCESS' != 'RECORD_GAP_OR_STALE'
+- RECORD_CURRENT_SUCCESS
++ RECORD_GAP_OR_STALE
+
+
+======================================================================
+FAIL: test_schema_version_is_bound (test_report.ReportChecks.test_schema_version_is_bound)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/replica-gentle-ai/skills/qa-inquisidor/tests/test_report.py", line 233, in test_schema_version_is_bound
+    self.assertNotEqual(before, qa.inputs_digest(self.doc))
+AssertionError: 'a1f1bee638d03a7c5ff3c1853f41a5c85bf8ba14fd8358ea4953020205c2fd5c' == 'a1f1bee638d03a7c5ff3c1853f41a5c85bf8ba14fd8358ea4953020205c2fd5c'
+
+----------------------------------------------------------------------
+Ran 54 tests in 0.169s
+
+FAILED (failures=3, errors=1)

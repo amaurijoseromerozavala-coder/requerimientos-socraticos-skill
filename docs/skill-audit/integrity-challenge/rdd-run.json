@@ -1,0 +1,261 @@
+{
+  "schema": "gentle-ai.review-integration.status/v9",
+  "contract": "gentle-ai.review-integration/v2",
+  "operation": "review.status",
+  "applicability": "current_target",
+  "authority": {
+    "version": "compact-v2",
+    "lineage_id": "review-5d232f3e231361be",
+    "state": "correction_required",
+    "generation": 1,
+    "revision": "sha256:775e1cade36e6b8f658864bdebea33b314860c6a1fbc017aca025a5184684096"
+  },
+  "action": "collect",
+  "replayability": "manual_action_required",
+  "frozen": {
+    "tier": "high",
+    "original_changed_lines": 693,
+    "correction_budget": 200
+  },
+  "target_identity": "sha256:f2bde76a6e6e47be9aca6c70c36f233b5b0239708289e334e39dac18120da73e",
+  "authority_target_identity": "sha256:944f7e08ae2fe6a45b6dc4cd4edcbfa30ec5b39fe357ed7728aca1bc173bd985",
+  "projection": {
+    "schema": "gentle-ai.review-integration.projection/v1",
+    "kind": "base-workspace-overlay",
+    "projection": "workspace",
+    "base_tree": "71b48824d9c70dbd04e9f66e3348569a606668cf",
+    "initial_review_tree": "a96d35828242f6f27807843f613cc546650f727b",
+    "current_candidate_tree": "64cd173d894280bcba5e73f29a9790a1bb5d0696",
+    "paths_digest": "sha256:15ed3322f5a404078c3a7ba0ef4910a183ec43f595f65fd4342d0db255ad4fa0",
+    "paths": [
+      "bin/gentle-ai",
+      "docs/skill-audit/integrity-challenge/ANALISIS.md",
+      "docs/skill-audit/integrity-challenge/guard-tests.stderr",
+      "docs/skill-audit/integrity-challenge/interview-tests.stderr",
+      "docs/skill-audit/integrity-challenge/red-baseline.json",
+      "skills/requerimientos-socraticos/SKILL.md",
+      "skills/requerimientos-socraticos/references/integrity-boundary.md",
+      "skills/requerimientos-socraticos/scripts/requirements_guard.py",
+      "skills/requerimientos-socraticos/tests/test_guard.py",
+      "skills/requerimientos-socraticos/validation.json"
+    ],
+    "intended_untracked": [
+      "bin/gentle-ai",
+      "docs/skill-audit/integrity-challenge/ANALISIS.md",
+      "docs/skill-audit/integrity-challenge/guard-tests.stderr",
+      "docs/skill-audit/integrity-challenge/interview-tests.stderr",
+      "docs/skill-audit/integrity-challenge/red-baseline.json",
+      "docs/skill-audit/requerimientos-repair/smoke/assessment-final.json",
+      "docs/skill-audit/requerimientos-repair/smoke/registro-skill-asistente.md",
+      "docs/skill-audit/requerimientos-repair/tests-green.stderr",
+      "skills/requerimientos-socraticos/SKILL.md",
+      "skills/requerimientos-socraticos/agents/requirements-interrogator.toml",
+      "skills/requerimientos-socraticos/assets/design-proposals.schema.json",
+      "skills/requerimientos-socraticos/assets/example.prd.json",
+      "skills/requerimientos-socraticos/assets/interrogator-packet.schema.json",
+      "skills/requerimientos-socraticos/assets/interview.schema.json",
+      "skills/requerimientos-socraticos/assets/prd.schema.json",
+      "skills/requerimientos-socraticos/references/integrity-boundary.md",
+      "skills/requerimientos-socraticos/references/interrogation.md",
+      "skills/requerimientos-socraticos/references/method.md",
+      "skills/requerimientos-socraticos/references/research-design.md",
+      "skills/requerimientos-socraticos/references/validation.md",
+      "skills/requerimientos-socraticos/references/workflow.md",
+      "skills/requerimientos-socraticos/scripts/requirements_guard.py",
+      "skills/requerimientos-socraticos/scripts/validate_interview.py",
+      "skills/requerimientos-socraticos/scripts/validate_prd.py",
+      "skills/requerimientos-socraticos/tests/test_guard.py",
+      "skills/requerimientos-socraticos/tests/test_interview.py",
+      "skills/requerimientos-socraticos/validation.json"
+    ],
+    "intended_untracked_proof": "sha256:72b91cf4196bd81c958d8d08be16671db2cabe647cbcd18b772601b931448815",
+    "initial_snapshot_identity": "sha256:944f7e08ae2fe6a45b6dc4cd4edcbfa30ec5b39fe357ed7728aca1bc173bd985",
+    "current_snapshot_identity": "sha256:f2bde76a6e6e47be9aca6c70c36f233b5b0239708289e334e39dac18120da73e"
+  },
+  "eligible_untracked_inventory": "sha256:14218b9a6207c5bede5c8a7b0670f6f288a9177c6b0906965e41bdd64c6163f4",
+  "repair": {
+    "schema": "gentle-ai.review-authority-repair-assessment/v1",
+    "status": "unsupported",
+    "counts": {
+      "lineages": 0,
+      "compact_lineages": 0,
+      "legacy_lineages": 0,
+      "events": 0,
+      "bytes": 0,
+      "eligible_candidates": 0,
+      "unsupported_lineages": 0,
+      "conflicts": 0
+    },
+    "supported_operations": [
+      "review/complete-fix",
+      "review/validate-fix"
+    ],
+    "authorization_schema": "gentle-ai.review-repair-authorization/v1"
+  },
+  "candidates": [],
+  "forecast": {
+    "horizon": "partial",
+    "steps": [
+      {
+        "step": 1,
+        "kind": "collect",
+        "reason_code": "targeted_validation_required",
+        "description": "Targeted validation run required for correction plan"
+      }
+    ]
+  },
+  "next_transition": {
+    "kind": "collect",
+    "reason_code": "targeted_validation_required",
+    "collect": {
+      "inputs": [
+        {
+          "name": "provider_targeted_validator",
+          "schema": "https://gentle-ai.dev/schema/review/validator/v1",
+          "capture_operation": "review.capture-validation",
+          "arguments": [
+            {
+              "name": "lineage",
+              "value": "review-5d232f3e231361be",
+              "token": "--lineage=review-5d232f3e231361be"
+            },
+            {
+              "name": "expected-revision",
+              "value": "sha256:93ba8eb469c1f5ef854ad5869deef8a524263d980f3124f9934f32c20e2a0b86",
+              "token": "--expected-revision=sha256:93ba8eb469c1f5ef854ad5869deef8a524263d980f3124f9934f32c20e2a0b86"
+            },
+            {
+              "name": "target",
+              "value": "sha256:119c0960a060cf01b66a5ae76d6376b2a6e71eb35ae7122ea4c0bfcd0a0ef033",
+              "token": "--target=sha256:119c0960a060cf01b66a5ae76d6376b2a6e71eb35ae7122ea4c0bfcd0a0ef033"
+            },
+            {
+              "name": "repository-context",
+              "value": "rctx2_0d9b5c06a33057aeb3ccf3151893622635b003307b7e54cfaf36a6aaffd79c57",
+              "token": "--repository-context=rctx2_0d9b5c06a33057aeb3ccf3151893622635b003307b7e54cfaf36a6aaffd79c57"
+            },
+            {
+              "name": "request-hash",
+              "value": "sha256:680fcc78a4af8d8376b17254c63280830a70ad4950d6e7c9f0bd9576f1bc8d31",
+              "token": "--request-hash=sha256:680fcc78a4af8d8376b17254c63280830a70ad4950d6e7c9f0bd9576f1bc8d31"
+            },
+            {
+              "name": "agent",
+              "value": "codex",
+              "token": "--agent=codex"
+            },
+            {
+              "name": "execute",
+              "value": "true",
+              "token": "--execute=true"
+            }
+          ],
+          "validation_request": {
+            "schema": "gentle-ai.review-targeted-validation-request/v1",
+            "request_hash": "sha256:680fcc78a4af8d8376b17254c63280830a70ad4950d6e7c9f0bd9576f1bc8d31",
+            "lineage_id": "review-5d232f3e231361be",
+            "expected_revision": "sha256:93ba8eb469c1f5ef854ad5869deef8a524263d980f3124f9934f32c20e2a0b86",
+            "target_identity": "sha256:944f7e08ae2fe6a45b6dc4cd4edcbfa30ec5b39fe357ed7728aca1bc173bd985",
+            "fix_finding_ids": [
+              "R3-monitor-gap"
+            ],
+            "policy_content": "Gentle AI native bounded review policy.\n\nOnly candidate-caused BLOCKER or CRITICAL findings may require correction. Pre-existing and base-only findings are follow-ups. One correction is bounded by the frozen original scope. Gates are informational and unmanaged; ordinary repository policy decides delivery.\n",
+            "fix_findings": [
+              {
+                "id": "R3-monitor-gap",
+                "lens": "reliability",
+                "location": "skills/requerimientos-socraticos/scripts/requirements_guard.py:109-116",
+                "severity": "CRITICAL",
+                "claim": "Existing subdirectories are watched only when traversal reaches them. While an earlier file is being copied or hashed, a concurrent writer can modify and restore a file in a later subdirectory without producing an event on any installed watch. The final inventory then matches the baseline and verification succeeds despite a mutation during the advertised observation window. Install watches throughout the existing hierarchy before beginning the bounded observation claim, and test mutation/restoration in a not-yet-traversed subtree.",
+                "proof_refs": [
+                  "skills/requerimientos-socraticos/scripts/requirements_guard.py:109-116 installs directory watches incrementally during depth-first traversal; directory watches do not recursively cover descendants.",
+                  "skills/requerimientos-socraticos/scripts/requirements_guard.py:130-140 reads earlier files before traversal reaches later directories.",
+                  "skills/requerimientos-socraticos/tests/test_guard.py:54-60 tests modification/restoration only after explicitly installing the affected directory's watch.",
+                  "docs/skill-audit/integrity-challenge/red-baseline.json:9 requires rejection of observed mutation-and-restore during the bounded monitored window."
+                ],
+                "evidence_class": "deterministic",
+                "causal_disposition": "introduced"
+              }
+            ],
+            "fix_classifications": [
+              {
+                "finding_id": "R3-monitor-gap",
+                "severity": "CRITICAL",
+                "class": "deterministic",
+                "causal_disposition": "introduced",
+                "proof": "skills/requerimientos-socraticos/scripts/requirements_guard.py:109-116 installs directory watches incrementally during depth-first traversal; directory watches do not recursively cover descendants.\nskills/requerimientos-socraticos/scripts/requirements_guard.py:130-140 reads earlier files before traversal reaches later directories.\nskills/requerimientos-socraticos/tests/test_guard.py:54-60 tests modification/restoration only after explicitly installing the affected directory's watch.\ndocs/skill-audit/integrity-challenge/red-baseline.json:9 requires rejection of observed mutation-and-restore during the bounded monitored window."
+              }
+            ],
+            "projection": "workspace",
+            "correction_candidate_tree": "64cd173d894280bcba5e73f29a9790a1bb5d0696",
+            "correction_target_identity": "sha256:119c0960a060cf01b66a5ae76d6376b2a6e71eb35ae7122ea4c0bfcd0a0ef033",
+            "correction_paths": [
+              "docs/skill-audit/integrity-challenge/ANALISIS.md",
+              "docs/skill-audit/integrity-challenge/guard-tests.stderr",
+              "skills/requerimientos-socraticos/references/integrity-boundary.md",
+              "skills/requerimientos-socraticos/scripts/requirements_guard.py",
+              "skills/requerimientos-socraticos/tests/test_guard.py",
+              "skills/requerimientos-socraticos/validation.json"
+            ],
+            "correction_paths_digest": "sha256:17399186cc4e7b48fac4f05862f1db7fd6c648d62211e07e88c9181b916e933e"
+          }
+        }
+      ]
+    }
+  },
+  "repository_context": {
+    "capability": "review.opaque_repository_context",
+    "handle": "rctx2_0d9b5c06a33057aeb3ccf3151893622635b003307b7e54cfaf36a6aaffd79c57",
+    "revision": "sha256:93ba8eb469c1f5ef854ad5869deef8a524263d980f3124f9934f32c20e2a0b86",
+    "target_identity": "sha256:119c0960a060cf01b66a5ae76d6376b2a6e71eb35ae7122ea4c0bfcd0a0ef033"
+  },
+  "validation_request": {
+    "schema": "gentle-ai.review-targeted-validation-request/v1",
+    "request_hash": "sha256:680fcc78a4af8d8376b17254c63280830a70ad4950d6e7c9f0bd9576f1bc8d31",
+    "lineage_id": "review-5d232f3e231361be",
+    "expected_revision": "sha256:93ba8eb469c1f5ef854ad5869deef8a524263d980f3124f9934f32c20e2a0b86",
+    "target_identity": "sha256:944f7e08ae2fe6a45b6dc4cd4edcbfa30ec5b39fe357ed7728aca1bc173bd985",
+    "fix_finding_ids": [
+      "R3-monitor-gap"
+    ],
+    "policy_content": "Gentle AI native bounded review policy.\n\nOnly candidate-caused BLOCKER or CRITICAL findings may require correction. Pre-existing and base-only findings are follow-ups. One correction is bounded by the frozen original scope. Gates are informational and unmanaged; ordinary repository policy decides delivery.\n",
+    "fix_findings": [
+      {
+        "id": "R3-monitor-gap",
+        "lens": "reliability",
+        "location": "skills/requerimientos-socraticos/scripts/requirements_guard.py:109-116",
+        "severity": "CRITICAL",
+        "claim": "Existing subdirectories are watched only when traversal reaches them. While an earlier file is being copied or hashed, a concurrent writer can modify and restore a file in a later subdirectory without producing an event on any installed watch. The final inventory then matches the baseline and verification succeeds despite a mutation during the advertised observation window. Install watches throughout the existing hierarchy before beginning the bounded observation claim, and test mutation/restoration in a not-yet-traversed subtree.",
+        "proof_refs": [
+          "skills/requerimientos-socraticos/scripts/requirements_guard.py:109-116 installs directory watches incrementally during depth-first traversal; directory watches do not recursively cover descendants.",
+          "skills/requerimientos-socraticos/scripts/requirements_guard.py:130-140 reads earlier files before traversal reaches later directories.",
+          "skills/requerimientos-socraticos/tests/test_guard.py:54-60 tests modification/restoration only after explicitly installing the affected directory's watch.",
+          "docs/skill-audit/integrity-challenge/red-baseline.json:9 requires rejection of observed mutation-and-restore during the bounded monitored window."
+        ],
+        "evidence_class": "deterministic",
+        "causal_disposition": "introduced"
+      }
+    ],
+    "fix_classifications": [
+      {
+        "finding_id": "R3-monitor-gap",
+        "severity": "CRITICAL",
+        "class": "deterministic",
+        "causal_disposition": "introduced",
+        "proof": "skills/requerimientos-socraticos/scripts/requirements_guard.py:109-116 installs directory watches incrementally during depth-first traversal; directory watches do not recursively cover descendants.\nskills/requerimientos-socraticos/scripts/requirements_guard.py:130-140 reads earlier files before traversal reaches later directories.\nskills/requerimientos-socraticos/tests/test_guard.py:54-60 tests modification/restoration only after explicitly installing the affected directory's watch.\ndocs/skill-audit/integrity-challenge/red-baseline.json:9 requires rejection of observed mutation-and-restore during the bounded monitored window."
+      }
+    ],
+    "projection": "workspace",
+    "correction_candidate_tree": "64cd173d894280bcba5e73f29a9790a1bb5d0696",
+    "correction_target_identity": "sha256:119c0960a060cf01b66a5ae76d6376b2a6e71eb35ae7122ea4c0bfcd0a0ef033",
+    "correction_paths": [
+      "docs/skill-audit/integrity-challenge/ANALISIS.md",
+      "docs/skill-audit/integrity-challenge/guard-tests.stderr",
+      "skills/requerimientos-socraticos/references/integrity-boundary.md",
+      "skills/requerimientos-socraticos/scripts/requirements_guard.py",
+      "skills/requerimientos-socraticos/tests/test_guard.py",
+      "skills/requerimientos-socraticos/validation.json"
+    ],
+    "correction_paths_digest": "sha256:17399186cc4e7b48fac4f05862f1db7fd6c648d62211e07e88c9181b916e933e"
+  }
+}

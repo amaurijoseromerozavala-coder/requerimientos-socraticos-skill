@@ -1,0 +1,12 @@
+test_cli_invalid_profiles_return_json_without_traceback (test_activation_preflight.ActivationPreflightTests.test_cli_invalid_profiles_return_json_without_traceback) ... ok
+test_explicit_profile_must_fit_roles_and_headroom (test_activation_preflight.ActivationPreflightTests.test_explicit_profile_must_fit_roles_and_headroom) ... ok
+test_hard_limit_is_checked_per_role (test_activation_preflight.ActivationPreflightTests.test_hard_limit_is_checked_per_role) ... ok
+test_owned_cli_baseline_blocks_but_external_api_baseline_is_not_caller_gate (test_activation_preflight.ActivationPreflightTests.test_owned_cli_baseline_blocks_but_external_api_baseline_is_not_caller_gate) ... ok
+test_selects_headroom_profile_and_reports_controls_pending (test_activation_preflight.ActivationPreflightTests.test_selects_headroom_profile_and_reports_controls_pending) ... ok
+test_unknown_headroom_is_structured_and_blocks_workers (test_activation_preflight.ActivationPreflightTests.test_unknown_headroom_is_structured_and_blocks_workers) ... ok
+test_unknown_inherited_hard_and_cli_baseline_block (test_activation_preflight.ActivationPreflightTests.test_unknown_inherited_hard_and_cli_baseline_block) ... ok
+
+----------------------------------------------------------------------
+Ran 7 tests in 0.050s
+
+OK

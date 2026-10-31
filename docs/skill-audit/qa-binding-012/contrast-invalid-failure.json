@@ -1,0 +1,33 @@
+{
+  "method": "Synthetic fixtures; FAIL is a declared label, not an observed application failure",
+  "results": [
+    {
+      "case": "contradictory_result",
+      "exit_code": 2,
+      "stdout": {
+        "execution_status": "COMPLETED",
+        "document_validation": "INVALID",
+        "proposed_event": "REJECT_INPUT",
+        "error": "InvalidReport: CONTRADICTORY_RESULT",
+        "authority_verification": "NOT_PERFORMED",
+        "execution_authorized": false,
+        "execution_performed": false
+      },
+      "stderr": ""
+    },
+    {
+      "case": "failure_with_adjacent_missing_reference",
+      "exit_code": 2,
+      "stdout": {
+        "execution_status": "COMPLETED",
+        "document_validation": "INVALID",
+        "proposed_event": "REJECT_INPUT",
+        "error": "InvalidReport: MISSING_EVIDENCE",
+        "authority_verification": "NOT_PERFORMED",
+        "execution_authorized": false,
+        "execution_performed": false
+      },
+      "stderr": ""
+    }
+  ]
+}

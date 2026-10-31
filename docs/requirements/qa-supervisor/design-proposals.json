@@ -1,0 +1,55 @@
+{
+  "schema_version": "2.0.0",
+  "project": "qa-supervisor-local",
+  "status": "REVIEWED",
+  "proposals": [
+    {
+      "id": "P1",
+      "problem": "Ausencia de observador de ejecución y contrato externo.",
+      "requirement_or_topic_ids": [
+        "T-002"
+      ],
+      "alternatives": [
+        {
+          "id": "LAUNCHER",
+          "description": "Invocador local de checker fijo, hijo propio, captura y parada acotadas.",
+          "source_ids": [
+            "S-QA"
+          ],
+          "tradeoffs": [
+            "Permite observar directamente terminación; añade gestión de procesos y límites."
+          ]
+        },
+        {
+          "id": "RECEIVER",
+          "description": "Analizar recibos externos sin iniciar procesos.",
+          "source_ids": [
+            "S-QA"
+          ],
+          "tradeoffs": [
+            "Menos gestión local; no observa por sí mismo ejecución ni señales."
+          ]
+        }
+      ],
+      "criteria": [
+        "Control real del proceso",
+        "Alcance mínimo",
+        "Coste y evidencia de terminación"
+      ],
+      "hypothesis": "Un invocador acotado reduce resultados incompletos interpretados como favorables.",
+      "falsifier": "La salida ausente o incoherente es aceptada como evaluación favorable.",
+      "status": "ACCEPTED",
+      "decision_source_ids": [
+        "S-HUMAN-LOCAL"
+      ]
+    }
+  ],
+  "no_change_reason": null,
+  "source_ids": [
+    "S-QA",
+    "S-HUMAN-LOCAL"
+  ],
+  "limitations": [
+    "Frontera elegida por humano, diseño documental contrastado; no implementación, CI ni calibración."
+  ]
+}

@@ -1,0 +1,250 @@
+{
+  "status": "INTERROGATING",
+  "decisions": [
+    {
+      "id": "INT-D01",
+      "question_context": "¿Confirmas A+B+C al diseño con activación progresiva, sin instalaciones, implementación ni CI/producción?",
+      "raw_answer": "Confirmo",
+      "meaning": "A+B+C incluidas en diseño; activación progresiva; sin autorización operativa.",
+      "scope": "DESIGN_ONLY",
+      "source": "current conversation, ordered user turns",
+      "status": "CONFIRMED",
+      "note": null
+    },
+    {
+      "id": "INT-D02",
+      "question_context": "¿Dónde coordinar: coordinador separado, dentro de requisitos o ampliando supervisor?",
+      "raw_answer": "Ampliar el supervisor",
+      "meaning": "Ampliar el supervisor como coordinador del esquema integrado.",
+      "scope": "DESIGN_ONLY",
+      "source": "current conversation, ordered user turns",
+      "status": "CONFIRMED",
+      "note": null
+    },
+    {
+      "id": "INT-D03",
+      "question_context": "¿Ejecución mediante adaptadores registrados, comandos generales o solo checker actual?",
+      "raw_answer": "A",
+      "meaning": "Adaptadores registrados con contratos explícitos.",
+      "scope": "DESIGN_ONLY",
+      "source": "current conversation, ordered user turns",
+      "status": "INTERPRETATION_EXPLICITLY_PRESENTED",
+      "note": "La pregunta numeraba1/2/3; el asistente explicitó A=primera opción. Esta interpretación se conserva como tal; no añade capacidades no enumeradas."
+    },
+    {
+      "id": "INT-D04",
+      "question_context": "¿Cómo admitir adaptador: A revisión técnica y aprobación humana de versión/permisos; B automática; C lista fija?",
+      "raw_answer": "A",
+      "meaning": "Revisión técnica y aprobación humana de versión y permisos antes de habilitar.",
+      "scope": "DESIGN_ONLY",
+      "source": "current conversation, ordered user turns",
+      "status": "CONFIRMED",
+      "note": null
+    },
+    {
+      "id": "INT-D05",
+      "question_context": "¿A ejecutar dentro de tarea autorizada; B permiso cada ejecución; C autonomía por política?",
+      "raw_answer": "A",
+      "meaning": "Ejecutar dentro de tarea ya autorizada, sin repetir permiso; ampliaciones vuelven al humano.",
+      "scope": "DESIGN_ONLY",
+      "source": "current conversation, ordered user turns",
+      "status": "CONFIRMED",
+      "note": null
+    },
+    {
+      "id": "INT-D06",
+      "question_context": "¿A una ejecución supervisada; B concurrencia adaptativa; C concurrencia fija configurable?",
+      "raw_answer": "A",
+      "meaning": "Una ejecución supervisada a la vez; no implica un único hilo/subproceso interno.",
+      "scope": "DESIGN_ONLY",
+      "source": "current conversation, ordered user turns",
+      "status": "CONFIRMED",
+      "note": null
+    },
+    {
+      "id": "INT-D07",
+      "question_context": "¿A detener tarea sin reintentos, comprobar limpieza; B reintentos idempotentes; C bloqueo global ante todo fallo?",
+      "raw_answer": "A",
+      "meaning": "Registrar fallo, detener tarea y no reintentar automáticamente; otra ejecución exige terminación y limpieza requerida confirmadas.",
+      "scope": "DESIGN_ONLY",
+      "source": "current conversation, ordered user turns",
+      "status": "CONFIRMED",
+      "note": null
+    },
+    {
+      "id": "INT-D08",
+      "question_context": "¿Dónde escribir: A espacio aislado; B proyecto directamente; C solo propuestas?",
+      "raw_answer": "A",
+      "meaning": "Adaptadores con escritura trabajan en espacio aislado; incorporación al proyecto es una operación explícita.",
+      "scope": "DESIGN_ONLY",
+      "source": "current conversation, ordered user turns",
+      "status": "CONFIRMED",
+      "note": null
+    },
+    {
+      "id": "INT-D09",
+      "question_context": "¿Ante fallo: A conservar cambios parciales y evidencias; B eliminar parciales; C política por adaptador?",
+      "raw_answer": "A",
+      "meaning": "Conservar cambios parciales y evidencias aislados, sin incorporarlos al proyecto; presupuesto de almacenamiento pendiente.",
+      "scope": "DESIGN_ONLY",
+      "source": "current conversation, ordered user turns",
+      "status": "CONFIRMED",
+      "note": null
+    },
+    {
+      "id": "INT-D10",
+      "question_context": "¿Incorporación: A aprobación humana por conjunto; B automática dentro de tarea autorizada y criterios cumplidos; C exportación manual?",
+      "raw_answer": "B",
+      "meaning": "Incorporación automática dentro de tarea previamente autorizada cuando todos sus criterios verificables se cumplan; sin permiso implícito de commit/push/despliegue.",
+      "scope": "DESIGN_ONLY",
+      "source": "current conversation, ordered user turns",
+      "status": "CONFIRMED",
+      "note": null
+    },
+    {
+      "id": "INT-D11",
+      "question_context": "¿Si cambia el proyecto base: A detener y reevaluar; B integrar automáticamente y repetir verificaciones?",
+      "raw_answer": "A",
+      "meaning": "Detener incorporación, conservar resultado aislado y reevaluar sobre nueva base; no reutilizar evidencia afectada como vigente.",
+      "scope": "DESIGN_ONLY",
+      "source": "current conversation, ordered user turns",
+      "status": "CONFIRMED",
+      "note": null
+    },
+    {
+      "id": "INT-D12",
+      "question_context": "¿Recuperación parcial: A restauración automática condicionada; B intervención humana siempre?",
+      "raw_answer": "A",
+      "meaning": "Restaurar automáticamente solo con base recuperable y sin sobrescribir cambios ajenos; si no se puede comprobar, bloquear y escalar.",
+      "scope": "DESIGN_ONLY",
+      "source": "current conversation, ordered user turns",
+      "status": "CONFIRMED",
+      "note": null
+    },
+    {
+      "id": "INT-D13",
+      "question_context": "¿Almacenamiento: A presupuesto por tarea y límite total; B solo límite total?",
+      "raw_answer": "A",
+      "meaning": "Presupuesto por tarea y límite total del supervisor; comprobar ambos antes de iniciar; no borrar automáticamente trabajos conservados.",
+      "scope": "DESIGN_ONLY",
+      "source": "current conversation, ordered user turns",
+      "status": "CONFIRMED",
+      "note": null
+    },
+    {
+      "id": "INT-D14",
+      "question_context": "¿Límite total: A1GiB, B2GiB, C otro valor?",
+      "raw_answer": "C pero la se ajusta un presupuesto y si se excede se pide autorización para ampliar previo a un prefitgh que confirme disponibilidad del espacio requerido para no autorizar sin que exista la disponibilidad real",
+      "meaning": "Presupuesto ajustable; ampliación requiere autorización humana precedida por preflight que compruebe disponibilidad requerida. No se seleccionó una cifra fija.",
+      "scope": "DESIGN_ONLY",
+      "source": "current conversation, ordered user turns",
+      "status": "CONFIRMED",
+      "note": null
+    },
+    {
+      "id": "INT-D15",
+      "question_context": "¿Ampliación de tarea y total: A solicitud conjunta con ambos incrementos explícitos; B aumento global implícito?",
+      "raw_answer": "A",
+      "meaning": "Una solicitud enumera ambos cambios cuando sean necesarios; aprobación explícita de cada monto, sin ampliación global implícita.",
+      "scope": "DESIGN_ONLY",
+      "source": "current conversation, ordered user turns",
+      "status": "CONFIRMED",
+      "note": null
+    },
+    {
+      "id": "INT-D16",
+      "question_context": "¿Presupuesto inicial: A supervisor estima, comprueba y lo incluye en autorización de tarea; B monto indicado por humano?",
+      "raw_answer": "A",
+      "meaning": "Supervisor propone estimación explicada, comprueba disponibilidad e incluye presupuesto inicial en la autorización de tarea.",
+      "scope": "DESIGN_ONLY",
+      "source": "current conversation, ordered user turns",
+      "status": "CONFIRMED",
+      "note": null
+    },
+    {
+      "id": "INT-D17",
+      "question_context": "¿Parte material no estimable: A bloquear hasta información suficiente; B proponer exploración acotada autorizada?",
+      "raw_answer": "B",
+      "meaning": "Proponer exploración con presupuesto propio y sin modificar proyecto principal; requiere autorización suficiente; tarea principal bloqueada mientras falte estimación.",
+      "scope": "DESIGN_ONLY",
+      "source": "current conversation, ordered user turns",
+      "status": "CONFIRMED",
+      "note": null
+    },
+    {
+      "id": "INT-D18",
+      "question_context": "¿Exploración: A inspección y muestras pequeñas con adaptadores habilitados, sin código del proyecto; B comandos del proyecto aislados y autorizados?",
+      "raw_answer": "A",
+      "meaning": "Exploración limitada a inspección y muestras pequeñas mediante adaptadores habilitados; no ejecutar código del proyecto.",
+      "scope": "DESIGN_ONLY",
+      "source": "current conversation, ordered user turns",
+      "status": "CONFIRMED",
+      "note": null
+    },
+    {
+      "id": "INT-D19",
+      "question_context": "¿Exploración agota presupuesto: A detener y declarar desconocidos; B solicitar ampliación previa disponibilidad?",
+      "raw_answer": "B",
+      "meaning": "Detener exploración al agotar presupuesto y preparar ampliación tras preflight; requiere nueva autorización antes de continuar.",
+      "scope": "DESIGN_ONLY",
+      "source": "current conversation, ordered user turns",
+      "status": "CONFIRMED",
+      "note": null
+    },
+    {
+      "id": "INT-D20",
+      "question_context": "¿Revocación durante ejecución: A parada controlada; B terminar unidad en curso sin iniciar otra?",
+      "raw_answer": "B",
+      "meaning": "Revocación diferida: permite terminar la unidad en curso, sin iniciar otra; no amplía alcance, recursos ni permisos.",
+      "scope": "DESIGN_ONLY",
+      "source": "current conversation, ordered user turns",
+      "status": "CONFIRMED",
+      "note": "No redefine fallos, límites o recuperación; incorporación post-revocación pendiente de precisión."
+    },
+    {
+      "id": "INT-D21",
+      "question_context": "¿Unidad en curso: A una invocación de adaptador; B tarea completa con varias invocaciones?",
+      "raw_answer": "B",
+      "meaning": "La unidad protegida por revocación diferida es la tarea completa en curso, incluidas varias invocaciones dentro de su autorización existente.",
+      "scope": "DESIGN_ONLY",
+      "source": "current conversation, ordered user turns",
+      "status": "CONFIRMED",
+      "note": "No redefine fallos, límites o recuperación; incorporación post-revocación pendiente de precisión."
+    },
+    {
+      "id": "INT-D22",
+      "question_context": "Tras revocación diferida: A conservar resultados aislados y pedir nueva autorización para incorporar; B incorporación automática originalmente autorizada.",
+      "raw_answer": "A",
+      "meaning": "La tarea puede terminar tras revocación diferida pero sus resultados permanecen aislados; incorporación requiere nueva autorización aunque los criterios técnicos pasen.",
+      "scope": "DESIGN_ONLY",
+      "source": "current conversation, ordered user turns",
+      "status": "CONFIRMED",
+      "note": "Excepción a INT-D10 para revocación diferida; no reanuda automáticamente ni declara capacidad implementada."
+    },
+    {
+      "id": "INT-D23",
+      "question_context": "Revocación cuando la incorporación ya comenzó: A terminar incorporación iniciada; B detener nuevas escrituras y aplicar recuperación condicionada.",
+      "raw_answer": "B",
+      "meaning": "Detener nuevas escrituras de incorporación; restaurar solo cuando pueda verificarse base recuperable y ausencia de sobrescritura de cambios ajenos; si no, bloquear y pedir intervención.",
+      "scope": "DESIGN_ONLY",
+      "source": "current conversation, latest user selection",
+      "status": "CONFIRMED",
+      "note": "Las escrituras de recuperación autorizadas se distinguen de continuar la incorporación. No garantiza interrupción instantánea de operaciones ya emitidas."
+    }
+  ],
+  "not_authorized": [
+    "installation",
+    "implementation",
+    "CI",
+    "production"
+  ],
+  "open_dimensions": [
+    "estimation method and margins by adapter, including exploratory budget bootstrap",
+    "reserve/headroom and quota enforcement mechanism",
+    "per-adapter contracts and budgets",
+    "exact termination and required-cleanup evidence for extended adapters",
+    "adapter update/revocation lifecycle",
+    "observable criteria and controlled atomicity for incorporation"
+  ],
+  "history": "Prior checker-only PRD is baseline, not silently overwritten."
+}

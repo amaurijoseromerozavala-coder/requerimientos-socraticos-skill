@@ -1,0 +1,136 @@
+{
+  "schema": "gentle-ai.review-integration.start/v4",
+  "contract": "gentle-ai.review-integration/v2",
+  "operation": "review.start",
+  "action": "created",
+  "lenses_required": true,
+  "lineage_id": "review-615572b011759538",
+  "state": "reviewing",
+  "risk_level": "medium",
+  "selected_lenses": [
+    "review-resilience",
+    "review-reliability"
+  ],
+  "projection": "workspace",
+  "target_mode": "base-workspace-overlay",
+  "target_identity": "sha256:bc55626f42805c8f9cb97349463956daa12526758816cd775f7b2c9ad26fe3f6",
+  "base_tree": "8b05a201b816ef7e5f90151fd209b4a4ba554019",
+  "candidate_tree": "857f21f03303ba98e02ed8497ed6006ad8a03bb3",
+  "changed_files": 6,
+  "changed_lines": 102,
+  "correction_budget": 51,
+  "risk_reasons": [
+    {
+      "code": "configuration_change",
+      "path": "docs/requirements/qa-supervisor/closure-proposal.json"
+    }
+  ],
+  "artifact_subjects": [
+    {
+      "schema": "gentle-ai.review-artifact-subject/v2",
+      "subject_hash": "sha256:5381f36c64039d84a410ebfc43fbe1add1c68ec92a1e94c2ed6bf84d4cd4a843",
+      "lineage_id": "review-615572b011759538",
+      "authority_revision": "sha256:35e10d8ee04cab43e8e3f2935be0dacbbc7d7fec78c55b5cb5606a76192baba4",
+      "target_identity": "sha256:bc55626f42805c8f9cb97349463956daa12526758816cd775f7b2c9ad26fe3f6",
+      "base_tree": "8b05a201b816ef7e5f90151fd209b4a4ba554019",
+      "candidate_tree": "857f21f03303ba98e02ed8497ed6006ad8a03bb3",
+      "changed_path_manifest_sha256": "sha256:5fb1b52fba5e2239643e500ee9ff8c6ece70f29aee2891bb9461069317d29c6f",
+      "lens": "review-resilience",
+      "selected_order": 0
+    },
+    {
+      "schema": "gentle-ai.review-artifact-subject/v2",
+      "subject_hash": "sha256:fd000c1bfb86cea0493c6352112f0c50db4923d0fc92254f1843bf02468ba898",
+      "lineage_id": "review-615572b011759538",
+      "authority_revision": "sha256:35e10d8ee04cab43e8e3f2935be0dacbbc7d7fec78c55b5cb5606a76192baba4",
+      "target_identity": "sha256:bc55626f42805c8f9cb97349463956daa12526758816cd775f7b2c9ad26fe3f6",
+      "base_tree": "8b05a201b816ef7e5f90151fd209b4a4ba554019",
+      "candidate_tree": "857f21f03303ba98e02ed8497ed6006ad8a03bb3",
+      "changed_path_manifest_sha256": "sha256:5fb1b52fba5e2239643e500ee9ff8c6ece70f29aee2891bb9461069317d29c6f",
+      "lens": "review-reliability",
+      "selected_order": 1
+    }
+  ],
+  "changed_path_manifest": [
+    {"path":"docs/requirements/qa-supervisor/PRD.md","status":"M","old_mode":"100644","new_mode":"100644","deleted":false,"type_changed":false,"mode_only":false,"intended_untracked":true},
+    {"path":"docs/requirements/qa-supervisor/closure-proposal.json","status":"M","old_mode":"100644","new_mode":"100644","deleted":false,"type_changed":false,"mode_only":false,"intended_untracked":true},
+    {"path":"docs/requirements/qa-supervisor/prd-draft.json","status":"M","old_mode":"100644","new_mode":"100644","deleted":false,"type_changed":false,"mode_only":false,"intended_untracked":true},
+    {"path":"docs/requirements/qa-supervisor/propuesta-cierre.md","status":"M","old_mode":"100644","new_mode":"100644","deleted":false,"type_changed":false,"mode_only":false,"intended_untracked":true},
+    {"path":"docs/requirements/qa-supervisor/recovery-contract.json","status":"M","old_mode":"100644","new_mode":"100644","deleted":false,"type_changed":false,"mode_only":false,"intended_untracked":true},
+    {"path":"docs/requirements/qa-supervisor/retention-change.json","status":"A","old_mode":"000000","new_mode":"100644","deleted":false,"type_changed":false,"mode_only":false,"intended_untracked":true}
+  ],
+  "repository_context": {
+    "capability": "review.opaque_repository_context",
+    "handle": "rctx2_a151215b207d7649fbe827921a29230edb1e1fb239d73a9f9f3808dab5fe823d",
+    "revision": "sha256:35e10d8ee04cab43e8e3f2935be0dacbbc7d7fec78c55b5cb5606a76192baba4",
+    "target_identity": "sha256:bc55626f42805c8f9cb97349463956daa12526758816cd775f7b2c9ad26fe3f6"
+  },
+  "next_transition": {
+    "kind": "execute",
+    "reason_code": "review_status_required",
+    "execute": {
+      "operation": "review.status",
+      "command": "gentle-ai review status --contract=gentle-ai.review-integration/v2 --next-transition=true --lineage=review-615572b011759538 --repository-context=rctx2_a151215b207d7649fbe827921a29230edb1e1fb239d73a9f9f3808dab5fe823d --agent=codex --base-ref=8b05a201b816ef7e5f90151fd209b4a4ba554019 --workspace-overlay=true",
+      "arguments": [
+        {
+          "name": "contract",
+          "value": "gentle-ai.review-integration/v2",
+          "token": "--contract=gentle-ai.review-integration/v2"
+        },
+        {
+          "name": "next-transition",
+          "value": "true",
+          "token": "--next-transition=true"
+        },
+        {
+          "name": "lineage",
+          "value": "review-615572b011759538",
+          "token": "--lineage=review-615572b011759538"
+        },
+        {
+          "name": "repository-context",
+          "value": "rctx2_a151215b207d7649fbe827921a29230edb1e1fb239d73a9f9f3808dab5fe823d",
+          "token": "--repository-context=rctx2_a151215b207d7649fbe827921a29230edb1e1fb239d73a9f9f3808dab5fe823d"
+        },
+        {
+          "name": "agent",
+          "value": "codex",
+          "token": "--agent=codex"
+        },
+        {
+          "name": "base-ref",
+          "value": "8b05a201b816ef7e5f90151fd209b4a4ba554019",
+          "token": "--base-ref=8b05a201b816ef7e5f90151fd209b4a4ba554019"
+        },
+        {
+          "name": "workspace-overlay",
+          "value": "true",
+          "token": "--workspace-overlay=true"
+        }
+      ],
+      "selector_arguments": [
+        {
+          "name": "base-ref",
+          "value": "8b05a201b816ef7e5f90151fd209b4a4ba554019",
+          "token": "--base-ref=8b05a201b816ef7e5f90151fd209b4a4ba554019"
+        },
+        {
+          "name": "workspace-overlay",
+          "value": "true",
+          "token": "--workspace-overlay=true"
+        }
+      ],
+      "preconditions": [
+        {
+          "name": "state",
+          "value": "reviewing"
+        }
+      ],
+      "binding": {
+        "lineage_id": "review-615572b011759538",
+        "revision": "sha256:35e10d8ee04cab43e8e3f2935be0dacbbc7d7fec78c55b5cb5606a76192baba4",
+        "target_identity": "sha256:bc55626f42805c8f9cb97349463956daa12526758816cd775f7b2c9ad26fe3f6"
+      }
+    }
+  }
+}

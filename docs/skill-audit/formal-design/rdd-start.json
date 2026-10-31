@@ -1,0 +1,38 @@
+{
+  "schema": "gentle-ai.review-integration.consent/v3",
+  "contract": "gentle-ai.review-integration/v2",
+  "operation": "review.start",
+  "action": "consent_required",
+  "agent": "codex",
+  "blocking": true,
+  "target_identity": "sha256:5838ec14a91ebc98ea34f257531bad48cbd5db098f21a9c85a9578057a0dd070",
+  "projection": "workspace",
+  "risk_level": "medium",
+  "changed_files": 4,
+  "changed_lines": 387,
+  "headline": "Gentle AI can review this change before you call it done.",
+  "reason": "Review can help detect regressions in these changes.",
+  "value": "Reviewing takes a little longer and makes the result safer.",
+  "risk_evidence": [
+    "this change is not purely passive documentation, so it gets one consolidated review.",
+    "a configuration change in docs/design/requirements-formal-pipeline/design-proposal.json"
+  ],
+  "choices": [
+    {
+      "answer": "granted",
+      "label": "Review this change",
+      "effect": "Reviews only this change; later medium- or high-risk changes ask again, and delivery needs separate approval.",
+      "invocation": "gentle-ai review start --contract gentle-ai.review-integration/v2 --cwd /workspace/replica-gentle-ai --target sha256:5838ec14a91ebc98ea34f257531bad48cbd5db098f21a9c85a9578057a0dd070 --target-evidence v1:base-workspace-overlay:workspace:cab89ddb88f3426ed46b17cbe185bb4f17dacaed:829209950116de6407763eb32214d16d8ce8dcd3:sha256:6d95f891751907e3e7f2341c96f610017a5fe9dac0a9a4b513424b84f4f5744a --projection workspace --agent codex --lineage review-7fefdd36c985b71b --base-ref cab89ddb88f3426ed46b17cbe185bb4f17dacaed --workspace-overlay --untracked-scope=select --expected-untracked-inventory=sha256:66d568f9188c7940cb59b3b00f6201cd8add9513fdc7fbf44864e0fa962ac898 --intended-untracked=AGENTS.md --intended-untracked=docs/compliance/openai-codex-cloud.md --intended-untracked=docs/design/requirements-formal-pipeline/FUENTES.md --intended-untracked=docs/design/requirements-formal-pipeline/PROPUESTA.md --intended-untracked=docs/design/requirements-formal-pipeline/REVISION-ARQUITECTURA.md --intended-untracked=docs/design/requirements-formal-pipeline/design-proposal.json --intended-untracked=docs/requirements/qa-inquisidor-v2/PRD.md --intended-untracked=docs/requirements/qa-inquisidor-v2/analizar-modelo.py --intended-untracked=docs/requirements/qa-inquisidor-v2/casos-documentales.json --intended-untracked=docs/requirements/qa-inquisidor-v2/contrato-evidencia-propuesto.md --intended-untracked=docs/requirements/qa-inquisidor-v2/fsm-propuesta.json --intended-untracked=docs/requirements/qa-inquisidor-v2/propuesta-prd.json --intended-untracked=docs/requirements/qa-inquisidor-v2/registro-skill-asistente.json --intended-untracked=docs/requirements/qa-inquisidor-v2/registro-skill-asistente.md --intended-untracked=docs/requirements/qa-inquisidor-v2/resultado-modelo.json --intended-untracked=docs/requirements/qa-inquisidor/PRD.md --intended-untracked=docs/requirements/qa-inquisidor/prd.json --intended-untracked=docs/skill-audit/qa-claims-followup/RESULTADO.md --intended-untracked=docs/skill-audit/qa-claims-followup/bounded-observation.json --intended-untracked=docs/skill-audit/qa-claims-followup/integrity.json --intended-untracked=docs/skill-audit/qa-claims-followup/scratch-tests.log --intended-untracked=docs/skill-audit/qa-claims-followup/sealed-tests.log --intended-untracked=docs/skill-audit/qa-output-reassessment/ANALISIS.md --intended-untracked=docs/skill-audit/qa-output-reassessment/sources.json --consent granted"
+    },
+    {
+      "answer": "declined",
+      "label": "Skip this time",
+      "effect": "Skips only this change; no review record is created, and future reviews stay enabled.",
+      "invocation": "gentle-ai review start --contract gentle-ai.review-integration/v2 --cwd /workspace/replica-gentle-ai --target sha256:5838ec14a91ebc98ea34f257531bad48cbd5db098f21a9c85a9578057a0dd070 --target-evidence v1:base-workspace-overlay:workspace:cab89ddb88f3426ed46b17cbe185bb4f17dacaed:829209950116de6407763eb32214d16d8ce8dcd3:sha256:6d95f891751907e3e7f2341c96f610017a5fe9dac0a9a4b513424b84f4f5744a --projection workspace --agent codex --lineage review-7fefdd36c985b71b --base-ref cab89ddb88f3426ed46b17cbe185bb4f17dacaed --workspace-overlay --untracked-scope=select --expected-untracked-inventory=sha256:66d568f9188c7940cb59b3b00f6201cd8add9513fdc7fbf44864e0fa962ac898 --intended-untracked=AGENTS.md --intended-untracked=docs/compliance/openai-codex-cloud.md --intended-untracked=docs/design/requirements-formal-pipeline/FUENTES.md --intended-untracked=docs/design/requirements-formal-pipeline/PROPUESTA.md --intended-untracked=docs/design/requirements-formal-pipeline/REVISION-ARQUITECTURA.md --intended-untracked=docs/design/requirements-formal-pipeline/design-proposal.json --intended-untracked=docs/requirements/qa-inquisidor-v2/PRD.md --intended-untracked=docs/requirements/qa-inquisidor-v2/analizar-modelo.py --intended-untracked=docs/requirements/qa-inquisidor-v2/casos-documentales.json --intended-untracked=docs/requirements/qa-inquisidor-v2/contrato-evidencia-propuesto.md --intended-untracked=docs/requirements/qa-inquisidor-v2/fsm-propuesta.json --intended-untracked=docs/requirements/qa-inquisidor-v2/propuesta-prd.json --intended-untracked=docs/requirements/qa-inquisidor-v2/registro-skill-asistente.json --intended-untracked=docs/requirements/qa-inquisidor-v2/registro-skill-asistente.md --intended-untracked=docs/requirements/qa-inquisidor-v2/resultado-modelo.json --intended-untracked=docs/requirements/qa-inquisidor/PRD.md --intended-untracked=docs/requirements/qa-inquisidor/prd.json --intended-untracked=docs/skill-audit/qa-claims-followup/RESULTADO.md --intended-untracked=docs/skill-audit/qa-claims-followup/bounded-observation.json --intended-untracked=docs/skill-audit/qa-claims-followup/integrity.json --intended-untracked=docs/skill-audit/qa-claims-followup/scratch-tests.log --intended-untracked=docs/skill-audit/qa-claims-followup/sealed-tests.log --intended-untracked=docs/skill-audit/qa-output-reassessment/ANALISIS.md --intended-untracked=docs/skill-audit/qa-output-reassessment/sources.json --consent declined"
+    }
+  ],
+  "off_path": {
+    "note": "To turn reviews off for good, run 'gentle-ai review mode disable'.",
+    "command": "gentle-ai review mode disable"
+  }
+}

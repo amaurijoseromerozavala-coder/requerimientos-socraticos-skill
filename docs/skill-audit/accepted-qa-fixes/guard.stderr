@@ -1,0 +1,28 @@
+test_added_file (__main__.GuardTests.test_added_file) ... ok
+test_budget (__main__.GuardTests.test_budget) ... ok
+test_content (__main__.GuardTests.test_content) ... ok
+test_corrupt_baseline (__main__.GuardTests.test_corrupt_baseline) ... ok
+test_corrupt_document_blocks (__main__.GuardTests.test_corrupt_document_blocks) ... ok
+test_deleted_file (__main__.GuardTests.test_deleted_file) ... ok
+test_depth_limit_is_explicit (__main__.GuardTests.test_depth_limit_is_explicit) ... ok
+test_empty_directory (__main__.GuardTests.test_empty_directory) ... ok
+test_fifo_does_not_hang (__main__.GuardTests.test_fifo_does_not_hang) ... ok
+test_five_concurrent_validators (__main__.GuardTests.test_five_concurrent_validators) ... ok
+test_inotify_overflow_is_rejected (__main__.GuardTests.test_inotify_overflow_is_rejected) ... ok
+test_invalid_timeout (__main__.GuardTests.test_invalid_timeout) ... ok
+test_later_subtree_modify_restore_during_first_file_read (__main__.GuardTests.test_later_subtree_modify_restore_during_first_file_read) ... ok
+test_lock_contention_timeout (__main__.GuardTests.test_lock_contention_timeout) ... ok
+test_manual_ready_does_not_advance (__main__.GuardTests.test_manual_ready_does_not_advance) ... ok
+test_modify_restore_observed (__main__.GuardTests.test_modify_restore_observed) ... ok
+test_new_subdirectory_observed (__main__.GuardTests.test_new_subdirectory_observed) ... ok
+test_nonobject_baselines_are_structured_blocked (__main__.GuardTests.test_nonobject_baselines_are_structured_blocked) ... ok
+test_permissions (__main__.GuardTests.test_permissions) ... ok
+test_renamed_file (__main__.GuardTests.test_renamed_file) ... ok
+test_root_rename_observed (__main__.GuardTests.test_root_rename_observed) ... ok
+test_symlink_rejected (__main__.GuardTests.test_symlink_rejected) ... ok
+test_unchanged_tree (__main__.GuardTests.test_unchanged_tree) ... ok
+
+----------------------------------------------------------------------
+Ran 23 tests in 1.035s
+
+OK

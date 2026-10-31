@@ -1,0 +1,15 @@
+{
+  "required_capacity_bytes": 33554432,
+  "required_deletion": "MANUAL_ONLY",
+  "old_policy": {
+    "status": "CONFIRMED",
+    "stdout_stderr": "Memory-only bounded capture; discard after deriving receipt. No raw stdout/stderr or OS logs persisted.",
+    "receipt": "Only bounded typed outcome/exit/signal/limits, digests, run identity and fixed diagnostic codes; no free-text payload or report content. Hashes are identifiers, not anonymization guarantees.",
+    "file_permissions": "Owner-only",
+    "capacity": "100 receipts or1MiB total, whichever first; refuse new work when full rather than delete silently.",
+    "deletion": "Human-controlled local deletion/export; no automatic expiration.",
+    "receipt_max_bytes": 8192,
+    "reservation": "Before launch reserve1receipt slot and8192bytes; refuse if count+1>100 or used_bytes+8192>1048576. No automatic deletion."
+  },
+  "red": true
+}

@@ -1,0 +1,338 @@
+test_admission_elapsed_time_is_subtracted_before_worker (test_logic_memory.LogicMemoryTests.test_admission_elapsed_time_is_subtracted_before_worker) ... ERROR
+test_api_preserves_external_limits_and_sets_worker_limit_and_lease (test_logic_memory.LogicMemoryTests.test_api_preserves_external_limits_and_sets_worker_limit_and_lease) ... ERROR
+test_baseline_checked_before_owned_cli_limit (test_logic_memory.LogicMemoryTests.test_baseline_checked_before_owned_cli_limit) ... ERROR
+test_cli_never_raises_inherited_hard_limit (test_logic_memory.LogicMemoryTests.test_cli_never_raises_inherited_hard_limit) ... FAIL
+test_explicit_memory_error_removes_approbatory_payload (test_logic_memory.LogicMemoryTests.test_explicit_memory_error_removes_approbatory_payload) ... ERROR
+test_invalid_policy_is_coded_without_worker (test_logic_memory.LogicMemoryTests.test_invalid_policy_is_coded_without_worker) ... 
+  test_invalid_policy_is_coded_without_worker (test_logic_memory.LogicMemoryTests.test_invalid_policy_is_coded_without_worker) (value='255') ... ERROR
+  test_invalid_policy_is_coded_without_worker (test_logic_memory.LogicMemoryTests.test_invalid_policy_is_coded_without_worker) (value='257') ... ERROR
+  test_invalid_policy_is_coded_without_worker (test_logic_memory.LogicMemoryTests.test_invalid_policy_is_coded_without_worker) (value='1032') ... ERROR
+test_memory_argument_type_preserves_invalid_input (test_logic_memory.LogicMemoryTests.test_memory_argument_type_preserves_invalid_input) ... ERROR
+test_ordinary_worker_errors_preserve_contract_without_observation (test_logic_memory.LogicMemoryTests.test_ordinary_worker_errors_preserve_contract_without_observation) ... 
+  test_ordinary_worker_errors_preserve_contract_without_observation (test_logic_memory.LogicMemoryTests.test_ordinary_worker_errors_preserve_contract_without_observation) (error='INVALID_INPUT') ... ERROR
+  test_ordinary_worker_errors_preserve_contract_without_observation (test_logic_memory.LogicMemoryTests.test_ordinary_worker_errors_preserve_contract_without_observation) (error='SOLVER_ERROR') ... ERROR
+  test_ordinary_worker_errors_preserve_contract_without_observation (test_logic_memory.LogicMemoryTests.test_ordinary_worker_errors_preserve_contract_without_observation) (error='SOLVER_UNAVAILABLE') ... ERROR
+test_owned_cli_limit_leaves_room_for_worker (test_logic_memory.LogicMemoryTests.test_owned_cli_limit_leaves_room_for_worker) ... ERROR
+test_owned_cli_success_requires_observed_worker_limits (test_logic_memory.LogicMemoryTests.test_owned_cli_success_requires_observed_worker_limits) ... 
+  test_owned_cli_success_requires_observed_worker_limits (test_logic_memory.LogicMemoryTests.test_owned_cli_success_requires_observed_worker_limits) (observation=None) ... ERROR
+  test_owned_cli_success_requires_observed_worker_limits (test_logic_memory.LogicMemoryTests.test_owned_cli_success_requires_observed_worker_limits) (observation={'as_soft_bytes': 468713472, 'as_hard_bytes': 469762048}) ... ERROR
+test_real_cli_observes_default_process_limits (test_logic_memory.LogicMemoryTests.test_real_cli_observes_default_process_limits) ... ERROR
+test_resource_rejection_is_inconclusive (test_logic_memory.LogicMemoryTests.test_resource_rejection_is_inconclusive) ... ERROR
+test_setup_exception_is_resource_control_failure (test_logic_memory.LogicMemoryTests.test_setup_exception_is_resource_control_failure) ... ERROR
+test_signal_without_diagnostic_is_not_called_oom (test_logic_memory.LogicMemoryTests.test_signal_without_diagnostic_is_not_called_oom) ... ERROR
+test_unknown_baseline_does_not_limit_owned_cli (test_logic_memory.LogicMemoryTests.test_unknown_baseline_does_not_limit_owned_cli) ... ERROR
+
+======================================================================
+ERROR: test_admission_elapsed_time_is_subtracted_before_worker (test_logic_memory.LogicMemoryTests.test_admission_elapsed_time_is_subtracted_before_worker)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/replica-gentle-ai/skills/requerimientos-socraticos/tests/test_logic_memory.py", line 152, in test_admission_elapsed_time_is_subtracted_before_worker
+    code, _, run = self.invoke(module, admission={'side_effect': slow_lease})
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/replica-gentle-ai/skills/requerimientos-socraticos/tests/test_logic_memory.py", line 47, in invoke
+    stack.enter_context(patch.object(module, 'admission', side_effect=lease))
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/contextlib.py", line 526, in enter_context
+    result = _enter(cm)
+             ^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/unittest/mock.py", line 1467, in __enter__
+    original, local = self.get_original()
+                      ^^^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/unittest/mock.py", line 1437, in get_original
+    raise AttributeError(
+AttributeError: <module 'requirements_logic_memory_test' from '/workspace/replica-gentle-ai/skills/requerimientos-socraticos/scripts/analyze_logic.py'> does not have the attribute 'admission'
+
+======================================================================
+ERROR: test_api_preserves_external_limits_and_sets_worker_limit_and_lease (test_logic_memory.LogicMemoryTests.test_api_preserves_external_limits_and_sets_worker_limit_and_lease)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/replica-gentle-ai/skills/requerimientos-socraticos/tests/test_logic_memory.py", line 58, in test_api_preserves_external_limits_and_sets_worker_limit_and_lease
+    code, document, run = self.invoke(module)
+                          ^^^^^^^^^^^^^^^^^^^
+  File "/workspace/replica-gentle-ai/skills/requerimientos-socraticos/tests/test_logic_memory.py", line 47, in invoke
+    stack.enter_context(patch.object(module, 'admission', side_effect=lease))
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/contextlib.py", line 526, in enter_context
+    result = _enter(cm)
+             ^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/unittest/mock.py", line 1467, in __enter__
+    original, local = self.get_original()
+                      ^^^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/unittest/mock.py", line 1437, in get_original
+    raise AttributeError(
+AttributeError: <module 'requirements_logic_memory_test' from '/workspace/replica-gentle-ai/skills/requerimientos-socraticos/scripts/analyze_logic.py'> does not have the attribute 'admission'
+
+======================================================================
+ERROR: test_baseline_checked_before_owned_cli_limit (test_logic_memory.LogicMemoryTests.test_baseline_checked_before_owned_cli_limit)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/replica-gentle-ai/skills/requerimientos-socraticos/tests/test_logic_memory.py", line 88, in test_baseline_checked_before_owned_cli_limit
+    with patch.object(module, 'enforce_address_space') as enforce:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/unittest/mock.py", line 1467, in __enter__
+    original, local = self.get_original()
+                      ^^^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/unittest/mock.py", line 1437, in get_original
+    raise AttributeError(
+AttributeError: <module 'requirements_logic_memory_test' from '/workspace/replica-gentle-ai/skills/requerimientos-socraticos/scripts/analyze_logic.py'> does not have the attribute 'enforce_address_space'
+
+======================================================================
+ERROR: test_explicit_memory_error_removes_approbatory_payload (test_logic_memory.LogicMemoryTests.test_explicit_memory_error_removes_approbatory_payload)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/replica-gentle-ai/skills/requerimientos-socraticos/tests/test_logic_memory.py", line 117, in test_explicit_memory_error_removes_approbatory_payload
+    code, result, _ = self.invoke(load(), response=response)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/replica-gentle-ai/skills/requerimientos-socraticos/tests/test_logic_memory.py", line 47, in invoke
+    stack.enter_context(patch.object(module, 'admission', side_effect=lease))
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/contextlib.py", line 526, in enter_context
+    result = _enter(cm)
+             ^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/unittest/mock.py", line 1467, in __enter__
+    original, local = self.get_original()
+                      ^^^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/unittest/mock.py", line 1437, in get_original
+    raise AttributeError(
+AttributeError: <module 'requirements_logic_memory_test' from '/workspace/replica-gentle-ai/skills/requerimientos-socraticos/scripts/analyze_logic.py'> does not have the attribute 'admission'
+
+======================================================================
+ERROR: test_invalid_policy_is_coded_without_worker (test_logic_memory.LogicMemoryTests.test_invalid_policy_is_coded_without_worker) (value='255')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/replica-gentle-ai/skills/requerimientos-socraticos/tests/test_logic_memory.py", line 69, in test_invalid_policy_is_coded_without_worker
+    code, result, run = self.invoke(load(), args=('--memory-budget-mib', value))
+                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/replica-gentle-ai/skills/requerimientos-socraticos/tests/test_logic_memory.py", line 47, in invoke
+    stack.enter_context(patch.object(module, 'admission', side_effect=lease))
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/contextlib.py", line 526, in enter_context
+    result = _enter(cm)
+             ^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/unittest/mock.py", line 1467, in __enter__
+    original, local = self.get_original()
+                      ^^^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/unittest/mock.py", line 1437, in get_original
+    raise AttributeError(
+AttributeError: <module 'requirements_logic_memory_test' from '/workspace/replica-gentle-ai/skills/requerimientos-socraticos/scripts/analyze_logic.py'> does not have the attribute 'admission'
+
+======================================================================
+ERROR: test_invalid_policy_is_coded_without_worker (test_logic_memory.LogicMemoryTests.test_invalid_policy_is_coded_without_worker) (value='257')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/replica-gentle-ai/skills/requerimientos-socraticos/tests/test_logic_memory.py", line 69, in test_invalid_policy_is_coded_without_worker
+    code, result, run = self.invoke(load(), args=('--memory-budget-mib', value))
+                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/replica-gentle-ai/skills/requerimientos-socraticos/tests/test_logic_memory.py", line 47, in invoke
+    stack.enter_context(patch.object(module, 'admission', side_effect=lease))
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/contextlib.py", line 526, in enter_context
+    result = _enter(cm)
+             ^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/unittest/mock.py", line 1467, in __enter__
+    original, local = self.get_original()
+                      ^^^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/unittest/mock.py", line 1437, in get_original
+    raise AttributeError(
+AttributeError: <module 'requirements_logic_memory_test' from '/workspace/replica-gentle-ai/skills/requerimientos-socraticos/scripts/analyze_logic.py'> does not have the attribute 'admission'
+
+======================================================================
+ERROR: test_invalid_policy_is_coded_without_worker (test_logic_memory.LogicMemoryTests.test_invalid_policy_is_coded_without_worker) (value='1032')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/replica-gentle-ai/skills/requerimientos-socraticos/tests/test_logic_memory.py", line 69, in test_invalid_policy_is_coded_without_worker
+    code, result, run = self.invoke(load(), args=('--memory-budget-mib', value))
+                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/replica-gentle-ai/skills/requerimientos-socraticos/tests/test_logic_memory.py", line 47, in invoke
+    stack.enter_context(patch.object(module, 'admission', side_effect=lease))
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/contextlib.py", line 526, in enter_context
+    result = _enter(cm)
+             ^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/unittest/mock.py", line 1467, in __enter__
+    original, local = self.get_original()
+                      ^^^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/unittest/mock.py", line 1437, in get_original
+    raise AttributeError(
+AttributeError: <module 'requirements_logic_memory_test' from '/workspace/replica-gentle-ai/skills/requerimientos-socraticos/scripts/analyze_logic.py'> does not have the attribute 'admission'
+
+======================================================================
+ERROR: test_memory_argument_type_preserves_invalid_input (test_logic_memory.LogicMemoryTests.test_memory_argument_type_preserves_invalid_input)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/replica-gentle-ai/skills/requerimientos-socraticos/tests/test_logic_memory.py", line 75, in test_memory_argument_type_preserves_invalid_input
+    code, result, run = self.invoke(load(), args=('--memory-budget-mib', 'bad'))
+                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/replica-gentle-ai/skills/requerimientos-socraticos/tests/test_logic_memory.py", line 47, in invoke
+    stack.enter_context(patch.object(module, 'admission', side_effect=lease))
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/contextlib.py", line 526, in enter_context
+    result = _enter(cm)
+             ^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/unittest/mock.py", line 1467, in __enter__
+    original, local = self.get_original()
+                      ^^^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/unittest/mock.py", line 1437, in get_original
+    raise AttributeError(
+AttributeError: <module 'requirements_logic_memory_test' from '/workspace/replica-gentle-ai/skills/requerimientos-socraticos/scripts/analyze_logic.py'> does not have the attribute 'admission'
+
+======================================================================
+ERROR: test_ordinary_worker_errors_preserve_contract_without_observation (test_logic_memory.LogicMemoryTests.test_ordinary_worker_errors_preserve_contract_without_observation) (error='INVALID_INPUT')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/replica-gentle-ai/skills/requerimientos-socraticos/tests/test_logic_memory.py", line 133, in test_ordinary_worker_errors_preserve_contract_without_observation
+    with patch.object(module, 'enforce_address_space'):
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/unittest/mock.py", line 1467, in __enter__
+    original, local = self.get_original()
+                      ^^^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/unittest/mock.py", line 1437, in get_original
+    raise AttributeError(
+AttributeError: <module 'requirements_logic_memory_test' from '/workspace/replica-gentle-ai/skills/requerimientos-socraticos/scripts/analyze_logic.py'> does not have the attribute 'enforce_address_space'
+
+======================================================================
+ERROR: test_ordinary_worker_errors_preserve_contract_without_observation (test_logic_memory.LogicMemoryTests.test_ordinary_worker_errors_preserve_contract_without_observation) (error='SOLVER_ERROR')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/replica-gentle-ai/skills/requerimientos-socraticos/tests/test_logic_memory.py", line 133, in test_ordinary_worker_errors_preserve_contract_without_observation
+    with patch.object(module, 'enforce_address_space'):
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/unittest/mock.py", line 1467, in __enter__
+    original, local = self.get_original()
+                      ^^^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/unittest/mock.py", line 1437, in get_original
+    raise AttributeError(
+AttributeError: <module 'requirements_logic_memory_test' from '/workspace/replica-gentle-ai/skills/requerimientos-socraticos/scripts/analyze_logic.py'> does not have the attribute 'enforce_address_space'
+
+======================================================================
+ERROR: test_ordinary_worker_errors_preserve_contract_without_observation (test_logic_memory.LogicMemoryTests.test_ordinary_worker_errors_preserve_contract_without_observation) (error='SOLVER_UNAVAILABLE')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/replica-gentle-ai/skills/requerimientos-socraticos/tests/test_logic_memory.py", line 133, in test_ordinary_worker_errors_preserve_contract_without_observation
+    with patch.object(module, 'enforce_address_space'):
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/unittest/mock.py", line 1467, in __enter__
+    original, local = self.get_original()
+                      ^^^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/unittest/mock.py", line 1437, in get_original
+    raise AttributeError(
+AttributeError: <module 'requirements_logic_memory_test' from '/workspace/replica-gentle-ai/skills/requerimientos-socraticos/scripts/analyze_logic.py'> does not have the attribute 'enforce_address_space'
+
+======================================================================
+ERROR: test_owned_cli_limit_leaves_room_for_worker (test_logic_memory.LogicMemoryTests.test_owned_cli_limit_leaves_room_for_worker)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/replica-gentle-ai/skills/requerimientos-socraticos/tests/test_logic_memory.py", line 105, in test_owned_cli_limit_leaves_room_for_worker
+    with patch.object(module, 'enforce_address_space') as enforce:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/unittest/mock.py", line 1467, in __enter__
+    original, local = self.get_original()
+                      ^^^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/unittest/mock.py", line 1437, in get_original
+    raise AttributeError(
+AttributeError: <module 'requirements_logic_memory_test' from '/workspace/replica-gentle-ai/skills/requerimientos-socraticos/scripts/analyze_logic.py'> does not have the attribute 'enforce_address_space'
+
+======================================================================
+ERROR: test_owned_cli_success_requires_observed_worker_limits (test_logic_memory.LogicMemoryTests.test_owned_cli_success_requires_observed_worker_limits) (observation=None)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/replica-gentle-ai/skills/requerimientos-socraticos/tests/test_logic_memory.py", line 141, in test_owned_cli_success_requires_observed_worker_limits
+    with patch.object(module, 'enforce_address_space'):
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/unittest/mock.py", line 1467, in __enter__
+    original, local = self.get_original()
+                      ^^^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/unittest/mock.py", line 1437, in get_original
+    raise AttributeError(
+AttributeError: <module 'requirements_logic_memory_test' from '/workspace/replica-gentle-ai/skills/requerimientos-socraticos/scripts/analyze_logic.py'> does not have the attribute 'enforce_address_space'
+
+======================================================================
+ERROR: test_owned_cli_success_requires_observed_worker_limits (test_logic_memory.LogicMemoryTests.test_owned_cli_success_requires_observed_worker_limits) (observation={'as_soft_bytes': 468713472, 'as_hard_bytes': 469762048})
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/replica-gentle-ai/skills/requerimientos-socraticos/tests/test_logic_memory.py", line 141, in test_owned_cli_success_requires_observed_worker_limits
+    with patch.object(module, 'enforce_address_space'):
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/unittest/mock.py", line 1467, in __enter__
+    original, local = self.get_original()
+                      ^^^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/unittest/mock.py", line 1437, in get_original
+    raise AttributeError(
+AttributeError: <module 'requirements_logic_memory_test' from '/workspace/replica-gentle-ai/skills/requerimientos-socraticos/scripts/analyze_logic.py'> does not have the attribute 'enforce_address_space'
+
+======================================================================
+ERROR: test_real_cli_observes_default_process_limits (test_logic_memory.LogicMemoryTests.test_real_cli_observes_default_process_limits)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/replica-gentle-ai/skills/requerimientos-socraticos/tests/test_logic_memory.py", line 164, in test_real_cli_observes_default_process_limits
+    budget = document['memory_budget']
+             ~~~~~~~~^^^^^^^^^^^^^^^^^
+KeyError: 'memory_budget'
+
+======================================================================
+ERROR: test_resource_rejection_is_inconclusive (test_logic_memory.LogicMemoryTests.test_resource_rejection_is_inconclusive)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/replica-gentle-ai/skills/requerimientos-socraticos/tests/test_logic_memory.py", line 82, in test_resource_rejection_is_inconclusive
+    code, result, run = self.invoke(module, admission={'side_effect': module.ResourceBudgetError('RESOURCE_BUSY')})
+                                                                      ^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: module 'requirements_logic_memory_test' has no attribute 'ResourceBudgetError'
+
+======================================================================
+ERROR: test_setup_exception_is_resource_control_failure (test_logic_memory.LogicMemoryTests.test_setup_exception_is_resource_control_failure)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/replica-gentle-ai/skills/requerimientos-socraticos/tests/test_logic_memory.py", line 112, in test_setup_exception_is_resource_control_failure
+    code, result, _ = self.invoke(load(), run_supervised={'side_effect': subprocess.SubprocessError('preexec setup failed')})
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/replica-gentle-ai/skills/requerimientos-socraticos/tests/test_logic_memory.py", line 47, in invoke
+    stack.enter_context(patch.object(module, 'admission', side_effect=lease))
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/contextlib.py", line 526, in enter_context
+    result = _enter(cm)
+             ^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/unittest/mock.py", line 1467, in __enter__
+    original, local = self.get_original()
+                      ^^^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/unittest/mock.py", line 1437, in get_original
+    raise AttributeError(
+AttributeError: <module 'requirements_logic_memory_test' from '/workspace/replica-gentle-ai/skills/requerimientos-socraticos/scripts/analyze_logic.py'> does not have the attribute 'admission'
+
+======================================================================
+ERROR: test_signal_without_diagnostic_is_not_called_oom (test_logic_memory.LogicMemoryTests.test_signal_without_diagnostic_is_not_called_oom)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/replica-gentle-ai/skills/requerimientos-socraticos/tests/test_logic_memory.py", line 125, in test_signal_without_diagnostic_is_not_called_oom
+    code, result, _ = self.invoke(load(), response=response)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/replica-gentle-ai/skills/requerimientos-socraticos/tests/test_logic_memory.py", line 47, in invoke
+    stack.enter_context(patch.object(module, 'admission', side_effect=lease))
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/contextlib.py", line 526, in enter_context
+    result = _enter(cm)
+             ^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/unittest/mock.py", line 1467, in __enter__
+    original, local = self.get_original()
+                      ^^^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/unittest/mock.py", line 1437, in get_original
+    raise AttributeError(
+AttributeError: <module 'requirements_logic_memory_test' from '/workspace/replica-gentle-ai/skills/requerimientos-socraticos/scripts/analyze_logic.py'> does not have the attribute 'admission'
+
+======================================================================
+ERROR: test_unknown_baseline_does_not_limit_owned_cli (test_logic_memory.LogicMemoryTests.test_unknown_baseline_does_not_limit_owned_cli)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/replica-gentle-ai/skills/requerimientos-socraticos/tests/test_logic_memory.py", line 96, in test_unknown_baseline_does_not_limit_owned_cli
+    with patch.object(module, 'enforce_address_space') as enforce:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/unittest/mock.py", line 1467, in __enter__
+    original, local = self.get_original()
+                      ^^^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/unittest/mock.py", line 1437, in get_original
+    raise AttributeError(
+AttributeError: <module 'requirements_logic_memory_test' from '/workspace/replica-gentle-ai/skills/requerimientos-socraticos/scripts/analyze_logic.py'> does not have the attribute 'enforce_address_space'
+
+======================================================================
+FAIL: test_cli_never_raises_inherited_hard_limit (test_logic_memory.LogicMemoryTests.test_cli_never_raises_inherited_hard_limit)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/replica-gentle-ai/skills/requerimientos-socraticos/tests/test_logic_memory.py", line 177, in test_cli_never_raises_inherited_hard_limit
+    self.assertEqual(result.returncode, 3, result.stdout + result.stderr)
+AssertionError: 2 != 3 : {"error": {"code": "INVALID_INPUT", "message": "[Errno 2] No such file or directory: 'unused.json'"}, "runtime": {"executable": "/home/agent/.local/share/requerimientos-socraticos/venv/bin/python", "python_version": "3.12.14", "executable_sha256": "fa67443527ed9647f760d807e2a38f26340757123e643c4639cf273ed15d5ea7", "artifact": {"status": "OBSERVED", "resolved_path": "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3.12", "sha256": "fa67443527ed9647f760d807e2a38f26340757123e643c4639cf273ed15d5ea7"}, "distributions": {"z3-solver": "4.15.4.0", "jsonschema": "4.26.0"}, "authentication": "NOT_ESTABLISHED", "limits": "Observed bytes/metadata in a trusted local account; not a signed runtime or dependency attestation."}, "supervision": {"worker_elapsed_seconds": 0.03994953100482235, "wall_budget_seconds": 5, "parent_death_policy": "LINUX_DIRECT_CHILD_PDEATHSIG", "cleanup_status": "DIRECT_WORKER_REAPED_AND_PIPES_DRAINED", "cleanup_grace_seconds": 1, "limits": "Responsive OS and live supervisor required for deadline handling; Linux death signal covers direct worker only. No arbitrary descendant or hardware isolation guarantee."}}
+
+
+----------------------------------------------------------------------
+Ran 15 tests in 0.240s
+
+FAILED (failures=1, errors=19)

@@ -1,0 +1,309 @@
+{
+  "schema": "gentle-ai.review-integration.status/v9",
+  "contract": "gentle-ai.review-integration/v2",
+  "operation": "review.status",
+  "applicability": "unrelated",
+  "action": "start",
+  "replayability": "not_replayable",
+  "target_identity": "sha256:944f7e08ae2fe6a45b6dc4cd4edcbfa30ec5b39fe357ed7728aca1bc173bd985",
+  "projection": {
+    "schema": "gentle-ai.review-integration.projection/v1",
+    "kind": "base-workspace-overlay",
+    "projection": "workspace",
+    "base_tree": "71b48824d9c70dbd04e9f66e3348569a606668cf",
+    "initial_review_tree": "a96d35828242f6f27807843f613cc546650f727b",
+    "current_candidate_tree": "a96d35828242f6f27807843f613cc546650f727b",
+    "paths_digest": "sha256:15ed3322f5a404078c3a7ba0ef4910a183ec43f595f65fd4342d0db255ad4fa0",
+    "paths": [
+      "bin/gentle-ai",
+      "docs/skill-audit/integrity-challenge/ANALISIS.md",
+      "docs/skill-audit/integrity-challenge/guard-tests.stderr",
+      "docs/skill-audit/integrity-challenge/interview-tests.stderr",
+      "docs/skill-audit/integrity-challenge/red-baseline.json",
+      "skills/requerimientos-socraticos/SKILL.md",
+      "skills/requerimientos-socraticos/references/integrity-boundary.md",
+      "skills/requerimientos-socraticos/scripts/requirements_guard.py",
+      "skills/requerimientos-socraticos/tests/test_guard.py",
+      "skills/requerimientos-socraticos/validation.json"
+    ],
+    "intended_untracked": [
+      "bin/gentle-ai",
+      "docs/skill-audit/integrity-challenge/ANALISIS.md",
+      "docs/skill-audit/integrity-challenge/guard-tests.stderr",
+      "docs/skill-audit/integrity-challenge/interview-tests.stderr",
+      "docs/skill-audit/integrity-challenge/red-baseline.json",
+      "docs/skill-audit/requerimientos-repair/smoke/assessment-final.json",
+      "docs/skill-audit/requerimientos-repair/smoke/registro-skill-asistente.md",
+      "docs/skill-audit/requerimientos-repair/tests-green.stderr",
+      "skills/requerimientos-socraticos/SKILL.md",
+      "skills/requerimientos-socraticos/agents/requirements-interrogator.toml",
+      "skills/requerimientos-socraticos/assets/design-proposals.schema.json",
+      "skills/requerimientos-socraticos/assets/example.prd.json",
+      "skills/requerimientos-socraticos/assets/interrogator-packet.schema.json",
+      "skills/requerimientos-socraticos/assets/interview.schema.json",
+      "skills/requerimientos-socraticos/assets/prd.schema.json",
+      "skills/requerimientos-socraticos/references/integrity-boundary.md",
+      "skills/requerimientos-socraticos/references/interrogation.md",
+      "skills/requerimientos-socraticos/references/method.md",
+      "skills/requerimientos-socraticos/references/research-design.md",
+      "skills/requerimientos-socraticos/references/validation.md",
+      "skills/requerimientos-socraticos/references/workflow.md",
+      "skills/requerimientos-socraticos/scripts/requirements_guard.py",
+      "skills/requerimientos-socraticos/scripts/validate_interview.py",
+      "skills/requerimientos-socraticos/scripts/validate_prd.py",
+      "skills/requerimientos-socraticos/tests/test_guard.py",
+      "skills/requerimientos-socraticos/tests/test_interview.py",
+      "skills/requerimientos-socraticos/validation.json"
+    ],
+    "intended_untracked_proof": "sha256:bb84c6e5ecb50a125f5c4e3ecd7a81585efe56e4101a420fde7b19a7323bb47d",
+    "initial_snapshot_identity": "sha256:944f7e08ae2fe6a45b6dc4cd4edcbfa30ec5b39fe357ed7728aca1bc173bd985",
+    "current_snapshot_identity": "sha256:944f7e08ae2fe6a45b6dc4cd4edcbfa30ec5b39fe357ed7728aca1bc173bd985"
+  },
+  "eligible_untracked_inventory": "sha256:18e8b83365ae930e8b2576e3d9c3b93f70210ee07c8257b3b4af41e512852d1c",
+  "repair": {
+    "schema": "gentle-ai.review-authority-repair-assessment/v1",
+    "status": "unsupported",
+    "counts": {
+      "lineages": 0,
+      "compact_lineages": 0,
+      "legacy_lineages": 0,
+      "events": 0,
+      "bytes": 0,
+      "eligible_candidates": 0,
+      "unsupported_lineages": 0,
+      "conflicts": 0
+    },
+    "supported_operations": [
+      "review/complete-fix",
+      "review/validate-fix"
+    ],
+    "authorization_schema": "gentle-ai.review-repair-authorization/v1"
+  },
+  "candidates": [],
+  "forecast": {
+    "horizon": "partial",
+    "steps": [
+      {
+        "step": 1,
+        "kind": "execute",
+        "reason_code": "fresh_target_ready",
+        "description": "Target is unreviewed and ready for initial review start"
+      }
+    ]
+  },
+  "next_transition": {
+    "kind": "execute",
+    "reason_code": "fresh_target_ready",
+    "execute": {
+      "operation": "review.start",
+      "command": "gentle-ai review start --cwd=/workspace/replica-gentle-ai --contract=gentle-ai.review-integration/v2 --target=sha256:944f7e08ae2fe6a45b6dc4cd4edcbfa30ec5b39fe357ed7728aca1bc173bd985 --target-evidence=v1:base-workspace-overlay:workspace:71b48824d9c70dbd04e9f66e3348569a606668cf:a96d35828242f6f27807843f613cc546650f727b:sha256:15ed3322f5a404078c3a7ba0ef4910a183ec43f595f65fd4342d0db255ad4fa0 --projection=workspace --base-ref=71b48824d9c70dbd04e9f66e3348569a606668cf --workspace-overlay=true --lineage=review-5d232f3e231361be --agent=codex --consent=relay --untracked-scope=select --expected-untracked-inventory=sha256:18e8b83365ae930e8b2576e3d9c3b93f70210ee07c8257b3b4af41e512852d1c --intended-untracked=bin/gentle-ai --intended-untracked=docs/skill-audit/integrity-challenge/ANALISIS.md --intended-untracked=docs/skill-audit/integrity-challenge/guard-tests.stderr --intended-untracked=docs/skill-audit/integrity-challenge/interview-tests.stderr --intended-untracked=docs/skill-audit/integrity-challenge/red-baseline.json --intended-untracked=docs/skill-audit/requerimientos-repair/smoke/assessment-final.json --intended-untracked=docs/skill-audit/requerimientos-repair/smoke/registro-skill-asistente.md --intended-untracked=docs/skill-audit/requerimientos-repair/tests-green.stderr --intended-untracked=skills/requerimientos-socraticos/SKILL.md --intended-untracked=skills/requerimientos-socraticos/agents/requirements-interrogator.toml --intended-untracked=skills/requerimientos-socraticos/assets/design-proposals.schema.json --intended-untracked=skills/requerimientos-socraticos/assets/example.prd.json --intended-untracked=skills/requerimientos-socraticos/assets/interrogator-packet.schema.json --intended-untracked=skills/requerimientos-socraticos/assets/interview.schema.json --intended-untracked=skills/requerimientos-socraticos/assets/prd.schema.json --intended-untracked=skills/requerimientos-socraticos/references/integrity-boundary.md --intended-untracked=skills/requerimientos-socraticos/references/interrogation.md --intended-untracked=skills/requerimientos-socraticos/references/method.md --intended-untracked=skills/requerimientos-socraticos/references/research-design.md --intended-untracked=skills/requerimientos-socraticos/references/validation.md --intended-untracked=skills/requerimientos-socraticos/references/workflow.md --intended-untracked=skills/requerimientos-socraticos/scripts/requirements_guard.py --intended-untracked=skills/requerimientos-socraticos/scripts/validate_interview.py --intended-untracked=skills/requerimientos-socraticos/scripts/validate_prd.py --intended-untracked=skills/requerimientos-socraticos/tests/test_guard.py --intended-untracked=skills/requerimientos-socraticos/tests/test_interview.py --intended-untracked=skills/requerimientos-socraticos/validation.json",
+      "arguments": [
+        {
+          "name": "cwd",
+          "value": "/workspace/replica-gentle-ai",
+          "token": "--cwd=/workspace/replica-gentle-ai"
+        },
+        {
+          "name": "contract",
+          "value": "gentle-ai.review-integration/v2",
+          "token": "--contract=gentle-ai.review-integration/v2"
+        },
+        {
+          "name": "target",
+          "value": "sha256:944f7e08ae2fe6a45b6dc4cd4edcbfa30ec5b39fe357ed7728aca1bc173bd985",
+          "token": "--target=sha256:944f7e08ae2fe6a45b6dc4cd4edcbfa30ec5b39fe357ed7728aca1bc173bd985"
+        },
+        {
+          "name": "target-evidence",
+          "value": "v1:base-workspace-overlay:workspace:71b48824d9c70dbd04e9f66e3348569a606668cf:a96d35828242f6f27807843f613cc546650f727b:sha256:15ed3322f5a404078c3a7ba0ef4910a183ec43f595f65fd4342d0db255ad4fa0",
+          "token": "--target-evidence=v1:base-workspace-overlay:workspace:71b48824d9c70dbd04e9f66e3348569a606668cf:a96d35828242f6f27807843f613cc546650f727b:sha256:15ed3322f5a404078c3a7ba0ef4910a183ec43f595f65fd4342d0db255ad4fa0"
+        },
+        {
+          "name": "projection",
+          "value": "workspace",
+          "token": "--projection=workspace"
+        },
+        {
+          "name": "base-ref",
+          "value": "71b48824d9c70dbd04e9f66e3348569a606668cf",
+          "token": "--base-ref=71b48824d9c70dbd04e9f66e3348569a606668cf"
+        },
+        {
+          "name": "workspace-overlay",
+          "value": "true",
+          "token": "--workspace-overlay=true"
+        },
+        {
+          "name": "lineage",
+          "value": "review-5d232f3e231361be",
+          "token": "--lineage=review-5d232f3e231361be"
+        },
+        {
+          "name": "agent",
+          "value": "codex",
+          "token": "--agent=codex"
+        },
+        {
+          "name": "consent",
+          "value": "relay",
+          "token": "--consent=relay"
+        },
+        {
+          "name": "untracked-scope",
+          "value": "select",
+          "token": "--untracked-scope=select"
+        },
+        {
+          "name": "expected-untracked-inventory",
+          "value": "sha256:18e8b83365ae930e8b2576e3d9c3b93f70210ee07c8257b3b4af41e512852d1c",
+          "token": "--expected-untracked-inventory=sha256:18e8b83365ae930e8b2576e3d9c3b93f70210ee07c8257b3b4af41e512852d1c"
+        },
+        {
+          "name": "intended-untracked",
+          "value": "bin/gentle-ai",
+          "token": "--intended-untracked=bin/gentle-ai"
+        },
+        {
+          "name": "intended-untracked",
+          "value": "docs/skill-audit/integrity-challenge/ANALISIS.md",
+          "token": "--intended-untracked=docs/skill-audit/integrity-challenge/ANALISIS.md"
+        },
+        {
+          "name": "intended-untracked",
+          "value": "docs/skill-audit/integrity-challenge/guard-tests.stderr",
+          "token": "--intended-untracked=docs/skill-audit/integrity-challenge/guard-tests.stderr"
+        },
+        {
+          "name": "intended-untracked",
+          "value": "docs/skill-audit/integrity-challenge/interview-tests.stderr",
+          "token": "--intended-untracked=docs/skill-audit/integrity-challenge/interview-tests.stderr"
+        },
+        {
+          "name": "intended-untracked",
+          "value": "docs/skill-audit/integrity-challenge/red-baseline.json",
+          "token": "--intended-untracked=docs/skill-audit/integrity-challenge/red-baseline.json"
+        },
+        {
+          "name": "intended-untracked",
+          "value": "docs/skill-audit/requerimientos-repair/smoke/assessment-final.json",
+          "token": "--intended-untracked=docs/skill-audit/requerimientos-repair/smoke/assessment-final.json"
+        },
+        {
+          "name": "intended-untracked",
+          "value": "docs/skill-audit/requerimientos-repair/smoke/registro-skill-asistente.md",
+          "token": "--intended-untracked=docs/skill-audit/requerimientos-repair/smoke/registro-skill-asistente.md"
+        },
+        {
+          "name": "intended-untracked",
+          "value": "docs/skill-audit/requerimientos-repair/tests-green.stderr",
+          "token": "--intended-untracked=docs/skill-audit/requerimientos-repair/tests-green.stderr"
+        },
+        {
+          "name": "intended-untracked",
+          "value": "skills/requerimientos-socraticos/SKILL.md",
+          "token": "--intended-untracked=skills/requerimientos-socraticos/SKILL.md"
+        },
+        {
+          "name": "intended-untracked",
+          "value": "skills/requerimientos-socraticos/agents/requirements-interrogator.toml",
+          "token": "--intended-untracked=skills/requerimientos-socraticos/agents/requirements-interrogator.toml"
+        },
+        {
+          "name": "intended-untracked",
+          "value": "skills/requerimientos-socraticos/assets/design-proposals.schema.json",
+          "token": "--intended-untracked=skills/requerimientos-socraticos/assets/design-proposals.schema.json"
+        },
+        {
+          "name": "intended-untracked",
+          "value": "skills/requerimientos-socraticos/assets/example.prd.json",
+          "token": "--intended-untracked=skills/requerimientos-socraticos/assets/example.prd.json"
+        },
+        {
+          "name": "intended-untracked",
+          "value": "skills/requerimientos-socraticos/assets/interrogator-packet.schema.json",
+          "token": "--intended-untracked=skills/requerimientos-socraticos/assets/interrogator-packet.schema.json"
+        },
+        {
+          "name": "intended-untracked",
+          "value": "skills/requerimientos-socraticos/assets/interview.schema.json",
+          "token": "--intended-untracked=skills/requerimientos-socraticos/assets/interview.schema.json"
+        },
+        {
+          "name": "intended-untracked",
+          "value": "skills/requerimientos-socraticos/assets/prd.schema.json",
+          "token": "--intended-untracked=skills/requerimientos-socraticos/assets/prd.schema.json"
+        },
+        {
+          "name": "intended-untracked",
+          "value": "skills/requerimientos-socraticos/references/integrity-boundary.md",
+          "token": "--intended-untracked=skills/requerimientos-socraticos/references/integrity-boundary.md"
+        },
+        {
+          "name": "intended-untracked",
+          "value": "skills/requerimientos-socraticos/references/interrogation.md",
+          "token": "--intended-untracked=skills/requerimientos-socraticos/references/interrogation.md"
+        },
+        {
+          "name": "intended-untracked",
+          "value": "skills/requerimientos-socraticos/references/method.md",
+          "token": "--intended-untracked=skills/requerimientos-socraticos/references/method.md"
+        },
+        {
+          "name": "intended-untracked",
+          "value": "skills/requerimientos-socraticos/references/research-design.md",
+          "token": "--intended-untracked=skills/requerimientos-socraticos/references/research-design.md"
+        },
+        {
+          "name": "intended-untracked",
+          "value": "skills/requerimientos-socraticos/references/validation.md",
+          "token": "--intended-untracked=skills/requerimientos-socraticos/references/validation.md"
+        },
+        {
+          "name": "intended-untracked",
+          "value": "skills/requerimientos-socraticos/references/workflow.md",
+          "token": "--intended-untracked=skills/requerimientos-socraticos/references/workflow.md"
+        },
+        {
+          "name": "intended-untracked",
+          "value": "skills/requerimientos-socraticos/scripts/requirements_guard.py",
+          "token": "--intended-untracked=skills/requerimientos-socraticos/scripts/requirements_guard.py"
+        },
+        {
+          "name": "intended-untracked",
+          "value": "skills/requerimientos-socraticos/scripts/validate_interview.py",
+          "token": "--intended-untracked=skills/requerimientos-socraticos/scripts/validate_interview.py"
+        },
+        {
+          "name": "intended-untracked",
+          "value": "skills/requerimientos-socraticos/scripts/validate_prd.py",
+          "token": "--intended-untracked=skills/requerimientos-socraticos/scripts/validate_prd.py"
+        },
+        {
+          "name": "intended-untracked",
+          "value": "skills/requerimientos-socraticos/tests/test_guard.py",
+          "token": "--intended-untracked=skills/requerimientos-socraticos/tests/test_guard.py"
+        },
+        {
+          "name": "intended-untracked",
+          "value": "skills/requerimientos-socraticos/tests/test_interview.py",
+          "token": "--intended-untracked=skills/requerimientos-socraticos/tests/test_interview.py"
+        },
+        {
+          "name": "intended-untracked",
+          "value": "skills/requerimientos-socraticos/validation.json",
+          "token": "--intended-untracked=skills/requerimientos-socraticos/validation.json"
+        }
+      ],
+      "preconditions": [
+        {
+          "name": "target_identity",
+          "value": "sha256:944f7e08ae2fe6a45b6dc4cd4edcbfa30ec5b39fe357ed7728aca1bc173bd985"
+        }
+      ],
+      "binding": {
+        "lineage_id": "review-5d232f3e231361be",
+        "target_identity": "sha256:944f7e08ae2fe6a45b6dc4cd4edcbfa30ec5b39fe357ed7728aca1bc173bd985"
+      }
+    }
+  }
+}

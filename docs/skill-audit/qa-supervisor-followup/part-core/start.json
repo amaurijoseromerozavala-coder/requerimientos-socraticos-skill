@@ -1,0 +1,38 @@
+{
+  "schema": "gentle-ai.review-integration.consent/v3",
+  "contract": "gentle-ai.review-integration/v2",
+  "operation": "review.start",
+  "action": "consent_required",
+  "agent": "codex",
+  "blocking": true,
+  "target_identity": "sha256:bc55626f42805c8f9cb97349463956daa12526758816cd775f7b2c9ad26fe3f6",
+  "projection": "workspace",
+  "risk_level": "medium",
+  "changed_files": 6,
+  "changed_lines": 102,
+  "headline": "Gentle AI can review this change before you call it done.",
+  "reason": "Review can help detect regressions in these changes.",
+  "value": "Reviewing takes a little longer and makes the result safer.",
+  "risk_evidence": [
+    "this change is not purely passive documentation, so it gets one consolidated review.",
+    "a configuration change in docs/requirements/qa-supervisor/closure-proposal.json"
+  ],
+  "choices": [
+    {
+      "answer": "granted",
+      "label": "Review this change",
+      "effect": "Reviews only this change; later medium- or high-risk changes ask again, and delivery needs separate approval.",
+      "invocation": "gentle-ai review start --contract gentle-ai.review-integration/v2 --cwd /workspace/replica-gentle-ai --target sha256:bc55626f42805c8f9cb97349463956daa12526758816cd775f7b2c9ad26fe3f6 --target-evidence v1:base-workspace-overlay:workspace:8b05a201b816ef7e5f90151fd209b4a4ba554019:857f21f03303ba98e02ed8497ed6006ad8a03bb3:sha256:62dba2c5165567a93d134342d86a9a4460798d770eb44ee6937a10642cdeb175 --projection workspace --agent codex --lineage review-615572b011759538 --base-ref 8b05a201b816ef7e5f90151fd209b4a4ba554019 --workspace-overlay --untracked-scope=select --expected-untracked-inventory=sha256:d46edaf41aa3f47bba21a06ad726bc31218dda1911f6e355d651432bf7f45200 --intended-untracked=docs/requirements/qa-supervisor/PRD.md --intended-untracked=docs/requirements/qa-supervisor/closure-proposal.json --intended-untracked=docs/requirements/qa-supervisor/fsm-propuesta.json --intended-untracked=docs/requirements/qa-supervisor/prd-draft.json --intended-untracked=docs/requirements/qa-supervisor/propuesta-cierre.md --intended-untracked=docs/requirements/qa-supervisor/recovery-contract.json --intended-untracked=docs/requirements/qa-supervisor/retention-change.json --intended-untracked=docs/requirements/qa-supervisor/tabla-decision.json --lenses review-resilience,review-reliability --lenses-reason 'Documentary follow-up: manual raw QA output retention32MiB and three advisories. Other partitions separate; no implementation approval.' --consent granted"
+    },
+    {
+      "answer": "declined",
+      "label": "Skip this time",
+      "effect": "Skips only this change; no review record is created, and future reviews stay enabled.",
+      "invocation": "gentle-ai review start --contract gentle-ai.review-integration/v2 --cwd /workspace/replica-gentle-ai --target sha256:bc55626f42805c8f9cb97349463956daa12526758816cd775f7b2c9ad26fe3f6 --target-evidence v1:base-workspace-overlay:workspace:8b05a201b816ef7e5f90151fd209b4a4ba554019:857f21f03303ba98e02ed8497ed6006ad8a03bb3:sha256:62dba2c5165567a93d134342d86a9a4460798d770eb44ee6937a10642cdeb175 --projection workspace --agent codex --lineage review-615572b011759538 --base-ref 8b05a201b816ef7e5f90151fd209b4a4ba554019 --workspace-overlay --untracked-scope=select --expected-untracked-inventory=sha256:d46edaf41aa3f47bba21a06ad726bc31218dda1911f6e355d651432bf7f45200 --intended-untracked=docs/requirements/qa-supervisor/PRD.md --intended-untracked=docs/requirements/qa-supervisor/closure-proposal.json --intended-untracked=docs/requirements/qa-supervisor/fsm-propuesta.json --intended-untracked=docs/requirements/qa-supervisor/prd-draft.json --intended-untracked=docs/requirements/qa-supervisor/propuesta-cierre.md --intended-untracked=docs/requirements/qa-supervisor/recovery-contract.json --intended-untracked=docs/requirements/qa-supervisor/retention-change.json --intended-untracked=docs/requirements/qa-supervisor/tabla-decision.json --lenses review-resilience,review-reliability --lenses-reason 'Documentary follow-up: manual raw QA output retention32MiB and three advisories. Other partitions separate; no implementation approval.' --consent declined"
+    }
+  ],
+  "off_path": {
+    "note": "To turn reviews off for good, run 'gentle-ai review mode disable'.",
+    "command": "gentle-ai review mode disable"
+  }
+}

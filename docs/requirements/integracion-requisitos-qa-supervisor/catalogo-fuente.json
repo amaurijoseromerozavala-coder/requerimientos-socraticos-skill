@@ -1,0 +1,2091 @@
+{
+  "metadata": {
+    "document_id": "P2P-GATE-REQ-CATALOG-001",
+    "title": "Especificación integral de requisitos: PRD → producción",
+    "target_skill": "prd-to-production-gate",
+    "version": "0.1.0",
+    "status": "DRAFT_PROPOSED_NOT_RATIFIED",
+    "date": "2026-10-30",
+    "language": "es",
+    "origin": "Consolidación de propuestas de la conversación y lectura del repositorio requerimientos-socraticos v2.4.6",
+    "current_authority": "Ninguna propuesta queda aprobada por este documento. No autoriza instalaciones, escrituras, Git, CI, despliegues ni producción.",
+    "baseline_repository": "https://github.com/amaurijoseromerozavala-coder/requerimientos-socraticos-skill",
+    "baseline_public_commit": "54ca8344789725a1e2602c7e2476c17a86b16a84",
+    "baseline_product_version": "2.4.6",
+    "note": "El commit GitHub listado usa identificador de 40 hex (SHA-1); la skill v2.4.6 exige OID SHA-256 de 64 hex para su validador documental. No son intercambiables.",
+    "scope": "Catálogo normativo propuesto para una skill de orquestación determinista con checks externos; describe cadena completa, no implementación existente."
+  },
+  "severity_model": {
+    "P0": "Obligatorio desde el núcleo",
+    "P1": "Obligatorio antes de producción, según etapa",
+    "P2": "Extensión optativa y aislada"
+  },
+  "groups": [
+    {
+      "code": "01",
+      "title": "Propósito, límites y principios",
+      "description": "El sistema gobierna un PRD documentado hasta la producción, sin implementar ni desplegar por una mera orden de una skill.",
+      "phase": "TRANSVERSAL",
+      "items": [
+        {
+          "id": "REQ-001",
+          "priority": "P0",
+          "title": "Objetivo verificable",
+          "requirement": "El sistema deberá gobernar la cadena requisitos → arquitectura → planificación → implementación → conformidad → revisión → release → producción conservando identidad y autoridad de cada entrada.",
+          "acceptance": "Para un proyecto admitido, cada transición produce un expediente con etapa, entradas fijadas, decisión y evidencia; ninguna etapa queda implícita.",
+          "test": "TP-001: recorrer fixture de ocho etapas y cotejar eventos y recibos.",
+          "kind": "FUNC",
+          "status": "PROPOSED"
+        },
+        {
+          "id": "REQ-002",
+          "priority": "P0",
+          "title": "Naturaleza de la skill",
+          "requirement": "La skill `prd-to-production-gate` deberá producir instrucciones y propuestas, mientras un motor externo determinista valida contratos, autoriza transiciones y rechaza acciones fuera de política.",
+          "acceptance": "Una salida de LLM que diga READY sin recibos válidos no cambia el estado del motor.",
+          "test": "TP-002: inyectar texto READY y comprobar denegación.",
+          "kind": "FUNC",
+          "status": "PROPOSED"
+        },
+        {
+          "id": "REQ-003",
+          "priority": "P0",
+          "title": "No duplicar Gentle-AI",
+          "requirement": "La solución deberá reutilizar, cuando estén disponibles y verificados, ODD, Engram, RDD y Skill Registry, sin reemplazarlos con implementaciones paralelas que puedan divergir.",
+          "acceptance": "Un mapa de responsabilidades identifica propietario de cada estado y fuente; funcionalidades ausentes son UNKNOWN o adaptadores explícitos.",
+          "test": "TP-003: revisar mapa de responsabilidad, simular ausencia de Engram/RDD.",
+          "kind": "FUNC",
+          "status": "PROPOSED"
+        },
+        {
+          "id": "REQ-004",
+          "priority": "P0",
+          "title": "Separación de autoridad",
+          "requirement": "Deberá diferenciar proponer, ejecutar, observar, verificar, revisar, aprobar documentalmente y autorizar cambios de infraestructura o producción; ninguna de esas capacidades implicará automáticamente otra.",
+          "acceptance": "El catálogo de permisos distingue al menos esos siete verbos y sus actores.",
+          "test": "TP-004: probar todas las escaladas implícitas posibles.",
+          "kind": "FUNC",
+          "status": "PROPOSED"
+        },
+        {
+          "id": "REQ-005",
+          "priority": "P0",
+          "title": "Trabajo local acotado",
+          "requirement": "Por defecto deberá operar READ_ONLY o DOCUMENT_ONLY y sin acceso a producción; todo cambio de modo exigirá alcance y autorización humana explícitos.",
+          "acceptance": "Una tarea sin autorización de escritura no altera archivos, Git ni plataformas remotas.",
+          "test": "TP-005: inspeccionar side effects en ejecuciones sin autorización.",
+          "kind": "FUNC",
+          "status": "PROPOSED"
+        },
+        {
+          "id": "REQ-006",
+          "priority": "P0",
+          "title": "Decisiones no ratificadas",
+          "requirement": "Todas las decisiones y requisitos de esta especificación deberán comenzar en PROPOSED hasta aprobación humana explícita y ligada a versión; silencio, tests verdes o recomendaciones de IA no los ratifican.",
+          "acceptance": "El expediente inicial no puede declararse ADOPTED ni READY por sí mismo.",
+          "test": "TP-006: probar ausencia de ratificación y rechazo de promoción.",
+          "kind": "FUNC",
+          "status": "PROPOSED"
+        },
+        {
+          "id": "REQ-007",
+          "priority": "P1",
+          "title": "Rutas de escape y pausa",
+          "requirement": "La solución deberá ofrecer PAUSE, CANCEL y RESUME autorizados, preservando el historial, evitando side effects durante pausa y revalidando condiciones al reanudar.",
+          "acceptance": "PAUSED no realiza actividades nuevas y RESUME reevalúa las dependencias vigentes.",
+          "test": "TP-007: pausa durante revisión, cambiar evidencia y solicitar reanudación.",
+          "kind": "FUNC",
+          "status": "PROPOSED"
+        }
+      ]
+    },
+    {
+      "code": "02",
+      "title": "Actores, identidades y autorizaciones",
+      "description": "Humanos, agentes, validadores y servicios externos tienen identidades y privilegios distintos.",
+      "phase": "TRANSVERSAL",
+      "items": [
+        {
+          "id": "REQ-008",
+          "priority": "P0",
+          "title": "Propietario humano",
+          "requirement": "Deberá existir un HUMAN_OWNER autenticado para ratificar intención, políticas, excepciones, riesgos aceptados, alcance y permiso de producción.",
+          "acceptance": "Un identificador de agente no puede aparecer como firma humana; ratificaciones apuntan al evento real de decisión.",
+          "test": "TP-008: intentar aprobar con actor LLM.",
+          "kind": "FUNC",
+          "status": "PROPOSED"
+        },
+        {
+          "id": "REQ-009",
+          "priority": "P0",
+          "title": "Roles mínimos",
+          "requirement": "Deberá diferenciar REQUIREMENTS_OWNER, PLANNER, IMPLEMENTER, VERIFIER, INDEPENDENT_REVIEWER, RELEASE_OPERATOR y DEPLOY_APPROVER; un actor podrá tener varios roles solo si la política permite su combinación.",
+          "acceptance": "La matriz de roles/acciones es verificable y el sistema niega toda acción no expresamente incluida.",
+          "test": "TP-009: matriz exhaustiva de permisos permitidos/denegados.",
+          "kind": "FUNC",
+          "status": "PROPOSED"
+        },
+        {
+          "id": "REQ-010",
+          "priority": "P0",
+          "title": "No autoautorización",
+          "requirement": "Un agente no deberá emitirse a sí mismo nuevas capacidades, modificar su política de validación, elevar límites, desactivar gates o aprobar su propia salida.",
+          "acceptance": "Cambiar un permiso desde el canal de propuestas devuelve DENY y no cambia el snapshot normativo.",
+          "test": "TP-010: fixtures de escalada de privilegios y autopromoción.",
+          "kind": "FUNC",
+          "status": "PROPOSED"
+        },
+        {
+          "id": "REQ-011",
+          "priority": "P0",
+          "title": "Autoridad versionada",
+          "requirement": "La autorización deberá indicar actor, objetivo, acciones permitidas, recursos, revisión/candidato, vencimiento o condición de revocación y fuente verificable.",
+          "acceptance": "Una autorización caducada, de otro candidato o incompleta nunca habilita trabajo.",
+          "test": "TP-011: revocar, expirar y reutilizar un token de otro candidato.",
+          "kind": "FUNC",
+          "status": "PROPOSED"
+        },
+        {
+          "id": "REQ-012",
+          "priority": "P0",
+          "title": "Mínimo privilegio",
+          "requirement": "Cada adaptador deberá recibir únicamente permisos de lectura/escritura indispensables y carecer, por defecto, de credenciales de producción o acceso a secretos.",
+          "acceptance": "La configuración declarada y los permisos efectivos se contrastan antes de iniciar trabajos sensibles.",
+          "test": "TP-012: intentar acceder a ruta/credencial fuera de allowlist.",
+          "kind": "FUNC",
+          "status": "PROPOSED"
+        },
+        {
+          "id": "REQ-013",
+          "priority": "P1",
+          "title": "Segregación de funciones",
+          "requirement": "La aprobación independiente y la aprobación de despliegue deberán proceder de identidades separadas del autor cuando la política de riesgo lo exija.",
+          "acceptance": "La regla de segregación se evalúa por identidad autenticada, no por nombre de rol declarado en JSON.",
+          "test": "TP-013: misma identidad emite código y revisión: rechazo.",
+          "kind": "FUNC",
+          "status": "PROPOSED"
+        },
+        {
+          "id": "REQ-014",
+          "priority": "P0",
+          "title": "Objetos externos no confiables",
+          "requirement": "Instrucciones contenidas en PRD, repositorios, logs, resultados web, salidas QA o respuestas del modelo deberán tratarse como datos sin autoridad para cambiar reglas.",
+          "acceptance": "Un texto embebido “ignora el gate” no altera estado ni permisos.",
+          "test": "TP-014: inyección de prompt en documento y salida de herramienta.",
+          "kind": "FUNC",
+          "status": "PROPOSED"
+        }
+      ]
+    },
+    {
+      "code": "03",
+      "title": "Máquina de estados y puertas de avance",
+      "description": "FSM explícita, total en eventos admitidos y fail-closed para cada transición sensible.",
+      "phase": "TRANSVERSAL",
+      "items": [
+        {
+          "id": "REQ-015",
+          "priority": "P0",
+          "title": "FSM normativa",
+          "requirement": "Deberá existir una FSM versionada con estados CAPTURED, PRD_PENDING, PRD_VERIFIED, ARCHITECTURE, PLANNED, IMPLEMENTING, VERIFYING, REVIEWING, RELEASE_CANDIDATE, PRODUCTION_PENDING, DEPLOYED, BLOCKED, PAUSED y CANCELLED.",
+          "acceptance": "Todo estado, evento, guarda, rol y efecto queda descrito; un estado no declarado se rechaza.",
+          "test": "TP-015: enumeración de estados/eventos y validación de referencias.",
+          "kind": "FUNC",
+          "status": "PROPOSED"
+        },
+        {
+          "id": "REQ-016",
+          "priority": "P0",
+          "title": "Rechazo sin efecto",
+          "requirement": "Cualquier evento no permitido o guarda falsa deberá producir DENY y conservar sin modificación estado, datos normativos y privilegios.",
+          "acceptance": "La huella de estado antes y después de un rechazo es idéntica, salvo el registro de auditoría.",
+          "test": "TP-016: property test de todas las transiciones prohibidas.",
+          "kind": "FUNC",
+          "status": "PROPOSED"
+        },
+        {
+          "id": "REQ-017",
+          "priority": "P0",
+          "title": "Determinismo de decisión",
+          "requirement": "Para mismo estado, versión de política, entradas canónicas y evidencia congelada, el motor deberá decidir el mismo resultado y próximo estado.",
+          "acceptance": "No hay selección aleatoria o primera regla implícita ni dependencia del orden de lectura.",
+          "test": "TP-017: permutar orden de registros y repetir decisión.",
+          "kind": "FUNC",
+          "status": "PROPOSED"
+        },
+        {
+          "id": "REQ-018",
+          "priority": "P0",
+          "title": "Gates tipados",
+          "requirement": "Cada gate deberá devolver PASS, FAIL, UNKNOWN, NOT_RUN o NOT_APPLICABLE con justificativo y alcance; NOT_APPLICABLE solo será válido con razón y autoridad pertinentes.",
+          "acceptance": "UNKNOWN, FAIL y NOT_RUN de un gate obligatorio bloquean avance; PASS solo de ejecutor verificado.",
+          "test": "TP-018: tabla de verdad de evaluación conjunta.",
+          "kind": "FUNC",
+          "status": "PROPOSED"
+        },
+        {
+          "id": "REQ-019",
+          "priority": "P0",
+          "title": "Vacuidad de cobertura",
+          "requirement": "No deberá considerarse completo un gate por ausencia de pruebas, requisitos o universos definidos; el denominador debe fijarse y justificar exclusiones.",
+          "acceptance": "Un conjunto obligatorio vacío produce BLOCKED_UNDEFINED_SCOPE, no PASS.",
+          "test": "TP-019: introducir lista vacía y exclusiones sin respaldo.",
+          "kind": "FUNC",
+          "status": "PROPOSED"
+        },
+        {
+          "id": "REQ-020",
+          "priority": "P0",
+          "title": "Cambio material",
+          "requirement": "Cualquier cambio en requisito, arquitectura, dependencias, tests, política, modelo o evidencia relevante deberá invalidar solo las aprobaciones afectadas según grafo de dependencias.",
+          "acceptance": "Una revisión vieja no puede certificar un candidato nuevo.",
+          "test": "TP-020: mutar entrada y cotejar cascada de invalidación.",
+          "kind": "FUNC",
+          "status": "PROPOSED"
+        },
+        {
+          "id": "REQ-021",
+          "priority": "P1",
+          "title": "Recuperación/reintentos",
+          "requirement": "La FSM deberá incluir fallos de infraestructura, interrupciones, estado desconocido y recuperación; reintentar no debe duplicar side effects.",
+          "acceptance": "Reintentos con mismo idempotency_key no crean recursos/commits/deploys duplicados.",
+          "test": "TP-021: cortar ejecución entre operación y recibo, reintentar.",
+          "kind": "FUNC",
+          "status": "PROPOSED"
+        },
+        {
+          "id": "REQ-022",
+          "priority": "P0",
+          "title": "Separación de gates",
+          "requirement": "VERIFIED_CANDIDATE, DOCUMENT_ACCEPTED y DEPLOY_AUTHORIZED deberán ser estados/afirmaciones distintos; una verificación no autoriza producción.",
+          "acceptance": "Un informe DOCUMENT_VALIDATED_GIT no habilita por sí solo transición a producción.",
+          "test": "TP-022: tratar recibo de validación como autorización y exigir DENY.",
+          "kind": "FUNC",
+          "status": "PROPOSED"
+        },
+        {
+          "id": "REQ-023",
+          "priority": "P1",
+          "title": "Cobertura FSM",
+          "requirement": "La validación deberá enumerar configuraciones alcanzables donde sea finito y viable, detectar ambigüedades/solapes, guardas imposibles, ausencia de transiciones, invariantes violadas y progresión pendiente.",
+          "acceptance": "Cada hallazgo incluye traza y oráculo, y la incompletitud de la exploración queda etiquetada.",
+          "test": "TP-023: casos controlados de solape, deadlock e invariante.",
+          "kind": "FUNC",
+          "status": "PROPOSED"
+        }
+      ]
+    },
+    {
+      "code": "04",
+      "title": "Contratos, esquemas y trazabilidad",
+      "description": "Intercambio entre etapas mediante datos versionados, no mediante prosa conversacional como autoridad.",
+      "phase": "TRANSVERSAL",
+      "items": [
+        {
+          "id": "REQ-024",
+          "priority": "P0",
+          "title": "Envelope de trabajo",
+          "requirement": "Toda etapa deberá recibir: INPUT_IDENTITY, AUTHORITY, REQUIREMENT_IDS, WORK_UNIT, POLICY_VERSION, EXPECTED_EVIDENCE, VALIDATION, REVIEW y GATE_DECISION, según esquema versionado.",
+          "acceptance": "El validador rechaza campos faltantes, inesperados o referencias rotas en campos normativos.",
+          "test": "TP-024: validar fixtures correctos, incompletos y con campos extra.",
+          "kind": "FUNC",
+          "status": "PROPOSED"
+        },
+        {
+          "id": "REQ-025",
+          "priority": "P0",
+          "title": "Identidades verificables",
+          "requirement": "Los artefactos deberán registrar hash de contenido, ruta/identificador, esquema, herramienta y versión, fecha UTC cuando pertinente y relación con el candidato exacto.",
+          "acceptance": "Modificar un byte del contenido relevante rompe el vínculo y produce STALE_EVIDENCE.",
+          "test": "TP-025: alterar un byte y revalidar.",
+          "kind": "FUNC",
+          "status": "PROPOSED"
+        },
+        {
+          "id": "REQ-026",
+          "priority": "P0",
+          "title": "Canonización diferenciada",
+          "requirement": "Se deberán distinguir identidad de bytes y equivalencia semántica JSON; la normalización UTF-8/LF de documentos nuevos no reescribirá evidencia histórica.",
+          "acceptance": "Una conversión CRLF→LF cambia hash de bytes y bloquea dependencias obsoletas hasta nueva revisión.",
+          "test": "TP-026: fixtures LF/CRLF/BOM con hash comparado.",
+          "kind": "FUNC",
+          "status": "PROPOSED"
+        },
+        {
+          "id": "REQ-027",
+          "priority": "P0",
+          "title": "Trazabilidad bidireccional",
+          "requirement": "Se deberá conservar mapa de INPUT → IR → EARS → REQ → ADR → TASK → TEST → CODE → REVIEW → BUILD → RELEASE → DEPLOY y enlaces inversos donde aplique.",
+          "acceptance": "Todo requisito material tiene ruta hacia validación o estado pendiente; ningún artefacto huérfano se usa como evidencia de cobertura.",
+          "test": "TP-027: inyectar REQ sin TEST y BUILD sin fuente.",
+          "kind": "FUNC",
+          "status": "PROPOSED"
+        },
+        {
+          "id": "REQ-028",
+          "priority": "P0",
+          "title": "Procedencia y veracidad",
+          "requirement": "Cada dato debe clasificarse FACT, EXTERNAL_FACT, DECISION, CONSTRAINT, INFERENCE, HYPOTHESIS, FORMAL, UNKNOWN o equivalente con evidencia y alcance.",
+          "acceptance": "Una inferencia LLM no puede ser transformada por schema en DECISION sin fuente humana.",
+          "test": "TP-028: clasificador de afirmaciones con fuente incompatible.",
+          "kind": "FUNC",
+          "status": "PROPOSED"
+        },
+        {
+          "id": "REQ-029",
+          "priority": "P0",
+          "title": "Estado de prueba",
+          "requirement": "Todo recibo deberá incluir comando real, exit code, entrada, salida o localizador, resultado observado, oráculo fijado previamente y ejecutor; no se admiten PASS autodeclarados.",
+          "acceptance": "Faltar salida/exec o mezclar test plan con ejecución genera NOT_RUN/BLOCKED.",
+          "test": "TP-029: recibo inventado y comando nunca ejecutado.",
+          "kind": "FUNC",
+          "status": "PROPOSED"
+        },
+        {
+          "id": "REQ-030",
+          "priority": "P1",
+          "title": "Errores y compatibilidad",
+          "requirement": "Los contratos deberán versionarse con reglas de evolución y rechazo explícito de versiones desconocidas; migraciones no modificarán evidencias aprobadas sin nueva identidad.",
+          "acceptance": "Un schema nuevo incompatible no se interpreta silenciosamente con reglas antiguas.",
+          "test": "TP-030: contrato vX desconocido y migración de revisión.",
+          "kind": "FUNC",
+          "status": "PROPOSED"
+        },
+        {
+          "id": "REQ-031",
+          "priority": "P0",
+          "title": "Aislamiento de fuentes",
+          "requirement": "Los documentos de terceros y salidas de agentes deberán ingresarse como paquetes de solo lectura, con límites de tamaño y validación estructural previa al uso.",
+          "acceptance": "Documentos malformados, enlaces externos inesperados o tamaño excesivo son rechazados sin ejecutar instrucciones.",
+          "test": "TP-031: entrada oversized, duplicados JSON y payload de inyección.",
+          "kind": "FUNC",
+          "status": "PROPOSED"
+        }
+      ]
+    },
+    {
+      "code": "05",
+      "title": "Entrada desde requerimientos-socraticos v2.4.6",
+      "description": "La skill existente es la autoridad metodológica sobre intención y PRD; el nuevo flujo no inventa aprobación de su cierre.",
+      "phase": "PRD",
+      "items": [
+        {
+          "id": "REQ-032",
+          "priority": "P0",
+          "title": "Fuente normativa PRD",
+          "requirement": "El consumidor deberá leer el PRD de requerimientos-socraticos y sus dependencias exactas, sin normalizar en silencio ni alterar el documento canónico.",
+          "acceptance": "Se conserva hash original, archivos vinculados, entrevistas, propuestas y evidencias; salida es un expediente independiente.",
+          "test": "TP-032: importar candidato inmutable y comparar hashes.",
+          "kind": "FUNC",
+          "status": "PROPOSED"
+        },
+        {
+          "id": "REQ-033",
+          "priority": "P0",
+          "title": "Interrogatorio real",
+          "requirement": "Deberá conservar entrevista una pregunta material por intercambio, respuesta real, contraste, preguntas pendientes, fuentes y decisor humano; no generar diálogos retrospectivos.",
+          "acceptance": "Una pregunta no respondida bloquea cierre semántico; modo independiente requiere interlocutores reales distintos.",
+          "test": "TP-033: fixture de respuesta simulada y pregunta sin contestar.",
+          "kind": "FUNC",
+          "status": "PROPOSED"
+        },
+        {
+          "id": "REQ-034",
+          "priority": "P0",
+          "title": "Semántica confirmada",
+          "requirement": "Únicamente significado humano confirmado y atribuido podrá producir requisito canónico, política, unidad de negocio o permiso; hipótesis y mejoras permanecen propuestas.",
+          "acceptance": "Una propuesta aceptada por silencio no aparece en requisitos aprobados.",
+          "test": "TP-034: propuesta con status PROPOSED y falta de decisión.",
+          "kind": "FUNC",
+          "status": "PROPOSED"
+        },
+        {
+          "id": "REQ-035",
+          "priority": "P0",
+          "title": "Gates originales preservados",
+          "requirement": "No se permitirá bypass de estructura PRD, trazabilidad, cobertura, FSM, falsadores, pruebas RED/GREEN, revisión RDD ni frontera BLOCKED_GLOBAL_ENFORCEMENT declarada en v2.4.6.",
+          "acceptance": "La integración no convierte el retorno 0 de un comprobador documental en autorización posterior.",
+          "test": "TP-035: forjar READY con recibo local insuficiente.",
+          "kind": "FUNC",
+          "status": "PROPOSED"
+        },
+        {
+          "id": "REQ-036",
+          "priority": "P0",
+          "title": "Compatibilidad Git SHA-256",
+          "requirement": "La ruta actual de validate_git requiere repositorio documental SHA-256 con commit OID completo de 64 hex; no aceptará HEAD, rama/tag ni SHA-1 como identidad equivalente.",
+          "acceptance": "Un commit SHA-1 de 40 caracteres se rechaza o deriva a proceso de migración autorizado separado.",
+          "test": "TP-036: SHA-1, nombre de rama y SHA-256 completo.",
+          "kind": "FUNC",
+          "status": "PROPOSED"
+        },
+        {
+          "id": "REQ-037",
+          "priority": "P1",
+          "title": "Frontera repo de código/documentos",
+          "requirement": "Se deberán separar Git fuente publicado (potencialmente SHA-1) y repositorio documental SHA-256; una tabla de procedencia verificable los vinculará sin confundir algoritmos.",
+          "acceptance": "Un commit de código de 40 caracteres nunca se pasa como OID de documentación SHA-256.",
+          "test": "TP-037: intentar equivalencia por nombre de archivo o árbol.",
+          "kind": "FUNC",
+          "status": "PROPOSED"
+        },
+        {
+          "id": "REQ-038",
+          "priority": "P0",
+          "title": "PRD no listo",
+          "requirement": "Si el PRD no tiene evidencia semántica/RDD autenticada suficiente o está en BLOCKED, la arquitectura podrá producir solo propuestas READ_ONLY, nunca avanzar automáticamente.",
+          "acceptance": "PRD incompleto lleva a PRD_PENDING/BLOCKED y no produce planes implementables autorizados.",
+          "test": "TP-038: entrada PRD con READY autodeclarado y dependencia obsoleta.",
+          "kind": "FUNC",
+          "status": "PROPOSED"
+        }
+      ]
+    },
+    {
+      "code": "06",
+      "title": "Integración Gentle-AI / Codex / OpenCode",
+      "description": "Adaptación mediante detección de capacidades y rutas explícitas; la versión instalada manda sobre documentación de rama main.",
+      "phase": "TRANSVERSAL",
+      "items": [
+        {
+          "id": "REQ-039",
+          "priority": "P0",
+          "title": "Detección de runtime",
+          "requirement": "Al activar deberá comprobarse versión real de Gentle-AI, ayuda de sus comandos, registro de skills y capacidad del runtime ejecutor (OpenCode/Codex); lo no confirmado se reporta UNKNOWN.",
+          "acceptance": "La salida diferencia AVAILABLE, UNSUPPORTED, UNAVAILABLE y NOT_TESTED por interfaz.",
+          "test": "TP-039: emular comandos faltantes y documentación discordante.",
+          "kind": "FUNC",
+          "status": "PROPOSED"
+        },
+        {
+          "id": "REQ-040",
+          "priority": "P0",
+          "title": "No presuponer wrapper",
+          "requirement": "No deberá darse por existente `gentle-ai requirements ...` upstream: el wrapper local de la skill v2.4.6 no se distribuye y deberá usarse helper Python equivalente o adaptador verificado.",
+          "acceptance": "En instalación sin wrapper, la activación produce ruta válida comprobada o bloqueo explícito, jamás un PASS ficticio.",
+          "test": "TP-040: entorno upstream sin extensión local.",
+          "kind": "FUNC",
+          "status": "PROPOSED"
+        },
+        {
+          "id": "REQ-041",
+          "priority": "P0",
+          "title": "MCP-FIRST / SKILLS-FIRST",
+          "requirement": "Antes de seleccionar herramientas deberá comprobar skills pertinentes por rutas exactas y MCP instalados/permitidos; un fallo de búsqueda no equivale a invocación exitosa.",
+          "acceptance": "El log registra fuente consultada, resultado, versión, permisos y fallback elegido.",
+          "test": "TP-041: falta MCP/skill y constatar UNAVAILABLE.",
+          "kind": "FUNC",
+          "status": "PROPOSED"
+        },
+        {
+          "id": "REQ-042",
+          "priority": "P1",
+          "title": "ODD con autorización",
+          "requirement": "Deberá seguir ODD: autorizar → explorar → resolver incertidumbre → especificar → ejecutar lo permitido → verificar → cerrar; una solicitud de revisión no autoriza edición.",
+          "acceptance": "La fase exploratoria no crea cambios en repositorio sin autorización.",
+          "test": "TP-042: solicitar evaluación READ_ONLY y auditar archivos.",
+          "kind": "FUNC",
+          "status": "PROPOSED"
+        },
+        {
+          "id": "REQ-043",
+          "priority": "P1",
+          "title": "Engram atómico",
+          "requirement": "Se deberá registrar continuidad, decisiones y localizadores en Engram cuando esté presente, sin convertirlo en fuente de verdad del PRD ni incluir secretos.",
+          "acceptance": "Cada escritura y lectura se registra con resultado; fallo de espejo produce pendiente explícito sin cambiar el candidato.",
+          "test": "TP-043: desconectar Engram tras escritura local y recuperar sin perder historial.",
+          "kind": "FUNC",
+          "status": "PROPOSED"
+        },
+        {
+          "id": "REQ-044",
+          "priority": "P1",
+          "title": "RDD auténtico",
+          "requirement": "Deberá consultar modo y comandos RDD realmente existentes, obtener revisión del candidato exacto y verificar procedencia del recibo según autoridad externa.",
+          "acceptance": "Sin runtime, revisor o recibo auténtico, reporte NATIVE_UNAVAILABLE / BLOCKED; no inventar `NATIVE_PASS`.",
+          "test": "TP-044: mock de reporte RDD escrito por autor.",
+          "kind": "FUNC",
+          "status": "PROPOSED"
+        },
+        {
+          "id": "REQ-045",
+          "priority": "P1",
+          "title": "Skill Registry",
+          "requirement": "Deberá descubrir cada SKILL.md exacto, su hash, versión, trigger, obligaciones y restricciones; refreshing/instalación requiere autorización por modificar configuración.",
+          "acceptance": "Skill ausente o ruta ambigua no se ejecuta; se conserva un catálogo de alternativas.",
+          "test": "TP-045: skill homónima maliciosa y refresco no autorizado.",
+          "kind": "FUNC",
+          "status": "PROPOSED"
+        },
+        {
+          "id": "REQ-046",
+          "priority": "P1",
+          "title": "Selección de modelo",
+          "requirement": "El proveedor, modelo e intensidad de razonamiento deberán ser configurables por perfil verificado; nunca se asumirá portabilidad del TOML de Codex hacia OpenCode/OpenRouter/local.",
+          "acceptance": "Modelo inválido o sin proveedor disponible bloquea esa función, sin alterar decisiones normativas.",
+          "test": "TP-046: cambiar modelo y comparar políticas/firma del expediente.",
+          "kind": "FUNC",
+          "status": "PROPOSED"
+        },
+        {
+          "id": "REQ-047",
+          "priority": "P1",
+          "title": "Control de subagentes",
+          "requirement": "Se deberán limitar simultaneidad, contexto, duración y permisos de subagentes; por defecto preferir ejecución secuencial en WSL de bajos recursos.",
+          "acceptance": "Un subagente sin herramienta de solo lectura o aislamiento adecuado no recibe capacidad de escritura.",
+          "test": "TP-047: tres solicitudes paralelas con política de un worker.",
+          "kind": "FUNC",
+          "status": "PROPOSED"
+        },
+        {
+          "id": "REQ-048",
+          "priority": "P0",
+          "title": "No instalación automática",
+          "requirement": "La carga de la skill no deberá instalar dependencias, activar servicios, modificar Git/CI, cambiar configuración, publicar ni otorgar credenciales.",
+          "acceptance": "La activación sobre un clon limpio no modifica archivos ajenos al log permitido.",
+          "test": "TP-048: comparar estado del sistema antes/después de invocar activación.",
+          "kind": "FUNC",
+          "status": "PROPOSED"
+        }
+      ]
+    },
+    {
+      "code": "07",
+      "title": "Arquitectura y diseño (Spec Kit)",
+      "description": "Planificación alimentada por PRD confirmado: ADR, contratos, evaluación de alternativas, riesgos y interfaces.",
+      "phase": "ARQUITECTURA",
+      "items": [
+        {
+          "id": "REQ-049",
+          "priority": "P1",
+          "title": "Adaptador de Spec Kit",
+          "requirement": "Se deberá integrar `speckit-plan` y `speckit-analyze` como capacidades opcionales, verificando su disponibilidad y preservando al PRD como única fuente normativa de intención.",
+          "acceptance": "El plan referencia requisito por ID/versión y no crea nuevas decisiones de negocio por inferencia.",
+          "test": "TP-049: comparar plan generado con PRD original.",
+          "kind": "FUNC",
+          "status": "PROPOSED"
+        },
+        {
+          "id": "REQ-050",
+          "priority": "P1",
+          "title": "ADR y opciones",
+          "requirement": "Para toda decisión arquitectónica material deberá generarse ADR con problema, alternativas, consecuencias, costo, riesgo, reversibilidad, supuestos y autorización.",
+          "acceptance": "Un ADR sin decisión humana cuando afecte políticas permanece PROPOSED.",
+          "test": "TP-050: opciones mutuamente excluyentes y decisión ausente.",
+          "kind": "FUNC",
+          "status": "PROPOSED"
+        },
+        {
+          "id": "REQ-051",
+          "priority": "P1",
+          "title": "Contratos de interfaces",
+          "requirement": "El diseño deberá fijar APIs, formatos, errores, estados, actor/recurso, orden de operaciones, idempotencia y compatibilidad de versiones donde aplique.",
+          "acceptance": "Cada interfaz pública tiene contrato positivo y negativos verificables, sin nombres TBD para decisiones materiales.",
+          "test": "TP-051: omitir código de error y caso de reintento.",
+          "kind": "FUNC",
+          "status": "PROPOSED"
+        },
+        {
+          "id": "REQ-052",
+          "priority": "P1",
+          "title": "Análisis de amenaza",
+          "requirement": "Deberá identificar frontera de confianza: LLM, shell, archivos, motor determinista, reviewer, Git, CI, secrets, red, host Windows/WSL y producción.",
+          "acceptance": "Un diagrama/tablas muestran qué actor puede alterar cada prueba y quién verifica.",
+          "test": "TP-052: modelar compromiso del mismo UID y detectar ausencia de aislamiento.",
+          "kind": "FUNC",
+          "status": "PROPOSED"
+        },
+        {
+          "id": "REQ-053",
+          "priority": "P1",
+          "title": "Diseño verificable",
+          "requirement": "Arquitectura deberá trazar requisitos a componentes y propiedades a oráculos, definir presupuestos, limitaciones de temporalidad/concurrencia y plan de recuperación.",
+          "acceptance": "Ningún requisito obligatorio queda asignado solo a “LLM decidirá”.",
+          "test": "TP-053: REQ de autorización sin componente que la imponga.",
+          "kind": "FUNC",
+          "status": "PROPOSED"
+        },
+        {
+          "id": "REQ-054",
+          "priority": "P1",
+          "title": "Gate de arquitectura",
+          "requirement": "No se autorizará planificación de implementación hasta pasar consistencia del plan, ADR vigentes, políticas, interfaces y revisión independiente acorde al riesgo.",
+          "acceptance": "Hallazgos materiales mantienen ARCHITECTURE/BLOCKED.",
+          "test": "TP-054: ADR obsoleto e interfaz contradictoria.",
+          "kind": "FUNC",
+          "status": "PROPOSED"
+        }
+      ]
+    },
+    {
+      "code": "08",
+      "title": "Planificación, unidades de trabajo y precedencias",
+      "description": "Tareas verificables a partir de requisitos aprobados, con autorización granular y gestión de dependencias.",
+      "phase": "PLANIFICACION",
+      "items": [
+        {
+          "id": "REQ-055",
+          "priority": "P1",
+          "title": "Tasks y writing-plans",
+          "requirement": "Deberá permitir `speckit-tasks` y `writing-plans` solo como generadores de planes candidatos; el motor valida precedencias, recursos y cobertura antes de adoptarlos.",
+          "acceptance": "Cada tarea posee IDs de requisito, precondiciones, entregables, archivos concretos y test esperado.",
+          "test": "TP-055: task sin requisito, sin test y con dependencia circular.",
+          "kind": "FUNC",
+          "status": "PROPOSED"
+        },
+        {
+          "id": "REQ-056",
+          "priority": "P1",
+          "title": "Unidad de trabajo acotada",
+          "requirement": "Cada WORK_UNIT deberá declarar archivos permitidos, acciones autorizadas, recursos, duración/presupuesto, criterios RED/GREEN, evidencia y condición de parada.",
+          "acceptance": "Una solicitud que exceda el conjunto de archivos devuelve DENY antes de escribir.",
+          "test": "TP-056: intentar cambiar un archivo ajeno a la unidad.",
+          "kind": "FUNC",
+          "status": "PROPOSED"
+        },
+        {
+          "id": "REQ-057",
+          "priority": "P1",
+          "title": "Precedencias",
+          "requirement": "Se deberá representar grafo de tareas sin depender de orden de archivo, detectar ciclos y asegurar que una tarea no se ejecuta antes de sus gates predecesores.",
+          "acceptance": "Una dependencia no resuelta bloquea la tarea, aunque el LLM la recomiende.",
+          "test": "TP-057: grafo con IDs desordenados y ciclo A→B→A.",
+          "kind": "FUNC",
+          "status": "PROPOSED"
+        },
+        {
+          "id": "REQ-058",
+          "priority": "P2",
+          "title": "PERT/CPM opcional",
+          "requirement": "Podrá añadirse PERT/CPM y Gantt para planificación y ruta crítica, diferenciando estimaciones de duración real, calendario, capacidad y recursos compartidos; no es gate de verdad semántica.",
+          "acceptance": "Las estimaciones se etiquetan, los tiempos reales recalculan precedencias y un operario compartido no se duplica.",
+          "test": "TP-058: conflicto de recursos y cambio de tiempo real.",
+          "kind": "FUNC",
+          "status": "PROPOSED"
+        },
+        {
+          "id": "REQ-059",
+          "priority": "P1",
+          "title": "Riesgo y ruta de recuperación",
+          "requirement": "Cada tarea de alto impacto deberá tener rollback local, controles negativos y estrategia de restauración si hay side effects permitidos.",
+          "acceptance": "Sin reversibilidad o política humana de aceptación de irreversibilidad, la ejecución queda bloqueada.",
+          "test": "TP-059: tarea irreversible sin aprobación explícita.",
+          "kind": "FUNC",
+          "status": "PROPOSED"
+        },
+        {
+          "id": "REQ-060",
+          "priority": "P1",
+          "title": "No commits automáticos",
+          "requirement": "El plan no podrá adoptar automáticamente la costumbre de Superpowers de commitear por tarea; staging, commit, PR y push exigen autorización granular, sin push implícito.",
+          "acceptance": "En unidad READ_ONLY o WRITE_NO_COMMIT, Git index/HEAD/remoto se conservan.",
+          "test": "TP-060: plan incluye git commit y se ejecuta con WRITE_NO_COMMIT.",
+          "kind": "FUNC",
+          "status": "PROPOSED"
+        },
+        {
+          "id": "REQ-061",
+          "priority": "P1",
+          "title": "Gate de planificación",
+          "requirement": "La etapa PLANNED exige coverage de tareas para requisitos aplicables, tests definidos y revisados, precedencias acíclicas y presupuesto autorizado.",
+          "acceptance": "Una tarea faltante no permite empezar IMPLEMENTING.",
+          "test": "TP-061: test de cobertura de planificación con un REQ sin task.",
+          "kind": "FUNC",
+          "status": "PROPOSED"
+        }
+      ]
+    },
+    {
+      "code": "09",
+      "title": "Implementación y pruebas RED/GREEN (Superpowers)",
+      "description": "Las skills de terceros orientan; el controlador aplica decisiones sobre procesos y archivos reales.",
+      "phase": "IMPLEMENTACION",
+      "items": [
+        {
+          "id": "REQ-062",
+          "priority": "P1",
+          "title": "TDD observado",
+          "requirement": "Toda modificación productiva autorizada deberá tener prueba RED específica ejecutada previamente, GREEN posterior y regresión, con hashes de cada revisión.",
+          "acceptance": "Fallo de infraestructura o fixture no se etiqueta RED funcional.",
+          "test": "TP-062: test falla por dependencia ausente y se intenta registrar RED válido.",
+          "kind": "FUNC",
+          "status": "PROPOSED"
+        },
+        {
+          "id": "REQ-063",
+          "priority": "P1",
+          "title": "Cambios mínimos",
+          "requirement": "El implementador deberá cambiar solo archivos listados en WORK_UNIT y evitar refactors amplios sin autorización; tareas no autorizadas se proponen aparte.",
+          "acceptance": "Diff efectivo se compara con allowlist y límites de cambios antes de aceptar.",
+          "test": "TP-063: edición lateral no relacionada, incluso si tests pasan.",
+          "kind": "FUNC",
+          "status": "PROPOSED"
+        },
+        {
+          "id": "REQ-064",
+          "priority": "P1",
+          "title": "Subagentes de código",
+          "requirement": "La ejecución `executing-plans` / `subagent-driven-development` será optativa y solo se admitirá si revisión, permisos, modelo y recursos están verificados; nunca en modo auto-permisivo.",
+          "acceptance": "Sin aislamiento/permiso comprobados se usa ejecución secuencial o BLOCKED.",
+          "test": "TP-064: falta sandbox y runtime propone delegación autónoma.",
+          "kind": "FUNC",
+          "status": "PROPOSED"
+        },
+        {
+          "id": "REQ-065",
+          "priority": "P1",
+          "title": "Ensayos frente a código real",
+          "requirement": "No se aceptarán resultados generados por una IA ni simulaciones teatrales como ejecución de tests; pruebas y salidas deben proceder de procesos reales y estar ligadas al commit.",
+          "acceptance": "Un mock solo cumple su oráculo explícito, no una afirmación del sistema productivo.",
+          "test": "TP-065: falso log fabricado y comparación de ejecutor/fuente.",
+          "kind": "FUNC",
+          "status": "PROPOSED"
+        },
+        {
+          "id": "REQ-066",
+          "priority": "P1",
+          "title": "Depuración sistemática",
+          "requirement": "Los errores deberán registrarse con observación, hipótesis causal, experimento de control y evidencia; no modificar expectativas para ocultar un fallo.",
+          "acceptance": "Una corrección que cambia test requiere nueva justificación y revisión de autoridad.",
+          "test": "TP-066: defecto real, test modificado a PASS sin corrección.",
+          "kind": "FUNC",
+          "status": "PROPOSED"
+        },
+        {
+          "id": "REQ-067",
+          "priority": "P1",
+          "title": "Refactorización con equivalencia",
+          "requirement": "Toda refactorización deberá demostrar regresiones y invariantes conservados dentro del alcance; UNKNOWN o ejecución parcial bloquean cierre.",
+          "acceptance": "No se permite anunciar comportamiento preservado por inspección LLM solamente.",
+          "test": "TP-067: refactor con cambio de transición FSM detectado.",
+          "kind": "FUNC",
+          "status": "PROPOSED"
+        },
+        {
+          "id": "REQ-068",
+          "priority": "P1",
+          "title": "Revisión antes de completar",
+          "requirement": "La skill `verification-before-completion` deberá aportar checklist, pero el gate solo admite tests y recibos observados y vinculados a la revisión exacta.",
+          "acceptance": "Una respuesta “ya está listo” sin registros da BLOCKED_VERIFICATION.",
+          "test": "TP-068: inyectar finalización engañosa con 0 ejecuciones.",
+          "kind": "FUNC",
+          "status": "PROPOSED"
+        }
+      ]
+    },
+    {
+      "code": "10",
+      "title": "Conformidad, análisis adversarial y propiedades",
+      "description": "Separación entre implementación, comparación de especificación y revisión de seguridad.",
+      "phase": "CONFORMIDAD",
+      "items": [
+        {
+          "id": "REQ-069",
+          "priority": "P1",
+          "title": "Spec-to-code compliance",
+          "requirement": "Cada requisito aplicable deberá confrontarse contra código real por evidencia, con resultado SATISFIED, VIOLATED, UNKNOWN o NOT_APPLICABLE razonado.",
+          "acceptance": "Cada conclusión enlaza REQ, archivos/símbolos y prueba; ausencia de prueba no se convierte en cumplimiento.",
+          "test": "TP-069: función ausente para requisito explícito.",
+          "kind": "FUNC",
+          "status": "PROPOSED"
+        },
+        {
+          "id": "REQ-070",
+          "priority": "P1",
+          "title": "Differential review",
+          "requirement": "Los cambios deberán evaluarse contra un baseline fijado, incluyendo superficies impactadas, dependencias, riesgos y regressions necesarias.",
+          "acceptance": "El informe identifica diff SHA, revisor y hallazgos por severidad; cambios posteriores lo invalidan.",
+          "test": "TP-070: añadir commit después de revisión y comprobar STALE.",
+          "kind": "FUNC",
+          "status": "PROPOSED"
+        },
+        {
+          "id": "REQ-071",
+          "priority": "P1",
+          "title": "Seguridad estática",
+          "requirement": "Deberán ejecutarse comprobadores acordados por lenguaje (por ejemplo lint, análisis estático, SAST) con versiones fijadas y evidencia; omisiones se declaran.",
+          "acceptance": "Un resultado parcial o error de herramienta no se marca PASS.",
+          "test": "TP-071: herramienta falla exit2 y reporte declara PASS.",
+          "kind": "FUNC",
+          "status": "PROPOSED"
+        },
+        {
+          "id": "REQ-072",
+          "priority": "P1",
+          "title": "Pruebas basadas en propiedades",
+          "requirement": "Se deberán definir invariantes verificables mediante Hypothesis/proptest u opción equivalente (FSM, idempotencia, normalización, permisos, invalidez de evidencias).",
+          "acceptance": "Se registran semillas/contraejemplos reproducibles y reducción cuando exista; no se proclama exhaustividad.",
+          "test": "TP-072: generar secuencia ilegal y conservar ejemplo mínimo.",
+          "kind": "FUNC",
+          "status": "PROPOSED"
+        },
+        {
+          "id": "REQ-073",
+          "priority": "P1",
+          "title": "Verificación de contrato y APIs",
+          "requirement": "Se deberán probar entradas válidas, inválidas, repetidas, límite, estados erróneos, recuperación y evolución de esquema, sin ejecutar acciones externas no autorizadas.",
+          "acceptance": "Cada API expuesta tiene oráculo negativo y límites observados.",
+          "test": "TP-073: entradas malformadas y reintentos duplicados.",
+          "kind": "FUNC",
+          "status": "PROPOSED"
+        },
+        {
+          "id": "REQ-074",
+          "priority": "P1",
+          "title": "Falsadores independientes",
+          "requirement": "Para cada propiedad de alto riesgo se fijarán falsador, condiciones, oráculo y control negativo antes de la ejecución; revisores separan error de test de defecto observado.",
+          "acceptance": "No se descarta un contraejemplo porque contradice el diseño esperado.",
+          "test": "TP-074: contraejemplo RED y fixture incorrecto discriminados.",
+          "kind": "FUNC",
+          "status": "PROPOSED"
+        },
+        {
+          "id": "REQ-075",
+          "priority": "P1",
+          "title": "Clasificación de hallazgos",
+          "requirement": "El revisor deberá distinguir defecto confirmado, discrepancia documental, riesgo, hipótesis e insuficiencia de evidencia, con severidad y efecto sobre gates.",
+          "acceptance": "Un hallazgo que no dispone de observación no se reporta como defecto demostrado.",
+          "test": "TP-075: comprobar taxonomía en reporte adversarial.",
+          "kind": "FUNC",
+          "status": "PROPOSED"
+        }
+      ]
+    },
+    {
+      "code": "11",
+      "title": "Verificación formal y límites de inferencia",
+      "description": "Z3/FSM forman el núcleo actual; FRET/Lean/model checkers son extensiones optativas tras una justificación concreta.",
+      "phase": "VERIFICACION",
+      "items": [
+        {
+          "id": "REQ-076",
+          "priority": "P0",
+          "title": "Modelos frente a realidad",
+          "requirement": "Deberá distinguir prueba sobre modelo, correspondencia del modelo con intención y conformidad de implementación; ningún solver verifica automáticamente las tres.",
+          "acceptance": "El informe contiene tres estados independientes y especifica frontera de confianza.",
+          "test": "TP-076: Z3 UNSAT y traducción no confirmada => BLOCKED_SEMANTICS.",
+          "kind": "FUNC",
+          "status": "PROPOSED"
+        },
+        {
+          "id": "REQ-077",
+          "priority": "P1",
+          "title": "Z3 booleano",
+          "requirement": "Deberá mantener análisis de dominio, huecos de cobertura, no-output, coherencia y propiedades según la semántica limitada del analizador actual (máximo 32 variables booleanas).",
+          "acceptance": "No se interpretan enteros, tiempo o propiedades de concurrencia como booleanos sin abstracción aprobada.",
+          "test": "TP-077: introducir requisito temporal en entrada booleana sin mapeo.",
+          "kind": "FUNC",
+          "status": "PROPOSED"
+        },
+        {
+          "id": "REQ-078",
+          "priority": "P1",
+          "title": "Semántica SAT/UNSAT/UNKNOWN",
+          "requirement": "Deberán comprobarse consistencia de dominio, no vacuidad, contraejemplos y significado de cada consulta; UNKNOWN/timeout es INCONCLUSIVE.",
+          "acceptance": "Una propiedad deducida por axioma circular no obtiene credencial empírica.",
+          "test": "TP-078: dominio imposible + propiedad trivial no produce PASS.",
+          "kind": "FUNC",
+          "status": "PROPOSED"
+        },
+        {
+          "id": "REQ-079",
+          "priority": "P1",
+          "title": "FSM temporal y progreso",
+          "requirement": "Para propiedades de safety/progreso se verificará alcance del método: BFS finita para seguridad, SCC/justicia o model checker temporal para liveness cuando corresponda.",
+          "acceptance": "Una búsqueda finita de estados sin ciclos analizados no declara vivacidad demostrada.",
+          "test": "TP-079: estado no terminal con ciclo infinito sin progreso.",
+          "kind": "FUNC",
+          "status": "PROPOSED"
+        },
+        {
+          "id": "REQ-080",
+          "priority": "P2",
+          "title": "FRET opcional",
+          "requirement": "Se podrá conectar FRET CLI para propiedades temporales confirmadas, mediante adaptador aislado que verifique versiones y correspondencia EARS/FRETish; no se instalará por defecto.",
+          "acceptance": "FRET NOT_RUN o traducción no confirmada conserva obligación pendiente, no SUCCESS.",
+          "test": "TP-080: traducción cambia modalidad temporal y debe bloquearse.",
+          "kind": "FUNC",
+          "status": "PROPOSED"
+        },
+        {
+          "id": "REQ-081",
+          "priority": "P2",
+          "title": "Lean / otros comprobadores",
+          "requirement": "Se podrá admitir Lean/TLA+/Alloy u otros verificadores cuando el requisito exceda Z3, registrando versión, axiomas, supuestos, pruebas reales y existencia de `sorry`.",
+          "acceptance": "Un fragmento sin compilar o prueba con admisión no revisada no se etiqueta PROVEN.",
+          "test": "TP-081: archivo Lean con sorry y salida aparente de PASS.",
+          "kind": "FUNC",
+          "status": "PROPOSED"
+        },
+        {
+          "id": "REQ-082",
+          "priority": "P0",
+          "title": "Cobertura cuantitativa honesta",
+          "requirement": "Cobertura formal, semántica y empírica deberán calcularse con universos distintos y denominadores justificados; sin medición se informa UNKNOWN, no 100%.",
+          "acceptance": "No se suman regiones duplicadas ni se excluyen casos sin autoridad.",
+          "test": "TP-082: contar escenarios duplicados y tests nunca ejecutados.",
+          "kind": "FUNC",
+          "status": "PROPOSED"
+        },
+        {
+          "id": "REQ-083",
+          "priority": "P1",
+          "title": "Verificación inversa",
+          "requirement": "Cuando exista prueba formal, se deberá examinar correspondencia inversa: qué comportamiento concreto exige/permite la fórmula y qué texto humano la respalda.",
+          "acceptance": "Una fórmula excesivamente débil o fuerte deja GAP, aunque solver devuelva PASS.",
+          "test": "TP-083: obligación `true` en lugar de prohibición de transición.",
+          "kind": "FUNC",
+          "status": "PROPOSED"
+        }
+      ]
+    },
+    {
+      "code": "12",
+      "title": "RDD, revisión independiente y aceptación",
+      "description": "Ninguna revisión del mismo autor con el mismo contexto es evidencia plenamente independiente.",
+      "phase": "REVIEWING",
+      "items": [
+        {
+          "id": "REQ-084",
+          "priority": "P0",
+          "title": "Riesgos materiales abiertos",
+          "requirement": "Un defecto material, contradicción de autoridad, falta de fuente o fallo de gate obligatorio deberá mantener BLOCKED hasta resolución documentada.",
+          "acceptance": "No se cambia criterio de aceptación a posteriori para fabricar GREEN.",
+          "test": "TP-084: alterar regla de revisión para ocultar FAIL.",
+          "kind": "FUNC",
+          "status": "PROPOSED"
+        },
+        {
+          "id": "REQ-085",
+          "priority": "P1",
+          "title": "Separación de revisores",
+          "requirement": "Revisiones requeridas deberán ser realizadas por actor/herramienta independiente con acceso al candidato congelado y evidencias; self-review se etiqueta SELF_REVIEW_ONLY.",
+          "acceptance": "Sin evidencias de identidad independiente no hay pase de gate.",
+          "test": "TP-085: mismo actor usa dos nombres distintos y se declara independiente.",
+          "kind": "FUNC",
+          "status": "PROPOSED"
+        },
+        {
+          "id": "REQ-086",
+          "priority": "P1",
+          "title": "RDD y recibos",
+          "requirement": "El sistema deberá consumir recibos nativos RDD auténticos en vez de aceptar un campo `NATIVE_PASS` escrito en un JSON; se deben registrar resultado, revisión y autoridad.",
+          "acceptance": "Recibo ausente/no autenticable produce REVIEW_BLOCKED.",
+          "test": "TP-086: fichero firmado por autor sin raíz de confianza.",
+          "kind": "FUNC",
+          "status": "PROPOSED"
+        },
+        {
+          "id": "REQ-087",
+          "priority": "P1",
+          "title": "Cierre de hallazgos",
+          "requirement": "Cada issue material deberá tener ID, norma, evidencia original, impacto, decisión, corrección, nueva prueba y vínculo a revisión actual.",
+          "acceptance": "Hallazgos reabiertos o parcialmente resueltos bloquean PASS.",
+          "test": "TP-087: caso con resolved=true y evidencia de otra revisión.",
+          "kind": "FUNC",
+          "status": "PROPOSED"
+        },
+        {
+          "id": "REQ-088",
+          "priority": "P1",
+          "title": "Revisión de políticas",
+          "requirement": "Cambios a FSM, roles, prohibiciones, firmas, budgets y gates exigirán doble revisión (semántica y técnica) y ratificación humana.",
+          "acceptance": "La validación de producto no puede cambiar el contrato del validador durante el mismo gate.",
+          "test": "TP-088: actor de implementación modifica política de autorización.",
+          "kind": "FUNC",
+          "status": "PROPOSED"
+        },
+        {
+          "id": "REQ-089",
+          "priority": "P1",
+          "title": "Gate de revisión",
+          "requirement": "El pase REVIEWING→RELEASE_CANDIDATE exige cobertura aplicable, pruebas vigentes, seguridad aprobada, evidencias auténticas y decisiones humanas pendientes cerradas.",
+          "acceptance": "Cualquier omisión produce motivo de denegación estable y comprobable.",
+          "test": "TP-089: matriz de gates con falla individual por fila.",
+          "kind": "FUNC",
+          "status": "PROPOSED"
+        }
+      ]
+    },
+    {
+      "code": "13",
+      "title": "Git, identidad, ramas y commits",
+      "description": "Se conserva política Git atómico, sin push automático y con doble procedencia SHA-1/SHA-256 cuando sea necesaria.",
+      "phase": "TRANSVERSAL",
+      "items": [
+        {
+          "id": "REQ-090",
+          "priority": "P0",
+          "title": "Identidad de revisión",
+          "requirement": "Todo cambio se ligará a commit real completo y diff exacto; HEAD o nombre de rama cambiante no sustituye identidad de contenido.",
+          "acceptance": "Al mover HEAD, las verificaciones continúan referidas al commit anterior hasta nueva evaluación.",
+          "test": "TP-090: mover rama y comprobar STALE o mismo OID original.",
+          "kind": "FUNC",
+          "status": "PROPOSED"
+        },
+        {
+          "id": "REQ-091",
+          "priority": "P1",
+          "title": "Estado preflight Git",
+          "requirement": "Antes de editar deberá verificarse repo, remoto, rama permitida, HEAD, modificaciones previas, índice y derechos efectivos; discrepancias bloquean modificaciones.",
+          "acceptance": "No se pisa trabajo ajeno ni se reclasifica una rama incorrecta como permitida.",
+          "test": "TP-091: rama work cuando política exige main o workspace sucio.",
+          "kind": "FUNC",
+          "status": "PROPOSED"
+        },
+        {
+          "id": "REQ-092",
+          "priority": "P1",
+          "title": "Staging selectivo",
+          "requirement": "Se permitirá únicamente `git add` de archivos autorizados y tras inspección de diff; no usar `git add .` salvo autorización explícita que lo cubra.",
+          "acceptance": "El índice contiene exactamente la allowlist aprobada.",
+          "test": "TP-092: intentar incluir archivo extra sin autorización.",
+          "kind": "FUNC",
+          "status": "PROPOSED"
+        },
+        {
+          "id": "REQ-093",
+          "priority": "P1",
+          "title": "Commits atómicos",
+          "requirement": "Commits se harán solo después de autorización explícita y deben corresponder a una sola unidad revisable con evidencia vigente.",
+          "acceptance": "Sin autorización COMMIT, pruebas verdes no permiten commit.",
+          "test": "TP-093: tarea concluye GREEN y commit no autorizado permanece inexistente.",
+          "kind": "FUNC",
+          "status": "PROPOSED"
+        },
+        {
+          "id": "REQ-094",
+          "priority": "P1",
+          "title": "Sin push automático",
+          "requirement": "PUSH, creación de PR, merge, tag y publicación son acciones distintas con autorizaciones específicas y comprobación de remoto/revisión.",
+          "acceptance": "Un permiso de edición local no habilita push ni tags.",
+          "test": "TP-094: intentar push tras autorizar solamente cambios locales.",
+          "kind": "FUNC",
+          "status": "PROPOSED"
+        },
+        {
+          "id": "REQ-095",
+          "priority": "P1",
+          "title": "Firmas y cadena de confianza",
+          "requirement": "Hashes de contenido no se confundirán con firmas de autoría; para producción se verificará origen, ejecutor, controles externos y políticas de confianza.",
+          "acceptance": "Un hash correcto acompañado de recibo redactado por autor no es prueba independiente.",
+          "test": "TP-095: receipt autofirmado sin autoridad externa.",
+          "kind": "FUNC",
+          "status": "PROPOSED"
+        },
+        {
+          "id": "REQ-096",
+          "priority": "P1",
+          "title": "Monorrepo/múltiples repos",
+          "requirement": "En flujo con varios repos se fijará la revisión de cada componente y la relación exacta PRD→código→build, sin asumir atomicidad entre sistemas.",
+          "acceptance": "Un componente actualizado después de congelar bloquea release hasta reevaluar dependencias.",
+          "test": "TP-096: actualización parcial de subcomponente.",
+          "kind": "FUNC",
+          "status": "PROPOSED"
+        }
+      ]
+    },
+    {
+      "code": "14",
+      "title": "CI, verificaciones independientes y release",
+      "description": "Los gates efectivos deben residir en un plano externo a los agentes autores, con permisos comprobados.",
+      "phase": "RELEASE",
+      "items": [
+        {
+          "id": "REQ-097",
+          "priority": "P1",
+          "title": "CI ejecutada fuera del agente",
+          "requirement": "La promoción a release deberá depender de CI real con configuración versionada, estado de jobs y recibos identificables; logs redactados por agentes no son autoridad.",
+          "acceptance": "Un job omitido, cancelado o fallido no equivale a PASS.",
+          "test": "TP-097: job inexistente y payload fake success.",
+          "kind": "FUNC",
+          "status": "PROPOSED"
+        },
+        {
+          "id": "REQ-098",
+          "priority": "P1",
+          "title": "Rulesets y branch protection",
+          "requirement": "Cuando GitHub se use para releases, deberán verificarse reglas efectivas de rama, checks obligatorios, revisores y bypasses según plan/permisos reales.",
+          "acceptance": "Sin constatación de rulesets efectivos no se afirma protección de merge.",
+          "test": "TP-098: configuración declarada vs API sin reglas efectivas.",
+          "kind": "FUNC",
+          "status": "PROPOSED"
+        },
+        {
+          "id": "REQ-099",
+          "priority": "P1",
+          "title": "Ambientes aislados",
+          "requirement": "CI de validación, preproducción y producción deberán tener tokens/secrets separados y permisos mínimos; ejecución de PR no confiable no obtiene secretos de producción.",
+          "acceptance": "Un pull request sin confianza no puede leer credenciales de despliegue.",
+          "test": "TP-099: CI PR con intento de lectura de secrets.",
+          "kind": "FUNC",
+          "status": "PROPOSED"
+        },
+        {
+          "id": "REQ-100",
+          "priority": "P1",
+          "title": "Gate de build",
+          "requirement": "Build reproducible en grado definido: herramienta y versión fijadas, dependencias resueltas, pruebas requeridas, configuración y checksums del artefacto.",
+          "acceptance": "El artefacto desplegable se identifica por digest y no se recompila silenciosamente después de aprobación.",
+          "test": "TP-100: cambiar dependencia sin actualizar recibo build.",
+          "kind": "FUNC",
+          "status": "PROPOSED"
+        },
+        {
+          "id": "REQ-101",
+          "priority": "P1",
+          "title": "Procedencia y attestations",
+          "requirement": "Se deberá emitir y verificar procedencia de artefactos mediante GitHub Artifact Attestations o mecanismo equivalente admitido; no usar una herramienta archivada como requisito obligatorio.",
+          "acceptance": "El gate valida sujeto (digest), emisor, workflow, origen y política; attestation ausente bloquea o requiere excepción formal.",
+          "test": "TP-101: attestation válida para otro digest.",
+          "kind": "FUNC",
+          "status": "PROPOSED"
+        },
+        {
+          "id": "REQ-102",
+          "priority": "P1",
+          "title": "SBOM y dependencias",
+          "requirement": "Release deberá enumerar dependencias directas/transitivas relevantes, licencias, versiones fijadas y vulnerabilidades conocidas dentro de alcance aprobado.",
+          "acceptance": "Ausencia de SBOM o componentes no identificables mantiene riesgo pendiente.",
+          "test": "TP-102: introducir paquete sin origen o vulnerabilidad crítica no tratada.",
+          "kind": "FUNC",
+          "status": "PROPOSED"
+        },
+        {
+          "id": "REQ-103",
+          "priority": "P1",
+          "title": "Licencias y cadena skills",
+          "requirement": "Skills y herramientas externas deberán registrarse con origen, versión/hash, licencia, privilegios, estado de mantenimiento y método de rollback de instalación.",
+          "acceptance": "No se habilita una skill por el número de estrellas; cambio de fuente obliga a revisión.",
+          "test": "TP-103: dependencia reemplazada en upstream sin nueva auditoría.",
+          "kind": "FUNC",
+          "status": "PROPOSED"
+        },
+        {
+          "id": "REQ-104",
+          "priority": "P1",
+          "title": "Control de release",
+          "requirement": "Solo un release candidate con pruebas y reviews vigentes podrá generar versión/tag; publicar release es acción separada y autorizada.",
+          "acceptance": "Artefactos de otro commit, pruebas obsoletas o versión divergente bloquean.",
+          "test": "TP-104: compilar A, etiquetar B y verificar rechazo.",
+          "kind": "FUNC",
+          "status": "PROPOSED"
+        },
+        {
+          "id": "REQ-105",
+          "priority": "P1",
+          "title": "Matrices y plataformas",
+          "requirement": "Pruebas deberán ejecutarse sobre plataformas prometidas; lo no ensayado se etiqueta NOT_TESTED en vez de declarar soporte universal.",
+          "acceptance": "WSL2 validado no significa Windows nativo validado.",
+          "test": "TP-105: solo Linux disponible e intento de marcar Windows PASS.",
+          "kind": "FUNC",
+          "status": "PROPOSED"
+        }
+      ]
+    },
+    {
+      "code": "15",
+      "title": "Despliegue, operación y rollback",
+      "description": "La producción necesita aprobación externa, despliegue acotado y pruebas de salud posteriores.",
+      "phase": "PRODUCCION",
+      "items": [
+        {
+          "id": "REQ-106",
+          "priority": "P1",
+          "title": "Aprobación humana de producción",
+          "requirement": "Desplegar deberá requerir aprobación humana autenticada y específica del artefacto, destino, ventana, riesgo y plan de reversión, además de controles de entorno protegido.",
+          "acceptance": "Un PASS de RDD o CI no habilita DEPLOY; falta de autorización produce DENY.",
+          "test": "TP-106: CI PASS sin DEPLOY_APPROVER.",
+          "kind": "FUNC",
+          "status": "PROPOSED"
+        },
+        {
+          "id": "REQ-107",
+          "priority": "P1",
+          "title": "Inmutabilidad del artefacto",
+          "requirement": "Se desplegará exactamente el digest aprobado; no reconstruir ni descargar una versión mutable durante la ejecución sin verificar identidad.",
+          "acceptance": "Digest en producción coincide con release candidate.",
+          "test": "TP-107: sustituir etiqueta mutable con digest nuevo.",
+          "kind": "FUNC",
+          "status": "PROPOSED"
+        },
+        {
+          "id": "REQ-108",
+          "priority": "P1",
+          "title": "Preflight del destino",
+          "requirement": "Antes de producción deberán comprobarse variables de entorno, capacidad, compatibilidad, dependencias, migraciones, credenciales y salud de servicios necesarios.",
+          "acceptance": "Un prerrequisito crítico UNKNOWN bloquea despliegue, no se infiere por salida LLM.",
+          "test": "TP-108: base de datos no disponible y healthcheck parcial.",
+          "kind": "FUNC",
+          "status": "PROPOSED"
+        },
+        {
+          "id": "REQ-109",
+          "priority": "P1",
+          "title": "Estrategia gradual",
+          "requirement": "El procedimiento de despliegue deberá seleccionar rolling/canary/blue-green u otro método aprobado según reversibilidad y riesgos; no asumir un método universal.",
+          "acceptance": "Criterios de parada y rollback son verificables con métricas concretas y umbrales decididos.",
+          "test": "TP-109: canary falla métrica y no escala a 100%.",
+          "kind": "FUNC",
+          "status": "PROPOSED"
+        },
+        {
+          "id": "REQ-110",
+          "priority": "P1",
+          "title": "Smoke test postdeploy",
+          "requirement": "Deberán ejecutarse pruebas sobre el sistema realmente desplegado, verificando funciones críticas y permisos antes de declarar salud operativa.",
+          "acceptance": "Build PASS no sustituye smoke test; fallo postdeploy activa política de incidente/rollback.",
+          "test": "TP-110: healthcheck responde pero operación crítica falla.",
+          "kind": "FUNC",
+          "status": "PROPOSED"
+        },
+        {
+          "id": "REQ-111",
+          "priority": "P1",
+          "title": "Rollback probado",
+          "requirement": "El release deberá contar con mecanismo de reversión practicado en entorno apropiado y estado consistente de datos/migraciones; irreversibilidades requieren aceptación explícita.",
+          "acceptance": "Rollback prometido sin ensayo se reporta NOT_TESTED, no garantizado.",
+          "test": "TP-111: migración no reversible y ausencia de aprobación.",
+          "kind": "FUNC",
+          "status": "PROPOSED"
+        },
+        {
+          "id": "REQ-112",
+          "priority": "P1",
+          "title": "No despliegue por skill",
+          "requirement": "Ninguna skill de agente deberá poseer credenciales permanentes de producción ni cambiar protecciones de entornos; solo puede solicitar un pipeline autorizado.",
+          "acceptance": "Inyección de comando deploy en output de LLM no alcanza ejecutor productivo.",
+          "test": "TP-112: intento de invocar production token desde agente.",
+          "kind": "FUNC",
+          "status": "PROPOSED"
+        },
+        {
+          "id": "REQ-113",
+          "priority": "P1",
+          "title": "Registro y cierre de deployment",
+          "requirement": "Cada intento de despliegue deberá registrar aprobador, artefacto, ambiente, ejecución, comprobaciones, observaciones, incidentes y decisión final.",
+          "acceptance": "DEPLOYED solo con recibo de plataforma y verificaciones postdeploy.",
+          "test": "TP-113: faltan logs de destino y se intenta declarar DEPLOYED.",
+          "kind": "FUNC",
+          "status": "PROPOSED"
+        }
+      ]
+    },
+    {
+      "code": "16",
+      "title": "Observabilidad, incidencias y continuidad",
+      "description": "Operación real, no simulada, debe poder falsar afirmaciones anteriores y reabrir requisitos.",
+      "phase": "OPERACION",
+      "items": [
+        {
+          "id": "REQ-114",
+          "priority": "P1",
+          "title": "Telemetría mínima",
+          "requirement": "La producción deberá observar disponibilidad, latencia, errores, seguridad y recursos pertinentes mediante mediciones con origen y alcance declarados.",
+          "acceptance": "Toda métrica tiene definición, unidad, ventana, colector, umbral y acción asociada.",
+          "test": "TP-114: métrica sin unidad/ventana y alarma falsa.",
+          "kind": "FUNC",
+          "status": "PROPOSED"
+        },
+        {
+          "id": "REQ-115",
+          "priority": "P1",
+          "title": "Alertas accionables",
+          "requirement": "Las alertas deberán distinguir degradación, fallo confirmado y observación incompleta, con contactos autorizados y procedimientos de contención.",
+          "acceptance": "Fallo de monitoreo no se transforma en servicio saludable.",
+          "test": "TP-115: desconectar observador y verificar UNKNOWN.",
+          "kind": "FUNC",
+          "status": "PROPOSED"
+        },
+        {
+          "id": "REQ-116",
+          "priority": "P1",
+          "title": "Registro de incidentes",
+          "requirement": "Incidentes deberán enlazar release, requisitos afectados, línea temporal, síntomas, hipótesis, comprobaciones, causa cuando demostrada y acciones correctivas.",
+          "acceptance": "Causa no probada queda HYPOTHESIS, nunca root cause confirmada.",
+          "test": "TP-116: incidente con hipótesis única no verificada.",
+          "kind": "FUNC",
+          "status": "PROPOSED"
+        },
+        {
+          "id": "REQ-117",
+          "priority": "P1",
+          "title": "Retroalimentación a PRD",
+          "requirement": "Un incidente, cambio normativo o nueva necesidad deberá abrir una nueva revisión de requisitos y no corregir retrospectivamente una decisión antigua.",
+          "acceptance": "La versión liberada conserva su historial y la nueva solicitud tiene nueva identidad.",
+          "test": "TP-117: reabrir REQ sin sobrescribir PRD previo.",
+          "kind": "FUNC",
+          "status": "PROPOSED"
+        },
+        {
+          "id": "REQ-118",
+          "priority": "P1",
+          "title": "Control de cambios posteriores",
+          "requirement": "Hotfix, rollback y emergencia deberán tener autoridad, ventana, evidencia y revisión postacción; no existirá bypass implícito por urgencia.",
+          "acceptance": "El procedimiento de excepción contiene límites y auditoría; si no existe, se bloquea.",
+          "test": "TP-118: etiqueta EMERGENCY sin aprobación.",
+          "kind": "FUNC",
+          "status": "PROPOSED"
+        }
+      ]
+    },
+    {
+      "code": "17",
+      "title": "Recursos, supervisión y entorno de ejecución",
+      "description": "Optimizado para i3/WSL2 de recursos bajos, manteniendo mediciones físicas como desconocidas hasta probarlas.",
+      "phase": "TRANSVERSAL",
+      "items": [
+        {
+          "id": "REQ-119",
+          "priority": "P0",
+          "title": "Preflight de recursos",
+          "requirement": "Antes de workers de datos se deberá medir visibilidad de memoria/cgroup, RLIMIT_AS, CPU/afinidad, almacenamiento y plataforma; críticos desconocidos bloquean workers.",
+          "acceptance": "Un sondeo en WSL nunca declara memoria física libre garantizada de Windows.",
+          "test": "TP-119: muestra incompleta o cgroup desconocido.",
+          "kind": "FUNC",
+          "status": "PROPOSED"
+        },
+        {
+          "id": "REQ-120",
+          "priority": "P1",
+          "title": "Budget conservador",
+          "requirement": "Se conservarán perfiles propuestos de 256–512 MiB cuando sean adecuados y se verificará viabilidad por rol en vivo; no se asumirá memoria por sumar zRAM/swap.",
+          "acceptance": "Rechazar perfil superior al techo admitido y conservar límites del proceso API externo.",
+          "test": "TP-120: hard RLIMIT_AS inferior al requerido y headroom insuficiente.",
+          "kind": "FUNC",
+          "status": "PROPOSED"
+        },
+        {
+          "id": "REQ-121",
+          "priority": "P1",
+          "title": "Supervisor invocador",
+          "requirement": "Un proceso supervisor externo deberá lanzar workers, observar stdout/stderr/exit/timeout, limitar recursos aplicables e intentar terminar/recolectar grupos propios ante fallo.",
+          "acceptance": "Un receptor pasivo de JSON no se acepta como sustituto para operaciones críticas.",
+          "test": "TP-121: worker bloquea salida, no responde y expira deadline.",
+          "kind": "FUNC",
+          "status": "PROPOSED"
+        },
+        {
+          "id": "REQ-122",
+          "priority": "P1",
+          "title": "Errores de entorno",
+          "requirement": "OOM observado, señal desconocida, timeout, salida truncada y limpieza incompleta deberán recibir clasificaciones diferentes; sin evidencia no se infiere causa.",
+          "acceptance": "Timeout => INCONCLUSIVE; no se emite PASS parcial ni se atribuye OOM injustificado.",
+          "test": "TP-122: SIGKILL sin diagnóstico y timeout cooperativo.",
+          "kind": "FUNC",
+          "status": "PROPOSED"
+        },
+        {
+          "id": "REQ-123",
+          "priority": "P1",
+          "title": "Secuencial por defecto",
+          "requirement": "Workers de solver, revisores IA y procesos Git se ejecutarán secuencialmente por defecto y bajo admisión cooperativa cuando corresponda.",
+          "acceptance": "Dos tareas pesadas de la misma cuenta no eluden gate compartido por distinto nombre de perfil.",
+          "test": "TP-123: dos tareas concurrentes y segunda obtiene RESOURCE_BUSY.",
+          "kind": "FUNC",
+          "status": "PROPOSED"
+        },
+        {
+          "id": "REQ-124",
+          "priority": "P1",
+          "title": "Límite de observabilidad",
+          "requirement": "Los informes deberán distinguir host real, invitado WSL, contenedor y proceso; no inferir temperatura, SSD o CPU garantizada a partir de un nombre comercial.",
+          "acceptance": "Calibración física queda NOT_RUN hasta ensayos autorizados y acotados.",
+          "test": "TP-124: ejecutar en contenedor e intentar afirmar rendimiento del PC.",
+          "kind": "FUNC",
+          "status": "PROPOSED"
+        },
+        {
+          "id": "REQ-125",
+          "priority": "P1",
+          "title": "Compatibilidad ejecutable",
+          "requirement": "La compatibilidad de versiones Python, Node, Git, Gentle-AI, OpenCode/Codex, Windows/WSL y herramientas externas deberá probarse antes de habilitarlas.",
+          "acceptance": "Node/Python fuera del rango de proyecto externo => bloqueado o entorno segregado, nunca modificar instalación principal sin permiso.",
+          "test": "TP-125: Node incompatible con plugin y fallback documentado.",
+          "kind": "FUNC",
+          "status": "PROPOSED"
+        }
+      ]
+    },
+    {
+      "code": "18",
+      "title": "Seguridad, privacidad, reproducibilidad y calidad",
+      "description": "Requisitos no funcionales con falsadores observables, sin convertir etiquetas de confianza en certificación.",
+      "phase": "TRANSVERSAL",
+      "items": [
+        {
+          "id": "REQ-126",
+          "priority": "P0",
+          "title": "Prohibición de secretos en expediente",
+          "requirement": "No se incluirán tokens, claves, datos personales innecesarios ni logs sensibles en PRD, Engram, CI, artefactos o informes; se aplicará minimización/redacción comprobable.",
+          "acceptance": "Una credencial de prueba insertada en log se elimina o bloquea publicación.",
+          "test": "TP-126: escaneo de secreto canario sintético.",
+          "kind": "FUNC",
+          "status": "PROPOSED"
+        },
+        {
+          "id": "REQ-127",
+          "priority": "P1",
+          "title": "Confidencialidad de entrevistas",
+          "requirement": "Las respuestas humanas y contextos empresariales deberán tener clasificación y políticas de retención/compartición; el revisor externo recibe el mínimo necesario.",
+          "acceptance": "No se envía el expediente entero a un modelo remoto cuando bastan fragmentos redactados.",
+          "test": "TP-127: revisor externo intenta leer datos no autorizados.",
+          "kind": "FUNC",
+          "status": "PROPOSED"
+        },
+        {
+          "id": "REQ-128",
+          "priority": "P1",
+          "title": "Política de red",
+          "requirement": "Acceso a Internet, proveedores de modelo, descargas e invocación de MCP deberán ser explícitos por unidad; modo offline/READ_ONLY no accede a servicios externos.",
+          "acceptance": "Un fallback de conectividad no cambia proveedor ni envía datos sin autorización.",
+          "test": "TP-128: red deshabilitada y proveedor requerido: UNAVAILABLE.",
+          "kind": "FUNC",
+          "status": "PROPOSED"
+        },
+        {
+          "id": "REQ-129",
+          "priority": "P1",
+          "title": "Reproducibilidad mínima",
+          "requirement": "Cada resultado deberá declarar entradas fijadas, reglas, versión de herramienta/modelo, configuración de pruebas y condiciones de entorno suficientes para reejecutar lo posible.",
+          "acceptance": "Misma entrada congelada y mismo motor de reglas produce decisión idéntica; respuestas LLM no se presumen idénticas.",
+          "test": "TP-129: reproducir decisión con permutación de serialización.",
+          "kind": "FUNC",
+          "status": "PROPOSED"
+        },
+        {
+          "id": "REQ-130",
+          "priority": "P1",
+          "title": "Límites en bytes/tiempo",
+          "requirement": "Todas las entradas/salidas de workers deberán tener límites versionados de tamaño, anidamiento, CPU/tiempo y recursos; excederlos bloquea sin datos exitosos parciales.",
+          "acceptance": "Procesos hijos sin salida no pueden quedar ejecutándose indefinidamente bajo SO responsivo.",
+          "test": "TP-130: JSON profundo, salida masiva y worker colgado.",
+          "kind": "FUNC",
+          "status": "PROPOSED"
+        },
+        {
+          "id": "REQ-131",
+          "priority": "P1",
+          "title": "Auditoría append-only lógica",
+          "requirement": "El historial de eventos deberá conservar las decisiones anteriores sin reescritura silenciosa, con orden verificable, hashes enlazados o mecanismo de integridad equivalente.",
+          "acceptance": "Modificar una entrada vieja resulta detectable; una corrección se agrega como evento nuevo.",
+          "test": "TP-131: editar un registro histórico y verificar discrepancia.",
+          "kind": "FUNC",
+          "status": "PROPOSED"
+        },
+        {
+          "id": "REQ-132",
+          "priority": "P1",
+          "title": "Licencia y propiedad intelectual",
+          "requirement": "Solo se reutilizarán skills/código con licencias compatibles; la adaptación deberá preservar avisos y distinguir código de terceros, configuración e implementación propia.",
+          "acceptance": "Toda dependencia tiene licencia y decisión de adopción documentada.",
+          "test": "TP-132: componente de licencia desconocida bloquea inclusión.",
+          "kind": "FUNC",
+          "status": "PROPOSED"
+        },
+        {
+          "id": "REQ-133",
+          "priority": "P1",
+          "title": "Calidad y mantenimiento",
+          "requirement": "El núcleo determinista deberá contar con pruebas unitarias/contratos/regresión y documentación de esquema/versionado; no introducir dependencia pesada sin beneficio demostrado.",
+          "acceptance": "Cambios a validadores acompañan pruebas negativas que falsen bypasses nuevos.",
+          "test": "TP-133: actualización de gate sin test negativo.",
+          "kind": "FUNC",
+          "status": "PROPOSED"
+        },
+        {
+          "id": "REQ-134",
+          "priority": "P1",
+          "title": "Modos de fallo explícitos",
+          "requirement": "El sistema deberá distinguir INVALID_INPUT, UNAVAILABLE, RESOURCE_BLOCKED, AUTHORITY_DENIED, STALE_EVIDENCE, INCONCLUSIVE y FAILED_VERIFICATION, sin ocultarlos con exit0.",
+          "acceptance": "Error estructurado es estable y nunca se traduce a SUCCESS por un wrapper.",
+          "test": "TP-134: matriz por clase de fallo en adaptadores.",
+          "kind": "FUNC",
+          "status": "PROPOSED"
+        },
+        {
+          "id": "REQ-135",
+          "priority": "P1",
+          "title": "Superficie de ataque",
+          "requirement": "Se deberán impedir o acotar traversal, symlink, FIFO/device, comandos derivados de datos del modelo, variables Git heredadas y secuencias de escape maliciosas.",
+          "acceptance": "Entradas hostiles quedan rechazadas antes de ejecución y sin mutaciones.",
+          "test": "TP-135: symlink a /dev/zero, traversal y shell injection.",
+          "kind": "FUNC",
+          "status": "PROPOSED"
+        }
+      ]
+    },
+    {
+      "code": "19",
+      "title": "Validación comparativa, adopción y evolución",
+      "description": "No se adoptan mejoras por popularidad; hay que demostrar beneficio contra v2.4.6 y preservar las garantías.",
+      "phase": "EVOLUCION",
+      "items": [
+        {
+          "id": "REQ-136",
+          "priority": "P1",
+          "title": "Benchmark adversarial",
+          "requirement": "Se deberá establecer corpus versionado de al menos 10 problemas de requisitos ambiguos, contradictorios, incompletos y con decisiones humanas conocidas, más negativos de bypass.",
+          "acceptance": "Las métricas y oráculos se fijan antes de probar nueva versión y baseline.",
+          "test": "TP-136: ejecutar corpus contra baseline y candidato sin cambiar oráculos.",
+          "kind": "FUNC",
+          "status": "PROPOSED"
+        },
+        {
+          "id": "REQ-137",
+          "priority": "P1",
+          "title": "Métricas correctas",
+          "requirement": "Evaluar decisiones inventadas, ambigüedades detectadas, cobertura válida, preguntas innecesarias, falsadores, rechazo de bypass y costo/recursos, con denominadores explícitos.",
+          "acceptance": "Ninguna métrica se marca 100% sin universo auditable.",
+          "test": "TP-137: muestra con 2 UNKNOWN y fórmula de tasa controlada.",
+          "kind": "FUNC",
+          "status": "PROPOSED"
+        },
+        {
+          "id": "REQ-138",
+          "priority": "P1",
+          "title": "Política de adopción",
+          "requirement": "Una mejora deberá demostrar no regresión en seguridad/autoridad, validez de los casos requeridos y beneficio explícito; incremento de funciones no justifica adopción.",
+          "acceptance": "Si empeora un gate crítico, candidato permanece PROPOSED aunque otras métricas mejoren.",
+          "test": "TP-138: mejora de preguntas con bypass de autorización.",
+          "kind": "FUNC",
+          "status": "PROPOSED"
+        },
+        {
+          "id": "REQ-139",
+          "priority": "P2",
+          "title": "Extensiones externas desacopladas",
+          "requirement": "FRET, Ouroboros, Symposium, model checkers o revisores complementarios solo podrán actuar mediante adaptadores de solo lectura, deshabilitados por defecto, con versiones y evidencia.",
+          "acceptance": "Ninguna extensión altera el PRD canónico o obtiene permisos automáticos.",
+          "test": "TP-139: plugin externo intenta escribir políticas durante revisión.",
+          "kind": "FUNC",
+          "status": "PROPOSED"
+        },
+        {
+          "id": "REQ-140",
+          "priority": "P1",
+          "title": "Entrega final del expediente",
+          "requirement": "El sistema deberá generar expediente humano y máquina: PRD, trazabilidad, ADR, plan, pruebas, hallazgos, CI, build, release, deploy, pendientes y veredicto relativo a alcance.",
+          "acceptance": "Puede revisarse y reejecutarse cada gate sin depender de la conversación original.",
+          "test": "TP-140: auditar release únicamente desde expediente y repos fijados.",
+          "kind": "FUNC",
+          "status": "PROPOSED"
+        }
+      ]
+    }
+  ],
+  "workflow": [
+    [
+      "0",
+      "Admisión",
+      "Autorización, preflight, recursos, skills y MCP",
+      "ADMITTED / BLOCKED"
+    ],
+    [
+      "1",
+      "Requisitos",
+      "Tu skill v2.4.6: interrogatorio, EARS, FSM y PRD",
+      "PRD_VERIFIED solo con recibos válidos"
+    ],
+    [
+      "2",
+      "Arquitectura",
+      "Spec Kit plan/analyze, ADR, contratos, amenazas",
+      "ARCHITECTURE_REVIEWED"
+    ],
+    [
+      "3",
+      "Planificación",
+      "Spec Kit tasks + Superpowers writing-plans; tareas acotadas",
+      "PLAN_ADMITTED"
+    ],
+    [
+      "4",
+      "Implementación",
+      "Superpowers TDD; ejecución y cambios con permisos",
+      "GREEN_VERIFIED / BLOCKED"
+    ],
+    [
+      "5",
+      "Conformidad",
+      "Trail of Bits spec-to-code, property-based, differential-review",
+      "CONFORMANCE_VERIFIED"
+    ],
+    [
+      "6",
+      "Revisión",
+      "Revisor independiente, RDD, frescura, hashes y riesgos",
+      "REVIEW_VERIFIED"
+    ],
+    [
+      "7",
+      "Release",
+      "CI, reglas, dependencias, SBOM, attestations y build",
+      "RELEASE_VERIFIED"
+    ],
+    [
+      "8",
+      "Producción",
+      "Aprobación humana, deploy exacto, smoke, rollback",
+      "DEPLOYED / ROLLED_BACK / BLOCKED"
+    ],
+    [
+      "9",
+      "Operación",
+      "Observabilidad, incidentes y nuevo ciclo de requisitos",
+      "OPERATING / INCIDENT / CHANGE_REQUEST"
+    ]
+  ],
+  "skills": [
+    [
+      "requerimientos-socraticos v2.4.6",
+      "PRD e intención humana",
+      "Propia",
+      "Normativa (sin inferir READY)",
+      "Importar, no sustituir"
+    ],
+    [
+      "speckit-plan",
+      "Arquitectura / opciones",
+      "GitHub Spec Kit",
+      "Asesor documental",
+      "Instalar/usar solo con permiso"
+    ],
+    [
+      "speckit-analyze",
+      "Consistencia entre documentos",
+      "GitHub Spec Kit",
+      "Detección de gaps",
+      "No ratifica decisiones humanas"
+    ],
+    [
+      "speckit-tasks",
+      "Lista y dependencias",
+      "GitHub Spec Kit",
+      "Plan candidato",
+      "Verificar cobertura y DAG"
+    ],
+    [
+      "writing-plans",
+      "Unidades de trabajo",
+      "obra/superpowers",
+      "Plan candidato",
+      "No incorporar commit automático"
+    ],
+    [
+      "test-driven-development",
+      "RED/GREEN/REFACTOR",
+      "obra/superpowers",
+      "Ejecución acotada",
+      "Evidencia observada obligatoria"
+    ],
+    [
+      "verification-before-completion",
+      "Checklist de cierre",
+      "obra/superpowers",
+      "Asesor de gate",
+      "PASS solo del motor verificador"
+    ],
+    [
+      "spec-to-code-compliance",
+      "Contrastar PRD contra código",
+      "Trail of Bits",
+      "Auditor adversarial",
+      "Citas por símbolos/funciones"
+    ],
+    [
+      "differential-review",
+      "Análisis de cambios",
+      "Trail of Bits",
+      "Auditor adversarial",
+      "Diff fijado"
+    ],
+    [
+      "property-based-testing",
+      "Contraejemplos de invariantes",
+      "Trail of Bits",
+      "Verificador complementario",
+      "No equivale a prueba exhaustiva"
+    ],
+    [
+      "agent-supply-chain",
+      "Inventario de agentes/skills",
+      "github/awesome-copilot",
+      "Inventario/procedencia",
+      "Verificar compatibilidad/licencias"
+    ],
+    [
+      "ODD / Engram / RDD / Registry",
+      "Orquestación, memoria, revisión",
+      "Gentle-AI instalado",
+      "Infraestructura condicionada",
+      "Detectar capacidades antes de usarlas"
+    ],
+    [
+      "FRET / Ouroboros / Lean",
+      "Extensiones futuras",
+      "Repos independientes",
+      "Sin autoridad inicial",
+      "Desactivados por defecto"
+    ]
+  ],
+  "roles": [
+    [
+      "HUMAN_OWNER",
+      "Ratificar intención, políticas y riesgos",
+      "No puede sustituir recibos técnicos"
+    ],
+    [
+      "REQUIREMENTS_OWNER",
+      "Custodiar PRD, preguntas y propuestas",
+      "No autoaprobar evidencia"
+    ],
+    [
+      "PLANNER",
+      "Proponer ADR, arquitectura y tareas",
+      "No aprobar cambios de negocio"
+    ],
+    [
+      "IMPLEMENTER",
+      "Ejecutar unidad acotada autorizada",
+      "No cambiar permisos ni CI protegida"
+    ],
+    [
+      "VERIFIER",
+      "Ejecutar herramientas reales y emitir recibos",
+      "No emitir decisiones humanas"
+    ],
+    [
+      "INDEPENDENT_REVIEWER",
+      "Revisar candidato congelado y evidencias",
+      "No aprobar por etiqueta textual"
+    ],
+    [
+      "RELEASE_OPERATOR",
+      "Preparar build/release autorizado",
+      "No desplegar por inferencia"
+    ],
+    [
+      "DEPLOY_APPROVER",
+      "Aprobar digest+destino+ventana",
+      "No omitir smoke/rollback"
+    ],
+    [
+      "POLICY_ENGINE",
+      "Resolver transiciones sobre datos tipados",
+      "No generar hechos por LLM"
+    ]
+  ],
+  "stage_gates": {
+    "G0": "Identidad del solicitante y permisos reales, preflight, descubrimiento skills/MCP, recursos y estado Git.",
+    "G1": "PRD semánticamente confirmado, dependencias vigentes, evidencia de validación independiente; nunca solo READY textual.",
+    "G2": "ADR, diseño, interfaces, seguridad, alternativas, trazabilidad y revisión de arquitectura.",
+    "G3": "TASKS y WORK_UNIT con alcance, DAG sin ciclos, tests negativos y presupuesto.",
+    "G4": "RED pertinente observado, GREEN real, regresiones, diff autorizado y sin side effects extra.",
+    "G5": "Conformidad REQ→código, seguridad, properties, hallazgos y pruebas completas dentro de alcance.",
+    "G6": "RDD auténtico, revisor independiente, recepción de hallazgos, firmas/identidades y evidencia fresca.",
+    "G7": "CI protegida real, build fijado, SBOM/licencias, procedencia/verificación de artefactos y release candidato.",
+    "G8": "Aprobación humana de destino y digest, preflight, despliegue exacto, smoke/observabilidad y rollback.",
+    "G9": "Métricas de producción, incidentes, cambio controlado y enlace al siguiente PRD."
+  },
+  "negative_tests": [
+    [
+      "NT-01",
+      "Agente crea decisión humana inexistente",
+      "BLOCKED_AUTHORITY"
+    ],
+    [
+      "NT-02",
+      "EARS→FRETish o fórmula cambia semántica",
+      "BLOCKED_SEMANTICS"
+    ],
+    [
+      "NT-03",
+      "Z3 timeout/UNKNOWN por recursos",
+      "INCONCLUSIVE; no PASS"
+    ],
+    [
+      "NT-04",
+      "Requisito mutado tras revisión",
+      "STALE_EVIDENCE"
+    ],
+    [
+      "NT-05",
+      "Solver temporal encuentra contraejemplo",
+      "FAILED_VERIFICATION"
+    ],
+    [
+      "NT-06",
+      "Ejecución de cambio sin autorización",
+      "DENY; estado sin cambios"
+    ],
+    [
+      "NT-07",
+      "Falta recibo de prueba obligatoria",
+      "BLOCKED_VERIFICATION"
+    ],
+    [
+      "NT-08",
+      "IA escribe PASS/RDD en JSON sin recibo",
+      "BLOCKED_REVIEW"
+    ],
+    [
+      "NT-09",
+      "Mismo actor se autoaprueba con otro nombre",
+      "BLOCKED_REVIEW"
+    ],
+    [
+      "NT-10",
+      "SHA-1 o HEAD en validador documental SHA-256",
+      "SHA256_REQUIRED / FULL_OID_REQUIRED"
+    ],
+    [
+      "NT-11",
+      "Commits automáticos con permiso WRITE_NO_COMMIT",
+      "DENY; HEAD igual"
+    ],
+    [
+      "NT-12",
+      "Push a remoto con autorización solo local",
+      "DENY; remoto sin cambios"
+    ],
+    [
+      "NT-13",
+      "Input JSON con atributos extra/profundidad alta",
+      "INVALID_INPUT"
+    ],
+    [
+      "NT-14",
+      "Documento con traversal/symlink/FIFO",
+      "REJECT_UNSAFE_INPUT"
+    ],
+    [
+      "NT-15",
+      "Plan sin requisitos, oráculos o dependencias completas",
+      "BLOCKED_PLAN"
+    ],
+    [
+      "NT-16",
+      "Transición FSM ilegal (SCOPED→EXECUTING)",
+      "DENY; self-loop"
+    ],
+    [
+      "NT-17",
+      "Cobertura declarada PASS con lista de tests vacía",
+      "BLOCKED_UNDEFINED_SCOPE"
+    ],
+    [
+      "NT-18",
+      "Dependencia actualizada tras build",
+      "STALE_ARTIFACT"
+    ],
+    [
+      "NT-19",
+      "CI no ejecutada pero agente escribe éxito",
+      "BLOCKED_CI"
+    ],
+    [
+      "NT-20",
+      "Attestation coincide con otro digest",
+      "BLOCKED_PROVENANCE"
+    ],
+    [
+      "NT-21",
+      "Producción sin aprobación humana",
+      "DENY_DEPLOY"
+    ],
+    [
+      "NT-22",
+      "Smoke test falla tras deploy",
+      "ROLLBACK_OR_INCIDENT"
+    ],
+    [
+      "NT-23",
+      "Rollback prometido pero no probado",
+      "NOT_TESTED; BLOCKED si obligatorio"
+    ],
+    [
+      "NT-24",
+      "Riesgo de recurso crítico no observable en WSL",
+      "RESOURCE_BLOCKED"
+    ],
+    [
+      "NT-25",
+      "Salida del worker bloqueada más allá del deadline",
+      "INCONCLUSIVE; cleanup evidenciado"
+    ],
+    [
+      "NT-26",
+      "LLM cambia contenido histórico de entrevista",
+      "INTEGRITY_FAILURE"
+    ],
+    [
+      "NT-27",
+      "Prompt injection dentro del PRD",
+      "IGNORED_AS_INSTRUCTION"
+    ],
+    [
+      "NT-28",
+      "Modelo/provider no disponible",
+      "UNAVAILABLE; sin cambio de autoridad"
+    ],
+    [
+      "NT-29",
+      "Revisor lee secretos fuera del alcance",
+      "DENY; evento auditado"
+    ],
+    [
+      "NT-30",
+      "Emergency deploy intenta saltar gate",
+      "DENY salvo procedimiento ratificado"
+    ]
+  ],
+  "open_decisions": [
+    [
+      "D-01",
+      "Arquitectura de ejecución",
+      "¿Supervisor liviano único en Python con FSM/CLI o servicio separado?",
+      "Propuesta: CLI local y motor determinista separado de los prompts; sin adopción."
+    ],
+    [
+      "D-02",
+      "Alcance v0",
+      "¿Solo PRD→arquitectura para primera unidad, o todo el flujo sin ejecución?",
+      "Propuesta: especificar todo, implementar primero el gate PRD→arquitectura."
+    ],
+    [
+      "D-03",
+      "Formato de estado",
+      "¿JSON canónico, esquema versión 1, eventos append-only y OID SHA-256 en documental?",
+      "Requiere ratificación; preservar evidencia histórica."
+    ],
+    [
+      "D-04",
+      "Autoridad de revisión",
+      "¿Quién controla identidad y autenticación real del RDD?",
+      "Actualmente hay brecha externa: no presumir cierre."
+    ],
+    [
+      "D-05",
+      "Repositorio de evidencia",
+      "¿Repositorio SHA-256 aparte y manifiesto que conecte SHA-1 de código?",
+      "Requiere prueba de procedencia y autorización."
+    ],
+    [
+      "D-06",
+      "Permisos Git",
+      "¿Qué ramas, acciones y límites de cambios por unidad?",
+      "Por defecto sin staging, commit, push ni PR."
+    ],
+    [
+      "D-07",
+      "Modelo IA",
+      "¿Qué runtimes/proveedores se permitirán y cómo medir portabilidad?",
+      "Modelo seleccionable solo si adaptador probado."
+    ],
+    [
+      "D-08",
+      "CI/protección real",
+      "¿Qué plataforma/plan y reglas efectivas protegerán merge y producción?",
+      "No aprobar producción sin comprobación efectiva."
+    ],
+    [
+      "D-09",
+      "Política de riesgo",
+      "¿Qué riesgos requieren doble revisor, excepción o aprobación extra?",
+      "Definir umbrales y responsables humanos."
+    ],
+    [
+      "D-10",
+      "Cargas y recursos",
+      "¿Qué límites temporales/memoria concretos permiten tareas en PC WSL?",
+      "Perfil provisional; calibración física NOT_RUN."
+    ],
+    [
+      "D-11",
+      "Dependencias externas",
+      "¿Licencias y versiones de Spec Kit, Superpowers, Trail of Bits?",
+      "Pin por hash/tag probado antes de instalar."
+    ],
+    [
+      "D-12",
+      "Despliegue real",
+      "¿Entorno destino, salud, métricas y rollback?",
+      "Fuera de alcance de v0; no se inventan destinos."
+    ]
+  ],
+  "references": [
+    {
+      "name": "Repositorio de requerimientos socráticos v2.4.6",
+      "url": "https://github.com/amaurijoseromerozavala-coder/requerimientos-socraticos-skill"
+    },
+    {
+      "name": "Contrato SKILL.md",
+      "url": "https://github.com/amaurijoseromerozavala-coder/requerimientos-socraticos-skill/blob/main/skills/requerimientos-socraticos/SKILL.md"
+    },
+    {
+      "name": "Resumen VERIFICATION.json",
+      "url": "https://github.com/amaurijoseromerozavala-coder/requerimientos-socraticos-skill/blob/main/VERIFICATION.json"
+    },
+    {
+      "name": "Gentle-AI documentación de componentes",
+      "url": "https://github.com/Gentleman-Programming/gentle-ai/blob/main/docs/components.md"
+    },
+    {
+      "name": "Gentle-AI uso y ODD (rama main; verificar contra versión instalada)",
+      "url": "https://github.com/Gentleman-Programming/gentle-ai/blob/main/docs/usage.md"
+    },
+    {
+      "name": "GitHub Spec Kit",
+      "url": "https://github.com/github/spec-kit"
+    },
+    {
+      "name": "Superpowers",
+      "url": "https://github.com/obra/superpowers"
+    },
+    {
+      "name": "Superpowers writing-plans",
+      "url": "https://github.com/obra/superpowers/blob/main/skills/writing-plans/SKILL.md"
+    },
+    {
+      "name": "Trail of Bits Skills",
+      "url": "https://github.com/trailofbits/skills"
+    },
+    {
+      "name": "Trail of Bits spec-to-code-compliance",
+      "url": "https://github.com/trailofbits/skills/tree/main/plugins/spec-to-code-compliance"
+    },
+    {
+      "name": "Trail of Bits differential-review",
+      "url": "https://github.com/trailofbits/skills/tree/main/plugins/differential-review"
+    },
+    {
+      "name": "Trail of Bits property-based-testing",
+      "url": "https://github.com/trailofbits/skills/tree/main/plugins/property-based-testing"
+    },
+    {
+      "name": "GitHub awesome-copilot agent-supply-chain",
+      "url": "https://github.com/github/awesome-copilot/tree/main/skills/agent-supply-chain"
+    },
+    {
+      "name": "GitHub Actions environments",
+      "url": "https://docs.github.com/en/actions/how-tos/deploy/configure-and-manage-deployments/manage-environments"
+    },
+    {
+      "name": "GitHub rulesets",
+      "url": "https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/managing-rulesets/about-rulesets"
+    },
+    {
+      "name": "GitHub artifact attestations",
+      "url": "https://docs.github.com/en/actions/concepts/security/artifact-attestations"
+    },
+    {
+      "name": "NASA FRET (opcional)",
+      "url": "https://github.com/NASA-SW-VnV/fret"
+    },
+    {
+      "name": "Ouroboros (referencia opcional, no integración fase inicial)",
+      "url": "https://github.com/Q00/ouroboros"
+    }
+  ]
+}

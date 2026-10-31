@@ -1,0 +1,159 @@
+RED resumed; owned small fixtures; outer timeout=15s
+command=['/home/agent/.local/share/requerimientos-socraticos/venv/bin/python', '-B', '-m', 'unittest', 'discover', '-s', 'skills/requerimientos-socraticos/tests', '-p', 'test_process_supervision.py', '-v']
+returncode=1
+test_each_output_stream_is_bounded_and_worker_reaped (test_process_supervision.ProcessSupervisionTests.test_each_output_stream_is_bounded_and_worker_reaped) ... 
+  test_each_output_stream_is_bounded_and_worker_reaped (test_process_supervision.ProcessSupervisionTests.test_each_output_stream_is_bounded_and_worker_reaped) (fd=1) ... ERROR
+  test_each_output_stream_is_bounded_and_worker_reaped (test_process_supervision.ProcessSupervisionTests.test_each_output_stream_is_bounded_and_worker_reaped) (fd=2) ... ERROR
+test_exact_output_limit_and_empty_input_succeed (test_process_supervision.ProcessSupervisionTests.test_exact_output_limit_and_empty_input_succeed) ... ERROR
+test_explicit_descriptor_is_inherited (test_process_supervision.ProcessSupervisionTests.test_explicit_descriptor_is_inherited) ... ERROR
+test_input_and_output_progress_without_pipe_deadlock (test_process_supervision.ProcessSupervisionTests.test_input_and_output_progress_without_pipe_deadlock) ... ERROR
+test_invalid_budget_or_input_starts_no_worker (test_process_supervision.ProcessSupervisionTests.test_invalid_budget_or_input_starts_no_worker) ... 
+  test_invalid_budget_or_input_starts_no_worker (test_process_supervision.ProcessSupervisionTests.test_invalid_budget_or_input_starts_no_worker) (timeout=0) ... FAIL
+  test_invalid_budget_or_input_starts_no_worker (test_process_supervision.ProcessSupervisionTests.test_invalid_budget_or_input_starts_no_worker) (timeout=-1) ... FAIL
+  test_invalid_budget_or_input_starts_no_worker (test_process_supervision.ProcessSupervisionTests.test_invalid_budget_or_input_starts_no_worker) (timeout=nan) ... FAIL
+  test_invalid_budget_or_input_starts_no_worker (test_process_supervision.ProcessSupervisionTests.test_invalid_budget_or_input_starts_no_worker) (timeout=inf) ... FAIL
+test_invalid_budget_or_input_starts_no_worker (test_process_supervision.ProcessSupervisionTests.test_invalid_budget_or_input_starts_no_worker) ... ERROR
+test_stdin_write_obeys_total_deadline (test_process_supervision.ProcessSupervisionTests.test_stdin_write_obeys_total_deadline) ... ERROR
+
+======================================================================
+ERROR: test_each_output_stream_is_bounded_and_worker_reaped (test_process_supervision.ProcessSupervisionTests.test_each_output_stream_is_bounded_and_worker_reaped) (fd=1)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/replica-gentle-ai/skills/requerimientos-socraticos/tests/test_process_supervision.py", line 45, in test_each_output_stream_is_bounded_and_worker_reaped
+    result = load().run_supervised(
+             ^^^^^^^^^^^^^^^^^^^^^^
+TypeError: run_supervised() got an unexpected keyword argument 'output_limit_bytes'
+
+======================================================================
+ERROR: test_each_output_stream_is_bounded_and_worker_reaped (test_process_supervision.ProcessSupervisionTests.test_each_output_stream_is_bounded_and_worker_reaped) (fd=2)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/replica-gentle-ai/skills/requerimientos-socraticos/tests/test_process_supervision.py", line 45, in test_each_output_stream_is_bounded_and_worker_reaped
+    result = load().run_supervised(
+             ^^^^^^^^^^^^^^^^^^^^^^
+TypeError: run_supervised() got an unexpected keyword argument 'output_limit_bytes'
+
+======================================================================
+ERROR: test_exact_output_limit_and_empty_input_succeed (test_process_supervision.ProcessSupervisionTests.test_exact_output_limit_and_empty_input_succeed)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/replica-gentle-ai/skills/requerimientos-socraticos/tests/test_process_supervision.py", line 56, in test_exact_output_limit_and_empty_input_succeed
+    result = load().run_supervised(
+             ^^^^^^^^^^^^^^^^^^^^^^
+TypeError: run_supervised() got an unexpected keyword argument 'input_data'
+
+======================================================================
+ERROR: test_explicit_descriptor_is_inherited (test_process_supervision.ProcessSupervisionTests.test_explicit_descriptor_is_inherited)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/replica-gentle-ai/skills/requerimientos-socraticos/tests/test_process_supervision.py", line 69, in test_explicit_descriptor_is_inherited
+    result = load().run_supervised(
+             ^^^^^^^^^^^^^^^^^^^^^^
+TypeError: run_supervised() got an unexpected keyword argument 'pass_fds'
+
+======================================================================
+ERROR: test_input_and_output_progress_without_pipe_deadlock (test_process_supervision.ProcessSupervisionTests.test_input_and_output_progress_without_pipe_deadlock)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/replica-gentle-ai/skills/requerimientos-socraticos/tests/test_process_supervision.py", line 26, in test_input_and_output_progress_without_pipe_deadlock
+    result = load().run_supervised([sys.executable, '-c', code], 2, input_data=payload)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: run_supervised() got an unexpected keyword argument 'input_data'
+
+======================================================================
+ERROR: test_invalid_budget_or_input_starts_no_worker (test_process_supervision.ProcessSupervisionTests.test_invalid_budget_or_input_starts_no_worker)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/replica-gentle-ai/skills/requerimientos-socraticos/tests/test_process_supervision.py", line 89, in test_invalid_budget_or_input_starts_no_worker
+    module.run_supervised([sys.executable], 1, output_limit_bytes=0)
+TypeError: run_supervised() got an unexpected keyword argument 'output_limit_bytes'
+
+======================================================================
+ERROR: test_stdin_write_obeys_total_deadline (test_process_supervision.ProcessSupervisionTests.test_stdin_write_obeys_total_deadline)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/replica-gentle-ai/skills/requerimientos-socraticos/tests/test_process_supervision.py", line 34, in test_stdin_write_obeys_total_deadline
+    result = load().run_supervised(
+             ^^^^^^^^^^^^^^^^^^^^^^
+TypeError: run_supervised() got an unexpected keyword argument 'input_data'
+
+======================================================================
+FAIL: test_invalid_budget_or_input_starts_no_worker (test_process_supervision.ProcessSupervisionTests.test_invalid_budget_or_input_starts_no_worker) (timeout=0)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/replica-gentle-ai/skills/requerimientos-socraticos/tests/test_process_supervision.py", line 85, in test_invalid_budget_or_input_starts_no_worker
+    module.run_supervised([sys.executable], timeout)
+  File "/workspace/replica-gentle-ai/skills/requerimientos-socraticos/scripts/analyze_logic.py", line 72, in run_supervised
+    process = subprocess.Popen(command, stdout=subprocess.PIPE, stderr=subprocess.PIPE,
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/unittest/mock.py", line 1139, in __call__
+    return self._mock_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/unittest/mock.py", line 1143, in _mock_call
+    return self._execute_mock_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/unittest/mock.py", line 1198, in _execute_mock_call
+    raise effect
+AssertionError: invalid args must fail before spawn
+
+======================================================================
+FAIL: test_invalid_budget_or_input_starts_no_worker (test_process_supervision.ProcessSupervisionTests.test_invalid_budget_or_input_starts_no_worker) (timeout=-1)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/replica-gentle-ai/skills/requerimientos-socraticos/tests/test_process_supervision.py", line 85, in test_invalid_budget_or_input_starts_no_worker
+    module.run_supervised([sys.executable], timeout)
+  File "/workspace/replica-gentle-ai/skills/requerimientos-socraticos/scripts/analyze_logic.py", line 72, in run_supervised
+    process = subprocess.Popen(command, stdout=subprocess.PIPE, stderr=subprocess.PIPE,
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/unittest/mock.py", line 1139, in __call__
+    return self._mock_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/unittest/mock.py", line 1143, in _mock_call
+    return self._execute_mock_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/unittest/mock.py", line 1198, in _execute_mock_call
+    raise effect
+AssertionError: invalid args must fail before spawn
+
+======================================================================
+FAIL: test_invalid_budget_or_input_starts_no_worker (test_process_supervision.ProcessSupervisionTests.test_invalid_budget_or_input_starts_no_worker) (timeout=nan)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/replica-gentle-ai/skills/requerimientos-socraticos/tests/test_process_supervision.py", line 85, in test_invalid_budget_or_input_starts_no_worker
+    module.run_supervised([sys.executable], timeout)
+  File "/workspace/replica-gentle-ai/skills/requerimientos-socraticos/scripts/analyze_logic.py", line 72, in run_supervised
+    process = subprocess.Popen(command, stdout=subprocess.PIPE, stderr=subprocess.PIPE,
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/unittest/mock.py", line 1139, in __call__
+    return self._mock_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/unittest/mock.py", line 1143, in _mock_call
+    return self._execute_mock_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/unittest/mock.py", line 1198, in _execute_mock_call
+    raise effect
+AssertionError: invalid args must fail before spawn
+
+======================================================================
+FAIL: test_invalid_budget_or_input_starts_no_worker (test_process_supervision.ProcessSupervisionTests.test_invalid_budget_or_input_starts_no_worker) (timeout=inf)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/replica-gentle-ai/skills/requerimientos-socraticos/tests/test_process_supervision.py", line 85, in test_invalid_budget_or_input_starts_no_worker
+    module.run_supervised([sys.executable], timeout)
+  File "/workspace/replica-gentle-ai/skills/requerimientos-socraticos/scripts/analyze_logic.py", line 72, in run_supervised
+    process = subprocess.Popen(command, stdout=subprocess.PIPE, stderr=subprocess.PIPE,
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/unittest/mock.py", line 1139, in __call__
+    return self._mock_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/unittest/mock.py", line 1143, in _mock_call
+    return self._execute_mock_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/unittest/mock.py", line 1198, in _execute_mock_call
+    raise effect
+AssertionError: invalid args must fail before spawn
+
+----------------------------------------------------------------------
+Ran 6 tests in 0.015s
+
+FAILED (failures=4, errors=7)

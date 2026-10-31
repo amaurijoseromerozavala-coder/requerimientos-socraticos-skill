@@ -1,0 +1,57 @@
+{
+  "scope": "Partial documentary integration design; no implementation nor global PRD READY",
+  "files": [
+    {
+      "path": "docs/requirements/integracion-requisitos-qa-supervisor/candidato-v0.1/README.md",
+      "sha256": "1ca2d0666dee88a9b0037df4afa2e2f4598ae76d7d133d97b82efb0b7e14c6e6"
+    },
+    {
+      "path": "docs/requirements/integracion-requisitos-qa-supervisor/candidato-v0.1/contracts.json",
+      "sha256": "5fda7c67ba50059eab6f5be506353a87c93e54675ec4343e9c5559d43407460b"
+    },
+    {
+      "path": "docs/requirements/integracion-requisitos-qa-supervisor/candidato-v0.1/fsm.json",
+      "sha256": "87e69696468a3f5c3200bb1034224c21f60d8dced2b69ce234b31247e30636a7"
+    },
+    {
+      "path": "docs/requirements/integracion-requisitos-qa-supervisor/candidato-v0.1/incorporation-gate.json",
+      "sha256": "cb6eb2c3a1d24e00bdcf669c720998b0dcadbf80a973e0d328a174adc37ed2e4"
+    },
+    {
+      "path": "docs/requirements/integracion-requisitos-qa-supervisor/candidato-v0.1/open-gaps.json",
+      "sha256": "4db2781d9047082909e7ac70af6027daae51a0dd3aca1fe82442dedb412f0ffc"
+    },
+    {
+      "path": "docs/requirements/integracion-requisitos-qa-supervisor/candidato-v0.1/requirements.json",
+      "sha256": "2f32bbf6bf0256e0a364088e52a1e24c4d2f4ab8ee822dd5a6610e9dd1f1a05a"
+    },
+    {
+      "path": "docs/requirements/integracion-requisitos-qa-supervisor/decisiones-confirmadas.json",
+      "sha256": "1d651708b6bd3ae3917f7e785c69fc222aa4178d82a61e589e4d53f733bf2688"
+    },
+    {
+      "path": "docs/skill-audit/integration-candidate-01/independent.md",
+      "sha256": "a6cc34c6118dcc45d6ef12588730ba9b51c763f3470a7cca6c1f00684fde9b7c"
+    },
+    {
+      "path": "docs/skill-audit/integration-candidate-01/green.json",
+      "sha256": "1e5319f7876e5a0b42f3ebd8582aaf3cbeafd0bdcb6102b954606535c91bbb99"
+    },
+    {
+      "path": "docs/skill-audit/integration-candidate-01/check-document-model.py",
+      "sha256": "f3b72d00df0e82746d4784dad55e08763508ef9f4f9214281eb2e3ba526dbed9"
+    },
+    {
+      "path": "docs/skill-audit/integration-candidate-01/review-green.json",
+      "sha256": "511d8a868ee74437ff54e10e52d14faea7aab7f6245acc6bbf19fff0b441f90c"
+    },
+    {
+      "path": "docs/skill-audit/integration-candidate-01/red.json",
+      "sha256": "a4e37b0d76121f049b47b67bb8a71f07b6f571ac5d356eebd69644b2ba85e4ab"
+    },
+    {
+      "path": "docs/skill-audit/integration-candidate-01/review-red.json",
+      "sha256": "d89338ccf5baa5546a77ff0998fa464f082b737c08ff8626952eb89b4c9be186"
+    }
+  ]
+}

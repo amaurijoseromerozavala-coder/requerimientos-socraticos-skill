@@ -1,0 +1,38 @@
+{
+  "schema": "gentle-ai.review-integration.consent/v3",
+  "contract": "gentle-ai.review-integration/v2",
+  "operation": "review.start",
+  "action": "consent_required",
+  "agent": "codex",
+  "blocking": true,
+  "target_identity": "sha256:6bace5dc6e2bcfc43e82c5b4ed1e7a272061b51a0bb7d53a7c01f1ee3af8cfc4",
+  "projection": "workspace",
+  "risk_level": "medium",
+  "changed_files": 4,
+  "changed_lines": 80,
+  "headline": "Gentle AI can review this change before you call it done.",
+  "reason": "Review can help detect regressions in these changes.",
+  "value": "Reviewing takes a little longer and makes the result safer.",
+  "risk_evidence": [
+    "this change is not purely passive documentation, so it gets one consolidated review.",
+    "an executable change in AGENTS.md"
+  ],
+  "choices": [
+    {
+      "answer": "granted",
+      "label": "Review this change",
+      "effect": "Reviews only this change; later medium- or high-risk changes ask again, and delivery needs separate approval.",
+      "invocation": "gentle-ai review start --contract gentle-ai.review-integration/v2 --cwd /workspace/replica-gentle-ai --target sha256:6bace5dc6e2bcfc43e82c5b4ed1e7a272061b51a0bb7d53a7c01f1ee3af8cfc4 --target-evidence v1:base-workspace-overlay:workspace:093c194016a7f8b92892d8f204da5d39bf7649c3:b4e39373a52a6f2921ca61e5df819165656d33f1:sha256:bfa75a6643181ff82f8d873257fe6b29923a5caedc24d421345d084d6ba9c5de --projection workspace --agent codex --lineage review-6dfeca15fe8d271d --base-ref 093c194016a7f8b92892d8f204da5d39bf7649c3 --workspace-overlay --untracked-scope=select --expected-untracked-inventory=sha256:0963728480d7dbe0067957db0447d4737856d919b8d2c801e092f9b1b9a69eff --intended-untracked=AGENTS.md --intended-untracked=docs/requirements/qa-inquisidor-v3/PRD.md --intended-untracked=docs/requirements/qa-inquisidor-v3/contrato-evidencia.json --intended-untracked=docs/requirements/qa-inquisidor-v3/escenarios-previos.json --intended-untracked=docs/requirements/qa-inquisidor-v3/interview.json --intended-untracked=docs/requirements/qa-inquisidor-v3/modelo-cierre.json --intended-untracked=docs/requirements/qa-inquisidor-v3/receipts/A-HUMAN-006.txt --intended-untracked=docs/requirements/qa-inquisidor-v3/receipts/A-QA-006.txt --intended-untracked=docs/requirements/qa-inquisidor-v3/receipts/A-QA-007.txt --intended-untracked=docs/requirements/qa-inquisidor-v3/receipts/A-QA-008.txt --intended-untracked=docs/requirements/qa-inquisidor-v3/receipts/Q-HUMAN-006.txt --intended-untracked=docs/requirements/qa-inquisidor-v3/receipts/Q-QA-006.txt --intended-untracked=docs/requirements/qa-inquisidor-v3/receipts/Q-QA-007.txt --intended-untracked=docs/requirements/qa-inquisidor-v3/receipts/Q-QA-008.txt --intended-untracked=docs/requirements/qa-inquisidor-v3/registro-skill-asistente.md --intended-untracked=docs/requirements/qa-inquisidor-v3/resumen-entrada.schema.json --intended-untracked=skills/qa-inquisidor/SKILL.md --intended-untracked=skills/qa-inquisidor/assets/report.schema.json --intended-untracked=skills/qa-inquisidor/references/criteria.md --intended-untracked=skills/qa-inquisidor/scripts/validate_report.py --intended-untracked=skills/qa-inquisidor/tests/test_infrastructure.py --intended-untracked=skills/qa-inquisidor/tests/test_report.py --intended-untracked=skills/requerimientos-socraticos/scripts/json_preflight.py --intended-untracked=skills/requerimientos-socraticos/scripts/safe_io.py --request-context /workspace/replica-gentle-ai/docs/skill-audit/qa-infra-011/request.md --lenses review-resilience,review-reliability --lenses-reason 'Distinguish unavailable evaluation from invalid input; preserve diagnostic limits and regression coverage.' --consent granted"
+    },
+    {
+      "answer": "declined",
+      "label": "Skip this time",
+      "effect": "Skips only this change; no review record is created, and future reviews stay enabled.",
+      "invocation": "gentle-ai review start --contract gentle-ai.review-integration/v2 --cwd /workspace/replica-gentle-ai --target sha256:6bace5dc6e2bcfc43e82c5b4ed1e7a272061b51a0bb7d53a7c01f1ee3af8cfc4 --target-evidence v1:base-workspace-overlay:workspace:093c194016a7f8b92892d8f204da5d39bf7649c3:b4e39373a52a6f2921ca61e5df819165656d33f1:sha256:bfa75a6643181ff82f8d873257fe6b29923a5caedc24d421345d084d6ba9c5de --projection workspace --agent codex --lineage review-6dfeca15fe8d271d --base-ref 093c194016a7f8b92892d8f204da5d39bf7649c3 --workspace-overlay --untracked-scope=select --expected-untracked-inventory=sha256:0963728480d7dbe0067957db0447d4737856d919b8d2c801e092f9b1b9a69eff --intended-untracked=AGENTS.md --intended-untracked=docs/requirements/qa-inquisidor-v3/PRD.md --intended-untracked=docs/requirements/qa-inquisidor-v3/contrato-evidencia.json --intended-untracked=docs/requirements/qa-inquisidor-v3/escenarios-previos.json --intended-untracked=docs/requirements/qa-inquisidor-v3/interview.json --intended-untracked=docs/requirements/qa-inquisidor-v3/modelo-cierre.json --intended-untracked=docs/requirements/qa-inquisidor-v3/receipts/A-HUMAN-006.txt --intended-untracked=docs/requirements/qa-inquisidor-v3/receipts/A-QA-006.txt --intended-untracked=docs/requirements/qa-inquisidor-v3/receipts/A-QA-007.txt --intended-untracked=docs/requirements/qa-inquisidor-v3/receipts/A-QA-008.txt --intended-untracked=docs/requirements/qa-inquisidor-v3/receipts/Q-HUMAN-006.txt --intended-untracked=docs/requirements/qa-inquisidor-v3/receipts/Q-QA-006.txt --intended-untracked=docs/requirements/qa-inquisidor-v3/receipts/Q-QA-007.txt --intended-untracked=docs/requirements/qa-inquisidor-v3/receipts/Q-QA-008.txt --intended-untracked=docs/requirements/qa-inquisidor-v3/registro-skill-asistente.md --intended-untracked=docs/requirements/qa-inquisidor-v3/resumen-entrada.schema.json --intended-untracked=skills/qa-inquisidor/SKILL.md --intended-untracked=skills/qa-inquisidor/assets/report.schema.json --intended-untracked=skills/qa-inquisidor/references/criteria.md --intended-untracked=skills/qa-inquisidor/scripts/validate_report.py --intended-untracked=skills/qa-inquisidor/tests/test_infrastructure.py --intended-untracked=skills/qa-inquisidor/tests/test_report.py --intended-untracked=skills/requerimientos-socraticos/scripts/json_preflight.py --intended-untracked=skills/requerimientos-socraticos/scripts/safe_io.py --request-context /workspace/replica-gentle-ai/docs/skill-audit/qa-infra-011/request.md --lenses review-resilience,review-reliability --lenses-reason 'Distinguish unavailable evaluation from invalid input; preserve diagnostic limits and regression coverage.' --consent declined"
+    }
+  ],
+  "off_path": {
+    "note": "To turn reviews off for good, run 'gentle-ai review mode disable'.",
+    "command": "gentle-ai review mode disable"
+  }
+}

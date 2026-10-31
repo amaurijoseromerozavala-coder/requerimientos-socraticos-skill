@@ -1,0 +1,576 @@
+{
+  "sha": "4c4097c1e4f122242e76289aaaf9ce13c0c8e78d",
+  "url": "https://api.github.com/repos/amaurijoseromerozavala-coder/requerimientos-socraticos-skill/git/trees/4c4097c1e4f122242e76289aaaf9ce13c0c8e78d",
+  "tree": [
+    {
+      "path": ".gitignore",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "a571a58030e38299ee7cb62509bd497bdd80f911",
+      "size": 48,
+      "url": "https://api.github.com/repos/amaurijoseromerozavala-coder/requerimientos-socraticos-skill/git/blobs/a571a58030e38299ee7cb62509bd497bdd80f911"
+    },
+    {
+      "path": "AGENTS.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f8e460f234df7e8c627708fbc2fba975352674bf",
+      "size": 593,
+      "url": "https://api.github.com/repos/amaurijoseromerozavala-coder/requerimientos-socraticos-skill/git/blobs/f8e460f234df7e8c627708fbc2fba975352674bf"
+    },
+    {
+      "path": "LICENSE",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "d645695673349e3947e8e5ae42332d0ac3164cd7",
+      "size": 11358,
+      "url": "https://api.github.com/repos/amaurijoseromerozavala-coder/requerimientos-socraticos-skill/git/blobs/d645695673349e3947e8e5ae42332d0ac3164cd7"
+    },
+    {
+      "path": "README.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e5f576cc3f4a0dba4b61d360bd378e27e3c73cb1",
+      "size": 4803,
+      "url": "https://api.github.com/repos/amaurijoseromerozavala-coder/requerimientos-socraticos-skill/git/blobs/e5f576cc3f4a0dba4b61d360bd378e27e3c73cb1"
+    },
+    {
+      "path": "VERIFICATION.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "83fe1f77bbe9224d25144c1c75908899c7debfde",
+      "size": 11223,
+      "url": "https://api.github.com/repos/amaurijoseromerozavala-coder/requerimientos-socraticos-skill/git/blobs/83fe1f77bbe9224d25144c1c75908899c7debfde"
+    },
+    {
+      "path": "requirements.txt",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e401348e54436c58d5a94375c6cd61eea9ee30e4",
+      "size": 81,
+      "url": "https://api.github.com/repos/amaurijoseromerozavala-coder/requerimientos-socraticos-skill/git/blobs/e401348e54436c58d5a94375c6cd61eea9ee30e4"
+    },
+    {
+      "path": "skills",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "5922efab40fd17ab51ed9166280d3a0028b0b2ba",
+      "url": "https://api.github.com/repos/amaurijoseromerozavala-coder/requerimientos-socraticos-skill/git/trees/5922efab40fd17ab51ed9166280d3a0028b0b2ba"
+    },
+    {
+      "path": "skills/requerimientos-socraticos",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "d2c04524919014d847bbc5650744a7475892940f",
+      "url": "https://api.github.com/repos/amaurijoseromerozavala-coder/requerimientos-socraticos-skill/git/trees/d2c04524919014d847bbc5650744a7475892940f"
+    },
+    {
+      "path": "skills/requerimientos-socraticos/SKILL.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "c290a16794fb2227ad0c1e0a28de51a849a35822",
+      "size": 8848,
+      "url": "https://api.github.com/repos/amaurijoseromerozavala-coder/requerimientos-socraticos-skill/git/blobs/c290a16794fb2227ad0c1e0a28de51a849a35822"
+    },
+    {
+      "path": "skills/requerimientos-socraticos/agents",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "0ae99fbcf05be32b0dd53faf96a27fb26c68aed5",
+      "url": "https://api.github.com/repos/amaurijoseromerozavala-coder/requerimientos-socraticos-skill/git/trees/0ae99fbcf05be32b0dd53faf96a27fb26c68aed5"
+    },
+    {
+      "path": "skills/requerimientos-socraticos/agents/requirements-interrogator.toml",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f1776b5e65cc39f509614ab3b6bafd268bf7e484",
+      "size": 994,
+      "url": "https://api.github.com/repos/amaurijoseromerozavala-coder/requerimientos-socraticos-skill/git/blobs/f1776b5e65cc39f509614ab3b6bafd268bf7e484"
+    },
+    {
+      "path": "skills/requerimientos-socraticos/assets",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "ae4f6f9996fc12f3d508a22f227d09c50985b634",
+      "url": "https://api.github.com/repos/amaurijoseromerozavala-coder/requerimientos-socraticos-skill/git/trees/ae4f6f9996fc12f3d508a22f227d09c50985b634"
+    },
+    {
+      "path": "skills/requerimientos-socraticos/assets/activation-preflight.schema.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e57775dae1ab75b6f7c35b30df4677e969b5bad4",
+      "size": 6722,
+      "url": "https://api.github.com/repos/amaurijoseromerozavala-coder/requerimientos-socraticos-skill/git/blobs/e57775dae1ab75b6f7c35b30df4677e969b5bad4"
+    },
+    {
+      "path": "skills/requerimientos-socraticos/assets/analysis-report.schema.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "b6ce8ba58dd3414068dd1cd67c4bdd0c3e6e7987",
+      "size": 1865,
+      "url": "https://api.github.com/repos/amaurijoseromerozavala-coder/requerimientos-socraticos-skill/git/blobs/b6ce8ba58dd3414068dd1cd67c4bdd0c3e6e7987"
+    },
+    {
+      "path": "skills/requerimientos-socraticos/assets/design-proposals.schema.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "54828ffa270ddc598fcaaa40a2dca8e62e8616a4",
+      "size": 3866,
+      "url": "https://api.github.com/repos/amaurijoseromerozavala-coder/requerimientos-socraticos-skill/git/blobs/54828ffa270ddc598fcaaa40a2dca8e62e8616a4"
+    },
+    {
+      "path": "skills/requerimientos-socraticos/assets/example.prd.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "bfec1d9d3bc273700e42af8f44a88e2273a7bfb5",
+      "size": 11981,
+      "url": "https://api.github.com/repos/amaurijoseromerozavala-coder/requerimientos-socraticos-skill/git/blobs/bfec1d9d3bc273700e42af8f44a88e2273a7bfb5"
+    },
+    {
+      "path": "skills/requerimientos-socraticos/assets/gitattributes.example",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "efc3541c8184bef82fd3192d458f850b278d4774",
+      "size": 149,
+      "url": "https://api.github.com/repos/amaurijoseromerozavala-coder/requerimientos-socraticos-skill/git/blobs/efc3541c8184bef82fd3192d458f850b278d4774"
+    },
+    {
+      "path": "skills/requerimientos-socraticos/assets/interrogator-packet.schema.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "ffd101910d4da04d508e7e214e7cf83c56cd0417",
+      "size": 1092,
+      "url": "https://api.github.com/repos/amaurijoseromerozavala-coder/requerimientos-socraticos-skill/git/blobs/ffd101910d4da04d508e7e214e7cf83c56cd0417"
+    },
+    {
+      "path": "skills/requerimientos-socraticos/assets/interview.schema.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "047dfa6427081b046df8da5f8769e44cfe7a0b1a",
+      "size": 13150,
+      "url": "https://api.github.com/repos/amaurijoseromerozavala-coder/requerimientos-socraticos-skill/git/blobs/047dfa6427081b046df8da5f8769e44cfe7a0b1a"
+    },
+    {
+      "path": "skills/requerimientos-socraticos/assets/logic-example.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "26272bde34b1f63fc5ecc524794eeadfd18d0c19",
+      "size": 564,
+      "url": "https://api.github.com/repos/amaurijoseromerozavala-coder/requerimientos-socraticos-skill/git/blobs/26272bde34b1f63fc5ecc524794eeadfd18d0c19"
+    },
+    {
+      "path": "skills/requerimientos-socraticos/assets/logic-input.schema.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "44527355b9961bc8922f54c896edfb953cc2b3fa",
+      "size": 2291,
+      "url": "https://api.github.com/repos/amaurijoseromerozavala-coder/requerimientos-socraticos-skill/git/blobs/44527355b9961bc8922f54c896edfb953cc2b3fa"
+    },
+    {
+      "path": "skills/requerimientos-socraticos/assets/prd.schema.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "60a58d57315850a4ddd5ae5a14ad0fbbb28f11bf",
+      "size": 40505,
+      "url": "https://api.github.com/repos/amaurijoseromerozavala-coder/requerimientos-socraticos-skill/git/blobs/60a58d57315850a4ddd5ae5a14ad0fbbb28f11bf"
+    },
+    {
+      "path": "skills/requerimientos-socraticos/references",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "c689522e2a21115799367e291e376316002eb512",
+      "url": "https://api.github.com/repos/amaurijoseromerozavala-coder/requerimientos-socraticos-skill/git/trees/c689522e2a21115799367e291e376316002eb512"
+    },
+    {
+      "path": "skills/requerimientos-socraticos/references/activation-preflight.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "b50e99586d29b50b8f1ecb97609533fdb5a1036e",
+      "size": 6959,
+      "url": "https://api.github.com/repos/amaurijoseromerozavala-coder/requerimientos-socraticos-skill/git/blobs/b50e99586d29b50b8f1ecb97609533fdb5a1036e"
+    },
+    {
+      "path": "skills/requerimientos-socraticos/references/formal-analysis.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "d1cfa65fde8cf5a9cf171d7a7a051a5daa4c2b9d",
+      "size": 9816,
+      "url": "https://api.github.com/repos/amaurijoseromerozavala-coder/requerimientos-socraticos-skill/git/blobs/d1cfa65fde8cf5a9cf171d7a7a051a5daa4c2b9d"
+    },
+    {
+      "path": "skills/requerimientos-socraticos/references/integrity-boundary.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "a84b220e6e4439370169c97789731498068b2026",
+      "size": 5888,
+      "url": "https://api.github.com/repos/amaurijoseromerozavala-coder/requerimientos-socraticos-skill/git/blobs/a84b220e6e4439370169c97789731498068b2026"
+    },
+    {
+      "path": "skills/requerimientos-socraticos/references/interrogation.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "baee62f0b70f2dd1e73fd7de08ef2fdcd3f9900b",
+      "size": 4896,
+      "url": "https://api.github.com/repos/amaurijoseromerozavala-coder/requerimientos-socraticos-skill/git/blobs/baee62f0b70f2dd1e73fd7de08ef2fdcd3f9900b"
+    },
+    {
+      "path": "skills/requerimientos-socraticos/references/memory-budget.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "ba7f6e473d9407b2060d467a3e4e7b6d444a31f9",
+      "size": 8320,
+      "url": "https://api.github.com/repos/amaurijoseromerozavala-coder/requerimientos-socraticos-skill/git/blobs/ba7f6e473d9407b2060d467a3e4e7b6d444a31f9"
+    },
+    {
+      "path": "skills/requerimientos-socraticos/references/method.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "ceb9d1528591240d20a994c27abe68584a8f4832",
+      "size": 5768,
+      "url": "https://api.github.com/repos/amaurijoseromerozavala-coder/requerimientos-socraticos-skill/git/blobs/ceb9d1528591240d20a994c27abe68584a8f4832"
+    },
+    {
+      "path": "skills/requerimientos-socraticos/references/research-design.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "2aaca965ebd52d5d18e44e10c066abfc7fbcf754",
+      "size": 2179,
+      "url": "https://api.github.com/repos/amaurijoseromerozavala-coder/requerimientos-socraticos-skill/git/blobs/2aaca965ebd52d5d18e44e10c066abfc7fbcf754"
+    },
+    {
+      "path": "skills/requerimientos-socraticos/references/sealed-validation.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "391b6809d4cbcd67d97caf0965bd617401de861f",
+      "size": 8531,
+      "url": "https://api.github.com/repos/amaurijoseromerozavala-coder/requerimientos-socraticos-skill/git/blobs/391b6809d4cbcd67d97caf0965bd617401de861f"
+    },
+    {
+      "path": "skills/requerimientos-socraticos/references/validation.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "ba51366e5c8f7e24790af944c5b337eea461399f",
+      "size": 8073,
+      "url": "https://api.github.com/repos/amaurijoseromerozavala-coder/requerimientos-socraticos-skill/git/blobs/ba51366e5c8f7e24790af944c5b337eea461399f"
+    },
+    {
+      "path": "skills/requerimientos-socraticos/references/workflow.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "5e2774a399319b090fa8d010e94d2fa52fcb1c82",
+      "size": 5123,
+      "url": "https://api.github.com/repos/amaurijoseromerozavala-coder/requerimientos-socraticos-skill/git/blobs/5e2774a399319b090fa8d010e94d2fa52fcb1c82"
+    },
+    {
+      "path": "skills/requerimientos-socraticos/requirements-analysis.txt",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "5efbc45115517fba9301ee3a435683b721a16e86",
+      "size": 97,
+      "url": "https://api.github.com/repos/amaurijoseromerozavala-coder/requerimientos-socraticos-skill/git/blobs/5efbc45115517fba9301ee3a435683b721a16e86"
+    },
+    {
+      "path": "skills/requerimientos-socraticos/scripts",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "d3a60ee2c06f69465127542783c5c45743b6e2ce",
+      "url": "https://api.github.com/repos/amaurijoseromerozavala-coder/requerimientos-socraticos-skill/git/trees/d3a60ee2c06f69465127542783c5c45743b6e2ce"
+    },
+    {
+      "path": "skills/requerimientos-socraticos/scripts/activation_preflight.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "50ce6159328e93cf2fed10dfec2c4ee6eb09e01d",
+      "size": 15324,
+      "url": "https://api.github.com/repos/amaurijoseromerozavala-coder/requerimientos-socraticos-skill/git/blobs/50ce6159328e93cf2fed10dfec2c4ee6eb09e01d"
+    },
+    {
+      "path": "skills/requerimientos-socraticos/scripts/analyze_logic.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "be745f7f75b30c66343771f26130cc1a9628facf",
+      "size": 13636,
+      "url": "https://api.github.com/repos/amaurijoseromerozavala-coder/requerimientos-socraticos-skill/git/blobs/be745f7f75b30c66343771f26130cc1a9628facf"
+    },
+    {
+      "path": "skills/requerimientos-socraticos/scripts/document_source.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "8bb0b63627385bc7bd185479fae28695fce17e67",
+      "size": 4079,
+      "url": "https://api.github.com/repos/amaurijoseromerozavala-coder/requerimientos-socraticos-skill/git/blobs/8bb0b63627385bc7bd185479fae28695fce17e67"
+    },
+    {
+      "path": "skills/requerimientos-socraticos/scripts/git_bundle.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "d47dc165e76bfcd32483eda2bb2239c30a7e3141",
+      "size": 4229,
+      "url": "https://api.github.com/repos/amaurijoseromerozavala-coder/requerimientos-socraticos-skill/git/blobs/d47dc165e76bfcd32483eda2bb2239c30a7e3141"
+    },
+    {
+      "path": "skills/requerimientos-socraticos/scripts/git_document_worker.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "0fb60426a311960610f587079715dddf487367e8",
+      "size": 1221,
+      "url": "https://api.github.com/repos/amaurijoseromerozavala-coder/requerimientos-socraticos-skill/git/blobs/0fb60426a311960610f587079715dddf487367e8"
+    },
+    {
+      "path": "skills/requerimientos-socraticos/scripts/git_validation_engine.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "39b7932ceda46e6602935d8b465b9eb637f7149e",
+      "size": 8805,
+      "url": "https://api.github.com/repos/amaurijoseromerozavala-coder/requerimientos-socraticos-skill/git/blobs/39b7932ceda46e6602935d8b465b9eb637f7149e"
+    },
+    {
+      "path": "skills/requerimientos-socraticos/scripts/json_preflight.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "1f1925de7cb03aa05fecacb5ea46ccd2838811ac",
+      "size": 1843,
+      "url": "https://api.github.com/repos/amaurijoseromerozavala-coder/requerimientos-socraticos-skill/git/blobs/1f1925de7cb03aa05fecacb5ea46ccd2838811ac"
+    },
+    {
+      "path": "skills/requerimientos-socraticos/scripts/logic_engine.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "9371a2f4b4faa5907634934137e5602aefeaa68d",
+      "size": 10445,
+      "url": "https://api.github.com/repos/amaurijoseromerozavala-coder/requerimientos-socraticos-skill/git/blobs/9371a2f4b4faa5907634934137e5602aefeaa68d"
+    },
+    {
+      "path": "skills/requerimientos-socraticos/scripts/memory_budget.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "18e76459119b73bb48e477f2aeb050d17a7debcf",
+      "size": 10664,
+      "url": "https://api.github.com/repos/amaurijoseromerozavala-coder/requerimientos-socraticos-skill/git/blobs/18e76459119b73bb48e477f2aeb050d17a7debcf"
+    },
+    {
+      "path": "skills/requerimientos-socraticos/scripts/normalize_text.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "eef38a34121d2bfd579ac3460e8085fb7255a5ba",
+      "size": 1934,
+      "url": "https://api.github.com/repos/amaurijoseromerozavala-coder/requerimientos-socraticos-skill/git/blobs/eef38a34121d2bfd579ac3460e8085fb7255a5ba"
+    },
+    {
+      "path": "skills/requerimientos-socraticos/scripts/probe_environment.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "93f6224d517e7601c8fad564b26d4e10947f1103",
+      "size": 9176,
+      "url": "https://api.github.com/repos/amaurijoseromerozavala-coder/requerimientos-socraticos-skill/git/blobs/93f6224d517e7601c8fad564b26d4e10947f1103"
+    },
+    {
+      "path": "skills/requerimientos-socraticos/scripts/process_supervision.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f203d3e1c904925d9ae2ed6b42e6e6ac61a8518b",
+      "size": 9331,
+      "url": "https://api.github.com/repos/amaurijoseromerozavala-coder/requerimientos-socraticos-skill/git/blobs/f203d3e1c904925d9ae2ed6b42e6e6ac61a8518b"
+    },
+    {
+      "path": "skills/requerimientos-socraticos/scripts/requirements_guard.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "99ad125cb8e030894071fa770592b0c749a60512",
+      "size": 10497,
+      "url": "https://api.github.com/repos/amaurijoseromerozavala-coder/requerimientos-socraticos-skill/git/blobs/99ad125cb8e030894071fa770592b0c749a60512"
+    },
+    {
+      "path": "skills/requerimientos-socraticos/scripts/safe_io.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "261d747e0e1bc81bb38e423661c681aa97447812",
+      "size": 2600,
+      "url": "https://api.github.com/repos/amaurijoseromerozavala-coder/requerimientos-socraticos-skill/git/blobs/261d747e0e1bc81bb38e423661c681aa97447812"
+    },
+    {
+      "path": "skills/requerimientos-socraticos/scripts/scratch_pool.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "0a3df589a5ed24eb196ca7b54228d690d45d66e2",
+      "size": 3173,
+      "url": "https://api.github.com/repos/amaurijoseromerozavala-coder/requerimientos-socraticos-skill/git/blobs/0a3df589a5ed24eb196ca7b54228d690d45d66e2"
+    },
+    {
+      "path": "skills/requerimientos-socraticos/scripts/validate_git.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "bf31471fe6f76356badf94744bd5fff68f7dd513",
+      "size": 7816,
+      "url": "https://api.github.com/repos/amaurijoseromerozavala-coder/requerimientos-socraticos-skill/git/blobs/bf31471fe6f76356badf94744bd5fff68f7dd513"
+    },
+    {
+      "path": "skills/requerimientos-socraticos/scripts/validate_interview.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "3efc39abe17b0b689cc6fc4b4a50833d38a23693",
+      "size": 11800,
+      "url": "https://api.github.com/repos/amaurijoseromerozavala-coder/requerimientos-socraticos-skill/git/blobs/3efc39abe17b0b689cc6fc4b4a50833d38a23693"
+    },
+    {
+      "path": "skills/requerimientos-socraticos/scripts/validate_prd.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "4ed47e86e763b0baa664fb31fb8b67da8f286308",
+      "size": 2550,
+      "url": "https://api.github.com/repos/amaurijoseromerozavala-coder/requerimientos-socraticos-skill/git/blobs/4ed47e86e763b0baa664fb31fb8b67da8f286308"
+    },
+    {
+      "path": "skills/requerimientos-socraticos/tests",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "7407989096d7fcb4ac2ad5b44dfc67cd19c6a8d5",
+      "url": "https://api.github.com/repos/amaurijoseromerozavala-coder/requerimientos-socraticos-skill/git/trees/7407989096d7fcb4ac2ad5b44dfc67cd19c6a8d5"
+    },
+    {
+      "path": "skills/requerimientos-socraticos/tests/test_activation_preflight.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "30a6b7244855732214f55e7f07505e98980eb5ef",
+      "size": 6622,
+      "url": "https://api.github.com/repos/amaurijoseromerozavala-coder/requerimientos-socraticos-skill/git/blobs/30a6b7244855732214f55e7f07505e98980eb5ef"
+    },
+    {
+      "path": "skills/requerimientos-socraticos/tests/test_document_source.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e20efb66fedf539694b153b243a466bd0e762097",
+      "size": 9806,
+      "url": "https://api.github.com/repos/amaurijoseromerozavala-coder/requerimientos-socraticos-skill/git/blobs/e20efb66fedf539694b153b243a466bd0e762097"
+    },
+    {
+      "path": "skills/requerimientos-socraticos/tests/test_environment.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f7c9630859e2f63b83f9909c8312f3da82b46a6a",
+      "size": 5708,
+      "url": "https://api.github.com/repos/amaurijoseromerozavala-coder/requerimientos-socraticos-skill/git/blobs/f7c9630859e2f63b83f9909c8312f3da82b46a6a"
+    },
+    {
+      "path": "skills/requerimientos-socraticos/tests/test_git_bundle.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "333c6bb7fd94423e148b83a3497c4daf1edae566",
+      "size": 2379,
+      "url": "https://api.github.com/repos/amaurijoseromerozavala-coder/requerimientos-socraticos-skill/git/blobs/333c6bb7fd94423e148b83a3497c4daf1edae566"
+    },
+    {
+      "path": "skills/requerimientos-socraticos/tests/test_git_memory.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "d055c1628c16905e59e7ea0b93405dd5750c1f70",
+      "size": 4901,
+      "url": "https://api.github.com/repos/amaurijoseromerozavala-coder/requerimientos-socraticos-skill/git/blobs/d055c1628c16905e59e7ea0b93405dd5750c1f70"
+    },
+    {
+      "path": "skills/requerimientos-socraticos/tests/test_guard.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "692573060a9f978eff4da2a2bc34af2949fb713a",
+      "size": 8533,
+      "url": "https://api.github.com/repos/amaurijoseromerozavala-coder/requerimientos-socraticos-skill/git/blobs/692573060a9f978eff4da2a2bc34af2949fb713a"
+    },
+    {
+      "path": "skills/requerimientos-socraticos/tests/test_interview.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f153a07abb3a83351edaca5c075e6cdf5e063043",
+      "size": 20689,
+      "url": "https://api.github.com/repos/amaurijoseromerozavala-coder/requerimientos-socraticos-skill/git/blobs/f153a07abb3a83351edaca5c075e6cdf5e063043"
+    },
+    {
+      "path": "skills/requerimientos-socraticos/tests/test_logic.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "bdad5437189c4418788ff889946c8bf375ef96c7",
+      "size": 6575,
+      "url": "https://api.github.com/repos/amaurijoseromerozavala-coder/requerimientos-socraticos-skill/git/blobs/bdad5437189c4418788ff889946c8bf375ef96c7"
+    },
+    {
+      "path": "skills/requerimientos-socraticos/tests/test_logic_memory.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "bc87d9421b3d4ea15e114f02b42a51ab40902e5b",
+      "size": 14083,
+      "url": "https://api.github.com/repos/amaurijoseromerozavala-coder/requerimientos-socraticos-skill/git/blobs/bc87d9421b3d4ea15e114f02b42a51ab40902e5b"
+    },
+    {
+      "path": "skills/requerimientos-socraticos/tests/test_logic_worker_memory.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "1eefe09ae3262fd19717840ff540701d660db8ef",
+      "size": 1659,
+      "url": "https://api.github.com/repos/amaurijoseromerozavala-coder/requerimientos-socraticos-skill/git/blobs/1eefe09ae3262fd19717840ff540701d660db8ef"
+    },
+    {
+      "path": "skills/requerimientos-socraticos/tests/test_memory_budget.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "b92afac3091fa09c9998a1c9fb1d5db60a63c43a",
+      "size": 17611,
+      "url": "https://api.github.com/repos/amaurijoseromerozavala-coder/requerimientos-socraticos-skill/git/blobs/b92afac3091fa09c9998a1c9fb1d5db60a63c43a"
+    },
+    {
+      "path": "skills/requerimientos-socraticos/tests/test_preflight.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e8ceeb2e3b4d550c4bdc98130f16668e17f60efb",
+      "size": 2295,
+      "url": "https://api.github.com/repos/amaurijoseromerozavala-coder/requerimientos-socraticos-skill/git/blobs/e8ceeb2e3b4d550c4bdc98130f16668e17f60efb"
+    },
+    {
+      "path": "skills/requerimientos-socraticos/tests/test_process_supervision.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "7e288e0963980a8406af6555a7f4bdc4f29a15c1",
+      "size": 13138,
+      "url": "https://api.github.com/repos/amaurijoseromerozavala-coder/requerimientos-socraticos-skill/git/blobs/7e288e0963980a8406af6555a7f4bdc4f29a15c1"
+    },
+    {
+      "path": "skills/requerimientos-socraticos/tests/test_role_policy_source.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "12faaa0a2fc3bca7251447a037bed125f94e3780",
+      "size": 3980,
+      "url": "https://api.github.com/repos/amaurijoseromerozavala-coder/requerimientos-socraticos-skill/git/blobs/12faaa0a2fc3bca7251447a037bed125f94e3780"
+    },
+    {
+      "path": "skills/requerimientos-socraticos/tests/test_scratch.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "20c1d0bfb8bab4055a603f6a33e174737f897133",
+      "size": 6575,
+      "url": "https://api.github.com/repos/amaurijoseromerozavala-coder/requerimientos-socraticos-skill/git/blobs/20c1d0bfb8bab4055a603f6a33e174737f897133"
+    },
+    {
+      "path": "skills/requerimientos-socraticos/tests/test_sealed.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e9923cb03d9048d1df87ccb48d1d57c4f656b6d3",
+      "size": 10051,
+      "url": "https://api.github.com/repos/amaurijoseromerozavala-coder/requerimientos-socraticos-skill/git/blobs/e9923cb03d9048d1df87ccb48d1d57c4f656b6d3"
+    },
+    {
+      "path": "skills/requerimientos-socraticos/tests/test_supervisor.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "fa96ee34cabd50128616681ff1ae92c075de83ba",
+      "size": 9378,
+      "url": "https://api.github.com/repos/amaurijoseromerozavala-coder/requerimientos-socraticos-skill/git/blobs/fa96ee34cabd50128616681ff1ae92c075de83ba"
+    },
+    {
+      "path": "skills/requerimientos-socraticos/tests/test_validation_budget.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "88a84d28ab34c2d3f86afcebbf98a5efa38ffa8c",
+      "size": 8329,
+      "url": "https://api.github.com/repos/amaurijoseromerozavala-coder/requerimientos-socraticos-skill/git/blobs/88a84d28ab34c2d3f86afcebbf98a5efa38ffa8c"
+    }
+  ],
+  "truncated": false
+}

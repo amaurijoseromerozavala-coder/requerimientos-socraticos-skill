@@ -1,0 +1,208 @@
+{
+  "skill": "requerimientos-socraticos",
+  "version": "2.0.1",
+  "status": "APPROVED_AND_ACKNOWLEDGED",
+  "reviewed_at": "2026-10-26T17:54:21.576847+00:00",
+  "approved_baseline": {
+    "state": "approved",
+    "acknowledgement": {
+      "schema": "gentle-ai.review-acknowledged/v1",
+      "operation": "review/acknowledge-approved",
+      "action": "acknowledged",
+      "lineage_id": "review-requirements-v2-complete",
+      "target_identity": "sha256:00412dcb4885231aa3e7f91e6cca78d531e166fec55edf0cfe14d8b39281e135",
+      "consumed_revision": "sha256:3881c7ab250792746426e1d7a2b4f6781bf6fd1904302b093ee0e90eec8941e2",
+      "authority": "burned"
+    },
+    "reviewer_results": [
+      {
+        "lens": "review-risk",
+        "findings": [],
+        "evidence": [
+          "Inspected all 19 supplied immutable patches. No concrete reachable security exploit, secret exposure, unauthorized mutation, or dependency vulnerability was established from this candidate.",
+          "skills/requerimientos-socraticos/scripts/validate_interview.py:30-41 resolves receipt paths, rejects absolute paths and resolved escapes from the document directory, and checks retained receipt content and hashes. The supplied production validators read documents without executing their embedded content.",
+          "skills/requerimientos-socraticos/scripts/validate_prd.py:18-29 applies the same path containment check to dependencies, verifies their hashes, validates their records, and checks interview/design completion for READY. These checks establish declared-record integrity rather than independent authentication of human decisions or native review receipts; the candidate explicitly documents that limitation.",
+          "skills/requerimientos-socraticos/tests/test_interview.py contains negative path-escape and receipt-integrity cases. Test results were inspected as supplied evidence; no commands or independent scanner runs were performed."
+        ],
+        "result_hash": "sha256:e813cd88c5ed12066432d9d27977490e76c4c420a3b0101e3772c62fcff7c225"
+      },
+      {
+        "lens": "review-resilience",
+        "findings": [],
+        "evidence": [
+          "Inspected all 19 supplied immutable patches without accessing external candidate state. No concrete production failure mode or measured resilience regression was established.",
+          "skills/requerimientos-socraticos/scripts/validate_interview.py checks retained receipt contents and hashes, rejects unanswered or unassessed progression, and reports handled validation and file failures with a nonzero exit.",
+          "skills/requerimientos-socraticos/scripts/validate_prd.py rejects stale candidate and dependency hashes and prevents READY with an incomplete interview or pending design evidence.",
+          "skills/requerimientos-socraticos/references/workflow.md preserves local work when the memory mirror is unavailable, requires renewed validation after candidate changes, and specifies DRAFT/BLOCKED degradation when native review infrastructure is unavailable. Supplied test results were inspected, not independently executed."
+        ],
+        "result_hash": "sha256:bc6db646b20e354f2492852737616cada412f4fa7c14ee9b2e453b6fe6994143"
+      },
+      {
+        "lens": "review-readability",
+        "findings": [
+          {
+            "id": "R2-misleading-reference-domain",
+            "lens": "readability",
+            "location": "skills/requerimientos-socraticos/scripts/validate_interview.py:145-161",
+            "severity": "WARNING",
+            "claim": "The field requirement_or_topic_ids promises two reference domains, but validate_design accepts only interview topic IDs and receives no requirement collection. A proposal linked directly to a PRD requirement therefore fails with DANGLING_REFERENCE despite following the field's advertised meaning. Rename the field to topic_ids and document the restriction, or explicitly resolve both domains; the current name conceals this behavioral limitation from document authors and maintainers.",
+            "proof_refs": [
+              "skills/requerimientos-socraticos/assets/design-proposals.schema.json:27-37",
+              "skills/requerimientos-socraticos/scripts/validate_interview.py:145-161",
+              "skills/requerimientos-socraticos/scripts/validate_prd.py:24-26"
+            ],
+            "evidence_class": "deterministic",
+            "causal_disposition": "introduced"
+          }
+        ],
+        "evidence": [
+          "Inspected all 19 supplied immutable patches without accessing external files or running commands.",
+          "The readability finding concerns a misleading public field name that hides an enforced reference restriction; stylistic preferences alone were excluded."
+        ],
+        "result_hash": "sha256:600bfc6cdc72f394577f0a9793ec1d1f8152ddd5dfab84cb3706f064786549be"
+      },
+      {
+        "lens": "review-reliability",
+        "findings": [
+          {
+            "id": "R3-001",
+            "lens": "reliability",
+            "location": "skills/requerimientos-socraticos/scripts/validate_interview.py:116-123",
+            "severity": "CRITICAL",
+            "claim": "A material open topic can bypass completion and human scope authority simply by setting applicable=false while retaining status=OPEN. Coverage is required only for applicable topics, and human authority is checked only for NOT_APPLICABLE. Consequently an unfinished interview can validate as COMPLETE and satisfy the PRD READY gate. Require consistent applicability/status and authority for excluding any material topic.",
+            "proof_refs": [
+              "skills/requerimientos-socraticos/tests/test_interview.py:48-50 supplies a negative fixture with the second material topic OPEN; additionally setting that topic's applicable flag to false bypasses the coverage rejection without introducing another failing condition.",
+              "skills/requerimientos-socraticos/scripts/validate_interview.py:116-123 checks neither coverage nor exclusion authority for a material, inapplicable OPEN topic.",
+              "skills/requerimientos-socraticos/scripts/validate_prd.py:27-29 accepts the resulting COMPLETE interview for READY."
+            ],
+            "evidence_class": "deterministic",
+            "causal_disposition": "introduced"
+          },
+          {
+            "id": "R3-002",
+            "lens": "reliability",
+            "location": "skills/requerimientos-socraticos/scripts/validate_interview.py:91-95",
+            "severity": "WARNING",
+            "claim": "Follow-up resolution compares topic IDs but never question dimensions. Two questions under the same topic can address different dimensions, yet an ANSWERED successor resolves an unrelated INCOMPLETE question. Add a negative test with matching topic IDs and different dimensions, and enforce the dimension relationship before accepting resolution.",
+            "proof_refs": [
+              "skills/requerimientos-socraticos/scripts/validate_interview.py:91-95 requires a later ANSWERED question under the same topic without comparing dimensions.",
+              "skills/requerimientos-socraticos/tests/test_interview.py:78-79 tests different topics, leaving the same-topic, different-dimension case unproved.",
+              "skills/requerimientos-socraticos/references/interrogation.md:36-38 explicitly distinguishes an orthogonal answer from resolution of the questioned dimension."
+            ]
+          }
+        ],
+        "evidence": [
+          "Inspected all 19 supplied immutable patches, including schemas, validators, tests, retained test output and smoke artifacts. No commands were run or external files read.",
+          "The completion bypass follows directly from schema-permitted topic states and validator branches; it does not depend on natural-language truth, forged receipts or universal LLM compliance."
+        ],
+        "result_hash": "sha256:1d9d48f1cca070dafdee996f7ad73c5620764227b25521bb2008e405eae5503b"
+      }
+    ],
+    "advisories": {
+      "statement": "This review is approved and its receipt stands. Every finding listed here is non-blocking: none opened a correction, none reopens this review, and no correction transition is offered for this candidate. Treat them as separate later work, never as a reason to re-run review on this candidate.",
+      "findings": [
+        {
+          "id": "R2-misleading-reference-domain",
+          "lens": "readability",
+          "location": "skills/requerimientos-socraticos/scripts/validate_interview.py:145-161",
+          "severity": "WARNING",
+          "disposition": "informational"
+        },
+        {
+          "id": "R3-002",
+          "lens": "reliability",
+          "location": "skills/requerimientos-socraticos/scripts/validate_interview.py:91-95",
+          "severity": "WARNING",
+          "disposition": "informational"
+        }
+      ]
+    },
+    "corrected_candidate_tree": "cee09ff6a7be09b83d60635c788ea0249c941eb6"
+  },
+  "followup": {
+    "acknowledgement": {
+      "schema": "gentle-ai.review-acknowledged/v1",
+      "operation": "review/acknowledge-approved",
+      "action": "acknowledged",
+      "lineage_id": "review-9fc721dbc3c56988",
+      "target_identity": "sha256:9ab48cb88dc724d0096a2b586664d2dbfeccfd15bac3a5f004c1ad475b381ffc",
+      "consumed_revision": "sha256:de55f3af67c0908de4858879ae2cb7c3ed1277a9db129c33eb66acc421ab98e1",
+      "authority": "burned"
+    },
+    "base_tree": "cee09ff6a7be09b83d60635c788ea0249c941eb6",
+    "candidate_tree": "71b48824d9c70dbd04e9f66e3348569a606668cf",
+    "reviewer_results": [
+      {
+        "lens": "review-risk",
+        "findings": [],
+        "evidence": [
+          "Inspected all ten supplied immutable patches without accessing external files or executing commands.",
+          "skills/requerimientos-socraticos/scripts/validate_interview.py adds dimension equality to follow-up resolution and extends design reference validation with supplied requirement IDs. The visible changes show no reachable security or authorization bypass.",
+          "skills/requerimientos-socraticos/scripts/validate_prd.py supplies requirement IDs from the candidate PRD to design validation. No changed filesystem access, command execution, secret handling, or dependency declaration appears in the supplied patches.",
+          "skills/requerimientos-socraticos/tests/test_interview.py adds regression coverage for dimension matching and PRD requirement references. The recorded test results were inspected as supplied evidence, not independently executed."
+        ],
+        "result_hash": "sha256:3b6b3c2b6cbf4d93eee56507de8e8116689f681e8ead0c2c7814652ad0d5e5a6"
+      },
+      {
+        "lens": "review-resilience",
+        "findings": [],
+        "evidence": [
+          "Inspected all ten supplied patches. No concrete candidate-caused failure in recovery, retry safety, graceful degradation, observability, latency, or load was established.",
+          "skills/requerimientos-socraticos/scripts/validate_interview.py preserves INVALID_RESOLUTION failure handling while requiring matching topic and dimension; skills/requerimientos-socraticos/scripts/validate_prd.py supplies requirement IDs to design validation.",
+          "skills/requerimientos-socraticos/tests/test_interview.py adds rejection and acceptance cases for follow-up dimensions and an acceptance case for PRD requirement references. docs/skill-audit/requerimientos-repair/tests-green.stderr records 43 passing tests; this supplied record was inspected, but tests were not independently executed."
+        ],
+        "result_hash": "sha256:33304e7ba7bc97be1384a342b1d7f762d9f2109470044bcbcaee62164090dcdb"
+      },
+      {
+        "lens": "review-readability",
+        "findings": [],
+        "evidence": [
+          "Inspected all ten supplied immutable patches. No concrete maintainability defect was identified within the readability lens.",
+          "skills/requerimientos-socraticos/scripts/validate_interview.py adds explicit dimension equality to follow-up resolution and an optional requirement-ID catalog for design validation; skills/requerimientos-socraticos/scripts/validate_prd.py supplies that catalog.",
+          "skills/requerimientos-socraticos/assets/design-proposals.schema.json and skills/requerimientos-socraticos/references/research-design.md explain the reference domains and standalone validation limitation. skills/requerimientos-socraticos/tests/test_interview.py adds focused coverage for both resolution outcomes and PRD requirement references. Reported test results were inspected as supplied, without executing commands."
+        ],
+        "result_hash": "sha256:63497fe1055600587e1276517d3d07234bc14a1c1c7aa42392ea499be22454b1"
+      },
+      {
+        "lens": "review-reliability",
+        "findings": [],
+        "evidence": [
+          "Inspected all ten supplied patches without accessing external files or running commands.",
+          "skills/requerimientos-socraticos/scripts/validate_interview.py:95 adds exact dimension equality while retaining the existing same-topic, later-question, and ANSWERED checks. The added tests exercise rejection across dimensions and acceptance within the same dimension.",
+          "skills/requerimientos-socraticos/scripts/validate_prd.py:27 supplies the candidate requirement IDs to design validation; skills/requerimientos-socraticos/scripts/validate_interview.py retains an empty default catalog for existing callers. The added PRD integration test asserts successful validation of a requirement reference.",
+          "The supplied test receipt reports 43 passing tests. Execution was not independently verified; no candidate-caused reliability defect was established from the immutable patches."
+        ],
+        "result_hash": "sha256:ff26c30c9d29878ffb8a78ae4f5fd6d3702050ad66eae99cffa0fe068cedaa25"
+      }
+    ]
+  },
+  "fixed_findings": [
+    "R3-missing-validators: complete coherent package supplied via native recovery.",
+    "R3-001: applicability/status consistency and owner authority for material exclusions.",
+    "R3-002: follow-up must match topic and stable dimension.",
+    "R2-misleading-reference-domain: PRD requirements and interview topics both resolved with explicit context."
+  ],
+  "source_sha256": {
+    "SKILL.md": "fc5095d562d9d2c58e0a529e02b22ef4f347527ffd4e5f6e5269aa7a6fe5b2c7",
+    "agents/requirements-interrogator.toml": "49ea24b109e8a45ecef495f760022025d7996e26709d6d915c42d8434f003a44",
+    "assets/design-proposals.schema.json": "950be8ad944d07ff5b26cb5245377ad6587da28746d7c4f1837121bae66121f5",
+    "assets/example.prd.json": "cc997d76a52570795c786918276372f436130669576ce3802980978001a5b527",
+    "assets/interrogator-packet.schema.json": "422acb95aad107f1fc70a202859ed89631d44e40bbac9a9d464bdd0ca8aa7c02",
+    "assets/interview.schema.json": "35492aefbc67d9861244f1e534d01f4fe9bae172c7da5389130a44d073ddfcc6",
+    "assets/prd.schema.json": "37b2c6b4af2eeee7c39c892a5b057e7b9ee0eab5d7963310be2de7029a5df99b",
+    "references/interrogation.md": "392ca6095271afa4f8cc23fa9723de6dc4700442c919dd9489f499538a712b19",
+    "references/method.md": "719287bb488bac04b682b17a82b39dfb7fee7dc135bc39d7f330ba25a49487c8",
+    "references/research-design.md": "68f84f8d6f25be5e9a0373a2f8bc7eeb73d26374c25751c7be7cfc3b9ba529bc",
+    "references/validation.md": "755156be8eb1005973bc4d0f6f37c97495f13fe5e0ebed43d5829fe95830c9eb",
+    "references/workflow.md": "987cb5371c4b6b60e177e903d415ec244bd40e69cc057a9ff3f7952d166ba780",
+    "scripts/validate_interview.py": "ea42cec9f82b2b9cd64b2a7cb9d2cc8b6ecc47d303935ed0ff31f4bd4308af66",
+    "scripts/validate_prd.py": "bc978ad6b1b536f55715d54c0eb2ed8a57459e38e688b305a2a2c4b8ef2ae693",
+    "tests/test_interview.py": "3e393a086cc72993e3ba977462051c045ce5b6bfb8c846cc61ccf1543e268bd6",
+    "validation.json": "bd78b8c2f67e957b168bdf2f29a9ab6d34909097eb4f4ff2c8577bf090fab35c"
+  },
+  "limits": [
+    "Native reviewers inspected immutable artifacts; local tests were executed by the coordinator.",
+    "No claim of universal LLM compliance or independent authentication of arbitrary human statements.",
+    "Source validation.json records the pre-review freeze; this external receipt is the final native review status."
+  ]
+}

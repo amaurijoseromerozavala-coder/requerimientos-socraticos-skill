@@ -1,0 +1,141 @@
+id,title,proposed_owners,stage,disposition,analysis,approval
+REQ-001,Objetivo verificable,CONTRATO_INTEGRACION,LOCAL_CANDIDATE,PROPOSED_MAPPING,Mantener intención propuesta; contrastar contrato aplicable y falsador antes de aceptar.,NOT_RATIFIED
+REQ-002,Naturaleza de la skill,CONTRATO_INTEGRACION,LOCAL_CANDIDATE,NEEDS_CONTRACT_REFINEMENT,Definir consumidor y frontera real; motor externo al LLM no implica autoridad externa a la cuenta.,NOT_RATIFIED
+REQ-003,No duplicar Gentle-AI,CONTRATO_INTEGRACION,LOCAL_CANDIDATE,PROPOSED_MAPPING,Mantener intención propuesta; contrastar contrato aplicable y falsador antes de aceptar.,NOT_RATIFIED
+REQ-004,Separación de autoridad,CONTRATO_INTEGRACION,LOCAL_CANDIDATE,PROPOSED_MAPPING,Mantener intención propuesta; contrastar contrato aplicable y falsador antes de aceptar.,NOT_RATIFIED
+REQ-005,Trabajo local acotado,CONTRATO_INTEGRACION,LOCAL_CANDIDATE,PROPOSED_MAPPING,Mantener intención propuesta; contrastar contrato aplicable y falsador antes de aceptar.,NOT_RATIFIED
+REQ-006,Decisiones no ratificadas,CONTRATO_INTEGRACION,LOCAL_CANDIDATE,PROPOSED_MAPPING,Mantener intención propuesta; contrastar contrato aplicable y falsador antes de aceptar.,NOT_RATIFIED
+REQ-007,Rutas de escape y pausa,CONTRATO_INTEGRACION,LOCAL_CANDIDATE,PROPOSED_MAPPING,Mantener intención propuesta; contrastar contrato aplicable y falsador antes de aceptar.,NOT_RATIFIED
+REQ-008,Propietario humano,HUMANO|CONTRATO_INTEGRACION,LOCAL_CANDIDATE,NEEDS_CONTRACT_REFINEMENT,Conversación identifica intención; autenticación técnica HUMAN_OWNER no implementada ni probada.,NOT_RATIFIED
+REQ-009,Roles mínimos,HUMANO|CONTRATO_INTEGRACION,LOCAL_CANDIDATE,PROPOSED_MAPPING,Mantener intención propuesta; contrastar contrato aplicable y falsador antes de aceptar.,NOT_RATIFIED
+REQ-010,No autoautorización,HUMANO|CONTRATO_INTEGRACION,LOCAL_CANDIDATE,PROPOSED_MAPPING,Mantener intención propuesta; contrastar contrato aplicable y falsador antes de aceptar.,NOT_RATIFIED
+REQ-011,Autoridad versionada,HUMANO|CONTRATO_INTEGRACION,LOCAL_CANDIDATE,PROPOSED_MAPPING,Mantener intención propuesta; contrastar contrato aplicable y falsador antes de aceptar.,NOT_RATIFIED
+REQ-012,Mínimo privilegio,HUMANO|CONTRATO_INTEGRACION,LOCAL_CANDIDATE,PROPOSED_MAPPING,Mantener intención propuesta; contrastar contrato aplicable y falsador antes de aceptar.,NOT_RATIFIED
+REQ-013,Segregación de funciones,HUMANO|CONTRATO_INTEGRACION,FUTURE_SCOPE_NOT_ACTIVATED,PROPOSED_MAPPING,Mantener intención propuesta; contrastar contrato aplicable y falsador antes de aceptar.,NOT_RATIFIED
+REQ-014,Objetos externos no confiables,HUMANO|CONTRATO_INTEGRACION,LOCAL_CANDIDATE,PROPOSED_MAPPING,Mantener intención propuesta; contrastar contrato aplicable y falsador antes de aceptar.,NOT_RATIFIED
+REQ-015,FSM normativa,CONTRATO_INTEGRACION,LOCAL_CANDIDATE,NEEDS_CONTRACT_REFINEMENT,FSM hasta producción no sustituye FSM documental ni supervisor; proponer estados por componente.,NOT_RATIFIED
+REQ-016,Rechazo sin efecto,CONTRATO_INTEGRACION,LOCAL_CANDIDATE,NEEDS_CONTRACT_REFINEMENT,Conservar estado de negocio/privilegios; permitir registro acotado de rechazo y limpieza necesaria.,NOT_RATIFIED
+REQ-017,Determinismo de decisión,CONTRATO_INTEGRACION,LOCAL_CANDIDATE,PROPOSED_MAPPING,Mantener intención propuesta; contrastar contrato aplicable y falsador antes de aceptar.,NOT_RATIFIED
+REQ-018,Gates tipados,CONTRATO_INTEGRACION,LOCAL_CANDIDATE,PROPOSED_MAPPING,Mantener intención propuesta; contrastar contrato aplicable y falsador antes de aceptar.,NOT_RATIFIED
+REQ-019,Vacuidad de cobertura,CONTRATO_INTEGRACION,LOCAL_CANDIDATE,PROPOSED_MAPPING,Mantener intención propuesta; contrastar contrato aplicable y falsador antes de aceptar.,NOT_RATIFIED
+REQ-020,Cambio material,CONTRATO_INTEGRACION,LOCAL_CANDIDATE,NEEDS_CONTRACT_REFINEMENT,"Invalidación selectiva solo con grafo de dependencias completo; si desconocido, invalidación conservadora.",NOT_RATIFIED
+REQ-021,Recuperación/reintentos,CONTRATO_INTEGRACION,LOCAL_CANDIDATE,PROPOSED_MAPPING,Mantener intención propuesta; contrastar contrato aplicable y falsador antes de aceptar.,NOT_RATIFIED
+REQ-022,Separación de gates,CONTRATO_INTEGRACION,LOCAL_CANDIDATE,PROPOSED_MAPPING,Mantener intención propuesta; contrastar contrato aplicable y falsador antes de aceptar.,NOT_RATIFIED
+REQ-023,Cobertura FSM,CONTRATO_INTEGRACION,LOCAL_CANDIDATE,PROPOSED_MAPPING,Mantener intención propuesta; contrastar contrato aplicable y falsador antes de aceptar.,NOT_RATIFIED
+REQ-024,Envelope de trabajo,REQUERIMIENTOS|QA|CONTRATO_INTEGRACION,LOCAL_CANDIDATE,PROPOSED_MAPPING,Mantener intención propuesta; contrastar contrato aplicable y falsador antes de aceptar.,NOT_RATIFIED
+REQ-025,Identidades verificables,REQUERIMIENTOS|QA|CONTRATO_INTEGRACION,LOCAL_CANDIDATE,PROPOSED_MAPPING,Mantener intención propuesta; contrastar contrato aplicable y falsador antes de aceptar.,NOT_RATIFIED
+REQ-026,Canonización diferenciada,REQUERIMIENTOS|QA|CONTRATO_INTEGRACION,LOCAL_CANDIDATE,PROPOSED_MAPPING,Mantener intención propuesta; contrastar contrato aplicable y falsador antes de aceptar.,NOT_RATIFIED
+REQ-027,Trazabilidad bidireccional,REQUERIMIENTOS|QA|CONTRATO_INTEGRACION,LOCAL_CANDIDATE,PROPOSED_MAPPING,Mantener intención propuesta; contrastar contrato aplicable y falsador antes de aceptar.,NOT_RATIFIED
+REQ-028,Procedencia y veracidad,REQUERIMIENTOS|QA|CONTRATO_INTEGRACION,LOCAL_CANDIDATE,PROPOSED_MAPPING,Mantener intención propuesta; contrastar contrato aplicable y falsador antes de aceptar.,NOT_RATIFIED
+REQ-029,Estado de prueba,REQUERIMIENTOS|QA|CONTRATO_INTEGRACION,LOCAL_CANDIDATE,NEEDS_CONTRACT_REFINEMENT,Separar recibos de ejecución de revisión estática; esta última no tiene comandos de prueba ejecutados.,NOT_RATIFIED
+REQ-030,Errores y compatibilidad,REQUERIMIENTOS|QA|CONTRATO_INTEGRACION,LOCAL_CANDIDATE,PROPOSED_MAPPING,Mantener intención propuesta; contrastar contrato aplicable y falsador antes de aceptar.,NOT_RATIFIED
+REQ-031,Aislamiento de fuentes,REQUERIMIENTOS|QA|CONTRATO_INTEGRACION,LOCAL_CANDIDATE,PROPOSED_MAPPING,Mantener intención propuesta; contrastar contrato aplicable y falsador antes de aceptar.,NOT_RATIFIED
+REQ-032,Fuente normativa PRD,REQUERIMIENTOS,LOCAL_CANDIDATE,PROPOSED_MAPPING,Mantener intención propuesta; contrastar contrato aplicable y falsador antes de aceptar.,NOT_RATIFIED
+REQ-033,Interrogatorio real,REQUERIMIENTOS,LOCAL_CANDIDATE,PROPOSED_MAPPING,Mantener intención propuesta; contrastar contrato aplicable y falsador antes de aceptar.,NOT_RATIFIED
+REQ-034,Semántica confirmada,REQUERIMIENTOS,LOCAL_CANDIDATE,PROPOSED_MAPPING,Mantener intención propuesta; contrastar contrato aplicable y falsador antes de aceptar.,NOT_RATIFIED
+REQ-035,Gates originales preservados,REQUERIMIENTOS,LOCAL_CANDIDATE,PROPOSED_MAPPING,Mantener intención propuesta; contrastar contrato aplicable y falsador antes de aceptar.,NOT_RATIFIED
+REQ-036,Compatibilidad Git SHA-256,REQUERIMIENTOS,LOCAL_CANDIDATE,PROPOSED_MAPPING,Mantener intención propuesta; contrastar contrato aplicable y falsador antes de aceptar.,NOT_RATIFIED
+REQ-037,Frontera repo de código/documentos,REQUERIMIENTOS,FUTURE_SCOPE_NOT_ACTIVATED,PROPOSED_MAPPING,Mantener intención propuesta; contrastar contrato aplicable y falsador antes de aceptar.,NOT_RATIFIED
+REQ-038,PRD no listo,REQUERIMIENTOS,LOCAL_CANDIDATE,NEEDS_CONTRACT_REFINEMENT,READ_ONLY no permite escribir propuestas; usar DOCUMENT_ONLY cuando se crean borradores autorizados.,NOT_RATIFIED
+REQ-039,Detección de runtime,GENTLE_ADAPTERS,LOCAL_CANDIDATE,PROPOSED_MAPPING,Mantener intención propuesta; contrastar contrato aplicable y falsador antes de aceptar.,NOT_RATIFIED
+REQ-040,No presuponer wrapper,GENTLE_ADAPTERS,LOCAL_CANDIDATE,NEEDS_CONTRACT_REFINEMENT,Wrapper existe localmente; no generalizar a upstream/paquete publicado.,NOT_RATIFIED
+REQ-041,MCP-FIRST / SKILLS-FIRST,GENTLE_ADAPTERS,LOCAL_CANDIDATE,PROPOSED_MAPPING,Mantener intención propuesta; contrastar contrato aplicable y falsador antes de aceptar.,NOT_RATIFIED
+REQ-042,ODD con autorización,GENTLE_ADAPTERS,LOCAL_CANDIDATE,PROPOSED_MAPPING,Mantener intención propuesta; contrastar contrato aplicable y falsador antes de aceptar.,NOT_RATIFIED
+REQ-043,Engram atómico,GENTLE_ADAPTERS,LOCAL_CANDIDATE,NEEDS_CONTRACT_REFINEMENT,Título Engram atómico no prueba transacción conjunta Engram+archivos; conservar recibos y reconciliación.,NOT_RATIFIED
+REQ-044,RDD auténtico,GENTLE_ADAPTERS,LOCAL_CANDIDATE,PROPOSED_MAPPING,Mantener intención propuesta; contrastar contrato aplicable y falsador antes de aceptar.,NOT_RATIFIED
+REQ-045,Skill Registry,GENTLE_ADAPTERS,LOCAL_CANDIDATE,PROPOSED_MAPPING,Mantener intención propuesta; contrastar contrato aplicable y falsador antes de aceptar.,NOT_RATIFIED
+REQ-046,Selección de modelo,GENTLE_ADAPTERS,OPTIONAL_EVALUATION,PROPOSED_MAPPING,Mantener intención propuesta; contrastar contrato aplicable y falsador antes de aceptar.,NOT_RATIFIED
+REQ-047,Control de subagentes,GENTLE_ADAPTERS,LOCAL_CANDIDATE,PROPOSED_MAPPING,Mantener intención propuesta; contrastar contrato aplicable y falsador antes de aceptar.,NOT_RATIFIED
+REQ-048,No instalación automática,GENTLE_ADAPTERS,LOCAL_CANDIDATE,PROPOSED_MAPPING,Mantener intención propuesta; contrastar contrato aplicable y falsador antes de aceptar.,NOT_RATIFIED
+REQ-049,Adaptador de Spec Kit,REQUERIMIENTOS|FUTURE_ARCHITECTURE,OPTIONAL_EVALUATION,PROPOSED_MAPPING,Mantener intención propuesta; contrastar contrato aplicable y falsador antes de aceptar.,NOT_RATIFIED
+REQ-050,ADR y opciones,REQUERIMIENTOS|FUTURE_ARCHITECTURE,FUTURE_SCOPE_NOT_ACTIVATED,PROPOSED_MAPPING,Mantener intención propuesta; contrastar contrato aplicable y falsador antes de aceptar.,NOT_RATIFIED
+REQ-051,Contratos de interfaces,REQUERIMIENTOS|FUTURE_ARCHITECTURE,FUTURE_SCOPE_NOT_ACTIVATED,PROPOSED_MAPPING,Mantener intención propuesta; contrastar contrato aplicable y falsador antes de aceptar.,NOT_RATIFIED
+REQ-052,Análisis de amenaza,REQUERIMIENTOS|FUTURE_ARCHITECTURE,FUTURE_SCOPE_NOT_ACTIVATED,PROPOSED_MAPPING,Mantener intención propuesta; contrastar contrato aplicable y falsador antes de aceptar.,NOT_RATIFIED
+REQ-053,Diseño verificable,REQUERIMIENTOS|FUTURE_ARCHITECTURE,FUTURE_SCOPE_NOT_ACTIVATED,PROPOSED_MAPPING,Mantener intención propuesta; contrastar contrato aplicable y falsador antes de aceptar.,NOT_RATIFIED
+REQ-054,Gate de arquitectura,REQUERIMIENTOS|FUTURE_ARCHITECTURE,FUTURE_SCOPE_NOT_ACTIVATED,PROPOSED_MAPPING,Mantener intención propuesta; contrastar contrato aplicable y falsador antes de aceptar.,NOT_RATIFIED
+REQ-055,Tasks y writing-plans,FUTURE_PLANNING,OPTIONAL_EVALUATION,PROPOSED_MAPPING,Mantener intención propuesta; contrastar contrato aplicable y falsador antes de aceptar.,NOT_RATIFIED
+REQ-056,Unidad de trabajo acotada,FUTURE_PLANNING,FUTURE_SCOPE_NOT_ACTIVATED,PROPOSED_MAPPING,Mantener intención propuesta; contrastar contrato aplicable y falsador antes de aceptar.,NOT_RATIFIED
+REQ-057,Precedencias,FUTURE_PLANNING,FUTURE_SCOPE_NOT_ACTIVATED,PROPOSED_MAPPING,Mantener intención propuesta; contrastar contrato aplicable y falsador antes de aceptar.,NOT_RATIFIED
+REQ-058,PERT/CPM opcional,FUTURE_PLANNING,OPTIONAL_EVALUATION,PROPOSED_MAPPING,Mantener intención propuesta; contrastar contrato aplicable y falsador antes de aceptar.,NOT_RATIFIED
+REQ-059,Riesgo y ruta de recuperación,FUTURE_PLANNING,FUTURE_SCOPE_NOT_ACTIVATED,PROPOSED_MAPPING,Mantener intención propuesta; contrastar contrato aplicable y falsador antes de aceptar.,NOT_RATIFIED
+REQ-060,No commits automáticos,FUTURE_PLANNING,FUTURE_SCOPE_NOT_ACTIVATED,PROPOSED_MAPPING,Mantener intención propuesta; contrastar contrato aplicable y falsador antes de aceptar.,NOT_RATIFIED
+REQ-061,Gate de planificación,FUTURE_PLANNING,FUTURE_SCOPE_NOT_ACTIVATED,PROPOSED_MAPPING,Mantener intención propuesta; contrastar contrato aplicable y falsador antes de aceptar.,NOT_RATIFIED
+REQ-062,TDD observado,FUTURE_IMPLEMENTATION,FUTURE_SCOPE_NOT_ACTIVATED,NEEDS_CONTRACT_REFINEMENT,TDD aplica a comportamiento comprobable; no inventar RED ni forzar un test sin sentido para todo documento.,NOT_RATIFIED
+REQ-063,Cambios mínimos,FUTURE_IMPLEMENTATION,FUTURE_SCOPE_NOT_ACTIVATED,PROPOSED_MAPPING,Mantener intención propuesta; contrastar contrato aplicable y falsador antes de aceptar.,NOT_RATIFIED
+REQ-064,Subagentes de código,FUTURE_IMPLEMENTATION,OPTIONAL_EVALUATION,PROPOSED_MAPPING,Mantener intención propuesta; contrastar contrato aplicable y falsador antes de aceptar.,NOT_RATIFIED
+REQ-065,Ensayos frente a código real,FUTURE_IMPLEMENTATION,FUTURE_SCOPE_NOT_ACTIVATED,PROPOSED_MAPPING,Mantener intención propuesta; contrastar contrato aplicable y falsador antes de aceptar.,NOT_RATIFIED
+REQ-066,Depuración sistemática,FUTURE_IMPLEMENTATION,FUTURE_SCOPE_NOT_ACTIVATED,PROPOSED_MAPPING,Mantener intención propuesta; contrastar contrato aplicable y falsador antes de aceptar.,NOT_RATIFIED
+REQ-067,Refactorización con equivalencia,FUTURE_IMPLEMENTATION,FUTURE_SCOPE_NOT_ACTIVATED,PROPOSED_MAPPING,Mantener intención propuesta; contrastar contrato aplicable y falsador antes de aceptar.,NOT_RATIFIED
+REQ-068,Revisión antes de completar,FUTURE_IMPLEMENTATION,OPTIONAL_EVALUATION,PROPOSED_MAPPING,Mantener intención propuesta; contrastar contrato aplicable y falsador antes de aceptar.,NOT_RATIFIED
+REQ-069,Spec-to-code compliance,QA,LOCAL_CANDIDATE,PROPOSED_MAPPING,Mantener intención propuesta; contrastar contrato aplicable y falsador antes de aceptar.,NOT_RATIFIED
+REQ-070,Differential review,QA,LOCAL_CANDIDATE,PROPOSED_MAPPING,Mantener intención propuesta; contrastar contrato aplicable y falsador antes de aceptar.,NOT_RATIFIED
+REQ-071,Seguridad estática,QA,LOCAL_CANDIDATE,PROPOSED_MAPPING,Mantener intención propuesta; contrastar contrato aplicable y falsador antes de aceptar.,NOT_RATIFIED
+REQ-072,Pruebas basadas en propiedades,QA,LOCAL_CANDIDATE,PROPOSED_MAPPING,Mantener intención propuesta; contrastar contrato aplicable y falsador antes de aceptar.,NOT_RATIFIED
+REQ-073,Verificación de contrato y APIs,QA,LOCAL_CANDIDATE,PROPOSED_MAPPING,Mantener intención propuesta; contrastar contrato aplicable y falsador antes de aceptar.,NOT_RATIFIED
+REQ-074,Falsadores independientes,QA,LOCAL_CANDIDATE,PROPOSED_MAPPING,Mantener intención propuesta; contrastar contrato aplicable y falsador antes de aceptar.,NOT_RATIFIED
+REQ-075,Clasificación de hallazgos,QA,LOCAL_CANDIDATE,PROPOSED_MAPPING,Mantener intención propuesta; contrastar contrato aplicable y falsador antes de aceptar.,NOT_RATIFIED
+REQ-076,Modelos frente a realidad,REQUERIMIENTOS|QA,LOCAL_CANDIDATE,PROPOSED_MAPPING,Mantener intención propuesta; contrastar contrato aplicable y falsador antes de aceptar.,NOT_RATIFIED
+REQ-077,Z3 booleano,REQUERIMIENTOS|QA,LOCAL_CANDIDATE,NEEDS_CONTRACT_REFINEMENT,"32 es límite del helper actual, no ley del dominio ni prueba de cobertura total.",NOT_RATIFIED
+REQ-078,Semántica SAT/UNSAT/UNKNOWN,REQUERIMIENTOS|QA,LOCAL_CANDIDATE,PROPOSED_MAPPING,Mantener intención propuesta; contrastar contrato aplicable y falsador antes de aceptar.,NOT_RATIFIED
+REQ-079,FSM temporal y progreso,REQUERIMIENTOS|QA,LOCAL_CANDIDATE,NEEDS_CONTRACT_REFINEMENT,Alcanzabilidad requiere modelo/transiciones adecuados; progreso exige definir equidad y trazas.,NOT_RATIFIED
+REQ-080,FRET opcional,REQUERIMIENTOS|QA,OPTIONAL_EVALUATION,PROPOSED_MAPPING,Mantener intención propuesta; contrastar contrato aplicable y falsador antes de aceptar.,NOT_RATIFIED
+REQ-081,Lean / otros comprobadores,REQUERIMIENTOS|QA,OPTIONAL_EVALUATION,PROPOSED_MAPPING,Mantener intención propuesta; contrastar contrato aplicable y falsador antes de aceptar.,NOT_RATIFIED
+REQ-082,Cobertura cuantitativa honesta,REQUERIMIENTOS|QA,LOCAL_CANDIDATE,PROPOSED_MAPPING,Mantener intención propuesta; contrastar contrato aplicable y falsador antes de aceptar.,NOT_RATIFIED
+REQ-083,Verificación inversa,REQUERIMIENTOS|QA,LOCAL_CANDIDATE,PROPOSED_MAPPING,Mantener intención propuesta; contrastar contrato aplicable y falsador antes de aceptar.,NOT_RATIFIED
+REQ-084,Riesgos materiales abiertos,QA|GENTLE_RDD,LOCAL_CANDIDATE,PROPOSED_MAPPING,Mantener intención propuesta; contrastar contrato aplicable y falsador antes de aceptar.,NOT_RATIFIED
+REQ-085,Separación de revisores,QA|GENTLE_RDD,LOCAL_CANDIDATE,PROPOSED_MAPPING,Mantener intención propuesta; contrastar contrato aplicable y falsador antes de aceptar.,NOT_RATIFIED
+REQ-086,RDD y recibos,QA|GENTLE_RDD,LOCAL_CANDIDATE,PROPOSED_MAPPING,Mantener intención propuesta; contrastar contrato aplicable y falsador antes de aceptar.,NOT_RATIFIED
+REQ-087,Cierre de hallazgos,QA|GENTLE_RDD,LOCAL_CANDIDATE,PROPOSED_MAPPING,Mantener intención propuesta; contrastar contrato aplicable y falsador antes de aceptar.,NOT_RATIFIED
+REQ-088,Revisión de políticas,QA|GENTLE_RDD,LOCAL_CANDIDATE,PROPOSED_MAPPING,Mantener intención propuesta; contrastar contrato aplicable y falsador antes de aceptar.,NOT_RATIFIED
+REQ-089,Gate de revisión,QA|GENTLE_RDD,FUTURE_SCOPE_NOT_ACTIVATED,PROPOSED_MAPPING,Mantener intención propuesta; contrastar contrato aplicable y falsador antes de aceptar.,NOT_RATIFIED
+REQ-090,Identidad de revisión,IDENTITY_ADAPTER,LOCAL_CANDIDATE,NEEDS_CONTRACT_REFINEMENT,No exigir commit nuevo para toda revisión; Gentle admite árboles/snapshots exactos. validate_git conserva su contrato de commit SHA256.,NOT_RATIFIED
+REQ-091,Estado preflight Git,IDENTITY_ADAPTER,LOCAL_CANDIDATE,NEEDS_CONTRACT_REFINEMENT,No bloquear documentación autorizada por ausencia de remoto/HEAD cuando no se requiere operación Git.,NOT_RATIFIED
+REQ-092,Staging selectivo,IDENTITY_ADAPTER,FUTURE_SCOPE_NOT_ACTIVATED,PROPOSED_MAPPING,Mantener intención propuesta; contrastar contrato aplicable y falsador antes de aceptar.,NOT_RATIFIED
+REQ-093,Commits atómicos,IDENTITY_ADAPTER,FUTURE_SCOPE_NOT_ACTIVATED,PROPOSED_MAPPING,Mantener intención propuesta; contrastar contrato aplicable y falsador antes de aceptar.,NOT_RATIFIED
+REQ-094,Sin push automático,IDENTITY_ADAPTER,FUTURE_SCOPE_NOT_ACTIVATED,PROPOSED_MAPPING,Mantener intención propuesta; contrastar contrato aplicable y falsador antes de aceptar.,NOT_RATIFIED
+REQ-095,Firmas y cadena de confianza,IDENTITY_ADAPTER,LOCAL_CANDIDATE,PROPOSED_MAPPING,Mantener intención propuesta; contrastar contrato aplicable y falsador antes de aceptar.,NOT_RATIFIED
+REQ-096,Monorrepo/múltiples repos,IDENTITY_ADAPTER,FUTURE_SCOPE_NOT_ACTIVATED,PROPOSED_MAPPING,Mantener intención propuesta; contrastar contrato aplicable y falsador antes de aceptar.,NOT_RATIFIED
+REQ-097,CI ejecutada fuera del agente,FUTURE_RELEASE,FUTURE_SCOPE_NOT_ACTIVATED,PROPOSED_MAPPING,Mantener intención propuesta; contrastar contrato aplicable y falsador antes de aceptar.,NOT_RATIFIED
+REQ-098,Rulesets y branch protection,FUTURE_RELEASE,FUTURE_SCOPE_NOT_ACTIVATED,PROPOSED_MAPPING,Mantener intención propuesta; contrastar contrato aplicable y falsador antes de aceptar.,NOT_RATIFIED
+REQ-099,Ambientes aislados,FUTURE_RELEASE,FUTURE_SCOPE_NOT_ACTIVATED,PROPOSED_MAPPING,Mantener intención propuesta; contrastar contrato aplicable y falsador antes de aceptar.,NOT_RATIFIED
+REQ-100,Gate de build,FUTURE_RELEASE,FUTURE_SCOPE_NOT_ACTIVATED,PROPOSED_MAPPING,Mantener intención propuesta; contrastar contrato aplicable y falsador antes de aceptar.,NOT_RATIFIED
+REQ-101,Procedencia y attestations,FUTURE_RELEASE,FUTURE_SCOPE_NOT_ACTIVATED,PROPOSED_MAPPING,Mantener intención propuesta; contrastar contrato aplicable y falsador antes de aceptar.,NOT_RATIFIED
+REQ-102,SBOM y dependencias,FUTURE_RELEASE,FUTURE_SCOPE_NOT_ACTIVATED,PROPOSED_MAPPING,Mantener intención propuesta; contrastar contrato aplicable y falsador antes de aceptar.,NOT_RATIFIED
+REQ-103,Licencias y cadena skills,FUTURE_RELEASE,FUTURE_SCOPE_NOT_ACTIVATED,PROPOSED_MAPPING,Mantener intención propuesta; contrastar contrato aplicable y falsador antes de aceptar.,NOT_RATIFIED
+REQ-104,Control de release,FUTURE_RELEASE,FUTURE_SCOPE_NOT_ACTIVATED,PROPOSED_MAPPING,Mantener intención propuesta; contrastar contrato aplicable y falsador antes de aceptar.,NOT_RATIFIED
+REQ-105,Matrices y plataformas,FUTURE_RELEASE,FUTURE_SCOPE_NOT_ACTIVATED,PROPOSED_MAPPING,Mantener intención propuesta; contrastar contrato aplicable y falsador antes de aceptar.,NOT_RATIFIED
+REQ-106,Aprobación humana de producción,FUTURE_DEPLOYMENT,FUTURE_SCOPE_NOT_ACTIVATED,PROPOSED_MAPPING,Mantener intención propuesta; contrastar contrato aplicable y falsador antes de aceptar.,NOT_RATIFIED
+REQ-107,Inmutabilidad del artefacto,FUTURE_DEPLOYMENT,FUTURE_SCOPE_NOT_ACTIVATED,PROPOSED_MAPPING,Mantener intención propuesta; contrastar contrato aplicable y falsador antes de aceptar.,NOT_RATIFIED
+REQ-108,Preflight del destino,FUTURE_DEPLOYMENT,FUTURE_SCOPE_NOT_ACTIVATED,PROPOSED_MAPPING,Mantener intención propuesta; contrastar contrato aplicable y falsador antes de aceptar.,NOT_RATIFIED
+REQ-109,Estrategia gradual,FUTURE_DEPLOYMENT,FUTURE_SCOPE_NOT_ACTIVATED,PROPOSED_MAPPING,Mantener intención propuesta; contrastar contrato aplicable y falsador antes de aceptar.,NOT_RATIFIED
+REQ-110,Smoke test postdeploy,FUTURE_DEPLOYMENT,FUTURE_SCOPE_NOT_ACTIVATED,PROPOSED_MAPPING,Mantener intención propuesta; contrastar contrato aplicable y falsador antes de aceptar.,NOT_RATIFIED
+REQ-111,Rollback probado,FUTURE_DEPLOYMENT,FUTURE_SCOPE_NOT_ACTIVATED,PROPOSED_MAPPING,Mantener intención propuesta; contrastar contrato aplicable y falsador antes de aceptar.,NOT_RATIFIED
+REQ-112,No despliegue por skill,FUTURE_DEPLOYMENT,FUTURE_SCOPE_NOT_ACTIVATED,PROPOSED_MAPPING,Mantener intención propuesta; contrastar contrato aplicable y falsador antes de aceptar.,NOT_RATIFIED
+REQ-113,Registro y cierre de deployment,FUTURE_DEPLOYMENT,FUTURE_SCOPE_NOT_ACTIVATED,PROPOSED_MAPPING,Mantener intención propuesta; contrastar contrato aplicable y falsador antes de aceptar.,NOT_RATIFIED
+REQ-114,Telemetría mínima,QA|FUTURE_OPERATIONS,FUTURE_SCOPE_NOT_ACTIVATED,PROPOSED_MAPPING,Mantener intención propuesta; contrastar contrato aplicable y falsador antes de aceptar.,NOT_RATIFIED
+REQ-115,Alertas accionables,QA|FUTURE_OPERATIONS,FUTURE_SCOPE_NOT_ACTIVATED,PROPOSED_MAPPING,Mantener intención propuesta; contrastar contrato aplicable y falsador antes de aceptar.,NOT_RATIFIED
+REQ-116,Registro de incidentes,QA|FUTURE_OPERATIONS,FUTURE_SCOPE_NOT_ACTIVATED,PROPOSED_MAPPING,Mantener intención propuesta; contrastar contrato aplicable y falsador antes de aceptar.,NOT_RATIFIED
+REQ-117,Retroalimentación a PRD,QA|FUTURE_OPERATIONS,FUTURE_SCOPE_NOT_ACTIVATED,PROPOSED_MAPPING,Mantener intención propuesta; contrastar contrato aplicable y falsador antes de aceptar.,NOT_RATIFIED
+REQ-118,Control de cambios posteriores,QA|FUTURE_OPERATIONS,FUTURE_SCOPE_NOT_ACTIVATED,PROPOSED_MAPPING,Mantener intención propuesta; contrastar contrato aplicable y falsador antes de aceptar.,NOT_RATIFIED
+REQ-119,Preflight de recursos,EXISTING_RESOURCE_HELPERS|LOCAL_QA_SUPERVISOR,LOCAL_CANDIDATE,NEEDS_CONTRACT_REFINEMENT,Desconocidos críticos según workload; falta de observación física no bloquea automáticamente entrevista documental.,NOT_RATIFIED
+REQ-120,Budget conservador,EXISTING_RESOURCE_HELPERS|LOCAL_QA_SUPERVISOR,LOCAL_CANDIDATE,PROPOSED_MAPPING,Mantener intención propuesta; contrastar contrato aplicable y falsador antes de aceptar.,NOT_RATIFIED
+REQ-121,Supervisor invocador,EXISTING_RESOURCE_HELPERS|LOCAL_QA_SUPERVISOR,LOCAL_CANDIDATE,NEEDS_CONTRACT_REFINEMENT,"Humano confirma ampliar supervisor mediante adaptadores registrados, secuencial y sin reintento automático. Nuevo PRD requerido; alcance/budgets de cada adaptador pendientes.",PARTIAL_DESIGN_DECISION; not blanket acceptance of every worker capability
+REQ-122,Errores de entorno,EXISTING_RESOURCE_HELPERS|LOCAL_QA_SUPERVISOR,LOCAL_CANDIDATE,PROPOSED_MAPPING,Mantener intención propuesta; contrastar contrato aplicable y falsador antes de aceptar.,NOT_RATIFIED
+REQ-123,Secuencial por defecto,EXISTING_RESOURCE_HELPERS|LOCAL_QA_SUPERVISOR,LOCAL_CANDIDATE,PROPOSED_MAPPING,Mantener intención propuesta; contrastar contrato aplicable y falsador antes de aceptar.,NOT_RATIFIED
+REQ-124,Límite de observabilidad,EXISTING_RESOURCE_HELPERS|LOCAL_QA_SUPERVISOR,LOCAL_CANDIDATE,PROPOSED_MAPPING,Mantener intención propuesta; contrastar contrato aplicable y falsador antes de aceptar.,NOT_RATIFIED
+REQ-125,Compatibilidad ejecutable,EXISTING_RESOURCE_HELPERS|LOCAL_QA_SUPERVISOR,LOCAL_CANDIDATE,PROPOSED_MAPPING,Mantener intención propuesta; contrastar contrato aplicable y falsador antes de aceptar.,NOT_RATIFIED
+REQ-126,Prohibición de secretos en expediente,REQUERIMIENTOS|QA|LOCAL_QA_SUPERVISOR,LOCAL_CANDIDATE,NEEDS_CONTRACT_REFINEMENT,"Retención raw QA32MiB/manual no garantiza ausencia de secretos; definir política de clasificación previa y acceso, sin trasladar retención a entrevistas.",NOT_RATIFIED
+REQ-127,Confidencialidad de entrevistas,REQUERIMIENTOS|QA|LOCAL_QA_SUPERVISOR,LOCAL_CANDIDATE,PROPOSED_MAPPING,Mantener intención propuesta; contrastar contrato aplicable y falsador antes de aceptar.,NOT_RATIFIED
+REQ-128,Política de red,REQUERIMIENTOS|QA|LOCAL_QA_SUPERVISOR,LOCAL_CANDIDATE,NEEDS_CONTRACT_REFINEMENT,"READ_ONLY limita mutaciones, no significa OFFLINE; son capacidades separadas.",NOT_RATIFIED
+REQ-129,Reproducibilidad mínima,REQUERIMIENTOS|QA|LOCAL_QA_SUPERVISOR,LOCAL_CANDIDATE,PROPOSED_MAPPING,Mantener intención propuesta; contrastar contrato aplicable y falsador antes de aceptar.,NOT_RATIFIED
+REQ-130,Límites en bytes/tiempo,REQUERIMIENTOS|QA|LOCAL_QA_SUPERVISOR,LOCAL_CANDIDATE,NEEDS_CONTRACT_REFINEMENT,"Salida parcial debe conservarse como observación parcial, nunca éxito; acorde a retención acotada.",NOT_RATIFIED
+REQ-131,Auditoría append-only lógica,REQUERIMIENTOS|QA|LOCAL_QA_SUPERVISOR,LOCAL_CANDIDATE,PROPOSED_MAPPING,Mantener intención propuesta; contrastar contrato aplicable y falsador antes de aceptar.,NOT_RATIFIED
+REQ-132,Licencia y propiedad intelectual,REQUERIMIENTOS|QA|LOCAL_QA_SUPERVISOR,LOCAL_CANDIDATE,PROPOSED_MAPPING,Mantener intención propuesta; contrastar contrato aplicable y falsador antes de aceptar.,NOT_RATIFIED
+REQ-133,Calidad y mantenimiento,REQUERIMIENTOS|QA|LOCAL_QA_SUPERVISOR,LOCAL_CANDIDATE,PROPOSED_MAPPING,Mantener intención propuesta; contrastar contrato aplicable y falsador antes de aceptar.,NOT_RATIFIED
+REQ-134,Modos de fallo explícitos,REQUERIMIENTOS|QA|LOCAL_QA_SUPERVISOR,LOCAL_CANDIDATE,NEEDS_CONTRACT_REFINEMENT,"Exit0 local significa registro evaluado, no éxito semántico; interpretar junto al contrato tipado.",NOT_RATIFIED
+REQ-135,Superficie de ataque,REQUERIMIENTOS|QA|LOCAL_QA_SUPERVISOR,LOCAL_CANDIDATE,PROPOSED_MAPPING,Mantener intención propuesta; contrastar contrato aplicable y falsador antes de aceptar.,NOT_RATIFIED
+REQ-136,Benchmark adversarial,QA|CONTRATO_INTEGRACION,LOCAL_CANDIDATE,NEEDS_CONTRACT_REFINEMENT,"Diez casos es mínimo propuesto del paquete, no suficiencia científica ni número aceptado.",NOT_RATIFIED
+REQ-137,Métricas correctas,QA|CONTRATO_INTEGRACION,LOCAL_CANDIDATE,PROPOSED_MAPPING,Mantener intención propuesta; contrastar contrato aplicable y falsador antes de aceptar.,NOT_RATIFIED
+REQ-138,Política de adopción,QA|CONTRATO_INTEGRACION,LOCAL_CANDIDATE,PROPOSED_MAPPING,Mantener intención propuesta; contrastar contrato aplicable y falsador antes de aceptar.,NOT_RATIFIED
+REQ-139,Extensiones externas desacopladas,QA|CONTRATO_INTEGRACION,OPTIONAL_EVALUATION,PROPOSED_MAPPING,Mantener intención propuesta; contrastar contrato aplicable y falsador antes de aceptar.,NOT_RATIFIED
+REQ-140,Entrega final del expediente,QA|CONTRATO_INTEGRACION,LOCAL_CANDIDATE,NEEDS_CONTRACT_REFINEMENT,Expediente local declara artefactos futuros NOT_RUN/DEFERRED; no fabricar CI/build/deploy.,NOT_RATIFIED

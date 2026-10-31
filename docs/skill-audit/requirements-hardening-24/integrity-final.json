@@ -1,0 +1,268 @@
+{
+  "lineage": "review-afc5fe83dd67b2e3",
+  "target": "sha256:40d3bd2a3a5c4be2be8a0c62f0acbd70d8c2864cbf93f26411206953f891a5b5",
+  "tree": "16500340ab2da63681e46eedbac12b3d2caf10d7",
+  "status": "ALL_SELECTED_FILES_MATCH_REVIEWED_TREE",
+  "files": [
+    {
+      "path": "AGENTS.md",
+      "sha256": "958aa3f57cf99d4e6124859cc524d7d6d32942a5a72ffa017f266813b30b33f2"
+    },
+    {
+      "path": "bin/gentle-ai",
+      "sha256": "00218d263ca679eea1bf6fecb287e48f370d69e0134ee685d9e6c0b96d5a6654"
+    },
+    {
+      "path": "docs/skill-audit/accepted-qa-fixes/ANALISIS.md",
+      "sha256": "b5a5aea20140d3924372afc35c6bbf36394b5147f7fbfcbf8b01b2b0352bda66"
+    },
+    {
+      "path": "docs/skill-audit/accepted-qa-fixes/guard.stderr",
+      "sha256": "88091755feb56d3a1e776ffcb146ec008378c8a0435aa924458da6eefcc145bc"
+    },
+    {
+      "path": "docs/skill-audit/accepted-qa-fixes/interview.stderr",
+      "sha256": "0a6e9ccc97fab836c7225e1729fc0c38c3cc7bc5978ba8b7c90d263a5c18bc44"
+    },
+    {
+      "path": "docs/skill-audit/accepted-qa-fixes/scratch.stderr",
+      "sha256": "9b890a41ff9f7f310af7c3dd8484e1a0e677c971f959bacef89729b0c0cc7417"
+    },
+    {
+      "path": "docs/skill-audit/accepted-qa-fixes/sealed.stderr",
+      "sha256": "9dd3b1512df1c3a6392371ccb7cd5b20c26351f615c7db1e3c2014450a6dd917"
+    },
+    {
+      "path": "docs/skill-audit/accepted-qa-fixes/sha1-red.stderr",
+      "sha256": "3f4c66be2ba4521a80a597981a5a897545309898aa2a42e4768eb1528480d7c6"
+    },
+    {
+      "path": "docs/skill-audit/integrity-challenge/ANALISIS.md",
+      "sha256": "a67e3f1bf2807ccfa96cdc69e81bd7f9674661a950dfdb614c1beeecb31ef7c8"
+    },
+    {
+      "path": "docs/skill-audit/integrity-challenge/guard-tests.stderr",
+      "sha256": "8bb3e74b4c492ca0672f9fed3fb556decdff0319f4bd22610dc094ec154a97b7"
+    },
+    {
+      "path": "docs/skill-audit/integrity-challenge/interview-tests.stderr",
+      "sha256": "e2ea005487da69ca7ca6ca11d9aceafe19c57f6877461350ab52578ab79c0c94"
+    },
+    {
+      "path": "docs/skill-audit/integrity-challenge/red-baseline.json",
+      "sha256": "8c3969a6fd6a1bb1607e51d5f48ca1b7d2ef7b1bcbfdfcdb7a575b78af547fb5"
+    },
+    {
+      "path": "docs/skill-audit/requerimientos-repair/smoke/assessment-final.json",
+      "sha256": "07a656e8ccc31a8ed7165684a20472a3c5ff664cfb00da945c75c8fa677e60a3"
+    },
+    {
+      "path": "docs/skill-audit/requerimientos-repair/smoke/registro-skill-asistente.md",
+      "sha256": "c71b969ca63728e6e99f293143639ed3a027b6150da110557f44840768f0e695"
+    },
+    {
+      "path": "docs/skill-audit/requerimientos-repair/tests-green.stderr",
+      "sha256": "8fd512f0105f11ab07060f6929bd905353c00c37321267c8ee07e3c64e076961"
+    },
+    {
+      "path": "docs/skill-audit/requirements-hardening-24/analysis-report.json",
+      "sha256": "dbba1c42bf97c29aab2aa9f6ebf0e185441c31956f5e27c5a23c81a09bf2772f"
+    },
+    {
+      "path": "docs/skill-audit/requirements-hardening-24/cgroup-red.log",
+      "sha256": "58edf48c6c0758215afdfb199d8ae0923cc72ba71f27e052f00f3aa3684f948c"
+    },
+    {
+      "path": "docs/skill-audit/requirements-hardening-24/dependencies.txt",
+      "sha256": "1e128bf302ce5f5e95e2430aef5179b55eb7f78fe20e73fa8ab6424b991da883"
+    },
+    {
+      "path": "docs/skill-audit/requirements-hardening-24/environment-green.log",
+      "sha256": "7693f1a65de24126309cdac1fc2457165ecb94e0809ac57f918c3b3130571666"
+    },
+    {
+      "path": "docs/skill-audit/requirements-hardening-24/environment-red.log",
+      "sha256": "12035550ae378c40892780e2fb11d96d92cf7f62c4902d4578ea6d3d16fba568"
+    },
+    {
+      "path": "docs/skill-audit/requirements-hardening-24/full-tests.log",
+      "sha256": "8e35658775a03c3121f0669942373d83e05e838ef64b46777692bad0f1c7edc6"
+    },
+    {
+      "path": "docs/skill-audit/requirements-hardening-24/independent-review.json",
+      "sha256": "c4481dbf9252644e85c732349617a5da5138a5905d05cbbca351b56429ac1994"
+    },
+    {
+      "path": "docs/skill-audit/requirements-hardening-24/local-profile.json",
+      "sha256": "99394b94f504b981840dcec6f7a48cd21a91b9b934318b5c77e573643f872b61"
+    },
+    {
+      "path": "docs/skill-audit/requirements-hardening-24/logic-example-result.json",
+      "sha256": "bac6b8b9678181c9cde0b0ce3227907a084be53986890cae645110860ca12df6"
+    },
+    {
+      "path": "docs/skill-audit/sealed-validation/ANALISIS.md",
+      "sha256": "84dd917e98995babbc43fff61ec214aa678ba47a67d2e2f9b282e7c30a86dc21"
+    },
+    {
+      "path": "docs/skill-audit/sealed-validation/guard.stderr",
+      "sha256": "ef528a88fd3dcf0922a7568ca850272285b24d3a0a978cba7a1307ec77428a3b"
+    },
+    {
+      "path": "docs/skill-audit/sealed-validation/interview.stderr",
+      "sha256": "b9772774498b1f88d2cc1ecb075520c064a430b2fefa04bad33f3b58549e8131"
+    },
+    {
+      "path": "docs/skill-audit/sealed-validation/red-baseline.json",
+      "sha256": "775ab86acdff6ded93b34d1aa17ff970ca077cc5d8380f2f2e1b40121ef5f575"
+    },
+    {
+      "path": "docs/skill-audit/sealed-validation/tests.stderr",
+      "sha256": "d409c5f3e4a1746aacb98e65f1fdcd1f8c73baf28753e410a12dfc68de1898c6"
+    },
+    {
+      "path": "skills/requerimientos-socraticos/SKILL.md",
+      "sha256": "96f6e390b4105c312f5e8a1e69650f77c4549383e9f041ac87b8f793badd49a5"
+    },
+    {
+      "path": "skills/requerimientos-socraticos/agents/requirements-interrogator.toml",
+      "sha256": "49ea24b109e8a45ecef495f760022025d7996e26709d6d915c42d8434f003a44"
+    },
+    {
+      "path": "skills/requerimientos-socraticos/assets/analysis-report.schema.json",
+      "sha256": "bc9fca234245184459f68552db8c4571dfc02cd310ebce8433b6ba68499858a7"
+    },
+    {
+      "path": "skills/requerimientos-socraticos/assets/design-proposals.schema.json",
+      "sha256": "950be8ad944d07ff5b26cb5245377ad6587da28746d7c4f1837121bae66121f5"
+    },
+    {
+      "path": "skills/requerimientos-socraticos/assets/example.prd.json",
+      "sha256": "cc997d76a52570795c786918276372f436130669576ce3802980978001a5b527"
+    },
+    {
+      "path": "skills/requerimientos-socraticos/assets/gitattributes.example",
+      "sha256": "da4e98b8d85e0097acda607c5657f631741e4d9d484a6efc8ea61411c21e0a40"
+    },
+    {
+      "path": "skills/requerimientos-socraticos/assets/interrogator-packet.schema.json",
+      "sha256": "422acb95aad107f1fc70a202859ed89631d44e40bbac9a9d464bdd0ca8aa7c02"
+    },
+    {
+      "path": "skills/requerimientos-socraticos/assets/interview.schema.json",
+      "sha256": "35492aefbc67d9861244f1e534d01f4fe9bae172c7da5389130a44d073ddfcc6"
+    },
+    {
+      "path": "skills/requerimientos-socraticos/assets/logic-example.json",
+      "sha256": "bcd115fa67a8be5b38a53565a60bbc7762ac2c39f3fe395a0a382afea59f0bb4"
+    },
+    {
+      "path": "skills/requerimientos-socraticos/assets/logic-input.schema.json",
+      "sha256": "7d84a4206aef40594e81cf091b15104de9d9dfe2043643ea1af352b79c411067"
+    },
+    {
+      "path": "skills/requerimientos-socraticos/assets/prd.schema.json",
+      "sha256": "37b2c6b4af2eeee7c39c892a5b057e7b9ee0eab5d7963310be2de7029a5df99b"
+    },
+    {
+      "path": "skills/requerimientos-socraticos/references/formal-analysis.md",
+      "sha256": "723b79f58060b5055470a3a56d72da7a71bb6f558bcf3477b3fb727beb73c889"
+    },
+    {
+      "path": "skills/requerimientos-socraticos/references/integrity-boundary.md",
+      "sha256": "1a79193b51f5c9f15c63df0c4fd17f7daf1ae0f5976360a6a64de493c31d1eea"
+    },
+    {
+      "path": "skills/requerimientos-socraticos/references/interrogation.md",
+      "sha256": "392ca6095271afa4f8cc23fa9723de6dc4700442c919dd9489f499538a712b19"
+    },
+    {
+      "path": "skills/requerimientos-socraticos/references/method.md",
+      "sha256": "719287bb488bac04b682b17a82b39dfb7fee7dc135bc39d7f330ba25a49487c8"
+    },
+    {
+      "path": "skills/requerimientos-socraticos/references/research-design.md",
+      "sha256": "68f84f8d6f25be5e9a0373a2f8bc7eeb73d26374c25751c7be7cfc3b9ba529bc"
+    },
+    {
+      "path": "skills/requerimientos-socraticos/references/sealed-validation.md",
+      "sha256": "f8d023226d6bbe0e29523b238b2326c9e1898894344e299c1b43e65478f1be1b"
+    },
+    {
+      "path": "skills/requerimientos-socraticos/references/validation.md",
+      "sha256": "72debcfebf9a0c5690da5ff56762d5e3cb3327fed9074d1f61ab49705a79685d"
+    },
+    {
+      "path": "skills/requerimientos-socraticos/references/workflow.md",
+      "sha256": "987cb5371c4b6b60e177e903d415ec244bd40e69cc057a9ff3f7952d166ba780"
+    },
+    {
+      "path": "skills/requerimientos-socraticos/requirements-analysis.txt",
+      "sha256": "e62b1ce3d5e9f938c1698d5228fc963c1a6799488d3aff896098e0908ce5d4d0"
+    },
+    {
+      "path": "skills/requerimientos-socraticos/scripts/analyze_logic.py",
+      "sha256": "a6eb2d49b5a569972dfc227950cb920558701d2f7213cc69f0068fd870f61348"
+    },
+    {
+      "path": "skills/requerimientos-socraticos/scripts/normalize_text.py",
+      "sha256": "d0ab7ffd503f095082f816d50fab99023950585f11cb5eb39aadd1a07e894fe9"
+    },
+    {
+      "path": "skills/requerimientos-socraticos/scripts/probe_environment.py",
+      "sha256": "1ffda09f034d81e71a0a3b133a0f31f8731ff68c771a517e63f0279619bb0675"
+    },
+    {
+      "path": "skills/requerimientos-socraticos/scripts/requirements_guard.py",
+      "sha256": "ebb5c9e3098e700897fd5226e62975873f7dc8d7a40f3f6eebcba223a5df31a3"
+    },
+    {
+      "path": "skills/requerimientos-socraticos/scripts/safe_io.py",
+      "sha256": "c40bfd51fb5ef89af85622ef662116aaf9cc2300783d09170f7258e0d43379e0"
+    },
+    {
+      "path": "skills/requerimientos-socraticos/scripts/scratch_pool.py",
+      "sha256": "554c9c054c286b8bbc989c8e0e3b2cc4aebf493d07d90d5bf52079922ed7ade1"
+    },
+    {
+      "path": "skills/requerimientos-socraticos/scripts/validate_git.py",
+      "sha256": "3e21a5bac605a1dfdfdcafe46de9510c950daf5e3f5f3a146a205a2ac44babb9"
+    },
+    {
+      "path": "skills/requerimientos-socraticos/scripts/validate_interview.py",
+      "sha256": "edb0815f38d96ce549da4afe10125c5ac8222be4300f8124b03c04753afd482a"
+    },
+    {
+      "path": "skills/requerimientos-socraticos/scripts/validate_prd.py",
+      "sha256": "fb89d70f48e381fdcf910c895ad4398fb54428dfd64186c77351c624ca32fb4b"
+    },
+    {
+      "path": "skills/requerimientos-socraticos/tests/test_environment.py",
+      "sha256": "9d11cb3035dff74b554231237161e670ad19571075e379fd4b0ca9956cd8ac3e"
+    },
+    {
+      "path": "skills/requerimientos-socraticos/tests/test_guard.py",
+      "sha256": "84bacd9a71290fb4fde076f7379653ab6b9edf94ca7712c6f1f4fd7e08e37974"
+    },
+    {
+      "path": "skills/requerimientos-socraticos/tests/test_interview.py",
+      "sha256": "8b6d023a248c4bb9a4d44af6b06bebf7d33779617e9cdcf30a3ba66d986cf273"
+    },
+    {
+      "path": "skills/requerimientos-socraticos/tests/test_logic.py",
+      "sha256": "73b444efbe3eb07c95617c3d16fccdc775b4e7d52e6e1520e62952a6f1b483d4"
+    },
+    {
+      "path": "skills/requerimientos-socraticos/tests/test_scratch.py",
+      "sha256": "d89f5ab1eac2cd1c7fd43fa0308a5c5925456d7ada3f60b504334f8d35d45ed0"
+    },
+    {
+      "path": "skills/requerimientos-socraticos/tests/test_sealed.py",
+      "sha256": "0180fe338caf67b24f92676f317c79544a862161fac4c7fe90d63504c90edee4"
+    },
+    {
+      "path": "skills/requerimientos-socraticos/validation.json",
+      "sha256": "d5e2915f4ad368a3b3fe97e6e39063cd97a4648bee517119f3d01352877dbd4e"
+    }
+  ]
+}

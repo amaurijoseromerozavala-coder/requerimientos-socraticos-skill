@@ -1,0 +1,85 @@
+test_invalid_data_stays_rejected (test_infrastructure.InfrastructureChecks.test_invalid_data_stays_rejected) ... ERROR
+test_io_failure (test_infrastructure.InfrastructureChecks.test_io_failure) ... FAIL
+test_memory_failure (test_infrastructure.InfrastructureChecks.test_memory_failure) ... FAIL
+test_missing_artifact (test_infrastructure.InfrastructureChecks.test_missing_artifact) ... FAIL
+test_no_oom_claim_from_io_error (test_infrastructure.InfrastructureChecks.test_no_oom_claim_from_io_error) ... ERROR
+test_permission_failure (test_infrastructure.InfrastructureChecks.test_permission_failure) ... FAIL
+test_recursion_resource_failure (test_infrastructure.InfrastructureChecks.test_recursion_resource_failure) ... FAIL
+
+======================================================================
+ERROR: test_invalid_data_stays_rejected (test_infrastructure.InfrastructureChecks.test_invalid_data_stays_rejected)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/replica-gentle-ai/skills/qa-inquisidor/tests/test_infrastructure.py", line 37, in test_invalid_data_stays_rejected
+    self.assertEqual(result['execution_status'], 'COMPLETED')
+                     ~~~~~~^^^^^^^^^^^^^^^^^^^^
+KeyError: 'execution_status'
+
+======================================================================
+ERROR: test_no_oom_claim_from_io_error (test_infrastructure.InfrastructureChecks.test_no_oom_claim_from_io_error)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/replica-gentle-ai/skills/qa-inquisidor/tests/test_infrastructure.py", line 41, in test_no_oom_claim_from_io_error
+    self.assertEqual(result['diagnostic']['errno'], errno.EIO)
+                     ~~~~~~^^^^^^^^^^^^^^
+KeyError: 'diagnostic'
+
+======================================================================
+FAIL: test_io_failure (test_infrastructure.InfrastructureChecks.test_io_failure)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/replica-gentle-ai/skills/qa-inquisidor/tests/test_infrastructure.py", line 28, in test_io_failure
+    def test_io_failure(self): self.check_infra(OSError(errno.EIO, 'controlled'))
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/replica-gentle-ai/skills/qa-inquisidor/tests/test_infrastructure.py", line 19, in check_infra
+    self.assertEqual(code, 3)
+AssertionError: 2 != 3
+
+======================================================================
+FAIL: test_memory_failure (test_infrastructure.InfrastructureChecks.test_memory_failure)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/replica-gentle-ai/skills/qa-inquisidor/tests/test_infrastructure.py", line 27, in test_memory_failure
+    def test_memory_failure(self): self.check_infra(MemoryError('controlled'))
+                                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/replica-gentle-ai/skills/qa-inquisidor/tests/test_infrastructure.py", line 19, in check_infra
+    self.assertEqual(code, 3)
+AssertionError: 2 != 3
+
+======================================================================
+FAIL: test_missing_artifact (test_infrastructure.InfrastructureChecks.test_missing_artifact)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/replica-gentle-ai/skills/qa-inquisidor/tests/test_infrastructure.py", line 30, in test_missing_artifact
+    def test_missing_artifact(self): self.check_infra(FileNotFoundError(errno.ENOENT, 'controlled'))
+                                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/replica-gentle-ai/skills/qa-inquisidor/tests/test_infrastructure.py", line 19, in check_infra
+    self.assertEqual(code, 3)
+AssertionError: 2 != 3
+
+======================================================================
+FAIL: test_permission_failure (test_infrastructure.InfrastructureChecks.test_permission_failure)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/replica-gentle-ai/skills/qa-inquisidor/tests/test_infrastructure.py", line 29, in test_permission_failure
+    def test_permission_failure(self): self.check_infra(PermissionError(errno.EACCES, 'controlled'))
+                                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/replica-gentle-ai/skills/qa-inquisidor/tests/test_infrastructure.py", line 19, in check_infra
+    self.assertEqual(code, 3)
+AssertionError: 2 != 3
+
+======================================================================
+FAIL: test_recursion_resource_failure (test_infrastructure.InfrastructureChecks.test_recursion_resource_failure)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/replica-gentle-ai/skills/qa-inquisidor/tests/test_infrastructure.py", line 31, in test_recursion_resource_failure
+    def test_recursion_resource_failure(self): self.check_infra(RecursionError('controlled'))
+                                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/replica-gentle-ai/skills/qa-inquisidor/tests/test_infrastructure.py", line 19, in check_infra
+    self.assertEqual(code, 3)
+AssertionError: 2 != 3
+
+----------------------------------------------------------------------
+Ran 7 tests in 0.003s
+
+FAILED (failures=5, errors=2)

@@ -1,0 +1,12 @@
+{
+  "version": "0.1.2-alpha",
+  "status": "APPROVED_AND_ACKNOWLEDGED",
+  "target_identity": "sha256:fb1a85f35077a80bc46529458fee6d947fd78745abfd97a5c696c0eec2428b7e",
+  "lineage_id": "review-0965112d2a35a265",
+  "tests_local": 54,
+  "tests_independent": 54,
+  "independent_additional_checks": 2,
+  "native_review": "static; no findings",
+  "production": "NOT_AUTHORIZED",
+  "physical_calibration": "NOT_RUN"
+}

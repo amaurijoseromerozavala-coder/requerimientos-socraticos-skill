@@ -1,0 +1,10 @@
+{
+  "schema": "gentle-ai.review-last-event-closure/v1",
+  "operation": "review.capture-correction-plan",
+  "lineage_id": "review-65b72cd5614b2220",
+  "target_identity": "sha256:7f07ef901f9dc9f6bec34afeecf7f5cf63d5ee3712721680b55aa7f6cc816e3d",
+  "request_hash": "sha256:0190e06ba9c38671eb2ab08b7c144809b2c92f1b59a7a719d2a59bc4fb84f865",
+  "correction_lines": 100,
+  "state": "correction_required",
+  "store_revision": "sha256:fcebd5dfc5e49062a927c2ae7ea9f5a672ef98722b568493710a418f05c50c72"
+}

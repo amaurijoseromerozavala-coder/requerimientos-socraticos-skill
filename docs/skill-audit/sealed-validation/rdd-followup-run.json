@@ -1,0 +1,227 @@
+{
+  "schema": "gentle-ai.review-integration.start/v4",
+  "contract": "gentle-ai.review-integration/v2",
+  "operation": "review.start",
+  "action": "created",
+  "lenses_required": true,
+  "lineage_id": "review-f412da4c5db898a9",
+  "state": "reviewing",
+  "risk_level": "high",
+  "selected_lenses": [
+    "review-risk",
+    "review-resilience",
+    "review-readability",
+    "review-reliability"
+  ],
+  "projection": "workspace",
+  "target_mode": "base-workspace-overlay",
+  "target_identity": "sha256:5581eaede3eb04114976bc8d078847e15232928ca0823a3b98e29b4538aee6df",
+  "base_tree": "ed329abb8a6b4a37e434e21bad3f0ae1ec433021",
+  "candidate_tree": "edae2745459457bfb35a34c5bbfe32d299d42fb1",
+  "changed_files": 7,
+  "changed_lines": 79,
+  "correction_budget": 40,
+  "risk_reasons": [
+    {
+      "code": "process_boundary",
+      "signal": "shell_process",
+      "path": "skills/requerimientos-socraticos/scripts/normalize_text.py"
+    }
+  ],
+  "artifact_subjects": [
+    {
+      "schema": "gentle-ai.review-artifact-subject/v2",
+      "subject_hash": "sha256:de1042c885a20c00b043e25b1160939f9c93af6ad30b7792ee4c4d9c1da0f1f5",
+      "lineage_id": "review-f412da4c5db898a9",
+      "authority_revision": "sha256:5a73600866ceaddd916d4b09c9104472406a82e73d5db29e56223dce788e05ef",
+      "target_identity": "sha256:5581eaede3eb04114976bc8d078847e15232928ca0823a3b98e29b4538aee6df",
+      "base_tree": "ed329abb8a6b4a37e434e21bad3f0ae1ec433021",
+      "candidate_tree": "edae2745459457bfb35a34c5bbfe32d299d42fb1",
+      "changed_path_manifest_sha256": "sha256:9f1248e77e275b76976fe6e24d213740c106c84a31d6dc331b001e62d4905864",
+      "lens": "review-risk",
+      "selected_order": 0
+    },
+    {
+      "schema": "gentle-ai.review-artifact-subject/v2",
+      "subject_hash": "sha256:0431cf2ac07746c599777f56fa9edad963318919fa7fd0b4930cd0a33d1c70e4",
+      "lineage_id": "review-f412da4c5db898a9",
+      "authority_revision": "sha256:5a73600866ceaddd916d4b09c9104472406a82e73d5db29e56223dce788e05ef",
+      "target_identity": "sha256:5581eaede3eb04114976bc8d078847e15232928ca0823a3b98e29b4538aee6df",
+      "base_tree": "ed329abb8a6b4a37e434e21bad3f0ae1ec433021",
+      "candidate_tree": "edae2745459457bfb35a34c5bbfe32d299d42fb1",
+      "changed_path_manifest_sha256": "sha256:9f1248e77e275b76976fe6e24d213740c106c84a31d6dc331b001e62d4905864",
+      "lens": "review-resilience",
+      "selected_order": 1
+    },
+    {
+      "schema": "gentle-ai.review-artifact-subject/v2",
+      "subject_hash": "sha256:a86f4f43d50e60f513dd2c2ec47811df6da2132814cd453356a5027b41039cac",
+      "lineage_id": "review-f412da4c5db898a9",
+      "authority_revision": "sha256:5a73600866ceaddd916d4b09c9104472406a82e73d5db29e56223dce788e05ef",
+      "target_identity": "sha256:5581eaede3eb04114976bc8d078847e15232928ca0823a3b98e29b4538aee6df",
+      "base_tree": "ed329abb8a6b4a37e434e21bad3f0ae1ec433021",
+      "candidate_tree": "edae2745459457bfb35a34c5bbfe32d299d42fb1",
+      "changed_path_manifest_sha256": "sha256:9f1248e77e275b76976fe6e24d213740c106c84a31d6dc331b001e62d4905864",
+      "lens": "review-readability",
+      "selected_order": 2
+    },
+    {
+      "schema": "gentle-ai.review-artifact-subject/v2",
+      "subject_hash": "sha256:fb4fe25713c9b0f08a8ef5c3c9ae9e8d57f75c21891240cd660c3257ac63ec43",
+      "lineage_id": "review-f412da4c5db898a9",
+      "authority_revision": "sha256:5a73600866ceaddd916d4b09c9104472406a82e73d5db29e56223dce788e05ef",
+      "target_identity": "sha256:5581eaede3eb04114976bc8d078847e15232928ca0823a3b98e29b4538aee6df",
+      "base_tree": "ed329abb8a6b4a37e434e21bad3f0ae1ec433021",
+      "candidate_tree": "edae2745459457bfb35a34c5bbfe32d299d42fb1",
+      "changed_path_manifest_sha256": "sha256:9f1248e77e275b76976fe6e24d213740c106c84a31d6dc331b001e62d4905864",
+      "lens": "review-reliability",
+      "selected_order": 3
+    }
+  ],
+  "changed_path_manifest": [
+    {
+      "path": "docs/skill-audit/sealed-validation/ANALISIS.md",
+      "status": "M",
+      "old_mode": "100644",
+      "new_mode": "100644",
+      "deleted": false,
+      "type_changed": false,
+      "mode_only": false,
+      "intended_untracked": true
+    },
+    {
+      "path": "docs/skill-audit/sealed-validation/tests.stderr",
+      "status": "M",
+      "old_mode": "100644",
+      "new_mode": "100644",
+      "deleted": false,
+      "type_changed": false,
+      "mode_only": false,
+      "intended_untracked": true
+    },
+    {
+      "path": "skills/requerimientos-socraticos/SKILL.md",
+      "status": "M",
+      "old_mode": "100644",
+      "new_mode": "100644",
+      "deleted": false,
+      "type_changed": false,
+      "mode_only": false,
+      "intended_untracked": true
+    },
+    {
+      "path": "skills/requerimientos-socraticos/references/sealed-validation.md",
+      "status": "M",
+      "old_mode": "100644",
+      "new_mode": "100644",
+      "deleted": false,
+      "type_changed": false,
+      "mode_only": false,
+      "intended_untracked": true
+    },
+    {
+      "path": "skills/requerimientos-socraticos/scripts/normalize_text.py",
+      "status": "M",
+      "old_mode": "100644",
+      "new_mode": "100644",
+      "deleted": false,
+      "type_changed": false,
+      "mode_only": false,
+      "intended_untracked": true
+    },
+    {
+      "path": "skills/requerimientos-socraticos/tests/test_sealed.py",
+      "status": "M",
+      "old_mode": "100644",
+      "new_mode": "100644",
+      "deleted": false,
+      "type_changed": false,
+      "mode_only": false,
+      "intended_untracked": true
+    },
+    {
+      "path": "skills/requerimientos-socraticos/validation.json",
+      "status": "M",
+      "old_mode": "100644",
+      "new_mode": "100644",
+      "deleted": false,
+      "type_changed": false,
+      "mode_only": false,
+      "intended_untracked": true
+    }
+  ],
+  "repository_context": {
+    "capability": "review.opaque_repository_context",
+    "handle": "rctx2_fc680e4997d96196cd8eba97d458320a25604db61aa06a7ba4e25accff8f4601",
+    "revision": "sha256:5a73600866ceaddd916d4b09c9104472406a82e73d5db29e56223dce788e05ef",
+    "target_identity": "sha256:5581eaede3eb04114976bc8d078847e15232928ca0823a3b98e29b4538aee6df"
+  },
+  "next_transition": {
+    "kind": "execute",
+    "reason_code": "review_status_required",
+    "execute": {
+      "operation": "review.status",
+      "command": "gentle-ai review status --contract=gentle-ai.review-integration/v2 --next-transition=true --lineage=review-f412da4c5db898a9 --repository-context=rctx2_fc680e4997d96196cd8eba97d458320a25604db61aa06a7ba4e25accff8f4601 --agent=codex --base-ref=ed329abb8a6b4a37e434e21bad3f0ae1ec433021 --workspace-overlay=true",
+      "arguments": [
+        {
+          "name": "contract",
+          "value": "gentle-ai.review-integration/v2",
+          "token": "--contract=gentle-ai.review-integration/v2"
+        },
+        {
+          "name": "next-transition",
+          "value": "true",
+          "token": "--next-transition=true"
+        },
+        {
+          "name": "lineage",
+          "value": "review-f412da4c5db898a9",
+          "token": "--lineage=review-f412da4c5db898a9"
+        },
+        {
+          "name": "repository-context",
+          "value": "rctx2_fc680e4997d96196cd8eba97d458320a25604db61aa06a7ba4e25accff8f4601",
+          "token": "--repository-context=rctx2_fc680e4997d96196cd8eba97d458320a25604db61aa06a7ba4e25accff8f4601"
+        },
+        {
+          "name": "agent",
+          "value": "codex",
+          "token": "--agent=codex"
+        },
+        {
+          "name": "base-ref",
+          "value": "ed329abb8a6b4a37e434e21bad3f0ae1ec433021",
+          "token": "--base-ref=ed329abb8a6b4a37e434e21bad3f0ae1ec433021"
+        },
+        {
+          "name": "workspace-overlay",
+          "value": "true",
+          "token": "--workspace-overlay=true"
+        }
+      ],
+      "selector_arguments": [
+        {
+          "name": "base-ref",
+          "value": "ed329abb8a6b4a37e434e21bad3f0ae1ec433021",
+          "token": "--base-ref=ed329abb8a6b4a37e434e21bad3f0ae1ec433021"
+        },
+        {
+          "name": "workspace-overlay",
+          "value": "true",
+          "token": "--workspace-overlay=true"
+        }
+      ],
+      "preconditions": [
+        {
+          "name": "state",
+          "value": "reviewing"
+        }
+      ],
+      "binding": {
+        "lineage_id": "review-f412da4c5db898a9",
+        "revision": "sha256:5a73600866ceaddd916d4b09c9104472406a82e73d5db29e56223dce788e05ef",
+        "target_identity": "sha256:5581eaede3eb04114976bc8d078847e15232928ca0823a3b98e29b4538aee6df"
+      }
+    }
+  }
+}

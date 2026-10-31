@@ -1,0 +1,9 @@
+{
+  "case": "A20",
+  "expected": "REJECT/EVIDENCE_KIND_MISMATCH",
+  "observed": "ACCEPT",
+  "stage": "RED before correction",
+  "counterexample": "REAL_EXECUTION test with only STATIC_REVIEW supporting evidence, PASS_WITHIN_SCOPE.",
+  "actual_checker_result": "hashes and cross-references match",
+  "observed_at": "2026-10-26T16:36:35.900584+00:00"
+}

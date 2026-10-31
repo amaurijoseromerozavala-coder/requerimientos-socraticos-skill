@@ -1,0 +1,3 @@
+RED: antes de crear scripts/activation_preflight.py,
+python -B -m unittest discover -s skills/requerimientos-socraticos/tests -p test_activation_preflight.py -v
+falló al importar porque el módulo esperado aún no existía (FileNotFoundError en la ruta activation_preflight.py).

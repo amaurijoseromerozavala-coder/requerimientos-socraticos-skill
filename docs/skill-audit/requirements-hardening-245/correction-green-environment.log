@@ -1,0 +1,14 @@
+test_cgroup_unknown_and_unlimited_are_distinct (test_environment.EnvironmentTests.test_cgroup_unknown_and_unlimited_are_distinct) ... ok
+test_cpu_and_memory_have_provenance (test_environment.EnvironmentTests.test_cpu_and_memory_have_provenance) ... ok
+test_cpu_model_reads_bounded_prefix_from_large_cpuinfo (test_environment.EnvironmentTests.test_cpu_model_reads_bounded_prefix_from_large_cpuinfo) ... ok
+test_launcher_rejects_empty_explicit_interpreter (test_environment.EnvironmentTests.test_launcher_rejects_empty_explicit_interpreter) ... ok
+test_launcher_rejects_missing_explicit_interpreter (test_environment.EnvironmentTests.test_launcher_rejects_missing_explicit_interpreter) ... ok
+test_launcher_resolves_explicit_interpreter_from_path (test_environment.EnvironmentTests.test_launcher_resolves_explicit_interpreter_from_path) ... ok
+test_missing_path_is_explicit_unknown (test_environment.EnvironmentTests.test_missing_path_is_explicit_unknown) ... ok
+test_path_does_not_create_files (test_environment.EnvironmentTests.test_path_does_not_create_files) ... ok
+test_probe_has_no_hardware_coverage_claim (test_environment.EnvironmentTests.test_probe_has_no_hardware_coverage_claim) ... ok
+
+----------------------------------------------------------------------
+Ran 9 tests in 0.265s
+
+OK

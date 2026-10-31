@@ -1,0 +1,44 @@
+{
+  "status": "ALPHA_LOCAL_AWAITING_RDD_CONSENT",
+  "skill": "qa-inquisidor",
+  "version": "0.1.0-alpha",
+  "gentle_ai_version": "4.2.0",
+  "rdd_mode": "ON",
+  "rdd_status": "CONSENT_REQUIRED",
+  "candidate": "sha256:69dca0c899c73807807ca164b7abee119bdf9afffa000916629dfbc3128be916",
+  "candidate_files": 23,
+  "candidate_bytes_unchanged": true,
+  "local_tests": {
+    "initial": 36,
+    "after_independent_findings_red": {
+      "total": 39,
+      "failures": 3
+    },
+    "green": 43
+  },
+  "independent": {
+    "tests": 43,
+    "probes": 4,
+    "findings_corrected": [
+      "F1",
+      "F2",
+      "F3"
+    ]
+  },
+  "formal_model": {
+    "boolean_inputs": 6,
+    "output_flags": 4,
+    "valuations": 64,
+    "overlaps": 0,
+    "unhandled": 0,
+    "no_output_query": "UNSAT"
+  },
+  "default_mode": "ANALYSIS_ONLY",
+  "execution_of_application": false,
+  "ci": "DEFERRED",
+  "production": "BLOCKED",
+  "hardware_target": "NOT_OBSERVED",
+  "global_enforcement": "NOT_PROVEN",
+  "prd_global": "DRAFT",
+  "transcript": "docs/requirements/qa-inquisidor-v3/registro-skill-asistente.md"
+}

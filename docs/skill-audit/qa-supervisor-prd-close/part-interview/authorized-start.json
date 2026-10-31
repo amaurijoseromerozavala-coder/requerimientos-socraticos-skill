@@ -1,0 +1,153 @@
+{
+  "schema": "gentle-ai.review-integration.start/v4",
+  "contract": "gentle-ai.review-integration/v2",
+  "operation": "review.start",
+  "action": "created",
+  "lenses_required": true,
+  "lineage_id": "review-84f615eebfc2ae7d",
+  "state": "reviewing",
+  "risk_level": "medium",
+  "selected_lenses": [
+    "review-resilience",
+    "review-reliability"
+  ],
+  "projection": "workspace",
+  "target_mode": "base-workspace-overlay",
+  "target_identity": "sha256:55a0dc546e2a860a42b1d2c389f948ed403aea8c82d070adeaf1cef856a6a011",
+  "base_tree": "4b825dc642cb6eb9a060e54bf8d69288fbee4904",
+  "candidate_tree": "f3e1cb4b709326cbf4e2a697bd4af26d68ca3f84",
+  "changed_files": 23,
+  "changed_lines": 738,
+  "correction_budget": 200,
+  "risk_reasons": [
+    {
+      "code": "configuration_change",
+      "path": "docs/requirements/qa-supervisor/design-proposals.json"
+    }
+  ],
+  "artifact_subjects": [
+    {
+      "schema": "gentle-ai.review-artifact-subject/v2",
+      "subject_hash": "sha256:8d300dc248b55a290f1e7098d0be95ddba1cf09a20ff07b3b81155e16bb417c3",
+      "lineage_id": "review-84f615eebfc2ae7d",
+      "authority_revision": "sha256:a949b36885fc2782fb4cbf7a9e7f3e2ed051142f12ab938657d33d99b054646f",
+      "target_identity": "sha256:55a0dc546e2a860a42b1d2c389f948ed403aea8c82d070adeaf1cef856a6a011",
+      "base_tree": "4b825dc642cb6eb9a060e54bf8d69288fbee4904",
+      "candidate_tree": "f3e1cb4b709326cbf4e2a697bd4af26d68ca3f84",
+      "changed_path_manifest_sha256": "sha256:c5dd8f31d9c16a555705f0dfa139bff92f109f3527a7b625e924a140976b533a",
+      "lens": "review-resilience",
+      "selected_order": 0
+    },
+    {
+      "schema": "gentle-ai.review-artifact-subject/v2",
+      "subject_hash": "sha256:b8daa4781d3661a5af216f1672a65403e6d34327ea33a04faf2e980f02e0b493",
+      "lineage_id": "review-84f615eebfc2ae7d",
+      "authority_revision": "sha256:a949b36885fc2782fb4cbf7a9e7f3e2ed051142f12ab938657d33d99b054646f",
+      "target_identity": "sha256:55a0dc546e2a860a42b1d2c389f948ed403aea8c82d070adeaf1cef856a6a011",
+      "base_tree": "4b825dc642cb6eb9a060e54bf8d69288fbee4904",
+      "candidate_tree": "f3e1cb4b709326cbf4e2a697bd4af26d68ca3f84",
+      "changed_path_manifest_sha256": "sha256:c5dd8f31d9c16a555705f0dfa139bff92f109f3527a7b625e924a140976b533a",
+      "lens": "review-reliability",
+      "selected_order": 1
+    }
+  ],
+  "changed_path_manifest": [
+    {"path":"docs/requirements/qa-supervisor/design-proposals.json","status":"A","old_mode":"000000","new_mode":"100644","deleted":false,"type_changed":false,"mode_only":false,"intended_untracked":true},
+    {"path":"docs/requirements/qa-supervisor/human-question.json","status":"A","old_mode":"000000","new_mode":"100644","deleted":false,"type_changed":false,"mode_only":false,"intended_untracked":true},
+    {"path":"docs/requirements/qa-supervisor/interview.json","status":"A","old_mode":"000000","new_mode":"100644","deleted":false,"type_changed":false,"mode_only":false,"intended_untracked":true},
+    {"path":"docs/requirements/qa-supervisor/receipts/A-HUMAN-SUP-001.txt","status":"A","old_mode":"000000","new_mode":"100644","deleted":false,"type_changed":false,"mode_only":false,"intended_untracked":true},
+    {"path":"docs/requirements/qa-supervisor/receipts/A-SUP-001.txt","status":"A","old_mode":"000000","new_mode":"100644","deleted":false,"type_changed":false,"mode_only":false,"intended_untracked":true},
+    {"path":"docs/requirements/qa-supervisor/receipts/A-SUP-002.txt","status":"A","old_mode":"000000","new_mode":"100644","deleted":false,"type_changed":false,"mode_only":false,"intended_untracked":true},
+    {"path":"docs/requirements/qa-supervisor/receipts/A-SUP-003.txt","status":"A","old_mode":"000000","new_mode":"100644","deleted":false,"type_changed":false,"mode_only":false,"intended_untracked":true},
+    {"path":"docs/requirements/qa-supervisor/receipts/A-SUP-004.txt","status":"A","old_mode":"000000","new_mode":"100644","deleted":false,"type_changed":false,"mode_only":false,"intended_untracked":true},
+    {"path":"docs/requirements/qa-supervisor/receipts/A-SUP-005.txt","status":"A","old_mode":"000000","new_mode":"100644","deleted":false,"type_changed":false,"mode_only":false,"intended_untracked":true},
+    {"path":"docs/requirements/qa-supervisor/receipts/A-SUP-006.txt","status":"A","old_mode":"000000","new_mode":"100644","deleted":false,"type_changed":false,"mode_only":false,"intended_untracked":true},
+    {"path":"docs/requirements/qa-supervisor/receipts/A-SUP-007.txt","status":"A","old_mode":"000000","new_mode":"100644","deleted":false,"type_changed":false,"mode_only":false,"intended_untracked":true},
+    {"path":"docs/requirements/qa-supervisor/receipts/A-SUP-008.txt","status":"A","old_mode":"000000","new_mode":"100644","deleted":false,"type_changed":false,"mode_only":false,"intended_untracked":true},
+    {"path":"docs/requirements/qa-supervisor/receipts/Q-HUMAN-SUP-001.txt","status":"A","old_mode":"000000","new_mode":"100644","deleted":false,"type_changed":false,"mode_only":false,"intended_untracked":true},
+    {"path":"docs/requirements/qa-supervisor/receipts/Q-SUP-001.txt","status":"A","old_mode":"000000","new_mode":"100644","deleted":false,"type_changed":false,"mode_only":false,"intended_untracked":true},
+    {"path":"docs/requirements/qa-supervisor/receipts/Q-SUP-002.txt","status":"A","old_mode":"000000","new_mode":"100644","deleted":false,"type_changed":false,"mode_only":false,"intended_untracked":true},
+    {"path":"docs/requirements/qa-supervisor/receipts/Q-SUP-003.txt","status":"A","old_mode":"000000","new_mode":"100644","deleted":false,"type_changed":false,"mode_only":false,"intended_untracked":true},
+    {"path":"docs/requirements/qa-supervisor/receipts/Q-SUP-004.txt","status":"A","old_mode":"000000","new_mode":"100644","deleted":false,"type_changed":false,"mode_only":false,"intended_untracked":true},
+    {"path":"docs/requirements/qa-supervisor/receipts/Q-SUP-005.txt","status":"A","old_mode":"000000","new_mode":"100644","deleted":false,"type_changed":false,"mode_only":false,"intended_untracked":true},
+    {"path":"docs/requirements/qa-supervisor/receipts/Q-SUP-006.txt","status":"A","old_mode":"000000","new_mode":"100644","deleted":false,"type_changed":false,"mode_only":false,"intended_untracked":true},
+    {"path":"docs/requirements/qa-supervisor/receipts/Q-SUP-007.txt","status":"A","old_mode":"000000","new_mode":"100644","deleted":false,"type_changed":false,"mode_only":false,"intended_untracked":true},
+    {"path":"docs/requirements/qa-supervisor/receipts/Q-SUP-008.txt","status":"A","old_mode":"000000","new_mode":"100644","deleted":false,"type_changed":false,"mode_only":false,"intended_untracked":true},
+    {"path":"docs/requirements/qa-supervisor/receipts/RETENTION-OPTIONS.txt","status":"A","old_mode":"000000","new_mode":"100644","deleted":false,"type_changed":false,"mode_only":false,"intended_untracked":true},
+    {"path":"docs/requirements/qa-supervisor/registro-skill-asistente.md","status":"A","old_mode":"000000","new_mode":"100644","deleted":false,"type_changed":false,"mode_only":false,"intended_untracked":true}
+  ],
+  "repository_context": {
+    "capability": "review.opaque_repository_context",
+    "handle": "rctx2_c9236a03b87af36f6ceb13cd9ab5254d8adba455acecd729f2668d6949685099",
+    "revision": "sha256:a949b36885fc2782fb4cbf7a9e7f3e2ed051142f12ab938657d33d99b054646f",
+    "target_identity": "sha256:55a0dc546e2a860a42b1d2c389f948ed403aea8c82d070adeaf1cef856a6a011"
+  },
+  "next_transition": {
+    "kind": "execute",
+    "reason_code": "review_status_required",
+    "execute": {
+      "operation": "review.status",
+      "command": "gentle-ai review status --contract=gentle-ai.review-integration/v2 --next-transition=true --lineage=review-84f615eebfc2ae7d --repository-context=rctx2_c9236a03b87af36f6ceb13cd9ab5254d8adba455acecd729f2668d6949685099 --agent=codex --base-ref=4b825dc642cb6eb9a060e54bf8d69288fbee4904 --workspace-overlay=true",
+      "arguments": [
+        {
+          "name": "contract",
+          "value": "gentle-ai.review-integration/v2",
+          "token": "--contract=gentle-ai.review-integration/v2"
+        },
+        {
+          "name": "next-transition",
+          "value": "true",
+          "token": "--next-transition=true"
+        },
+        {
+          "name": "lineage",
+          "value": "review-84f615eebfc2ae7d",
+          "token": "--lineage=review-84f615eebfc2ae7d"
+        },
+        {
+          "name": "repository-context",
+          "value": "rctx2_c9236a03b87af36f6ceb13cd9ab5254d8adba455acecd729f2668d6949685099",
+          "token": "--repository-context=rctx2_c9236a03b87af36f6ceb13cd9ab5254d8adba455acecd729f2668d6949685099"
+        },
+        {
+          "name": "agent",
+          "value": "codex",
+          "token": "--agent=codex"
+        },
+        {
+          "name": "base-ref",
+          "value": "4b825dc642cb6eb9a060e54bf8d69288fbee4904",
+          "token": "--base-ref=4b825dc642cb6eb9a060e54bf8d69288fbee4904"
+        },
+        {
+          "name": "workspace-overlay",
+          "value": "true",
+          "token": "--workspace-overlay=true"
+        }
+      ],
+      "selector_arguments": [
+        {
+          "name": "base-ref",
+          "value": "4b825dc642cb6eb9a060e54bf8d69288fbee4904",
+          "token": "--base-ref=4b825dc642cb6eb9a060e54bf8d69288fbee4904"
+        },
+        {
+          "name": "workspace-overlay",
+          "value": "true",
+          "token": "--workspace-overlay=true"
+        }
+      ],
+      "preconditions": [
+        {
+          "name": "state",
+          "value": "reviewing"
+        }
+      ],
+      "binding": {
+        "lineage_id": "review-84f615eebfc2ae7d",
+        "revision": "sha256:a949b36885fc2782fb4cbf7a9e7f3e2ed051142f12ab938657d33d99b054646f",
+        "target_identity": "sha256:55a0dc546e2a860a42b1d2c389f948ed403aea8c82d070adeaf1cef856a6a011"
+      }
+    }
+  }
+}

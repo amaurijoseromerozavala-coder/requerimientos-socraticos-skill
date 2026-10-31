@@ -1,0 +1,195 @@
+{
+  "schema": "gentle-ai.review-integration.status/v9",
+  "contract": "gentle-ai.review-integration/v2",
+  "operation": "review.status",
+  "applicability": "current_target",
+  "authority": {
+    "version": "compact-v2",
+    "lineage_id": "review-e3ace361dd26dcf9",
+    "state": "reviewing",
+    "generation": 1,
+    "revision": "sha256:5602b4b39b38161d2954c374da225b0eb0e5b35bb138d32e68fae44cf96b4f97"
+  },
+  "action": "collect",
+  "replayability": "manual_action_required",
+  "frozen": {
+    "tier": "medium",
+    "original_changed_lines": 538,
+    "correction_budget": 200,
+    "changed_path_manifest_sha256": "sha256:d076c8ec1ea332fa3cc2a19d7ad4ea10e264ff67c6be49033b03f8cdb60a501c"
+  },
+  "target_identity": "sha256:77778c85936cef6f218a7b53540fbdca3c84e348476919278a2fbfa0830f1ec2",
+  "projection": {
+    "schema": "gentle-ai.review-integration.projection/v1",
+    "kind": "base-workspace-overlay",
+    "projection": "workspace",
+    "base_tree": "4b825dc642cb6eb9a060e54bf8d69288fbee4904",
+    "initial_review_tree": "4377fa1087d8d758f215a3454447ce434cb1d0a3",
+    "current_candidate_tree": "4377fa1087d8d758f215a3454447ce434cb1d0a3",
+    "paths_digest": "sha256:9859d0422b99ed0b527699738838a5c659bfda1e83b642af713ad7d948208dcd",
+    "paths": [
+      "docs/requirements/qa-supervisor/activation-preflight.json",
+      "docs/requirements/qa-supervisor/receipts/context7-result.json",
+      "docs/requirements/qa-supervisor/receipts/python-resource.txt",
+      "docs/requirements/qa-supervisor/receipts/python-subprocess.txt",
+      "docs/requirements/qa-supervisor/receipts/research-discovery.txt",
+      "docs/requirements/qa-supervisor/receipts/web-result.json",
+      "docs/requirements/qa-supervisor/research.json",
+      "docs/requirements/qa-supervisor/verificacion-borrador.json",
+      "docs/requirements/qa-supervisor/verification/RESULTADO.md",
+      "docs/requirements/qa-supervisor/verification/activation-resumed.json",
+      "docs/requirements/qa-supervisor/verification/activation.json",
+      "docs/requirements/qa-supervisor/verification/canonical-independent.md",
+      "docs/requirements/qa-supervisor/verification/canonical-model-results.json",
+      "docs/requirements/qa-supervisor/verification/canonical-validation.json",
+      "docs/requirements/qa-supervisor/verification/check-canonical-model.py",
+      "docs/requirements/qa-supervisor/verification/check-document-model.py",
+      "docs/requirements/qa-supervisor/verification/check-output-contract.py",
+      "docs/requirements/qa-supervisor/verification/closure-independent.md",
+      "docs/requirements/qa-supervisor/verification/green.json",
+      "docs/requirements/qa-supervisor/verification/independent.md",
+      "docs/requirements/qa-supervisor/verification/interview-validation.json",
+      "docs/requirements/qa-supervisor/verification/model-results.json",
+      "docs/requirements/qa-supervisor/verification/output-contract-results.json",
+      "docs/requirements/qa-supervisor/verification/output-contract-run.log",
+      "docs/requirements/qa-supervisor/verification/red.json"
+    ],
+    "intended_untracked": [
+      "docs/requirements/qa-supervisor/activation-preflight.json",
+      "docs/requirements/qa-supervisor/receipts/context7-result.json",
+      "docs/requirements/qa-supervisor/receipts/python-resource.txt",
+      "docs/requirements/qa-supervisor/receipts/python-subprocess.txt",
+      "docs/requirements/qa-supervisor/receipts/research-discovery.txt",
+      "docs/requirements/qa-supervisor/receipts/web-result.json",
+      "docs/requirements/qa-supervisor/research.json",
+      "docs/requirements/qa-supervisor/verificacion-borrador.json",
+      "docs/requirements/qa-supervisor/verification/RESULTADO.md",
+      "docs/requirements/qa-supervisor/verification/activation-resumed.json",
+      "docs/requirements/qa-supervisor/verification/activation.json",
+      "docs/requirements/qa-supervisor/verification/canonical-independent.md",
+      "docs/requirements/qa-supervisor/verification/canonical-model-results.json",
+      "docs/requirements/qa-supervisor/verification/canonical-validation.json",
+      "docs/requirements/qa-supervisor/verification/check-canonical-model.py",
+      "docs/requirements/qa-supervisor/verification/check-document-model.py",
+      "docs/requirements/qa-supervisor/verification/check-output-contract.py",
+      "docs/requirements/qa-supervisor/verification/closure-independent.md",
+      "docs/requirements/qa-supervisor/verification/green.json",
+      "docs/requirements/qa-supervisor/verification/independent.md",
+      "docs/requirements/qa-supervisor/verification/interview-validation.json",
+      "docs/requirements/qa-supervisor/verification/model-results.json",
+      "docs/requirements/qa-supervisor/verification/output-contract-results.json",
+      "docs/requirements/qa-supervisor/verification/output-contract-run.log",
+      "docs/requirements/qa-supervisor/verification/red.json"
+    ],
+    "intended_untracked_proof": "sha256:806fa303ee34e9d346eb3c108f306803c7df90fe5e6f90c97bcb698af3c81c17",
+    "initial_snapshot_identity": "sha256:77778c85936cef6f218a7b53540fbdca3c84e348476919278a2fbfa0830f1ec2",
+    "current_snapshot_identity": "sha256:77778c85936cef6f218a7b53540fbdca3c84e348476919278a2fbfa0830f1ec2"
+  },
+  "eligible_untracked_inventory": "sha256:fba46f562f3384b6c59c60bf8b97f9703369cd7349b871146b844bbacd16a0e0",
+  "repair": {
+    "schema": "gentle-ai.review-authority-repair-assessment/v1",
+    "status": "unsupported",
+    "counts": {
+      "lineages": 0,
+      "compact_lineages": 0,
+      "legacy_lineages": 0,
+      "events": 0,
+      "bytes": 0,
+      "eligible_candidates": 0,
+      "unsupported_lineages": 0,
+      "conflicts": 0
+    },
+    "supported_operations": [
+      "review/complete-fix",
+      "review/validate-fix"
+    ],
+    "authorization_schema": "gentle-ai.review-repair-authorization/v1"
+  },
+  "candidates": [],
+  "forecast": {
+    "horizon": "partial",
+    "steps": [
+      {
+        "step": 1,
+        "kind": "collect",
+        "reason_code": "reviewer_results_required",
+        "description": "Reviewer lens artifacts required for current revision"
+      }
+    ]
+  },
+  "next_transition": {
+    "kind": "collect",
+    "reason_code": "reviewer_results_required",
+    "collect": {
+      "inputs": [
+        {
+          "name": "reviewer_result",
+          "schema": "https://gentle-ai.dev/schema/review/reviewer/v1",
+          "capture_operation": "review.capture-result",
+          "arguments": [
+            {
+              "name": "lineage",
+              "value": "review-e3ace361dd26dcf9",
+              "token": "--lineage=review-e3ace361dd26dcf9"
+            },
+            {
+              "name": "expected-revision",
+              "value": "sha256:0f7eedcec882e53130df685501dd3cf9e7e068988a392baf103a189f4e592e5a",
+              "token": "--expected-revision=sha256:0f7eedcec882e53130df685501dd3cf9e7e068988a392baf103a189f4e592e5a"
+            },
+            {
+              "name": "target",
+              "value": "sha256:77778c85936cef6f218a7b53540fbdca3c84e348476919278a2fbfa0830f1ec2",
+              "token": "--target=sha256:77778c85936cef6f218a7b53540fbdca3c84e348476919278a2fbfa0830f1ec2"
+            },
+            {
+              "name": "repository-context",
+              "value": "rctx2_77f94f262b049a01c9866e0ed02859e5018bdd3aecce380df4ae7caf6c47db88",
+              "token": "--repository-context=rctx2_77f94f262b049a01c9866e0ed02859e5018bdd3aecce380df4ae7caf6c47db88"
+            },
+            {
+              "name": "lens",
+              "value": "review-reliability",
+              "token": "--lens=review-reliability"
+            },
+            {
+              "name": "order",
+              "value": "1",
+              "token": "--order=1"
+            },
+            {
+              "name": "subject-hash",
+              "value": "sha256:c411b1ada99229c995510e048c9e89ae1b72807c6f889dc47f8819b46c1bba65",
+              "token": "--subject-hash=sha256:c411b1ada99229c995510e048c9e89ae1b72807c6f889dc47f8819b46c1bba65"
+            },
+            {
+              "name": "agent",
+              "value": "codex",
+              "token": "--agent=codex"
+            }
+          ],
+          "artifact_subject": {
+            "schema": "gentle-ai.review-artifact-subject/v2",
+            "subject_hash": "sha256:c411b1ada99229c995510e048c9e89ae1b72807c6f889dc47f8819b46c1bba65",
+            "lineage_id": "review-e3ace361dd26dcf9",
+            "authority_revision": "sha256:0f7eedcec882e53130df685501dd3cf9e7e068988a392baf103a189f4e592e5a",
+            "target_identity": "sha256:77778c85936cef6f218a7b53540fbdca3c84e348476919278a2fbfa0830f1ec2",
+            "base_tree": "4b825dc642cb6eb9a060e54bf8d69288fbee4904",
+            "candidate_tree": "4377fa1087d8d758f215a3454447ce434cb1d0a3",
+            "changed_path_manifest_sha256": "sha256:d076c8ec1ea332fa3cc2a19d7ad4ea10e264ff67c6be49033b03f8cdb60a501c",
+            "lens": "review-reliability",
+            "selected_order": 1
+          },
+          "base_tree": "4b825dc642cb6eb9a060e54bf8d69288fbee4904",
+          "candidate_tree": "4377fa1087d8d758f215a3454447ce434cb1d0a3"
+        }
+      ]
+    }
+  },
+  "repository_context": {
+    "capability": "review.opaque_repository_context",
+    "handle": "rctx2_77f94f262b049a01c9866e0ed02859e5018bdd3aecce380df4ae7caf6c47db88",
+    "revision": "sha256:0f7eedcec882e53130df685501dd3cf9e7e068988a392baf103a189f4e592e5a",
+    "target_identity": "sha256:77778c85936cef6f218a7b53540fbdca3c84e348476919278a2fbfa0830f1ec2"
+  }
+}

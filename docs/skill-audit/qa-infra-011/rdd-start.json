@@ -1,0 +1,134 @@
+{
+  "schema": "gentle-ai.review-integration.start/v4",
+  "contract": "gentle-ai.review-integration/v2",
+  "operation": "review.start",
+  "action": "created",
+  "lenses_required": true,
+  "lineage_id": "review-6dfeca15fe8d271d",
+  "state": "reviewing",
+  "risk_level": "medium",
+  "selected_lenses": [
+    "review-resilience",
+    "review-reliability"
+  ],
+  "projection": "workspace",
+  "target_mode": "base-workspace-overlay",
+  "target_identity": "sha256:6bace5dc6e2bcfc43e82c5b4ed1e7a272061b51a0bb7d53a7c01f1ee3af8cfc4",
+  "base_tree": "093c194016a7f8b92892d8f204da5d39bf7649c3",
+  "candidate_tree": "b4e39373a52a6f2921ca61e5df819165656d33f1",
+  "changed_files": 4,
+  "changed_lines": 80,
+  "correction_budget": 40,
+  "risk_reasons": [
+    {
+      "code": "executable_change",
+      "path": "AGENTS.md"
+    }
+  ],
+  "artifact_subjects": [
+    {
+      "schema": "gentle-ai.review-artifact-subject/v2",
+      "subject_hash": "sha256:7b77801ea6fce1fd57e98e0003395a450a9fe07193012fc877fa32d011ac65f1",
+      "lineage_id": "review-6dfeca15fe8d271d",
+      "authority_revision": "sha256:1cee11c088a8b896b5f14c5ec470e405985dfea2c66b83b37099e5e13806618c",
+      "target_identity": "sha256:6bace5dc6e2bcfc43e82c5b4ed1e7a272061b51a0bb7d53a7c01f1ee3af8cfc4",
+      "base_tree": "093c194016a7f8b92892d8f204da5d39bf7649c3",
+      "candidate_tree": "b4e39373a52a6f2921ca61e5df819165656d33f1",
+      "changed_path_manifest_sha256": "sha256:4112ba5aea1893be504e1065ccc6598983065b46c58e381b0e1abd31d8e4f1ad",
+      "lens": "review-resilience",
+      "selected_order": 0
+    },
+    {
+      "schema": "gentle-ai.review-artifact-subject/v2",
+      "subject_hash": "sha256:3c8f5001b4f1a9c26b8b9af73076ce43371ea94bd047ab9ff469d4dc12d0136c",
+      "lineage_id": "review-6dfeca15fe8d271d",
+      "authority_revision": "sha256:1cee11c088a8b896b5f14c5ec470e405985dfea2c66b83b37099e5e13806618c",
+      "target_identity": "sha256:6bace5dc6e2bcfc43e82c5b4ed1e7a272061b51a0bb7d53a7c01f1ee3af8cfc4",
+      "base_tree": "093c194016a7f8b92892d8f204da5d39bf7649c3",
+      "candidate_tree": "b4e39373a52a6f2921ca61e5df819165656d33f1",
+      "changed_path_manifest_sha256": "sha256:4112ba5aea1893be504e1065ccc6598983065b46c58e381b0e1abd31d8e4f1ad",
+      "lens": "review-reliability",
+      "selected_order": 1
+    }
+  ],
+  "changed_path_manifest": [
+    {"path":"AGENTS.md","status":"M","old_mode":"100644","new_mode":"100644","deleted":false,"type_changed":false,"mode_only":false,"intended_untracked":true},
+    {"path":"skills/qa-inquisidor/SKILL.md","status":"M","old_mode":"100644","new_mode":"100644","deleted":false,"type_changed":false,"mode_only":false,"intended_untracked":true},
+    {"path":"skills/qa-inquisidor/scripts/validate_report.py","status":"M","old_mode":"100644","new_mode":"100644","deleted":false,"type_changed":false,"mode_only":false,"intended_untracked":true},
+    {"path":"skills/qa-inquisidor/tests/test_infrastructure.py","status":"A","old_mode":"000000","new_mode":"100644","deleted":false,"type_changed":false,"mode_only":false,"intended_untracked":true}
+  ],
+  "repository_context": {
+    "capability": "review.opaque_repository_context",
+    "handle": "rctx2_e0f9dff154d42a549cade3a851004cbd9ff2d7926b78abcea6aad4edd8f05c1b",
+    "revision": "sha256:1cee11c088a8b896b5f14c5ec470e405985dfea2c66b83b37099e5e13806618c",
+    "target_identity": "sha256:6bace5dc6e2bcfc43e82c5b4ed1e7a272061b51a0bb7d53a7c01f1ee3af8cfc4"
+  },
+  "next_transition": {
+    "kind": "execute",
+    "reason_code": "review_status_required",
+    "execute": {
+      "operation": "review.status",
+      "command": "gentle-ai review status --contract=gentle-ai.review-integration/v2 --next-transition=true --lineage=review-6dfeca15fe8d271d --repository-context=rctx2_e0f9dff154d42a549cade3a851004cbd9ff2d7926b78abcea6aad4edd8f05c1b --agent=codex --base-ref=093c194016a7f8b92892d8f204da5d39bf7649c3 --workspace-overlay=true",
+      "arguments": [
+        {
+          "name": "contract",
+          "value": "gentle-ai.review-integration/v2",
+          "token": "--contract=gentle-ai.review-integration/v2"
+        },
+        {
+          "name": "next-transition",
+          "value": "true",
+          "token": "--next-transition=true"
+        },
+        {
+          "name": "lineage",
+          "value": "review-6dfeca15fe8d271d",
+          "token": "--lineage=review-6dfeca15fe8d271d"
+        },
+        {
+          "name": "repository-context",
+          "value": "rctx2_e0f9dff154d42a549cade3a851004cbd9ff2d7926b78abcea6aad4edd8f05c1b",
+          "token": "--repository-context=rctx2_e0f9dff154d42a549cade3a851004cbd9ff2d7926b78abcea6aad4edd8f05c1b"
+        },
+        {
+          "name": "agent",
+          "value": "codex",
+          "token": "--agent=codex"
+        },
+        {
+          "name": "base-ref",
+          "value": "093c194016a7f8b92892d8f204da5d39bf7649c3",
+          "token": "--base-ref=093c194016a7f8b92892d8f204da5d39bf7649c3"
+        },
+        {
+          "name": "workspace-overlay",
+          "value": "true",
+          "token": "--workspace-overlay=true"
+        }
+      ],
+      "selector_arguments": [
+        {
+          "name": "base-ref",
+          "value": "093c194016a7f8b92892d8f204da5d39bf7649c3",
+          "token": "--base-ref=093c194016a7f8b92892d8f204da5d39bf7649c3"
+        },
+        {
+          "name": "workspace-overlay",
+          "value": "true",
+          "token": "--workspace-overlay=true"
+        }
+      ],
+      "preconditions": [
+        {
+          "name": "state",
+          "value": "reviewing"
+        }
+      ],
+      "binding": {
+        "lineage_id": "review-6dfeca15fe8d271d",
+        "revision": "sha256:1cee11c088a8b896b5f14c5ec470e405985dfea2c66b83b37099e5e13806618c",
+        "target_identity": "sha256:6bace5dc6e2bcfc43e82c5b4ed1e7a272061b51a0bb7d53a7c01f1ee3af8cfc4"
+      }
+    }
+  }
+}

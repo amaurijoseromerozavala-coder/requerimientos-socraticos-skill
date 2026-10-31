@@ -1,0 +1,9 @@
+{
+  "scope": "Current artifacts only; no continuous immutability claim",
+  "files": {
+    "scratch-tests.log": "4bbe1e079a6a5363e28beaf743805a710c183867713c51ff77aff6a3291df9dd",
+    "sealed-tests.log": "bb1b5f012170710e814bbf1e1c7ea55d81bd49ee8cdede0e7ee82ed8db6aa44d",
+    "bounded-observation.json": "e6905631b657ac63a6193ac93d8b1b69d7c0c4f3b146ecf37557fe814d6777b0",
+    "RESULTADO.md": "081d7714b9f4664cfc5077ea4b3ed110658947e3a8512e8ad8addcd4f11c07a2"
+  }
+}

@@ -1,0 +1,259 @@
+{
+  "schema": "gentle-ai.review-integration.status/v9",
+  "contract": "gentle-ai.review-integration/v2",
+  "operation": "review.status",
+  "applicability": "unrelated",
+  "action": "start",
+  "replayability": "not_replayable",
+  "target_identity": "sha256:037c079cd4e5ae2e60052f81ca8fee537c746814e9f7162b583d29fb12eb8282",
+  "projection": {
+    "schema": "gentle-ai.review-integration.projection/v1",
+    "kind": "base-workspace-overlay",
+    "projection": "workspace",
+    "base_tree": "8beafd718d74763d79b76548a9027740d3e3be31",
+    "initial_review_tree": "cab89ddb88f3426ed46b17cbe185bb4f17dacaed",
+    "current_candidate_tree": "cab89ddb88f3426ed46b17cbe185bb4f17dacaed",
+    "paths_digest": "sha256:8afaa9ad1420b282d70e20ae9072c70ea00e2a1d0a25e63ac94e2355e43ee8ab",
+    "paths": [
+      "docs/skill-audit/qa-output-reassessment/ANALISIS.md",
+      "docs/skill-audit/qa-output-reassessment/sources.json"
+    ],
+    "intended_untracked": [
+      "AGENTS.md",
+      "docs/compliance/openai-codex-cloud.md",
+      "docs/requirements/qa-inquisidor-v2/PRD.md",
+      "docs/requirements/qa-inquisidor-v2/analizar-modelo.py",
+      "docs/requirements/qa-inquisidor-v2/casos-documentales.json",
+      "docs/requirements/qa-inquisidor-v2/contrato-evidencia-propuesto.md",
+      "docs/requirements/qa-inquisidor-v2/fsm-propuesta.json",
+      "docs/requirements/qa-inquisidor-v2/propuesta-prd.json",
+      "docs/requirements/qa-inquisidor-v2/registro-skill-asistente.json",
+      "docs/requirements/qa-inquisidor-v2/registro-skill-asistente.md",
+      "docs/requirements/qa-inquisidor-v2/resultado-modelo.json",
+      "docs/requirements/qa-inquisidor/PRD.md",
+      "docs/requirements/qa-inquisidor/prd.json",
+      "docs/skill-audit/qa-claims-followup/RESULTADO.md",
+      "docs/skill-audit/qa-claims-followup/bounded-observation.json",
+      "docs/skill-audit/qa-claims-followup/integrity.json",
+      "docs/skill-audit/qa-claims-followup/scratch-tests.log",
+      "docs/skill-audit/qa-claims-followup/sealed-tests.log",
+      "docs/skill-audit/qa-output-reassessment/ANALISIS.md",
+      "docs/skill-audit/qa-output-reassessment/sources.json"
+    ],
+    "intended_untracked_proof": "sha256:69ceb411ce496fe9596fe9cb47c4415ab7ccc24687a59fb10065b8c77ef75141",
+    "initial_snapshot_identity": "sha256:037c079cd4e5ae2e60052f81ca8fee537c746814e9f7162b583d29fb12eb8282",
+    "current_snapshot_identity": "sha256:037c079cd4e5ae2e60052f81ca8fee537c746814e9f7162b583d29fb12eb8282"
+  },
+  "eligible_untracked_inventory": "sha256:2cbc02a4c2f21a1978bb0ead9bdc92c52629a78e8e65c05de292ec6d5e5f2d92",
+  "repair": {
+    "schema": "gentle-ai.review-authority-repair-assessment/v1",
+    "status": "unsupported",
+    "counts": {
+      "lineages": 0,
+      "compact_lineages": 0,
+      "legacy_lineages": 0,
+      "events": 0,
+      "bytes": 0,
+      "eligible_candidates": 0,
+      "unsupported_lineages": 0,
+      "conflicts": 0
+    },
+    "supported_operations": [
+      "review/complete-fix",
+      "review/validate-fix"
+    ],
+    "authorization_schema": "gentle-ai.review-repair-authorization/v1"
+  },
+  "candidates": [],
+  "forecast": {
+    "horizon": "partial",
+    "steps": [
+      {
+        "step": 1,
+        "kind": "execute",
+        "reason_code": "fresh_target_ready",
+        "description": "Target is unreviewed and ready for initial review start"
+      }
+    ]
+  },
+  "next_transition": {
+    "kind": "execute",
+    "reason_code": "fresh_target_ready",
+    "execute": {
+      "operation": "review.start",
+      "command": "gentle-ai review start --cwd=/workspace/replica-gentle-ai --contract=gentle-ai.review-integration/v2 --target=sha256:037c079cd4e5ae2e60052f81ca8fee537c746814e9f7162b583d29fb12eb8282 --target-evidence=v1:base-workspace-overlay:workspace:8beafd718d74763d79b76548a9027740d3e3be31:cab89ddb88f3426ed46b17cbe185bb4f17dacaed:sha256:8afaa9ad1420b282d70e20ae9072c70ea00e2a1d0a25e63ac94e2355e43ee8ab --projection=workspace --base-ref=8beafd718d74763d79b76548a9027740d3e3be31 --workspace-overlay=true --lineage=review-a41d7332f96255cd --agent=codex --consent=relay --untracked-scope=select --expected-untracked-inventory=sha256:2cbc02a4c2f21a1978bb0ead9bdc92c52629a78e8e65c05de292ec6d5e5f2d92 --intended-untracked=AGENTS.md --intended-untracked=docs/compliance/openai-codex-cloud.md --intended-untracked=docs/requirements/qa-inquisidor-v2/PRD.md --intended-untracked=docs/requirements/qa-inquisidor-v2/analizar-modelo.py --intended-untracked=docs/requirements/qa-inquisidor-v2/casos-documentales.json --intended-untracked=docs/requirements/qa-inquisidor-v2/contrato-evidencia-propuesto.md --intended-untracked=docs/requirements/qa-inquisidor-v2/fsm-propuesta.json --intended-untracked=docs/requirements/qa-inquisidor-v2/propuesta-prd.json --intended-untracked=docs/requirements/qa-inquisidor-v2/registro-skill-asistente.json --intended-untracked=docs/requirements/qa-inquisidor-v2/registro-skill-asistente.md --intended-untracked=docs/requirements/qa-inquisidor-v2/resultado-modelo.json --intended-untracked=docs/requirements/qa-inquisidor/PRD.md --intended-untracked=docs/requirements/qa-inquisidor/prd.json --intended-untracked=docs/skill-audit/qa-claims-followup/RESULTADO.md --intended-untracked=docs/skill-audit/qa-claims-followup/bounded-observation.json --intended-untracked=docs/skill-audit/qa-claims-followup/integrity.json --intended-untracked=docs/skill-audit/qa-claims-followup/scratch-tests.log --intended-untracked=docs/skill-audit/qa-claims-followup/sealed-tests.log --intended-untracked=docs/skill-audit/qa-output-reassessment/ANALISIS.md --intended-untracked=docs/skill-audit/qa-output-reassessment/sources.json",
+      "arguments": [
+        {
+          "name": "cwd",
+          "value": "/workspace/replica-gentle-ai",
+          "token": "--cwd=/workspace/replica-gentle-ai"
+        },
+        {
+          "name": "contract",
+          "value": "gentle-ai.review-integration/v2",
+          "token": "--contract=gentle-ai.review-integration/v2"
+        },
+        {
+          "name": "target",
+          "value": "sha256:037c079cd4e5ae2e60052f81ca8fee537c746814e9f7162b583d29fb12eb8282",
+          "token": "--target=sha256:037c079cd4e5ae2e60052f81ca8fee537c746814e9f7162b583d29fb12eb8282"
+        },
+        {
+          "name": "target-evidence",
+          "value": "v1:base-workspace-overlay:workspace:8beafd718d74763d79b76548a9027740d3e3be31:cab89ddb88f3426ed46b17cbe185bb4f17dacaed:sha256:8afaa9ad1420b282d70e20ae9072c70ea00e2a1d0a25e63ac94e2355e43ee8ab",
+          "token": "--target-evidence=v1:base-workspace-overlay:workspace:8beafd718d74763d79b76548a9027740d3e3be31:cab89ddb88f3426ed46b17cbe185bb4f17dacaed:sha256:8afaa9ad1420b282d70e20ae9072c70ea00e2a1d0a25e63ac94e2355e43ee8ab"
+        },
+        {
+          "name": "projection",
+          "value": "workspace",
+          "token": "--projection=workspace"
+        },
+        {
+          "name": "base-ref",
+          "value": "8beafd718d74763d79b76548a9027740d3e3be31",
+          "token": "--base-ref=8beafd718d74763d79b76548a9027740d3e3be31"
+        },
+        {
+          "name": "workspace-overlay",
+          "value": "true",
+          "token": "--workspace-overlay=true"
+        },
+        {
+          "name": "lineage",
+          "value": "review-a41d7332f96255cd",
+          "token": "--lineage=review-a41d7332f96255cd"
+        },
+        {
+          "name": "agent",
+          "value": "codex",
+          "token": "--agent=codex"
+        },
+        {
+          "name": "consent",
+          "value": "relay",
+          "token": "--consent=relay"
+        },
+        {
+          "name": "untracked-scope",
+          "value": "select",
+          "token": "--untracked-scope=select"
+        },
+        {
+          "name": "expected-untracked-inventory",
+          "value": "sha256:2cbc02a4c2f21a1978bb0ead9bdc92c52629a78e8e65c05de292ec6d5e5f2d92",
+          "token": "--expected-untracked-inventory=sha256:2cbc02a4c2f21a1978bb0ead9bdc92c52629a78e8e65c05de292ec6d5e5f2d92"
+        },
+        {
+          "name": "intended-untracked",
+          "value": "AGENTS.md",
+          "token": "--intended-untracked=AGENTS.md"
+        },
+        {
+          "name": "intended-untracked",
+          "value": "docs/compliance/openai-codex-cloud.md",
+          "token": "--intended-untracked=docs/compliance/openai-codex-cloud.md"
+        },
+        {
+          "name": "intended-untracked",
+          "value": "docs/requirements/qa-inquisidor-v2/PRD.md",
+          "token": "--intended-untracked=docs/requirements/qa-inquisidor-v2/PRD.md"
+        },
+        {
+          "name": "intended-untracked",
+          "value": "docs/requirements/qa-inquisidor-v2/analizar-modelo.py",
+          "token": "--intended-untracked=docs/requirements/qa-inquisidor-v2/analizar-modelo.py"
+        },
+        {
+          "name": "intended-untracked",
+          "value": "docs/requirements/qa-inquisidor-v2/casos-documentales.json",
+          "token": "--intended-untracked=docs/requirements/qa-inquisidor-v2/casos-documentales.json"
+        },
+        {
+          "name": "intended-untracked",
+          "value": "docs/requirements/qa-inquisidor-v2/contrato-evidencia-propuesto.md",
+          "token": "--intended-untracked=docs/requirements/qa-inquisidor-v2/contrato-evidencia-propuesto.md"
+        },
+        {
+          "name": "intended-untracked",
+          "value": "docs/requirements/qa-inquisidor-v2/fsm-propuesta.json",
+          "token": "--intended-untracked=docs/requirements/qa-inquisidor-v2/fsm-propuesta.json"
+        },
+        {
+          "name": "intended-untracked",
+          "value": "docs/requirements/qa-inquisidor-v2/propuesta-prd.json",
+          "token": "--intended-untracked=docs/requirements/qa-inquisidor-v2/propuesta-prd.json"
+        },
+        {
+          "name": "intended-untracked",
+          "value": "docs/requirements/qa-inquisidor-v2/registro-skill-asistente.json",
+          "token": "--intended-untracked=docs/requirements/qa-inquisidor-v2/registro-skill-asistente.json"
+        },
+        {
+          "name": "intended-untracked",
+          "value": "docs/requirements/qa-inquisidor-v2/registro-skill-asistente.md",
+          "token": "--intended-untracked=docs/requirements/qa-inquisidor-v2/registro-skill-asistente.md"
+        },
+        {
+          "name": "intended-untracked",
+          "value": "docs/requirements/qa-inquisidor-v2/resultado-modelo.json",
+          "token": "--intended-untracked=docs/requirements/qa-inquisidor-v2/resultado-modelo.json"
+        },
+        {
+          "name": "intended-untracked",
+          "value": "docs/requirements/qa-inquisidor/PRD.md",
+          "token": "--intended-untracked=docs/requirements/qa-inquisidor/PRD.md"
+        },
+        {
+          "name": "intended-untracked",
+          "value": "docs/requirements/qa-inquisidor/prd.json",
+          "token": "--intended-untracked=docs/requirements/qa-inquisidor/prd.json"
+        },
+        {
+          "name": "intended-untracked",
+          "value": "docs/skill-audit/qa-claims-followup/RESULTADO.md",
+          "token": "--intended-untracked=docs/skill-audit/qa-claims-followup/RESULTADO.md"
+        },
+        {
+          "name": "intended-untracked",
+          "value": "docs/skill-audit/qa-claims-followup/bounded-observation.json",
+          "token": "--intended-untracked=docs/skill-audit/qa-claims-followup/bounded-observation.json"
+        },
+        {
+          "name": "intended-untracked",
+          "value": "docs/skill-audit/qa-claims-followup/integrity.json",
+          "token": "--intended-untracked=docs/skill-audit/qa-claims-followup/integrity.json"
+        },
+        {
+          "name": "intended-untracked",
+          "value": "docs/skill-audit/qa-claims-followup/scratch-tests.log",
+          "token": "--intended-untracked=docs/skill-audit/qa-claims-followup/scratch-tests.log"
+        },
+        {
+          "name": "intended-untracked",
+          "value": "docs/skill-audit/qa-claims-followup/sealed-tests.log",
+          "token": "--intended-untracked=docs/skill-audit/qa-claims-followup/sealed-tests.log"
+        },
+        {
+          "name": "intended-untracked",
+          "value": "docs/skill-audit/qa-output-reassessment/ANALISIS.md",
+          "token": "--intended-untracked=docs/skill-audit/qa-output-reassessment/ANALISIS.md"
+        },
+        {
+          "name": "intended-untracked",
+          "value": "docs/skill-audit/qa-output-reassessment/sources.json",
+          "token": "--intended-untracked=docs/skill-audit/qa-output-reassessment/sources.json"
+        }
+      ],
+      "preconditions": [
+        {
+          "name": "target_identity",
+          "value": "sha256:037c079cd4e5ae2e60052f81ca8fee537c746814e9f7162b583d29fb12eb8282"
+        }
+      ],
+      "binding": {
+        "lineage_id": "review-a41d7332f96255cd",
+        "target_identity": "sha256:037c079cd4e5ae2e60052f81ca8fee537c746814e9f7162b583d29fb12eb8282"
+      }
+    }
+  }
+}

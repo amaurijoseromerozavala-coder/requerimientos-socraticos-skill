@@ -1,0 +1,71 @@
+{
+  "status": "NORMATIVE_DOCUMENT_CONTRACT",
+  "trust_scope": "Single cooperating supervisor and pinned checker under one local owner; no protection from account/root mutation or arbitrary descendants.",
+  "states": [
+    "IDLE",
+    "RESERVED",
+    "ACTIVE",
+    "STOPPING",
+    "CONFIRMED_TERMINATED",
+    "INFRA_LOCK"
+  ],
+  "identity_fields": [
+    "run_id",
+    "boot_id",
+    "pid_namespace_identity",
+    "owner_uid",
+    "pid",
+    "process_start_identity",
+    "checker_manifest_digest",
+    "policy_digest"
+  ],
+  "persist_order": [
+    "Acquire single-owner admission guard.",
+    "Reconcile prior journal before considering receipts.",
+    "Reserve receipt plus raw-output capacity under the shared 32 MiB policy and persist RESERVED with run_id/boot/namespace/owner/manifest/policy before attempting spawn.",
+    "After successful spawn record PID and process start identity, then persist ACTIVE.",
+    "Before stop request persist STOPPING where possible; state-write failure forbids new launches.",
+    "Persist CONFIRMED_TERMINATED only after qualifying evidence; persist IDLE only after reconciliation and accounting."
+  ],
+  "qualifying_evidence": [
+    "Live parent observes wait/poll completion for its exact child object, paired to active run.",
+    "On same boot and namespace, prior complete PID+start identity is known, authorized proc observation conclusively shows it absent or replaced, with no arbitrary descendants in the allowed checker contract. Permission error, hidden proc, partial read or mere PID lookup failure is not proof.",
+    "Trusted local observation proves a different non-restored boot in the same managed guest scope; all previous boot processes are outside the current process universe. Namespace migration/VM snapshot uncertainty rejects this route."
+  ],
+  "reserved_window": "RESERVED without complete child identity after a supervisor crash is indeterminate on the same boot; remain INFRA_LOCK even if receipt is missing or the recorded PID is absent. No scanning by command name can clear it.",
+  "irrecoverable": "Remain locked without automatic time-based unlock or launch. Explain locally that no recovery evidence is available. No restart/shutdown action is authorized by this contract. Availability is conditional, not guaranteed.",
+  "receipt_independence": "Deleting/exporting receipts or raw output never deletes/resets admission journal or clears INFRA_LOCK. Reconcile storage accounting before new admission. Active/reserved artifacts are not manually removable through the authorized cleanup operation.",
+  "crash_cases": [
+    {
+      "point": "before_RESERVED_persist",
+      "rule": "no spawn allowed before durable confirmation"
+    },
+    {
+      "point": "after_RESERVED_before_spawn",
+      "rule": "unknown recovery remains locked even if no child actually started"
+    },
+    {
+      "point": "after_spawn_before_ACTIVE",
+      "rule": "unknown child identity remains locked on same boot"
+    },
+    {
+      "point": "after_ACTIVE",
+      "rule": "require exact identity and qualifying termination evidence"
+    },
+    {
+      "point": "after_wait_before_journal_update",
+      "rule": "reconcile conservatively; lost observation is not reconstructed as proof"
+    },
+    {
+      "point": "receipt_deleted",
+      "rule": "admission journal remains authoritative for cooperative gate"
+    }
+  ],
+  "acceptance_falsifiers": [
+    "A same-boot RESERVED record lacking start identity unlocks based on elapsed time.",
+    "Deleting receipts unlocks unresolved execution.",
+    "PID reuse is mistaken for a permission to signal another process.",
+    "Permission-denied process inspection is interpreted as absence."
+  ],
+  "execution_evidence": "NOT_RUN; requirements and abstract cases only"
+}

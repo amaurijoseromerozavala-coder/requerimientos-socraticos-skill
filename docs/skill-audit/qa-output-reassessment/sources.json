@@ -1,0 +1,21 @@
+{
+  "kind": "CURRENT_LOCAL_SOURCE_IDENTITIES",
+  "files": [
+    {
+      "path": "skills/requerimientos-socraticos/scripts/validate_git.py",
+      "sha256": "3e21a5bac605a1dfdfdcafe46de9510c950daf5e3f5f3a146a205a2ac44babb9"
+    },
+    {
+      "path": "skills/requerimientos-socraticos/scripts/validate_prd.py",
+      "sha256": "fb89d70f48e381fdcf910c895ad4398fb54428dfd64186c77351c624ca32fb4b"
+    },
+    {
+      "path": "skills/requerimientos-socraticos/scripts/validate_interview.py",
+      "sha256": "edb0815f38d96ce549da4afe10125c5ac8222be4300f8124b03c04753afd482a"
+    },
+    {
+      "path": "skills/requerimientos-socraticos/scripts/safe_io.py",
+      "sha256": "c40bfd51fb5ef89af85622ef662116aaf9cc2300783d09170f7258e0d43379e0"
+    }
+  ]
+}

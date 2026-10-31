@@ -1,0 +1,50 @@
+test_admission_elapsed_time_is_subtracted_before_worker (test_logic_memory.LogicMemoryTests.test_admission_elapsed_time_is_subtracted_before_worker) ... ok
+test_api_preserves_external_limits_and_sets_worker_limit_and_lease (test_logic_memory.LogicMemoryTests.test_api_preserves_external_limits_and_sets_worker_limit_and_lease) ... ok
+test_baseline_checked_before_owned_cli_limit (test_logic_memory.LogicMemoryTests.test_baseline_checked_before_owned_cli_limit) ... ok
+test_cli_never_raises_inherited_hard_limit (test_logic_memory.LogicMemoryTests.test_cli_never_raises_inherited_hard_limit) ... ok
+test_expired_admission_starts_no_worker (test_logic_memory.LogicMemoryTests.test_expired_admission_starts_no_worker) ... ok
+test_explicit_memory_error_removes_approbatory_payload (test_logic_memory.LogicMemoryTests.test_explicit_memory_error_removes_approbatory_payload) ... ok
+test_invalid_policy_is_coded_without_worker (test_logic_memory.LogicMemoryTests.test_invalid_policy_is_coded_without_worker) ... ok
+test_memory_argument_type_preserves_invalid_input (test_logic_memory.LogicMemoryTests.test_memory_argument_type_preserves_invalid_input) ... ok
+test_ordinary_worker_errors_preserve_contract_without_observation (test_logic_memory.LogicMemoryTests.test_ordinary_worker_errors_preserve_contract_without_observation) ... ok
+test_owned_cli_limit_leaves_room_for_worker (test_logic_memory.LogicMemoryTests.test_owned_cli_limit_leaves_room_for_worker) ... ok
+test_owned_cli_success_requires_observed_worker_limits (test_logic_memory.LogicMemoryTests.test_owned_cli_success_requires_observed_worker_limits) ... ok
+test_real_cli_observes_default_and_configured_process_limits (test_logic_memory.LogicMemoryTests.test_real_cli_observes_default_and_configured_process_limits) ... ok
+test_real_cli_shares_git_admission_gate (test_logic_memory.LogicMemoryTests.test_real_cli_shares_git_admission_gate) ... ok
+test_resource_rejection_is_inconclusive (test_logic_memory.LogicMemoryTests.test_resource_rejection_is_inconclusive) ... ok
+test_setup_exception_is_resource_control_failure (test_logic_memory.LogicMemoryTests.test_setup_exception_is_resource_control_failure) ... ok
+test_signal_without_diagnostic_is_not_called_oom (test_logic_memory.LogicMemoryTests.test_signal_without_diagnostic_is_not_called_oom) ... ok
+test_unknown_baseline_does_not_limit_owned_cli (test_logic_memory.LogicMemoryTests.test_unknown_baseline_does_not_limit_owned_cli) ... ok
+
+----------------------------------------------------------------------
+Ran 17 tests in 0.438s
+
+OK
+test_cli_depth_is_rejected_before_decoder_recursion (test_supervisor.SupervisorTests.test_cli_depth_is_rejected_before_decoder_recursion) ... ok
+test_cli_short_budget_is_inconclusive (test_supervisor.SupervisorTests.test_cli_short_budget_is_inconclusive) ... ok
+test_exited_leader_does_not_leave_group_pipes_waiting (test_supervisor.SupervisorTests.test_exited_leader_does_not_leave_group_pipes_waiting) ... ok
+test_linux_direct_worker_follows_parent_lifecycle (test_supervisor.SupervisorTests.test_linux_direct_worker_follows_parent_lifecycle) ... ok
+test_no_implicit_interpreter_fallback (test_supervisor.SupervisorTests.test_no_implicit_interpreter_fallback) ... ok
+test_public_argument_errors_preserve_invalid_input_contract (test_supervisor.SupervisorTests.test_public_argument_errors_preserve_invalid_input_contract) ... ok
+test_runtime_identity_is_observed_not_authenticated (test_supervisor.SupervisorTests.test_runtime_identity_is_observed_not_authenticated) ... ok
+test_successful_worker_is_preserved (test_supervisor.SupervisorTests.test_successful_worker_is_preserved) ... ok
+test_unsupported_supervision_adapter_starts_no_worker (test_supervisor.SupervisorTests.test_unsupported_supervision_adapter_starts_no_worker) ... ok
+test_waiting_worker_stops_and_is_reaped (test_supervisor.SupervisorTests.test_waiting_worker_stops_and_is_reaped) ... ok
+test_worker_output_limit_is_inconclusive (test_supervisor.SupervisorTests.test_worker_output_limit_is_inconclusive) ... ok
+
+----------------------------------------------------------------------
+Ran 11 tests in 0.728s
+
+OK
+test_bounds_and_invalid_ast (test_logic.LogicTests.test_bounds_and_invalid_ast) ... ok
+test_budget_and_table_limits (test_logic.LogicTests.test_budget_and_table_limits) ... ok
+test_empty_domain_and_property (test_logic.LogicTests.test_empty_domain_and_property) ... ok
+test_empty_variables_and_scope (test_logic.LogicTests.test_empty_variables_and_scope) ... ok
+test_missing_solver_is_structured (test_logic.LogicTests.test_missing_solver_is_structured) ... ok
+test_solver_failure_is_structured (test_logic.LogicTests.test_solver_failure_is_structured) ... ok
+test_triple_conflict_and_regional_counterexample (test_logic.LogicTests.test_triple_conflict_and_regional_counterexample) ... ok
+
+----------------------------------------------------------------------
+Ran 7 tests in 2.718s
+
+OK

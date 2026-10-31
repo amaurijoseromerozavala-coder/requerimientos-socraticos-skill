@@ -1,0 +1,31 @@
+{
+  "status": "DRAFT_CHECKS_ONLY",
+  "interview_schema": "VALID",
+  "design_schema": "VALID",
+  "abstract_combinations": 16,
+  "admitted_combinations": 1,
+  "rejected_combinations": 15,
+  "authorization_always_false": true,
+  "implementation_tests": "NOT_RUN",
+  "strict_tdd": "RED_TO_GREEN_DOCUMENT_CHECKS_ONLY",
+  "native_rdd": "NOT_STARTED_OPEN_DECISIONS",
+  "sealed_git_validation": "NOT_RUN",
+  "hardware_calibration": "NOT_RUN",
+  "revision": "draft-2",
+  "correction_checks": {
+    "before": {
+      "passed": 2,
+      "failed": 7
+    },
+    "after": {
+      "passed": 9,
+      "failed": 0
+    }
+  },
+  "class_distribution": {
+    "PROTOCOL_FAILURE": 5,
+    "EVALUATED_RECORD": 1,
+    "REJECT_INPUT": 1,
+    "INFRA_FAILURE": 9
+  }
+}

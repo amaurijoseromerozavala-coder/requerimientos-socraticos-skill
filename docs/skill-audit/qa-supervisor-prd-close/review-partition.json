@@ -1,0 +1,181 @@
+{
+  "status": "PREPARED_AFTER_NATIVE_BUDGET_REFUSAL",
+  "original_candidate": "sha256:93ce53299f5140bce1c5da3a61322167e774855d4e7ce95a24d8443d86de0e41",
+  "reason": "lens_context_budget_exceeded; original not started",
+  "format_only_change": {
+    "path": "docs/requirements/qa-supervisor/prd.json",
+    "canonical_candidate_sha256_unchanged": "f6ec6976acfe6b66dfc6358e734e1eeed16d8c4b9786328525058a11316152d5",
+    "meaning": "Whitespace compacted; complete parsed JSON equal."
+  },
+  "groups": [
+    {
+      "id": "core",
+      "files": [
+        "docs/requirements/qa-supervisor/PRD.md",
+        "docs/requirements/qa-supervisor/closure-proposal.json",
+        "docs/requirements/qa-supervisor/fsm-propuesta.json",
+        "docs/requirements/qa-supervisor/prd-draft.json",
+        "docs/requirements/qa-supervisor/propuesta-cierre.md",
+        "docs/requirements/qa-supervisor/recovery-contract.json",
+        "docs/requirements/qa-supervisor/tabla-decision.json"
+      ],
+      "bytes": 40292,
+      "file_hashes": {
+        "docs/requirements/qa-supervisor/PRD.md": "6e8dd21cc719f3ed6aa83e06ff93be3fc9aaa058c4cfc4202f31234466ad61da",
+        "docs/requirements/qa-supervisor/closure-proposal.json": "b2cb65ac34b3f035d34bb2069dd0eb55c0454dc0e5bf12a3e6d3297c59246cf0",
+        "docs/requirements/qa-supervisor/fsm-propuesta.json": "41af7c588bead037ac433dfbd4f69347cd7a9f400acc72826c3e6918f5249cba",
+        "docs/requirements/qa-supervisor/prd-draft.json": "f84e866ba2648690d881aaaba444f2ed599aba7d9e0ce98f26b320e0a3df0837",
+        "docs/requirements/qa-supervisor/propuesta-cierre.md": "ac90cdc3ead1194ab1b0374380739156d12a8a10ea23c8b23693da30d8d0fc50",
+        "docs/requirements/qa-supervisor/recovery-contract.json": "b685e7f9185449bf103e8a60660ce43951262cdd8fdb031d890b368959b5ad48",
+        "docs/requirements/qa-supervisor/tabla-decision.json": "0cab1f33310d73e292b19b20327d2e08de6163e1057016307921e87a8d169584"
+      }
+    },
+    {
+      "id": "protocol",
+      "files": [
+        "docs/requirements/qa-supervisor/checker-binding.json",
+        "docs/requirements/qa-supervisor/checker-output.schema.json",
+        "docs/requirements/qa-supervisor/protocol-contract.json",
+        "skills/qa-inquisidor/SKILL.md",
+        "skills/qa-inquisidor/assets/report.schema.json",
+        "skills/qa-inquisidor/scripts/validate_report.py",
+        "skills/requerimientos-socraticos/scripts/json_preflight.py",
+        "skills/requerimientos-socraticos/scripts/safe_io.py"
+      ],
+      "bytes": 58171,
+      "file_hashes": {
+        "docs/requirements/qa-supervisor/checker-binding.json": "008a580be2695136c08c0d4881c5812593cd74f5fe94afc6138f579fcde18f10",
+        "docs/requirements/qa-supervisor/checker-output.schema.json": "3530bc8b7ea8bb3ec968f0c44cd9b23389d534383f1215e75e92de29a6ba8c6d",
+        "docs/requirements/qa-supervisor/protocol-contract.json": "e51d73ff670989427f9e7cb73cfacde7da32d943aeff6658d17f43728cafdef0",
+        "skills/qa-inquisidor/SKILL.md": "6133c3e9ea395f6a28b53a07c354c0f20fb8248f9fa177e378b857eb4be6d8fc",
+        "skills/qa-inquisidor/assets/report.schema.json": "8edd02899370d4754f388d25513c59c6d578ba7889c8adc029370373391aa9e2",
+        "skills/qa-inquisidor/scripts/validate_report.py": "8d25da95e75f91955776f14ee7399051cbdd82dc96aefb7eb1c37838635f6b00",
+        "skills/requerimientos-socraticos/scripts/json_preflight.py": "1aba3975e3696c82cf8689ab15721572ab55c7c2eeeae7b1f2a87bbe32c2a295",
+        "skills/requerimientos-socraticos/scripts/safe_io.py": "c40bfd51fb5ef89af85622ef662116aaf9cc2300783d09170f7258e0d43379e0"
+      }
+    },
+    {
+      "id": "interview",
+      "files": [
+        "docs/requirements/qa-supervisor/design-proposals.json",
+        "docs/requirements/qa-supervisor/human-question.json",
+        "docs/requirements/qa-supervisor/interview.json",
+        "docs/requirements/qa-supervisor/receipts/A-HUMAN-SUP-001.txt",
+        "docs/requirements/qa-supervisor/receipts/A-SUP-001.txt",
+        "docs/requirements/qa-supervisor/receipts/A-SUP-002.txt",
+        "docs/requirements/qa-supervisor/receipts/A-SUP-003.txt",
+        "docs/requirements/qa-supervisor/receipts/A-SUP-004.txt",
+        "docs/requirements/qa-supervisor/receipts/A-SUP-005.txt",
+        "docs/requirements/qa-supervisor/receipts/A-SUP-006.txt",
+        "docs/requirements/qa-supervisor/receipts/A-SUP-007.txt",
+        "docs/requirements/qa-supervisor/receipts/A-SUP-008.txt",
+        "docs/requirements/qa-supervisor/receipts/Q-HUMAN-SUP-001.txt",
+        "docs/requirements/qa-supervisor/receipts/Q-SUP-001.txt",
+        "docs/requirements/qa-supervisor/receipts/Q-SUP-002.txt",
+        "docs/requirements/qa-supervisor/receipts/Q-SUP-003.txt",
+        "docs/requirements/qa-supervisor/receipts/Q-SUP-004.txt",
+        "docs/requirements/qa-supervisor/receipts/Q-SUP-005.txt",
+        "docs/requirements/qa-supervisor/receipts/Q-SUP-006.txt",
+        "docs/requirements/qa-supervisor/receipts/Q-SUP-007.txt",
+        "docs/requirements/qa-supervisor/receipts/Q-SUP-008.txt",
+        "docs/requirements/qa-supervisor/receipts/RETENTION-OPTIONS.txt",
+        "docs/requirements/qa-supervisor/registro-skill-asistente.md"
+      ],
+      "bytes": 61191,
+      "file_hashes": {
+        "docs/requirements/qa-supervisor/design-proposals.json": "705ec7f1e39761b6bcb637c3b5b34b3571613391a77b2fdcb3c1eaddb63590ab",
+        "docs/requirements/qa-supervisor/human-question.json": "955e53b7d45f57772f445af25461b95b3b7114f27954faab9b64ddd3e13eccd7",
+        "docs/requirements/qa-supervisor/interview.json": "023bd1d4f558001aa4209d2f84a40dd2e4b932cb5f62367c8df531dc0838908d",
+        "docs/requirements/qa-supervisor/receipts/A-HUMAN-SUP-001.txt": "b0c73373346430919246f6f3b7d6eb8c68677f229cc3a0b8bc0b649456aea5e8",
+        "docs/requirements/qa-supervisor/receipts/A-SUP-001.txt": "c3fa3b52a36af7197406ba78741b8cbbc8bfa990f9f3d0bc8c70e6e47ae069ac",
+        "docs/requirements/qa-supervisor/receipts/A-SUP-002.txt": "4b7998d271eb7a3c675c44c81ebf352005f1350029c1286dd1a79ffd0c92ad31",
+        "docs/requirements/qa-supervisor/receipts/A-SUP-003.txt": "1ccaa73f9bfde4d30d6b93a9326b7d0b5de3db676a700ebe0d5d5ad1e482adeb",
+        "docs/requirements/qa-supervisor/receipts/A-SUP-004.txt": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865",
+        "docs/requirements/qa-supervisor/receipts/A-SUP-005.txt": "63d28c99e113bb5bd3327391a380a7358e1200d9fe5b298b02b0f6ca043267cd",
+        "docs/requirements/qa-supervisor/receipts/A-SUP-006.txt": "56c08a0485aade56f8feefdb2e87d0d68d6447201908bb81f67fd326bef12a24",
+        "docs/requirements/qa-supervisor/receipts/A-SUP-007.txt": "d9fa24fa9785907911512c02d21779e623060f64c902fb95435dd17961b99502",
+        "docs/requirements/qa-supervisor/receipts/A-SUP-008.txt": "da344e1568fe0c2abec317bf626a085756114af5ee15f15c9bce2e4ddbd912a8",
+        "docs/requirements/qa-supervisor/receipts/Q-HUMAN-SUP-001.txt": "6ed2e9f677258f06df0313da5819b9a38aa74e1712765eaeffcd9835122ce1c8",
+        "docs/requirements/qa-supervisor/receipts/Q-SUP-001.txt": "ddb5a0fdf6414921c4539899b619b6dc3a5e89cab558d5bd5fae0762831e547c",
+        "docs/requirements/qa-supervisor/receipts/Q-SUP-002.txt": "d47fe6be8a64e4b075211ec2c958fc439480fac519fe3d64874b96ac8a9088f3",
+        "docs/requirements/qa-supervisor/receipts/Q-SUP-003.txt": "481622acc67f19fe6719d56f57b4b299a802b23f05948b345740c4584b4abac8",
+        "docs/requirements/qa-supervisor/receipts/Q-SUP-004.txt": "7cdd5ed2cbeef54fb4f13c2c5c75cfeb397ff41d00d74e9f7101735461130740",
+        "docs/requirements/qa-supervisor/receipts/Q-SUP-005.txt": "a5070dc2dd44d8b41408ff539ee137a5cf56627acfc5a125875722dd381fce36",
+        "docs/requirements/qa-supervisor/receipts/Q-SUP-006.txt": "65308615c59edd722ffa6280163cb9c4e0897f18d18bff50473d5d17ec5c2f09",
+        "docs/requirements/qa-supervisor/receipts/Q-SUP-007.txt": "c8d402c7ab4deb44561ff36ced82b71e18002e51e62a3b35ee19c3df2eb9f148",
+        "docs/requirements/qa-supervisor/receipts/Q-SUP-008.txt": "14116e6010dc6e46ce2c3801d77d4dfaba256e21494dd9e2ed6bbd2a3eff76b9",
+        "docs/requirements/qa-supervisor/receipts/RETENTION-OPTIONS.txt": "7ced2aa02b84b9440aa42b98e248c68818679bb332a83c777bc779815c9222a9",
+        "docs/requirements/qa-supervisor/registro-skill-asistente.md": "2f8d580c887496755f500885bbe1d43c55bb603fed26bc5fe544fc8958b6fc18"
+      }
+    },
+    {
+      "id": "evidence",
+      "files": [
+        "docs/requirements/qa-supervisor/activation-preflight.json",
+        "docs/requirements/qa-supervisor/receipts/context7-result.json",
+        "docs/requirements/qa-supervisor/receipts/python-resource.txt",
+        "docs/requirements/qa-supervisor/receipts/python-subprocess.txt",
+        "docs/requirements/qa-supervisor/receipts/research-discovery.txt",
+        "docs/requirements/qa-supervisor/receipts/web-result.json",
+        "docs/requirements/qa-supervisor/research.json",
+        "docs/requirements/qa-supervisor/verificacion-borrador.json",
+        "docs/requirements/qa-supervisor/verification/RESULTADO.md",
+        "docs/requirements/qa-supervisor/verification/activation-resumed.json",
+        "docs/requirements/qa-supervisor/verification/activation.json",
+        "docs/requirements/qa-supervisor/verification/canonical-independent.md",
+        "docs/requirements/qa-supervisor/verification/canonical-model-results.json",
+        "docs/requirements/qa-supervisor/verification/canonical-validation.json",
+        "docs/requirements/qa-supervisor/verification/check-canonical-model.py",
+        "docs/requirements/qa-supervisor/verification/check-document-model.py",
+        "docs/requirements/qa-supervisor/verification/check-output-contract.py",
+        "docs/requirements/qa-supervisor/verification/closure-independent.md",
+        "docs/requirements/qa-supervisor/verification/green.json",
+        "docs/requirements/qa-supervisor/verification/independent.md",
+        "docs/requirements/qa-supervisor/verification/interview-validation.json",
+        "docs/requirements/qa-supervisor/verification/model-results.json",
+        "docs/requirements/qa-supervisor/verification/output-contract-results.json",
+        "docs/requirements/qa-supervisor/verification/output-contract-run.log",
+        "docs/requirements/qa-supervisor/verification/red.json"
+      ],
+      "bytes": 73233,
+      "file_hashes": {
+        "docs/requirements/qa-supervisor/activation-preflight.json": "7e3f808222d5e846f34432b358ff18d122c684e17ff557c8e2eb964c721664bb",
+        "docs/requirements/qa-supervisor/receipts/context7-result.json": "9ad769ffd2991c884e2572e25229dac02ce3ae54fdfb08fac7d34a1624a29e0a",
+        "docs/requirements/qa-supervisor/receipts/python-resource.txt": "a412ee80c469c8ed91f1d2b94002afc6e22eb7013451d25c4d093391fdebfaf2",
+        "docs/requirements/qa-supervisor/receipts/python-subprocess.txt": "b57a13ed92cfb044010f4c7a524fe9479f7d3813d3a7723d02ad3ace39351ff1",
+        "docs/requirements/qa-supervisor/receipts/research-discovery.txt": "bbe11febc2e69710601f91810585f7aabbbe79591d5bd3b30d6a3aaf0b1f4fee",
+        "docs/requirements/qa-supervisor/receipts/web-result.json": "70d54dfc85d9d92c959f6dbf8b942f753e0ea4699bc58cc6632820dc9cd50274",
+        "docs/requirements/qa-supervisor/research.json": "8b4b378c5b604fc1a3bf60f72cd0b6b1941131f61ecc108d6948c78622524a7a",
+        "docs/requirements/qa-supervisor/verificacion-borrador.json": "43577eac4b0d5d214c093df195c5ba2f1f2f73ad525f7c28757efd1addeb46ec",
+        "docs/requirements/qa-supervisor/verification/RESULTADO.md": "2c31d18f6994cbca50dfb6b05f241004af430ccbbd85e6a2bfbb116713f88ac3",
+        "docs/requirements/qa-supervisor/verification/activation-resumed.json": "5517d6578615d77f62e17e0215f39a1921d6cd932deecb8cac428fe848efef70",
+        "docs/requirements/qa-supervisor/verification/activation.json": "8d18dc0b12b0ffa3aed3d4ccc7253b1ed43e7e8cad22749fd3916417742878e4",
+        "docs/requirements/qa-supervisor/verification/canonical-independent.md": "eb9d1443736479bb6e78cfe53f231149083854a81afa5c5e2bc770e054e37331",
+        "docs/requirements/qa-supervisor/verification/canonical-model-results.json": "b79429270bb044a45d725c6a2550a498d8d7c85668dbb857b6eb0d4953b16b7d",
+        "docs/requirements/qa-supervisor/verification/canonical-validation.json": "461faad2eb13fb86e19e77cb90d1fb176aded4917a4ac8db450a358af1cb25a5",
+        "docs/requirements/qa-supervisor/verification/check-canonical-model.py": "df5b3d31fc6bc172f28c6f628140dcc2850c8ba74ced04423091dee74ab68270",
+        "docs/requirements/qa-supervisor/verification/check-document-model.py": "9f8231012cc792d99f1ad96a84e35c5732743b16348112a81289d7e5a011044d",
+        "docs/requirements/qa-supervisor/verification/check-output-contract.py": "73f645f2e44e32bb10e88a7578af54524c9b7c9444856727563c6cf7645aa13b",
+        "docs/requirements/qa-supervisor/verification/closure-independent.md": "2131d64c3e2e15b3959dc46090679eadb1ce5c723b6a2f270e4d514bf60eba16",
+        "docs/requirements/qa-supervisor/verification/green.json": "5d173e4131dca92a2c535d052d252dd2004fe36fa56d31234208a2cbae1dfded",
+        "docs/requirements/qa-supervisor/verification/independent.md": "691b970b334a7d08adb97d6d13956c8dfb02a2b076492629fb8efdb6e15e2f38",
+        "docs/requirements/qa-supervisor/verification/interview-validation.json": "68ba7e413af8e9c4b31b02489cf7d0257bcecd4595e58354bc3dcfd453ea25db",
+        "docs/requirements/qa-supervisor/verification/model-results.json": "56648722ef7c040e472ecdb8ca0f46a095619226bd4112334375f38806c866f5",
+        "docs/requirements/qa-supervisor/verification/output-contract-results.json": "fd5af42d72d3b0614fa587c97a83db151b5e6a330a55381aa9548e6f232870ec",
+        "docs/requirements/qa-supervisor/verification/output-contract-run.log": "fd5af42d72d3b0614fa587c97a83db151b5e6a330a55381aa9548e6f232870ec",
+        "docs/requirements/qa-supervisor/verification/red.json": "659ec235e55963dd291af5724ee3b3e43e64b76e0c09c645dff8e344ed3062c5"
+      }
+    },
+    {
+      "id": "canonical",
+      "files": [
+        "docs/requirements/qa-supervisor/prd.json"
+      ],
+      "bytes": 137612,
+      "file_hashes": {
+        "docs/requirements/qa-supervisor/prd.json": "75d88bdf25a7fd7cd50802c19a50e277801339fb21a6d5a30be5b96ffe8af180"
+      }
+    }
+  ],
+  "integration_gate": "All five parts and cross-file correspondence required before any aggregate review claim. A failed or unreviewed part keeps aggregate incomplete."
+}

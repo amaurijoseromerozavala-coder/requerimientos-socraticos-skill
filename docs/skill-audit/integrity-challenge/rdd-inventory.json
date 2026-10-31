@@ -1,0 +1,110 @@
+{
+  "schema": "gentle-ai.review-integration.status/v9",
+  "contract": "gentle-ai.review-integration/v2",
+  "operation": "review.status",
+  "applicability": "unrelated",
+  "action": "start",
+  "replayability": "not_replayable",
+  "target_identity": "sha256:220ddc8bcce0e02d6c860ffc421413c44c05292d425be563b46d0c3063c399be",
+  "projection": {
+    "schema": "gentle-ai.review-integration.projection/v1",
+    "kind": "current-changes",
+    "projection": "workspace",
+    "base_tree": "4b825dc642cb6eb9a060e54bf8d69288fbee4904",
+    "initial_review_tree": "4b825dc642cb6eb9a060e54bf8d69288fbee4904",
+    "current_candidate_tree": "4b825dc642cb6eb9a060e54bf8d69288fbee4904",
+    "paths_digest": "sha256:2286a180488f90f2e97062d500a629bc747716d55a34c2861a8309e1b02589a1",
+    "paths": [],
+    "intended_untracked": [],
+    "intended_untracked_proof": "sha256:b97229718d4c7fe50a8892eb474ae5aa6491697bccb400e3e31dbaca4894d2f3",
+    "initial_snapshot_identity": "sha256:220ddc8bcce0e02d6c860ffc421413c44c05292d425be563b46d0c3063c399be",
+    "current_snapshot_identity": "sha256:220ddc8bcce0e02d6c860ffc421413c44c05292d425be563b46d0c3063c399be"
+  },
+  "eligible_untracked_inventory": "sha256:18e8b83365ae930e8b2576e3d9c3b93f70210ee07c8257b3b4af41e512852d1c",
+  "repair": {
+    "schema": "gentle-ai.review-authority-repair-assessment/v1",
+    "status": "unsupported",
+    "counts": {
+      "lineages": 0,
+      "compact_lineages": 0,
+      "legacy_lineages": 0,
+      "events": 0,
+      "bytes": 0,
+      "eligible_candidates": 0,
+      "unsupported_lineages": 0,
+      "conflicts": 0
+    },
+    "supported_operations": [
+      "review/complete-fix",
+      "review/validate-fix"
+    ],
+    "authorization_schema": "gentle-ai.review-repair-authorization/v1"
+  },
+  "candidates": [],
+  "forecast": {
+    "horizon": "partial",
+    "steps": [
+      {
+        "step": 1,
+        "kind": "collect",
+        "reason_code": "intended_untracked_selection_required",
+        "description": "intended untracked selection required"
+      }
+    ]
+  },
+  "next_transition": {
+    "kind": "collect",
+    "reason_code": "intended_untracked_selection_required",
+    "collect": {
+      "inputs": [
+        {
+          "name": "intended_untracked_selection",
+          "schema": "gentle-ai.review-intended-untracked-selection/v1",
+          "capture_operation": "external.select_intended_untracked",
+          "arguments": [
+            {
+              "name": "target_identity",
+              "value": "sha256:220ddc8bcce0e02d6c860ffc421413c44c05292d425be563b46d0c3063c399be"
+            },
+            {
+              "name": "projection",
+              "value": "workspace"
+            },
+            {
+              "name": "base_tree",
+              "value": "4b825dc642cb6eb9a060e54bf8d69288fbee4904"
+            },
+            {
+              "name": "candidate_tree",
+              "value": "4b825dc642cb6eb9a060e54bf8d69288fbee4904"
+            },
+            {
+              "name": "eligible_paths_json",
+              "value": "[\".codex/AGENTS.md\",\".codex/agents/odd-explorer.toml\",\".codex/agents/odd-verify.toml\",\".codex/agents/odd-worker.toml\",\".codex/config.toml\",\".codex/engram-compact-prompt.md\",\".codex/engram-instructions.md\",\".gitignore\",\"AGENTS.md\",\"Dockerfile\",\"README.md\",\"backups/economy-20261026T112216361201Z/home/agent/.codex/AGENTS.md\",\"backups/economy-20261026T112216361201Z/home/agent/.codex/config.toml\",\"backups/economy-20261026T112216361201Z/home/agent/.gentle-ai/state.json\",\"backups/economy-20261026T112216361201Z/run/codex-environment/codex-home/AGENTS.md\",\"backups/economy-20261026T112216361201Z/run/codex-environment/codex-home/config.toml\",\"backups/economy-20261026T112216361201Z/workspace/replica-gentle-ai/.codex/AGENTS.md\",\"backups/economy-20261026T112216361201Z/workspace/replica-gentle-ai/.codex/config.toml\",\"backups/economy-before/active-AGENTS.md\",\"backups/economy-before/active-config.toml\",\"backups/economy-before/state.json\",\"backups/economy-before/workspace-config.toml\",\"backups/requerimientos-v1-20261026T165542Z/SKILL.md\",\"backups/requerimientos-v1-20261026T165542Z/assets/example.prd.json\",\"backups/requerimientos-v1-20261026T165542Z/assets/prd.schema.json\",\"backups/requerimientos-v1-20261026T165542Z/references/method.md\",\"backups/requerimientos-v1-20261026T165542Z/references/validation.md\",\"backups/requerimientos-v1-20261026T165542Z/references/workflow.md\",\"backups/requerimientos-v1-20261026T165542Z/validation.json\",\"bin/gentle-ai\",\"compose.yaml\",\"configure-economy.py\",\"docs/requirements/qa-inquisidor/PRD.md\",\"docs/requirements/qa-inquisidor/acceptance-cases.json\",\"docs/requirements/qa-inquisidor/environment-target.json\",\"docs/requirements/qa-inquisidor/evidence/document-checker.txt\",\"docs/requirements/qa-inquisidor/evidence/duplicate-id-red.json\",\"docs/requirements/qa-inquisidor/evidence/engram-mirror.json\",\"docs/requirements/qa-inquisidor/evidence/evidence-kind-red.json\",\"docs/requirements/qa-inquisidor/evidence/red-baseline.json\",\"docs/requirements/qa-inquisidor/evidence/report-fixture.json\",\"docs/requirements/qa-inquisidor/evidence/source-register.json\",\"docs/requirements/qa-inquisidor/evidence/validation.stderr\",\"docs/requirements/qa-inquisidor/evidence/validation.stdout\",\"docs/requirements/qa-inquisidor/prd.json\",\"docs/requirements/qa-inquisidor/qa-report.schema.json\",\"docs/requirements/qa-inquisidor/registro-preguntas-respuestas.json\",\"docs/requirements/qa-inquisidor/registro-preguntas-respuestas.md\",\"docs/requirements/qa-inquisidor/registro-skill-asistente.json\",\"docs/requirements/qa-inquisidor/registro-skill-asistente.md\",\"docs/requirements/qa-inquisidor/validation.json\",\"docs/skill-audit/evidence/README.md\",\"docs/skill-audit/evidence/validation-checker.txt\",\"docs/skill-audit/integrity-challenge/ANALISIS.md\",\"docs/skill-audit/integrity-challenge/fixture-permission-debug.stderr\",\"docs/skill-audit/integrity-challenge/guard-tests.stderr\",\"docs/skill-audit/integrity-challenge/guard-tests.stdout\",\"docs/skill-audit/integrity-challenge/interview-tests.stderr\",\"docs/skill-audit/integrity-challenge/interview-tests.stdout\",\"docs/skill-audit/integrity-challenge/qa-comparison.json\",\"docs/skill-audit/integrity-challenge/qa-tree-now.json\",\"docs/skill-audit/integrity-challenge/rdd-final.json\",\"docs/skill-audit/integrity-challenge/rdd-inventory.json\",\"docs/skill-audit/integrity-challenge/rdd-run.json\",\"docs/skill-audit/integrity-challenge/rdd-selected.json\",\"docs/skill-audit/integrity-challenge/rdd-start.json\",\"docs/skill-audit/integrity-challenge/red-baseline.json\",\"docs/skill-audit/qa-inquisidor-prd-review.json\",\"docs/skill-audit/qa-inquisidor-rdd-v1.json\",\"docs/skill-audit/qa-inquisidor-rdd-v2.json\",\"docs/skill-audit/rdd-auth-recovery.json\",\"docs/skill-audit/rdd-receipt.json\",\"docs/skill-audit/requerimientos-repair/RESULTADO.md\",\"docs/skill-audit/requerimientos-repair/acceptance-before.json\",\"docs/skill-audit/requerimientos-repair/config-before/home_agent_.codex.toml\",\"docs/skill-audit/requerimientos-repair/config-before/run_codex-environment_codex-home.toml\",\"docs/skill-audit/requerimientos-repair/config-before/workspace_replica-gentle-ai_.codex.toml\",\"docs/skill-audit/requerimientos-repair/correction-red.stderr\",\"docs/skill-audit/requerimientos-repair/correction-red.stdout\",\"docs/skill-audit/requerimientos-repair/correction-verified.json\",\"docs/skill-audit/requerimientos-repair/engram-mirror.json\",\"docs/skill-audit/requerimientos-repair/followup-red.stderr\",\"docs/skill-audit/requerimientos-repair/followup-red.stdout\",\"docs/skill-audit/requerimientos-repair/legacy-ready-without-interview.json\",\"docs/skill-audit/requerimientos-repair/qa-integrity-after.json\",\"docs/skill-audit/requerimientos-repair/qa-integrity-final.json\",\"docs/skill-audit/requerimientos-repair/qa-paused.json\",\"docs/skill-audit/requerimientos-repair/rdd-final-receipt.json\",\"docs/skill-audit/requerimientos-repair/rdd-repair-base.json\",\"docs/skill-audit/requerimientos-repair/ready-loophole-red.json\",\"docs/skill-audit/requerimientos-repair/red-before.json\",\"docs/skill-audit/requerimientos-repair/smoke/answer-1.txt\",\"docs/skill-audit/requerimientos-repair/smoke/answer-2.txt\",\"docs/skill-audit/requerimientos-repair/smoke/assessment-final.json\",\"docs/skill-audit/requerimientos-repair/smoke/design-proposals-native.json\",\"docs/skill-audit/requerimientos-repair/smoke/design-proposals.json\",\"docs/skill-audit/requerimientos-repair/smoke/design-transport-retry.json\",\"docs/skill-audit/requerimientos-repair/smoke/engram-mirror.json\",\"docs/skill-audit/requerimientos-repair/smoke/events-1.jsonl\",\"docs/skill-audit/requerimientos-repair/smoke/events-2.jsonl\",\"docs/skill-audit/requerimientos-repair/smoke/events-design-interrupted.jsonl\",\"docs/skill-audit/requerimientos-repair/smoke/events-design.jsonl\",\"docs/skill-audit/requerimientos-repair/smoke/events-final.jsonl\",\"docs/skill-audit/requerimientos-repair/smoke/interview.json\",\"docs/skill-audit/requerimientos-repair/smoke/process-1.json\",\"docs/skill-audit/requerimientos-repair/smoke/process-2.json\",\"docs/skill-audit/requerimientos-repair/smoke/process-design-interrupted.json\",\"docs/skill-audit/requerimientos-repair/smoke/process-design.json\",\"docs/skill-audit/requerimientos-repair/smoke/process-final.json\",\"docs/skill-audit/requerimientos-repair/smoke/prompt-1.txt\",\"docs/skill-audit/requerimientos-repair/smoke/prompt-2.txt\",\"docs/skill-audit/requerimientos-repair/smoke/prompt-design-interrupted.txt\",\"docs/skill-audit/requerimientos-repair/smoke/prompt-design.txt\",\"docs/skill-audit/requerimientos-repair/smoke/prompt-final.txt\",\"docs/skill-audit/requerimientos-repair/smoke/propuestas-arquitecto.md\",\"docs/skill-audit/requerimientos-repair/smoke/qa-integrity-after.json\",\"docs/skill-audit/requerimientos-repair/smoke/qa-paused.json\",\"docs/skill-audit/requerimientos-repair/smoke/question-1.json\",\"docs/skill-audit/requerimientos-repair/smoke/question-2.json\",\"docs/skill-audit/requerimientos-repair/smoke/registro-skill-asistente.md\",\"docs/skill-audit/requerimientos-repair/smoke/skill-discovery.json\",\"docs/skill-audit/requerimientos-repair/smoke/skill-improver-read.md\",\"docs/skill-audit/requerimientos-repair/smoke/stderr-1.txt\",\"docs/skill-audit/requerimientos-repair/smoke/stderr-2.txt\",\"docs/skill-audit/requerimientos-repair/smoke/stderr-design-interrupted.txt\",\"docs/skill-audit/requerimientos-repair/smoke/stderr-design.txt\",\"docs/skill-audit/requerimientos-repair/smoke/stderr-final.txt\",\"docs/skill-audit/requerimientos-repair/smoke/tests-green.stderr\",\"docs/skill-audit/requerimientos-repair/smoke/web-receipt.json\",\"docs/skill-audit/requerimientos-repair/tests-fixture-debug.stderr\",\"docs/skill-audit/requerimientos-repair/tests-green.stderr\",\"docs/skill-audit/requerimientos-repair/tests-green.stdout\",\"docs/skill-audit/requerimientos-repair/tests-red.stderr\",\"docs/skill-audit/requerimientos-repair/tests-red.stdout\",\"docs/skill-audit/requerimientos-socraticos.json\",\"downloads/checksums.txt\",\"downloads/gentle-ai_4.2.0_linux_amd64.tar.gz\",\"libexec/gentle-ai-4.2.0\",\"libexec/reviewer-bin/codex\",\"odd/tasks/integrity-challenge.md\",\"odd/tasks/qa-inquisidor-prd.md\",\"odd/tasks/reparar-requerimientos-socraticos.md\",\"odd/tasks/requerimientos-followup.md\",\"odd/tasks/requerimientos-socraticos.md\",\"skills/requerimientos-socraticos/SKILL.md\",\"skills/requerimientos-socraticos/agents/requirements-interrogator.toml\",\"skills/requerimientos-socraticos/assets/design-proposals.schema.json\",\"skills/requerimientos-socraticos/assets/example.prd.json\",\"skills/requerimientos-socraticos/assets/interrogator-packet.schema.json\",\"skills/requerimientos-socraticos/assets/interview.schema.json\",\"skills/requerimientos-socraticos/assets/prd.schema.json\",\"skills/requerimientos-socraticos/references/integrity-boundary.md\",\"skills/requerimientos-socraticos/references/interrogation.md\",\"skills/requerimientos-socraticos/references/method.md\",\"skills/requerimientos-socraticos/references/research-design.md\",\"skills/requerimientos-socraticos/references/validation.md\",\"skills/requerimientos-socraticos/references/workflow.md\",\"skills/requerimientos-socraticos/scripts/requirements_guard.py\",\"skills/requerimientos-socraticos/scripts/validate_interview.py\",\"skills/requerimientos-socraticos/scripts/validate_prd.py\",\"skills/requerimientos-socraticos/tests/test_guard.py\",\"skills/requerimientos-socraticos/tests/test_interview.py\",\"skills/requerimientos-socraticos/validation.json\",\"vendor/install.sh\",\"wsl/.wslconfig\",\"wsl/setup-zram.sh\",\"wsl/wsl.conf\"]"
+            },
+            {
+              "name": "expected_untracked_inventory",
+              "value": "sha256:18e8b83365ae930e8b2576e3d9c3b93f70210ee07c8257b3b4af41e512852d1c"
+            }
+          ],
+          "submission": {
+            "operation_token": "status",
+            "argument_tokens": [
+              "--contract=gentle-ai.review-integration/v2",
+              "--next-transition=true",
+              "--agent=codex",
+              "--projection=workspace",
+              "--intended-untracked-selection={{value}}"
+            ],
+            "value": {
+              "slot": "intended_untracked_selection",
+              "domain": "schema_bound_json",
+              "schema": "gentle-ai.review-intended-untracked-selection/v1",
+              "substitution_location": 4
+            }
+          }
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,42 @@
+test_actual_512_mib_roles_remain_byte_exact (test_role_policy_source.RolePolicySourceTests.test_actual_512_mib_roles_remain_byte_exact) ... ok
+test_all_uses_largest_shared_role_from_both_policies (test_role_policy_source.RolePolicySourceTests.test_all_uses_largest_shared_role_from_both_policies) ... FAIL
+test_git_admission_tracks_changed_policy_roles (test_role_policy_source.RolePolicySourceTests.test_git_admission_tracks_changed_policy_roles) ... FAIL
+test_logic_admission_tracks_changed_policy_roles (test_role_policy_source.RolePolicySourceTests.test_logic_admission_tracks_changed_policy_roles) ... FAIL
+
+======================================================================
+FAIL: test_all_uses_largest_shared_role_from_both_policies (test_role_policy_source.RolePolicySourceTests.test_all_uses_largest_shared_role_from_both_policies)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/replica-gentle-ai/skills/requerimientos-socraticos/tests/test_role_policy_source.py", line 69, in test_all_uses_largest_shared_role_from_both_policies
+    self.assertEqual(report['status'], 'READY_FOR_LIVE_ADMISSION')
+AssertionError: 'INCONCLUSIVE' != 'READY_FOR_LIVE_ADMISSION'
+- INCONCLUSIVE
++ READY_FOR_LIVE_ADMISSION
+
+
+======================================================================
+FAIL: test_git_admission_tracks_changed_policy_roles (test_role_policy_source.RolePolicySourceTests.test_git_admission_tracks_changed_policy_roles)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/replica-gentle-ai/skills/requerimientos-socraticos/tests/test_role_policy_source.py", line 54, in test_git_admission_tracks_changed_policy_roles
+    self.assertEqual(report['status'], 'READY_FOR_LIVE_ADMISSION')
+AssertionError: 'INCONCLUSIVE' != 'READY_FOR_LIVE_ADMISSION'
+- INCONCLUSIVE
++ READY_FOR_LIVE_ADMISSION
+
+
+======================================================================
+FAIL: test_logic_admission_tracks_changed_policy_roles (test_role_policy_source.RolePolicySourceTests.test_logic_admission_tracks_changed_policy_roles)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/replica-gentle-ai/skills/requerimientos-socraticos/tests/test_role_policy_source.py", line 37, in test_logic_admission_tracks_changed_policy_roles
+    self.assertEqual(report['status'], 'READY_FOR_LIVE_ADMISSION')
+AssertionError: 'INCONCLUSIVE' != 'READY_FOR_LIVE_ADMISSION'
+- INCONCLUSIVE
++ READY_FOR_LIVE_ADMISSION
+
+
+----------------------------------------------------------------------
+Ran 4 tests in 0.002s
+
+FAILED (failures=3)

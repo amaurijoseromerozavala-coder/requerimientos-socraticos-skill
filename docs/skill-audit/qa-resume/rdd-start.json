@@ -1,0 +1,38 @@
+{
+  "schema": "gentle-ai.review-integration.consent/v3",
+  "contract": "gentle-ai.review-integration/v2",
+  "operation": "review.start",
+  "action": "consent_required",
+  "agent": "codex",
+  "blocking": true,
+  "target_identity": "sha256:8adeb8f4de0d2848f89f3e32fb4abeb1044b3d6f90260baf560604efc5015434",
+  "projection": "workspace",
+  "risk_level": "medium",
+  "changed_files": 7,
+  "changed_lines": 3413,
+  "headline": "Gentle AI can review this change before you call it done.",
+  "reason": "Review can help detect regressions in these changes.",
+  "value": "Reviewing takes a little longer and makes the result safer.",
+  "risk_evidence": [
+    "this change is not purely passive documentation, so it gets one consolidated review.",
+    "a configuration change in docs/requirements/qa-inquisidor-v2/casos-documentales.json"
+  ],
+  "choices": [
+    {
+      "answer": "granted",
+      "label": "Review this change",
+      "effect": "Reviews only this change; later medium- or high-risk changes ask again, and delivery needs separate approval.",
+      "invocation": "gentle-ai review start --contract gentle-ai.review-integration/v2 --cwd /workspace/replica-gentle-ai --target sha256:8adeb8f4de0d2848f89f3e32fb4abeb1044b3d6f90260baf560604efc5015434 --target-evidence v1:current-changes:workspace:4b825dc642cb6eb9a060e54bf8d69288fbee4904:5898eb29e2bd2e1b4f2a9d4337a5cfd0486379ba:sha256:5338a5b904e8e6b05f97e12c57c82a8435e4ea4e20948dac9f3c036cf15726c4 --projection workspace --agent codex --lineage review-33f93d7166e9dc45 --untracked-scope=select --expected-untracked-inventory=sha256:a0737a0285fc274c5924627c6a1ab30ba041929db2670b440a41d289ac5563d4 --intended-untracked=docs/requirements/qa-inquisidor-v2/PRD.md --intended-untracked=docs/requirements/qa-inquisidor-v2/casos-documentales.json --intended-untracked=docs/requirements/qa-inquisidor-v2/propuesta-prd.json --intended-untracked=docs/requirements/qa-inquisidor-v2/registro-skill-asistente.json --intended-untracked=docs/requirements/qa-inquisidor-v2/registro-skill-asistente.md --intended-untracked=docs/requirements/qa-inquisidor/PRD.md --intended-untracked=docs/requirements/qa-inquisidor/prd.json --consent granted"
+    },
+    {
+      "answer": "declined",
+      "label": "Skip this time",
+      "effect": "Skips only this change; no review record is created, and future reviews stay enabled.",
+      "invocation": "gentle-ai review start --contract gentle-ai.review-integration/v2 --cwd /workspace/replica-gentle-ai --target sha256:8adeb8f4de0d2848f89f3e32fb4abeb1044b3d6f90260baf560604efc5015434 --target-evidence v1:current-changes:workspace:4b825dc642cb6eb9a060e54bf8d69288fbee4904:5898eb29e2bd2e1b4f2a9d4337a5cfd0486379ba:sha256:5338a5b904e8e6b05f97e12c57c82a8435e4ea4e20948dac9f3c036cf15726c4 --projection workspace --agent codex --lineage review-33f93d7166e9dc45 --untracked-scope=select --expected-untracked-inventory=sha256:a0737a0285fc274c5924627c6a1ab30ba041929db2670b440a41d289ac5563d4 --intended-untracked=docs/requirements/qa-inquisidor-v2/PRD.md --intended-untracked=docs/requirements/qa-inquisidor-v2/casos-documentales.json --intended-untracked=docs/requirements/qa-inquisidor-v2/propuesta-prd.json --intended-untracked=docs/requirements/qa-inquisidor-v2/registro-skill-asistente.json --intended-untracked=docs/requirements/qa-inquisidor-v2/registro-skill-asistente.md --intended-untracked=docs/requirements/qa-inquisidor/PRD.md --intended-untracked=docs/requirements/qa-inquisidor/prd.json --consent declined"
+    }
+  ],
+  "off_path": {
+    "note": "To turn reviews off for good, run 'gentle-ai review mode disable'.",
+    "command": "gentle-ai review mode disable"
+  }
+}
