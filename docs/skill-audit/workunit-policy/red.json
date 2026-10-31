@@ -1,0 +1,12 @@
+{
+  "checks": {
+    "project:strict-workunits": false,
+    "WU-ODD": false,
+    "WU-TDD": false,
+    "WU-RDD": false,
+    "WU-BACKUP": false,
+    "WU-NO-SILENT-EXCEPTIONS": false,
+    "WU-CANDIDATE-IDENTITY": false
+  },
+  "result": "FAIL"
+}

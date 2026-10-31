@@ -1,0 +1,62 @@
+{
+  "schema": "gentle-ai.review-last-event-closure/v1",
+  "operation": "review/capture-result",
+  "lineage_id": "review-959ebdd64026f7c8",
+  "state": "approved",
+  "action": "the approved review completed on the last admitted event and awaits its exact acknowledgement",
+  "reviewer_results": [
+    {
+      "lens": "review-reliability",
+      "findings": [],
+      "evidence": [
+        "Inspected all five supplied patches. AGENTS.md:65-87 defines acceptance gates, blocked-check handling, review invalidation after candidate changes, and push failure reporting.",
+        "docs/skill-audit/workunit-policy/red.json and docs/skill-audit/workunit-policy/green.json record marker absence and presence; docs/skill-audit/workunit-policy/negative-controls.json:12 explicitly limits the controls to presence checks. These artifacts do not independently prove execution or semantic compliance.",
+        "Compared the policy with the recorded request and acceptance criteria in odd/tasks/workunit-policy.md:5-12. No concrete reliability regression or contradiction was established within the supplied candidate."
+      ],
+      "result_hash": "sha256:06e4a7264a19c7a38b213602dcafab2ed8d776d5dfc571cf35dc4d916a81ca09"
+    }
+  ],
+  "acknowledgement": {
+    "operation": "review.acknowledge-approved",
+    "command": "gentle-ai review acknowledge-approved --cwd=/workspace/publicacion-proyecto-integrado --lineage=review-959ebdd64026f7c8 --target=sha256:e03c8cb5ac128482e823e31ae8cd5a97875070af8383f4c3a9258c7011e13a03 --expected-revision=sha256:6ae404acf7b0b0b4a382173960455636abb3224bd1317865dd80125f53bfc175 --token=4a06ab3401a37c0a1f13563d5f29d46b567784de1aad6496cfe5aa661a379d6a",
+    "arguments": [
+      {
+        "name": "cwd",
+        "value": "/workspace/publicacion-proyecto-integrado",
+        "token": "--cwd=/workspace/publicacion-proyecto-integrado"
+      },
+      {
+        "name": "lineage",
+        "value": "review-959ebdd64026f7c8",
+        "token": "--lineage=review-959ebdd64026f7c8"
+      },
+      {
+        "name": "target",
+        "value": "sha256:e03c8cb5ac128482e823e31ae8cd5a97875070af8383f4c3a9258c7011e13a03",
+        "token": "--target=sha256:e03c8cb5ac128482e823e31ae8cd5a97875070af8383f4c3a9258c7011e13a03"
+      },
+      {
+        "name": "expected-revision",
+        "value": "sha256:6ae404acf7b0b0b4a382173960455636abb3224bd1317865dd80125f53bfc175",
+        "token": "--expected-revision=sha256:6ae404acf7b0b0b4a382173960455636abb3224bd1317865dd80125f53bfc175"
+      },
+      {
+        "name": "token",
+        "value": "4a06ab3401a37c0a1f13563d5f29d46b567784de1aad6496cfe5aa661a379d6a",
+        "token": "--token=4a06ab3401a37c0a1f13563d5f29d46b567784de1aad6496cfe5aa661a379d6a"
+      }
+    ],
+    "preconditions": [
+      {
+        "name": "state",
+        "value": "approved"
+      }
+    ],
+    "binding": {
+      "lineage_id": "review-959ebdd64026f7c8",
+      "revision": "sha256:6ae404acf7b0b0b4a382173960455636abb3224bd1317865dd80125f53bfc175",
+      "target_identity": "sha256:e03c8cb5ac128482e823e31ae8cd5a97875070af8383f4c3a9258c7011e13a03"
+    }
+  },
+  "store_revision": "sha256:6ae404acf7b0b0b4a382173960455636abb3224bd1317865dd80125f53bfc175"
+}

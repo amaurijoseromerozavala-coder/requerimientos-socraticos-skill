@@ -1,0 +1,14 @@
+{
+  "status": "APPROVED_AND_ACKNOWLEDGED",
+  "candidate": "sha256:e03c8cb5ac128482e823e31ae8cd5a97875070af8383f4c3a9258c7011e13a03",
+  "findings": [],
+  "verified_unchanged_candidate_files": [
+    "AGENTS.md",
+    "odd/tasks/workunit-policy.md",
+    "docs/skill-audit/workunit-policy/red.json",
+    "docs/skill-audit/workunit-policy/green.json",
+    "docs/skill-audit/workunit-policy/negative-controls.json"
+  ],
+  "scope": "Project process policy; structural documentary checks and native static review. No universal execution compliance proven.",
+  "publication": "Ready for authorized push; remote receipt recorded after publication."
+}

@@ -1,0 +1,156 @@
+{
+  "schema": "gentle-ai.review-integration.status/v9",
+  "contract": "gentle-ai.review-integration/v2",
+  "operation": "review.status",
+  "applicability": "unrelated",
+  "action": "start",
+  "replayability": "not_replayable",
+  "target_identity": "sha256:e03c8cb5ac128482e823e31ae8cd5a97875070af8383f4c3a9258c7011e13a03",
+  "projection": {
+    "schema": "gentle-ai.review-integration.projection/v1",
+    "kind": "current-changes",
+    "projection": "workspace",
+    "base_tree": "5c8340dac2f5fa43a7ebfba499e2526ef1ffd4d6",
+    "initial_review_tree": "9966cb21544140a4d2cb99803f5c437fe5fa14e9",
+    "current_candidate_tree": "9966cb21544140a4d2cb99803f5c437fe5fa14e9",
+    "paths_digest": "sha256:50329f78f9e7d4bbb55b7940366e6a501c22ca83275e6f48dafa74836cbd62ed",
+    "paths": [
+      "AGENTS.md",
+      "docs/skill-audit/workunit-policy/green.json",
+      "docs/skill-audit/workunit-policy/negative-controls.json",
+      "docs/skill-audit/workunit-policy/red.json",
+      "odd/tasks/workunit-policy.md"
+    ],
+    "intended_untracked": [
+      "docs/skill-audit/workunit-policy/green.json",
+      "docs/skill-audit/workunit-policy/negative-controls.json",
+      "docs/skill-audit/workunit-policy/red.json",
+      "odd/tasks/workunit-policy.md"
+    ],
+    "intended_untracked_proof": "sha256:c2bd940651785bf723ff5f76d65fe4727d3671d34a4d0da2d20a7ab8ffbb88e7",
+    "initial_snapshot_identity": "sha256:e03c8cb5ac128482e823e31ae8cd5a97875070af8383f4c3a9258c7011e13a03",
+    "current_snapshot_identity": "sha256:e03c8cb5ac128482e823e31ae8cd5a97875070af8383f4c3a9258c7011e13a03"
+  },
+  "eligible_untracked_inventory": "sha256:833410756af6277c757c1fddaaec0be3dbadd24c309f48f9c337764e6b5e4584",
+  "repair": {
+    "schema": "gentle-ai.review-authority-repair-assessment/v1",
+    "status": "unsupported",
+    "counts": {
+      "lineages": 0,
+      "compact_lineages": 0,
+      "legacy_lineages": 0,
+      "events": 0,
+      "bytes": 0,
+      "eligible_candidates": 0,
+      "unsupported_lineages": 0,
+      "conflicts": 0
+    },
+    "supported_operations": [
+      "review/complete-fix",
+      "review/validate-fix"
+    ],
+    "authorization_schema": "gentle-ai.review-repair-authorization/v1"
+  },
+  "candidates": [],
+  "forecast": {
+    "horizon": "partial",
+    "steps": [
+      {
+        "step": 1,
+        "kind": "execute",
+        "reason_code": "fresh_target_ready",
+        "description": "Target is unreviewed and ready for initial review start"
+      }
+    ]
+  },
+  "next_transition": {
+    "kind": "execute",
+    "reason_code": "fresh_target_ready",
+    "execute": {
+      "operation": "review.start",
+      "command": "gentle-ai review start --cwd=/workspace/publicacion-proyecto-integrado --contract=gentle-ai.review-integration/v2 --target=sha256:e03c8cb5ac128482e823e31ae8cd5a97875070af8383f4c3a9258c7011e13a03 --target-evidence=v1:current-changes:workspace:5c8340dac2f5fa43a7ebfba499e2526ef1ffd4d6:9966cb21544140a4d2cb99803f5c437fe5fa14e9:sha256:50329f78f9e7d4bbb55b7940366e6a501c22ca83275e6f48dafa74836cbd62ed --projection=workspace --lineage=review-959ebdd64026f7c8 --agent=codex --consent=relay --untracked-scope=select --expected-untracked-inventory=sha256:833410756af6277c757c1fddaaec0be3dbadd24c309f48f9c337764e6b5e4584 --intended-untracked=docs/skill-audit/workunit-policy/green.json --intended-untracked=docs/skill-audit/workunit-policy/negative-controls.json --intended-untracked=docs/skill-audit/workunit-policy/red.json --intended-untracked=odd/tasks/workunit-policy.md",
+      "arguments": [
+        {
+          "name": "cwd",
+          "value": "/workspace/publicacion-proyecto-integrado",
+          "token": "--cwd=/workspace/publicacion-proyecto-integrado"
+        },
+        {
+          "name": "contract",
+          "value": "gentle-ai.review-integration/v2",
+          "token": "--contract=gentle-ai.review-integration/v2"
+        },
+        {
+          "name": "target",
+          "value": "sha256:e03c8cb5ac128482e823e31ae8cd5a97875070af8383f4c3a9258c7011e13a03",
+          "token": "--target=sha256:e03c8cb5ac128482e823e31ae8cd5a97875070af8383f4c3a9258c7011e13a03"
+        },
+        {
+          "name": "target-evidence",
+          "value": "v1:current-changes:workspace:5c8340dac2f5fa43a7ebfba499e2526ef1ffd4d6:9966cb21544140a4d2cb99803f5c437fe5fa14e9:sha256:50329f78f9e7d4bbb55b7940366e6a501c22ca83275e6f48dafa74836cbd62ed",
+          "token": "--target-evidence=v1:current-changes:workspace:5c8340dac2f5fa43a7ebfba499e2526ef1ffd4d6:9966cb21544140a4d2cb99803f5c437fe5fa14e9:sha256:50329f78f9e7d4bbb55b7940366e6a501c22ca83275e6f48dafa74836cbd62ed"
+        },
+        {
+          "name": "projection",
+          "value": "workspace",
+          "token": "--projection=workspace"
+        },
+        {
+          "name": "lineage",
+          "value": "review-959ebdd64026f7c8",
+          "token": "--lineage=review-959ebdd64026f7c8"
+        },
+        {
+          "name": "agent",
+          "value": "codex",
+          "token": "--agent=codex"
+        },
+        {
+          "name": "consent",
+          "value": "relay",
+          "token": "--consent=relay"
+        },
+        {
+          "name": "untracked-scope",
+          "value": "select",
+          "token": "--untracked-scope=select"
+        },
+        {
+          "name": "expected-untracked-inventory",
+          "value": "sha256:833410756af6277c757c1fddaaec0be3dbadd24c309f48f9c337764e6b5e4584",
+          "token": "--expected-untracked-inventory=sha256:833410756af6277c757c1fddaaec0be3dbadd24c309f48f9c337764e6b5e4584"
+        },
+        {
+          "name": "intended-untracked",
+          "value": "docs/skill-audit/workunit-policy/green.json",
+          "token": "--intended-untracked=docs/skill-audit/workunit-policy/green.json"
+        },
+        {
+          "name": "intended-untracked",
+          "value": "docs/skill-audit/workunit-policy/negative-controls.json",
+          "token": "--intended-untracked=docs/skill-audit/workunit-policy/negative-controls.json"
+        },
+        {
+          "name": "intended-untracked",
+          "value": "docs/skill-audit/workunit-policy/red.json",
+          "token": "--intended-untracked=docs/skill-audit/workunit-policy/red.json"
+        },
+        {
+          "name": "intended-untracked",
+          "value": "odd/tasks/workunit-policy.md",
+          "token": "--intended-untracked=odd/tasks/workunit-policy.md"
+        }
+      ],
+      "preconditions": [
+        {
+          "name": "target_identity",
+          "value": "sha256:e03c8cb5ac128482e823e31ae8cd5a97875070af8383f4c3a9258c7011e13a03"
+        }
+      ],
+      "binding": {
+        "lineage_id": "review-959ebdd64026f7c8",
+        "target_identity": "sha256:e03c8cb5ac128482e823e31ae8cd5a97875070af8383f4c3a9258c7011e13a03"
+      }
+    }
+  }
+}

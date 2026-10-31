@@ -1,0 +1,12 @@
+{
+  "mutations_detected": {
+    "project:strict-workunits": true,
+    "WU-ODD": true,
+    "WU-TDD": true,
+    "WU-RDD": true,
+    "WU-BACKUP": true,
+    "WU-NO-SILENT-EXCEPTIONS": true,
+    "WU-CANDIDATE-IDENTITY": true
+  },
+  "scope": "Presence only; semantic review required"
+}

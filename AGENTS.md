@@ -53,3 +53,42 @@ Ensayos autorizados solo dentro de alcance y límites seguros establecidos, con
 parada y limpieza; no saturar infraestructura compartida. Autorización de ensayos
 no implica CI, instalación de QA ni producción. No exponer credenciales.
 <!-- /project:response-and-cloud-compliance -->
+
+<!-- project:strict-workunits -->
+## Unidades de trabajo: ODD, TDD y RDD obligatorios
+
+Instrucción permanente del propietario: aplicar ODD/TDD/RDD estricto a todo el
+proyecto, incluso al cambio más pequeño, y respaldar cada unidad terminada en
+GitHub únicamente después de su RDD. No se requiere repetir la autorización de
+publicación para cada unidad que cumpla estos gates; los consentimientos que
+exija el runtime de revisión se solicitan para el candidato correspondiente.
+
+- **WU-ODD:** antes de editar, registrar objetivo, alcance, criterios de aceptación
+  y tareas en `odd/tasks/`. Mantener trazabilidad hacia la solicitud humana.
+- **WU-TDD:** establecer un oráculo pertinente, ejecutar y conservar RED antes de
+  corregir, observar GREEN y comprobar regresiones afectadas. Para documentos,
+  usar verificaciones de contrato y controles negativos. No inventar RED, no
+  sustituir evidencia semántica por conteos de tests. Si no puede ejecutarse una
+  comprobación necesaria, declarar bloqueo y no cerrar la unidad.
+- **WU-RDD:** revisar el candidato exacto mediante Gentle AI; conservar hallazgos,
+  alcance y recibo aprobado/reconocido. RDD ausente, pendiente, rechazado o sin
+  consentimiento bloquea el cierre y la publicación. Cambios posteriores en el
+  candidato invalidan su aplicabilidad y requieren nueva revisión.
+- **WU-BACKUP:** después del cierre RDD, verificar identidad de los archivos,
+  crear commit de la unidad y sus evidencias asociadas y hacer push normal al
+  repositorio autorizado. Verificar el SHA remoto y entregar enlace. Si falla el
+  push, declarar respaldo pendiente. No force-push, CI, despliegue ni cambios de
+  permisos por inferencia; preservar historial y excluir secretos/estado privado.
+- **WU-CANDIDATE-IDENTITY:** distinguir contenido revisado de recibos y logs que
+  produce la revisión/publicación. Esos registros posteriores deben apuntar al
+  candidato o commit exacto, no modificar sus archivos ni presentarse como
+  contenido ya revisado. Un cambio sustantivo, incluso documental, es otra unidad;
+  el recibo no se usa para otorgarse aprobación a sí mismo.
+- **WU-NO-SILENT-EXCEPTIONS:** ninguna excepción por tamaño, conveniencia o coste.
+  No desactivar gates ni sustituir aprobación por silencio. Si un requisito del
+  flujo no se puede cumplir, registrar el bloqueo y comunicarlo al propietario.
+
+La aprobación RDD y el respaldo no acreditan calibración física, implementación
+pendiente ni autorización de producción. Estas obligaciones de proceso no cambian
+las políticas de revocación, presupuestos o alcance funcional ya confirmadas.
+<!-- /project:strict-workunits -->

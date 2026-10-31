@@ -1,0 +1,110 @@
+{
+  "schema": "gentle-ai.review-integration.start/v4",
+  "contract": "gentle-ai.review-integration/v2",
+  "operation": "review.start",
+  "action": "created",
+  "lenses_required": true,
+  "lineage_id": "review-959ebdd64026f7c8",
+  "state": "reviewing",
+  "risk_level": "medium",
+  "selected_lenses": [
+    "review-reliability"
+  ],
+  "projection": "workspace",
+  "base_tree": "5c8340dac2f5fa43a7ebfba499e2526ef1ffd4d6",
+  "candidate_tree": "9966cb21544140a4d2cb99803f5c437fe5fa14e9",
+  "changed_files": 5,
+  "changed_lines": 96,
+  "correction_budget": 48,
+  "risk_reasons": [
+    {
+      "code": "executable_change",
+      "path": "AGENTS.md"
+    }
+  ],
+  "artifact_subjects": [
+    {
+      "schema": "gentle-ai.review-artifact-subject/v2",
+      "subject_hash": "sha256:a0e7e2ffc36350518e721b99791fb4c5b198549d6bd0ffb6ae2783fba7facd20",
+      "lineage_id": "review-959ebdd64026f7c8",
+      "authority_revision": "sha256:9fb7640d79e03ccf88d443ac64c3b991ac33707032fd0e9fa3d9b07daf7d65f5",
+      "target_identity": "sha256:e03c8cb5ac128482e823e31ae8cd5a97875070af8383f4c3a9258c7011e13a03",
+      "base_tree": "5c8340dac2f5fa43a7ebfba499e2526ef1ffd4d6",
+      "candidate_tree": "9966cb21544140a4d2cb99803f5c437fe5fa14e9",
+      "changed_path_manifest_sha256": "sha256:34e9643ea7310c0a988284b5b8b85eb8a87b087788726bf2f6153356be6617d2",
+      "lens": "review-reliability",
+      "selected_order": 0
+    }
+  ],
+  "changed_path_manifest": [
+    {"path":"AGENTS.md","status":"M","old_mode":"100644","new_mode":"100644","deleted":false,"type_changed":false,"mode_only":false,"intended_untracked":false},
+    {"path":"docs/skill-audit/workunit-policy/green.json","status":"A","old_mode":"000000","new_mode":"100644","deleted":false,"type_changed":false,"mode_only":false,"intended_untracked":true},
+    {"path":"docs/skill-audit/workunit-policy/negative-controls.json","status":"A","old_mode":"000000","new_mode":"100644","deleted":false,"type_changed":false,"mode_only":false,"intended_untracked":true},
+    {"path":"docs/skill-audit/workunit-policy/red.json","status":"A","old_mode":"000000","new_mode":"100644","deleted":false,"type_changed":false,"mode_only":false,"intended_untracked":true},
+    {"path":"odd/tasks/workunit-policy.md","status":"A","old_mode":"000000","new_mode":"100644","deleted":false,"type_changed":false,"mode_only":false,"intended_untracked":true}
+  ],
+  "repository_context": {
+    "capability": "review.opaque_repository_context",
+    "handle": "rctx2_419d9c5ed8369f5cdb478671c74cb256587554cfcbecd1ee5ce78edff4496d1d",
+    "revision": "sha256:9fb7640d79e03ccf88d443ac64c3b991ac33707032fd0e9fa3d9b07daf7d65f5",
+    "target_identity": "sha256:e03c8cb5ac128482e823e31ae8cd5a97875070af8383f4c3a9258c7011e13a03"
+  },
+  "next_transition": {
+    "kind": "execute",
+    "reason_code": "review_status_required",
+    "execute": {
+      "operation": "review.status",
+      "command": "gentle-ai review status --contract=gentle-ai.review-integration/v2 --next-transition=true --lineage=review-959ebdd64026f7c8 --repository-context=rctx2_419d9c5ed8369f5cdb478671c74cb256587554cfcbecd1ee5ce78edff4496d1d --agent=codex --projection=workspace",
+      "arguments": [
+        {
+          "name": "contract",
+          "value": "gentle-ai.review-integration/v2",
+          "token": "--contract=gentle-ai.review-integration/v2"
+        },
+        {
+          "name": "next-transition",
+          "value": "true",
+          "token": "--next-transition=true"
+        },
+        {
+          "name": "lineage",
+          "value": "review-959ebdd64026f7c8",
+          "token": "--lineage=review-959ebdd64026f7c8"
+        },
+        {
+          "name": "repository-context",
+          "value": "rctx2_419d9c5ed8369f5cdb478671c74cb256587554cfcbecd1ee5ce78edff4496d1d",
+          "token": "--repository-context=rctx2_419d9c5ed8369f5cdb478671c74cb256587554cfcbecd1ee5ce78edff4496d1d"
+        },
+        {
+          "name": "agent",
+          "value": "codex",
+          "token": "--agent=codex"
+        },
+        {
+          "name": "projection",
+          "value": "workspace",
+          "token": "--projection=workspace"
+        }
+      ],
+      "selector_arguments": [
+        {
+          "name": "projection",
+          "value": "workspace",
+          "token": "--projection=workspace"
+        }
+      ],
+      "preconditions": [
+        {
+          "name": "state",
+          "value": "reviewing"
+        }
+      ],
+      "binding": {
+        "lineage_id": "review-959ebdd64026f7c8",
+        "revision": "sha256:9fb7640d79e03ccf88d443ac64c3b991ac33707032fd0e9fa3d9b07daf7d65f5",
+        "target_identity": "sha256:e03c8cb5ac128482e823e31ae8cd5a97875070af8383f4c3a9258c7011e13a03"
+      }
+    }
+  }
+}
