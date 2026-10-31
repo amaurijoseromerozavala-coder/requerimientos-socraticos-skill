@@ -1,0 +1,13 @@
+test_external_signal_not_classified_as_timeout_or_oom (test_process_core.ProcessTests.test_external_signal_not_classified_as_timeout_or_oom) ... ok
+test_ignored_term_escalates_and_reaps (test_process_core.ProcessTests.test_ignored_term_escalates_and_reaps) ... ok
+test_invalid_limits_no_launch (test_process_core.ProcessTests.test_invalid_limits_no_launch) ... ok
+test_missing_executable (test_process_core.ProcessTests.test_missing_executable) ... ok
+test_normal_and_resource_limit (test_process_core.ProcessTests.test_normal_and_resource_limit) ... ok
+test_output_cap (test_process_core.ProcessTests.test_output_cap) ... ok
+test_readme_current_state (test_process_core.ProcessTests.test_readme_current_state) ... ok
+test_uncertain_wait_blocks_next_run (test_process_core.ProcessTests.test_uncertain_wait_blocks_next_run) ... ok
+
+----------------------------------------------------------------------
+Ran 8 tests in 0.843s
+
+OK

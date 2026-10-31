@@ -1,0 +1,30 @@
+{
+  "status": "APPROVED_AND_ACKNOWLEDGED",
+  "candidate": "sha256:3f1984b7e8b3788e07dbf6304408cba8fe1c35684b035e79221c8a43d07df3b7",
+  "verified_candidate_files": [
+    "README.md",
+    "docs/skill-audit/supervisor-process-core/RESULTADO.json",
+    "docs/skill-audit/supervisor-process-core/RESULTADO.md",
+    "docs/skill-audit/supervisor-process-core/final-green.stderr",
+    "docs/skill-audit/supervisor-process-core/final-green.stdout",
+    "docs/skill-audit/supervisor-process-core/independent-review.md",
+    "docs/skill-audit/supervisor-process-core/readme-red.txt",
+    "docs/skill-audit/supervisor-process-core/red.stderr",
+    "docs/skill-audit/supervisor-process-core/review-red.stderr",
+    "odd/tasks/supervisor-process-core.md",
+    "supervisor/_child_entry.py",
+    "supervisor/process_core.py",
+    "supervisor/tests/test_process_core.py"
+  ],
+  "native_review": "STATIC_PATCH_REVIEW; tests not rerun by native reviewer",
+  "tests": "10 locally executed tests passed; real and injected cases distinguished in logs",
+  "advisories": [
+    {
+      "id": "R4-1",
+      "status": "OPEN_FOLLOWUP_NONBLOCKING",
+      "description": "Drain stdout/stderr during termination and bounded reaping to preserve shutdown diagnostics and avoid pipe backpressure."
+    }
+  ],
+  "scope": "Direct-child Linux lifecycle core only; integrated supervisor still incomplete",
+  "hardware_calibration": "NOT_RUN"
+}
