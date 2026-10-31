@@ -1,0 +1,38 @@
+test_discard_excess_without_blocking_shutdown (test_shutdown_capture.ShutdownCaptureTests.test_discard_excess_without_blocking_shutdown) ... FAIL
+test_shutdown_diagnostics_both_channels (test_shutdown_capture.ShutdownCaptureTests.test_shutdown_diagnostics_both_channels) ... FAIL
+test_shutdown_larger_than_pipe_capacity (test_shutdown_capture.ShutdownCaptureTests.test_shutdown_larger_than_pipe_capacity) ... FAIL
+
+======================================================================
+FAIL: test_discard_excess_without_blocking_shutdown (test_shutdown_capture.ShutdownCaptureTests.test_discard_excess_without_blocking_shutdown)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/publicacion-proyecto-integrado/supervisor/tests/test_shutdown_capture.py", line 45, in test_discard_excess_without_blocking_shutdown
+    r=self.run_shutdown(200000,200000,stdout_bytes=128,stderr_bytes=128)
+      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/publicacion-proyecto-integrado/supervisor/tests/test_shutdown_capture.py", line 26, in run_shutdown
+    self.assertEqual(result['returncode'],0)
+AssertionError: -9 != 0
+
+======================================================================
+FAIL: test_shutdown_diagnostics_both_channels (test_shutdown_capture.ShutdownCaptureTests.test_shutdown_diagnostics_both_channels)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/publicacion-proyecto-integrado/supervisor/tests/test_shutdown_capture.py", line 33, in test_shutdown_diagnostics_both_channels
+    self.assertEqual(r['stdout'],b'READY\n'+b'O'*64)
+AssertionError: b'READY\n' != b'READY\nOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO'
+
+======================================================================
+FAIL: test_shutdown_larger_than_pipe_capacity (test_shutdown_capture.ShutdownCaptureTests.test_shutdown_larger_than_pipe_capacity)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/publicacion-proyecto-integrado/supervisor/tests/test_shutdown_capture.py", line 39, in test_shutdown_larger_than_pipe_capacity
+    r=self.run_shutdown(200000,50000)
+      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/publicacion-proyecto-integrado/supervisor/tests/test_shutdown_capture.py", line 26, in run_shutdown
+    self.assertEqual(result['returncode'],0)
+AssertionError: -9 != 0
+
+----------------------------------------------------------------------
+Ran 3 tests in 3.209s
+
+FAILED (failures=3)

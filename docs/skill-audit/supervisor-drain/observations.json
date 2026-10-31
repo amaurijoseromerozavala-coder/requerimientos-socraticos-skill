@@ -1,0 +1,291 @@
+{
+  "source": "final-green.stdout",
+  "source_sha256": "4788991fbb6f022f8099e710c4a2abc0f4836d05dba40da5863f6e4fd2b05359",
+  "transformation": "Hex streams replaced by retained byte counts and SHA256; all other envelope fields retained. Raw log preserved alongside, not part of selected native review inputs.",
+  "observations": [
+    {
+      "status": "BUSY",
+      "launched": false
+    },
+    {
+      "status": "SIGNALED",
+      "launched": true,
+      "pid": 1803,
+      "returncode": -9,
+      "cleanup": "CONFIRMED",
+      "stop_reason": null,
+      "signal_cause": "NOT_DETERMINED",
+      "signals_requested": [],
+      "diagnostic": null,
+      "capture_complete": true,
+      "capture_truncated": {
+        "stdout": false,
+        "stderr": false
+      },
+      "elapsed_seconds": 0.0005012709998482023,
+      "requested_address_space_bytes": 268435456,
+      "scope": "DIRECT_CHILD_ONLY_NO_DURABLE_RECOVERY",
+      "stdout_retained": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr_retained": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "status": "STOPPED",
+      "launched": true,
+      "pid": 1804,
+      "returncode": -9,
+      "cleanup": "CONFIRMED",
+      "stop_reason": "WALL_DEADLINE",
+      "signal_cause": "NOT_DETERMINED",
+      "signals_requested": [
+        "SIGTERM",
+        "SIGKILL"
+      ],
+      "diagnostic": null,
+      "capture_complete": true,
+      "capture_truncated": {
+        "stdout": false,
+        "stderr": false
+      },
+      "elapsed_seconds": 0.6063309970004411,
+      "requested_address_space_bytes": 268435456,
+      "scope": "DIRECT_CHILD_ONLY_NO_DURABLE_RECOVERY",
+      "stdout_retained": {
+        "bytes": 6,
+        "sha256": "ed1a545bb85e55816bbf9566b028b2a0bc456b88f49f6f266c0401048824194b"
+      },
+      "stderr_retained": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "status": "INFRA_LOCK",
+      "launched": false,
+      "cleanup": "UNCONFIRMED"
+    },
+    {
+      "status": "INFRA_LOCK",
+      "launched": false,
+      "cleanup": "UNCONFIRMED"
+    },
+    {
+      "status": "EXITED",
+      "launched": true,
+      "pid": 1807,
+      "returncode": 0,
+      "cleanup": "CONFIRMED",
+      "stop_reason": null,
+      "signal_cause": "NOT_DETERMINED",
+      "signals_requested": [],
+      "diagnostic": null,
+      "capture_complete": true,
+      "capture_truncated": {
+        "stdout": false,
+        "stderr": false
+      },
+      "elapsed_seconds": 0.017889228999592888,
+      "requested_address_space_bytes": 268435456,
+      "scope": "DIRECT_CHILD_ONLY_NO_DURABLE_RECOVERY",
+      "stdout_retained": {
+        "bytes": 10,
+        "sha256": "a4e2a1c28ab6c77b49f903f37526602e32e9495ee3719519baa8dcc66900bce5"
+      },
+      "stderr_retained": {
+        "bytes": 4,
+        "sha256": "2ccde4875ec595757efdf23d7b1336fcd69cf0fb869310b12a0d219c52817b20"
+      }
+    },
+    {
+      "status": "STOPPED",
+      "launched": true,
+      "pid": 1808,
+      "returncode": -15,
+      "cleanup": "CONFIRMED",
+      "stop_reason": "OUTPUT_LIMIT",
+      "signal_cause": "NOT_DETERMINED",
+      "signals_requested": [
+        "SIGTERM"
+      ],
+      "diagnostic": null,
+      "capture_complete": true,
+      "capture_truncated": {
+        "stdout": true,
+        "stderr": false
+      },
+      "elapsed_seconds": 0.020582564000505954,
+      "requested_address_space_bytes": 268435456,
+      "scope": "DIRECT_CHILD_ONLY_NO_DURABLE_RECOVERY",
+      "stdout_retained": {
+        "bytes": 128,
+        "sha256": "24da1b81d0b16df6428eee73c69fcb2a93c76bc6df706f0c6670fe6bfe800464"
+      },
+      "stderr_retained": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "status": "INFRA_LOCK",
+      "launched": false,
+      "cleanup": "UNCONFIRMED"
+    },
+    {
+      "status": "INFRA_LOCK",
+      "launched": true,
+      "pid": 1810,
+      "returncode": null,
+      "cleanup": "UNCONFIRMED",
+      "stop_reason": "WALL_DEADLINE",
+      "signal_cause": "NOT_DETERMINED",
+      "signals_requested": [
+        "SIGTERM",
+        "SIGKILL"
+      ],
+      "diagnostic": "OSError",
+      "capture_complete": false,
+      "capture_truncated": {
+        "stdout": false,
+        "stderr": false
+      },
+      "elapsed_seconds": 0.2011348830001225,
+      "requested_address_space_bytes": 268435456,
+      "scope": "DIRECT_CHILD_ONLY_NO_DURABLE_RECOVERY",
+      "stdout_retained": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr_retained": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "status": "INFRA_LOCK",
+      "launched": false,
+      "cleanup": "UNCONFIRMED"
+    },
+    {
+      "status": "STOPPED",
+      "launched": true,
+      "pid": 1811,
+      "returncode": -9,
+      "cleanup": "CONFIRMED",
+      "stop_reason": "WALL_DEADLINE",
+      "signal_cause": "NOT_DETERMINED",
+      "signals_requested": [
+        "SIGTERM",
+        "SIGKILL"
+      ],
+      "diagnostic": null,
+      "capture_complete": true,
+      "capture_truncated": {
+        "stdout": false,
+        "stderr": true
+      },
+      "elapsed_seconds": 0.5576646620002066,
+      "requested_address_space_bytes": 268435456,
+      "scope": "DIRECT_CHILD_ONLY_NO_DURABLE_RECOVERY",
+      "stdout_retained": {
+        "bytes": 6,
+        "sha256": "3dfa3fb239f56c778a1e9b33eb31328349edd155a95806dac4378904e88527e5"
+      },
+      "stderr_retained": {
+        "bytes": 128,
+        "sha256": "997f6a2fc44f1400e9f64d7eac11fe99e21f4b7a3fc2ff3ec95c2ef016abb9e5"
+      }
+    },
+    {
+      "status": "STOPPED",
+      "launched": true,
+      "pid": 1812,
+      "returncode": 0,
+      "cleanup": "CONFIRMED",
+      "stop_reason": "WALL_DEADLINE",
+      "signal_cause": "NOT_DETERMINED",
+      "signals_requested": [
+        "SIGTERM"
+      ],
+      "diagnostic": null,
+      "capture_complete": true,
+      "capture_truncated": {
+        "stdout": true,
+        "stderr": true
+      },
+      "elapsed_seconds": 0.4088715460002277,
+      "requested_address_space_bytes": 268435456,
+      "scope": "DIRECT_CHILD_ONLY_NO_DURABLE_RECOVERY",
+      "stdout_retained": {
+        "bytes": 128,
+        "sha256": "cd890e2481c0493ee8bdcd8f8a332647517573b364cd73573ac88f7cc469db40"
+      },
+      "stderr_retained": {
+        "bytes": 128,
+        "sha256": "997f6a2fc44f1400e9f64d7eac11fe99e21f4b7a3fc2ff3ec95c2ef016abb9e5"
+      }
+    },
+    {
+      "status": "STOPPED",
+      "launched": true,
+      "pid": 1813,
+      "returncode": 0,
+      "cleanup": "CONFIRMED",
+      "stop_reason": "WALL_DEADLINE",
+      "signal_cause": "NOT_DETERMINED",
+      "signals_requested": [
+        "SIGTERM"
+      ],
+      "diagnostic": null,
+      "capture_complete": true,
+      "capture_truncated": {
+        "stdout": false,
+        "stderr": false
+      },
+      "elapsed_seconds": 0.4080723629995191,
+      "requested_address_space_bytes": 268435456,
+      "scope": "DIRECT_CHILD_ONLY_NO_DURABLE_RECOVERY",
+      "stdout_retained": {
+        "bytes": 70,
+        "sha256": "60e155d15b73859586bb94b4ff1cbcaa7ec074d08c6d0d3c03147481bd92b7d9"
+      },
+      "stderr_retained": {
+        "bytes": 64,
+        "sha256": "b7c30af04cbc5be8a5c7120c3f15e25c6823404a1da36b9baf30591679cb4736"
+      }
+    },
+    {
+      "status": "STOPPED",
+      "launched": true,
+      "pid": 1814,
+      "returncode": 0,
+      "cleanup": "CONFIRMED",
+      "stop_reason": "WALL_DEADLINE",
+      "signal_cause": "NOT_DETERMINED",
+      "signals_requested": [
+        "SIGTERM"
+      ],
+      "diagnostic": null,
+      "capture_complete": true,
+      "capture_truncated": {
+        "stdout": false,
+        "stderr": false
+      },
+      "elapsed_seconds": 0.40858675300023606,
+      "requested_address_space_bytes": 268435456,
+      "scope": "DIRECT_CHILD_ONLY_NO_DURABLE_RECOVERY",
+      "stdout_retained": {
+        "bytes": 200006,
+        "sha256": "947d2ccd5e6d31970dd7c463d3f9832f9201eebfb53ee499b602b089518c3c98"
+      },
+      "stderr_retained": {
+        "bytes": 50000,
+        "sha256": "fe16dd5659414cddccec8bbc2b8bf4338f739c9a7144cdc3be5219ee3e549361"
+      }
+    }
+  ]
+}

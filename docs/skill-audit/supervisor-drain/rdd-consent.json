@@ -1,0 +1,37 @@
+{
+  "schema": "gentle-ai.review-integration.consent/v3",
+  "contract": "gentle-ai.review-integration/v2",
+  "operation": "review.start",
+  "action": "consent_required",
+  "agent": "codex",
+  "blocking": true,
+  "target_identity": "sha256:4683b55e412f2f1a6978acc8e26e2a548817db4121bc1c1d7b123dcee1a5a173",
+  "projection": "workspace",
+  "risk_level": "high",
+  "changed_files": 7,
+  "changed_lines": 554,
+  "headline": "Gentle AI can review this change before you call it done.",
+  "reason": "Review can help detect execution issues in these changes.",
+  "value": "Reviewing takes a little longer and makes the result safer.",
+  "risk_evidence": [
+    "code that starts other processes in supervisor/process_core.py"
+  ],
+  "choices": [
+    {
+      "answer": "granted",
+      "label": "Review this change",
+      "effect": "Reviews only this change; later medium- or high-risk changes ask again, and delivery needs separate approval.",
+      "invocation": "gentle-ai review start --contract gentle-ai.review-integration/v2 --cwd /workspace/publicacion-proyecto-integrado --target sha256:4683b55e412f2f1a6978acc8e26e2a548817db4121bc1c1d7b123dcee1a5a173 --target-evidence v1:current-changes:workspace:a0711181b7353754dac9f7922b1832ff1004d263:aed600d77413f6451a6068a25384df48d3fcbae6:sha256:9a2dc7076d76e28420e6765501ed7a1cc6178444b8c985bbd09753c7c507eec6 --projection workspace --agent codex --lineage review-7f20158690dc0591 --untracked-scope=select --expected-untracked-inventory=sha256:55de18109789f78cc69b0c4341b8ace1e4f134b81dcda50d3562a86c5029bf8e --intended-untracked=docs/skill-audit/supervisor-drain/RESULTADO.md --intended-untracked=docs/skill-audit/supervisor-drain/final-green.stderr --intended-untracked=docs/skill-audit/supervisor-drain/observations.json --intended-untracked=docs/skill-audit/supervisor-drain/red.stderr --intended-untracked=odd/tasks/supervisor-drain.md --intended-untracked=supervisor/tests/test_shutdown_capture.py --lenses review-resilience,review-reliability --lenses-reason 'R4-1: bounded shutdown pipe draining, retained limits and fixed deadlines; raw local logs retained with derived stream hashes.' --consent granted"
+    },
+    {
+      "answer": "declined",
+      "label": "Skip this time",
+      "effect": "Skips only this change; no review record is created, and future reviews stay enabled.",
+      "invocation": "gentle-ai review start --contract gentle-ai.review-integration/v2 --cwd /workspace/publicacion-proyecto-integrado --target sha256:4683b55e412f2f1a6978acc8e26e2a548817db4121bc1c1d7b123dcee1a5a173 --target-evidence v1:current-changes:workspace:a0711181b7353754dac9f7922b1832ff1004d263:aed600d77413f6451a6068a25384df48d3fcbae6:sha256:9a2dc7076d76e28420e6765501ed7a1cc6178444b8c985bbd09753c7c507eec6 --projection workspace --agent codex --lineage review-7f20158690dc0591 --untracked-scope=select --expected-untracked-inventory=sha256:55de18109789f78cc69b0c4341b8ace1e4f134b81dcda50d3562a86c5029bf8e --intended-untracked=docs/skill-audit/supervisor-drain/RESULTADO.md --intended-untracked=docs/skill-audit/supervisor-drain/final-green.stderr --intended-untracked=docs/skill-audit/supervisor-drain/observations.json --intended-untracked=docs/skill-audit/supervisor-drain/red.stderr --intended-untracked=odd/tasks/supervisor-drain.md --intended-untracked=supervisor/tests/test_shutdown_capture.py --lenses review-resilience,review-reliability --lenses-reason 'R4-1: bounded shutdown pipe draining, retained limits and fixed deadlines; raw local logs retained with derived stream hashes.' --consent declined"
+    }
+  ],
+  "off_path": {
+    "note": "To turn reviews off for good, run 'gentle-ai review mode disable'.",
+    "command": "gentle-ai review mode disable"
+  }
+}
