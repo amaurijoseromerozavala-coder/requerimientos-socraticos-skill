@@ -1,0 +1,21 @@
+test_process_core (unittest.loader._FailedTest.test_process_core) ... ERROR
+
+======================================================================
+ERROR: test_process_core (unittest.loader._FailedTest.test_process_core)
+----------------------------------------------------------------------
+ImportError: Failed to import test module: test_process_core
+Traceback (most recent call last):
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/unittest/loader.py", line 396, in _find_test_path
+    module = self._get_module_from_name(name)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/unittest/loader.py", line 339, in _get_module_from_name
+    __import__(name)
+  File "/workspace/publicacion-proyecto-integrado/supervisor/tests/test_process_core.py", line 16, in <module>
+    from supervisor.process_core import ProcessSupervisor, Limits
+ModuleNotFoundError: No module named 'supervisor.process_core'
+
+
+----------------------------------------------------------------------
+Ran 1 test in 0.000s
+
+FAILED (errors=1)

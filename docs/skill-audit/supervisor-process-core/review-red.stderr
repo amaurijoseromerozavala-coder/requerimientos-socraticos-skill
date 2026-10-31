@@ -1,0 +1,38 @@
+test_external_signal_not_classified_as_timeout_or_oom (test_process_core.ProcessTests.test_external_signal_not_classified_as_timeout_or_oom) ... ok
+test_ignored_term_escalates_and_reaps (test_process_core.ProcessTests.test_ignored_term_escalates_and_reaps) ... ok
+test_interrupted_cleanup_latches_lock (test_process_core.ProcessTests.test_interrupted_cleanup_latches_lock) ... 
+  test_interrupted_cleanup_latches_lock (test_process_core.ProcessTests.test_interrupted_cleanup_latches_lock) (interruption='KeyboardInterrupt') ... FAIL
+  test_interrupted_cleanup_latches_lock (test_process_core.ProcessTests.test_interrupted_cleanup_latches_lock) (interruption='SystemExit') ... FAIL
+test_invalid_limits_no_launch (test_process_core.ProcessTests.test_invalid_limits_no_launch) ... ok
+test_missing_executable (test_process_core.ProcessTests.test_missing_executable) ... ok
+test_normal_and_resource_limit (test_process_core.ProcessTests.test_normal_and_resource_limit) ... ok
+test_output_cap (test_process_core.ProcessTests.test_output_cap) ... ok
+test_readme_current_state (test_process_core.ProcessTests.test_readme_current_state) ... ok
+test_uncertain_wait_blocks_next_run (test_process_core.ProcessTests.test_uncertain_wait_blocks_next_run) ... ok
+
+======================================================================
+FAIL: test_interrupted_cleanup_latches_lock (test_process_core.ProcessTests.test_interrupted_cleanup_latches_lock) (interruption='KeyboardInterrupt')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/publicacion-proyecto-integrado/supervisor/tests/test_process_core.py", line 91, in test_interrupted_cleanup_latches_lock
+    self.assertEqual(s.state,'INFRA_LOCK')
+AssertionError: 'STOPPING' != 'INFRA_LOCK'
+- STOPPING
++ INFRA_LOCK
+
+
+======================================================================
+FAIL: test_interrupted_cleanup_latches_lock (test_process_core.ProcessTests.test_interrupted_cleanup_latches_lock) (interruption='SystemExit')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/publicacion-proyecto-integrado/supervisor/tests/test_process_core.py", line 91, in test_interrupted_cleanup_latches_lock
+    self.assertEqual(s.state,'INFRA_LOCK')
+AssertionError: 'STOPPING' != 'INFRA_LOCK'
+- STOPPING
++ INFRA_LOCK
+
+
+----------------------------------------------------------------------
+Ran 9 tests in 1.044s
+
+FAILED (failures=2)

@@ -1,0 +1,42 @@
+{
+  "workunit": "WU-SUP-CORE-001",
+  "status": "IMPLEMENTED_LOCAL_TESTS_PASS_RDD_PENDING",
+  "scope": "Linux trusted direct-child lifecycle library; no QA semantics or integrated supervisor",
+  "tests": {
+    "initial_red": "module absent, import failed; no behavioral implementation yet",
+    "review_red": "KeyboardInterrupt/SystemExit cleanup: 2 failures",
+    "final_green": "10 tests passed",
+    "real_process_observations": [
+      "normal exit and bounded stdout/stderr",
+      "child-observed RLIMIT_AS=268435456 bytes",
+      "ignored SIGTERM then SIGKILL with observed -9 and reaping",
+      "external SIGKILL with NOT_DETERMINED cause",
+      "output limit and busy instance"
+    ],
+    "injected_observations": [
+      "OSError waiting -> INFRA_LOCK -> second launch denied",
+      "KeyboardInterrupt/SystemExit during wait -> lock retained",
+      "interruption before Popen assignment -> lock retained"
+    ],
+    "not_executed": [
+      "physical i3/WSL calibration",
+      "swap pressure",
+      "real kernel uninterruptible state",
+      "durable crash recovery",
+      "integrated QA pipeline"
+    ]
+  },
+  "review": "independent reviewer found F1; followup blocked by quota; native RDD pending",
+  "remaining": [
+    "durable journal and restart reconciliation",
+    "registered adapter and checker binding",
+    "protocol validation and result admission",
+    "global retention/reservation budget",
+    "authority and incorporation orchestration"
+  ],
+  "artifacts": {
+    "supervisor/process_core.py": "1f519081bb3184327dd37a698bfb5918fb7f1b747367961f285afb773a1d5d56",
+    "supervisor/_child_entry.py": "dc9e14af240bbcc001a3ab032a3547ff1ac7bbbe5e3bd0495dd2c7fde7b9db21",
+    "supervisor/tests/test_process_core.py": "0a657275d370fb33563557dfa1eec34d6a905c6a26ca6589ee50a7cb1f4929fa"
+  }
+}

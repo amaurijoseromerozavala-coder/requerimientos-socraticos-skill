@@ -1,0 +1,212 @@
+{
+  "schema": "gentle-ai.review-integration.status/v9",
+  "contract": "gentle-ai.review-integration/v2",
+  "operation": "review.status",
+  "applicability": "unrelated",
+  "action": "start",
+  "replayability": "not_replayable",
+  "target_identity": "sha256:3f1984b7e8b3788e07dbf6304408cba8fe1c35684b035e79221c8a43d07df3b7",
+  "projection": {
+    "schema": "gentle-ai.review-integration.projection/v1",
+    "kind": "current-changes",
+    "projection": "workspace",
+    "base_tree": "ea48c308a326cc687ff4e1b57d39a4ef0b64b2c2",
+    "initial_review_tree": "e64caf80aa0053bff00ad3efd29e360e43246362",
+    "current_candidate_tree": "e64caf80aa0053bff00ad3efd29e360e43246362",
+    "paths_digest": "sha256:a0a68f03528d113b3d3d6612e72e824998908c313b0e8572f20479b4f986b18c",
+    "paths": [
+      "README.md",
+      "docs/skill-audit/supervisor-process-core/RESULTADO.json",
+      "docs/skill-audit/supervisor-process-core/RESULTADO.md",
+      "docs/skill-audit/supervisor-process-core/final-green.stderr",
+      "docs/skill-audit/supervisor-process-core/final-green.stdout",
+      "docs/skill-audit/supervisor-process-core/independent-review.md",
+      "docs/skill-audit/supervisor-process-core/readme-red.txt",
+      "docs/skill-audit/supervisor-process-core/red.stderr",
+      "docs/skill-audit/supervisor-process-core/review-red.stderr",
+      "odd/tasks/supervisor-process-core.md",
+      "supervisor/_child_entry.py",
+      "supervisor/process_core.py",
+      "supervisor/tests/test_process_core.py"
+    ],
+    "intended_untracked": [
+      "docs/skill-audit/supervisor-process-core/RESULTADO.json",
+      "docs/skill-audit/supervisor-process-core/RESULTADO.md",
+      "docs/skill-audit/supervisor-process-core/final-green.stderr",
+      "docs/skill-audit/supervisor-process-core/final-green.stdout",
+      "docs/skill-audit/supervisor-process-core/independent-review.md",
+      "docs/skill-audit/supervisor-process-core/readme-red.txt",
+      "docs/skill-audit/supervisor-process-core/red.stderr",
+      "docs/skill-audit/supervisor-process-core/review-red.stderr",
+      "odd/tasks/supervisor-process-core.md",
+      "supervisor/_child_entry.py",
+      "supervisor/process_core.py",
+      "supervisor/tests/test_process_core.py"
+    ],
+    "intended_untracked_proof": "sha256:2a2602fa82e7fdb425740137123014fe2d24515c5a9512d5e4eb322855617e62",
+    "initial_snapshot_identity": "sha256:3f1984b7e8b3788e07dbf6304408cba8fe1c35684b035e79221c8a43d07df3b7",
+    "current_snapshot_identity": "sha256:3f1984b7e8b3788e07dbf6304408cba8fe1c35684b035e79221c8a43d07df3b7"
+  },
+  "eligible_untracked_inventory": "sha256:77d123fd1996c36f66e080d2964e9ecb5599472b70482c5858ec658122e51c5b",
+  "repair": {
+    "schema": "gentle-ai.review-authority-repair-assessment/v1",
+    "status": "unsupported",
+    "counts": {
+      "lineages": 0,
+      "compact_lineages": 0,
+      "legacy_lineages": 0,
+      "events": 0,
+      "bytes": 0,
+      "eligible_candidates": 0,
+      "unsupported_lineages": 0,
+      "conflicts": 0
+    },
+    "supported_operations": [
+      "review/complete-fix",
+      "review/validate-fix"
+    ],
+    "authorization_schema": "gentle-ai.review-repair-authorization/v1"
+  },
+  "candidates": [],
+  "forecast": {
+    "horizon": "partial",
+    "steps": [
+      {
+        "step": 1,
+        "kind": "execute",
+        "reason_code": "fresh_target_ready",
+        "description": "Target is unreviewed and ready for initial review start"
+      }
+    ]
+  },
+  "next_transition": {
+    "kind": "execute",
+    "reason_code": "fresh_target_ready",
+    "execute": {
+      "operation": "review.start",
+      "command": "gentle-ai review start --cwd=/workspace/publicacion-proyecto-integrado --contract=gentle-ai.review-integration/v2 --target=sha256:3f1984b7e8b3788e07dbf6304408cba8fe1c35684b035e79221c8a43d07df3b7 --target-evidence=v1:current-changes:workspace:ea48c308a326cc687ff4e1b57d39a4ef0b64b2c2:e64caf80aa0053bff00ad3efd29e360e43246362:sha256:a0a68f03528d113b3d3d6612e72e824998908c313b0e8572f20479b4f986b18c --projection=workspace --lineage=review-b67bfe5b6252b547 --agent=codex --consent=relay --untracked-scope=select --expected-untracked-inventory=sha256:77d123fd1996c36f66e080d2964e9ecb5599472b70482c5858ec658122e51c5b --intended-untracked=docs/skill-audit/supervisor-process-core/RESULTADO.json --intended-untracked=docs/skill-audit/supervisor-process-core/RESULTADO.md --intended-untracked=docs/skill-audit/supervisor-process-core/final-green.stderr --intended-untracked=docs/skill-audit/supervisor-process-core/final-green.stdout --intended-untracked=docs/skill-audit/supervisor-process-core/independent-review.md --intended-untracked=docs/skill-audit/supervisor-process-core/readme-red.txt --intended-untracked=docs/skill-audit/supervisor-process-core/red.stderr --intended-untracked=docs/skill-audit/supervisor-process-core/review-red.stderr --intended-untracked=odd/tasks/supervisor-process-core.md --intended-untracked=supervisor/_child_entry.py --intended-untracked=supervisor/process_core.py --intended-untracked=supervisor/tests/test_process_core.py",
+      "arguments": [
+        {
+          "name": "cwd",
+          "value": "/workspace/publicacion-proyecto-integrado",
+          "token": "--cwd=/workspace/publicacion-proyecto-integrado"
+        },
+        {
+          "name": "contract",
+          "value": "gentle-ai.review-integration/v2",
+          "token": "--contract=gentle-ai.review-integration/v2"
+        },
+        {
+          "name": "target",
+          "value": "sha256:3f1984b7e8b3788e07dbf6304408cba8fe1c35684b035e79221c8a43d07df3b7",
+          "token": "--target=sha256:3f1984b7e8b3788e07dbf6304408cba8fe1c35684b035e79221c8a43d07df3b7"
+        },
+        {
+          "name": "target-evidence",
+          "value": "v1:current-changes:workspace:ea48c308a326cc687ff4e1b57d39a4ef0b64b2c2:e64caf80aa0053bff00ad3efd29e360e43246362:sha256:a0a68f03528d113b3d3d6612e72e824998908c313b0e8572f20479b4f986b18c",
+          "token": "--target-evidence=v1:current-changes:workspace:ea48c308a326cc687ff4e1b57d39a4ef0b64b2c2:e64caf80aa0053bff00ad3efd29e360e43246362:sha256:a0a68f03528d113b3d3d6612e72e824998908c313b0e8572f20479b4f986b18c"
+        },
+        {
+          "name": "projection",
+          "value": "workspace",
+          "token": "--projection=workspace"
+        },
+        {
+          "name": "lineage",
+          "value": "review-b67bfe5b6252b547",
+          "token": "--lineage=review-b67bfe5b6252b547"
+        },
+        {
+          "name": "agent",
+          "value": "codex",
+          "token": "--agent=codex"
+        },
+        {
+          "name": "consent",
+          "value": "relay",
+          "token": "--consent=relay"
+        },
+        {
+          "name": "untracked-scope",
+          "value": "select",
+          "token": "--untracked-scope=select"
+        },
+        {
+          "name": "expected-untracked-inventory",
+          "value": "sha256:77d123fd1996c36f66e080d2964e9ecb5599472b70482c5858ec658122e51c5b",
+          "token": "--expected-untracked-inventory=sha256:77d123fd1996c36f66e080d2964e9ecb5599472b70482c5858ec658122e51c5b"
+        },
+        {
+          "name": "intended-untracked",
+          "value": "docs/skill-audit/supervisor-process-core/RESULTADO.json",
+          "token": "--intended-untracked=docs/skill-audit/supervisor-process-core/RESULTADO.json"
+        },
+        {
+          "name": "intended-untracked",
+          "value": "docs/skill-audit/supervisor-process-core/RESULTADO.md",
+          "token": "--intended-untracked=docs/skill-audit/supervisor-process-core/RESULTADO.md"
+        },
+        {
+          "name": "intended-untracked",
+          "value": "docs/skill-audit/supervisor-process-core/final-green.stderr",
+          "token": "--intended-untracked=docs/skill-audit/supervisor-process-core/final-green.stderr"
+        },
+        {
+          "name": "intended-untracked",
+          "value": "docs/skill-audit/supervisor-process-core/final-green.stdout",
+          "token": "--intended-untracked=docs/skill-audit/supervisor-process-core/final-green.stdout"
+        },
+        {
+          "name": "intended-untracked",
+          "value": "docs/skill-audit/supervisor-process-core/independent-review.md",
+          "token": "--intended-untracked=docs/skill-audit/supervisor-process-core/independent-review.md"
+        },
+        {
+          "name": "intended-untracked",
+          "value": "docs/skill-audit/supervisor-process-core/readme-red.txt",
+          "token": "--intended-untracked=docs/skill-audit/supervisor-process-core/readme-red.txt"
+        },
+        {
+          "name": "intended-untracked",
+          "value": "docs/skill-audit/supervisor-process-core/red.stderr",
+          "token": "--intended-untracked=docs/skill-audit/supervisor-process-core/red.stderr"
+        },
+        {
+          "name": "intended-untracked",
+          "value": "docs/skill-audit/supervisor-process-core/review-red.stderr",
+          "token": "--intended-untracked=docs/skill-audit/supervisor-process-core/review-red.stderr"
+        },
+        {
+          "name": "intended-untracked",
+          "value": "odd/tasks/supervisor-process-core.md",
+          "token": "--intended-untracked=odd/tasks/supervisor-process-core.md"
+        },
+        {
+          "name": "intended-untracked",
+          "value": "supervisor/_child_entry.py",
+          "token": "--intended-untracked=supervisor/_child_entry.py"
+        },
+        {
+          "name": "intended-untracked",
+          "value": "supervisor/process_core.py",
+          "token": "--intended-untracked=supervisor/process_core.py"
+        },
+        {
+          "name": "intended-untracked",
+          "value": "supervisor/tests/test_process_core.py",
+          "token": "--intended-untracked=supervisor/tests/test_process_core.py"
+        }
+      ],
+      "preconditions": [
+        {
+          "name": "target_identity",
+          "value": "sha256:3f1984b7e8b3788e07dbf6304408cba8fe1c35684b035e79221c8a43d07df3b7"
+        }
+      ],
+      "binding": {
+        "lineage_id": "review-b67bfe5b6252b547",
+        "target_identity": "sha256:3f1984b7e8b3788e07dbf6304408cba8fe1c35684b035e79221c8a43d07df3b7"
+      }
+    }
+  }
+}

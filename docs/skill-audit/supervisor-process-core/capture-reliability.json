@@ -1,0 +1,101 @@
+{
+  "schema": "gentle-ai.review-last-event-closure/v1",
+  "operation": "review/capture-result",
+  "lineage_id": "review-b67bfe5b6252b547",
+  "state": "approved",
+  "action": "the approved review completed on the last admitted event and awaits its exact acknowledgement",
+  "advisory_findings": {
+    "statement": "This review is approved and its receipt stands. Every finding listed here is non-blocking: none opened a correction, none reopens this review, and no correction transition is offered for this candidate. Treat them as separate later work, never as a reason to re-run review on this candidate.",
+    "findings": [
+      {
+        "id": "R4-1",
+        "lens": "resilience",
+        "location": "supervisor/process_core.py:130-139",
+        "severity": "WARNING",
+        "disposition": "informational"
+      }
+    ]
+  },
+  "reviewer_results": [
+    {
+      "lens": "review-resilience",
+      "findings": [
+        {
+          "id": "R4-1",
+          "lens": "resilience",
+          "location": "supervisor/process_core.py:130-139",
+          "severity": "WARNING",
+          "claim": "Cleanup stops draining stdout and stderr before sending SIGTERM. A trusted child that writes shutdown diagnostics loses those bytes from the returned capture even when capacity remains. If its termination handler writes enough to fill a pipe, it blocks instead of exiting gracefully and is killed after the grace period. Continue bounded draining during termination and reap waiting.",
+          "proof_refs": [
+            "supervisor/process_core.py:95-120 reads pipes only during the observation loop.",
+            "supervisor/process_core.py:130-139 sends termination signals and waits without reading either pipe.",
+            "supervisor/process_core.py:154-158 closes the streams without collecting shutdown output.",
+            "supervisor/tests/test_process_core.py:40-49 tests ignored SIGTERM but does not exercise a termination handler that writes output."
+          ],
+          "evidence_class": "deterministic",
+          "causal_disposition": "introduced"
+        }
+      ],
+      "evidence": [
+        "Inspected all 13 supplied candidate patches; no commands or external files were used.",
+        "supervisor/process_core.py:129-159 conservatively latches uncertain cleanup and closes capture resources; the termination phase does not drain child output.",
+        "supervisor/tests/test_process_core.py:73-125 covers injected wait failures and interruptions, including interrupted creation. The supplied passing logs are recorded evidence, not independently executed validation."
+      ],
+      "result_hash": "sha256:00dc3824880af75ded3e26f4b6aacef35d05bb32ded6aa3a76c6a2d1bc1faa0a"
+    },
+    {
+      "lens": "review-reliability",
+      "findings": [],
+      "evidence": [
+        "Inspected all 13 supplied patches without accessing external files or running commands.",
+        "supervisor/process_core.py validates limits before launch, bounds retained output, uses monotonic deadlines, and retains INFRA_LOCK when reaping or creation remains uncertain.",
+        "supervisor/tests/test_process_core.py asserts observable output, resource limits, escalation, reaping, concurrent admission, external signal classification, and denied relaunch after injected cleanup and creation interruptions.",
+        "docs/skill-audit/supervisor-process-core/final-green.stderr records ten passing tests; this supplied execution evidence was inspected but not independently reproduced."
+      ],
+      "result_hash": "sha256:422ecd6ff398c280bb70921d7c77445fe281cfab572964c23326063e5d553892"
+    }
+  ],
+  "acknowledgement": {
+    "operation": "review.acknowledge-approved",
+    "command": "gentle-ai review acknowledge-approved --cwd=/workspace/publicacion-proyecto-integrado --lineage=review-b67bfe5b6252b547 --target=sha256:3f1984b7e8b3788e07dbf6304408cba8fe1c35684b035e79221c8a43d07df3b7 --expected-revision=sha256:cface994080db3941807fb509752f45e3d6df15df5ab5f69777cd389b003a6d3 --token=a03f608838c32765d215c3f6543c9090c68b5ad332130b41befb939420b01b3a",
+    "arguments": [
+      {
+        "name": "cwd",
+        "value": "/workspace/publicacion-proyecto-integrado",
+        "token": "--cwd=/workspace/publicacion-proyecto-integrado"
+      },
+      {
+        "name": "lineage",
+        "value": "review-b67bfe5b6252b547",
+        "token": "--lineage=review-b67bfe5b6252b547"
+      },
+      {
+        "name": "target",
+        "value": "sha256:3f1984b7e8b3788e07dbf6304408cba8fe1c35684b035e79221c8a43d07df3b7",
+        "token": "--target=sha256:3f1984b7e8b3788e07dbf6304408cba8fe1c35684b035e79221c8a43d07df3b7"
+      },
+      {
+        "name": "expected-revision",
+        "value": "sha256:cface994080db3941807fb509752f45e3d6df15df5ab5f69777cd389b003a6d3",
+        "token": "--expected-revision=sha256:cface994080db3941807fb509752f45e3d6df15df5ab5f69777cd389b003a6d3"
+      },
+      {
+        "name": "token",
+        "value": "a03f608838c32765d215c3f6543c9090c68b5ad332130b41befb939420b01b3a",
+        "token": "--token=a03f608838c32765d215c3f6543c9090c68b5ad332130b41befb939420b01b3a"
+      }
+    ],
+    "preconditions": [
+      {
+        "name": "state",
+        "value": "approved"
+      }
+    ],
+    "binding": {
+      "lineage_id": "review-b67bfe5b6252b547",
+      "revision": "sha256:cface994080db3941807fb509752f45e3d6df15df5ab5f69777cd389b003a6d3",
+      "target_identity": "sha256:3f1984b7e8b3788e07dbf6304408cba8fe1c35684b035e79221c8a43d07df3b7"
+    }
+  },
+  "store_revision": "sha256:cface994080db3941807fb509752f45e3d6df15df5ab5f69777cd389b003a6d3"
+}

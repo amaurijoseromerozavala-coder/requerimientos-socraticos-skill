@@ -1,0 +1,37 @@
+{
+  "schema": "gentle-ai.review-integration.consent/v3",
+  "contract": "gentle-ai.review-integration/v2",
+  "operation": "review.start",
+  "action": "consent_required",
+  "agent": "codex",
+  "blocking": true,
+  "target_identity": "sha256:3f1984b7e8b3788e07dbf6304408cba8fe1c35684b035e79221c8a43d07df3b7",
+  "projection": "workspace",
+  "risk_level": "high",
+  "changed_files": 13,
+  "changed_lines": 590,
+  "headline": "Gentle AI can review this change before you call it done.",
+  "reason": "Review can help detect execution issues in these changes.",
+  "value": "Reviewing takes a little longer and makes the result safer.",
+  "risk_evidence": [
+    "code that starts other processes in supervisor/_child_entry.py"
+  ],
+  "choices": [
+    {
+      "answer": "granted",
+      "label": "Review this change",
+      "effect": "Reviews only this change; later medium- or high-risk changes ask again, and delivery needs separate approval.",
+      "invocation": "gentle-ai review start --contract gentle-ai.review-integration/v2 --cwd /workspace/publicacion-proyecto-integrado --target sha256:3f1984b7e8b3788e07dbf6304408cba8fe1c35684b035e79221c8a43d07df3b7 --target-evidence v1:current-changes:workspace:ea48c308a326cc687ff4e1b57d39a4ef0b64b2c2:e64caf80aa0053bff00ad3efd29e360e43246362:sha256:a0a68f03528d113b3d3d6612e72e824998908c313b0e8572f20479b4f986b18c --projection workspace --agent codex --lineage review-b67bfe5b6252b547 --untracked-scope=select --expected-untracked-inventory=sha256:92ec6c2c7f5440f39dfa1d836a800d15ea24d96de5fbcb48778a8b27b3e617e9 --intended-untracked=docs/skill-audit/supervisor-process-core/RESULTADO.json --intended-untracked=docs/skill-audit/supervisor-process-core/RESULTADO.md --intended-untracked=docs/skill-audit/supervisor-process-core/final-green.stderr --intended-untracked=docs/skill-audit/supervisor-process-core/final-green.stdout --intended-untracked=docs/skill-audit/supervisor-process-core/independent-review.md --intended-untracked=docs/skill-audit/supervisor-process-core/readme-red.txt --intended-untracked=docs/skill-audit/supervisor-process-core/red.stderr --intended-untracked=docs/skill-audit/supervisor-process-core/review-red.stderr --intended-untracked=odd/tasks/supervisor-process-core.md --intended-untracked=supervisor/_child_entry.py --intended-untracked=supervisor/process_core.py --intended-untracked=supervisor/tests/test_process_core.py --lenses review-resilience,review-reliability --lenses-reason 'Linux direct-child lifecycle core: termination, bounded observation, state latch, real and injected tests. Integrated supervisor remains incomplete.' --consent granted"
+    },
+    {
+      "answer": "declined",
+      "label": "Skip this time",
+      "effect": "Skips only this change; no review record is created, and future reviews stay enabled.",
+      "invocation": "gentle-ai review start --contract gentle-ai.review-integration/v2 --cwd /workspace/publicacion-proyecto-integrado --target sha256:3f1984b7e8b3788e07dbf6304408cba8fe1c35684b035e79221c8a43d07df3b7 --target-evidence v1:current-changes:workspace:ea48c308a326cc687ff4e1b57d39a4ef0b64b2c2:e64caf80aa0053bff00ad3efd29e360e43246362:sha256:a0a68f03528d113b3d3d6612e72e824998908c313b0e8572f20479b4f986b18c --projection workspace --agent codex --lineage review-b67bfe5b6252b547 --untracked-scope=select --expected-untracked-inventory=sha256:92ec6c2c7f5440f39dfa1d836a800d15ea24d96de5fbcb48778a8b27b3e617e9 --intended-untracked=docs/skill-audit/supervisor-process-core/RESULTADO.json --intended-untracked=docs/skill-audit/supervisor-process-core/RESULTADO.md --intended-untracked=docs/skill-audit/supervisor-process-core/final-green.stderr --intended-untracked=docs/skill-audit/supervisor-process-core/final-green.stdout --intended-untracked=docs/skill-audit/supervisor-process-core/independent-review.md --intended-untracked=docs/skill-audit/supervisor-process-core/readme-red.txt --intended-untracked=docs/skill-audit/supervisor-process-core/red.stderr --intended-untracked=docs/skill-audit/supervisor-process-core/review-red.stderr --intended-untracked=odd/tasks/supervisor-process-core.md --intended-untracked=supervisor/_child_entry.py --intended-untracked=supervisor/process_core.py --intended-untracked=supervisor/tests/test_process_core.py --lenses review-resilience,review-reliability --lenses-reason 'Linux direct-child lifecycle core: termination, bounded observation, state latch, real and injected tests. Integrated supervisor remains incomplete.' --consent declined"
+    }
+  ],
+  "off_path": {
+    "note": "To turn reviews off for good, run 'gentle-ai review mode disable'.",
+    "command": "gentle-ai review mode disable"
+  }
+}

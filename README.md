@@ -10,7 +10,7 @@ Proyecto integrado de requisitos trazables, revisión de calidad y diseño de un
 | QA Inquisidor | Skill 0.1.3-alpha y comprobador documental |
 | Supervisor local ampliado | Diseño DRAFT; no implementado |
 | Integración | 23 decisiones, modelo booleano de 128 valoraciones y FSM parcial |
-| RDD del candidato integrado | Candidato anterior aprobado; corrección documental R3-001 probada, nuevo RDD pendiente |
+| RDD del candidato integrado | R3-001 aprobado y reconocido; ver recibo de cierre |
 | Calibración del hardware objetivo | No realizada |
 
 La revisión RDD inspeccionó 13 archivos; no certifica todo el repositorio ni ejecutó pruebas físicas. El diseño conserva brechas técnicas que bloquean READY. CI y producción permanecen diferidos.
@@ -41,3 +41,18 @@ Los documentos históricos pueden incluir rutas locales y estados anteriores: co
 Se publican código propio, tests, documentos, evidencias, configuración de réplica y exportación. Se excluyen credenciales, estados privados de herramientas, respaldos del entorno, cachés, descargas y ejecutables externos. No se incorporan workflows de GitHub Actions.
 
 [Licencia del proyecto](LICENSE) y [avisos de terceros](THIRD_PARTY_NOTICES.md).
+
+## Núcleo de procesos WU-SUP-CORE-001
+
+Primera biblioteca ejecutable en `supervisor/process_core.py`, separada de la
+evaluación QA. Controla un hijo directo Linux, captura acotada, límites virtuales,
+plazos y recolección. Una limpieza incierta bloquea esa instancia. No implementa
+todavía diario durable, coordinación entre instancias, cuotas globales, integración
+QA, incorporación ni recuperación tras reiniciar. El supervisor integrado sigue
+DRAFT; no es sandbox ni garantía de tiempo real.
+
+Pruebas locales acotadas: `python3 -B -m unittest discover -s supervisor/tests -v`.
+La suite combina procesos reales con una inyección explícita de fallo de espera;
+esta última no reproduce un estado D del kernel. No calibra el i3/WSL.
+
+[Cierre RDD de R3-001](docs/skill-audit/integration-r3-001/CIERRE-RDD.md).
