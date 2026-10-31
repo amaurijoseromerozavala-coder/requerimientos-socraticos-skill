@@ -65,11 +65,64 @@ class ProcessSupervisor:
         selected = None
         outputs = {'stdout': bytearray(), 'stderr': bytearray()}
         signals = []
+        truncated = {'stdout': False, 'stderr': False}
+        eof = {'stdout': False, 'stderr': False}
         reason = None
         error = None
         cleanup = 'NOT_STARTED'
         returncode = None
         started = time.monotonic()
+
+        def drain_once(until, cleaning=False):
+            """One bounded, fair read per ready stream; never extend the deadline."""
+            if selected is None:
+                return False
+            remaining = max(0, until - time.monotonic())
+            exceeded = False
+            for key, _ in selected.select(min(.02, remaining)):
+                if time.monotonic() >= until:
+                    break
+                name = key.data
+                cap = getattr(self.limits, name + '_bytes')
+                available = cap - len(outputs[name])
+                try:
+                    chunk = os.read(key.fileobj.fileno(),
+                                    65536 if cleaning else min(65536, available + 1))
+                except BlockingIOError:
+                    continue
+                if not chunk:
+                    selected.unregister(key.fileobj)
+                    eof[name] = True
+                else:
+                    outputs[name].extend(chunk[:available])
+                    if len(chunk) > available:
+                        truncated[name] = True
+                        exceeded = True
+            return exceeded
+
+        def wait_draining(until):
+            """Reap with zero-time waits while draining until EOF or fixed deadline.
+
+            Reaped child with non-EOF channels returns at the deadline with
+            capture_complete=False; this does not claim descendant containment.
+            """
+            observed = None
+            while True:
+                if observed is None:
+                    try:
+                        observed = self._wait(child, 0)
+                    except subprocess.TimeoutExpired:
+                        pass
+                if observed is not None and all(eof.values()):
+                    return observed
+                if time.monotonic() >= until:
+                    if observed is not None:
+                        return observed
+                    # Preserve timeout as the trigger for the forced-stop phase.
+                    return self._wait(child, 0)
+                drain_once(until, cleaning=True)
+                if selected is None or not selected.get_map():
+                    time.sleep(min(.005, max(0, until - time.monotonic())))
         try:
             if self._state == 'INFRA_LOCK':
                 return {'status': 'INFRA_LOCK', 'launched': False, 'cleanup': 'UNCONFIRMED'}
@@ -99,24 +152,8 @@ class ProcessSupervisor:
                         break
                     if not selected.get_map() and child.poll() is not None:
                         break
-                    for key, _ in selected.select(min(.02, remaining)):
-                        if time.monotonic() >= deadline:
-                            reason = 'WALL_DEADLINE'
-                            break
-                        name = key.data
-                        cap = getattr(self.limits, name + '_bytes')
-                        available = cap - len(outputs[name])
-                        try:
-                            chunk = os.read(key.fileobj.fileno(), min(65536, available + 1))
-                        except BlockingIOError:
-                            continue
-                        if not chunk:
-                            selected.unregister(key.fileobj)
-                        else:
-                            outputs[name].extend(chunk[:available])
-                            if len(chunk) > available:
-                                reason = 'OUTPUT_LIMIT'
-                                break
+                    if drain_once(deadline):
+                        reason = 'OUTPUT_LIMIT'
                     if reason:
                         break
             except Exception as exc:
@@ -132,11 +169,11 @@ class ProcessSupervisor:
                             signals.append('SIGTERM')
                             child.terminate()
                         try:
-                            returncode = self._wait(child, self.limits.grace_seconds)
+                            returncode = wait_draining(time.monotonic() + self.limits.grace_seconds)
                         except subprocess.TimeoutExpired:
                             signals.append('SIGKILL')
                             child.kill()
-                            returncode = self._wait(child, self.limits.cleanup_seconds)
+                            returncode = wait_draining(time.monotonic() + self.limits.cleanup_seconds)
                         cleanup = 'CONFIRMED'
                     except BaseException as exc:
                         # Best effort stop request is not confirmation of reaping.
@@ -165,6 +202,7 @@ class ProcessSupervisor:
                     'pid': child.pid if child else None, 'returncode': returncode,
                     'cleanup': cleanup, 'stop_reason': reason, 'signal_cause': 'NOT_DETERMINED',
                     'signals_requested': signals, 'diagnostic': error,
+                    'capture_complete': all(eof.values()), 'capture_truncated': truncated,
                     'stdout': bytes(outputs['stdout']), 'stderr': bytes(outputs['stderr']),
                     'elapsed_seconds': time.monotonic() - started,
                     'requested_address_space_bytes': memory,

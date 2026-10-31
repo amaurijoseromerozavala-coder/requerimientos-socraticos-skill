@@ -1,0 +1,19 @@
+test_external_signal_not_classified_as_timeout_or_oom (test_process_core.ProcessTests.test_external_signal_not_classified_as_timeout_or_oom) ... ok
+test_ignored_term_escalates_and_reaps (test_process_core.ProcessTests.test_ignored_term_escalates_and_reaps) ... ok
+test_interrupted_cleanup_latches_lock (test_process_core.ProcessTests.test_interrupted_cleanup_latches_lock) ... ok
+test_invalid_limits_no_launch (test_process_core.ProcessTests.test_invalid_limits_no_launch) ... ok
+test_missing_executable (test_process_core.ProcessTests.test_missing_executable) ... ok
+test_normal_and_resource_limit (test_process_core.ProcessTests.test_normal_and_resource_limit) ... ok
+test_output_cap (test_process_core.ProcessTests.test_output_cap) ... ok
+test_readme_current_state (test_process_core.ProcessTests.test_readme_current_state) ... ok
+test_uncertain_creation_interruption_blocks_new_launch (test_process_core.ProcessTests.test_uncertain_creation_interruption_blocks_new_launch) ... ok
+test_uncertain_wait_blocks_next_run (test_process_core.ProcessTests.test_uncertain_wait_blocks_next_run) ... ok
+test_active_shutdown_writer_does_not_extend_deadline (test_shutdown_capture.ShutdownCaptureTests.test_active_shutdown_writer_does_not_extend_deadline) ... ok
+test_discard_excess_without_blocking_shutdown (test_shutdown_capture.ShutdownCaptureTests.test_discard_excess_without_blocking_shutdown) ... ok
+test_shutdown_diagnostics_both_channels (test_shutdown_capture.ShutdownCaptureTests.test_shutdown_diagnostics_both_channels) ... ok
+test_shutdown_larger_than_pipe_capacity (test_shutdown_capture.ShutdownCaptureTests.test_shutdown_larger_than_pipe_capacity) ... ok
+
+----------------------------------------------------------------------
+Ran 14 tests in 2.845s
+
+OK

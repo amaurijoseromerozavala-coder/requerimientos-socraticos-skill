@@ -1,0 +1,25 @@
+{
+  "status": "APPROVED_AND_ACKNOWLEDGED",
+  "workunit": "WU-SUP-CORE-002",
+  "candidate": "sha256:4683b55e412f2f1a6978acc8e26e2a548817db4121bc1c1d7b123dcee1a5a173",
+  "verified_candidate_files": [
+    "docs/skill-audit/supervisor-drain/RESULTADO.md",
+    "docs/skill-audit/supervisor-drain/final-green.stderr",
+    "docs/skill-audit/supervisor-drain/observations.json",
+    "docs/skill-audit/supervisor-drain/red.stderr",
+    "odd/tasks/supervisor-drain.md",
+    "supervisor/process_core.py",
+    "supervisor/tests/test_shutdown_capture.py"
+  ],
+  "R4-1": "RESOLVED_WITHIN_REVIEWED_SCOPE",
+  "tests": "14 local tests passed; native reviewer did not execute tests",
+  "advisories": [
+    {
+      "qualified_id": "review-7f20158690dc0591/R3-001",
+      "status": "OPEN_NONBLOCKING",
+      "description": "Add bounded case: direct child reaped, pipe held open, capture_complete=false. Distinct from old integration revocation R3-001."
+    }
+  ],
+  "integrated_supervisor": "INCOMPLETE",
+  "hardware_calibration": "NOT_RUN"
+}

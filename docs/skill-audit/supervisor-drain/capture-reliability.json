@@ -1,0 +1,100 @@
+{
+  "schema": "gentle-ai.review-last-event-closure/v1",
+  "operation": "review/capture-result",
+  "lineage_id": "review-7f20158690dc0591",
+  "state": "approved",
+  "action": "the approved review completed on the last admitted event and awaits its exact acknowledgement",
+  "advisory_findings": {
+    "statement": "This review is approved and its receipt stands. Every finding listed here is non-blocking: none opened a correction, none reopens this review, and no correction transition is offered for this candidate. Treat them as separate later work, never as a reason to re-run review on this candidate.",
+    "findings": [
+      {
+        "id": "R3-001",
+        "lens": "reliability",
+        "location": "supervisor/tests/test_shutdown_capture.py:70",
+        "severity": "WARNING",
+        "disposition": "informational"
+      }
+    ]
+  },
+  "reviewer_results": [
+    {
+      "lens": "review-resilience",
+      "findings": [],
+      "evidence": [
+        "Inspected all seven supplied patches. No concrete resilience regression caused by this candidate was established.",
+        "supervisor/process_core.py adds bounded draining during termination and collection, preserves fixed deadlines and the original stop reason, and reports EOF completion separately from truncation and child collection.",
+        "supervisor/tests/test_shutdown_capture.py covers shutdown diagnostics, output exceeding pipe capacity, bounded retention with excess discarded, and escalation for an active writer. docs/skill-audit/supervisor-drain/final-green.stderr reports all 14 tests passing; this review did not independently execute them."
+      ],
+      "result_hash": "sha256:9afe1f9b4f509198c757f9502acd55f3501f2e45fd22b5439b589ab318edc85d"
+    },
+    {
+      "lens": "review-reliability",
+      "findings": [
+        {
+          "id": "R3-001",
+          "lens": "reliability",
+          "location": "supervisor/tests/test_shutdown_capture.py:70",
+          "severity": "WARNING",
+          "claim": "The required distinction between successful reaping and incomplete capture remains unproved. Every new test expects capture_complete=true. Add a bounded real-child test where the direct child exits but a descendant temporarily retains a pipe; assert cleanup=CONFIRMED, capture_complete=false, the direct child's return code, and return within the fixed budget.",
+          "proof_refs": [
+            "odd/tasks/supervisor-drain.md:12-13 explicitly requires reporting incomplete capture when EOF is absent at budget expiry.",
+            "supervisor/process_core.py:104-126 introduces the separate reaping/EOF deadline behavior.",
+            "supervisor/tests/test_shutdown_capture.py:31-72 only exercises shutdown cases that ultimately observe EOF."
+          ],
+          "evidence_class": "deterministic",
+          "causal_disposition": "introduced"
+        }
+      ],
+      "evidence": [
+        "Inspected all seven supplied immutable patches without accessing files or running commands.",
+        "supervisor/process_core.py:76-126 bounds draining by monotonic deadlines, retains bytes within channel limits, records truncation, and tracks EOF separately from reaping.",
+        "supervisor/tests/test_shutdown_capture.py:31-72 asserts observable diagnostics, oversized shutdown output, truncation, and forced termination of an active writer; docs/skill-audit/supervisor-drain/final-green.stderr reports fourteen passing tests.",
+        "docs/skill-audit/supervisor-drain/observations.json contains successful and failed-cleanup observations, but does not demonstrate confirmed reaping combined with capture_complete=false."
+      ],
+      "result_hash": "sha256:2a66ee669f0a9989a7e8e8071e7511437193250c7d1ddec6d02be36d87cb1cd8"
+    }
+  ],
+  "acknowledgement": {
+    "operation": "review.acknowledge-approved",
+    "command": "gentle-ai review acknowledge-approved --cwd=/workspace/publicacion-proyecto-integrado --lineage=review-7f20158690dc0591 --target=sha256:4683b55e412f2f1a6978acc8e26e2a548817db4121bc1c1d7b123dcee1a5a173 --expected-revision=sha256:49c77b02addd44abda60e8e97d314e7c3769bafff5117440cb9c0dbe3f6d5c10 --token=6e0ec64ea55349b79f11fbb698b90aded2684fb9a7a6979353c28d61cc7c3e90",
+    "arguments": [
+      {
+        "name": "cwd",
+        "value": "/workspace/publicacion-proyecto-integrado",
+        "token": "--cwd=/workspace/publicacion-proyecto-integrado"
+      },
+      {
+        "name": "lineage",
+        "value": "review-7f20158690dc0591",
+        "token": "--lineage=review-7f20158690dc0591"
+      },
+      {
+        "name": "target",
+        "value": "sha256:4683b55e412f2f1a6978acc8e26e2a548817db4121bc1c1d7b123dcee1a5a173",
+        "token": "--target=sha256:4683b55e412f2f1a6978acc8e26e2a548817db4121bc1c1d7b123dcee1a5a173"
+      },
+      {
+        "name": "expected-revision",
+        "value": "sha256:49c77b02addd44abda60e8e97d314e7c3769bafff5117440cb9c0dbe3f6d5c10",
+        "token": "--expected-revision=sha256:49c77b02addd44abda60e8e97d314e7c3769bafff5117440cb9c0dbe3f6d5c10"
+      },
+      {
+        "name": "token",
+        "value": "6e0ec64ea55349b79f11fbb698b90aded2684fb9a7a6979353c28d61cc7c3e90",
+        "token": "--token=6e0ec64ea55349b79f11fbb698b90aded2684fb9a7a6979353c28d61cc7c3e90"
+      }
+    ],
+    "preconditions": [
+      {
+        "name": "state",
+        "value": "approved"
+      }
+    ],
+    "binding": {
+      "lineage_id": "review-7f20158690dc0591",
+      "revision": "sha256:49c77b02addd44abda60e8e97d314e7c3769bafff5117440cb9c0dbe3f6d5c10",
+      "target_identity": "sha256:4683b55e412f2f1a6978acc8e26e2a548817db4121bc1c1d7b123dcee1a5a173"
+    }
+  },
+  "store_revision": "sha256:49c77b02addd44abda60e8e97d314e7c3769bafff5117440cb9c0dbe3f6d5c10"
+}

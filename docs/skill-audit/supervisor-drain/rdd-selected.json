@@ -1,0 +1,170 @@
+{
+  "schema": "gentle-ai.review-integration.status/v9",
+  "contract": "gentle-ai.review-integration/v2",
+  "operation": "review.status",
+  "applicability": "unrelated",
+  "action": "start",
+  "replayability": "not_replayable",
+  "target_identity": "sha256:4683b55e412f2f1a6978acc8e26e2a548817db4121bc1c1d7b123dcee1a5a173",
+  "projection": {
+    "schema": "gentle-ai.review-integration.projection/v1",
+    "kind": "current-changes",
+    "projection": "workspace",
+    "base_tree": "a0711181b7353754dac9f7922b1832ff1004d263",
+    "initial_review_tree": "aed600d77413f6451a6068a25384df48d3fcbae6",
+    "current_candidate_tree": "aed600d77413f6451a6068a25384df48d3fcbae6",
+    "paths_digest": "sha256:9a2dc7076d76e28420e6765501ed7a1cc6178444b8c985bbd09753c7c507eec6",
+    "paths": [
+      "docs/skill-audit/supervisor-drain/RESULTADO.md",
+      "docs/skill-audit/supervisor-drain/final-green.stderr",
+      "docs/skill-audit/supervisor-drain/observations.json",
+      "docs/skill-audit/supervisor-drain/red.stderr",
+      "odd/tasks/supervisor-drain.md",
+      "supervisor/process_core.py",
+      "supervisor/tests/test_shutdown_capture.py"
+    ],
+    "intended_untracked": [
+      "docs/skill-audit/supervisor-drain/RESULTADO.md",
+      "docs/skill-audit/supervisor-drain/final-green.stderr",
+      "docs/skill-audit/supervisor-drain/observations.json",
+      "docs/skill-audit/supervisor-drain/red.stderr",
+      "odd/tasks/supervisor-drain.md",
+      "supervisor/tests/test_shutdown_capture.py"
+    ],
+    "intended_untracked_proof": "sha256:36f212cf2a5dd7e267f67b4964b27d3b807ec5d6c19973b03fbc8502c9003634",
+    "initial_snapshot_identity": "sha256:4683b55e412f2f1a6978acc8e26e2a548817db4121bc1c1d7b123dcee1a5a173",
+    "current_snapshot_identity": "sha256:4683b55e412f2f1a6978acc8e26e2a548817db4121bc1c1d7b123dcee1a5a173"
+  },
+  "eligible_untracked_inventory": "sha256:1d39f48e2de7d0bf5d4e263ecffe70c7784d1e7f266cf99176e47ee8e74c9653",
+  "repair": {
+    "schema": "gentle-ai.review-authority-repair-assessment/v1",
+    "status": "unsupported",
+    "counts": {
+      "lineages": 0,
+      "compact_lineages": 0,
+      "legacy_lineages": 0,
+      "events": 0,
+      "bytes": 0,
+      "eligible_candidates": 0,
+      "unsupported_lineages": 0,
+      "conflicts": 0
+    },
+    "supported_operations": [
+      "review/complete-fix",
+      "review/validate-fix"
+    ],
+    "authorization_schema": "gentle-ai.review-repair-authorization/v1"
+  },
+  "candidates": [],
+  "forecast": {
+    "horizon": "partial",
+    "steps": [
+      {
+        "step": 1,
+        "kind": "execute",
+        "reason_code": "fresh_target_ready",
+        "description": "Target is unreviewed and ready for initial review start"
+      }
+    ]
+  },
+  "next_transition": {
+    "kind": "execute",
+    "reason_code": "fresh_target_ready",
+    "execute": {
+      "operation": "review.start",
+      "command": "gentle-ai review start --cwd=/workspace/publicacion-proyecto-integrado --contract=gentle-ai.review-integration/v2 --target=sha256:4683b55e412f2f1a6978acc8e26e2a548817db4121bc1c1d7b123dcee1a5a173 --target-evidence=v1:current-changes:workspace:a0711181b7353754dac9f7922b1832ff1004d263:aed600d77413f6451a6068a25384df48d3fcbae6:sha256:9a2dc7076d76e28420e6765501ed7a1cc6178444b8c985bbd09753c7c507eec6 --projection=workspace --lineage=review-7f20158690dc0591 --agent=codex --consent=relay --untracked-scope=select --expected-untracked-inventory=sha256:1d39f48e2de7d0bf5d4e263ecffe70c7784d1e7f266cf99176e47ee8e74c9653 --intended-untracked=docs/skill-audit/supervisor-drain/RESULTADO.md --intended-untracked=docs/skill-audit/supervisor-drain/final-green.stderr --intended-untracked=docs/skill-audit/supervisor-drain/observations.json --intended-untracked=docs/skill-audit/supervisor-drain/red.stderr --intended-untracked=odd/tasks/supervisor-drain.md --intended-untracked=supervisor/tests/test_shutdown_capture.py",
+      "arguments": [
+        {
+          "name": "cwd",
+          "value": "/workspace/publicacion-proyecto-integrado",
+          "token": "--cwd=/workspace/publicacion-proyecto-integrado"
+        },
+        {
+          "name": "contract",
+          "value": "gentle-ai.review-integration/v2",
+          "token": "--contract=gentle-ai.review-integration/v2"
+        },
+        {
+          "name": "target",
+          "value": "sha256:4683b55e412f2f1a6978acc8e26e2a548817db4121bc1c1d7b123dcee1a5a173",
+          "token": "--target=sha256:4683b55e412f2f1a6978acc8e26e2a548817db4121bc1c1d7b123dcee1a5a173"
+        },
+        {
+          "name": "target-evidence",
+          "value": "v1:current-changes:workspace:a0711181b7353754dac9f7922b1832ff1004d263:aed600d77413f6451a6068a25384df48d3fcbae6:sha256:9a2dc7076d76e28420e6765501ed7a1cc6178444b8c985bbd09753c7c507eec6",
+          "token": "--target-evidence=v1:current-changes:workspace:a0711181b7353754dac9f7922b1832ff1004d263:aed600d77413f6451a6068a25384df48d3fcbae6:sha256:9a2dc7076d76e28420e6765501ed7a1cc6178444b8c985bbd09753c7c507eec6"
+        },
+        {
+          "name": "projection",
+          "value": "workspace",
+          "token": "--projection=workspace"
+        },
+        {
+          "name": "lineage",
+          "value": "review-7f20158690dc0591",
+          "token": "--lineage=review-7f20158690dc0591"
+        },
+        {
+          "name": "agent",
+          "value": "codex",
+          "token": "--agent=codex"
+        },
+        {
+          "name": "consent",
+          "value": "relay",
+          "token": "--consent=relay"
+        },
+        {
+          "name": "untracked-scope",
+          "value": "select",
+          "token": "--untracked-scope=select"
+        },
+        {
+          "name": "expected-untracked-inventory",
+          "value": "sha256:1d39f48e2de7d0bf5d4e263ecffe70c7784d1e7f266cf99176e47ee8e74c9653",
+          "token": "--expected-untracked-inventory=sha256:1d39f48e2de7d0bf5d4e263ecffe70c7784d1e7f266cf99176e47ee8e74c9653"
+        },
+        {
+          "name": "intended-untracked",
+          "value": "docs/skill-audit/supervisor-drain/RESULTADO.md",
+          "token": "--intended-untracked=docs/skill-audit/supervisor-drain/RESULTADO.md"
+        },
+        {
+          "name": "intended-untracked",
+          "value": "docs/skill-audit/supervisor-drain/final-green.stderr",
+          "token": "--intended-untracked=docs/skill-audit/supervisor-drain/final-green.stderr"
+        },
+        {
+          "name": "intended-untracked",
+          "value": "docs/skill-audit/supervisor-drain/observations.json",
+          "token": "--intended-untracked=docs/skill-audit/supervisor-drain/observations.json"
+        },
+        {
+          "name": "intended-untracked",
+          "value": "docs/skill-audit/supervisor-drain/red.stderr",
+          "token": "--intended-untracked=docs/skill-audit/supervisor-drain/red.stderr"
+        },
+        {
+          "name": "intended-untracked",
+          "value": "odd/tasks/supervisor-drain.md",
+          "token": "--intended-untracked=odd/tasks/supervisor-drain.md"
+        },
+        {
+          "name": "intended-untracked",
+          "value": "supervisor/tests/test_shutdown_capture.py",
+          "token": "--intended-untracked=supervisor/tests/test_shutdown_capture.py"
+        }
+      ],
+      "preconditions": [
+        {
+          "name": "target_identity",
+          "value": "sha256:4683b55e412f2f1a6978acc8e26e2a548817db4121bc1c1d7b123dcee1a5a173"
+        }
+      ],
+      "binding": {
+        "lineage_id": "review-7f20158690dc0591",
+        "target_identity": "sha256:4683b55e412f2f1a6978acc8e26e2a548817db4121bc1c1d7b123dcee1a5a173"
+      }
+    }
+  }
+}
