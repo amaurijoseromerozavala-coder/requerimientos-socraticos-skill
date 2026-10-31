@@ -1,0 +1,38 @@
+{
+  "schema": "gentle-ai.review-integration.consent/v3",
+  "contract": "gentle-ai.review-integration/v2",
+  "operation": "review.start",
+  "action": "consent_required",
+  "agent": "codex",
+  "blocking": true,
+  "target_identity": "sha256:1d3e29eb6b8c8481699101141c71088af224bc566649e080df3fed4fc2fce69e",
+  "projection": "workspace",
+  "risk_level": "medium",
+  "changed_files": 10,
+  "changed_lines": 469,
+  "headline": "Gentle AI can review this change before you call it done.",
+  "reason": "Review can help detect regressions in these changes.",
+  "value": "Reviewing takes a little longer and makes the result safer.",
+  "risk_evidence": [
+    "this change is not purely passive documentation, so it gets one consolidated review.",
+    "an executable change in docs/skill-audit/integration-candidate-01/check-document-model.py"
+  ],
+  "choices": [
+    {
+      "answer": "granted",
+      "label": "Review this change",
+      "effect": "Reviews only this change; later medium- or high-risk changes ask again, and delivery needs separate approval.",
+      "invocation": "gentle-ai review start --contract gentle-ai.review-integration/v2 --cwd /workspace/publicacion-proyecto-integrado --target sha256:1d3e29eb6b8c8481699101141c71088af224bc566649e080df3fed4fc2fce69e --target-evidence v1:current-changes:workspace:88aa46991369c3fc3d849fd5571ed45c4e27c5f3:98c44c006597735957ec9adbd7368247a050e7c8:sha256:f446d670ac070324b56e62522e6b9d789daac71a721efc06b294323553647c06 --projection workspace --agent codex --lineage review-ace4fa14a5989f79 --untracked-scope=select --expected-untracked-inventory=sha256:bbba1bc17bc32e373331d6238995a33dc8fa74b527d892e67c85df4208cab712 --intended-untracked=docs/skill-audit/integration-r3-001/RESULTADO.md --intended-untracked=docs/skill-audit/integration-r3-001/green.stderr --intended-untracked=docs/skill-audit/integration-r3-001/independent-review.md --intended-untracked=docs/skill-audit/integration-r3-001/interview.json --intended-untracked=docs/skill-audit/integration-r3-001/model-green.json --intended-untracked=docs/skill-audit/integration-r3-001/red.stderr --intended-untracked=docs/skill-audit/integration-r3-001/test_revocation_contract.py --lenses review-reliability --lenses-reason 'Documentary R3-001 checker, fixed oracle and negative controls; no product runtime implementation.' --consent granted"
+    },
+    {
+      "answer": "declined",
+      "label": "Skip this time",
+      "effect": "Skips only this change; no review record is created, and future reviews stay enabled.",
+      "invocation": "gentle-ai review start --contract gentle-ai.review-integration/v2 --cwd /workspace/publicacion-proyecto-integrado --target sha256:1d3e29eb6b8c8481699101141c71088af224bc566649e080df3fed4fc2fce69e --target-evidence v1:current-changes:workspace:88aa46991369c3fc3d849fd5571ed45c4e27c5f3:98c44c006597735957ec9adbd7368247a050e7c8:sha256:f446d670ac070324b56e62522e6b9d789daac71a721efc06b294323553647c06 --projection workspace --agent codex --lineage review-ace4fa14a5989f79 --untracked-scope=select --expected-untracked-inventory=sha256:bbba1bc17bc32e373331d6238995a33dc8fa74b527d892e67c85df4208cab712 --intended-untracked=docs/skill-audit/integration-r3-001/RESULTADO.md --intended-untracked=docs/skill-audit/integration-r3-001/green.stderr --intended-untracked=docs/skill-audit/integration-r3-001/independent-review.md --intended-untracked=docs/skill-audit/integration-r3-001/interview.json --intended-untracked=docs/skill-audit/integration-r3-001/model-green.json --intended-untracked=docs/skill-audit/integration-r3-001/red.stderr --intended-untracked=docs/skill-audit/integration-r3-001/test_revocation_contract.py --lenses review-reliability --lenses-reason 'Documentary R3-001 checker, fixed oracle and negative controls; no product runtime implementation.' --consent declined"
+    }
+  ],
+  "off_path": {
+    "note": "To turn reviews off for good, run 'gentle-ai review mode disable'.",
+    "command": "gentle-ai review mode disable"
+  }
+}

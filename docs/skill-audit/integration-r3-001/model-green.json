@@ -1,0 +1,23 @@
+{
+  "result": "PASS_WITHIN_DOCUMENT_MODEL_SCOPE",
+  "requirements_traced": 23,
+  "boolean_valuations": 128,
+  "gate_results": {
+    "BLOCK": 124,
+    "ELIGIBLE_NOT_EXECUTED": 3,
+    "WAIT_NEW_AUTHORIZATION": 1
+  },
+  "unknown_input_rejected": true,
+  "negative_control_removed_revocation_rule_detected": 1,
+  "projection_unique_edges": 13,
+  "projection_reachable_states": 9,
+  "projection_not_global_fsm": true,
+  "red_origin": "Missing4documents recorded before creation; mutations are negative controls, not pre-edit RED execution.",
+  "limits": [
+    "No runtime execution, filesystem exclusion, durable recovery or hardware verified.",
+    "Gate assumptions and qualified events require implementation and observational verification.",
+    "Reachability is graph-only, not feasibility or liveness.",
+    "Global handler labels and coverage checked; effects and OS temporal ordering not executed."
+  ],
+  "global_revocation_contract": "PASS_DOCUMENTARY_STRUCTURE_ONLY"
+}

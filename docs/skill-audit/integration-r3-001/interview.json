@@ -1,0 +1,13 @@
+{
+  "id": "Q-R3-001",
+  "interrogator": "/root/revocation_review",
+  "responder": "/root",
+  "question": "¿Qué oráculo independiente del propio campo global_handlers usará el comprobador para exigir exactamente un manejador de revocation_accepted, prioridad BEFORE_LOCAL_TRANSITION y cobertura de todos los estados declarados, y qué mutaciones concretas deberán rechazarse sin interpretar ese resultado como prueba de orden temporal del SO ni cambiar la revocación diferida de INT-D20..23?",
+  "answer_summary_not_verbatim": "Oráculo fijo de los nueve estados de la proyección revisada, evento y prioridad exactos, cobertura sin duplicados y rechazo predeterminado. Mutaciones de ausencia, duplicación, prioridad, evento, cobertura y reducción simultánea del dominio. No cambiar FSM ni política humana. CLI en copias temporales; diagnóstico específico. Importación sin efectos.",
+  "assessment": "ANSWERED_FOR_DOCUMENTARY_CORRECTION",
+  "limitations": [
+    "Efectos en prosa no ejecutados",
+    "Orden temporal SO no probado",
+    "No cierre de FSM global"
+  ]
+}

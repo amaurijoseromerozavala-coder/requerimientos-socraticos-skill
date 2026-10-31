@@ -1,0 +1,64 @@
+{
+  "schema": "gentle-ai.review-last-event-closure/v1",
+  "operation": "review/capture-result",
+  "lineage_id": "review-ace4fa14a5989f79",
+  "state": "approved",
+  "action": "the approved review completed on the last admitted event and awaits its exact acknowledgement",
+  "reviewer_results": [
+    {
+      "lens": "review-reliability",
+      "findings": [],
+      "evidence": [
+        "Inspected all ten supplied patches without reading external files or executing commands.",
+        "docs/skill-audit/integration-candidate-01/check-document-model.py adds explicit validation of the fixed state scope, unique revocation event, single global handler, priority, exact coverage and rejection default before emitting success.",
+        "docs/skill-audit/integration-r3-001/test_revocation_contract.py asserts observable CLI success for the current document, nonzero exit with a contract-specific diagnostic for 18 mutations, and import without output or file creation.",
+        "docs/skill-audit/integration-r3-001/green.stderr records three passing tests; docs/skill-audit/integration-r3-001/model-green.json records the original 128 boolean valuations. These are supplied artifacts, not independently reproduced executions.",
+        "docs/skill-audit/integration-r3-001/RESULTADO.md explicitly documents the intentional removal of historical receipt rewriting and limits the claims to documentary structure, excluding runtime effects and temporal ordering."
+      ],
+      "result_hash": "sha256:bbfa8e05933a60ab783bed98d9eeb68f0126774eff962b6e50bd06c5ca6c44d3"
+    }
+  ],
+  "acknowledgement": {
+    "operation": "review.acknowledge-approved",
+    "command": "gentle-ai review acknowledge-approved --cwd=/workspace/publicacion-proyecto-integrado --lineage=review-ace4fa14a5989f79 --target=sha256:1d3e29eb6b8c8481699101141c71088af224bc566649e080df3fed4fc2fce69e --expected-revision=sha256:8cb527350992e1cd7f26b0eac11e8d9078aacb02c89306011d3a188a945d1d29 --token=4b42edc5e9073e92bef02e2e296858d9450c16d98c036e3baaa19b1369d3b5a2",
+    "arguments": [
+      {
+        "name": "cwd",
+        "value": "/workspace/publicacion-proyecto-integrado",
+        "token": "--cwd=/workspace/publicacion-proyecto-integrado"
+      },
+      {
+        "name": "lineage",
+        "value": "review-ace4fa14a5989f79",
+        "token": "--lineage=review-ace4fa14a5989f79"
+      },
+      {
+        "name": "target",
+        "value": "sha256:1d3e29eb6b8c8481699101141c71088af224bc566649e080df3fed4fc2fce69e",
+        "token": "--target=sha256:1d3e29eb6b8c8481699101141c71088af224bc566649e080df3fed4fc2fce69e"
+      },
+      {
+        "name": "expected-revision",
+        "value": "sha256:8cb527350992e1cd7f26b0eac11e8d9078aacb02c89306011d3a188a945d1d29",
+        "token": "--expected-revision=sha256:8cb527350992e1cd7f26b0eac11e8d9078aacb02c89306011d3a188a945d1d29"
+      },
+      {
+        "name": "token",
+        "value": "4b42edc5e9073e92bef02e2e296858d9450c16d98c036e3baaa19b1369d3b5a2",
+        "token": "--token=4b42edc5e9073e92bef02e2e296858d9450c16d98c036e3baaa19b1369d3b5a2"
+      }
+    ],
+    "preconditions": [
+      {
+        "name": "state",
+        "value": "approved"
+      }
+    ],
+    "binding": {
+      "lineage_id": "review-ace4fa14a5989f79",
+      "revision": "sha256:8cb527350992e1cd7f26b0eac11e8d9078aacb02c89306011d3a188a945d1d29",
+      "target_identity": "sha256:1d3e29eb6b8c8481699101141c71088af224bc566649e080df3fed4fc2fce69e"
+    }
+  },
+  "store_revision": "sha256:8cb527350992e1cd7f26b0eac11e8d9078aacb02c89306011d3a188a945d1d29"
+}
