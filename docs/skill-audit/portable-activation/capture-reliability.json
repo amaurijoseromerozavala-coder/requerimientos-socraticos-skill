@@ -1,0 +1,74 @@
+{
+  "schema": "gentle-ai.review-last-event-closure/v1",
+  "operation": "review/capture-result",
+  "lineage_id": "review-f30bfb05158ca38b",
+  "state": "approved",
+  "action": "the approved review completed on the last admitted event and awaits its exact acknowledgement",
+  "reviewer_results": [
+    {
+      "lens": "review-resilience",
+      "findings": [],
+      "evidence": [
+        "Inspected all 11 supplied patches without accessing external candidate state or executing commands. No concrete candidate-caused resilience failure was established.",
+        "skills/requerimientos-socraticos/scripts/requirements:24-42 explicitly rejects unknown operations, unavailable interpreters, and missing helpers; an invalid explicit interpreter does not trigger fallback.",
+        "bin/gentle-ai:11-16 rejects unavailable upstream executables and direct self-delegation before executing the configured upstream.",
+        "skills/requerimientos-socraticos/tests/test_portable_entry.py covers relocation, symlinks, invalid explicit interpreters, repository environment selection, and upstream self-delegation. Supplied test receipts report passing runs; these were not independently executed."
+      ],
+      "result_hash": "sha256:13579a6f8f01da4bd8fc935eab3dda70d39ef0df4c323b556ada7849fbb3bfc5"
+    },
+    {
+      "lens": "review-reliability",
+      "findings": [],
+      "evidence": [
+        "Inspected all 11 supplied immutable patches; no commands were run or external files inspected.",
+        "skills/requerimientos-socraticos/scripts/requirements preserves argument boundaries, rejects invalid explicit interpreters without fallback, checks helper availability, and propagates helper exit status through exec.",
+        "skills/requerimientos-socraticos/tests/test_portable_entry.py asserts observable dispatch arguments, relocation, symlink resolution, interpreter rejection, repository environment selection, unknown-operation errors, upstream delegation, and direct recursion rejection. Dispatch tests use substitute helpers and therefore establish launcher behavior rather than actual helper functionality.",
+        "docs/skill-audit/portable-activation/final-green.stderr and docs/skill-audit/portable-activation/regression.stderr report passing suites; these supplied records were inspected but not independently reproduced. No concrete candidate-caused reliability defect was established from the supplied scope."
+      ],
+      "result_hash": "sha256:eaef47ea132a0a3733e8b09dda0437af4da06bbfbc2db7ea2f355096e7585bd5"
+    }
+  ],
+  "acknowledgement": {
+    "operation": "review.acknowledge-approved",
+    "command": "gentle-ai review acknowledge-approved --cwd=/workspace/publicacion-proyecto-integrado --lineage=review-f30bfb05158ca38b --target=sha256:8be76553c8b9fe45c401c6931a736455b81da9fa7640416197e7a736ec9a7276 --expected-revision=sha256:0ddb5335a552afe69242de0e45bdaf2a46e0d5e668ff7f123f524960c6242fc9 --token=[REDACTED]",
+    "arguments": [
+      {
+        "name": "cwd",
+        "value": "/workspace/publicacion-proyecto-integrado",
+        "token": "--cwd=/workspace/publicacion-proyecto-integrado"
+      },
+      {
+        "name": "lineage",
+        "value": "review-f30bfb05158ca38b",
+        "token": "--lineage=review-f30bfb05158ca38b"
+      },
+      {
+        "name": "target",
+        "value": "sha256:8be76553c8b9fe45c401c6931a736455b81da9fa7640416197e7a736ec9a7276",
+        "token": "--target=sha256:8be76553c8b9fe45c401c6931a736455b81da9fa7640416197e7a736ec9a7276"
+      },
+      {
+        "name": "expected-revision",
+        "value": "sha256:0ddb5335a552afe69242de0e45bdaf2a46e0d5e668ff7f123f524960c6242fc9",
+        "token": "--expected-revision=sha256:0ddb5335a552afe69242de0e45bdaf2a46e0d5e668ff7f123f524960c6242fc9"
+      },
+      {
+        "name": "token",
+        "value": "[REDACTED]",
+        "token": "--token=[REDACTED]"
+      }
+    ],
+    "preconditions": [
+      {
+        "name": "state",
+        "value": "approved"
+      }
+    ],
+    "binding": {
+      "lineage_id": "review-f30bfb05158ca38b",
+      "revision": "sha256:0ddb5335a552afe69242de0e45bdaf2a46e0d5e668ff7f123f524960c6242fc9",
+      "target_identity": "sha256:8be76553c8b9fe45c401c6931a736455b81da9fa7640416197e7a736ec9a7276"
+    }
+  },
+  "store_revision": "sha256:0ddb5335a552afe69242de0e45bdaf2a46e0d5e668ff7f123f524960c6242fc9"
+}

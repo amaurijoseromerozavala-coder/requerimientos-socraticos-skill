@@ -1,0 +1,44 @@
+#!/usr/bin/env bash
+# Portable Linux/WSL entry point; no dependency installation or implicit PATH Python.
+set -euo pipefail
+entry=$(readlink -f -- "${BASH_SOURCE[0]}")
+scripts_dir=$(cd -- "$(dirname -- "$entry")" && pwd -P)
+skill_dir=$(cd -- "$scripts_dir/.." && pwd -P)
+case "${1:---help}" in
+    --help|-h|help)
+        printf '%s\n' 'requirements {activate|preflight|probe|analyze|validate|git-validate|normalize|lint|snapshot|verify|advance} [arguments]' \
+          'Use the installed skill scripts/requirements directly; no upstream gentle-ai subcommand is required.' \
+          'Python: explicit REQUIREMENTS_PYTHON, skill .venv, repository .venv, or configured XDG skill venv.'
+        exit 0 ;;
+esac
+operation=$1
+shift
+case "$operation" in
+    activate|preflight) helper=activation_preflight.py ;;
+    probe) helper=probe_environment.py ;;
+    analyze) helper=analyze_logic.py ;;
+    validate|git-validate) helper=validate_git.py ;;
+    normalize) helper=normalize_text.py ;;
+    lint) helper=requirements_guard.py; set -- validate "$@" ;;
+    snapshot|verify|advance) helper=requirements_guard.py; set -- "$operation" "$@" ;;
+    *) printf '%s\n' '{"error":{"code":"UNKNOWN_OPERATION","message":"Run scripts/requirements --help."}}'; exit 2 ;;
+esac
+runtime=''
+if [[ "${REQUIREMENTS_PYTHON+x}" == x ]]; then
+    if [[ -n "$REQUIREMENTS_PYTHON" ]]; then
+        runtime=$(command -v -- "$REQUIREMENTS_PYTHON" || true)
+    fi
+else
+    for candidate in "$skill_dir/.venv/bin/python" "$skill_dir/../../.venv/bin/python" "${XDG_DATA_HOME:-$HOME/.local/share}/requerimientos-socraticos/venv/bin/python"; do
+        if [[ -f "$candidate" && -x "$candidate" ]]; then runtime=$candidate; break; fi
+    done
+fi
+if [[ -z "$runtime" || ! -f "$runtime" || ! -x "$runtime" ]]; then
+    printf '%s\n' '{"error":{"code":"INTERPRETER_UNAVAILABLE","message":"Set REQUIREMENTS_PYTHON to a prepared Python interpreter or create a documented venv. No installation or implicit PATH fallback performed."}}'
+    exit 2
+fi
+if [[ ! -f "$scripts_dir/$helper" ]]; then
+    printf '%s\n' '{"error":{"code":"HELPER_UNAVAILABLE","message":"Keep scripts and dependencies together in the installed skill."}}'
+    exit 2
+fi
+exec "$runtime" -B "$scripts_dir/$helper" "$@"

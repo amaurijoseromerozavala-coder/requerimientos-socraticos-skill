@@ -6,7 +6,7 @@ Proyecto integrado de requisitos trazables, revisión de calidad y diseño de un
 
 | Componente | Estado |
 |---|---|
-| Requerimientos Socráticos | Skill 2.4.6 y tooling existente |
+| Requerimientos Socráticos | Skill 2.4.7: activación portable y tooling existente |
 | QA Inquisidor | Skill 0.1.3-alpha y comprobador documental |
 | Supervisor local ampliado | Diseño DRAFT; no implementado |
 | Integración | 23 decisiones, modelo booleano de 128 valoraciones y FSM parcial |
@@ -32,7 +32,19 @@ La revisión RDD inspeccionó 13 archivos; no certifica todo el repositorio ni e
 
 Las fuentes Python y sus pruebas están en `skills/`. `requirements.txt` conserva las dependencias de la distribución anterior. La [guía de esa distribución](docs/publication/previous-skill-release/README.md) se conserva como documento histórico; sus afirmaciones sobre contenido distribuido corresponden a aquella versión.
 
-`bin/gentle-ai` es el wrapper local original, con rutas absolutas de `/workspace/replica-gentle-ai`; no es un instalador portable. El binario upstream y las credenciales no están incluidos. Las invocaciones del revisor tampoco deben asumirse operativas al clonar. Para usar los helpers, preparar explícitamente un entorno Python compatible y ejecutar sus rutas con el intérprete elegido. No se ejecutan instalaciones, calibraciones ni servicios automáticamente.
+La skill incluye una entrada portable independiente del Gentle AI instalado:
+
+```bash
+REQUIREMENTS_PYTHON="$PWD/.venv/bin/python" \
+  bash skills/requerimientos-socraticos/scripts/requirements activate --path "$PWD"
+```
+
+Este ejemplo supone un entorno `.venv` preparado. La [guía para Gentle Pi/Shell](skills/requerimientos-socraticos/references/gentle-pi.md) explica preparación,
+activación desde otro proyecto y diagnóstico sin comandos ficticios.
+`bin/gentle-ai requirements ...` es un wrapper opcional que resuelve rutas locales.
+Para otros comandos requiere el ejecutable upstream local o `GENTLE_AI_UPSTREAM`
+como ruta absoluta; no incluye binarios ni modifica perfiles de autenticación.
+No se instala ni se ejecuta nada automáticamente al clonar.
 
 Los documentos históricos pueden incluir rutas locales y estados anteriores: consultar los recibos de cada candidato y el informe actual antes de interpretar un PASS. `VERIFICATION.json` en la raíz corresponde a la publicación anterior de Requerimientos Socráticos, no al sistema integrado.
 

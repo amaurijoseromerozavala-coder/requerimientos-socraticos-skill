@@ -4,7 +4,7 @@ description: "Trigger: requerimientos socraticos, interrogatorio, PRD, EARS, FSM
 license: Apache-2.0
 metadata:
   author: "workspace-user"
-  version: "2.4.6"
+  version: "2.4.7"
 ---
 
 ## Activation Contract
@@ -36,7 +36,7 @@ Asume el rol de **arquitecto y científico del software senior**. Interroga, inv
 
 ## Execution Steps
 
-0. Al activar, ejecuta `gentle-ai requirements activate` desde el workspace autorizado. Lee el JSON de [preflight](references/activation-preflight.md); desconocidos críticos bloquean workers, no la entrevista. Un informe guardado no autoriza ejecución: las entradas públicas reevalúan los límites en vivo.
+0. Al activar, localiza la raíz real de esta skill e invoca `bash "<skill_root>/scripts/requirements" activate --path "<proyecto_autorizado>"`. Consulta [integración portable](references/gentle-pi.md). No asumas que el Gentle AI upstream ofrece el subcomando `requirements`; el wrapper del repositorio es opcional. Lee el JSON de [preflight](references/activation-preflight.md); desconocidos críticos bloquean workers, no la entrevista. Un informe guardado no autoriza ejecución: las entradas públicas reevalúan los límites en vivo.
 1. Lee [método](references/method.md), protocolo e investigación; delimita alcance y autoridad.
 2. Abre entrevista y registro Markdown; inicia el entrevistador con contexto mínimo.
 3. Interroga al asistente, contrasta respuestas y escala decisiones humanas. Registra antes de continuar; entrega el registro en cada respuesta al humano.
@@ -121,7 +121,7 @@ admitidos ni ampliar permisos/CI como consecuencia de un output QA.
 
 ### Activación y admisión 2.4.5
 
-Ejecuta el [preflight de activación](references/activation-preflight.md) al cargar
+Ejecuta el [preflight de activación](references/activation-preflight.md) mediante la entrada portable al cargar
 la skill. Expone CPU/afinidad, memoria/swap, almacenamiento y alojamiento visibles,
 sin identificadores únicos ni calibración física. Las entradas públicas de
 análisis y Git reevalúan condiciones antes de sus workers; un informe guardado
@@ -138,3 +138,12 @@ La viabilidad de cada perfil deriva de los roles definidos por las políticas de
 memoria, sin una segunda tabla de fracciones. El modo all toma el máximo de cada
 rol compartido entre workloads. Los presupuestos actuales no cambian; consultar
 [activación](references/activation-preflight.md). Esto no añade calibración física.
+
+### Activación portable 2.4.7
+
+La entrada `scripts/requirements` pertenece a la skill y resuelve helpers desde su
+ubicación instalada. No instala dependencias ni cambia configuración del agente.
+Consulta [Gentle Pi/Shell](references/gentle-pi.md) para seleccionar intérprete y
+registrar bloqueos. El preflight no envuelve ni limita todos los comandos de Shell.
+Las correcciones de producto corresponden al agente de desarrollo dentro de la
+autorización del usuario y sus gates; esta skill conserva su contrato documental.

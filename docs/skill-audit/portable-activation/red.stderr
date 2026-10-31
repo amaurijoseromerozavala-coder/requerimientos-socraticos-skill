@@ -1,0 +1,147 @@
+test_all_routes_relocatable (test_portable_entry.PortableEntryTests.test_all_routes_relocatable) ... 
+  test_all_routes_relocatable (test_portable_entry.PortableEntryTests.test_all_routes_relocatable) (operation='activate') ... FAIL
+  test_all_routes_relocatable (test_portable_entry.PortableEntryTests.test_all_routes_relocatable) (operation='preflight') ... FAIL
+  test_all_routes_relocatable (test_portable_entry.PortableEntryTests.test_all_routes_relocatable) (operation='probe') ... FAIL
+  test_all_routes_relocatable (test_portable_entry.PortableEntryTests.test_all_routes_relocatable) (operation='analyze') ... FAIL
+  test_all_routes_relocatable (test_portable_entry.PortableEntryTests.test_all_routes_relocatable) (operation='validate') ... FAIL
+  test_all_routes_relocatable (test_portable_entry.PortableEntryTests.test_all_routes_relocatable) (operation='git-validate') ... FAIL
+  test_all_routes_relocatable (test_portable_entry.PortableEntryTests.test_all_routes_relocatable) (operation='normalize') ... FAIL
+  test_all_routes_relocatable (test_portable_entry.PortableEntryTests.test_all_routes_relocatable) (operation='lint') ... FAIL
+test_help_without_runtime (test_portable_entry.PortableEntryTests.test_help_without_runtime) ... FAIL
+test_invalid_explicit_runtime_no_fallback (test_portable_entry.PortableEntryTests.test_invalid_explicit_runtime_no_fallback) ... FAIL
+test_symlink (test_portable_entry.PortableEntryTests.test_symlink) ... FAIL
+test_wrapper_external_upstream_and_recursion (test_portable_entry.PortableEntryTests.test_wrapper_external_upstream_and_recursion) ... FAIL
+test_wrapper_has_no_cloud_paths (test_portable_entry.PortableEntryTests.test_wrapper_has_no_cloud_paths) ... FAIL
+
+======================================================================
+FAIL: test_all_routes_relocatable (test_portable_entry.PortableEntryTests.test_all_routes_relocatable) (operation='activate')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/publicacion-proyecto-integrado/skills/requerimientos-socraticos/tests/test_portable_entry.py", line 43, in test_all_routes_relocatable
+    self.assertEqual(r.returncode,0,r.stderr)
+AssertionError: 127 != 0 : bash: /tmp/portable skill z68zshsc/skills/requerimientos-socraticos/scripts/requirements: No such file or directory
+
+
+======================================================================
+FAIL: test_all_routes_relocatable (test_portable_entry.PortableEntryTests.test_all_routes_relocatable) (operation='preflight')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/publicacion-proyecto-integrado/skills/requerimientos-socraticos/tests/test_portable_entry.py", line 43, in test_all_routes_relocatable
+    self.assertEqual(r.returncode,0,r.stderr)
+AssertionError: 127 != 0 : bash: /tmp/portable skill z68zshsc/skills/requerimientos-socraticos/scripts/requirements: No such file or directory
+
+
+======================================================================
+FAIL: test_all_routes_relocatable (test_portable_entry.PortableEntryTests.test_all_routes_relocatable) (operation='probe')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/publicacion-proyecto-integrado/skills/requerimientos-socraticos/tests/test_portable_entry.py", line 43, in test_all_routes_relocatable
+    self.assertEqual(r.returncode,0,r.stderr)
+AssertionError: 127 != 0 : bash: /tmp/portable skill z68zshsc/skills/requerimientos-socraticos/scripts/requirements: No such file or directory
+
+
+======================================================================
+FAIL: test_all_routes_relocatable (test_portable_entry.PortableEntryTests.test_all_routes_relocatable) (operation='analyze')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/publicacion-proyecto-integrado/skills/requerimientos-socraticos/tests/test_portable_entry.py", line 43, in test_all_routes_relocatable
+    self.assertEqual(r.returncode,0,r.stderr)
+AssertionError: 127 != 0 : bash: /tmp/portable skill z68zshsc/skills/requerimientos-socraticos/scripts/requirements: No such file or directory
+
+
+======================================================================
+FAIL: test_all_routes_relocatable (test_portable_entry.PortableEntryTests.test_all_routes_relocatable) (operation='validate')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/publicacion-proyecto-integrado/skills/requerimientos-socraticos/tests/test_portable_entry.py", line 43, in test_all_routes_relocatable
+    self.assertEqual(r.returncode,0,r.stderr)
+AssertionError: 127 != 0 : bash: /tmp/portable skill z68zshsc/skills/requerimientos-socraticos/scripts/requirements: No such file or directory
+
+
+======================================================================
+FAIL: test_all_routes_relocatable (test_portable_entry.PortableEntryTests.test_all_routes_relocatable) (operation='git-validate')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/publicacion-proyecto-integrado/skills/requerimientos-socraticos/tests/test_portable_entry.py", line 43, in test_all_routes_relocatable
+    self.assertEqual(r.returncode,0,r.stderr)
+AssertionError: 127 != 0 : bash: /tmp/portable skill z68zshsc/skills/requerimientos-socraticos/scripts/requirements: No such file or directory
+
+
+======================================================================
+FAIL: test_all_routes_relocatable (test_portable_entry.PortableEntryTests.test_all_routes_relocatable) (operation='normalize')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/publicacion-proyecto-integrado/skills/requerimientos-socraticos/tests/test_portable_entry.py", line 43, in test_all_routes_relocatable
+    self.assertEqual(r.returncode,0,r.stderr)
+AssertionError: 127 != 0 : bash: /tmp/portable skill z68zshsc/skills/requerimientos-socraticos/scripts/requirements: No such file or directory
+
+
+======================================================================
+FAIL: test_all_routes_relocatable (test_portable_entry.PortableEntryTests.test_all_routes_relocatable) (operation='lint')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/publicacion-proyecto-integrado/skills/requerimientos-socraticos/tests/test_portable_entry.py", line 43, in test_all_routes_relocatable
+    self.assertEqual(r.returncode,0,r.stderr)
+AssertionError: 127 != 0 : bash: /tmp/portable skill z68zshsc/skills/requerimientos-socraticos/scripts/requirements: No such file or directory
+
+
+======================================================================
+FAIL: test_help_without_runtime (test_portable_entry.PortableEntryTests.test_help_without_runtime)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/publicacion-proyecto-integrado/skills/requerimientos-socraticos/tests/test_portable_entry.py", line 30, in test_help_without_runtime
+    self.assertEqual(r.returncode,0,r.stderr)
+AssertionError: 127 != 0 : bash: /tmp/portable skill j1nye2v9/skills/requerimientos-socraticos/scripts/requirements: No such file or directory
+
+
+======================================================================
+FAIL: test_invalid_explicit_runtime_no_fallback (test_portable_entry.PortableEntryTests.test_invalid_explicit_runtime_no_fallback)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/publicacion-proyecto-integrado/skills/requerimientos-socraticos/tests/test_portable_entry.py", line 57, in test_invalid_explicit_runtime_no_fallback
+    self.assertEqual(r.returncode,2)
+AssertionError: 127 != 2
+
+======================================================================
+FAIL: test_symlink (test_portable_entry.PortableEntryTests.test_symlink)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/publicacion-proyecto-integrado/skills/requerimientos-socraticos/tests/test_portable_entry.py", line 52, in test_symlink
+    self.assertEqual((r.returncode,r.stdout),(0,'OK\n'),r.stderr)
+AssertionError: Tuples differ: (127, '') != (0, 'OK\n')
+
+First differing element 0:
+127
+0
+
+- (127, '')
++ (0, 'OK\n') : bash: /tmp/portable skill fjr82h33/entry link: No such file or directory
+
+
+======================================================================
+FAIL: test_wrapper_external_upstream_and_recursion (test_portable_entry.PortableEntryTests.test_wrapper_external_upstream_and_recursion)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/publicacion-proyecto-integrado/skills/requerimientos-socraticos/tests/test_portable_entry.py", line 70, in test_wrapper_external_upstream_and_recursion
+    self.assertEqual((r.returncode,r.stdout),(0,'upstream:--version\n'),r.stderr)
+AssertionError: Tuples differ: (0, 'gentle-ai 4.2.0\n') != (0, 'upstream:--version\n')
+
+First differing element 1:
+'gentle-ai 4.2.0\n'
+'upstream:--version\n'
+
+- (0, 'gentle-ai 4.2.0\n')
++ (0, 'upstream:--version\n') : 
+
+======================================================================
+FAIL: test_wrapper_has_no_cloud_paths (test_portable_entry.PortableEntryTests.test_wrapper_has_no_cloud_paths)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/publicacion-proyecto-integrado/skills/requerimientos-socraticos/tests/test_portable_entry.py", line 62, in test_wrapper_has_no_cloud_paths
+    self.assertNotIn('/workspace/',source)
+AssertionError: '/workspace/' unexpectedly found in '#!/usr/bin/env bash\nset -euo pipefail\n# Local documentary gate extension; upstream Gentle AI binary is unchanged.\nif [[ "${1:-}" == requirements ]]; then\n    shift\n    case "${1:-}" in\n        analyze|probe|activate|preflight)\n            operation="$1"\n            shift\n            if [[ "${REQUIREMENTS_PYTHON+x}" == x ]]; then\n                if [[ -z "$REQUIREMENTS_PYTHON" ]] || ! runtime=$(command -v -- "$REQUIREMENTS_PYTHON") || [[ ! -f "$runtime" || ! -x "$runtime" ]]; then\n                    printf \'%s\\n\' \'{"error":{"code":"INTERPRETER_UNAVAILABLE","message":"Explicit REQUIREMENTS_PYTHON is unavailable; no fallback performed."}}\'\n                    exit 2\n                fi\n            else\n                runtime="${XDG_DATA_HOME:-$HOME/.local/share}/requerimientos-socraticos/venv/bin/python"\n                if [[ ! -f "$runtime" || ! -x "$runtime" ]]; then\n                    printf \'%s\\n\' \'{"error":{"code":"INTERPRETER_UNAVAILABLE","message":"Configured requirements environment is unavailable; no fallback performed."}}\'\n                    exit 2\n                fi\n            fi\n            case "$operation" in\n                analyze) script=analyze_logic.py ;;\n                probe) script=probe_environment.py ;;\n                activate|preflight) script=activation_preflight.py ;;\n            esac\n            exec "$runtime" -B "/workspace/replica-gentle-ai/skills/requerimientos-socraticos/scripts/$script" "$@"\n            ;;\n        validate|git-validate)\n            shift\n            exec python3 -B /workspace/replica-gentle-ai/skills/requerimientos-socraticos/scripts/validate_git.py "$@"\n            ;;\n        normalize)\n            shift\n            exec python3 -B /workspace/replica-gentle-ai/skills/requerimientos-socraticos/scripts/normalize_text.py "$@"\n            ;;\n        lint)\n            shift\n            exec python3 -B /workspace/replica-gentle-ai/skills/requerimientos-socraticos/scripts/requirements_guard.py validate "$@"\n            ;;\n    esac\n    exec python3 -B /workspace/replica-gentle-ai/skills/requerimientos-socraticos/scripts/requirements_guard.py "$@"\nfi\n# Only review subprocesses use the separately authenticated Codex CLI.\nif [[ "${1:-}" == review ]]; then\n    export PATH="/workspace/replica-gentle-ai/libexec/reviewer-bin:$PATH"\nfi\nexec /workspace/replica-gentle-ai/libexec/gentle-ai-4.2.0 "$@"\n'
+
+----------------------------------------------------------------------
+Ran 6 tests in 0.020s
+
+FAILED (failures=13)

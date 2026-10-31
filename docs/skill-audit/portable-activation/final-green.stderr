@@ -1,0 +1,13 @@
+test_all_routes_relocatable (test_portable_entry.PortableEntryTests.test_all_routes_relocatable) ... ok
+test_help_without_runtime (test_portable_entry.PortableEntryTests.test_help_without_runtime) ... ok
+test_invalid_explicit_runtime_no_fallback (test_portable_entry.PortableEntryTests.test_invalid_explicit_runtime_no_fallback) ... ok
+test_repository_venv_without_explicit_override (test_portable_entry.PortableEntryTests.test_repository_venv_without_explicit_override) ... ok
+test_symlink (test_portable_entry.PortableEntryTests.test_symlink) ... ok
+test_unknown_operation_is_rejected (test_portable_entry.PortableEntryTests.test_unknown_operation_is_rejected) ... ok
+test_wrapper_external_upstream_and_recursion (test_portable_entry.PortableEntryTests.test_wrapper_external_upstream_and_recursion) ... ok
+test_wrapper_has_no_cloud_paths (test_portable_entry.PortableEntryTests.test_wrapper_has_no_cloud_paths) ... ok
+
+----------------------------------------------------------------------
+Ran 8 tests in 0.163s
+
+OK

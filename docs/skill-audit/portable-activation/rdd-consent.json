@@ -1,0 +1,37 @@
+{
+  "schema": "gentle-ai.review-integration.consent/v3",
+  "contract": "gentle-ai.review-integration/v2",
+  "operation": "review.start",
+  "action": "consent_required",
+  "agent": "codex",
+  "blocking": true,
+  "target_identity": "sha256:8be76553c8b9fe45c401c6931a736455b81da9fa7640416197e7a736ec9a7276",
+  "projection": "workspace",
+  "risk_level": "high",
+  "changed_files": 11,
+  "changed_lines": 512,
+  "headline": "Gentle AI can review this change before you call it done.",
+  "reason": "Review can help identify potential security issues.",
+  "value": "Reviewing takes a little longer and makes the result safer.",
+  "risk_evidence": [
+    "an executable permission change in skills/requerimientos-socraticos/scripts/requirements"
+  ],
+  "choices": [
+    {
+      "answer": "granted",
+      "label": "Review this change",
+      "effect": "Reviews only this change; later medium- or high-risk changes ask again, and delivery needs separate approval.",
+      "invocation": "gentle-ai review start --contract gentle-ai.review-integration/v2 --cwd /workspace/publicacion-proyecto-integrado --target sha256:8be76553c8b9fe45c401c6931a736455b81da9fa7640416197e7a736ec9a7276 --target-evidence v1:current-changes:workspace:e8f40f231f07b9f99cb9fabacf19407b878cfdce:23f743ea13aac4210266f7ce7056a300d60c39c7:sha256:1281bb699f01dfcbeea1dffa8c03daa6a64e7ac78da76b08d9f0019d44b0c749 --projection workspace --agent codex --lineage review-f30bfb05158ca38b --untracked-scope=select --expected-untracked-inventory=sha256:4e36f4241db9af46cf37f2f7f00c88a2984c5ca819afbef99b09de10648542b1 --intended-untracked=docs/skill-audit/portable-activation/RESULTADO.md --intended-untracked=docs/skill-audit/portable-activation/final-green.stderr --intended-untracked=docs/skill-audit/portable-activation/red.stderr --intended-untracked=docs/skill-audit/portable-activation/regression.stderr --intended-untracked=odd/tasks/portable-activation.md --intended-untracked=skills/requerimientos-socraticos/references/gentle-pi.md --intended-untracked=skills/requerimientos-socraticos/scripts/requirements --intended-untracked=skills/requerimientos-socraticos/tests/test_portable_entry.py --lenses review-resilience,review-reliability --lenses-reason 'Portable skill activation and optional wrapper; explicit interpreter, relocatable paths, no automatic installs or auth profile changes.' --consent granted"
+    },
+    {
+      "answer": "declined",
+      "label": "Skip this time",
+      "effect": "Skips only this change; no review record is created, and future reviews stay enabled.",
+      "invocation": "gentle-ai review start --contract gentle-ai.review-integration/v2 --cwd /workspace/publicacion-proyecto-integrado --target sha256:8be76553c8b9fe45c401c6931a736455b81da9fa7640416197e7a736ec9a7276 --target-evidence v1:current-changes:workspace:e8f40f231f07b9f99cb9fabacf19407b878cfdce:23f743ea13aac4210266f7ce7056a300d60c39c7:sha256:1281bb699f01dfcbeea1dffa8c03daa6a64e7ac78da76b08d9f0019d44b0c749 --projection workspace --agent codex --lineage review-f30bfb05158ca38b --untracked-scope=select --expected-untracked-inventory=sha256:4e36f4241db9af46cf37f2f7f00c88a2984c5ca819afbef99b09de10648542b1 --intended-untracked=docs/skill-audit/portable-activation/RESULTADO.md --intended-untracked=docs/skill-audit/portable-activation/final-green.stderr --intended-untracked=docs/skill-audit/portable-activation/red.stderr --intended-untracked=docs/skill-audit/portable-activation/regression.stderr --intended-untracked=odd/tasks/portable-activation.md --intended-untracked=skills/requerimientos-socraticos/references/gentle-pi.md --intended-untracked=skills/requerimientos-socraticos/scripts/requirements --intended-untracked=skills/requerimientos-socraticos/tests/test_portable_entry.py --lenses review-resilience,review-reliability --lenses-reason 'Portable skill activation and optional wrapper; explicit interpreter, relocatable paths, no automatic installs or auth profile changes.' --consent declined"
+    }
+  ],
+  "off_path": {
+    "note": "To turn reviews off for good, run 'gentle-ai review mode disable'.",
+    "command": "gentle-ai review mode disable"
+  }
+}

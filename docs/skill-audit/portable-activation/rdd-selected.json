@@ -1,0 +1,186 @@
+{
+  "schema": "gentle-ai.review-integration.status/v9",
+  "contract": "gentle-ai.review-integration/v2",
+  "operation": "review.status",
+  "applicability": "unrelated",
+  "action": "start",
+  "replayability": "not_replayable",
+  "target_identity": "sha256:8be76553c8b9fe45c401c6931a736455b81da9fa7640416197e7a736ec9a7276",
+  "projection": {
+    "schema": "gentle-ai.review-integration.projection/v1",
+    "kind": "current-changes",
+    "projection": "workspace",
+    "base_tree": "e8f40f231f07b9f99cb9fabacf19407b878cfdce",
+    "initial_review_tree": "23f743ea13aac4210266f7ce7056a300d60c39c7",
+    "current_candidate_tree": "23f743ea13aac4210266f7ce7056a300d60c39c7",
+    "paths_digest": "sha256:1281bb699f01dfcbeea1dffa8c03daa6a64e7ac78da76b08d9f0019d44b0c749",
+    "paths": [
+      "README.md",
+      "bin/gentle-ai",
+      "docs/skill-audit/portable-activation/RESULTADO.md",
+      "docs/skill-audit/portable-activation/final-green.stderr",
+      "docs/skill-audit/portable-activation/red.stderr",
+      "docs/skill-audit/portable-activation/regression.stderr",
+      "odd/tasks/portable-activation.md",
+      "skills/requerimientos-socraticos/SKILL.md",
+      "skills/requerimientos-socraticos/references/gentle-pi.md",
+      "skills/requerimientos-socraticos/scripts/requirements",
+      "skills/requerimientos-socraticos/tests/test_portable_entry.py"
+    ],
+    "intended_untracked": [
+      "docs/skill-audit/portable-activation/RESULTADO.md",
+      "docs/skill-audit/portable-activation/final-green.stderr",
+      "docs/skill-audit/portable-activation/red.stderr",
+      "docs/skill-audit/portable-activation/regression.stderr",
+      "odd/tasks/portable-activation.md",
+      "skills/requerimientos-socraticos/references/gentle-pi.md",
+      "skills/requerimientos-socraticos/scripts/requirements",
+      "skills/requerimientos-socraticos/tests/test_portable_entry.py"
+    ],
+    "intended_untracked_proof": "sha256:deef4f619e83c3badfb66fd0035eb107e1bf3b8bf2866674379fcbc756889db5",
+    "initial_snapshot_identity": "sha256:8be76553c8b9fe45c401c6931a736455b81da9fa7640416197e7a736ec9a7276",
+    "current_snapshot_identity": "sha256:8be76553c8b9fe45c401c6931a736455b81da9fa7640416197e7a736ec9a7276"
+  },
+  "eligible_untracked_inventory": "sha256:1261847976316408f93c95c8f0dd4ce10ad66bb1280af9c964148b9b3841b8fe",
+  "repair": {
+    "schema": "gentle-ai.review-authority-repair-assessment/v1",
+    "status": "unsupported",
+    "counts": {
+      "lineages": 0,
+      "compact_lineages": 0,
+      "legacy_lineages": 0,
+      "events": 0,
+      "bytes": 0,
+      "eligible_candidates": 0,
+      "unsupported_lineages": 0,
+      "conflicts": 0
+    },
+    "supported_operations": [
+      "review/complete-fix",
+      "review/validate-fix"
+    ],
+    "authorization_schema": "gentle-ai.review-repair-authorization/v1"
+  },
+  "candidates": [],
+  "forecast": {
+    "horizon": "partial",
+    "steps": [
+      {
+        "step": 1,
+        "kind": "execute",
+        "reason_code": "fresh_target_ready",
+        "description": "Target is unreviewed and ready for initial review start"
+      }
+    ]
+  },
+  "next_transition": {
+    "kind": "execute",
+    "reason_code": "fresh_target_ready",
+    "execute": {
+      "operation": "review.start",
+      "command": "gentle-ai review start --cwd=/workspace/publicacion-proyecto-integrado --contract=gentle-ai.review-integration/v2 --target=sha256:8be76553c8b9fe45c401c6931a736455b81da9fa7640416197e7a736ec9a7276 --target-evidence=v1:current-changes:workspace:e8f40f231f07b9f99cb9fabacf19407b878cfdce:23f743ea13aac4210266f7ce7056a300d60c39c7:sha256:1281bb699f01dfcbeea1dffa8c03daa6a64e7ac78da76b08d9f0019d44b0c749 --projection=workspace --lineage=review-f30bfb05158ca38b --agent=codex --consent=relay --untracked-scope=select --expected-untracked-inventory=sha256:1261847976316408f93c95c8f0dd4ce10ad66bb1280af9c964148b9b3841b8fe --intended-untracked=docs/skill-audit/portable-activation/RESULTADO.md --intended-untracked=docs/skill-audit/portable-activation/final-green.stderr --intended-untracked=docs/skill-audit/portable-activation/red.stderr --intended-untracked=docs/skill-audit/portable-activation/regression.stderr --intended-untracked=odd/tasks/portable-activation.md --intended-untracked=skills/requerimientos-socraticos/references/gentle-pi.md --intended-untracked=skills/requerimientos-socraticos/scripts/requirements --intended-untracked=skills/requerimientos-socraticos/tests/test_portable_entry.py",
+      "arguments": [
+        {
+          "name": "cwd",
+          "value": "/workspace/publicacion-proyecto-integrado",
+          "token": "--cwd=/workspace/publicacion-proyecto-integrado"
+        },
+        {
+          "name": "contract",
+          "value": "gentle-ai.review-integration/v2",
+          "token": "--contract=gentle-ai.review-integration/v2"
+        },
+        {
+          "name": "target",
+          "value": "sha256:8be76553c8b9fe45c401c6931a736455b81da9fa7640416197e7a736ec9a7276",
+          "token": "--target=sha256:8be76553c8b9fe45c401c6931a736455b81da9fa7640416197e7a736ec9a7276"
+        },
+        {
+          "name": "target-evidence",
+          "value": "v1:current-changes:workspace:e8f40f231f07b9f99cb9fabacf19407b878cfdce:23f743ea13aac4210266f7ce7056a300d60c39c7:sha256:1281bb699f01dfcbeea1dffa8c03daa6a64e7ac78da76b08d9f0019d44b0c749",
+          "token": "--target-evidence=v1:current-changes:workspace:e8f40f231f07b9f99cb9fabacf19407b878cfdce:23f743ea13aac4210266f7ce7056a300d60c39c7:sha256:1281bb699f01dfcbeea1dffa8c03daa6a64e7ac78da76b08d9f0019d44b0c749"
+        },
+        {
+          "name": "projection",
+          "value": "workspace",
+          "token": "--projection=workspace"
+        },
+        {
+          "name": "lineage",
+          "value": "review-f30bfb05158ca38b",
+          "token": "--lineage=review-f30bfb05158ca38b"
+        },
+        {
+          "name": "agent",
+          "value": "codex",
+          "token": "--agent=codex"
+        },
+        {
+          "name": "consent",
+          "value": "relay",
+          "token": "--consent=relay"
+        },
+        {
+          "name": "untracked-scope",
+          "value": "select",
+          "token": "--untracked-scope=select"
+        },
+        {
+          "name": "expected-untracked-inventory",
+          "value": "sha256:1261847976316408f93c95c8f0dd4ce10ad66bb1280af9c964148b9b3841b8fe",
+          "token": "--expected-untracked-inventory=sha256:1261847976316408f93c95c8f0dd4ce10ad66bb1280af9c964148b9b3841b8fe"
+        },
+        {
+          "name": "intended-untracked",
+          "value": "docs/skill-audit/portable-activation/RESULTADO.md",
+          "token": "--intended-untracked=docs/skill-audit/portable-activation/RESULTADO.md"
+        },
+        {
+          "name": "intended-untracked",
+          "value": "docs/skill-audit/portable-activation/final-green.stderr",
+          "token": "--intended-untracked=docs/skill-audit/portable-activation/final-green.stderr"
+        },
+        {
+          "name": "intended-untracked",
+          "value": "docs/skill-audit/portable-activation/red.stderr",
+          "token": "--intended-untracked=docs/skill-audit/portable-activation/red.stderr"
+        },
+        {
+          "name": "intended-untracked",
+          "value": "docs/skill-audit/portable-activation/regression.stderr",
+          "token": "--intended-untracked=docs/skill-audit/portable-activation/regression.stderr"
+        },
+        {
+          "name": "intended-untracked",
+          "value": "odd/tasks/portable-activation.md",
+          "token": "--intended-untracked=odd/tasks/portable-activation.md"
+        },
+        {
+          "name": "intended-untracked",
+          "value": "skills/requerimientos-socraticos/references/gentle-pi.md",
+          "token": "--intended-untracked=skills/requerimientos-socraticos/references/gentle-pi.md"
+        },
+        {
+          "name": "intended-untracked",
+          "value": "skills/requerimientos-socraticos/scripts/requirements",
+          "token": "--intended-untracked=skills/requerimientos-socraticos/scripts/requirements"
+        },
+        {
+          "name": "intended-untracked",
+          "value": "skills/requerimientos-socraticos/tests/test_portable_entry.py",
+          "token": "--intended-untracked=skills/requerimientos-socraticos/tests/test_portable_entry.py"
+        }
+      ],
+      "preconditions": [
+        {
+          "name": "target_identity",
+          "value": "sha256:8be76553c8b9fe45c401c6931a736455b81da9fa7640416197e7a736ec9a7276"
+        }
+      ],
+      "binding": {
+        "lineage_id": "review-f30bfb05158ca38b",
+        "target_identity": "sha256:8be76553c8b9fe45c401c6931a736455b81da9fa7640416197e7a736ec9a7276"
+      }
+    }
+  }
+}
