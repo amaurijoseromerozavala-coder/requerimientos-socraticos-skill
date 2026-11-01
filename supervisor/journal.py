@@ -56,6 +56,17 @@ def _validate(doc):
     if doc['state'] == 'RESERVED':
         _identity(doc['identity'])
         return doc
+    if doc['state'] in ('ACTIVE', 'STOPPING'):
+        identity = doc['identity']
+        if not isinstance(identity, dict) or set(identity) != IDENTITY_FIELDS | {'pid', 'process_start_identity'}:
+            raise JournalBlocked('INCOMPLETE_PROCESS_IDENTITY')
+        _identity({key: identity[key] for key in IDENTITY_FIELDS})
+        if (type(identity['pid']) is not int or identity['pid'] <= 0
+                or not isinstance(identity['process_start_identity'], str)
+                or not 1 <= len(identity['process_start_identity']) <= 256
+                or any(ord(char) < 32 for char in identity['process_start_identity'])):
+            raise JournalBlocked('INVALID_PROCESS_IDENTITY')
+        return doc
     raise JournalBlocked('UNKNOWN_OR_INCOHERENT_STATE')
 
 
@@ -160,8 +171,37 @@ class Journal:
         _identity(identity)
         if self.inspect()['state'] != 'IDLE':
             raise JournalBlocked('UNRESOLVED_RESERVATION')
+        self._persist('RESERVED', identity)
+
+    def record_active(self, pid, process_start_identity):
+        if not self._operation.acquire(blocking=False):
+            raise JournalBlocked('RESERVATION_BUSY')
+        try:
+            state = self.inspect()
+            if state['state'] != 'RESERVED':
+                raise JournalBlocked('ACTIVE_REQUIRES_RESERVED')
+            identity = dict(state['identity'], pid=pid,
+                            process_start_identity=process_start_identity)
+            _validate({'schema_version': 'reservation-journal/v1',
+                       'state': 'ACTIVE', 'identity': identity})
+            self._persist('ACTIVE', identity)
+        finally:
+            self._operation.release()
+
+    def record_stopping(self):
+        if not self._operation.acquire(blocking=False):
+            raise JournalBlocked('RESERVATION_BUSY')
+        try:
+            state = self.inspect()
+            if state['state'] != 'ACTIVE':
+                raise JournalBlocked('STOPPING_REQUIRES_ACTIVE')
+            self._persist('STOPPING', state['identity'])
+        finally:
+            self._operation.release()
+
+    def _persist(self, state, identity):
         raw = json.dumps({'schema_version': 'reservation-journal/v1',
-                          'state': 'RESERVED', 'identity': identity},
+                          'state': state, 'identity': identity},
                          allow_nan=False, sort_keys=True).encode('utf-8')
         if len(raw) > MAX_BYTES:
             raise JournalBlocked('STATE_TOO_LARGE')

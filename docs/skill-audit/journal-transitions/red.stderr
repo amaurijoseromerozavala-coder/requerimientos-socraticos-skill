@@ -1,0 +1,32 @@
+EEE
+======================================================================
+ERROR: test_active_requires_reserved_and_complete_identity (test_journal_transitions.TransitionTests.test_active_requires_reserved_and_complete_identity)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/supervisor-transition-unit/supervisor/tests/test_journal_transitions.py", line 17, in test_active_requires_reserved_and_complete_identity
+    with self.assertRaises(JournalBlocked): j.record_active(123,'start-123')
+                                            ^^^^^^^^^^^^^^^
+AttributeError: 'Journal' object has no attribute 'record_active'
+
+======================================================================
+ERROR: test_reopen_active_blocks_new_reservation (test_journal_transitions.TransitionTests.test_reopen_active_blocks_new_reservation)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/supervisor-transition-unit/supervisor/tests/test_journal_transitions.py", line 29, in test_reopen_active_blocks_new_reservation
+    j.reserve(IDENTITY);j.record_active(123,'start-123')
+                        ^^^^^^^^^^^^^^^
+AttributeError: 'Journal' object has no attribute 'record_active'
+
+======================================================================
+ERROR: test_stop_requires_active_and_retains_identity (test_journal_transitions.TransitionTests.test_stop_requires_active_and_retains_identity)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/supervisor-transition-unit/supervisor/tests/test_journal_transitions.py", line 36, in test_stop_requires_active_and_retains_identity
+    with self.assertRaises(JournalBlocked):j.record_stopping()
+                                           ^^^^^^^^^^^^^^^^^
+AttributeError: 'Journal' object has no attribute 'record_stopping'
+
+----------------------------------------------------------------------
+Ran 3 tests in 0.002s
+
+FAILED (errors=3)
