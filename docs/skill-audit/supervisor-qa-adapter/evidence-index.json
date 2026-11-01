@@ -1,0 +1,52 @@
+[
+  {
+    "path": "docs/skill-audit/supervisor-qa-adapter/final.stderr",
+    "bytes": 127,
+    "sha256": "6eb0959eb1b76e881809ad7f90a6ee0ca110fae11102030addcb9a81bc93de2a"
+  },
+  {
+    "path": "docs/skill-audit/supervisor-qa-adapter/final.stdout",
+    "bytes": 510923,
+    "sha256": "aee5442a002c52e82299132e82fb72fd4a66609572f9bccff57e82fbfe9636b7"
+  },
+  {
+    "path": "docs/skill-audit/supervisor-qa-adapter/green.stderr",
+    "bytes": 110,
+    "sha256": "77b731ed6f28baf759064b35e534f41d177a9201b65ad0ac24641b4171db48e6"
+  },
+  {
+    "path": "docs/skill-audit/supervisor-qa-adapter/green.stdout",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "path": "docs/skill-audit/supervisor-qa-adapter/interpreter-red.stderr",
+    "bytes": 989,
+    "sha256": "647c751587de0fd4e1801c90b377656acdccedf9ed3d24588471d0c3e2219af9"
+  },
+  {
+    "path": "docs/skill-audit/supervisor-qa-adapter/interpreter-red.stdout",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "path": "docs/skill-audit/supervisor-qa-adapter/red.stderr",
+    "bytes": 1029,
+    "sha256": "717c22793e1d6834a79d5fb3276921f8a0392e1bae715a75395c6345502b29f1"
+  },
+  {
+    "path": "docs/skill-audit/supervisor-qa-adapter/red.stdout",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "path": "docs/skill-audit/supervisor-qa-adapter/regression.stderr",
+    "bytes": 126,
+    "sha256": "cf60ba2efb05fb4357186a6df362d01a16b475eb7f481fed5a031cbfc6acb394"
+  },
+  {
+    "path": "docs/skill-audit/supervisor-qa-adapter/regression.stdout",
+    "bytes": 510920,
+    "sha256": "17e758df0fde483b20ab9cf85196a1d91fb8fe06cfbb8dd94e212715e1e2f05b"
+  }
+]

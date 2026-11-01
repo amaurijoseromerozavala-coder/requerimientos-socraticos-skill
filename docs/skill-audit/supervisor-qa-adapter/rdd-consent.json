@@ -1,0 +1,38 @@
+{
+  "schema": "gentle-ai.review-integration.consent/v3",
+  "contract": "gentle-ai.review-integration/v2",
+  "operation": "review.start",
+  "action": "consent_required",
+  "agent": "codex",
+  "blocking": true,
+  "target_identity": "sha256:37a6807d65e1daf5200335fd9a9d451c9c73193da0f5ca0fa41bcb768ec6a945",
+  "projection": "workspace",
+  "risk_level": "medium",
+  "changed_files": 13,
+  "changed_lines": 374,
+  "headline": "Gentle AI can review this change before you call it done.",
+  "reason": "Review can help detect regressions in these changes.",
+  "value": "Reviewing takes a little longer and makes the result safer.",
+  "risk_evidence": [
+    "this change is not purely passive documentation, so it gets one consolidated review.",
+    "an executable change in docs/skill-audit/supervisor-qa-adapter/RESULTADO.md"
+  ],
+  "choices": [
+    {
+      "answer": "granted",
+      "label": "Review this change",
+      "effect": "Reviews only this change; later medium- or high-risk changes ask again, and delivery needs separate approval.",
+      "invocation": "gentle-ai review start --contract gentle-ai.review-integration/v2 --cwd /workspace/publicacion-proyecto-integrado --target sha256:37a6807d65e1daf5200335fd9a9d451c9c73193da0f5ca0fa41bcb768ec6a945 --target-evidence v1:current-changes:workspace:f920515072943e342e1455dade52b7cb598b1f0f:74abdfbcd0cdeade49904d9b9a3a4475242890c3:sha256:0e588d6b0a901addb4c6e565073e082a5df056de116d6d524082612358d8480a --projection workspace --agent codex --lineage review-b830a36d94741974 --untracked-scope=select --expected-untracked-inventory=sha256:cf0a9c49b8b0f3e2a981d42b2148afc29661e76dde24fd874c30826dc06f0ef3 --intended-untracked=docs/skill-audit/supervisor-qa-adapter/RESULTADO.md --intended-untracked=docs/skill-audit/supervisor-qa-adapter/evidence-index.json --intended-untracked=docs/skill-audit/supervisor-qa-adapter/final.stderr --intended-untracked=docs/skill-audit/supervisor-qa-adapter/green.stderr --intended-untracked=docs/skill-audit/supervisor-qa-adapter/green.stdout --intended-untracked=docs/skill-audit/supervisor-qa-adapter/interpreter-red.stderr --intended-untracked=docs/skill-audit/supervisor-qa-adapter/interpreter-red.stdout --intended-untracked=docs/skill-audit/supervisor-qa-adapter/red.stderr --intended-untracked=docs/skill-audit/supervisor-qa-adapter/red.stdout --intended-untracked=docs/skill-audit/supervisor-qa-adapter/regression.stderr --intended-untracked=odd/tasks/supervisor-qa-adapter.md --intended-untracked=supervisor/qa_adapter.py --intended-untracked=supervisor/tests/test_qa_adapter.py --lenses review-resilience,review-reliability --lenses-reason 'Review internal fixed-checker process adapter, bounded protocol classification, instance lock and explicit absence of durable admission.' --consent granted"
+    },
+    {
+      "answer": "declined",
+      "label": "Skip this time",
+      "effect": "Skips only this change; no review record is created, and future reviews stay enabled.",
+      "invocation": "gentle-ai review start --contract gentle-ai.review-integration/v2 --cwd /workspace/publicacion-proyecto-integrado --target sha256:37a6807d65e1daf5200335fd9a9d451c9c73193da0f5ca0fa41bcb768ec6a945 --target-evidence v1:current-changes:workspace:f920515072943e342e1455dade52b7cb598b1f0f:74abdfbcd0cdeade49904d9b9a3a4475242890c3:sha256:0e588d6b0a901addb4c6e565073e082a5df056de116d6d524082612358d8480a --projection workspace --agent codex --lineage review-b830a36d94741974 --untracked-scope=select --expected-untracked-inventory=sha256:cf0a9c49b8b0f3e2a981d42b2148afc29661e76dde24fd874c30826dc06f0ef3 --intended-untracked=docs/skill-audit/supervisor-qa-adapter/RESULTADO.md --intended-untracked=docs/skill-audit/supervisor-qa-adapter/evidence-index.json --intended-untracked=docs/skill-audit/supervisor-qa-adapter/final.stderr --intended-untracked=docs/skill-audit/supervisor-qa-adapter/green.stderr --intended-untracked=docs/skill-audit/supervisor-qa-adapter/green.stdout --intended-untracked=docs/skill-audit/supervisor-qa-adapter/interpreter-red.stderr --intended-untracked=docs/skill-audit/supervisor-qa-adapter/interpreter-red.stdout --intended-untracked=docs/skill-audit/supervisor-qa-adapter/red.stderr --intended-untracked=docs/skill-audit/supervisor-qa-adapter/red.stdout --intended-untracked=docs/skill-audit/supervisor-qa-adapter/regression.stderr --intended-untracked=odd/tasks/supervisor-qa-adapter.md --intended-untracked=supervisor/qa_adapter.py --intended-untracked=supervisor/tests/test_qa_adapter.py --lenses review-resilience,review-reliability --lenses-reason 'Review internal fixed-checker process adapter, bounded protocol classification, instance lock and explicit absence of durable admission.' --consent declined"
+    }
+  ],
+  "off_path": {
+    "note": "To turn reviews off for good, run 'gentle-ai review mode disable'.",
+    "command": "gentle-ai review mode disable"
+  }
+}

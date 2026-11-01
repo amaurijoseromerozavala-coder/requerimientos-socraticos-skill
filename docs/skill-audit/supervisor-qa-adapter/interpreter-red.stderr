@@ -1,0 +1,16 @@
+........F...
+======================================================================
+FAIL: test_preserves_selected_virtualenv_interpreter (test_qa_adapter.AdapterTests.test_preserves_selected_virtualenv_interpreter)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/publicacion-proyecto-integrado/supervisor/tests/test_qa_adapter.py", line 28, in test_preserves_selected_virtualenv_interpreter
+    self.assertEqual(self.make()._core.command[0], str(Path(sys.executable).absolute()))
+AssertionError: '/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3.12' != '/home/agent/.local/share/requerimientos-socraticos/venv/bin/python'
+- /opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3.12
++ /home/agent/.local/share/requerimientos-socraticos/venv/bin/python
+
+
+----------------------------------------------------------------------
+Ran 12 tests in 0.265s
+
+FAILED (failures=1)

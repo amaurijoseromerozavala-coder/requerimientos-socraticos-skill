@@ -1,0 +1,103 @@
+{
+  "schema": "gentle-ai.review-last-event-closure/v1",
+  "operation": "review/capture-result",
+  "lineage_id": "review-b830a36d94741974",
+  "state": "approved",
+  "action": "the approved review completed on the last admitted event and awaits its exact acknowledgement",
+  "advisory_findings": {
+    "statement": "This review is approved and its receipt stands. Every finding listed here is non-blocking: none opened a correction, none reopens this review, and no correction transition is offered for this candidate. Treat them as separate later work, never as a reason to re-run review on this candidate.",
+    "findings": [
+      {
+        "id": "R3-001",
+        "lens": "reliability",
+        "location": "supervisor/tests/test_qa_adapter.py:49-53",
+        "severity": "WARNING",
+        "disposition": "informational"
+      }
+    ]
+  },
+  "reviewer_results": [
+    {
+      "lens": "review-resilience",
+      "findings": [],
+      "evidence": [
+        "Inspected all 13 supplied immutable patches without accessing external files or running commands. No concrete change-caused resilience failure was established within the supplied scope.",
+        "supervisor/qa_adapter.py:84-103 rejects concurrent calls, latches uncertain cleanup or core lock observations, and rejects stopped or incomplete process captures before admitting checker output.",
+        "supervisor/qa_adapter.py:118-126 rejects the listed protocol and runtime exceptions, locks the instance when no process observation is available, and releases the ownership lock in finally.",
+        "supervisor/tests/test_qa_adapter.py:65-87 covers incomplete capture, prevention of a second launch after uncertain cleanup, separate process channels, signals, and deadlines. These are supplied test definitions; they were not executed during this review.",
+        "docs/skill-audit/supervisor-qa-adapter/final.stderr:1-5 records 28 passing tests. odd/tasks/supervisor-qa-adapter.md:3-6 explicitly limits the requested increment to a local internal adapter without durable recovery or global admission."
+      ],
+      "result_hash": "sha256:50c6238af00a543eebcf6e3d0ce5a5b53b98938f22bce99d13da7fdcedc6c570"
+    },
+    {
+      "lens": "review-reliability",
+      "findings": [
+        {
+          "id": "R3-001",
+          "lens": "reliability",
+          "location": "supervisor/tests/test_qa_adapter.py:49-53",
+          "severity": "WARNING",
+          "claim": "The partial-scan test passes through protocol rejection rather than exercising partial-scan escalation. Its fixture retains NO_DECLARATIONS_FOUND while changing scan_status to PARTIAL, which the decoder explicitly rejects. human_review_required is already true in the default infrastructure result, so the assertion would still pass if accepted partial observations stopped requiring review. Use a coherent partial observation and assert ACCEPTED plus human_review_required to prove the intended behavior.",
+          "proof_refs": [
+            "supervisor/tests/test_qa_adapter.py:13-19",
+            "supervisor/tests/test_qa_adapter.py:49-53",
+            "supervisor/qa_adapter.py:61-62",
+            "supervisor/qa_adapter.py:79-82",
+            "supervisor/qa_adapter.py:110-116"
+          ],
+          "evidence_class": "deterministic",
+          "causal_disposition": "introduced"
+        }
+      ],
+      "evidence": [
+        "Inspected all 13 supplied candidate patches without reading external files or running commands.",
+        "supervisor/qa_adapter.py:35-65 validates exit/payload agreement, authority fields, observation counts, duplicate keys, and bounded JSON preflight; supervisor/qa_adapter.py:93-106 rejects uncertain cleanup and incomplete captures.",
+        "supervisor/tests/test_qa_adapter.py:66-95 covers persistent instance locking, separate process channels, real signal/deadline failures, and a real invalid-document checker invocation. The supplied test logs report success; they were not independently executed during this review."
+      ],
+      "result_hash": "sha256:64738183bdf9e9a4581f9c669b3f9c962861069ec2e04910c634daaeabb13d3a"
+    }
+  ],
+  "acknowledgement": {
+    "operation": "review.acknowledge-approved",
+    "command": "gentle-ai review acknowledge-approved --cwd=/workspace/publicacion-proyecto-integrado --lineage=review-b830a36d94741974 --target=sha256:37a6807d65e1daf5200335fd9a9d451c9c73193da0f5ca0fa41bcb768ec6a945 --expected-revision=sha256:f475eef05fd0d33d3744b1788d50a825a1e83cd11555155c20ed2aa5571f06a3 --token=[REDACTED]",
+    "arguments": [
+      {
+        "name": "cwd",
+        "value": "/workspace/publicacion-proyecto-integrado",
+        "token": "--cwd=/workspace/publicacion-proyecto-integrado"
+      },
+      {
+        "name": "lineage",
+        "value": "review-b830a36d94741974",
+        "token": "--lineage=review-b830a36d94741974"
+      },
+      {
+        "name": "target",
+        "value": "sha256:37a6807d65e1daf5200335fd9a9d451c9c73193da0f5ca0fa41bcb768ec6a945",
+        "token": "--target=sha256:37a6807d65e1daf5200335fd9a9d451c9c73193da0f5ca0fa41bcb768ec6a945"
+      },
+      {
+        "name": "expected-revision",
+        "value": "sha256:f475eef05fd0d33d3744b1788d50a825a1e83cd11555155c20ed2aa5571f06a3",
+        "token": "--expected-revision=sha256:f475eef05fd0d33d3744b1788d50a825a1e83cd11555155c20ed2aa5571f06a3"
+      },
+      {
+        "name": "token",
+        "value": "[REDACTED]",
+        "token": "--token=[REDACTED]"
+      }
+    ],
+    "preconditions": [
+      {
+        "name": "state",
+        "value": "approved"
+      }
+    ],
+    "binding": {
+      "lineage_id": "review-b830a36d94741974",
+      "revision": "sha256:f475eef05fd0d33d3744b1788d50a825a1e83cd11555155c20ed2aa5571f06a3",
+      "target_identity": "sha256:37a6807d65e1daf5200335fd9a9d451c9c73193da0f5ca0fa41bcb768ec6a945"
+    }
+  },
+  "store_revision": "sha256:f475eef05fd0d33d3744b1788d50a825a1e83cd11555155c20ed2aa5571f06a3"
+}
