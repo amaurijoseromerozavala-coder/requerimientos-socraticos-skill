@@ -1,0 +1,7 @@
+test_proc_read_error_latches_infra_lock (test_group_observation_branches.GroupObservationBranches.test_proc_read_error_latches_infra_lock) ... ok
+test_zombie_only_observation_preserves_normal_exit (test_group_observation_branches.GroupObservationBranches.test_zombie_only_observation_preserves_normal_exit) ... ok
+
+----------------------------------------------------------------------
+Ran 2 tests in 0.042s
+
+OK
