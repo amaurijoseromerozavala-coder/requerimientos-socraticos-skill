@@ -1,0 +1,131 @@
+{
+  "schema": "gentle-ai.review-integration.start/v4",
+  "contract": "gentle-ai.review-integration/v2",
+  "operation": "review.start",
+  "action": "created",
+  "lenses_required": true,
+  "lineage_id": "review-2e68f56ddd3ad8ea",
+  "state": "reviewing",
+  "risk_level": "medium",
+  "selected_lenses": [
+    "review-resilience",
+    "review-reliability"
+  ],
+  "projection": "workspace",
+  "base_tree": "ebfbd5446b7517d9c99953efa4c9c58a82d2d939",
+  "candidate_tree": "676a757955b9f79f8e0def20ff097e18262eb9a8",
+  "changed_files": 13,
+  "changed_lines": 218,
+  "correction_budget": 109,
+  "risk_reasons": [
+    {
+      "code": "executable_change",
+      "path": "docs/skill-audit/journal-followup/RESULTADO.md"
+    }
+  ],
+  "artifact_subjects": [
+    {
+      "schema": "gentle-ai.review-artifact-subject/v2",
+      "subject_hash": "sha256:be8c1458129d6e9af9a610064a4c3a670421bc49f40a9422c96717ccc5465bd3",
+      "lineage_id": "review-2e68f56ddd3ad8ea",
+      "authority_revision": "sha256:cfc0afa1e0001734646d403456bb879dd88b951a502df4fbefc7180570c59949",
+      "target_identity": "sha256:ad410132d9491e01699830d572f9401802b31fb5df21b1348ae63ec230eb14c3",
+      "base_tree": "ebfbd5446b7517d9c99953efa4c9c58a82d2d939",
+      "candidate_tree": "676a757955b9f79f8e0def20ff097e18262eb9a8",
+      "changed_path_manifest_sha256": "sha256:0591bab4b7c9194d61705715a899936a3a38dca72f77a269e52cf394a1bf3358",
+      "lens": "review-resilience",
+      "selected_order": 0
+    },
+    {
+      "schema": "gentle-ai.review-artifact-subject/v2",
+      "subject_hash": "sha256:110350e0c5e001797c70e7fb5da3b099fba797d17f1771dcc70fec7df8c1cf7c",
+      "lineage_id": "review-2e68f56ddd3ad8ea",
+      "authority_revision": "sha256:cfc0afa1e0001734646d403456bb879dd88b951a502df4fbefc7180570c59949",
+      "target_identity": "sha256:ad410132d9491e01699830d572f9401802b31fb5df21b1348ae63ec230eb14c3",
+      "base_tree": "ebfbd5446b7517d9c99953efa4c9c58a82d2d939",
+      "candidate_tree": "676a757955b9f79f8e0def20ff097e18262eb9a8",
+      "changed_path_manifest_sha256": "sha256:0591bab4b7c9194d61705715a899936a3a38dca72f77a269e52cf394a1bf3358",
+      "lens": "review-reliability",
+      "selected_order": 1
+    }
+  ],
+  "changed_path_manifest": [
+    {"path":"docs/skill-audit/journal-followup/RESULTADO.md","status":"A","old_mode":"000000","new_mode":"100644","deleted":false,"type_changed":false,"mode_only":false,"intended_untracked":true},
+    {"path":"docs/skill-audit/journal-followup/check_mutation.py","status":"A","old_mode":"000000","new_mode":"100644","deleted":false,"type_changed":false,"mode_only":false,"intended_untracked":true},
+    {"path":"docs/skill-audit/journal-followup/evidence-index.json","status":"A","old_mode":"000000","new_mode":"100644","deleted":false,"type_changed":false,"mode_only":false,"intended_untracked":true},
+    {"path":"docs/skill-audit/journal-followup/green.stderr","status":"A","old_mode":"000000","new_mode":"100644","deleted":false,"type_changed":false,"mode_only":false,"intended_untracked":true},
+    {"path":"docs/skill-audit/journal-followup/green.stdout","status":"A","old_mode":"000000","new_mode":"100644","deleted":false,"type_changed":false,"mode_only":false,"intended_untracked":true},
+    {"path":"docs/skill-audit/journal-followup/mutant.stderr","status":"A","old_mode":"000000","new_mode":"100644","deleted":false,"type_changed":false,"mode_only":false,"intended_untracked":true},
+    {"path":"docs/skill-audit/journal-followup/mutant.stdout","status":"A","old_mode":"000000","new_mode":"100644","deleted":false,"type_changed":false,"mode_only":false,"intended_untracked":true},
+    {"path":"docs/skill-audit/journal-followup/red.stderr","status":"A","old_mode":"000000","new_mode":"100644","deleted":false,"type_changed":false,"mode_only":false,"intended_untracked":true},
+    {"path":"docs/skill-audit/journal-followup/red.stdout","status":"A","old_mode":"000000","new_mode":"100644","deleted":false,"type_changed":false,"mode_only":false,"intended_untracked":true},
+    {"path":"docs/skill-audit/journal-followup/regression.stderr","status":"A","old_mode":"000000","new_mode":"100644","deleted":false,"type_changed":false,"mode_only":false,"intended_untracked":true},
+    {"path":"odd/tasks/journal-followup.md","status":"A","old_mode":"000000","new_mode":"100644","deleted":false,"type_changed":false,"mode_only":false,"intended_untracked":true},
+    {"path":"supervisor/journal.py","status":"M","old_mode":"100644","new_mode":"100644","deleted":false,"type_changed":false,"mode_only":false,"intended_untracked":false},
+    {"path":"supervisor/tests/test_journal.py","status":"M","old_mode":"100644","new_mode":"100644","deleted":false,"type_changed":false,"mode_only":false,"intended_untracked":false}
+  ],
+  "repository_context": {
+    "capability": "review.opaque_repository_context",
+    "handle": "rctx2_d68e06d5a470608428ce7b7587eba04a1d86c507f0ae4791a5a852f55574f777",
+    "revision": "sha256:cfc0afa1e0001734646d403456bb879dd88b951a502df4fbefc7180570c59949",
+    "target_identity": "sha256:ad410132d9491e01699830d572f9401802b31fb5df21b1348ae63ec230eb14c3"
+  },
+  "next_transition": {
+    "kind": "execute",
+    "reason_code": "review_status_required",
+    "execute": {
+      "operation": "review.status",
+      "command": "gentle-ai review status --contract=gentle-ai.review-integration/v2 --next-transition=true --lineage=review-2e68f56ddd3ad8ea --repository-context=rctx2_d68e06d5a470608428ce7b7587eba04a1d86c507f0ae4791a5a852f55574f777 --agent=codex --projection=workspace",
+      "arguments": [
+        {
+          "name": "contract",
+          "value": "gentle-ai.review-integration/v2",
+          "token": "--contract=gentle-ai.review-integration/v2"
+        },
+        {
+          "name": "next-transition",
+          "value": "true",
+          "token": "--next-transition=true"
+        },
+        {
+          "name": "lineage",
+          "value": "review-2e68f56ddd3ad8ea",
+          "token": "--lineage=review-2e68f56ddd3ad8ea"
+        },
+        {
+          "name": "repository-context",
+          "value": "rctx2_d68e06d5a470608428ce7b7587eba04a1d86c507f0ae4791a5a852f55574f777",
+          "token": "--repository-context=rctx2_d68e06d5a470608428ce7b7587eba04a1d86c507f0ae4791a5a852f55574f777"
+        },
+        {
+          "name": "agent",
+          "value": "codex",
+          "token": "--agent=codex"
+        },
+        {
+          "name": "projection",
+          "value": "workspace",
+          "token": "--projection=workspace"
+        }
+      ],
+      "selector_arguments": [
+        {
+          "name": "projection",
+          "value": "workspace",
+          "token": "--projection=workspace"
+        }
+      ],
+      "preconditions": [
+        {
+          "name": "state",
+          "value": "reviewing"
+        }
+      ],
+      "binding": {
+        "lineage_id": "review-2e68f56ddd3ad8ea",
+        "revision": "sha256:cfc0afa1e0001734646d403456bb879dd88b951a502df4fbefc7180570c59949",
+        "target_identity": "sha256:ad410132d9491e01699830d572f9401802b31fb5df21b1348ae63ec230eb14c3"
+      }
+    }
+  }
+}

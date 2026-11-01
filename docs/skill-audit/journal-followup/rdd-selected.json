@@ -1,0 +1,206 @@
+{
+  "schema": "gentle-ai.review-integration.status/v9",
+  "contract": "gentle-ai.review-integration/v2",
+  "operation": "review.status",
+  "applicability": "unrelated",
+  "action": "start",
+  "replayability": "not_replayable",
+  "target_identity": "sha256:ad410132d9491e01699830d572f9401802b31fb5df21b1348ae63ec230eb14c3",
+  "projection": {
+    "schema": "gentle-ai.review-integration.projection/v1",
+    "kind": "current-changes",
+    "projection": "workspace",
+    "base_tree": "ebfbd5446b7517d9c99953efa4c9c58a82d2d939",
+    "initial_review_tree": "676a757955b9f79f8e0def20ff097e18262eb9a8",
+    "current_candidate_tree": "676a757955b9f79f8e0def20ff097e18262eb9a8",
+    "paths_digest": "sha256:d5bd6ed0b7ba9c70547de0aae85ebf4b891ed5201babe8dd5dd122c84865d7ad",
+    "paths": [
+      "docs/skill-audit/journal-followup/RESULTADO.md",
+      "docs/skill-audit/journal-followup/check_mutation.py",
+      "docs/skill-audit/journal-followup/evidence-index.json",
+      "docs/skill-audit/journal-followup/green.stderr",
+      "docs/skill-audit/journal-followup/green.stdout",
+      "docs/skill-audit/journal-followup/mutant.stderr",
+      "docs/skill-audit/journal-followup/mutant.stdout",
+      "docs/skill-audit/journal-followup/red.stderr",
+      "docs/skill-audit/journal-followup/red.stdout",
+      "docs/skill-audit/journal-followup/regression.stderr",
+      "odd/tasks/journal-followup.md",
+      "supervisor/journal.py",
+      "supervisor/tests/test_journal.py"
+    ],
+    "intended_untracked": [
+      "docs/skill-audit/journal-followup/RESULTADO.md",
+      "docs/skill-audit/journal-followup/check_mutation.py",
+      "docs/skill-audit/journal-followup/evidence-index.json",
+      "docs/skill-audit/journal-followup/green.stderr",
+      "docs/skill-audit/journal-followup/green.stdout",
+      "docs/skill-audit/journal-followup/mutant.stderr",
+      "docs/skill-audit/journal-followup/mutant.stdout",
+      "docs/skill-audit/journal-followup/red.stderr",
+      "docs/skill-audit/journal-followup/red.stdout",
+      "docs/skill-audit/journal-followup/regression.stderr",
+      "odd/tasks/journal-followup.md"
+    ],
+    "intended_untracked_proof": "sha256:0e33f042ca83d46397d4bb4bd8c4a1ee139462f470d982cfc7ba5a4ce6476e9c",
+    "initial_snapshot_identity": "sha256:ad410132d9491e01699830d572f9401802b31fb5df21b1348ae63ec230eb14c3",
+    "current_snapshot_identity": "sha256:ad410132d9491e01699830d572f9401802b31fb5df21b1348ae63ec230eb14c3"
+  },
+  "eligible_untracked_inventory": "sha256:7da2d788223fa6867be7aa364788b438b6f955e1356e41f1d4c8cc80e36ce2e8",
+  "repair": {
+    "schema": "gentle-ai.review-authority-repair-assessment/v1",
+    "status": "unsupported",
+    "counts": {
+      "lineages": 0,
+      "compact_lineages": 0,
+      "legacy_lineages": 0,
+      "events": 0,
+      "bytes": 0,
+      "eligible_candidates": 0,
+      "unsupported_lineages": 0,
+      "conflicts": 0
+    },
+    "supported_operations": [
+      "review/complete-fix",
+      "review/validate-fix"
+    ],
+    "authorization_schema": "gentle-ai.review-repair-authorization/v1"
+  },
+  "candidates": [],
+  "forecast": {
+    "horizon": "partial",
+    "steps": [
+      {
+        "step": 1,
+        "kind": "execute",
+        "reason_code": "fresh_target_ready",
+        "description": "Target is unreviewed and ready for initial review start"
+      }
+    ]
+  },
+  "next_transition": {
+    "kind": "execute",
+    "reason_code": "fresh_target_ready",
+    "execute": {
+      "operation": "review.start",
+      "command": "gentle-ai review start --cwd=/workspace/publicacion-proyecto-integrado --contract=gentle-ai.review-integration/v2 --target=sha256:ad410132d9491e01699830d572f9401802b31fb5df21b1348ae63ec230eb14c3 --target-evidence=v1:current-changes:workspace:ebfbd5446b7517d9c99953efa4c9c58a82d2d939:676a757955b9f79f8e0def20ff097e18262eb9a8:sha256:d5bd6ed0b7ba9c70547de0aae85ebf4b891ed5201babe8dd5dd122c84865d7ad --projection=workspace --lineage=review-2e68f56ddd3ad8ea --agent=codex --consent=relay --untracked-scope=select --expected-untracked-inventory=sha256:7da2d788223fa6867be7aa364788b438b6f955e1356e41f1d4c8cc80e36ce2e8 --intended-untracked=docs/skill-audit/journal-followup/RESULTADO.md --intended-untracked=docs/skill-audit/journal-followup/check_mutation.py --intended-untracked=docs/skill-audit/journal-followup/evidence-index.json --intended-untracked=docs/skill-audit/journal-followup/green.stderr --intended-untracked=docs/skill-audit/journal-followup/green.stdout --intended-untracked=docs/skill-audit/journal-followup/mutant.stderr --intended-untracked=docs/skill-audit/journal-followup/mutant.stdout --intended-untracked=docs/skill-audit/journal-followup/red.stderr --intended-untracked=docs/skill-audit/journal-followup/red.stdout --intended-untracked=docs/skill-audit/journal-followup/regression.stderr --intended-untracked=odd/tasks/journal-followup.md",
+      "arguments": [
+        {
+          "name": "cwd",
+          "value": "/workspace/publicacion-proyecto-integrado",
+          "token": "--cwd=/workspace/publicacion-proyecto-integrado"
+        },
+        {
+          "name": "contract",
+          "value": "gentle-ai.review-integration/v2",
+          "token": "--contract=gentle-ai.review-integration/v2"
+        },
+        {
+          "name": "target",
+          "value": "sha256:ad410132d9491e01699830d572f9401802b31fb5df21b1348ae63ec230eb14c3",
+          "token": "--target=sha256:ad410132d9491e01699830d572f9401802b31fb5df21b1348ae63ec230eb14c3"
+        },
+        {
+          "name": "target-evidence",
+          "value": "v1:current-changes:workspace:ebfbd5446b7517d9c99953efa4c9c58a82d2d939:676a757955b9f79f8e0def20ff097e18262eb9a8:sha256:d5bd6ed0b7ba9c70547de0aae85ebf4b891ed5201babe8dd5dd122c84865d7ad",
+          "token": "--target-evidence=v1:current-changes:workspace:ebfbd5446b7517d9c99953efa4c9c58a82d2d939:676a757955b9f79f8e0def20ff097e18262eb9a8:sha256:d5bd6ed0b7ba9c70547de0aae85ebf4b891ed5201babe8dd5dd122c84865d7ad"
+        },
+        {
+          "name": "projection",
+          "value": "workspace",
+          "token": "--projection=workspace"
+        },
+        {
+          "name": "lineage",
+          "value": "review-2e68f56ddd3ad8ea",
+          "token": "--lineage=review-2e68f56ddd3ad8ea"
+        },
+        {
+          "name": "agent",
+          "value": "codex",
+          "token": "--agent=codex"
+        },
+        {
+          "name": "consent",
+          "value": "relay",
+          "token": "--consent=relay"
+        },
+        {
+          "name": "untracked-scope",
+          "value": "select",
+          "token": "--untracked-scope=select"
+        },
+        {
+          "name": "expected-untracked-inventory",
+          "value": "sha256:7da2d788223fa6867be7aa364788b438b6f955e1356e41f1d4c8cc80e36ce2e8",
+          "token": "--expected-untracked-inventory=sha256:7da2d788223fa6867be7aa364788b438b6f955e1356e41f1d4c8cc80e36ce2e8"
+        },
+        {
+          "name": "intended-untracked",
+          "value": "docs/skill-audit/journal-followup/RESULTADO.md",
+          "token": "--intended-untracked=docs/skill-audit/journal-followup/RESULTADO.md"
+        },
+        {
+          "name": "intended-untracked",
+          "value": "docs/skill-audit/journal-followup/check_mutation.py",
+          "token": "--intended-untracked=docs/skill-audit/journal-followup/check_mutation.py"
+        },
+        {
+          "name": "intended-untracked",
+          "value": "docs/skill-audit/journal-followup/evidence-index.json",
+          "token": "--intended-untracked=docs/skill-audit/journal-followup/evidence-index.json"
+        },
+        {
+          "name": "intended-untracked",
+          "value": "docs/skill-audit/journal-followup/green.stderr",
+          "token": "--intended-untracked=docs/skill-audit/journal-followup/green.stderr"
+        },
+        {
+          "name": "intended-untracked",
+          "value": "docs/skill-audit/journal-followup/green.stdout",
+          "token": "--intended-untracked=docs/skill-audit/journal-followup/green.stdout"
+        },
+        {
+          "name": "intended-untracked",
+          "value": "docs/skill-audit/journal-followup/mutant.stderr",
+          "token": "--intended-untracked=docs/skill-audit/journal-followup/mutant.stderr"
+        },
+        {
+          "name": "intended-untracked",
+          "value": "docs/skill-audit/journal-followup/mutant.stdout",
+          "token": "--intended-untracked=docs/skill-audit/journal-followup/mutant.stdout"
+        },
+        {
+          "name": "intended-untracked",
+          "value": "docs/skill-audit/journal-followup/red.stderr",
+          "token": "--intended-untracked=docs/skill-audit/journal-followup/red.stderr"
+        },
+        {
+          "name": "intended-untracked",
+          "value": "docs/skill-audit/journal-followup/red.stdout",
+          "token": "--intended-untracked=docs/skill-audit/journal-followup/red.stdout"
+        },
+        {
+          "name": "intended-untracked",
+          "value": "docs/skill-audit/journal-followup/regression.stderr",
+          "token": "--intended-untracked=docs/skill-audit/journal-followup/regression.stderr"
+        },
+        {
+          "name": "intended-untracked",
+          "value": "odd/tasks/journal-followup.md",
+          "token": "--intended-untracked=odd/tasks/journal-followup.md"
+        }
+      ],
+      "preconditions": [
+        {
+          "name": "target_identity",
+          "value": "sha256:ad410132d9491e01699830d572f9401802b31fb5df21b1348ae63ec230eb14c3"
+        }
+      ],
+      "binding": {
+        "lineage_id": "review-2e68f56ddd3ad8ea",
+        "target_identity": "sha256:ad410132d9491e01699830d572f9401802b31fb5df21b1348ae63ec230eb14c3"
+      }
+    }
+  }
+}

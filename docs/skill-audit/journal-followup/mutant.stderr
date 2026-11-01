@@ -1,0 +1,14 @@
+F
+======================================================================
+FAIL: test_invalid_records_rejected_without_rewrite (test_journal.JournalTests.test_invalid_records_rejected_without_rewrite) (raw=b'{"schema_version":"reservation-journal/v1","state":"RESERVED","state":"IDLE","identity":null}')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/journal-duplicates-765noy5f/supervisor/tests/test_journal.py", line 106, in test_invalid_records_rejected_without_rewrite
+    with self.assertRaises(JournalBlocked, msg='INVALID_RECORD_MUST_BLOCK'):
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: JournalBlocked not raised : INVALID_RECORD_MUST_BLOCK
+
+----------------------------------------------------------------------
+Ran 1 test in 0.001s
+
+FAILED (failures=1)

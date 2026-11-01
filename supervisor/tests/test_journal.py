@@ -80,6 +80,32 @@ class JournalTests(unittest.TestCase):
             with journal._operation:
                 with self.assertRaises(JournalBlocked): journal.reserve(IDENTITY)
             self.assertEqual(journal.inspect()['state'],'IDLE')
+    def test_persistence_and_cleanup_errors_preserve_primary_cause(self):
+        primary=OSError(5, 'controlled persistence failure')
+        secondary=OSError(30, 'controlled cleanup failure')
+        with Journal(self.root) as journal:
+            with patch('supervisor.journal.os.fsync',side_effect=primary), patch('supervisor.journal.os.unlink',side_effect=secondary):
+                with self.assertRaises(JournalBlocked) as caught:
+                    journal.reserve(IDENTITY)
+            self.assertEqual(str(caught.exception),'RESERVATION_NOT_CONFIRMED')
+            self.assertIs(caught.exception.__cause__,primary)
+            self.assertTrue(any('CLEANUP_FAILED' in note for note in caught.exception.__notes__))
+            with self.assertRaises(JournalBlocked): journal.reserve(IDENTITY)
+    def test_invalid_records_rejected_without_rewrite(self):
+        base={'schema_version':'reservation-journal/v1','state':'IDLE','identity':None}
+        records=[
+            b'{"schema_version":"reservation-journal/v1","state":"RESERVED","state":"IDLE","identity":null}',
+            json.dumps(dict(base,schema_version='unknown/v99')).encode(),
+            json.dumps(dict(base,state='RESERVED')).encode(),
+            json.dumps(dict(base,identity=IDENTITY)).encode(),
+            json.dumps(dict(base,state='UNKNOWN')).encode(),
+        ]
+        for raw in records:
+            with self.subTest(raw=raw):
+                path=self.root/'state.json';path.write_bytes(raw)
+                with self.assertRaises(JournalBlocked, msg='INVALID_RECORD_MUST_BLOCK'):
+                    with Journal(self.root): pass
+                self.assertEqual(path.read_bytes(),raw)
     def test_no_implicit_initialize(self):
         with self.assertRaises(JournalBlocked):
             with Journal(self.root/'absent'): pass

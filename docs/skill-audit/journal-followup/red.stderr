@@ -1,0 +1,48 @@
+.........E....
+======================================================================
+ERROR: test_persistence_and_cleanup_errors_preserve_primary_cause (test_journal.JournalTests.test_persistence_and_cleanup_errors_preserve_primary_cause)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/publicacion-proyecto-integrado/supervisor/journal.py", line 176, in _reserve
+    os.fsync(fd)
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/unittest/mock.py", line 1139, in __call__
+    return self._mock_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/unittest/mock.py", line 1143, in _mock_call
+    return self._execute_mock_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/unittest/mock.py", line 1198, in _execute_mock_call
+    raise effect
+OSError: [Errno 5] controlled persistence failure
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/workspace/publicacion-proyecto-integrado/supervisor/journal.py", line 183, in _reserve
+    raise JournalBlocked('RESERVATION_NOT_CONFIRMED') from error
+supervisor.journal.JournalBlocked: RESERVATION_NOT_CONFIRMED
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/workspace/publicacion-proyecto-integrado/supervisor/tests/test_journal.py", line 89, in test_persistence_and_cleanup_errors_preserve_primary_cause
+    journal.reserve(IDENTITY)
+  File "/workspace/publicacion-proyecto-integrado/supervisor/journal.py", line 155, in reserve
+    return self._reserve(identity)
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/publicacion-proyecto-integrado/supervisor/journal.py", line 186, in _reserve
+    os.unlink(name, dir_fd=self._directory)
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/unittest/mock.py", line 1139, in __call__
+    return self._mock_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/unittest/mock.py", line 1143, in _mock_call
+    return self._execute_mock_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/unittest/mock.py", line 1198, in _execute_mock_call
+    raise effect
+OSError: [Errno 30] controlled cleanup failure
+
+----------------------------------------------------------------------
+Ran 14 tests in 0.019s
+
+FAILED (errors=1)

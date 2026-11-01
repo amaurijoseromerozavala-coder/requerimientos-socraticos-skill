@@ -166,9 +166,11 @@ class Journal:
         if len(raw) > MAX_BYTES:
             raise JournalBlocked('STATE_TOO_LARGE')
         name = '.pending-' + uuid.uuid4().hex
+        created = False
         try:
             fd = os.open(name, os.O_WRONLY | os.O_CREAT | os.O_EXCL | os.O_NOFOLLOW,
                          0o600, dir_fd=self._directory)
+            created = True
             try:
                 with os.fdopen(fd, 'wb', closefd=False) as output:
                     output.write(raw)
@@ -180,9 +182,12 @@ class Journal:
             os.fsync(self._directory)
         except (OSError, ValueError) as error:
             self._failed = True
-            raise JournalBlocked('RESERVATION_NOT_CONFIRMED') from error
-        finally:
-            try:
-                os.unlink(name, dir_fd=self._directory)
-            except FileNotFoundError:
-                pass
+            blocked = JournalBlocked('RESERVATION_NOT_CONFIRMED')
+            if created:
+                try:
+                    os.unlink(name, dir_fd=self._directory)
+                except FileNotFoundError:
+                    pass  # Replacement may already have consumed the temporary name.
+                except OSError as cleanup_error:
+                    blocked.add_note('CLEANUP_FAILED: errno=' + str(cleanup_error.errno))
+            raise blocked from error

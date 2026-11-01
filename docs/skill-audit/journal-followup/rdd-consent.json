@@ -1,0 +1,38 @@
+{
+  "schema": "gentle-ai.review-integration.consent/v3",
+  "contract": "gentle-ai.review-integration/v2",
+  "operation": "review.start",
+  "action": "consent_required",
+  "agent": "codex",
+  "blocking": true,
+  "target_identity": "sha256:ad410132d9491e01699830d572f9401802b31fb5df21b1348ae63ec230eb14c3",
+  "projection": "workspace",
+  "risk_level": "medium",
+  "changed_files": 13,
+  "changed_lines": 218,
+  "headline": "Gentle AI can review this change before you call it done.",
+  "reason": "Review can help detect regressions in these changes.",
+  "value": "Reviewing takes a little longer and makes the result safer.",
+  "risk_evidence": [
+    "this change is not purely passive documentation, so it gets one consolidated review.",
+    "an executable change in docs/skill-audit/journal-followup/RESULTADO.md"
+  ],
+  "choices": [
+    {
+      "answer": "granted",
+      "label": "Review this change",
+      "effect": "Reviews only this change; later medium- or high-risk changes ask again, and delivery needs separate approval.",
+      "invocation": "gentle-ai review start --contract gentle-ai.review-integration/v2 --cwd /workspace/publicacion-proyecto-integrado --target sha256:ad410132d9491e01699830d572f9401802b31fb5df21b1348ae63ec230eb14c3 --target-evidence v1:current-changes:workspace:ebfbd5446b7517d9c99953efa4c9c58a82d2d939:676a757955b9f79f8e0def20ff097e18262eb9a8:sha256:d5bd6ed0b7ba9c70547de0aae85ebf4b891ed5201babe8dd5dd122c84865d7ad --projection workspace --agent codex --lineage review-2e68f56ddd3ad8ea --untracked-scope=select --expected-untracked-inventory=sha256:b2576c4b9c20f2df8ac7493138e6afa571fa497f82a87671eae21f8fe8a5f8fd --intended-untracked=docs/skill-audit/journal-followup/RESULTADO.md --intended-untracked=docs/skill-audit/journal-followup/check_mutation.py --intended-untracked=docs/skill-audit/journal-followup/evidence-index.json --intended-untracked=docs/skill-audit/journal-followup/green.stderr --intended-untracked=docs/skill-audit/journal-followup/green.stdout --intended-untracked=docs/skill-audit/journal-followup/mutant.stderr --intended-untracked=docs/skill-audit/journal-followup/mutant.stdout --intended-untracked=docs/skill-audit/journal-followup/red.stderr --intended-untracked=docs/skill-audit/journal-followup/red.stdout --intended-untracked=docs/skill-audit/journal-followup/regression.stderr --intended-untracked=odd/tasks/journal-followup.md --lenses review-resilience,review-reliability --lenses-reason 'Verify primary persistence error preservation during cleanup failure and public rejection tests for malformed journal records.' --consent granted"
+    },
+    {
+      "answer": "declined",
+      "label": "Skip this time",
+      "effect": "Skips only this change; no review record is created, and future reviews stay enabled.",
+      "invocation": "gentle-ai review start --contract gentle-ai.review-integration/v2 --cwd /workspace/publicacion-proyecto-integrado --target sha256:ad410132d9491e01699830d572f9401802b31fb5df21b1348ae63ec230eb14c3 --target-evidence v1:current-changes:workspace:ebfbd5446b7517d9c99953efa4c9c58a82d2d939:676a757955b9f79f8e0def20ff097e18262eb9a8:sha256:d5bd6ed0b7ba9c70547de0aae85ebf4b891ed5201babe8dd5dd122c84865d7ad --projection workspace --agent codex --lineage review-2e68f56ddd3ad8ea --untracked-scope=select --expected-untracked-inventory=sha256:b2576c4b9c20f2df8ac7493138e6afa571fa497f82a87671eae21f8fe8a5f8fd --intended-untracked=docs/skill-audit/journal-followup/RESULTADO.md --intended-untracked=docs/skill-audit/journal-followup/check_mutation.py --intended-untracked=docs/skill-audit/journal-followup/evidence-index.json --intended-untracked=docs/skill-audit/journal-followup/green.stderr --intended-untracked=docs/skill-audit/journal-followup/green.stdout --intended-untracked=docs/skill-audit/journal-followup/mutant.stderr --intended-untracked=docs/skill-audit/journal-followup/mutant.stdout --intended-untracked=docs/skill-audit/journal-followup/red.stderr --intended-untracked=docs/skill-audit/journal-followup/red.stdout --intended-untracked=docs/skill-audit/journal-followup/regression.stderr --intended-untracked=odd/tasks/journal-followup.md --lenses review-resilience,review-reliability --lenses-reason 'Verify primary persistence error preservation during cleanup failure and public rejection tests for malformed journal records.' --consent declined"
+    }
+  ],
+  "off_path": {
+    "note": "To turn reviews off for good, run 'gentle-ai review mode disable'.",
+    "command": "gentle-ai review mode disable"
+  }
+}
