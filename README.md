@@ -6,7 +6,7 @@ Proyecto integrado de requisitos trazables, revisión de calidad y diseño de un
 
 | Componente | Estado |
 |---|---|
-| Requerimientos Socráticos | Skill 2.4.7: activación portable y tooling existente |
+| Requerimientos Socráticos | Skill 2.4.8: activación portable, alcance de disco y clon verificado |
 | QA Inquisidor | Skill 0.1.3-alpha y comprobador documental |
 | Supervisor local ampliado | Diseño DRAFT; no implementado |
 | Integración | 23 decisiones, modelo booleano de 128 valoraciones y FSM parcial |

@@ -1,0 +1,18 @@
+{
+  "kind": "USER_SUPPLIED_HISTORICAL_CONSOLE_OBSERVATIONS",
+  "independent_remote_execution": false,
+  "wsl": {
+    "memory_config": "6GB",
+    "processors": 4,
+    "swap_config": "0",
+    "zram_devices_reported": 0,
+    "filesystem": "ext4",
+    "reported_free_gib": 878
+  },
+  "windows": {
+    "distribution_volume": "C:",
+    "reported_free_gib": 14.59
+  },
+  "use": "Regression motivation only; never live capacity or expansion authorization",
+  "privacy": "Personal account directory and machine identifiers omitted"
+}

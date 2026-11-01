@@ -1,0 +1,20 @@
+{
+  "status": "PLANNED_AFTER_RDD",
+  "source_clone": "/workspace/publicacion-proyecto-integrado",
+  "origin": "https://github.com/amaurijoseromerozavala-coder/requerimientos-socraticos-skill.git",
+  "links": [
+    "/home/agent/.agents/skills/requerimientos-socraticos",
+    "/home/agent/.codex/skills/requerimientos-socraticos"
+  ],
+  "expected_previous_target": "/workspace/replica-gentle-ai/skills/requerimientos-socraticos",
+  "new_target": "/workspace/publicacion-proyecto-integrado/skills/requerimientos-socraticos",
+  "guards": [
+    "RDD approved exact candidate",
+    "all paths must still be symlinks to expected previous target",
+    "source clone origin and HEAD verified",
+    "atomic replacement of each symlink, no directory deletion",
+    "verify resolved paths and real preflight afterward"
+  ],
+  "remote_i3": "Not accessed or modified; user must update their own clone",
+  "persistence": "No promise of survival after environment deletion; GitHub is backup"
+}

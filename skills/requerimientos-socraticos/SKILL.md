@@ -4,7 +4,7 @@ description: "Trigger: requerimientos socraticos, interrogatorio, PRD, EARS, FSM
 license: Apache-2.0
 metadata:
   author: "workspace-user"
-  version: "2.4.7"
+  version: "2.4.8"
 ---
 
 ## Activation Contract
@@ -147,3 +147,20 @@ Consulta [Gentle Pi/Shell](references/gentle-pi.md) para seleccionar intérprete
 registrar bloqueos. El preflight no envuelve ni limita todos los comandos de Shell.
 Las correcciones de producto corresponden al agente de desarrollo dentro de la
 autorización del usuario y sus gates; esta skill conserva su contrato documental.
+
+### Almacenamiento y clon 2.4.8
+
+El preflight 1.1.0 distingue `storage_admission` y `source_checkout`. El espacio
+visible de WSL no mide el volumen Windows que aloja el VHD. Datos históricos del
+humano no son mediciones actuales ni reserva. Si una tarea requiere ampliar
+almacenamiento, indicar `--storage-required-bytes N`: mientras no exista recolector
+anfitrión verificado, retorna INCONCLUSIVE y bloquea esa admisión. No emitir
+consentimiento de ampliación basado solo en el guest. READY sin solicitud de disco
+se limita a viabilidad provisional de roles de memoria; no autoriza escritura.
+
+Antes de usar workers, verificar la copia fuente: repositorio clonado con origin
+oficial y HEAD legible. La comprobación es local, no autentica commits ni valida
+archivos sin commit. Si no se verifica, solo entrevista documental; no clonar,
+resetear ni actualizar automáticamente. Conservar un clon persistente y enlazar
+la skill desde él en el runtime. El sondeo no garantiza persistencia futura del
+filesystem ni que otro agente ejecute obligatoriamente el protocolo.

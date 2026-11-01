@@ -1,0 +1,100 @@
+{
+  "schema": "gentle-ai.review-last-event-closure/v1",
+  "operation": "review/capture-result",
+  "lineage_id": "review-1065b747da56ecf9",
+  "state": "approved",
+  "action": "the approved review completed on the last admitted event and awaits its exact acknowledgement",
+  "advisory_findings": {
+    "statement": "This review is approved and its receipt stands. Every finding listed here is non-blocking: none opened a correction, none reopens this review, and no correction transition is offered for this candidate. Treat them as separate later work, never as a reason to re-run review on this candidate.",
+    "findings": [
+      {
+        "id": "R3-1",
+        "lens": "reliability",
+        "location": "skills/requerimientos-socraticos/tests/test_storage_scope.py:49-53",
+        "severity": "WARNING",
+        "disposition": "informational"
+      }
+    ]
+  },
+  "reviewer_results": [
+    {
+      "lens": "review-resilience",
+      "findings": [],
+      "evidence": [
+        "Inspected all 30 supplied patches without accessing external candidate state or running commands.",
+        "skills/requerimientos-socraticos/scripts/activation_preflight.py bounds each Git metadata subprocess with a two-second timeout and converts subprocess failures into an unverified source state that blocks workers.",
+        "skills/requerimientos-socraticos/scripts/activation_preflight.py explicitly blocks storage requests when host capacity is unknown, preserves document analysis, and returns a structured inconclusive result rather than authorizing expansion from guest free space.",
+        "skills/requerimientos-socraticos/tests/test_storage_scope.py covers storage blocking, invalid requests, unavailable commit objects, document-analysis availability, and contradictory admission states. Supplied test logs were inspected as recorded evidence; tests were not independently executed.",
+        "No concrete candidate-caused resilience failure meeting the reporting criteria was established from the supplied patches."
+      ],
+      "result_hash": "sha256:ca110a2135c1831ffbd5a68d9094e7e75ba0a9e5421a7f88ed893d2912921075"
+    },
+    {
+      "lens": "review-reliability",
+      "findings": [
+        {
+          "id": "R3-1",
+          "lens": "reliability",
+          "location": "skills/requerimientos-socraticos/tests/test_storage_scope.py:49-53",
+          "severity": "WARNING",
+          "claim": "The positive clone test depends on the checkout's actual origin. Running the suite from a fork, a checkout with an SSH alias, or an exported source tree fails this assertion even when source_checkout correctly returns CLONE_UNVERIFIED. Mock the Git responses or construct a controlled temporary repository for this test, and test rejection separately.",
+          "proof_refs": [
+            "skills/requerimientos-socraticos/tests/test_storage_scope.py:49-53 invokes the real evaluator and unconditionally requires VERIFIED_LOCAL_CLONE.",
+            "skills/requerimientos-socraticos/scripts/activation_preflight.py:254-260 accepts only three exact origin strings and otherwise returns CLONE_UNVERIFIED."
+          ],
+          "evidence_class": "deterministic",
+          "causal_disposition": "introduced"
+        }
+      ],
+      "evidence": [
+        "Inspected all 30 supplied patches, including empty audit artifacts; no commands were run or external files read.",
+        "skills/requerimientos-socraticos/scripts/activation_preflight.py adds positive-integer validation, explicit storage blocking, and conservative source-checkout failure handling.",
+        "skills/requerimientos-socraticos/tests/test_storage_scope.py asserts storage denial through both the API and CLI and exercises contradictory schema states. Supplied test logs were reviewed as historical evidence, not independently reproduced."
+      ],
+      "result_hash": "sha256:aaddefaa46e2c5344ca7b3dd077dc4739f1ad7c500a2a510a953f307589a88cf"
+    }
+  ],
+  "acknowledgement": {
+    "operation": "review.acknowledge-approved",
+    "command": "gentle-ai review acknowledge-approved --cwd=/workspace/publicacion-proyecto-integrado --lineage=review-1065b747da56ecf9 --target=sha256:1539d3946fcc675885ba277d10a47cbf344db6ae3fbebdb90285414d6abc3614 --expected-revision=sha256:583692c9f16a92a6ec2b629f60832cd841cd1799b5a0ade4ef266a3051315b99 --token=[REDACTED]",
+    "arguments": [
+      {
+        "name": "cwd",
+        "value": "/workspace/publicacion-proyecto-integrado",
+        "token": "--cwd=/workspace/publicacion-proyecto-integrado"
+      },
+      {
+        "name": "lineage",
+        "value": "review-1065b747da56ecf9",
+        "token": "--lineage=review-1065b747da56ecf9"
+      },
+      {
+        "name": "target",
+        "value": "sha256:1539d3946fcc675885ba277d10a47cbf344db6ae3fbebdb90285414d6abc3614",
+        "token": "--target=sha256:1539d3946fcc675885ba277d10a47cbf344db6ae3fbebdb90285414d6abc3614"
+      },
+      {
+        "name": "expected-revision",
+        "value": "sha256:583692c9f16a92a6ec2b629f60832cd841cd1799b5a0ade4ef266a3051315b99",
+        "token": "--expected-revision=sha256:583692c9f16a92a6ec2b629f60832cd841cd1799b5a0ade4ef266a3051315b99"
+      },
+      {
+        "name": "token",
+        "value": "[REDACTED]",
+        "token": "--token=[REDACTED]"
+      }
+    ],
+    "preconditions": [
+      {
+        "name": "state",
+        "value": "approved"
+      }
+    ],
+    "binding": {
+      "lineage_id": "review-1065b747da56ecf9",
+      "revision": "sha256:583692c9f16a92a6ec2b629f60832cd841cd1799b5a0ade4ef266a3051315b99",
+      "target_identity": "sha256:1539d3946fcc675885ba277d10a47cbf344db6ae3fbebdb90285414d6abc3614"
+    }
+  },
+  "store_revision": "sha256:583692c9f16a92a6ec2b629f60832cd841cd1799b5a0ade4ef266a3051315b99"
+}

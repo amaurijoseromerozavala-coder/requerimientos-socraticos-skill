@@ -1,0 +1,149 @@
+{
+  "schema": "gentle-ai.review-integration.start/v4",
+  "contract": "gentle-ai.review-integration/v2",
+  "operation": "review.start",
+  "action": "created",
+  "lenses_required": true,
+  "lineage_id": "review-1065b747da56ecf9",
+  "state": "reviewing",
+  "risk_level": "high",
+  "selected_lenses": [
+    "review-resilience",
+    "review-reliability"
+  ],
+  "projection": "workspace",
+  "base_tree": "a550ece8055e1c15ba81931d2d1477088e490de3",
+  "candidate_tree": "71e9127a2b1ff17a93dbdc2de3f9a7ad13c7792c",
+  "changed_files": 30,
+  "changed_lines": 729,
+  "correction_budget": 200,
+  "risk_reasons": [
+    {
+      "code": "process_boundary",
+      "signal": "shell_process",
+      "path": "skills/requerimientos-socraticos/scripts/activation_preflight.py"
+    }
+  ],
+  "artifact_subjects": [
+    {
+      "schema": "gentle-ai.review-artifact-subject/v2",
+      "subject_hash": "sha256:f69b0e2e3c0bfe35bd9e1a0e1ecd4b9a0a5bc3546726a8dc95e3540fd6b22bf6",
+      "lineage_id": "review-1065b747da56ecf9",
+      "authority_revision": "sha256:0bd32ec12b8a7105c465c6e1fcf063b1223f13ac92c61a301b518857eaff9341",
+      "target_identity": "sha256:1539d3946fcc675885ba277d10a47cbf344db6ae3fbebdb90285414d6abc3614",
+      "base_tree": "a550ece8055e1c15ba81931d2d1477088e490de3",
+      "candidate_tree": "71e9127a2b1ff17a93dbdc2de3f9a7ad13c7792c",
+      "changed_path_manifest_sha256": "sha256:4da86fba1450ab03286467af9370e935a99abbaf45fe739ffffd1a2a2b5d70c9",
+      "lens": "review-resilience",
+      "selected_order": 0
+    },
+    {
+      "schema": "gentle-ai.review-artifact-subject/v2",
+      "subject_hash": "sha256:b20ca6b9f629272f1bfc024e80765a94c5345894b4d09c2f6b09cbd84ef44576",
+      "lineage_id": "review-1065b747da56ecf9",
+      "authority_revision": "sha256:0bd32ec12b8a7105c465c6e1fcf063b1223f13ac92c61a301b518857eaff9341",
+      "target_identity": "sha256:1539d3946fcc675885ba277d10a47cbf344db6ae3fbebdb90285414d6abc3614",
+      "base_tree": "a550ece8055e1c15ba81931d2d1477088e490de3",
+      "candidate_tree": "71e9127a2b1ff17a93dbdc2de3f9a7ad13c7792c",
+      "changed_path_manifest_sha256": "sha256:4da86fba1450ab03286467af9370e935a99abbaf45fe739ffffd1a2a2b5d70c9",
+      "lens": "review-reliability",
+      "selected_order": 1
+    }
+  ],
+  "changed_path_manifest": [
+    {"path":"README.md","status":"M","old_mode":"100644","new_mode":"100644","deleted":false,"type_changed":false,"mode_only":false,"intended_untracked":false},
+    {"path":"docs/skill-audit/wsl-storage/RESULTADO.md","status":"A","old_mode":"000000","new_mode":"100644","deleted":false,"type_changed":false,"mode_only":false,"intended_untracked":true},
+    {"path":"docs/skill-audit/wsl-storage/activation.json","status":"A","old_mode":"000000","new_mode":"100644","deleted":false,"type_changed":false,"mode_only":false,"intended_untracked":true},
+    {"path":"docs/skill-audit/wsl-storage/clone-red.stderr","status":"A","old_mode":"000000","new_mode":"100644","deleted":false,"type_changed":false,"mode_only":false,"intended_untracked":true},
+    {"path":"docs/skill-audit/wsl-storage/clone-red.stdout","status":"A","old_mode":"000000","new_mode":"100644","deleted":false,"type_changed":false,"mode_only":false,"intended_untracked":true},
+    {"path":"docs/skill-audit/wsl-storage/engram-receipt.txt","status":"A","old_mode":"000000","new_mode":"100644","deleted":false,"type_changed":false,"mode_only":false,"intended_untracked":true},
+    {"path":"docs/skill-audit/wsl-storage/final-green.stderr","status":"A","old_mode":"000000","new_mode":"100644","deleted":false,"type_changed":false,"mode_only":false,"intended_untracked":true},
+    {"path":"docs/skill-audit/wsl-storage/final-green.stdout","status":"A","old_mode":"000000","new_mode":"100644","deleted":false,"type_changed":false,"mode_only":false,"intended_untracked":true},
+    {"path":"docs/skill-audit/wsl-storage/green.stderr","status":"A","old_mode":"000000","new_mode":"100644","deleted":false,"type_changed":false,"mode_only":false,"intended_untracked":true},
+    {"path":"docs/skill-audit/wsl-storage/green.stdout","status":"A","old_mode":"000000","new_mode":"100644","deleted":false,"type_changed":false,"mode_only":false,"intended_untracked":true},
+    {"path":"docs/skill-audit/wsl-storage/independent-review.json","status":"A","old_mode":"000000","new_mode":"100644","deleted":false,"type_changed":false,"mode_only":false,"intended_untracked":true},
+    {"path":"docs/skill-audit/wsl-storage/installation-plan.json","status":"A","old_mode":"000000","new_mode":"100644","deleted":false,"type_changed":false,"mode_only":false,"intended_untracked":true},
+    {"path":"docs/skill-audit/wsl-storage/interview.json","status":"A","old_mode":"000000","new_mode":"100644","deleted":false,"type_changed":false,"mode_only":false,"intended_untracked":true},
+    {"path":"docs/skill-audit/wsl-storage/red.stderr","status":"A","old_mode":"000000","new_mode":"100644","deleted":false,"type_changed":false,"mode_only":false,"intended_untracked":true},
+    {"path":"docs/skill-audit/wsl-storage/red.stdout","status":"A","old_mode":"000000","new_mode":"100644","deleted":false,"type_changed":false,"mode_only":false,"intended_untracked":true},
+    {"path":"docs/skill-audit/wsl-storage/regression.stderr","status":"A","old_mode":"000000","new_mode":"100644","deleted":false,"type_changed":false,"mode_only":false,"intended_untracked":true},
+    {"path":"docs/skill-audit/wsl-storage/regression.stdout","status":"A","old_mode":"000000","new_mode":"100644","deleted":false,"type_changed":false,"mode_only":false,"intended_untracked":true},
+    {"path":"docs/skill-audit/wsl-storage/review-green.stderr","status":"A","old_mode":"000000","new_mode":"100644","deleted":false,"type_changed":false,"mode_only":false,"intended_untracked":true},
+    {"path":"docs/skill-audit/wsl-storage/review-green.stdout","status":"A","old_mode":"000000","new_mode":"100644","deleted":false,"type_changed":false,"mode_only":false,"intended_untracked":true},
+    {"path":"docs/skill-audit/wsl-storage/review-red.stderr","status":"A","old_mode":"000000","new_mode":"100644","deleted":false,"type_changed":false,"mode_only":false,"intended_untracked":true},
+    {"path":"docs/skill-audit/wsl-storage/review-red.stdout","status":"A","old_mode":"000000","new_mode":"100644","deleted":false,"type_changed":false,"mode_only":false,"intended_untracked":true},
+    {"path":"docs/skill-audit/wsl-storage/storage-block.json","status":"A","old_mode":"000000","new_mode":"100644","deleted":false,"type_changed":false,"mode_only":false,"intended_untracked":true},
+    {"path":"docs/skill-audit/wsl-storage/user-evidence.json","status":"A","old_mode":"000000","new_mode":"100644","deleted":false,"type_changed":false,"mode_only":false,"intended_untracked":true},
+    {"path":"odd/tasks/wsl-storage.md","status":"A","old_mode":"000000","new_mode":"100644","deleted":false,"type_changed":false,"mode_only":false,"intended_untracked":true},
+    {"path":"skills/requerimientos-socraticos/SKILL.md","status":"M","old_mode":"100644","new_mode":"100644","deleted":false,"type_changed":false,"mode_only":false,"intended_untracked":false},
+    {"path":"skills/requerimientos-socraticos/assets/activation-preflight.schema.json","status":"M","old_mode":"100644","new_mode":"100644","deleted":false,"type_changed":false,"mode_only":false,"intended_untracked":false},
+    {"path":"skills/requerimientos-socraticos/references/gentle-pi.md","status":"M","old_mode":"100644","new_mode":"100644","deleted":false,"type_changed":false,"mode_only":false,"intended_untracked":false},
+    {"path":"skills/requerimientos-socraticos/scripts/activation_preflight.py","status":"M","old_mode":"100644","new_mode":"100644","deleted":false,"type_changed":false,"mode_only":false,"intended_untracked":false},
+    {"path":"skills/requerimientos-socraticos/scripts/probe_environment.py","status":"M","old_mode":"100644","new_mode":"100644","deleted":false,"type_changed":false,"mode_only":false,"intended_untracked":false},
+    {"path":"skills/requerimientos-socraticos/tests/test_storage_scope.py","status":"A","old_mode":"000000","new_mode":"100644","deleted":false,"type_changed":false,"mode_only":false,"intended_untracked":true}
+  ],
+  "repository_context": {
+    "capability": "review.opaque_repository_context",
+    "handle": "rctx2_07d181ce2eace1b3c1bb29117d36c11f682a74678eac1c65a49ba401112016b1",
+    "revision": "sha256:0bd32ec12b8a7105c465c6e1fcf063b1223f13ac92c61a301b518857eaff9341",
+    "target_identity": "sha256:1539d3946fcc675885ba277d10a47cbf344db6ae3fbebdb90285414d6abc3614"
+  },
+  "next_transition": {
+    "kind": "execute",
+    "reason_code": "review_status_required",
+    "execute": {
+      "operation": "review.status",
+      "command": "gentle-ai review status --contract=gentle-ai.review-integration/v2 --next-transition=true --lineage=review-1065b747da56ecf9 --repository-context=rctx2_07d181ce2eace1b3c1bb29117d36c11f682a74678eac1c65a49ba401112016b1 --agent=codex --projection=workspace",
+      "arguments": [
+        {
+          "name": "contract",
+          "value": "gentle-ai.review-integration/v2",
+          "token": "--contract=gentle-ai.review-integration/v2"
+        },
+        {
+          "name": "next-transition",
+          "value": "true",
+          "token": "--next-transition=true"
+        },
+        {
+          "name": "lineage",
+          "value": "review-1065b747da56ecf9",
+          "token": "--lineage=review-1065b747da56ecf9"
+        },
+        {
+          "name": "repository-context",
+          "value": "rctx2_07d181ce2eace1b3c1bb29117d36c11f682a74678eac1c65a49ba401112016b1",
+          "token": "--repository-context=rctx2_07d181ce2eace1b3c1bb29117d36c11f682a74678eac1c65a49ba401112016b1"
+        },
+        {
+          "name": "agent",
+          "value": "codex",
+          "token": "--agent=codex"
+        },
+        {
+          "name": "projection",
+          "value": "workspace",
+          "token": "--projection=workspace"
+        }
+      ],
+      "selector_arguments": [
+        {
+          "name": "projection",
+          "value": "workspace",
+          "token": "--projection=workspace"
+        }
+      ],
+      "preconditions": [
+        {
+          "name": "state",
+          "value": "reviewing"
+        }
+      ],
+      "binding": {
+        "lineage_id": "review-1065b747da56ecf9",
+        "revision": "sha256:0bd32ec12b8a7105c465c6e1fcf063b1223f13ac92c61a301b518857eaff9341",
+        "target_identity": "sha256:1539d3946fcc675885ba277d10a47cbf344db6ae3fbebdb90285414d6abc3614"
+      }
+    }
+  }
+}

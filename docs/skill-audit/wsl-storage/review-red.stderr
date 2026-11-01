@@ -1,0 +1,43 @@
+FFFF.......
+======================================================================
+FAIL: test_clone_requires_commit_object (test_storage_scope.StorageReviewTests.test_clone_requires_commit_object)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/publicacion-proyecto-integrado/skills/requerimientos-socraticos/tests/test_storage_scope.py", line 72, in test_clone_requires_commit_object
+    self.assertEqual(preflight.source_checkout()['status'],'CLONE_UNVERIFIED')
+AssertionError: 'VERIFIED_LOCAL_CLONE' != 'CLONE_UNVERIFIED'
+- VERIFIED_LOCAL_CLONE
++ CLONE_UNVERIFIED
+
+
+======================================================================
+FAIL: test_schema_rejects_contradictory_admission (test_storage_scope.StorageReviewTests.test_schema_rejects_contradictory_admission) (mode='ready')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/publicacion-proyecto-integrado/skills/requerimientos-socraticos/tests/test_storage_scope.py", line 91, in test_schema_rejects_contradictory_admission
+    with self.subTest(mode=mode),self.assertRaises(jsonschema.ValidationError):
+                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: ValidationError not raised
+
+======================================================================
+FAIL: test_schema_rejects_contradictory_admission (test_storage_scope.StorageReviewTests.test_schema_rejects_contradictory_admission) (mode='unverified')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/publicacion-proyecto-integrado/skills/requerimientos-socraticos/tests/test_storage_scope.py", line 91, in test_schema_rejects_contradictory_admission
+    with self.subTest(mode=mode),self.assertRaises(jsonschema.ValidationError):
+                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: ValidationError not raised
+
+======================================================================
+FAIL: test_schema_rejects_contradictory_admission (test_storage_scope.StorageReviewTests.test_schema_rejects_contradictory_admission) (mode='request')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/publicacion-proyecto-integrado/skills/requerimientos-socraticos/tests/test_storage_scope.py", line 91, in test_schema_rejects_contradictory_admission
+    with self.subTest(mode=mode),self.assertRaises(jsonschema.ValidationError):
+                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: ValidationError not raised
+
+----------------------------------------------------------------------
+Ran 9 tests in 0.106s
+
+FAILED (failures=4)

@@ -150,6 +150,14 @@ def probe(path):
                    'total_bytes': usage.total, 'free_bytes': usage.free}
     except (OSError, ValueError):
         storage = {'status': 'UNKNOWN', 'source': 'requested path unavailable', 'total_bytes': None, 'free_bytes': None}
+    storage.update({
+        'scope': 'VISIBLE_FILESYSTEM_ONLY',
+        'host_volume': {'status': 'UNKNOWN', 'free_bytes': None,
+                        'volume_mapping': 'UNKNOWN',
+                        'reason': 'No live host-volume collector; guest disk_usage is not host capacity.'},
+        'expansion_authorized': False,
+        'wsl_indicator': 'WSL_KERNEL_INDICATOR' in indicators,
+        'limitation': 'Virtual filesystem free bytes do not establish Windows/physical backing capacity.'})
     candidates = [memory['available_bytes']] if memory['available_bytes'] is not None else []
     candidates.extend(x['sampled_headroom_bytes'] for x in cgroup['memory_limits'] if x['sampled_headroom_bytes'] is not None)
     return {'schema_version': '1.0.0', 'kind': 'OBSERVED_LOCAL_ENVIRONMENT',

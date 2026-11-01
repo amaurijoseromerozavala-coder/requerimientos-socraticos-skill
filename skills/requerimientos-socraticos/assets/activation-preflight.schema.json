@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "title": "Activation preflight 1.0.0 — prospective observations, not authorization",
+  "title": "Activation preflight 1.1.0 \u2014 memory, storage and source-clone scopes",
   "oneOf": [
     {
       "type": "object",
@@ -13,12 +13,14 @@
         "policy",
         "capabilities",
         "execution",
-        "evidence"
+        "evidence",
+        "storage_admission",
+        "source_checkout"
       ],
       "additionalProperties": false,
       "properties": {
         "schema_version": {
-          "const": "1.0.0"
+          "const": "1.1.0"
         },
         "kind": {
           "const": "ACTIVATION_PREFLIGHT"
@@ -200,6 +202,87 @@
         },
         "error": {
           "$ref": "#/$defs/error"
+        },
+        "storage_admission": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "status",
+            "requested_bytes",
+            "authorized",
+            "readiness_scope",
+            "host_volume_status",
+            "host_free_bytes",
+            "reserved_bytes",
+            "reason"
+          ],
+          "properties": {
+            "status": {
+              "enum": [
+                "NOT_ASSESSED",
+                "BLOCKED_HOST_STORAGE_UNKNOWN"
+              ]
+            },
+            "requested_bytes": {
+              "anyOf": [
+                {
+                  "type": "null"
+                },
+                {
+                  "type": "integer",
+                  "minimum": 1
+                }
+              ]
+            },
+            "authorized": {
+              "const": false
+            },
+            "readiness_scope": {
+              "const": "MEMORY_ROLE_VIABILITY_ONLY"
+            },
+            "host_volume_status": {
+              "const": "UNKNOWN"
+            },
+            "host_free_bytes": {
+              "type": "null"
+            },
+            "reserved_bytes": {
+              "const": 0
+            },
+            "reason": {
+              "type": "string"
+            }
+          }
+        },
+        "source_checkout": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "status",
+            "origin_match",
+            "head_commit",
+            "worktree_identity"
+          ],
+          "properties": {
+            "status": {
+              "enum": [
+                "CLONE_UNVERIFIED",
+                "VERIFIED_LOCAL_CLONE"
+              ]
+            },
+            "origin_match": {
+              "type": "boolean"
+            },
+            "head_commit": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "worktree_identity": {
+              "const": "NOT_ESTABLISHED"
+            }
+          }
         }
       },
       "allOf": [
@@ -244,6 +327,98 @@
                 "properties": {
                   "enforced": {
                     "maxItems": 0
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "storage_admission": {
+                "properties": {
+                  "requested_bytes": {
+                    "type": "integer"
+                  }
+                }
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "storage_admission": {
+                "properties": {
+                  "status": {
+                    "const": "BLOCKED_HOST_STORAGE_UNKNOWN"
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "storage_admission": {
+                "properties": {
+                  "status": {
+                    "const": "BLOCKED_HOST_STORAGE_UNKNOWN"
+                  }
+                }
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "status": {
+                "const": "INCONCLUSIVE"
+              },
+              "execution": {
+                "properties": {
+                  "workers": {
+                    "const": "BLOCKED"
+                  }
+                }
+              },
+              "capabilities": {
+                "properties": {
+                  "workers": {
+                    "const": "UNKNOWN"
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "source_checkout": {
+                "properties": {
+                  "status": {
+                    "const": "CLONE_UNVERIFIED"
+                  }
+                }
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "status": {
+                "const": "INCONCLUSIVE"
+              },
+              "execution": {
+                "properties": {
+                  "workers": {
+                    "const": "BLOCKED"
+                  }
+                }
+              },
+              "capabilities": {
+                "properties": {
+                  "workers": {
+                    "const": "UNKNOWN"
                   }
                 }
               }

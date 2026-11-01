@@ -1,0 +1,13 @@
+{
+  "question_id": "Q-WSL-001",
+  "interrogator": "/root/wsl_storage_review",
+  "responder": "/root",
+  "question": "¿Qué contrato comprobable impedirá que disk_usage de ext4 o el dato histórico aportado por el humano (C: 14,59 GiB) se conviertan en autorización vigente para ampliar disco, manteniendo separados el estado de admisión de memoria, la observación del volumen anfitrión y la decisión de expansión, y qué salida deberá producir la activación cuando no exista medición anfitriona actual ligada al volumen de la distribución?",
+  "answer_summary_not_verbatim": "Guest visible-only; host UNKNOWN and free null; historical manual readings never injected as current metrics. Explicit storage request blocks with exit3 regardless memory viability. Absence of request means NOT_ASSESSED. Source clone verified locally, installation update only after RDD.",
+  "assessment": "ANSWERED_FOR_INCREMENT",
+  "remaining": [
+    "Live Windows host-volume collector and mapping",
+    "reserve margin and physical reservation",
+    "future persistence cannot be guaranteed"
+  ]
+}

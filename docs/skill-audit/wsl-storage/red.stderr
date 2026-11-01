@@ -1,0 +1,91 @@
+test_cli_blocks_structurally (test_storage_scope.StorageScopeTests.test_cli_blocks_structurally) ... ERROR
+test_invalid_request (test_storage_scope.StorageScopeTests.test_invalid_request) ... 
+  test_invalid_request (test_storage_scope.StorageScopeTests.test_invalid_request) (value=0) ... ERROR
+  test_invalid_request (test_storage_scope.StorageScopeTests.test_invalid_request) (value=-1) ... ERROR
+  test_invalid_request (test_storage_scope.StorageScopeTests.test_invalid_request) (value=True) ... ERROR
+  test_invalid_request (test_storage_scope.StorageScopeTests.test_invalid_request) (value='100') ... ERROR
+  test_invalid_request (test_storage_scope.StorageScopeTests.test_invalid_request) (value=1.5) ... ERROR
+test_no_request_not_disk_permission (test_storage_scope.StorageScopeTests.test_no_request_not_disk_permission) ... ERROR
+test_storage_request_blocks_even_if_memory_viable (test_storage_scope.StorageScopeTests.test_storage_request_blocks_even_if_memory_viable) ... ERROR
+test_wsl_visible_space_not_host (test_storage_scope.StorageScopeTests.test_wsl_visible_space_not_host) ... ERROR
+
+======================================================================
+ERROR: test_cli_blocks_structurally (test_storage_scope.StorageScopeTests.test_cli_blocks_structurally)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/publicacion-proyecto-integrado/skills/requerimientos-socraticos/tests/test_storage_scope.py", line 44, in test_cli_blocks_structurally
+    self.assertEqual(json.loads(r.stdout)['storage_admission']['status'],'BLOCKED_HOST_STORAGE_UNKNOWN')
+                     ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^
+KeyError: 'storage_admission'
+
+======================================================================
+ERROR: test_invalid_request (test_storage_scope.StorageScopeTests.test_invalid_request) (value=0)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/publicacion-proyecto-integrado/skills/requerimientos-socraticos/tests/test_storage_scope.py", line 39, in test_invalid_request
+    preflight.evaluate('/tmp',storage_required_bytes=value)
+TypeError: evaluate() got an unexpected keyword argument 'storage_required_bytes'
+
+======================================================================
+ERROR: test_invalid_request (test_storage_scope.StorageScopeTests.test_invalid_request) (value=-1)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/publicacion-proyecto-integrado/skills/requerimientos-socraticos/tests/test_storage_scope.py", line 39, in test_invalid_request
+    preflight.evaluate('/tmp',storage_required_bytes=value)
+TypeError: evaluate() got an unexpected keyword argument 'storage_required_bytes'
+
+======================================================================
+ERROR: test_invalid_request (test_storage_scope.StorageScopeTests.test_invalid_request) (value=True)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/publicacion-proyecto-integrado/skills/requerimientos-socraticos/tests/test_storage_scope.py", line 39, in test_invalid_request
+    preflight.evaluate('/tmp',storage_required_bytes=value)
+TypeError: evaluate() got an unexpected keyword argument 'storage_required_bytes'
+
+======================================================================
+ERROR: test_invalid_request (test_storage_scope.StorageScopeTests.test_invalid_request) (value='100')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/publicacion-proyecto-integrado/skills/requerimientos-socraticos/tests/test_storage_scope.py", line 39, in test_invalid_request
+    preflight.evaluate('/tmp',storage_required_bytes=value)
+TypeError: evaluate() got an unexpected keyword argument 'storage_required_bytes'
+
+======================================================================
+ERROR: test_invalid_request (test_storage_scope.StorageScopeTests.test_invalid_request) (value=1.5)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/publicacion-proyecto-integrado/skills/requerimientos-socraticos/tests/test_storage_scope.py", line 39, in test_invalid_request
+    preflight.evaluate('/tmp',storage_required_bytes=value)
+TypeError: evaluate() got an unexpected keyword argument 'storage_required_bytes'
+
+======================================================================
+ERROR: test_no_request_not_disk_permission (test_storage_scope.StorageScopeTests.test_no_request_not_disk_permission)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/publicacion-proyecto-integrado/skills/requerimientos-socraticos/tests/test_storage_scope.py", line 32, in test_no_request_not_disk_permission
+    self.assertEqual(report['storage_admission']['status'],'NOT_ASSESSED')
+                     ~~~~~~^^^^^^^^^^^^^^^^^^^^^
+KeyError: 'storage_admission'
+
+======================================================================
+ERROR: test_storage_request_blocks_even_if_memory_viable (test_storage_scope.StorageScopeTests.test_storage_request_blocks_even_if_memory_viable)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/publicacion-proyecto-integrado/skills/requerimientos-socraticos/tests/test_storage_scope.py", line 24, in test_storage_request_blocks_even_if_memory_viable
+    report=preflight.evaluate('/tmp',caller_scope='EXTERNAL_CALLER',storage_required_bytes=1024)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: evaluate() got an unexpected keyword argument 'storage_required_bytes'
+
+======================================================================
+ERROR: test_wsl_visible_space_not_host (test_storage_scope.StorageScopeTests.test_wsl_visible_space_not_host)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/publicacion-proyecto-integrado/skills/requerimientos-socraticos/tests/test_storage_scope.py", line 18, in test_wsl_visible_space_not_host
+    self.assertEqual(storage['scope'],'VISIBLE_FILESYSTEM_ONLY')
+                     ~~~~~~~^^^^^^^^^
+KeyError: 'scope'
+
+----------------------------------------------------------------------
+Ran 5 tests in 0.027s
+
+FAILED (errors=9)

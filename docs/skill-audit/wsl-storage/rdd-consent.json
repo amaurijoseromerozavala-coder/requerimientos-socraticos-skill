@@ -1,0 +1,37 @@
+{
+  "schema": "gentle-ai.review-integration.consent/v3",
+  "contract": "gentle-ai.review-integration/v2",
+  "operation": "review.start",
+  "action": "consent_required",
+  "agent": "codex",
+  "blocking": true,
+  "target_identity": "sha256:1539d3946fcc675885ba277d10a47cbf344db6ae3fbebdb90285414d6abc3614",
+  "projection": "workspace",
+  "risk_level": "high",
+  "changed_files": 30,
+  "changed_lines": 729,
+  "headline": "Gentle AI can review this change before you call it done.",
+  "reason": "Review can help detect execution issues in these changes.",
+  "value": "Reviewing takes a little longer and makes the result safer.",
+  "risk_evidence": [
+    "code that starts other processes in skills/requerimientos-socraticos/scripts/activation_preflight.py"
+  ],
+  "choices": [
+    {
+      "answer": "granted",
+      "label": "Review this change",
+      "effect": "Reviews only this change; later medium- or high-risk changes ask again, and delivery needs separate approval.",
+      "invocation": "gentle-ai review start --contract gentle-ai.review-integration/v2 --cwd /workspace/publicacion-proyecto-integrado --target sha256:1539d3946fcc675885ba277d10a47cbf344db6ae3fbebdb90285414d6abc3614 --target-evidence v1:current-changes:workspace:a550ece8055e1c15ba81931d2d1477088e490de3:71e9127a2b1ff17a93dbdc2de3f9a7ad13c7792c:sha256:9fff6b34e7a84a3f1eab37a5028cfc63503653a5b946732aecb21702d57172ff --projection workspace --agent codex --lineage review-1065b747da56ecf9 --untracked-scope=select --expected-untracked-inventory=sha256:2fad2c04ebbee37c18cd13c5ad3d23c312a1140e25fec4a043b16960c572ea18 --intended-untracked=docs/skill-audit/wsl-storage/RESULTADO.md --intended-untracked=docs/skill-audit/wsl-storage/activation.json --intended-untracked=docs/skill-audit/wsl-storage/clone-red.stderr --intended-untracked=docs/skill-audit/wsl-storage/clone-red.stdout --intended-untracked=docs/skill-audit/wsl-storage/engram-receipt.txt --intended-untracked=docs/skill-audit/wsl-storage/final-green.stderr --intended-untracked=docs/skill-audit/wsl-storage/final-green.stdout --intended-untracked=docs/skill-audit/wsl-storage/green.stderr --intended-untracked=docs/skill-audit/wsl-storage/green.stdout --intended-untracked=docs/skill-audit/wsl-storage/independent-review.json --intended-untracked=docs/skill-audit/wsl-storage/installation-plan.json --intended-untracked=docs/skill-audit/wsl-storage/interview.json --intended-untracked=docs/skill-audit/wsl-storage/red.stderr --intended-untracked=docs/skill-audit/wsl-storage/red.stdout --intended-untracked=docs/skill-audit/wsl-storage/regression.stderr --intended-untracked=docs/skill-audit/wsl-storage/regression.stdout --intended-untracked=docs/skill-audit/wsl-storage/review-green.stderr --intended-untracked=docs/skill-audit/wsl-storage/review-green.stdout --intended-untracked=docs/skill-audit/wsl-storage/review-red.stderr --intended-untracked=docs/skill-audit/wsl-storage/review-red.stdout --intended-untracked=docs/skill-audit/wsl-storage/storage-block.json --intended-untracked=docs/skill-audit/wsl-storage/user-evidence.json --intended-untracked=odd/tasks/wsl-storage.md --intended-untracked=skills/requerimientos-socraticos/tests/test_storage_scope.py --lenses review-resilience,review-reliability --lenses-reason 'Verify bounded storage admission, source clone provenance and schema invariants; static review only.' --consent granted"
+    },
+    {
+      "answer": "declined",
+      "label": "Skip this time",
+      "effect": "Skips only this change; no review record is created, and future reviews stay enabled.",
+      "invocation": "gentle-ai review start --contract gentle-ai.review-integration/v2 --cwd /workspace/publicacion-proyecto-integrado --target sha256:1539d3946fcc675885ba277d10a47cbf344db6ae3fbebdb90285414d6abc3614 --target-evidence v1:current-changes:workspace:a550ece8055e1c15ba81931d2d1477088e490de3:71e9127a2b1ff17a93dbdc2de3f9a7ad13c7792c:sha256:9fff6b34e7a84a3f1eab37a5028cfc63503653a5b946732aecb21702d57172ff --projection workspace --agent codex --lineage review-1065b747da56ecf9 --untracked-scope=select --expected-untracked-inventory=sha256:2fad2c04ebbee37c18cd13c5ad3d23c312a1140e25fec4a043b16960c572ea18 --intended-untracked=docs/skill-audit/wsl-storage/RESULTADO.md --intended-untracked=docs/skill-audit/wsl-storage/activation.json --intended-untracked=docs/skill-audit/wsl-storage/clone-red.stderr --intended-untracked=docs/skill-audit/wsl-storage/clone-red.stdout --intended-untracked=docs/skill-audit/wsl-storage/engram-receipt.txt --intended-untracked=docs/skill-audit/wsl-storage/final-green.stderr --intended-untracked=docs/skill-audit/wsl-storage/final-green.stdout --intended-untracked=docs/skill-audit/wsl-storage/green.stderr --intended-untracked=docs/skill-audit/wsl-storage/green.stdout --intended-untracked=docs/skill-audit/wsl-storage/independent-review.json --intended-untracked=docs/skill-audit/wsl-storage/installation-plan.json --intended-untracked=docs/skill-audit/wsl-storage/interview.json --intended-untracked=docs/skill-audit/wsl-storage/red.stderr --intended-untracked=docs/skill-audit/wsl-storage/red.stdout --intended-untracked=docs/skill-audit/wsl-storage/regression.stderr --intended-untracked=docs/skill-audit/wsl-storage/regression.stdout --intended-untracked=docs/skill-audit/wsl-storage/review-green.stderr --intended-untracked=docs/skill-audit/wsl-storage/review-green.stdout --intended-untracked=docs/skill-audit/wsl-storage/review-red.stderr --intended-untracked=docs/skill-audit/wsl-storage/review-red.stdout --intended-untracked=docs/skill-audit/wsl-storage/storage-block.json --intended-untracked=docs/skill-audit/wsl-storage/user-evidence.json --intended-untracked=odd/tasks/wsl-storage.md --intended-untracked=skills/requerimientos-socraticos/tests/test_storage_scope.py --lenses review-resilience,review-reliability --lenses-reason 'Verify bounded storage admission, source clone provenance and schema invariants; static review only.' --consent declined"
+    }
+  ],
+  "off_path": {
+    "note": "To turn reviews off for good, run 'gentle-ai review mode disable'.",
+    "command": "gentle-ai review mode disable"
+  }
+}

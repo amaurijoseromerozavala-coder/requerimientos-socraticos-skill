@@ -1,0 +1,199 @@
+{
+  "schema": "gentle-ai.review-integration.status/v9",
+  "contract": "gentle-ai.review-integration/v2",
+  "operation": "review.status",
+  "applicability": "current_target",
+  "authority": {
+    "version": "compact-v2",
+    "lineage_id": "review-1065b747da56ecf9",
+    "state": "reviewing",
+    "generation": 1,
+    "revision": "sha256:80bc48e1fb1915783ee784208f7a67350eae0eca2e67cfb59cba96cd1e32dc69"
+  },
+  "action": "collect",
+  "replayability": "manual_action_required",
+  "frozen": {
+    "tier": "high",
+    "original_changed_lines": 729,
+    "correction_budget": 200,
+    "changed_path_manifest_sha256": "sha256:4da86fba1450ab03286467af9370e935a99abbaf45fe739ffffd1a2a2b5d70c9"
+  },
+  "target_identity": "sha256:1539d3946fcc675885ba277d10a47cbf344db6ae3fbebdb90285414d6abc3614",
+  "projection": {
+    "schema": "gentle-ai.review-integration.projection/v1",
+    "kind": "current-changes",
+    "projection": "workspace",
+    "base_tree": "a550ece8055e1c15ba81931d2d1477088e490de3",
+    "initial_review_tree": "71e9127a2b1ff17a93dbdc2de3f9a7ad13c7792c",
+    "current_candidate_tree": "71e9127a2b1ff17a93dbdc2de3f9a7ad13c7792c",
+    "paths_digest": "sha256:9fff6b34e7a84a3f1eab37a5028cfc63503653a5b946732aecb21702d57172ff",
+    "paths": [
+      "README.md",
+      "docs/skill-audit/wsl-storage/RESULTADO.md",
+      "docs/skill-audit/wsl-storage/activation.json",
+      "docs/skill-audit/wsl-storage/clone-red.stderr",
+      "docs/skill-audit/wsl-storage/clone-red.stdout",
+      "docs/skill-audit/wsl-storage/engram-receipt.txt",
+      "docs/skill-audit/wsl-storage/final-green.stderr",
+      "docs/skill-audit/wsl-storage/final-green.stdout",
+      "docs/skill-audit/wsl-storage/green.stderr",
+      "docs/skill-audit/wsl-storage/green.stdout",
+      "docs/skill-audit/wsl-storage/independent-review.json",
+      "docs/skill-audit/wsl-storage/installation-plan.json",
+      "docs/skill-audit/wsl-storage/interview.json",
+      "docs/skill-audit/wsl-storage/red.stderr",
+      "docs/skill-audit/wsl-storage/red.stdout",
+      "docs/skill-audit/wsl-storage/regression.stderr",
+      "docs/skill-audit/wsl-storage/regression.stdout",
+      "docs/skill-audit/wsl-storage/review-green.stderr",
+      "docs/skill-audit/wsl-storage/review-green.stdout",
+      "docs/skill-audit/wsl-storage/review-red.stderr",
+      "docs/skill-audit/wsl-storage/review-red.stdout",
+      "docs/skill-audit/wsl-storage/storage-block.json",
+      "docs/skill-audit/wsl-storage/user-evidence.json",
+      "odd/tasks/wsl-storage.md",
+      "skills/requerimientos-socraticos/SKILL.md",
+      "skills/requerimientos-socraticos/assets/activation-preflight.schema.json",
+      "skills/requerimientos-socraticos/references/gentle-pi.md",
+      "skills/requerimientos-socraticos/scripts/activation_preflight.py",
+      "skills/requerimientos-socraticos/scripts/probe_environment.py",
+      "skills/requerimientos-socraticos/tests/test_storage_scope.py"
+    ],
+    "intended_untracked": [
+      "docs/skill-audit/wsl-storage/RESULTADO.md",
+      "docs/skill-audit/wsl-storage/activation.json",
+      "docs/skill-audit/wsl-storage/clone-red.stderr",
+      "docs/skill-audit/wsl-storage/clone-red.stdout",
+      "docs/skill-audit/wsl-storage/engram-receipt.txt",
+      "docs/skill-audit/wsl-storage/final-green.stderr",
+      "docs/skill-audit/wsl-storage/final-green.stdout",
+      "docs/skill-audit/wsl-storage/green.stderr",
+      "docs/skill-audit/wsl-storage/green.stdout",
+      "docs/skill-audit/wsl-storage/independent-review.json",
+      "docs/skill-audit/wsl-storage/installation-plan.json",
+      "docs/skill-audit/wsl-storage/interview.json",
+      "docs/skill-audit/wsl-storage/red.stderr",
+      "docs/skill-audit/wsl-storage/red.stdout",
+      "docs/skill-audit/wsl-storage/regression.stderr",
+      "docs/skill-audit/wsl-storage/regression.stdout",
+      "docs/skill-audit/wsl-storage/review-green.stderr",
+      "docs/skill-audit/wsl-storage/review-green.stdout",
+      "docs/skill-audit/wsl-storage/review-red.stderr",
+      "docs/skill-audit/wsl-storage/review-red.stdout",
+      "docs/skill-audit/wsl-storage/storage-block.json",
+      "docs/skill-audit/wsl-storage/user-evidence.json",
+      "odd/tasks/wsl-storage.md",
+      "skills/requerimientos-socraticos/tests/test_storage_scope.py"
+    ],
+    "intended_untracked_proof": "sha256:f791276a2a37f001f62b0c047f0af9507929ec153e6e2993e48875c84a6c2ec5",
+    "initial_snapshot_identity": "sha256:1539d3946fcc675885ba277d10a47cbf344db6ae3fbebdb90285414d6abc3614",
+    "current_snapshot_identity": "sha256:1539d3946fcc675885ba277d10a47cbf344db6ae3fbebdb90285414d6abc3614"
+  },
+  "eligible_untracked_inventory": "sha256:0a09208d1e2b9f81bacc4e57d29a0979f3f3dd7a70991c54380c4ad53b02c438",
+  "repair": {
+    "schema": "gentle-ai.review-authority-repair-assessment/v1",
+    "status": "unsupported",
+    "counts": {
+      "lineages": 0,
+      "compact_lineages": 0,
+      "legacy_lineages": 0,
+      "events": 0,
+      "bytes": 0,
+      "eligible_candidates": 0,
+      "unsupported_lineages": 0,
+      "conflicts": 0
+    },
+    "supported_operations": [
+      "review/complete-fix",
+      "review/validate-fix"
+    ],
+    "authorization_schema": "gentle-ai.review-repair-authorization/v1"
+  },
+  "candidates": [],
+  "forecast": {
+    "horizon": "partial",
+    "steps": [
+      {
+        "step": 1,
+        "kind": "collect",
+        "reason_code": "reviewer_results_required",
+        "description": "Reviewer lens artifacts required for current revision"
+      }
+    ]
+  },
+  "next_transition": {
+    "kind": "collect",
+    "reason_code": "reviewer_results_required",
+    "collect": {
+      "inputs": [
+        {
+          "name": "reviewer_result",
+          "schema": "https://gentle-ai.dev/schema/review/reviewer/v1",
+          "capture_operation": "review.capture-result",
+          "arguments": [
+            {
+              "name": "lineage",
+              "value": "review-1065b747da56ecf9",
+              "token": "--lineage=review-1065b747da56ecf9"
+            },
+            {
+              "name": "expected-revision",
+              "value": "sha256:0bd32ec12b8a7105c465c6e1fcf063b1223f13ac92c61a301b518857eaff9341",
+              "token": "--expected-revision=sha256:0bd32ec12b8a7105c465c6e1fcf063b1223f13ac92c61a301b518857eaff9341"
+            },
+            {
+              "name": "target",
+              "value": "sha256:1539d3946fcc675885ba277d10a47cbf344db6ae3fbebdb90285414d6abc3614",
+              "token": "--target=sha256:1539d3946fcc675885ba277d10a47cbf344db6ae3fbebdb90285414d6abc3614"
+            },
+            {
+              "name": "repository-context",
+              "value": "rctx2_07d181ce2eace1b3c1bb29117d36c11f682a74678eac1c65a49ba401112016b1",
+              "token": "--repository-context=rctx2_07d181ce2eace1b3c1bb29117d36c11f682a74678eac1c65a49ba401112016b1"
+            },
+            {
+              "name": "lens",
+              "value": "review-reliability",
+              "token": "--lens=review-reliability"
+            },
+            {
+              "name": "order",
+              "value": "1",
+              "token": "--order=1"
+            },
+            {
+              "name": "subject-hash",
+              "value": "sha256:b20ca6b9f629272f1bfc024e80765a94c5345894b4d09c2f6b09cbd84ef44576",
+              "token": "--subject-hash=sha256:b20ca6b9f629272f1bfc024e80765a94c5345894b4d09c2f6b09cbd84ef44576"
+            },
+            {
+              "name": "agent",
+              "value": "codex",
+              "token": "--agent=codex"
+            }
+          ],
+          "artifact_subject": {
+            "schema": "gentle-ai.review-artifact-subject/v2",
+            "subject_hash": "sha256:b20ca6b9f629272f1bfc024e80765a94c5345894b4d09c2f6b09cbd84ef44576",
+            "lineage_id": "review-1065b747da56ecf9",
+            "authority_revision": "sha256:0bd32ec12b8a7105c465c6e1fcf063b1223f13ac92c61a301b518857eaff9341",
+            "target_identity": "sha256:1539d3946fcc675885ba277d10a47cbf344db6ae3fbebdb90285414d6abc3614",
+            "base_tree": "a550ece8055e1c15ba81931d2d1477088e490de3",
+            "candidate_tree": "71e9127a2b1ff17a93dbdc2de3f9a7ad13c7792c",
+            "changed_path_manifest_sha256": "sha256:4da86fba1450ab03286467af9370e935a99abbaf45fe739ffffd1a2a2b5d70c9",
+            "lens": "review-reliability",
+            "selected_order": 1
+          },
+          "base_tree": "a550ece8055e1c15ba81931d2d1477088e490de3",
+          "candidate_tree": "71e9127a2b1ff17a93dbdc2de3f9a7ad13c7792c"
+        }
+      ]
+    }
+  },
+  "repository_context": {
+    "capability": "review.opaque_repository_context",
+    "handle": "rctx2_07d181ce2eace1b3c1bb29117d36c11f682a74678eac1c65a49ba401112016b1",
+    "revision": "sha256:0bd32ec12b8a7105c465c6e1fcf063b1223f13ac92c61a301b518857eaff9341",
+    "target_identity": "sha256:1539d3946fcc675885ba277d10a47cbf344db6ae3fbebdb90285414d6abc3614"
+  }
+}

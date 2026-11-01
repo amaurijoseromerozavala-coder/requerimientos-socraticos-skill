@@ -6,6 +6,8 @@ import importlib.util
 import json
 from pathlib import Path
 import sys
+import subprocess
+import re
 
 try:
     import probe_environment
@@ -95,7 +97,7 @@ def _profile_cap_for_hard(hard_bytes, workload):
     return 0
 
 
-def evaluate(path='.', requested_mib=None, *, workload='all', caller_scope=OWNED,
+def _evaluate_memory(path='.', requested_mib=None, *, workload='all', caller_scope=OWNED,
              own_cli=None, baseline_bytes=None):
     """Return visible observations plus an untrusted prospective role profile.
 
@@ -233,6 +235,70 @@ def evaluate(path='.', requested_mib=None, *, workload='all', caller_scope=OWNED
                      'unknowns': ['hidden host limits', 'physical host identity', 'thermal state', 'performance']}}
 
 
+def source_checkout():
+    """Observe source clone, never fetch/reset/install or expose remote credentials.
+
+    Origin equality is provenance metadata, not authentication. HEAD does not
+    identify uncommitted files. The clone checked is the skill's, not the target.
+    """
+    root = Path(__file__).resolve().parents[3]
+    unknown = {'status': 'CLONE_UNVERIFIED', 'origin_match': False,
+               'head_commit': None, 'worktree_identity': 'NOT_ESTABLISHED'}
+    def git(*args):
+        r = subprocess.run(['git', '-C', str(root), *args], capture_output=True,
+                           text=True, timeout=2)
+        if r.returncode or len(r.stdout) > 4096:
+            raise ValueError('CLONE_METADATA_UNAVAILABLE')
+        return r.stdout.strip()
+    try:
+        if Path(git('rev-parse', '--show-toplevel')).resolve() != root:
+            return unknown
+        origin = git('config', '--get', 'remote.origin.url')
+        allowed = {'https://github.com/amaurijoseromerozavala-coder/requerimientos-socraticos-skill.git',
+                   'https://github.com/amaurijoseromerozavala-coder/requerimientos-socraticos-skill',
+                   'git@github.com:amaurijoseromerozavala-coder/requerimientos-socraticos-skill.git'}
+        head = git('rev-parse', '--verify', 'HEAD^{commit}')
+        if origin not in allowed or re.fullmatch(r'(?:[0-9a-f]{40}|[0-9a-f]{64})', head) is None:
+            return unknown
+        return {'status': 'VERIFIED_LOCAL_CLONE', 'origin_match': True,
+                'head_commit': head, 'worktree_identity': 'NOT_ESTABLISHED'}
+    except (OSError, ValueError, subprocess.SubprocessError):
+        return unknown
+
+
+def evaluate(path='.', requested_mib=None, *, workload='all', caller_scope=OWNED,
+             own_cli=None, baseline_bytes=None, storage_required_bytes=None):
+    if storage_required_bytes is not None and (
+            type(storage_required_bytes) is not int or storage_required_bytes <= 0):
+        raise ValueError('INVALID_STORAGE_REQUEST: expected positive integer bytes')
+    report = _evaluate_memory(path, requested_mib, workload=workload,
+                              caller_scope=caller_scope, own_cli=own_cli,
+                              baseline_bytes=baseline_bytes)
+    report['schema_version'] = '1.1.0'
+    report['source_checkout'] = source_checkout()
+    if report['source_checkout']['status'] != 'VERIFIED_LOCAL_CLONE':
+        report['status'] = 'INCONCLUSIVE'
+        report['execution']['workers'] = 'BLOCKED'
+        report['capabilities']['workers'] = 'UNKNOWN'
+        if 'error' not in report:
+            report['error'] = {'code': 'SOURCE_CLONE_UNVERIFIED', 'message': 'Use the official cloned repository; no automatic clone or overwrite performed.'}
+    report['storage_admission'] = {
+        'status': 'NOT_ASSESSED' if storage_required_bytes is None else 'BLOCKED_HOST_STORAGE_UNKNOWN',
+        'requested_bytes': storage_required_bytes, 'authorized': False,
+        'readiness_scope': 'MEMORY_ROLE_VIABILITY_ONLY',
+        'host_volume_status': 'UNKNOWN', 'host_free_bytes': None,
+        'reserved_bytes': 0,
+        'reason': 'Host-volume identity, live capacity, reserve margin and reservation are not established.'}
+    if storage_required_bytes is not None:
+        report['status'] = 'INCONCLUSIVE'
+        report['execution']['workers'] = 'BLOCKED'
+        report['capabilities']['workers'] = 'UNKNOWN'
+        if 'error' not in report:
+            report['error'] = {'code': 'HOST_STORAGE_UNKNOWN',
+                               'message': 'Storage-dependent work cannot be admitted from guest filesystem free bytes.'}
+    return report
+
+
 class Parser(argparse.ArgumentParser):
     def error(self, message):
         raise ValueError('INVALID_ARGUMENT: ' + message)
@@ -242,12 +308,13 @@ def main():
     parser = Parser(description=__doc__)
     parser.add_argument('--path', type=Path, default=Path.cwd())
     parser.add_argument('--memory-budget-mib', type=int)
+    parser.add_argument('--storage-required-bytes', type=int, help='Positive storage request; unknown host capacity blocks this work')
     parser.add_argument('--workload', choices=WORKLOADS, default='all')
     parser.add_argument('--caller-scope', choices=(OWNED, EXTERNAL), default=OWNED)
     try:
         args = parser.parse_args()
         report = evaluate(args.path, args.memory_budget_mib, workload=args.workload,
-                          caller_scope=args.caller_scope)
+                          caller_scope=args.caller_scope, storage_required_bytes=args.storage_required_bytes)
         print(json.dumps(report, ensure_ascii=False, allow_nan=False))
         return 0 if report['status'] == 'READY_FOR_LIVE_ADMISSION' else 3
     except MemoryError:
@@ -255,7 +322,7 @@ def main():
         return 3
     except (OSError, ValueError, TypeError) as error:
         code = str(error).split(':', 1)[0]
-        if code not in ('INVALID_ARGUMENT', 'INVALID_MEMORY_BUDGET', 'RESOURCE_PROFILE_EXCEEDS_ADMITTED'):
+        if code not in ('INVALID_ARGUMENT', 'INVALID_MEMORY_BUDGET', 'RESOURCE_PROFILE_EXCEEDS_ADMITTED', 'INVALID_STORAGE_REQUEST'):
             code = 'PREFLIGHT_FAILED'
         print(json.dumps({'status': 'INCONCLUSIVE', 'error': {'code': code,
                                                                'message': str(error)}}))

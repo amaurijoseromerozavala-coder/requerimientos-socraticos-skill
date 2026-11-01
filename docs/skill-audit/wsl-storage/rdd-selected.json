@@ -1,0 +1,301 @@
+{
+  "schema": "gentle-ai.review-integration.status/v9",
+  "contract": "gentle-ai.review-integration/v2",
+  "operation": "review.status",
+  "applicability": "unrelated",
+  "action": "start",
+  "replayability": "not_replayable",
+  "target_identity": "sha256:1539d3946fcc675885ba277d10a47cbf344db6ae3fbebdb90285414d6abc3614",
+  "projection": {
+    "schema": "gentle-ai.review-integration.projection/v1",
+    "kind": "current-changes",
+    "projection": "workspace",
+    "base_tree": "a550ece8055e1c15ba81931d2d1477088e490de3",
+    "initial_review_tree": "71e9127a2b1ff17a93dbdc2de3f9a7ad13c7792c",
+    "current_candidate_tree": "71e9127a2b1ff17a93dbdc2de3f9a7ad13c7792c",
+    "paths_digest": "sha256:9fff6b34e7a84a3f1eab37a5028cfc63503653a5b946732aecb21702d57172ff",
+    "paths": [
+      "README.md",
+      "docs/skill-audit/wsl-storage/RESULTADO.md",
+      "docs/skill-audit/wsl-storage/activation.json",
+      "docs/skill-audit/wsl-storage/clone-red.stderr",
+      "docs/skill-audit/wsl-storage/clone-red.stdout",
+      "docs/skill-audit/wsl-storage/engram-receipt.txt",
+      "docs/skill-audit/wsl-storage/final-green.stderr",
+      "docs/skill-audit/wsl-storage/final-green.stdout",
+      "docs/skill-audit/wsl-storage/green.stderr",
+      "docs/skill-audit/wsl-storage/green.stdout",
+      "docs/skill-audit/wsl-storage/independent-review.json",
+      "docs/skill-audit/wsl-storage/installation-plan.json",
+      "docs/skill-audit/wsl-storage/interview.json",
+      "docs/skill-audit/wsl-storage/red.stderr",
+      "docs/skill-audit/wsl-storage/red.stdout",
+      "docs/skill-audit/wsl-storage/regression.stderr",
+      "docs/skill-audit/wsl-storage/regression.stdout",
+      "docs/skill-audit/wsl-storage/review-green.stderr",
+      "docs/skill-audit/wsl-storage/review-green.stdout",
+      "docs/skill-audit/wsl-storage/review-red.stderr",
+      "docs/skill-audit/wsl-storage/review-red.stdout",
+      "docs/skill-audit/wsl-storage/storage-block.json",
+      "docs/skill-audit/wsl-storage/user-evidence.json",
+      "odd/tasks/wsl-storage.md",
+      "skills/requerimientos-socraticos/SKILL.md",
+      "skills/requerimientos-socraticos/assets/activation-preflight.schema.json",
+      "skills/requerimientos-socraticos/references/gentle-pi.md",
+      "skills/requerimientos-socraticos/scripts/activation_preflight.py",
+      "skills/requerimientos-socraticos/scripts/probe_environment.py",
+      "skills/requerimientos-socraticos/tests/test_storage_scope.py"
+    ],
+    "intended_untracked": [
+      "docs/skill-audit/wsl-storage/RESULTADO.md",
+      "docs/skill-audit/wsl-storage/activation.json",
+      "docs/skill-audit/wsl-storage/clone-red.stderr",
+      "docs/skill-audit/wsl-storage/clone-red.stdout",
+      "docs/skill-audit/wsl-storage/engram-receipt.txt",
+      "docs/skill-audit/wsl-storage/final-green.stderr",
+      "docs/skill-audit/wsl-storage/final-green.stdout",
+      "docs/skill-audit/wsl-storage/green.stderr",
+      "docs/skill-audit/wsl-storage/green.stdout",
+      "docs/skill-audit/wsl-storage/independent-review.json",
+      "docs/skill-audit/wsl-storage/installation-plan.json",
+      "docs/skill-audit/wsl-storage/interview.json",
+      "docs/skill-audit/wsl-storage/red.stderr",
+      "docs/skill-audit/wsl-storage/red.stdout",
+      "docs/skill-audit/wsl-storage/regression.stderr",
+      "docs/skill-audit/wsl-storage/regression.stdout",
+      "docs/skill-audit/wsl-storage/review-green.stderr",
+      "docs/skill-audit/wsl-storage/review-green.stdout",
+      "docs/skill-audit/wsl-storage/review-red.stderr",
+      "docs/skill-audit/wsl-storage/review-red.stdout",
+      "docs/skill-audit/wsl-storage/storage-block.json",
+      "docs/skill-audit/wsl-storage/user-evidence.json",
+      "odd/tasks/wsl-storage.md",
+      "skills/requerimientos-socraticos/tests/test_storage_scope.py"
+    ],
+    "intended_untracked_proof": "sha256:f791276a2a37f001f62b0c047f0af9507929ec153e6e2993e48875c84a6c2ec5",
+    "initial_snapshot_identity": "sha256:1539d3946fcc675885ba277d10a47cbf344db6ae3fbebdb90285414d6abc3614",
+    "current_snapshot_identity": "sha256:1539d3946fcc675885ba277d10a47cbf344db6ae3fbebdb90285414d6abc3614"
+  },
+  "eligible_untracked_inventory": "sha256:b5d4a173a3c2e42eda3f5d21f955fda92511bf15d3968bb6cb532df85e8fd1eb",
+  "repair": {
+    "schema": "gentle-ai.review-authority-repair-assessment/v1",
+    "status": "unsupported",
+    "counts": {
+      "lineages": 0,
+      "compact_lineages": 0,
+      "legacy_lineages": 0,
+      "events": 0,
+      "bytes": 0,
+      "eligible_candidates": 0,
+      "unsupported_lineages": 0,
+      "conflicts": 0
+    },
+    "supported_operations": [
+      "review/complete-fix",
+      "review/validate-fix"
+    ],
+    "authorization_schema": "gentle-ai.review-repair-authorization/v1"
+  },
+  "candidates": [],
+  "forecast": {
+    "horizon": "partial",
+    "steps": [
+      {
+        "step": 1,
+        "kind": "execute",
+        "reason_code": "fresh_target_ready",
+        "description": "Target is unreviewed and ready for initial review start"
+      }
+    ]
+  },
+  "next_transition": {
+    "kind": "execute",
+    "reason_code": "fresh_target_ready",
+    "execute": {
+      "operation": "review.start",
+      "command": "gentle-ai review start --cwd=/workspace/publicacion-proyecto-integrado --contract=gentle-ai.review-integration/v2 --target=sha256:1539d3946fcc675885ba277d10a47cbf344db6ae3fbebdb90285414d6abc3614 --target-evidence=v1:current-changes:workspace:a550ece8055e1c15ba81931d2d1477088e490de3:71e9127a2b1ff17a93dbdc2de3f9a7ad13c7792c:sha256:9fff6b34e7a84a3f1eab37a5028cfc63503653a5b946732aecb21702d57172ff --projection=workspace --lineage=review-1065b747da56ecf9 --agent=codex --consent=relay --untracked-scope=select --expected-untracked-inventory=sha256:b5d4a173a3c2e42eda3f5d21f955fda92511bf15d3968bb6cb532df85e8fd1eb --intended-untracked=docs/skill-audit/wsl-storage/RESULTADO.md --intended-untracked=docs/skill-audit/wsl-storage/activation.json --intended-untracked=docs/skill-audit/wsl-storage/clone-red.stderr --intended-untracked=docs/skill-audit/wsl-storage/clone-red.stdout --intended-untracked=docs/skill-audit/wsl-storage/engram-receipt.txt --intended-untracked=docs/skill-audit/wsl-storage/final-green.stderr --intended-untracked=docs/skill-audit/wsl-storage/final-green.stdout --intended-untracked=docs/skill-audit/wsl-storage/green.stderr --intended-untracked=docs/skill-audit/wsl-storage/green.stdout --intended-untracked=docs/skill-audit/wsl-storage/independent-review.json --intended-untracked=docs/skill-audit/wsl-storage/installation-plan.json --intended-untracked=docs/skill-audit/wsl-storage/interview.json --intended-untracked=docs/skill-audit/wsl-storage/red.stderr --intended-untracked=docs/skill-audit/wsl-storage/red.stdout --intended-untracked=docs/skill-audit/wsl-storage/regression.stderr --intended-untracked=docs/skill-audit/wsl-storage/regression.stdout --intended-untracked=docs/skill-audit/wsl-storage/review-green.stderr --intended-untracked=docs/skill-audit/wsl-storage/review-green.stdout --intended-untracked=docs/skill-audit/wsl-storage/review-red.stderr --intended-untracked=docs/skill-audit/wsl-storage/review-red.stdout --intended-untracked=docs/skill-audit/wsl-storage/storage-block.json --intended-untracked=docs/skill-audit/wsl-storage/user-evidence.json --intended-untracked=odd/tasks/wsl-storage.md --intended-untracked=skills/requerimientos-socraticos/tests/test_storage_scope.py",
+      "arguments": [
+        {
+          "name": "cwd",
+          "value": "/workspace/publicacion-proyecto-integrado",
+          "token": "--cwd=/workspace/publicacion-proyecto-integrado"
+        },
+        {
+          "name": "contract",
+          "value": "gentle-ai.review-integration/v2",
+          "token": "--contract=gentle-ai.review-integration/v2"
+        },
+        {
+          "name": "target",
+          "value": "sha256:1539d3946fcc675885ba277d10a47cbf344db6ae3fbebdb90285414d6abc3614",
+          "token": "--target=sha256:1539d3946fcc675885ba277d10a47cbf344db6ae3fbebdb90285414d6abc3614"
+        },
+        {
+          "name": "target-evidence",
+          "value": "v1:current-changes:workspace:a550ece8055e1c15ba81931d2d1477088e490de3:71e9127a2b1ff17a93dbdc2de3f9a7ad13c7792c:sha256:9fff6b34e7a84a3f1eab37a5028cfc63503653a5b946732aecb21702d57172ff",
+          "token": "--target-evidence=v1:current-changes:workspace:a550ece8055e1c15ba81931d2d1477088e490de3:71e9127a2b1ff17a93dbdc2de3f9a7ad13c7792c:sha256:9fff6b34e7a84a3f1eab37a5028cfc63503653a5b946732aecb21702d57172ff"
+        },
+        {
+          "name": "projection",
+          "value": "workspace",
+          "token": "--projection=workspace"
+        },
+        {
+          "name": "lineage",
+          "value": "review-1065b747da56ecf9",
+          "token": "--lineage=review-1065b747da56ecf9"
+        },
+        {
+          "name": "agent",
+          "value": "codex",
+          "token": "--agent=codex"
+        },
+        {
+          "name": "consent",
+          "value": "relay",
+          "token": "--consent=relay"
+        },
+        {
+          "name": "untracked-scope",
+          "value": "select",
+          "token": "--untracked-scope=select"
+        },
+        {
+          "name": "expected-untracked-inventory",
+          "value": "sha256:b5d4a173a3c2e42eda3f5d21f955fda92511bf15d3968bb6cb532df85e8fd1eb",
+          "token": "--expected-untracked-inventory=sha256:b5d4a173a3c2e42eda3f5d21f955fda92511bf15d3968bb6cb532df85e8fd1eb"
+        },
+        {
+          "name": "intended-untracked",
+          "value": "docs/skill-audit/wsl-storage/RESULTADO.md",
+          "token": "--intended-untracked=docs/skill-audit/wsl-storage/RESULTADO.md"
+        },
+        {
+          "name": "intended-untracked",
+          "value": "docs/skill-audit/wsl-storage/activation.json",
+          "token": "--intended-untracked=docs/skill-audit/wsl-storage/activation.json"
+        },
+        {
+          "name": "intended-untracked",
+          "value": "docs/skill-audit/wsl-storage/clone-red.stderr",
+          "token": "--intended-untracked=docs/skill-audit/wsl-storage/clone-red.stderr"
+        },
+        {
+          "name": "intended-untracked",
+          "value": "docs/skill-audit/wsl-storage/clone-red.stdout",
+          "token": "--intended-untracked=docs/skill-audit/wsl-storage/clone-red.stdout"
+        },
+        {
+          "name": "intended-untracked",
+          "value": "docs/skill-audit/wsl-storage/engram-receipt.txt",
+          "token": "--intended-untracked=docs/skill-audit/wsl-storage/engram-receipt.txt"
+        },
+        {
+          "name": "intended-untracked",
+          "value": "docs/skill-audit/wsl-storage/final-green.stderr",
+          "token": "--intended-untracked=docs/skill-audit/wsl-storage/final-green.stderr"
+        },
+        {
+          "name": "intended-untracked",
+          "value": "docs/skill-audit/wsl-storage/final-green.stdout",
+          "token": "--intended-untracked=docs/skill-audit/wsl-storage/final-green.stdout"
+        },
+        {
+          "name": "intended-untracked",
+          "value": "docs/skill-audit/wsl-storage/green.stderr",
+          "token": "--intended-untracked=docs/skill-audit/wsl-storage/green.stderr"
+        },
+        {
+          "name": "intended-untracked",
+          "value": "docs/skill-audit/wsl-storage/green.stdout",
+          "token": "--intended-untracked=docs/skill-audit/wsl-storage/green.stdout"
+        },
+        {
+          "name": "intended-untracked",
+          "value": "docs/skill-audit/wsl-storage/independent-review.json",
+          "token": "--intended-untracked=docs/skill-audit/wsl-storage/independent-review.json"
+        },
+        {
+          "name": "intended-untracked",
+          "value": "docs/skill-audit/wsl-storage/installation-plan.json",
+          "token": "--intended-untracked=docs/skill-audit/wsl-storage/installation-plan.json"
+        },
+        {
+          "name": "intended-untracked",
+          "value": "docs/skill-audit/wsl-storage/interview.json",
+          "token": "--intended-untracked=docs/skill-audit/wsl-storage/interview.json"
+        },
+        {
+          "name": "intended-untracked",
+          "value": "docs/skill-audit/wsl-storage/red.stderr",
+          "token": "--intended-untracked=docs/skill-audit/wsl-storage/red.stderr"
+        },
+        {
+          "name": "intended-untracked",
+          "value": "docs/skill-audit/wsl-storage/red.stdout",
+          "token": "--intended-untracked=docs/skill-audit/wsl-storage/red.stdout"
+        },
+        {
+          "name": "intended-untracked",
+          "value": "docs/skill-audit/wsl-storage/regression.stderr",
+          "token": "--intended-untracked=docs/skill-audit/wsl-storage/regression.stderr"
+        },
+        {
+          "name": "intended-untracked",
+          "value": "docs/skill-audit/wsl-storage/regression.stdout",
+          "token": "--intended-untracked=docs/skill-audit/wsl-storage/regression.stdout"
+        },
+        {
+          "name": "intended-untracked",
+          "value": "docs/skill-audit/wsl-storage/review-green.stderr",
+          "token": "--intended-untracked=docs/skill-audit/wsl-storage/review-green.stderr"
+        },
+        {
+          "name": "intended-untracked",
+          "value": "docs/skill-audit/wsl-storage/review-green.stdout",
+          "token": "--intended-untracked=docs/skill-audit/wsl-storage/review-green.stdout"
+        },
+        {
+          "name": "intended-untracked",
+          "value": "docs/skill-audit/wsl-storage/review-red.stderr",
+          "token": "--intended-untracked=docs/skill-audit/wsl-storage/review-red.stderr"
+        },
+        {
+          "name": "intended-untracked",
+          "value": "docs/skill-audit/wsl-storage/review-red.stdout",
+          "token": "--intended-untracked=docs/skill-audit/wsl-storage/review-red.stdout"
+        },
+        {
+          "name": "intended-untracked",
+          "value": "docs/skill-audit/wsl-storage/storage-block.json",
+          "token": "--intended-untracked=docs/skill-audit/wsl-storage/storage-block.json"
+        },
+        {
+          "name": "intended-untracked",
+          "value": "docs/skill-audit/wsl-storage/user-evidence.json",
+          "token": "--intended-untracked=docs/skill-audit/wsl-storage/user-evidence.json"
+        },
+        {
+          "name": "intended-untracked",
+          "value": "odd/tasks/wsl-storage.md",
+          "token": "--intended-untracked=odd/tasks/wsl-storage.md"
+        },
+        {
+          "name": "intended-untracked",
+          "value": "skills/requerimientos-socraticos/tests/test_storage_scope.py",
+          "token": "--intended-untracked=skills/requerimientos-socraticos/tests/test_storage_scope.py"
+        }
+      ],
+      "preconditions": [
+        {
+          "name": "target_identity",
+          "value": "sha256:1539d3946fcc675885ba277d10a47cbf344db6ae3fbebdb90285414d6abc3614"
+        }
+      ],
+      "binding": {
+        "lineage_id": "review-1065b747da56ecf9",
+        "target_identity": "sha256:1539d3946fcc675885ba277d10a47cbf344db6ae3fbebdb90285414d6abc3614"
+      }
+    }
+  }
+}

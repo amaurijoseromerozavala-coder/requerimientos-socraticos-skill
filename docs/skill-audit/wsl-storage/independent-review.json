@@ -1,0 +1,12 @@
+{
+  "reviewer": "/root/wsl_review_final",
+  "scope": "WU-WSL-STORAGE-001",
+  "findings": [
+    "P2 HEAD object verification",
+    "P2 schema admission invariants"
+  ],
+  "resolution": "BOTH_CLOSED",
+  "tests_independently_run": 9,
+  "new_findings": [],
+  "native_rdd": "PENDING"
+}
