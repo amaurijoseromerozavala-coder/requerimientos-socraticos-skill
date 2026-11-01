@@ -1,0 +1,9 @@
+{
+  "schema": "gentle-ai.review-acknowledged/v1",
+  "operation": "review/acknowledge-approved",
+  "action": "acknowledged",
+  "lineage_id": "review-9a7b69adaea01910",
+  "target_identity": "sha256:c411f8fee04e94ba811dda3b7122d33d28273129415271cc2bdae76b0e9565e6",
+  "consumed_revision": "sha256:8b2bb6e150eefcb0d6ebd53ae9495e89ffc3cf330dff208a43463aa7b17ea6bb",
+  "authority": "burned"
+}

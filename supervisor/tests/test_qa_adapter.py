@@ -46,10 +46,31 @@ class AdapterTests(unittest.TestCase):
             self.assertEqual(r['cause'],'NOT_DETERMINED')
             self.assertEqual(r['document_admission'],'NOT_ASSESSED')
     def test_partial_escalates(self):
+        for code in (0, 2):
+            with self.subTest(returncode=code):
+                doc=payload(code)
+                if code == 0:
+                    doc['proposed_event']='RECORD_CURRENT_SUCCESS'
+                doc['failure_observation'].update(
+                    status='NOT_ASSESSED', scan_status='PARTIAL',
+                    declared_failure_count=0, scanned_records=128)
+                adapter=self.make()
+                with patch.object(adapter._core,'run',return_value=observed(code,doc)):
+                    result=adapter.run()
+                self.assertEqual(result['result_admission'],'ACCEPTED')
+                self.assertEqual(result['execution_status'],'COMPLETED')
+                self.assertEqual(result['document_admission'],'VALID' if code == 0 else 'REJECT_INPUT')
+                self.assertEqual(result['checker_result']['failure_observation'],doc['failure_observation'])
+                self.assertFalse(result['execution_authorized'])
+                self.assertTrue(result['human_review_required'], 'PARTIAL_MUST_REQUIRE_REVIEW')
+    def test_incoherent_partial_is_protocol_rejection(self):
         doc=payload(2);doc['failure_observation']['scan_status']='PARTIAL'
         adapter=self.make()
-        with patch.object(adapter._core,'run',return_value=observed(2,doc)): r=adapter.run()
-        self.assertTrue(r['human_review_required'])
+        with patch.object(adapter._core,'run',return_value=observed(2,doc)): result=adapter.run()
+        self.assertEqual(result['result_admission'],'REJECT_INFRA')
+        self.assertEqual(result['document_admission'],'NOT_ASSESSED')
+        self.assertIsNone(result['checker_result'])
+        self.assertTrue(result['human_review_required'])
     def test_bad_protocol(self):
         for raw in (b'{}',b'{"x":1,"x":2}',b'['*100+b']'*100,b'not json'):
             obs=observed();obs['stdout']=raw;adapter=self.make()

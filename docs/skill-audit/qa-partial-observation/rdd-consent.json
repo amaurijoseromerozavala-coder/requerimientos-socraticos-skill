@@ -1,0 +1,38 @@
+{
+  "schema": "gentle-ai.review-integration.consent/v3",
+  "contract": "gentle-ai.review-integration/v2",
+  "operation": "review.start",
+  "action": "consent_required",
+  "agent": "codex",
+  "blocking": true,
+  "target_identity": "sha256:c411f8fee04e94ba811dda3b7122d33d28273129415271cc2bdae76b0e9565e6",
+  "projection": "workspace",
+  "risk_level": "medium",
+  "changed_files": 10,
+  "changed_lines": 121,
+  "headline": "Gentle AI can review this change before you call it done.",
+  "reason": "Review can help detect regressions in these changes.",
+  "value": "Reviewing takes a little longer and makes the result safer.",
+  "risk_evidence": [
+    "this change is not purely passive documentation, so it gets one consolidated review.",
+    "an executable change in docs/skill-audit/qa-partial-observation/RESULTADO.md"
+  ],
+  "choices": [
+    {
+      "answer": "granted",
+      "label": "Review this change",
+      "effect": "Reviews only this change; later medium- or high-risk changes ask again, and delivery needs separate approval.",
+      "invocation": "gentle-ai review start --contract gentle-ai.review-integration/v2 --cwd /workspace/publicacion-proyecto-integrado --target sha256:c411f8fee04e94ba811dda3b7122d33d28273129415271cc2bdae76b0e9565e6 --target-evidence v1:current-changes:workspace:da717e060f42f1d8cfc5c1b77404c9f0c98bf214:8ae14ffa143765dfde9d9ca975f652a3e7ad8959:sha256:e0ea62253b255ddda797d609ea09c32d289aaae7049456b585cd38b4033dcbce --projection workspace --agent codex --lineage review-9a7b69adaea01910 --untracked-scope=select --expected-untracked-inventory=sha256:0b2bdc4a03338a554118cddfbf0a6fac6bea908e3aaca2e11ac03c201872d5a1 --intended-untracked=docs/skill-audit/qa-partial-observation/RESULTADO.md --intended-untracked=docs/skill-audit/qa-partial-observation/check_mutation.py --intended-untracked=docs/skill-audit/qa-partial-observation/green.stderr --intended-untracked=docs/skill-audit/qa-partial-observation/green.stdout --intended-untracked=docs/skill-audit/qa-partial-observation/mutant.stderr --intended-untracked=docs/skill-audit/qa-partial-observation/mutant.stdout --intended-untracked=docs/skill-audit/qa-partial-observation/red.stderr --intended-untracked=docs/skill-audit/qa-partial-observation/red.stdout --intended-untracked=odd/tasks/qa-partial-observation.md --lenses review-reliability --lenses-reason 'Verify coherent partial observation tests, admission assertions and isolated negative control; production unchanged.' --consent granted"
+    },
+    {
+      "answer": "declined",
+      "label": "Skip this time",
+      "effect": "Skips only this change; no review record is created, and future reviews stay enabled.",
+      "invocation": "gentle-ai review start --contract gentle-ai.review-integration/v2 --cwd /workspace/publicacion-proyecto-integrado --target sha256:c411f8fee04e94ba811dda3b7122d33d28273129415271cc2bdae76b0e9565e6 --target-evidence v1:current-changes:workspace:da717e060f42f1d8cfc5c1b77404c9f0c98bf214:8ae14ffa143765dfde9d9ca975f652a3e7ad8959:sha256:e0ea62253b255ddda797d609ea09c32d289aaae7049456b585cd38b4033dcbce --projection workspace --agent codex --lineage review-9a7b69adaea01910 --untracked-scope=select --expected-untracked-inventory=sha256:0b2bdc4a03338a554118cddfbf0a6fac6bea908e3aaca2e11ac03c201872d5a1 --intended-untracked=docs/skill-audit/qa-partial-observation/RESULTADO.md --intended-untracked=docs/skill-audit/qa-partial-observation/check_mutation.py --intended-untracked=docs/skill-audit/qa-partial-observation/green.stderr --intended-untracked=docs/skill-audit/qa-partial-observation/green.stdout --intended-untracked=docs/skill-audit/qa-partial-observation/mutant.stderr --intended-untracked=docs/skill-audit/qa-partial-observation/mutant.stdout --intended-untracked=docs/skill-audit/qa-partial-observation/red.stderr --intended-untracked=docs/skill-audit/qa-partial-observation/red.stdout --intended-untracked=odd/tasks/qa-partial-observation.md --lenses review-reliability --lenses-reason 'Verify coherent partial observation tests, admission assertions and isolated negative control; production unchanged.' --consent declined"
+    }
+  ],
+  "off_path": {
+    "note": "To turn reviews off for good, run 'gentle-ai review mode disable'.",
+    "command": "gentle-ai review mode disable"
+  }
+}

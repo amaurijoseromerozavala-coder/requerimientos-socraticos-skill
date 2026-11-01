@@ -1,0 +1,64 @@
+{
+  "schema": "gentle-ai.review-last-event-closure/v1",
+  "operation": "review/capture-result",
+  "lineage_id": "review-9a7b69adaea01910",
+  "state": "approved",
+  "action": "the approved review completed on the last admitted event and awaits its exact acknowledgement",
+  "reviewer_results": [
+    {
+      "lens": "review-reliability",
+      "findings": [],
+      "evidence": [
+        "Inspected all ten supplied patches; no commands were run or external files consulted.",
+        "supervisor/tests/test_qa_adapter.py:49-65 checks protocol admission, execution completion, document disposition, observation preservation, denied execution authorization, and required human review for both partial-observation outcomes.",
+        "supervisor/tests/test_qa_adapter.py:66-73 preserves the incoherent fixture as an explicit protocol-rejection test.",
+        "docs/skill-audit/qa-partial-observation/check_mutation.py:19-30 requires the observation-escalation mutant to produce the specific human-review assertion failure. The supplied failure transcript in docs/skill-audit/qa-partial-observation/mutant.stderr corroborates that control.",
+        "The candidate changes tests and audit artifacts without a production-code change. The supplied green transcript reports thirteen passing tests; execution was not independently verified."
+      ],
+      "result_hash": "sha256:3b181ecb7b93b5204dd02ccc09fea99ca62cfebcbdc0742a04c009ed87522cac"
+    }
+  ],
+  "acknowledgement": {
+    "operation": "review.acknowledge-approved",
+    "command": "gentle-ai review acknowledge-approved --cwd=/workspace/publicacion-proyecto-integrado --lineage=review-9a7b69adaea01910 --target=sha256:c411f8fee04e94ba811dda3b7122d33d28273129415271cc2bdae76b0e9565e6 --expected-revision=sha256:8b2bb6e150eefcb0d6ebd53ae9495e89ffc3cf330dff208a43463aa7b17ea6bb --token=[REDACTED]",
+    "arguments": [
+      {
+        "name": "cwd",
+        "value": "/workspace/publicacion-proyecto-integrado",
+        "token": "--cwd=/workspace/publicacion-proyecto-integrado"
+      },
+      {
+        "name": "lineage",
+        "value": "review-9a7b69adaea01910",
+        "token": "--lineage=review-9a7b69adaea01910"
+      },
+      {
+        "name": "target",
+        "value": "sha256:c411f8fee04e94ba811dda3b7122d33d28273129415271cc2bdae76b0e9565e6",
+        "token": "--target=sha256:c411f8fee04e94ba811dda3b7122d33d28273129415271cc2bdae76b0e9565e6"
+      },
+      {
+        "name": "expected-revision",
+        "value": "sha256:8b2bb6e150eefcb0d6ebd53ae9495e89ffc3cf330dff208a43463aa7b17ea6bb",
+        "token": "--expected-revision=sha256:8b2bb6e150eefcb0d6ebd53ae9495e89ffc3cf330dff208a43463aa7b17ea6bb"
+      },
+      {
+        "name": "token",
+        "value": "[REDACTED]",
+        "token": "--token=[REDACTED]"
+      }
+    ],
+    "preconditions": [
+      {
+        "name": "state",
+        "value": "approved"
+      }
+    ],
+    "binding": {
+      "lineage_id": "review-9a7b69adaea01910",
+      "revision": "sha256:8b2bb6e150eefcb0d6ebd53ae9495e89ffc3cf330dff208a43463aa7b17ea6bb",
+      "target_identity": "sha256:c411f8fee04e94ba811dda3b7122d33d28273129415271cc2bdae76b0e9565e6"
+    }
+  },
+  "store_revision": "sha256:8b2bb6e150eefcb0d6ebd53ae9495e89ffc3cf330dff208a43463aa7b17ea6bb"
+}

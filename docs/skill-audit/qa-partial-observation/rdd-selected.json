@@ -1,0 +1,191 @@
+{
+  "schema": "gentle-ai.review-integration.status/v9",
+  "contract": "gentle-ai.review-integration/v2",
+  "operation": "review.status",
+  "applicability": "unrelated",
+  "action": "start",
+  "replayability": "not_replayable",
+  "target_identity": "sha256:c411f8fee04e94ba811dda3b7122d33d28273129415271cc2bdae76b0e9565e6",
+  "projection": {
+    "schema": "gentle-ai.review-integration.projection/v1",
+    "kind": "current-changes",
+    "projection": "workspace",
+    "base_tree": "da717e060f42f1d8cfc5c1b77404c9f0c98bf214",
+    "initial_review_tree": "8ae14ffa143765dfde9d9ca975f652a3e7ad8959",
+    "current_candidate_tree": "8ae14ffa143765dfde9d9ca975f652a3e7ad8959",
+    "paths_digest": "sha256:e0ea62253b255ddda797d609ea09c32d289aaae7049456b585cd38b4033dcbce",
+    "paths": [
+      "docs/skill-audit/qa-partial-observation/RESULTADO.md",
+      "docs/skill-audit/qa-partial-observation/check_mutation.py",
+      "docs/skill-audit/qa-partial-observation/green.stderr",
+      "docs/skill-audit/qa-partial-observation/green.stdout",
+      "docs/skill-audit/qa-partial-observation/mutant.stderr",
+      "docs/skill-audit/qa-partial-observation/mutant.stdout",
+      "docs/skill-audit/qa-partial-observation/red.stderr",
+      "docs/skill-audit/qa-partial-observation/red.stdout",
+      "odd/tasks/qa-partial-observation.md",
+      "supervisor/tests/test_qa_adapter.py"
+    ],
+    "intended_untracked": [
+      "docs/skill-audit/qa-partial-observation/RESULTADO.md",
+      "docs/skill-audit/qa-partial-observation/check_mutation.py",
+      "docs/skill-audit/qa-partial-observation/green.stderr",
+      "docs/skill-audit/qa-partial-observation/green.stdout",
+      "docs/skill-audit/qa-partial-observation/mutant.stderr",
+      "docs/skill-audit/qa-partial-observation/mutant.stdout",
+      "docs/skill-audit/qa-partial-observation/red.stderr",
+      "docs/skill-audit/qa-partial-observation/red.stdout",
+      "odd/tasks/qa-partial-observation.md"
+    ],
+    "intended_untracked_proof": "sha256:0c4312646e96368387c96de5f3ade8d90b4b88bd736dd358f0f24c120db93435",
+    "initial_snapshot_identity": "sha256:c411f8fee04e94ba811dda3b7122d33d28273129415271cc2bdae76b0e9565e6",
+    "current_snapshot_identity": "sha256:c411f8fee04e94ba811dda3b7122d33d28273129415271cc2bdae76b0e9565e6"
+  },
+  "eligible_untracked_inventory": "sha256:ffdc0d0a01435cffd1978973faab16d57d15d51149bbc96a2c234b4f32f95cd6",
+  "repair": {
+    "schema": "gentle-ai.review-authority-repair-assessment/v1",
+    "status": "unsupported",
+    "counts": {
+      "lineages": 0,
+      "compact_lineages": 0,
+      "legacy_lineages": 0,
+      "events": 0,
+      "bytes": 0,
+      "eligible_candidates": 0,
+      "unsupported_lineages": 0,
+      "conflicts": 0
+    },
+    "supported_operations": [
+      "review/complete-fix",
+      "review/validate-fix"
+    ],
+    "authorization_schema": "gentle-ai.review-repair-authorization/v1"
+  },
+  "candidates": [],
+  "forecast": {
+    "horizon": "partial",
+    "steps": [
+      {
+        "step": 1,
+        "kind": "execute",
+        "reason_code": "fresh_target_ready",
+        "description": "Target is unreviewed and ready for initial review start"
+      }
+    ]
+  },
+  "next_transition": {
+    "kind": "execute",
+    "reason_code": "fresh_target_ready",
+    "execute": {
+      "operation": "review.start",
+      "command": "gentle-ai review start --cwd=/workspace/publicacion-proyecto-integrado --contract=gentle-ai.review-integration/v2 --target=sha256:c411f8fee04e94ba811dda3b7122d33d28273129415271cc2bdae76b0e9565e6 --target-evidence=v1:current-changes:workspace:da717e060f42f1d8cfc5c1b77404c9f0c98bf214:8ae14ffa143765dfde9d9ca975f652a3e7ad8959:sha256:e0ea62253b255ddda797d609ea09c32d289aaae7049456b585cd38b4033dcbce --projection=workspace --lineage=review-9a7b69adaea01910 --agent=codex --consent=relay --untracked-scope=select --expected-untracked-inventory=sha256:ffdc0d0a01435cffd1978973faab16d57d15d51149bbc96a2c234b4f32f95cd6 --intended-untracked=docs/skill-audit/qa-partial-observation/RESULTADO.md --intended-untracked=docs/skill-audit/qa-partial-observation/check_mutation.py --intended-untracked=docs/skill-audit/qa-partial-observation/green.stderr --intended-untracked=docs/skill-audit/qa-partial-observation/green.stdout --intended-untracked=docs/skill-audit/qa-partial-observation/mutant.stderr --intended-untracked=docs/skill-audit/qa-partial-observation/mutant.stdout --intended-untracked=docs/skill-audit/qa-partial-observation/red.stderr --intended-untracked=docs/skill-audit/qa-partial-observation/red.stdout --intended-untracked=odd/tasks/qa-partial-observation.md",
+      "arguments": [
+        {
+          "name": "cwd",
+          "value": "/workspace/publicacion-proyecto-integrado",
+          "token": "--cwd=/workspace/publicacion-proyecto-integrado"
+        },
+        {
+          "name": "contract",
+          "value": "gentle-ai.review-integration/v2",
+          "token": "--contract=gentle-ai.review-integration/v2"
+        },
+        {
+          "name": "target",
+          "value": "sha256:c411f8fee04e94ba811dda3b7122d33d28273129415271cc2bdae76b0e9565e6",
+          "token": "--target=sha256:c411f8fee04e94ba811dda3b7122d33d28273129415271cc2bdae76b0e9565e6"
+        },
+        {
+          "name": "target-evidence",
+          "value": "v1:current-changes:workspace:da717e060f42f1d8cfc5c1b77404c9f0c98bf214:8ae14ffa143765dfde9d9ca975f652a3e7ad8959:sha256:e0ea62253b255ddda797d609ea09c32d289aaae7049456b585cd38b4033dcbce",
+          "token": "--target-evidence=v1:current-changes:workspace:da717e060f42f1d8cfc5c1b77404c9f0c98bf214:8ae14ffa143765dfde9d9ca975f652a3e7ad8959:sha256:e0ea62253b255ddda797d609ea09c32d289aaae7049456b585cd38b4033dcbce"
+        },
+        {
+          "name": "projection",
+          "value": "workspace",
+          "token": "--projection=workspace"
+        },
+        {
+          "name": "lineage",
+          "value": "review-9a7b69adaea01910",
+          "token": "--lineage=review-9a7b69adaea01910"
+        },
+        {
+          "name": "agent",
+          "value": "codex",
+          "token": "--agent=codex"
+        },
+        {
+          "name": "consent",
+          "value": "relay",
+          "token": "--consent=relay"
+        },
+        {
+          "name": "untracked-scope",
+          "value": "select",
+          "token": "--untracked-scope=select"
+        },
+        {
+          "name": "expected-untracked-inventory",
+          "value": "sha256:ffdc0d0a01435cffd1978973faab16d57d15d51149bbc96a2c234b4f32f95cd6",
+          "token": "--expected-untracked-inventory=sha256:ffdc0d0a01435cffd1978973faab16d57d15d51149bbc96a2c234b4f32f95cd6"
+        },
+        {
+          "name": "intended-untracked",
+          "value": "docs/skill-audit/qa-partial-observation/RESULTADO.md",
+          "token": "--intended-untracked=docs/skill-audit/qa-partial-observation/RESULTADO.md"
+        },
+        {
+          "name": "intended-untracked",
+          "value": "docs/skill-audit/qa-partial-observation/check_mutation.py",
+          "token": "--intended-untracked=docs/skill-audit/qa-partial-observation/check_mutation.py"
+        },
+        {
+          "name": "intended-untracked",
+          "value": "docs/skill-audit/qa-partial-observation/green.stderr",
+          "token": "--intended-untracked=docs/skill-audit/qa-partial-observation/green.stderr"
+        },
+        {
+          "name": "intended-untracked",
+          "value": "docs/skill-audit/qa-partial-observation/green.stdout",
+          "token": "--intended-untracked=docs/skill-audit/qa-partial-observation/green.stdout"
+        },
+        {
+          "name": "intended-untracked",
+          "value": "docs/skill-audit/qa-partial-observation/mutant.stderr",
+          "token": "--intended-untracked=docs/skill-audit/qa-partial-observation/mutant.stderr"
+        },
+        {
+          "name": "intended-untracked",
+          "value": "docs/skill-audit/qa-partial-observation/mutant.stdout",
+          "token": "--intended-untracked=docs/skill-audit/qa-partial-observation/mutant.stdout"
+        },
+        {
+          "name": "intended-untracked",
+          "value": "docs/skill-audit/qa-partial-observation/red.stderr",
+          "token": "--intended-untracked=docs/skill-audit/qa-partial-observation/red.stderr"
+        },
+        {
+          "name": "intended-untracked",
+          "value": "docs/skill-audit/qa-partial-observation/red.stdout",
+          "token": "--intended-untracked=docs/skill-audit/qa-partial-observation/red.stdout"
+        },
+        {
+          "name": "intended-untracked",
+          "value": "odd/tasks/qa-partial-observation.md",
+          "token": "--intended-untracked=odd/tasks/qa-partial-observation.md"
+        }
+      ],
+      "preconditions": [
+        {
+          "name": "target_identity",
+          "value": "sha256:c411f8fee04e94ba811dda3b7122d33d28273129415271cc2bdae76b0e9565e6"
+        }
+      ],
+      "binding": {
+        "lineage_id": "review-9a7b69adaea01910",
+        "target_identity": "sha256:c411f8fee04e94ba811dda3b7122d33d28273129415271cc2bdae76b0e9565e6"
+      }
+    }
+  }
+}

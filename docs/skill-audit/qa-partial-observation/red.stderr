@@ -1,0 +1,16 @@
+F
+======================================================================
+FAIL: test_partial_escalates (test_qa_adapter.AdapterTests.test_partial_escalates)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/publicacion-proyecto-integrado/supervisor/tests/test_qa_adapter.py", line 52, in test_partial_escalates
+    self.assertEqual(r['result_admission'],'ACCEPTED')
+AssertionError: 'REJECT_INFRA' != 'ACCEPTED'
+- REJECT_INFRA
++ ACCEPTED
+
+
+----------------------------------------------------------------------
+Ran 1 test in 0.001s
+
+FAILED (failures=1)

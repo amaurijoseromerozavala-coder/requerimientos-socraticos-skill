@@ -1,0 +1,13 @@
+F
+======================================================================
+FAIL: test_partial_escalates (test_qa_adapter.AdapterTests.test_partial_escalates) (returncode=0)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/qa-partial-mutant-w79mpipa/supervisor/tests/test_qa_adapter.py", line 65, in test_partial_escalates
+    self.assertTrue(result['human_review_required'], 'PARTIAL_MUST_REQUIRE_REVIEW')
+AssertionError: False is not true : PARTIAL_MUST_REQUIRE_REVIEW
+
+----------------------------------------------------------------------
+Ran 1 test in 0.001s
+
+FAILED (failures=1)
