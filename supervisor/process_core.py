@@ -58,6 +58,12 @@ class ProcessSupervisor:
     def _wait(self, child, timeout):
         return child.wait(timeout=max(0, timeout))
 
+    def _signal_owned_group(self, child, requested_signal):
+        """Signal only the live child's fresh session, never an inferred PGID."""
+        if os.getpgid(child.pid) != child.pid:
+            raise OSError('CHILD_GROUP_IDENTITY_MISMATCH')
+        os.killpg(child.pid, requested_signal)
+
     def run(self):
         if not self._owner.acquire(blocking=False):
             return {'status': 'BUSY', 'launched': False}
@@ -167,12 +173,12 @@ class ProcessSupervisor:
                     try:
                         if child.poll() is None:
                             signals.append('SIGTERM')
-                            child.terminate()
+                            self._signal_owned_group(child, signal.SIGTERM)
                         try:
                             returncode = wait_draining(time.monotonic() + self.limits.grace_seconds)
                         except subprocess.TimeoutExpired:
                             signals.append('SIGKILL')
-                            child.kill()
+                            self._signal_owned_group(child, signal.SIGKILL)
                             returncode = wait_draining(time.monotonic() + self.limits.cleanup_seconds)
                         cleanup = 'CONFIRMED'
                     except BaseException as exc:
@@ -181,7 +187,7 @@ class ProcessSupervisor:
                         try:
                             if child.poll() is None:
                                 signals.append('SIGKILL')
-                                child.kill()
+                                self._signal_owned_group(child, signal.SIGKILL)
                         except OSError:
                             pass
                         cleanup = 'UNCONFIRMED'

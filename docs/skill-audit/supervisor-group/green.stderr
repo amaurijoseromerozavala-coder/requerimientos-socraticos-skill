@@ -1,0 +1,6 @@
+test_timeout_stops_same_group_descendant (test_process_group.GroupTerminationTests.test_timeout_stops_same_group_descendant) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.907s
+
+OK

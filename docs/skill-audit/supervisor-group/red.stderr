@@ -1,0 +1,14 @@
+test_timeout_stops_same_group_descendant (test_process_group.GroupTerminationTests.test_timeout_stops_same_group_descendant) ... FAIL
+
+======================================================================
+FAIL: test_timeout_stops_same_group_descendant (test_process_group.GroupTerminationTests.test_timeout_stops_same_group_descendant)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/supervisor-group-unit/supervisor/tests/test_process_group.py", line 51, in test_timeout_stops_same_group_descendant
+    self.assertFalse(_running(pid), 'same-group descendant survived cleanup')
+AssertionError: True is not false : same-group descendant survived cleanup
+
+----------------------------------------------------------------------
+Ran 1 test in 1.605s
+
+FAILED (failures=1)
