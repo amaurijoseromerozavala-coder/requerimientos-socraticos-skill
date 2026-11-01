@@ -1,0 +1,38 @@
+{
+  "schema": "gentle-ai.review-integration.consent/v3",
+  "contract": "gentle-ai.review-integration/v2",
+  "operation": "review.start",
+  "action": "consent_required",
+  "agent": "codex",
+  "blocking": true,
+  "target_identity": "sha256:3e87779c18ae87c9cf5d69b078228890357f9588354a1ade4f37c745a460679a",
+  "projection": "workspace",
+  "risk_level": "medium",
+  "changed_files": 12,
+  "changed_lines": 412,
+  "headline": "Gentle AI can review this change before you call it done.",
+  "reason": "Review can help detect regressions in these changes.",
+  "value": "Reviewing takes a little longer and makes the result safer.",
+  "risk_evidence": [
+    "this change is not purely passive documentation, so it gets one consolidated review.",
+    "an executable change in docs/skill-audit/supervisor-journal/RESULTADO.md"
+  ],
+  "choices": [
+    {
+      "answer": "granted",
+      "label": "Review this change",
+      "effect": "Reviews only this change; later medium- or high-risk changes ask again, and delivery needs separate approval.",
+      "invocation": "gentle-ai review start --contract gentle-ai.review-integration/v2 --cwd /workspace/publicacion-proyecto-integrado --target sha256:3e87779c18ae87c9cf5d69b078228890357f9588354a1ade4f37c745a460679a --target-evidence v1:current-changes:workspace:699253f4dde9e682605d4f48c0326e86d7dd69d3:69fd91e9124a359871b0e6ddcf824dd98ef9c421:sha256:8fb502c025ba9abcfe6e2cb9250a306625c6fb96244ea805c2b1253b92ed091d --projection workspace --agent codex --lineage review-ef2bb19372d7c729 --untracked-scope=select --expected-untracked-inventory=sha256:047a228dc1bab78c63bf5b796a1c7348109aa102a792ecbe9fa6d816092b59f4 --intended-untracked=docs/skill-audit/supervisor-journal/RESULTADO.md --intended-untracked=docs/skill-audit/supervisor-journal/busy-red.stderr --intended-untracked=docs/skill-audit/supervisor-journal/busy-red.stdout --intended-untracked=docs/skill-audit/supervisor-journal/evidence-index.json --intended-untracked=docs/skill-audit/supervisor-journal/green.stderr --intended-untracked=docs/skill-audit/supervisor-journal/green.stdout --intended-untracked=docs/skill-audit/supervisor-journal/red.stderr --intended-untracked=docs/skill-audit/supervisor-journal/red.stdout --intended-untracked=docs/skill-audit/supervisor-journal/regression.stderr --intended-untracked=odd/tasks/supervisor-journal.md --intended-untracked=supervisor/journal.py --intended-untracked=supervisor/tests/test_journal.py --lenses review-resilience,review-reliability --lenses-reason 'Review cooperative persistent reservation primitive, bounded state reads, atomic publication and fail-closed error paths; no launch or recovery integration.' --consent granted"
+    },
+    {
+      "answer": "declined",
+      "label": "Skip this time",
+      "effect": "Skips only this change; no review record is created, and future reviews stay enabled.",
+      "invocation": "gentle-ai review start --contract gentle-ai.review-integration/v2 --cwd /workspace/publicacion-proyecto-integrado --target sha256:3e87779c18ae87c9cf5d69b078228890357f9588354a1ade4f37c745a460679a --target-evidence v1:current-changes:workspace:699253f4dde9e682605d4f48c0326e86d7dd69d3:69fd91e9124a359871b0e6ddcf824dd98ef9c421:sha256:8fb502c025ba9abcfe6e2cb9250a306625c6fb96244ea805c2b1253b92ed091d --projection workspace --agent codex --lineage review-ef2bb19372d7c729 --untracked-scope=select --expected-untracked-inventory=sha256:047a228dc1bab78c63bf5b796a1c7348109aa102a792ecbe9fa6d816092b59f4 --intended-untracked=docs/skill-audit/supervisor-journal/RESULTADO.md --intended-untracked=docs/skill-audit/supervisor-journal/busy-red.stderr --intended-untracked=docs/skill-audit/supervisor-journal/busy-red.stdout --intended-untracked=docs/skill-audit/supervisor-journal/evidence-index.json --intended-untracked=docs/skill-audit/supervisor-journal/green.stderr --intended-untracked=docs/skill-audit/supervisor-journal/green.stdout --intended-untracked=docs/skill-audit/supervisor-journal/red.stderr --intended-untracked=docs/skill-audit/supervisor-journal/red.stdout --intended-untracked=docs/skill-audit/supervisor-journal/regression.stderr --intended-untracked=odd/tasks/supervisor-journal.md --intended-untracked=supervisor/journal.py --intended-untracked=supervisor/tests/test_journal.py --lenses review-resilience,review-reliability --lenses-reason 'Review cooperative persistent reservation primitive, bounded state reads, atomic publication and fail-closed error paths; no launch or recovery integration.' --consent declined"
+    }
+  ],
+  "off_path": {
+    "note": "To turn reviews off for good, run 'gentle-ai review mode disable'.",
+    "command": "gentle-ai review mode disable"
+  }
+}

@@ -1,0 +1,120 @@
+{
+  "schema": "gentle-ai.review-last-event-closure/v1",
+  "operation": "review/capture-result",
+  "lineage_id": "review-ef2bb19372d7c729",
+  "state": "approved",
+  "action": "the approved review completed on the last admitted event and awaits its exact acknowledgement",
+  "advisory_findings": {
+    "statement": "This review is approved and its receipt stands. Every finding listed here is non-blocking: none opened a correction, none reopens this review, and no correction transition is offered for this candidate. Treat them as separate later work, never as a reason to re-run review on this candidate.",
+    "findings": [
+      {
+        "id": "R3-001",
+        "lens": "reliability",
+        "location": "supervisor/tests/test_journal.py:30-37",
+        "severity": "WARNING",
+        "disposition": "informational"
+      },
+      {
+        "id": "R4-001",
+        "lens": "resilience",
+        "location": "supervisor/journal.py:184-188",
+        "severity": "WARNING",
+        "disposition": "informational"
+      }
+    ]
+  },
+  "reviewer_results": [
+    {
+      "lens": "review-resilience",
+      "findings": [
+        {
+          "id": "R4-001",
+          "lens": "resilience",
+          "location": "supervisor/journal.py:184-188",
+          "severity": "WARNING",
+          "claim": "Cleanup can replace the intended JournalBlocked failure with a raw OSError. If the filesystem becomes read-only after the temporary file is created, persistence fails and sets the failure latch, but unlinking that temporary file also fails with EROFS. The finally block then masks RESERVATION_NOT_CONFIRMED, bypassing callers' JournalBlocked handling. Preserve the original reservation failure when cleanup also fails.",
+          "proof_refs": [
+            "supervisor/journal.py:171-188"
+          ],
+          "evidence_class": "deterministic",
+          "causal_disposition": "introduced"
+        }
+      ],
+      "evidence": [
+        "Inspected all 12 supplied patches without accessing external files or running commands.",
+        "supervisor/journal.py:181-188 translates persistence errors into JournalBlocked but suppresses only FileNotFoundError during subsequent cleanup; other cleanup errors override that exception.",
+        "supervisor/tests/test_journal.py:53-69 covers injected fsync failures, but does not exercise a simultaneous cleanup failure."
+      ],
+      "result_hash": "sha256:d7f13f6ef9bd57c49174bc01fdf0e6d12a7198af628924f2838316e8b199eb92"
+    },
+    {
+      "lens": "review-reliability",
+      "findings": [
+        {
+          "id": "R3-001",
+          "lens": "reliability",
+          "location": "supervisor/tests/test_journal.py:30-37",
+          "severity": "WARNING",
+          "claim": "The corruption tests leave the advertised schema and duplicate-key rejection boundaries unproved: their inputs cover missing data, invalid JSON, an empty object, and oversized data, but no otherwise valid record with duplicate keys, an unsupported schema, or incoherent state and identity. Add public-context assertions that these records raise JournalBlocked and remain unchanged, particularly a duplicate state key whose final value is IDLE.",
+          "proof_refs": [
+            "supervisor/tests/test_journal.py:30-37",
+            "supervisor/journal.py:41-60",
+            "docs/skill-audit/supervisor-journal/RESULTADO.md:3-5"
+          ],
+          "evidence_class": "deterministic",
+          "causal_disposition": "introduced"
+        }
+      ],
+      "evidence": [
+        "Inspected all 12 supplied patches; no commands were run or external files consulted.",
+        "supervisor/journal.py:153-185 serializes reservations and persists the replacement before returning; supervisor/tests/test_journal.py:47-70 exercises abrupt owner exit and failures before replacement and during directory synchronization.",
+        "supervisor/tests/test_journal.py:79-83 checks the busy guard through a private lock; it does not exercise simultaneous public reserve calls.",
+        "The supplied success logs report 12 journal tests and 41 regression tests in docs/skill-audit/supervisor-journal/green.stderr and docs/skill-audit/supervisor-journal/regression.stderr; these results were not independently executed."
+      ],
+      "result_hash": "sha256:409f479150e39109b4e4779bc3112526e340eff2a5d323958b958213df5f4a98"
+    }
+  ],
+  "acknowledgement": {
+    "operation": "review.acknowledge-approved",
+    "command": "gentle-ai review acknowledge-approved --cwd=/workspace/publicacion-proyecto-integrado --lineage=review-ef2bb19372d7c729 --target=sha256:3e87779c18ae87c9cf5d69b078228890357f9588354a1ade4f37c745a460679a --expected-revision=sha256:ee3dad04687c7d9727dcebd6e52764e127219d3e8641d3bac878bf4c7c86862e --token=[REDACTED]",
+    "arguments": [
+      {
+        "name": "cwd",
+        "value": "/workspace/publicacion-proyecto-integrado",
+        "token": "--cwd=/workspace/publicacion-proyecto-integrado"
+      },
+      {
+        "name": "lineage",
+        "value": "review-ef2bb19372d7c729",
+        "token": "--lineage=review-ef2bb19372d7c729"
+      },
+      {
+        "name": "target",
+        "value": "sha256:3e87779c18ae87c9cf5d69b078228890357f9588354a1ade4f37c745a460679a",
+        "token": "--target=sha256:3e87779c18ae87c9cf5d69b078228890357f9588354a1ade4f37c745a460679a"
+      },
+      {
+        "name": "expected-revision",
+        "value": "sha256:ee3dad04687c7d9727dcebd6e52764e127219d3e8641d3bac878bf4c7c86862e",
+        "token": "--expected-revision=sha256:ee3dad04687c7d9727dcebd6e52764e127219d3e8641d3bac878bf4c7c86862e"
+      },
+      {
+        "name": "token",
+        "value": "[REDACTED]",
+        "token": "--token=[REDACTED]"
+      }
+    ],
+    "preconditions": [
+      {
+        "name": "state",
+        "value": "approved"
+      }
+    ],
+    "binding": {
+      "lineage_id": "review-ef2bb19372d7c729",
+      "revision": "sha256:ee3dad04687c7d9727dcebd6e52764e127219d3e8641d3bac878bf4c7c86862e",
+      "target_identity": "sha256:3e87779c18ae87c9cf5d69b078228890357f9588354a1ade4f37c745a460679a"
+    }
+  },
+  "store_revision": "sha256:ee3dad04687c7d9727dcebd6e52764e127219d3e8641d3bac878bf4c7c86862e"
+}

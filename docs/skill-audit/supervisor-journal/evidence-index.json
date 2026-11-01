@@ -1,0 +1,42 @@
+[
+  {
+    "path": "docs/skill-audit/supervisor-journal/busy-red.stderr",
+    "bytes": 667,
+    "sha256": "ac9c93c01e1387a5d37f5eaac46bffd7d1fdd30d890b58ed40ecaec910591bc4"
+  },
+  {
+    "path": "docs/skill-audit/supervisor-journal/busy-red.stdout",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "path": "docs/skill-audit/supervisor-journal/green.stderr",
+    "bytes": 111,
+    "sha256": "b732dfec8c0375327090c38fd95f394ad1a59a2e726c312503cb4db055ff80d4"
+  },
+  {
+    "path": "docs/skill-audit/supervisor-journal/green.stdout",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "path": "docs/skill-audit/supervisor-journal/red.stderr",
+    "bytes": 1022,
+    "sha256": "d3e3773b5a51e2b05343767e441317cf676a5cb0629532d6edec9e5d6be6cee9"
+  },
+  {
+    "path": "docs/skill-audit/supervisor-journal/red.stdout",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "path": "docs/skill-audit/supervisor-journal/regression.stderr",
+    "bytes": 140,
+    "sha256": "20bd5a79c629314c555d90399362639f6a57b179b712177ac486fb45386be2f3"
+  },
+  {
+    "path": "docs/skill-audit/supervisor-journal/regression.stdout",
+    "bytes": 510902,
+    "sha256": "d2bad9c4ab41c77a4fd89746be9cc1b1fe210cb59cace4c410a6faf0a96809d5"
+  }
+]

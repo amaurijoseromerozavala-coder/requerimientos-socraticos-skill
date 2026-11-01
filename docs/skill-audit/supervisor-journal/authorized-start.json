@@ -1,0 +1,130 @@
+{
+  "schema": "gentle-ai.review-integration.start/v4",
+  "contract": "gentle-ai.review-integration/v2",
+  "operation": "review.start",
+  "action": "created",
+  "lenses_required": true,
+  "lineage_id": "review-ef2bb19372d7c729",
+  "state": "reviewing",
+  "risk_level": "medium",
+  "selected_lenses": [
+    "review-resilience",
+    "review-reliability"
+  ],
+  "projection": "workspace",
+  "base_tree": "699253f4dde9e682605d4f48c0326e86d7dd69d3",
+  "candidate_tree": "69fd91e9124a359871b0e6ddcf824dd98ef9c421",
+  "changed_files": 12,
+  "changed_lines": 412,
+  "correction_budget": 200,
+  "risk_reasons": [
+    {
+      "code": "executable_change",
+      "path": "docs/skill-audit/supervisor-journal/RESULTADO.md"
+    }
+  ],
+  "artifact_subjects": [
+    {
+      "schema": "gentle-ai.review-artifact-subject/v2",
+      "subject_hash": "sha256:23322a5fe908d0310bef63a4c526746c44979fc3b24f277915c3c6b8c99280cf",
+      "lineage_id": "review-ef2bb19372d7c729",
+      "authority_revision": "sha256:94b87edfcfc1254b9203c6519f663e2d91e347fc263200d9afdeb53713a949ca",
+      "target_identity": "sha256:3e87779c18ae87c9cf5d69b078228890357f9588354a1ade4f37c745a460679a",
+      "base_tree": "699253f4dde9e682605d4f48c0326e86d7dd69d3",
+      "candidate_tree": "69fd91e9124a359871b0e6ddcf824dd98ef9c421",
+      "changed_path_manifest_sha256": "sha256:4614bcf194e1cd91659aff226927004814297943ba61375b51668ae6f9e63c43",
+      "lens": "review-resilience",
+      "selected_order": 0
+    },
+    {
+      "schema": "gentle-ai.review-artifact-subject/v2",
+      "subject_hash": "sha256:1f05953aaebc62642f9c9f4b81bcc81db48783441de96edac8e533009527e333",
+      "lineage_id": "review-ef2bb19372d7c729",
+      "authority_revision": "sha256:94b87edfcfc1254b9203c6519f663e2d91e347fc263200d9afdeb53713a949ca",
+      "target_identity": "sha256:3e87779c18ae87c9cf5d69b078228890357f9588354a1ade4f37c745a460679a",
+      "base_tree": "699253f4dde9e682605d4f48c0326e86d7dd69d3",
+      "candidate_tree": "69fd91e9124a359871b0e6ddcf824dd98ef9c421",
+      "changed_path_manifest_sha256": "sha256:4614bcf194e1cd91659aff226927004814297943ba61375b51668ae6f9e63c43",
+      "lens": "review-reliability",
+      "selected_order": 1
+    }
+  ],
+  "changed_path_manifest": [
+    {"path":"docs/skill-audit/supervisor-journal/RESULTADO.md","status":"A","old_mode":"000000","new_mode":"100644","deleted":false,"type_changed":false,"mode_only":false,"intended_untracked":true},
+    {"path":"docs/skill-audit/supervisor-journal/busy-red.stderr","status":"A","old_mode":"000000","new_mode":"100644","deleted":false,"type_changed":false,"mode_only":false,"intended_untracked":true},
+    {"path":"docs/skill-audit/supervisor-journal/busy-red.stdout","status":"A","old_mode":"000000","new_mode":"100644","deleted":false,"type_changed":false,"mode_only":false,"intended_untracked":true},
+    {"path":"docs/skill-audit/supervisor-journal/evidence-index.json","status":"A","old_mode":"000000","new_mode":"100644","deleted":false,"type_changed":false,"mode_only":false,"intended_untracked":true},
+    {"path":"docs/skill-audit/supervisor-journal/green.stderr","status":"A","old_mode":"000000","new_mode":"100644","deleted":false,"type_changed":false,"mode_only":false,"intended_untracked":true},
+    {"path":"docs/skill-audit/supervisor-journal/green.stdout","status":"A","old_mode":"000000","new_mode":"100644","deleted":false,"type_changed":false,"mode_only":false,"intended_untracked":true},
+    {"path":"docs/skill-audit/supervisor-journal/red.stderr","status":"A","old_mode":"000000","new_mode":"100644","deleted":false,"type_changed":false,"mode_only":false,"intended_untracked":true},
+    {"path":"docs/skill-audit/supervisor-journal/red.stdout","status":"A","old_mode":"000000","new_mode":"100644","deleted":false,"type_changed":false,"mode_only":false,"intended_untracked":true},
+    {"path":"docs/skill-audit/supervisor-journal/regression.stderr","status":"A","old_mode":"000000","new_mode":"100644","deleted":false,"type_changed":false,"mode_only":false,"intended_untracked":true},
+    {"path":"odd/tasks/supervisor-journal.md","status":"A","old_mode":"000000","new_mode":"100644","deleted":false,"type_changed":false,"mode_only":false,"intended_untracked":true},
+    {"path":"supervisor/journal.py","status":"A","old_mode":"000000","new_mode":"100644","deleted":false,"type_changed":false,"mode_only":false,"intended_untracked":true},
+    {"path":"supervisor/tests/test_journal.py","status":"A","old_mode":"000000","new_mode":"100644","deleted":false,"type_changed":false,"mode_only":false,"intended_untracked":true}
+  ],
+  "repository_context": {
+    "capability": "review.opaque_repository_context",
+    "handle": "rctx2_c877564f837a1e3ab00e22b51ade690c4e24658bb9752d9fe9b3551001f54840",
+    "revision": "sha256:94b87edfcfc1254b9203c6519f663e2d91e347fc263200d9afdeb53713a949ca",
+    "target_identity": "sha256:3e87779c18ae87c9cf5d69b078228890357f9588354a1ade4f37c745a460679a"
+  },
+  "next_transition": {
+    "kind": "execute",
+    "reason_code": "review_status_required",
+    "execute": {
+      "operation": "review.status",
+      "command": "gentle-ai review status --contract=gentle-ai.review-integration/v2 --next-transition=true --lineage=review-ef2bb19372d7c729 --repository-context=rctx2_c877564f837a1e3ab00e22b51ade690c4e24658bb9752d9fe9b3551001f54840 --agent=codex --projection=workspace",
+      "arguments": [
+        {
+          "name": "contract",
+          "value": "gentle-ai.review-integration/v2",
+          "token": "--contract=gentle-ai.review-integration/v2"
+        },
+        {
+          "name": "next-transition",
+          "value": "true",
+          "token": "--next-transition=true"
+        },
+        {
+          "name": "lineage",
+          "value": "review-ef2bb19372d7c729",
+          "token": "--lineage=review-ef2bb19372d7c729"
+        },
+        {
+          "name": "repository-context",
+          "value": "rctx2_c877564f837a1e3ab00e22b51ade690c4e24658bb9752d9fe9b3551001f54840",
+          "token": "--repository-context=rctx2_c877564f837a1e3ab00e22b51ade690c4e24658bb9752d9fe9b3551001f54840"
+        },
+        {
+          "name": "agent",
+          "value": "codex",
+          "token": "--agent=codex"
+        },
+        {
+          "name": "projection",
+          "value": "workspace",
+          "token": "--projection=workspace"
+        }
+      ],
+      "selector_arguments": [
+        {
+          "name": "projection",
+          "value": "workspace",
+          "token": "--projection=workspace"
+        }
+      ],
+      "preconditions": [
+        {
+          "name": "state",
+          "value": "reviewing"
+        }
+      ],
+      "binding": {
+        "lineage_id": "review-ef2bb19372d7c729",
+        "revision": "sha256:94b87edfcfc1254b9203c6519f663e2d91e347fc263200d9afdeb53713a949ca",
+        "target_identity": "sha256:3e87779c18ae87c9cf5d69b078228890357f9588354a1ade4f37c745a460679a"
+      }
+    }
+  }
+}
