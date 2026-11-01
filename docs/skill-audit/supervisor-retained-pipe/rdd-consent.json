@@ -1,0 +1,38 @@
+{
+  "schema": "gentle-ai.review-integration.consent/v3",
+  "contract": "gentle-ai.review-integration/v2",
+  "operation": "review.start",
+  "action": "consent_required",
+  "agent": "codex",
+  "blocking": true,
+  "target_identity": "sha256:b90308807cbdd331c518f96341fcb7a22bea13f5738149ea821dddd72161d75e",
+  "projection": "workspace",
+  "risk_level": "medium",
+  "changed_files": 8,
+  "changed_lines": 232,
+  "headline": "Gentle AI can review this change before you call it done.",
+  "reason": "Review can help detect regressions in these changes.",
+  "value": "Reviewing takes a little longer and makes the result safer.",
+  "risk_evidence": [
+    "this change is not purely passive documentation, so it gets one consolidated review.",
+    "an executable change in docs/skill-audit/supervisor-retained-pipe/RESULTADO.md"
+  ],
+  "choices": [
+    {
+      "answer": "granted",
+      "label": "Review this change",
+      "effect": "Reviews only this change; later medium- or high-risk changes ask again, and delivery needs separate approval.",
+      "invocation": "gentle-ai review start --contract gentle-ai.review-integration/v2 --cwd /workspace/publicacion-proyecto-integrado --target sha256:b90308807cbdd331c518f96341fcb7a22bea13f5738149ea821dddd72161d75e --target-evidence v1:current-changes:workspace:e8f40f231f07b9f99cb9fabacf19407b878cfdce:f1680a49263e3a72b058c40aa4ef9520569b5dc7:sha256:2d830b167ef1f110070dc16d0d710c15380bcbe6757660322d1f51687c41a439 --projection workspace --agent codex --lineage review-2d45f4146a4f1215 --untracked-scope=select --expected-untracked-inventory=sha256:549cf4ebb8b6edf6edced82eed9290a2f60cc09d0b09f8b7eaa4e8da1c09774c --intended-untracked=docs/skill-audit/supervisor-retained-pipe/RESULTADO.md --intended-untracked=docs/skill-audit/supervisor-retained-pipe/evidence-index.json --intended-untracked=docs/skill-audit/supervisor-retained-pipe/full.stderr --intended-untracked=docs/skill-audit/supervisor-retained-pipe/targeted.stderr --intended-untracked=docs/skill-audit/supervisor-retained-pipe/targeted.stdout --intended-untracked=odd/tasks/supervisor-retained-pipe.md --intended-untracked=supervisor/tests/retained_pipe_scenario.py --intended-untracked=supervisor/tests/test_retained_pipe.py --lenses review-resilience,review-reliability --lenses-reason 'Bounded Linux retained-pipe coverage with isolated subreaper fixture and false-completeness negative control; production core unchanged.' --consent granted"
+    },
+    {
+      "answer": "declined",
+      "label": "Skip this time",
+      "effect": "Skips only this change; no review record is created, and future reviews stay enabled.",
+      "invocation": "gentle-ai review start --contract gentle-ai.review-integration/v2 --cwd /workspace/publicacion-proyecto-integrado --target sha256:b90308807cbdd331c518f96341fcb7a22bea13f5738149ea821dddd72161d75e --target-evidence v1:current-changes:workspace:e8f40f231f07b9f99cb9fabacf19407b878cfdce:f1680a49263e3a72b058c40aa4ef9520569b5dc7:sha256:2d830b167ef1f110070dc16d0d710c15380bcbe6757660322d1f51687c41a439 --projection workspace --agent codex --lineage review-2d45f4146a4f1215 --untracked-scope=select --expected-untracked-inventory=sha256:549cf4ebb8b6edf6edced82eed9290a2f60cc09d0b09f8b7eaa4e8da1c09774c --intended-untracked=docs/skill-audit/supervisor-retained-pipe/RESULTADO.md --intended-untracked=docs/skill-audit/supervisor-retained-pipe/evidence-index.json --intended-untracked=docs/skill-audit/supervisor-retained-pipe/full.stderr --intended-untracked=docs/skill-audit/supervisor-retained-pipe/targeted.stderr --intended-untracked=docs/skill-audit/supervisor-retained-pipe/targeted.stdout --intended-untracked=odd/tasks/supervisor-retained-pipe.md --intended-untracked=supervisor/tests/retained_pipe_scenario.py --intended-untracked=supervisor/tests/test_retained_pipe.py --lenses review-resilience,review-reliability --lenses-reason 'Bounded Linux retained-pipe coverage with isolated subreaper fixture and false-completeness negative control; production core unchanged.' --consent declined"
+    }
+  ],
+  "off_path": {
+    "note": "To turn reviews off for good, run 'gentle-ai review mode disable'.",
+    "command": "gentle-ai review mode disable"
+  }
+}

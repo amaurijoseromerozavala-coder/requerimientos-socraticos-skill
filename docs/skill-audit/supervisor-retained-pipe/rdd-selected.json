@@ -1,0 +1,183 @@
+{
+  "schema": "gentle-ai.review-integration.status/v9",
+  "contract": "gentle-ai.review-integration/v2",
+  "operation": "review.status",
+  "applicability": "unrelated",
+  "action": "start",
+  "replayability": "not_replayable",
+  "target_identity": "sha256:b90308807cbdd331c518f96341fcb7a22bea13f5738149ea821dddd72161d75e",
+  "projection": {
+    "schema": "gentle-ai.review-integration.projection/v1",
+    "kind": "current-changes",
+    "projection": "workspace",
+    "base_tree": "e8f40f231f07b9f99cb9fabacf19407b878cfdce",
+    "initial_review_tree": "f1680a49263e3a72b058c40aa4ef9520569b5dc7",
+    "current_candidate_tree": "f1680a49263e3a72b058c40aa4ef9520569b5dc7",
+    "paths_digest": "sha256:2d830b167ef1f110070dc16d0d710c15380bcbe6757660322d1f51687c41a439",
+    "paths": [
+      "docs/skill-audit/supervisor-retained-pipe/RESULTADO.md",
+      "docs/skill-audit/supervisor-retained-pipe/evidence-index.json",
+      "docs/skill-audit/supervisor-retained-pipe/full.stderr",
+      "docs/skill-audit/supervisor-retained-pipe/targeted.stderr",
+      "docs/skill-audit/supervisor-retained-pipe/targeted.stdout",
+      "odd/tasks/supervisor-retained-pipe.md",
+      "supervisor/tests/retained_pipe_scenario.py",
+      "supervisor/tests/test_retained_pipe.py"
+    ],
+    "intended_untracked": [
+      "docs/skill-audit/supervisor-retained-pipe/RESULTADO.md",
+      "docs/skill-audit/supervisor-retained-pipe/evidence-index.json",
+      "docs/skill-audit/supervisor-retained-pipe/full.stderr",
+      "docs/skill-audit/supervisor-retained-pipe/targeted.stderr",
+      "docs/skill-audit/supervisor-retained-pipe/targeted.stdout",
+      "odd/tasks/supervisor-retained-pipe.md",
+      "supervisor/tests/retained_pipe_scenario.py",
+      "supervisor/tests/test_retained_pipe.py"
+    ],
+    "intended_untracked_proof": "sha256:e0d75e75d6994e0aaf595d9fc7381b56150a9ea2fba1424807f50aa0ceccd1b6",
+    "initial_snapshot_identity": "sha256:b90308807cbdd331c518f96341fcb7a22bea13f5738149ea821dddd72161d75e",
+    "current_snapshot_identity": "sha256:b90308807cbdd331c518f96341fcb7a22bea13f5738149ea821dddd72161d75e"
+  },
+  "eligible_untracked_inventory": "sha256:9d6d8104e4f64203e103e29283323de689eb9a82e05c8d6bceb0e779eca6cef8",
+  "repair": {
+    "schema": "gentle-ai.review-authority-repair-assessment/v1",
+    "status": "unsupported",
+    "counts": {
+      "lineages": 0,
+      "compact_lineages": 0,
+      "legacy_lineages": 0,
+      "events": 0,
+      "bytes": 0,
+      "eligible_candidates": 0,
+      "unsupported_lineages": 0,
+      "conflicts": 0
+    },
+    "supported_operations": [
+      "review/complete-fix",
+      "review/validate-fix"
+    ],
+    "authorization_schema": "gentle-ai.review-repair-authorization/v1"
+  },
+  "candidates": [],
+  "forecast": {
+    "horizon": "partial",
+    "steps": [
+      {
+        "step": 1,
+        "kind": "execute",
+        "reason_code": "fresh_target_ready",
+        "description": "Target is unreviewed and ready for initial review start"
+      }
+    ]
+  },
+  "next_transition": {
+    "kind": "execute",
+    "reason_code": "fresh_target_ready",
+    "execute": {
+      "operation": "review.start",
+      "command": "gentle-ai review start --cwd=/workspace/publicacion-proyecto-integrado --contract=gentle-ai.review-integration/v2 --target=sha256:b90308807cbdd331c518f96341fcb7a22bea13f5738149ea821dddd72161d75e --target-evidence=v1:current-changes:workspace:e8f40f231f07b9f99cb9fabacf19407b878cfdce:f1680a49263e3a72b058c40aa4ef9520569b5dc7:sha256:2d830b167ef1f110070dc16d0d710c15380bcbe6757660322d1f51687c41a439 --projection=workspace --lineage=review-2d45f4146a4f1215 --agent=codex --consent=relay --untracked-scope=select --expected-untracked-inventory=sha256:9d6d8104e4f64203e103e29283323de689eb9a82e05c8d6bceb0e779eca6cef8 --intended-untracked=docs/skill-audit/supervisor-retained-pipe/RESULTADO.md --intended-untracked=docs/skill-audit/supervisor-retained-pipe/evidence-index.json --intended-untracked=docs/skill-audit/supervisor-retained-pipe/full.stderr --intended-untracked=docs/skill-audit/supervisor-retained-pipe/targeted.stderr --intended-untracked=docs/skill-audit/supervisor-retained-pipe/targeted.stdout --intended-untracked=odd/tasks/supervisor-retained-pipe.md --intended-untracked=supervisor/tests/retained_pipe_scenario.py --intended-untracked=supervisor/tests/test_retained_pipe.py",
+      "arguments": [
+        {
+          "name": "cwd",
+          "value": "/workspace/publicacion-proyecto-integrado",
+          "token": "--cwd=/workspace/publicacion-proyecto-integrado"
+        },
+        {
+          "name": "contract",
+          "value": "gentle-ai.review-integration/v2",
+          "token": "--contract=gentle-ai.review-integration/v2"
+        },
+        {
+          "name": "target",
+          "value": "sha256:b90308807cbdd331c518f96341fcb7a22bea13f5738149ea821dddd72161d75e",
+          "token": "--target=sha256:b90308807cbdd331c518f96341fcb7a22bea13f5738149ea821dddd72161d75e"
+        },
+        {
+          "name": "target-evidence",
+          "value": "v1:current-changes:workspace:e8f40f231f07b9f99cb9fabacf19407b878cfdce:f1680a49263e3a72b058c40aa4ef9520569b5dc7:sha256:2d830b167ef1f110070dc16d0d710c15380bcbe6757660322d1f51687c41a439",
+          "token": "--target-evidence=v1:current-changes:workspace:e8f40f231f07b9f99cb9fabacf19407b878cfdce:f1680a49263e3a72b058c40aa4ef9520569b5dc7:sha256:2d830b167ef1f110070dc16d0d710c15380bcbe6757660322d1f51687c41a439"
+        },
+        {
+          "name": "projection",
+          "value": "workspace",
+          "token": "--projection=workspace"
+        },
+        {
+          "name": "lineage",
+          "value": "review-2d45f4146a4f1215",
+          "token": "--lineage=review-2d45f4146a4f1215"
+        },
+        {
+          "name": "agent",
+          "value": "codex",
+          "token": "--agent=codex"
+        },
+        {
+          "name": "consent",
+          "value": "relay",
+          "token": "--consent=relay"
+        },
+        {
+          "name": "untracked-scope",
+          "value": "select",
+          "token": "--untracked-scope=select"
+        },
+        {
+          "name": "expected-untracked-inventory",
+          "value": "sha256:9d6d8104e4f64203e103e29283323de689eb9a82e05c8d6bceb0e779eca6cef8",
+          "token": "--expected-untracked-inventory=sha256:9d6d8104e4f64203e103e29283323de689eb9a82e05c8d6bceb0e779eca6cef8"
+        },
+        {
+          "name": "intended-untracked",
+          "value": "docs/skill-audit/supervisor-retained-pipe/RESULTADO.md",
+          "token": "--intended-untracked=docs/skill-audit/supervisor-retained-pipe/RESULTADO.md"
+        },
+        {
+          "name": "intended-untracked",
+          "value": "docs/skill-audit/supervisor-retained-pipe/evidence-index.json",
+          "token": "--intended-untracked=docs/skill-audit/supervisor-retained-pipe/evidence-index.json"
+        },
+        {
+          "name": "intended-untracked",
+          "value": "docs/skill-audit/supervisor-retained-pipe/full.stderr",
+          "token": "--intended-untracked=docs/skill-audit/supervisor-retained-pipe/full.stderr"
+        },
+        {
+          "name": "intended-untracked",
+          "value": "docs/skill-audit/supervisor-retained-pipe/targeted.stderr",
+          "token": "--intended-untracked=docs/skill-audit/supervisor-retained-pipe/targeted.stderr"
+        },
+        {
+          "name": "intended-untracked",
+          "value": "docs/skill-audit/supervisor-retained-pipe/targeted.stdout",
+          "token": "--intended-untracked=docs/skill-audit/supervisor-retained-pipe/targeted.stdout"
+        },
+        {
+          "name": "intended-untracked",
+          "value": "odd/tasks/supervisor-retained-pipe.md",
+          "token": "--intended-untracked=odd/tasks/supervisor-retained-pipe.md"
+        },
+        {
+          "name": "intended-untracked",
+          "value": "supervisor/tests/retained_pipe_scenario.py",
+          "token": "--intended-untracked=supervisor/tests/retained_pipe_scenario.py"
+        },
+        {
+          "name": "intended-untracked",
+          "value": "supervisor/tests/test_retained_pipe.py",
+          "token": "--intended-untracked=supervisor/tests/test_retained_pipe.py"
+        }
+      ],
+      "preconditions": [
+        {
+          "name": "target_identity",
+          "value": "sha256:b90308807cbdd331c518f96341fcb7a22bea13f5738149ea821dddd72161d75e"
+        }
+      ],
+      "binding": {
+        "lineage_id": "review-2d45f4146a4f1215",
+        "target_identity": "sha256:b90308807cbdd331c518f96341fcb7a22bea13f5738149ea821dddd72161d75e"
+      }
+    }
+  }
+}

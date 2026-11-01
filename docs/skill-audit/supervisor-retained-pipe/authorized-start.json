@@ -1,0 +1,126 @@
+{
+  "schema": "gentle-ai.review-integration.start/v4",
+  "contract": "gentle-ai.review-integration/v2",
+  "operation": "review.start",
+  "action": "created",
+  "lenses_required": true,
+  "lineage_id": "review-9de980c02e1b501a",
+  "state": "reviewing",
+  "risk_level": "medium",
+  "selected_lenses": [
+    "review-resilience",
+    "review-reliability"
+  ],
+  "projection": "workspace",
+  "base_tree": "d25f150b3ca7b164a5f81c0a347f4de76aeb7efb",
+  "candidate_tree": "3776f7b87d090a7fb8da33f631236494731f7a91",
+  "changed_files": 8,
+  "changed_lines": 232,
+  "correction_budget": 116,
+  "risk_reasons": [
+    {
+      "code": "executable_change",
+      "path": "docs/skill-audit/supervisor-retained-pipe/RESULTADO.md"
+    }
+  ],
+  "artifact_subjects": [
+    {
+      "schema": "gentle-ai.review-artifact-subject/v2",
+      "subject_hash": "sha256:346cf375e6c416525654b5e8ccc6d5e6e8675ba7287c8781a3be15daec691ea7",
+      "lineage_id": "review-9de980c02e1b501a",
+      "authority_revision": "sha256:110925822ba66f89461a0017deeedd8d52de9b330d77c45e6e2c15140f01ee27",
+      "target_identity": "sha256:7814110b621ab60f6f7cf34b3de0f526147df9d28535173e110dc045ce37c86d",
+      "base_tree": "d25f150b3ca7b164a5f81c0a347f4de76aeb7efb",
+      "candidate_tree": "3776f7b87d090a7fb8da33f631236494731f7a91",
+      "changed_path_manifest_sha256": "sha256:e14a32ec37423a6b701d00087edb4f2b2e91fd7a5833bb8e9a9619678e2c8df6",
+      "lens": "review-resilience",
+      "selected_order": 0
+    },
+    {
+      "schema": "gentle-ai.review-artifact-subject/v2",
+      "subject_hash": "sha256:a476e7da78e032f6697ce0e1fc869cab167505210c7fbc38073c4852f77a84b7",
+      "lineage_id": "review-9de980c02e1b501a",
+      "authority_revision": "sha256:110925822ba66f89461a0017deeedd8d52de9b330d77c45e6e2c15140f01ee27",
+      "target_identity": "sha256:7814110b621ab60f6f7cf34b3de0f526147df9d28535173e110dc045ce37c86d",
+      "base_tree": "d25f150b3ca7b164a5f81c0a347f4de76aeb7efb",
+      "candidate_tree": "3776f7b87d090a7fb8da33f631236494731f7a91",
+      "changed_path_manifest_sha256": "sha256:e14a32ec37423a6b701d00087edb4f2b2e91fd7a5833bb8e9a9619678e2c8df6",
+      "lens": "review-reliability",
+      "selected_order": 1
+    }
+  ],
+  "changed_path_manifest": [
+    {"path":"docs/skill-audit/supervisor-retained-pipe/RESULTADO.md","status":"A","old_mode":"000000","new_mode":"100644","deleted":false,"type_changed":false,"mode_only":false,"intended_untracked":true},
+    {"path":"docs/skill-audit/supervisor-retained-pipe/evidence-index.json","status":"A","old_mode":"000000","new_mode":"100644","deleted":false,"type_changed":false,"mode_only":false,"intended_untracked":true},
+    {"path":"docs/skill-audit/supervisor-retained-pipe/full.stderr","status":"A","old_mode":"000000","new_mode":"100644","deleted":false,"type_changed":false,"mode_only":false,"intended_untracked":true},
+    {"path":"docs/skill-audit/supervisor-retained-pipe/targeted.stderr","status":"A","old_mode":"000000","new_mode":"100644","deleted":false,"type_changed":false,"mode_only":false,"intended_untracked":true},
+    {"path":"docs/skill-audit/supervisor-retained-pipe/targeted.stdout","status":"A","old_mode":"000000","new_mode":"100644","deleted":false,"type_changed":false,"mode_only":false,"intended_untracked":true},
+    {"path":"odd/tasks/supervisor-retained-pipe.md","status":"A","old_mode":"000000","new_mode":"100644","deleted":false,"type_changed":false,"mode_only":false,"intended_untracked":true},
+    {"path":"supervisor/tests/retained_pipe_scenario.py","status":"A","old_mode":"000000","new_mode":"100644","deleted":false,"type_changed":false,"mode_only":false,"intended_untracked":true},
+    {"path":"supervisor/tests/test_retained_pipe.py","status":"A","old_mode":"000000","new_mode":"100644","deleted":false,"type_changed":false,"mode_only":false,"intended_untracked":true}
+  ],
+  "repository_context": {
+    "capability": "review.opaque_repository_context",
+    "handle": "rctx2_cefb6a35e2d074ac8761f779d7df03ddabb7ec8a157aaa588e8341310d712731",
+    "revision": "sha256:110925822ba66f89461a0017deeedd8d52de9b330d77c45e6e2c15140f01ee27",
+    "target_identity": "sha256:7814110b621ab60f6f7cf34b3de0f526147df9d28535173e110dc045ce37c86d"
+  },
+  "next_transition": {
+    "kind": "execute",
+    "reason_code": "review_status_required",
+    "execute": {
+      "operation": "review.status",
+      "command": "gentle-ai review status --contract=gentle-ai.review-integration/v2 --next-transition=true --lineage=review-9de980c02e1b501a --repository-context=rctx2_cefb6a35e2d074ac8761f779d7df03ddabb7ec8a157aaa588e8341310d712731 --agent=codex --projection=workspace",
+      "arguments": [
+        {
+          "name": "contract",
+          "value": "gentle-ai.review-integration/v2",
+          "token": "--contract=gentle-ai.review-integration/v2"
+        },
+        {
+          "name": "next-transition",
+          "value": "true",
+          "token": "--next-transition=true"
+        },
+        {
+          "name": "lineage",
+          "value": "review-9de980c02e1b501a",
+          "token": "--lineage=review-9de980c02e1b501a"
+        },
+        {
+          "name": "repository-context",
+          "value": "rctx2_cefb6a35e2d074ac8761f779d7df03ddabb7ec8a157aaa588e8341310d712731",
+          "token": "--repository-context=rctx2_cefb6a35e2d074ac8761f779d7df03ddabb7ec8a157aaa588e8341310d712731"
+        },
+        {
+          "name": "agent",
+          "value": "codex",
+          "token": "--agent=codex"
+        },
+        {
+          "name": "projection",
+          "value": "workspace",
+          "token": "--projection=workspace"
+        }
+      ],
+      "selector_arguments": [
+        {
+          "name": "projection",
+          "value": "workspace",
+          "token": "--projection=workspace"
+        }
+      ],
+      "preconditions": [
+        {
+          "name": "state",
+          "value": "reviewing"
+        }
+      ],
+      "binding": {
+        "lineage_id": "review-9de980c02e1b501a",
+        "revision": "sha256:110925822ba66f89461a0017deeedd8d52de9b330d77c45e6e2c15140f01ee27",
+        "target_identity": "sha256:7814110b621ab60f6f7cf34b3de0f526147df9d28535173e110dc045ce37c86d"
+      }
+    }
+  }
+}

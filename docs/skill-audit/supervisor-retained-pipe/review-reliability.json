@@ -1,0 +1,74 @@
+{
+  "schema": "gentle-ai.review-last-event-closure/v1",
+  "operation": "review/capture-result",
+  "lineage_id": "review-9de980c02e1b501a",
+  "state": "approved",
+  "action": "the approved review completed on the last admitted event and awaits its exact acknowledgement",
+  "reviewer_results": [
+    {
+      "lens": "review-resilience",
+      "findings": [],
+      "evidence": [
+        "Inspected all eight supplied patches. The candidate adds tests and audit documentation without changing production behavior; no candidate-caused concrete production failure was established.",
+        "supervisor/tests/retained_pipe_scenario.py:30-72 checks incomplete capture, direct-child reaping, absence of signal requests, bounded supervisor latency, and eventual fixture-child reaping.",
+        "supervisor/tests/test_retained_pipe.py:24-42 requires the false-completeness mutation to fail with the specific capture assertion and rejects a fixture reaping deadline failure.",
+        "docs/skill-audit/supervisor-retained-pipe/targeted.stdout:1-2 records mutation rejection and a successful scenario returning in approximately 0.602 seconds with incomplete capture and confirmed fixture reaping. docs/skill-audit/supervisor-retained-pipe/full.stderr:18-21 records 16 tests completing successfully in 8.945 seconds. These are supplied execution receipts, not independently rerun measurements."
+      ],
+      "result_hash": "sha256:b08ccfd59bd55def780486687e6b51c5c1c1cbc23b1fd21d2028d44c86445943"
+    },
+    {
+      "lens": "review-reliability",
+      "findings": [],
+      "evidence": [
+        "Inspected all eight supplied patches without reading external files or running commands.",
+        "supervisor/tests/retained_pipe_scenario.py:30-49 asserts successful direct-child exit, confirmed cleanup, incomplete capture, no requested signals, bounded reported elapsed time, and direct-child reaping while the adopted descendant remains alive.",
+        "supervisor/tests/retained_pipe_scenario.py:51-72 performs bounded descendant collection and checks that no children remain; supervisor/tests/test_retained_pipe.py:15-22 independently checks the fixture's exit and collection report.",
+        "supervisor/tests/test_retained_pipe.py:24-42 requires a false-completeness mutation to fail with the precise capture assertion. Supplied execution receipts report two targeted tests and sixteen full-suite tests passing; these receipts were inspected, not independently reproduced."
+      ],
+      "result_hash": "sha256:a75eabcde65e50785f351b01385fa6a566a7ab58e65998f827aa43892d03a143"
+    }
+  ],
+  "acknowledgement": {
+    "operation": "review.acknowledge-approved",
+    "command": "gentle-ai review acknowledge-approved --cwd=/workspace/publicacion-proyecto-integrado --lineage=review-9de980c02e1b501a --target=sha256:7814110b621ab60f6f7cf34b3de0f526147df9d28535173e110dc045ce37c86d --expected-revision=sha256:0cacfc1ab165ad1596ea19c0cbf03f15d1f6e9a45f95bcfa922300e93859cb6c --token=[REDACTED]",
+    "arguments": [
+      {
+        "name": "cwd",
+        "value": "/workspace/publicacion-proyecto-integrado",
+        "token": "--cwd=/workspace/publicacion-proyecto-integrado"
+      },
+      {
+        "name": "lineage",
+        "value": "review-9de980c02e1b501a",
+        "token": "--lineage=review-9de980c02e1b501a"
+      },
+      {
+        "name": "target",
+        "value": "sha256:7814110b621ab60f6f7cf34b3de0f526147df9d28535173e110dc045ce37c86d",
+        "token": "--target=sha256:7814110b621ab60f6f7cf34b3de0f526147df9d28535173e110dc045ce37c86d"
+      },
+      {
+        "name": "expected-revision",
+        "value": "sha256:0cacfc1ab165ad1596ea19c0cbf03f15d1f6e9a45f95bcfa922300e93859cb6c",
+        "token": "--expected-revision=sha256:0cacfc1ab165ad1596ea19c0cbf03f15d1f6e9a45f95bcfa922300e93859cb6c"
+      },
+      {
+        "name": "token",
+        "value": "[REDACTED]",
+        "token": "--token=[REDACTED]"
+      }
+    ],
+    "preconditions": [
+      {
+        "name": "state",
+        "value": "approved"
+      }
+    ],
+    "binding": {
+      "lineage_id": "review-9de980c02e1b501a",
+      "revision": "sha256:0cacfc1ab165ad1596ea19c0cbf03f15d1f6e9a45f95bcfa922300e93859cb6c",
+      "target_identity": "sha256:7814110b621ab60f6f7cf34b3de0f526147df9d28535173e110dc045ce37c86d"
+    }
+  },
+  "store_revision": "sha256:0cacfc1ab165ad1596ea19c0cbf03f15d1f6e9a45f95bcfa922300e93859cb6c"
+}

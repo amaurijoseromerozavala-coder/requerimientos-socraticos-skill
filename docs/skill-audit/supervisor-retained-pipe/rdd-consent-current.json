@@ -1,0 +1,38 @@
+{
+  "schema": "gentle-ai.review-integration.consent/v3",
+  "contract": "gentle-ai.review-integration/v2",
+  "operation": "review.start",
+  "action": "consent_required",
+  "agent": "codex",
+  "blocking": true,
+  "target_identity": "sha256:7814110b621ab60f6f7cf34b3de0f526147df9d28535173e110dc045ce37c86d",
+  "projection": "workspace",
+  "risk_level": "medium",
+  "changed_files": 8,
+  "changed_lines": 232,
+  "headline": "Gentle AI can review this change before you call it done.",
+  "reason": "Review can help detect regressions in these changes.",
+  "value": "Reviewing takes a little longer and makes the result safer.",
+  "risk_evidence": [
+    "this change is not purely passive documentation, so it gets one consolidated review.",
+    "an executable change in docs/skill-audit/supervisor-retained-pipe/RESULTADO.md"
+  ],
+  "choices": [
+    {
+      "answer": "granted",
+      "label": "Review this change",
+      "effect": "Reviews only this change; later medium- or high-risk changes ask again, and delivery needs separate approval.",
+      "invocation": "gentle-ai review start --contract gentle-ai.review-integration/v2 --cwd /workspace/publicacion-proyecto-integrado --target sha256:7814110b621ab60f6f7cf34b3de0f526147df9d28535173e110dc045ce37c86d --target-evidence v1:current-changes:workspace:d25f150b3ca7b164a5f81c0a347f4de76aeb7efb:3776f7b87d090a7fb8da33f631236494731f7a91:sha256:2d830b167ef1f110070dc16d0d710c15380bcbe6757660322d1f51687c41a439 --projection workspace --agent codex --lineage review-9de980c02e1b501a --untracked-scope=select --expected-untracked-inventory=sha256:e03dcaf7305709e1ed3069cdd1e9e3f54ebbceb6f1b8199b69a001f67b0c1362 --intended-untracked=docs/skill-audit/supervisor-retained-pipe/RESULTADO.md --intended-untracked=docs/skill-audit/supervisor-retained-pipe/evidence-index.json --intended-untracked=docs/skill-audit/supervisor-retained-pipe/full.stderr --intended-untracked=docs/skill-audit/supervisor-retained-pipe/targeted.stderr --intended-untracked=docs/skill-audit/supervisor-retained-pipe/targeted.stdout --intended-untracked=odd/tasks/supervisor-retained-pipe.md --intended-untracked=supervisor/tests/retained_pipe_scenario.py --intended-untracked=supervisor/tests/test_retained_pipe.py --lenses review-resilience,review-reliability --lenses-reason 'Review bounded Linux retained-pipe fixture, child reaping, negative control and unchanged process core.' --consent granted"
+    },
+    {
+      "answer": "declined",
+      "label": "Skip this time",
+      "effect": "Skips only this change; no review record is created, and future reviews stay enabled.",
+      "invocation": "gentle-ai review start --contract gentle-ai.review-integration/v2 --cwd /workspace/publicacion-proyecto-integrado --target sha256:7814110b621ab60f6f7cf34b3de0f526147df9d28535173e110dc045ce37c86d --target-evidence v1:current-changes:workspace:d25f150b3ca7b164a5f81c0a347f4de76aeb7efb:3776f7b87d090a7fb8da33f631236494731f7a91:sha256:2d830b167ef1f110070dc16d0d710c15380bcbe6757660322d1f51687c41a439 --projection workspace --agent codex --lineage review-9de980c02e1b501a --untracked-scope=select --expected-untracked-inventory=sha256:e03dcaf7305709e1ed3069cdd1e9e3f54ebbceb6f1b8199b69a001f67b0c1362 --intended-untracked=docs/skill-audit/supervisor-retained-pipe/RESULTADO.md --intended-untracked=docs/skill-audit/supervisor-retained-pipe/evidence-index.json --intended-untracked=docs/skill-audit/supervisor-retained-pipe/full.stderr --intended-untracked=docs/skill-audit/supervisor-retained-pipe/targeted.stderr --intended-untracked=docs/skill-audit/supervisor-retained-pipe/targeted.stdout --intended-untracked=odd/tasks/supervisor-retained-pipe.md --intended-untracked=supervisor/tests/retained_pipe_scenario.py --intended-untracked=supervisor/tests/test_retained_pipe.py --lenses review-resilience,review-reliability --lenses-reason 'Review bounded Linux retained-pipe fixture, child reaping, negative control and unchanged process core.' --consent declined"
+    }
+  ],
+  "off_path": {
+    "note": "To turn reviews off for good, run 'gentle-ai review mode disable'.",
+    "command": "gentle-ai review mode disable"
+  }
+}

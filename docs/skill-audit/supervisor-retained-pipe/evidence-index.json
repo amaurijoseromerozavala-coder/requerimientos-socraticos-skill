@@ -1,0 +1,27 @@
+{
+  "scope": "execution receipts; hashes identify bytes, not independent authority",
+  "files": [
+    {
+      "path": "docs/skill-audit/supervisor-retained-pipe/targeted.stdout",
+      "bytes": 684,
+      "sha256": "a54dcb888b7d3960489fee753cb545fb4e3a6074398a46811624cc91ff9a9286"
+    },
+    {
+      "path": "docs/skill-audit/supervisor-retained-pipe/targeted.stderr",
+      "bytes": 362,
+      "sha256": "8f6867757572bfdaf21d0115aef1454c5b434a6e784c71122321f99e7e96c253"
+    },
+    {
+      "path": "docs/skill-audit/supervisor-retained-pipe/full.stdout",
+      "bytes": 507263,
+      "sha256": "43746f0195f5de08d2edfc35473dcf18fe96b4858e0c3245f9f8a92ff153f8ca"
+    },
+    {
+      "path": "docs/skill-audit/supervisor-retained-pipe/full.stderr",
+      "bytes": 2025,
+      "sha256": "ad450f67f5964f0efc6419ec2f19c2679c64d59d784f776b9352e5c721a8de1c"
+    }
+  ],
+  "core_modified": false,
+  "negative_control": "mutant expected failure, not an original production failure"
+}
