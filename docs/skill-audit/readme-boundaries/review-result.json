@@ -1,0 +1,64 @@
+{
+  "schema": "gentle-ai.review-last-event-closure/v1",
+  "operation": "review/capture-result",
+  "lineage_id": "review-534f6eab737ac1e7",
+  "state": "approved",
+  "action": "the approved review completed on the last admitted event and awaits its exact acknowledgement",
+  "reviewer_results": [
+    {
+      "lens": "review-reliability",
+      "findings": [],
+      "evidence": [
+        "Inspected all 12 supplied patches without accessing files or running commands.",
+        "docs/skill-audit/readme-boundaries/check_false_claim.py:14-22 mutates the reservation description in an isolated temporary copy and asserts both the checker exit status and its specific rejection diagnostic.",
+        "docs/skill-audit/readme-state/check_readme.py:15-20 adds row-specific checks for the reservation launch boundary and incomplete overall system status.",
+        "docs/skill-audit/readme-boundaries/green-negative.stdout:1 and docs/skill-audit/readme-boundaries/green-negative.stderr:1-5 record the expected negative-control outcome; docs/skill-audit/readme-boundaries/green-positive.stdout:1 records acceptance of the existing README. These are supplied records, not independently executed verification.",
+        "docs/skill-audit/readme-boundaries/regression.stdout:1 and docs/skill-audit/readme-boundaries/regression.stderr:1-5 record continued rejection of a missing component row. No concrete candidate-caused reliability defect was established from the supplied scope."
+      ],
+      "result_hash": "sha256:c4161f9bcf40b8fb8dc654cc7ad7717a5c92a162857f889bd3301eca69b8ffea"
+    }
+  ],
+  "acknowledgement": {
+    "operation": "review.acknowledge-approved",
+    "command": "gentle-ai review acknowledge-approved --cwd=/workspace/publicacion-proyecto-integrado --lineage=review-534f6eab737ac1e7 --target=sha256:12dcf50a177b3626a3fc563fff48cbcef7187dfd5fbf25a5b65c73e1433b45a7 --expected-revision=sha256:a79f293191ba061c386d8312a67c25aed01124bdff589ceadf3284d7763f2523 --token=[REDACTED]",
+    "arguments": [
+      {
+        "name": "cwd",
+        "value": "/workspace/publicacion-proyecto-integrado",
+        "token": "--cwd=/workspace/publicacion-proyecto-integrado"
+      },
+      {
+        "name": "lineage",
+        "value": "review-534f6eab737ac1e7",
+        "token": "--lineage=review-534f6eab737ac1e7"
+      },
+      {
+        "name": "target",
+        "value": "sha256:12dcf50a177b3626a3fc563fff48cbcef7187dfd5fbf25a5b65c73e1433b45a7",
+        "token": "--target=sha256:12dcf50a177b3626a3fc563fff48cbcef7187dfd5fbf25a5b65c73e1433b45a7"
+      },
+      {
+        "name": "expected-revision",
+        "value": "sha256:a79f293191ba061c386d8312a67c25aed01124bdff589ceadf3284d7763f2523",
+        "token": "--expected-revision=sha256:a79f293191ba061c386d8312a67c25aed01124bdff589ceadf3284d7763f2523"
+      },
+      {
+        "name": "token",
+        "value": "[REDACTED]",
+        "token": "--token=[REDACTED]"
+      }
+    ],
+    "preconditions": [
+      {
+        "name": "state",
+        "value": "approved"
+      }
+    ],
+    "binding": {
+      "lineage_id": "review-534f6eab737ac1e7",
+      "revision": "sha256:a79f293191ba061c386d8312a67c25aed01124bdff589ceadf3284d7763f2523",
+      "target_identity": "sha256:12dcf50a177b3626a3fc563fff48cbcef7187dfd5fbf25a5b65c73e1433b45a7"
+    }
+  },
+  "store_revision": "sha256:a79f293191ba061c386d8312a67c25aed01124bdff589ceadf3284d7763f2523"
+}

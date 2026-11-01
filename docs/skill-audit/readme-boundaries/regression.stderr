@@ -1,0 +1,5 @@
+Traceback (most recent call last):
+  File "/tmp/readme-state-kemrjgq8/docs/skill-audit/readme-state/check_readme.py", line 14, in <module>
+    assert ('| '+label+' |' in readme), 'README_MISSING_COMPONENT:'+label
+            ^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: README_MISSING_COMPONENT:adaptador QA

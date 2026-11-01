@@ -1,0 +1,117 @@
+{
+  "schema": "gentle-ai.review-integration.start/v4",
+  "contract": "gentle-ai.review-integration/v2",
+  "operation": "review.start",
+  "action": "created",
+  "lenses_required": true,
+  "lineage_id": "review-534f6eab737ac1e7",
+  "state": "reviewing",
+  "risk_level": "medium",
+  "selected_lenses": [
+    "review-reliability"
+  ],
+  "projection": "workspace",
+  "base_tree": "3f614faa3e8f081b15db72773bc4db83571a9aa2",
+  "candidate_tree": "e7589ce01bf927d46e1dc0e211a95b2b4d266e85",
+  "changed_files": 12,
+  "changed_lines": 74,
+  "correction_budget": 37,
+  "risk_reasons": [
+    {
+      "code": "executable_change",
+      "path": "docs/skill-audit/readme-boundaries/RESULTADO.md"
+    }
+  ],
+  "artifact_subjects": [
+    {
+      "schema": "gentle-ai.review-artifact-subject/v2",
+      "subject_hash": "sha256:888bd5f1af0cb3a4155f57fe9181f799f5c94259229aa6e0eee0edbb7ed38e07",
+      "lineage_id": "review-534f6eab737ac1e7",
+      "authority_revision": "sha256:6ef33fd9acb19892ecf44a3e53b2f300231bac2b2c5b75ab5b01fc5cfd5c9322",
+      "target_identity": "sha256:12dcf50a177b3626a3fc563fff48cbcef7187dfd5fbf25a5b65c73e1433b45a7",
+      "base_tree": "3f614faa3e8f081b15db72773bc4db83571a9aa2",
+      "candidate_tree": "e7589ce01bf927d46e1dc0e211a95b2b4d266e85",
+      "changed_path_manifest_sha256": "sha256:852b7284e11cd05c51bebdb763fe228a351efe944ed4ecc7eb2cdc6f4f913f2c",
+      "lens": "review-reliability",
+      "selected_order": 0
+    }
+  ],
+  "changed_path_manifest": [
+    {"path":"docs/skill-audit/readme-boundaries/RESULTADO.md","status":"A","old_mode":"000000","new_mode":"100644","deleted":false,"type_changed":false,"mode_only":false,"intended_untracked":true},
+    {"path":"docs/skill-audit/readme-boundaries/check_false_claim.py","status":"A","old_mode":"000000","new_mode":"100644","deleted":false,"type_changed":false,"mode_only":false,"intended_untracked":true},
+    {"path":"docs/skill-audit/readme-boundaries/green-negative.stderr","status":"A","old_mode":"000000","new_mode":"100644","deleted":false,"type_changed":false,"mode_only":false,"intended_untracked":true},
+    {"path":"docs/skill-audit/readme-boundaries/green-negative.stdout","status":"A","old_mode":"000000","new_mode":"100644","deleted":false,"type_changed":false,"mode_only":false,"intended_untracked":true},
+    {"path":"docs/skill-audit/readme-boundaries/green-positive.stderr","status":"A","old_mode":"000000","new_mode":"100644","deleted":false,"type_changed":false,"mode_only":false,"intended_untracked":true},
+    {"path":"docs/skill-audit/readme-boundaries/green-positive.stdout","status":"A","old_mode":"000000","new_mode":"100644","deleted":false,"type_changed":false,"mode_only":false,"intended_untracked":true},
+    {"path":"docs/skill-audit/readme-boundaries/red.stderr","status":"A","old_mode":"000000","new_mode":"100644","deleted":false,"type_changed":false,"mode_only":false,"intended_untracked":true},
+    {"path":"docs/skill-audit/readme-boundaries/red.stdout","status":"A","old_mode":"000000","new_mode":"100644","deleted":false,"type_changed":false,"mode_only":false,"intended_untracked":true},
+    {"path":"docs/skill-audit/readme-boundaries/regression.stderr","status":"A","old_mode":"000000","new_mode":"100644","deleted":false,"type_changed":false,"mode_only":false,"intended_untracked":true},
+    {"path":"docs/skill-audit/readme-boundaries/regression.stdout","status":"A","old_mode":"000000","new_mode":"100644","deleted":false,"type_changed":false,"mode_only":false,"intended_untracked":true},
+    {"path":"docs/skill-audit/readme-state/check_readme.py","status":"M","old_mode":"100644","new_mode":"100644","deleted":false,"type_changed":false,"mode_only":false,"intended_untracked":false},
+    {"path":"odd/tasks/readme-boundaries.md","status":"A","old_mode":"000000","new_mode":"100644","deleted":false,"type_changed":false,"mode_only":false,"intended_untracked":true}
+  ],
+  "repository_context": {
+    "capability": "review.opaque_repository_context",
+    "handle": "rctx2_d5ade00f869ba80f4372527ced53de7c56619dee7175466ea1ba4b21bb515ee7",
+    "revision": "sha256:6ef33fd9acb19892ecf44a3e53b2f300231bac2b2c5b75ab5b01fc5cfd5c9322",
+    "target_identity": "sha256:12dcf50a177b3626a3fc563fff48cbcef7187dfd5fbf25a5b65c73e1433b45a7"
+  },
+  "next_transition": {
+    "kind": "execute",
+    "reason_code": "review_status_required",
+    "execute": {
+      "operation": "review.status",
+      "command": "gentle-ai review status --contract=gentle-ai.review-integration/v2 --next-transition=true --lineage=review-534f6eab737ac1e7 --repository-context=rctx2_d5ade00f869ba80f4372527ced53de7c56619dee7175466ea1ba4b21bb515ee7 --agent=codex --projection=workspace",
+      "arguments": [
+        {
+          "name": "contract",
+          "value": "gentle-ai.review-integration/v2",
+          "token": "--contract=gentle-ai.review-integration/v2"
+        },
+        {
+          "name": "next-transition",
+          "value": "true",
+          "token": "--next-transition=true"
+        },
+        {
+          "name": "lineage",
+          "value": "review-534f6eab737ac1e7",
+          "token": "--lineage=review-534f6eab737ac1e7"
+        },
+        {
+          "name": "repository-context",
+          "value": "rctx2_d5ade00f869ba80f4372527ced53de7c56619dee7175466ea1ba4b21bb515ee7",
+          "token": "--repository-context=rctx2_d5ade00f869ba80f4372527ced53de7c56619dee7175466ea1ba4b21bb515ee7"
+        },
+        {
+          "name": "agent",
+          "value": "codex",
+          "token": "--agent=codex"
+        },
+        {
+          "name": "projection",
+          "value": "workspace",
+          "token": "--projection=workspace"
+        }
+      ],
+      "selector_arguments": [
+        {
+          "name": "projection",
+          "value": "workspace",
+          "token": "--projection=workspace"
+        }
+      ],
+      "preconditions": [
+        {
+          "name": "state",
+          "value": "reviewing"
+        }
+      ],
+      "binding": {
+        "lineage_id": "review-534f6eab737ac1e7",
+        "revision": "sha256:6ef33fd9acb19892ecf44a3e53b2f300231bac2b2c5b75ab5b01fc5cfd5c9322",
+        "target_identity": "sha256:12dcf50a177b3626a3fc563fff48cbcef7187dfd5fbf25a5b65c73e1433b45a7"
+      }
+    }
+  }
+}

@@ -1,0 +1,5 @@
+Traceback (most recent call last):
+  File "/tmp/readme-false-scope-1hukx4ys/docs/skill-audit/readme-state/check_readme.py", line 18, in <module>
+    assert 'no está conectado al lanzamiento' in rows['reserva persistente'], 'README_FALSE_RESERVATION_SCOPE'
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: README_FALSE_RESERVATION_SCOPE

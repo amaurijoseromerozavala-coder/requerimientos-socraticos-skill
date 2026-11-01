@@ -1,0 +1,5 @@
+Traceback (most recent call last):
+  File "/workspace/publicacion-proyecto-integrado/docs/skill-audit/readme-boundaries/check_false_claim.py", line 21, in <module>
+    assert r.returncode==1 and 'README_FALSE_RESERVATION_SCOPE' in r.stderr
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError
