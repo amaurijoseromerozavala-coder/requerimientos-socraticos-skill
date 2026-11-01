@@ -1,0 +1,31 @@
+test_false_complete_mutation_is_rejected (test_retained_pipe.RetainedPipeTests.test_false_complete_mutation_is_rejected) ... FAIL
+test_reaped_child_with_open_descendant_pipes (test_retained_pipe.RetainedPipeTests.test_reaped_child_with_open_descendant_pipes) ... FAIL
+
+======================================================================
+FAIL: test_false_complete_mutation_is_rejected (test_retained_pipe.RetainedPipeTests.test_false_complete_mutation_is_rejected)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/supervisor-orphan-unit/supervisor/tests/test_retained_pipe.py", line 39, in test_false_complete_mutation_is_rejected
+    self.assertIn('CAPTURE_MUST_BE_INCOMPLETE', run.stderr)
+AssertionError: 'CAPTURE_MUST_BE_INCOMPLETE' not found in 'Traceback (most recent call last):\n  File "/tmp/retained-pipe-mutant-trpc_96u/supervisor/tests/retained_pipe_scenario.py", line 76, in <module>\n    result, auxiliary, reaped = scenario()\n                                ^^^^^^^^^^\n  File "/tmp/retained-pipe-mutant-trpc_96u/supervisor/tests/retained_pipe_scenario.py", line 39, in scenario\n    assert result[\'cleanup\'] == \'UNCONFIRMED\', \'LIVING_GROUP_MUST_BLOCK\'\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: LIVING_GROUP_MUST_BLOCK\n'
+
+======================================================================
+FAIL: test_reaped_child_with_open_descendant_pipes (test_retained_pipe.RetainedPipeTests.test_reaped_child_with_open_descendant_pipes)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/supervisor-orphan-unit/supervisor/tests/test_retained_pipe.py", line 18, in test_reaped_child_with_open_descendant_pipes
+    self.assertEqual(run.returncode, 0, run.stderr)
+AssertionError: 1 != 0 : Traceback (most recent call last):
+  File "/workspace/supervisor-orphan-unit/supervisor/tests/retained_pipe_scenario.py", line 76, in <module>
+    result, auxiliary, reaped = scenario()
+                                ^^^^^^^^^^
+  File "/workspace/supervisor-orphan-unit/supervisor/tests/retained_pipe_scenario.py", line 39, in scenario
+    assert result['cleanup'] == 'UNCONFIRMED', 'LIVING_GROUP_MUST_BLOCK'
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: LIVING_GROUP_MUST_BLOCK
+
+
+----------------------------------------------------------------------
+Ran 2 tests in 6.107s
+
+FAILED (failures=2)

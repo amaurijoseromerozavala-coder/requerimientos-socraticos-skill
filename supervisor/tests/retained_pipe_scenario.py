@@ -36,7 +36,8 @@ os._exit(0)
             reaped.append(observed)
         assert observed == 0, 'HELPER_MUST_REMAIN_ALIVE_AT_RETURN'
         assert result['returncode'] == 0, 'DIRECT_CHILD_EXIT_REQUIRED'
-        assert result['cleanup'] == 'CONFIRMED', 'DIRECT_CHILD_REAP_REQUIRED'
+        assert result['cleanup'] == 'UNCONFIRMED', 'LIVING_GROUP_MUST_BLOCK'
+        assert result['status'] == 'INFRA_LOCK', 'LIVING_GROUP_MUST_NOT_ADMIT'
         assert result['capture_complete'] is False, 'CAPTURE_MUST_BE_INCOMPLETE'
         assert result['signals_requested'] == [], 'REAPED_CHILD_MUST_NOT_BE_SIGNALED'
         assert result['elapsed_seconds'] < 2, 'FIXED_BUDGET_WITH_SCHEDULING_TOLERANCE'

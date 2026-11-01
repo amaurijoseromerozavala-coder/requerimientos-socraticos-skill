@@ -8,10 +8,10 @@ Proyecto integrado de requisitos trazables, revisión de calidad y diseño de un
 |---|---|
 | Requerimientos Socráticos | Skill 2.4.8: activación portable, alcance de disco y clon verificado |
 | QA Inquisidor | Skill 0.1.3-alpha y comprobador documental |
-| núcleo | Biblioteca local de procesos implementada; controla solo al hijo directo |
+| núcleo | Biblioteca local de procesos implementada; observa al hijo directo y su grupo local, sin contención universal de descendientes |
 | adaptador QA | API interna implementada; invoca el comprobador, clasifica salida y bloquea la instancia ante limpieza incierta |
-| reserva persistente | Registro cooperativo implementado hasta RESERVED; no está conectado al lanzamiento |
-| supervisor ampliado | Diseño DRAFT; no implementado como sistema completo: faltan transición ACTIVE/terminación, recuperación, admisión global e incorporación |
+| reserva persistente | Registro cooperativo con RESERVED→ACTIVE→STOPPING; sin enlace al lanzamiento ni confirmación de terminación |
+| supervisor ampliado | Diseño DRAFT; no implementado como sistema completo: faltan enlace del registro al proceso, terminación confirmada, recuperación, admisión global e incorporación |
 | Integración | 23 decisiones, modelo booleano de 128 valoraciones y FSM parcial |
 | RDD del diseño integrado | R3-001 documental aprobado y reconocido; los componentes ejecutables tienen recibos propios |
 | Calibración del hardware objetivo | No realizada |
@@ -61,11 +61,15 @@ Se publican código propio, tests, documentos, evidencias, configuración de ré
 
 Primera biblioteca ejecutable en `supervisor/process_core.py`, separada de la
 evaluación QA. Controla un hijo directo Linux, captura acotada, límites virtuales,
-plazos y recolección. Una limpieza incierta bloquea esa instancia. No implementa
+plazos y recolección. Mientras el hijo vive verifica su grupo antes de enviar
+señales de terminación; tras recolectarlo, un miembro no zombi del grupo bloquea
+la instancia sin enviarle señales. Una observación incompleta también bloquea.
+Esto no contiene procesos que abandonen ese grupo.
+Una limpieza incierta bloquea esa instancia. No implementa
 todavía coordinación entre instancias, cuotas globales, incorporación ni
 recuperación tras reiniciar. `supervisor/qa_adapter.py` aporta la invocación QA
-como API interna. `supervisor/journal.py` conserva una reserva RESERVED, sin estar
-conectado aún al lanzamiento ni poder confirmar terminación o recuperarse. El
+como API interna. `supervisor/journal.py` conserva RESERVED→ACTIVE→STOPPING, sin enlace al lanzamiento
+ni capacidad de confirmar terminación o recuperarse. El
 supervisor integrado sigue DRAFT; no es sandbox ni garantía de tiempo real.
 
 Pruebas locales acotadas: `python3 -B -m unittest discover -s supervisor/tests -v`.

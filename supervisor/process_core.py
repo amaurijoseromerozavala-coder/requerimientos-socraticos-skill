@@ -64,6 +64,38 @@ class ProcessSupervisor:
             raise OSError('CHILD_GROUP_IDENTITY_MISMATCH')
         os.killpg(child.pid, requested_signal)
 
+    def _group_still_exists(self, child):
+        """Conservatively observe non-zombie members; never signal a reaped PGID."""
+        try:
+            os.killpg(child.pid, 0)
+        except ProcessLookupError:
+            return False
+        except PermissionError:
+            return True
+        # killpg(0) also sees zombie-only groups. A bounded procfs scan avoids
+        # treating already terminated members as active, while any uncertainty
+        # remains a reason to block rather than accept a result.
+        with os.scandir('/proc') as entries:
+            observed = 0
+            for entry in entries:
+                if not entry.name.isdecimal():
+                    continue
+                observed += 1
+                if observed > 4096:
+                    return True
+                try:
+                    raw = Path(entry.path, 'stat').read_text()[:4096]
+                except FileNotFoundError:
+                    continue
+                except OSError:
+                    return True
+                fields = raw.rpartition(') ')[2].split()
+                if len(fields) < 3:
+                    return True
+                if fields[0] != 'Z' and int(fields[2]) == child.pid:
+                    return True
+        return False
+
     def run(self):
         if not self._owner.acquire(blocking=False):
             return {'status': 'BUSY', 'launched': False}
@@ -180,7 +212,10 @@ class ProcessSupervisor:
                             signals.append('SIGKILL')
                             self._signal_owned_group(child, signal.SIGKILL)
                             returncode = wait_draining(time.monotonic() + self.limits.cleanup_seconds)
-                        cleanup = 'CONFIRMED'
+                        # Reaping proves only the direct child's death. A
+                        # remaining group makes result admission uncertain.
+                        cleanup = ('UNCONFIRMED' if self._group_still_exists(child)
+                                   else 'CONFIRMED')
                     except BaseException as exc:
                         # Best effort stop request is not confirmation of reaping.
                         error = type(exc).__name__
