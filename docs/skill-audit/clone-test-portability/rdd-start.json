@@ -1,0 +1,38 @@
+{
+  "schema": "gentle-ai.review-integration.consent/v3",
+  "contract": "gentle-ai.review-integration/v2",
+  "operation": "review.start",
+  "action": "consent_required",
+  "agent": "codex",
+  "blocking": true,
+  "target_identity": "sha256:ac20cace647ad44e22bde84a24ff7614f8478366349acf690153e9ada6a1ef4a",
+  "projection": "workspace",
+  "risk_level": "medium",
+  "changed_files": 10,
+  "changed_lines": 103,
+  "headline": "Gentle AI can review this change before you call it done.",
+  "reason": "Review can help detect regressions in these changes.",
+  "value": "Reviewing takes a little longer and makes the result safer.",
+  "risk_evidence": [
+    "this change is not purely passive documentation, so it gets one consolidated review.",
+    "an executable change in docs/skill-audit/clone-test-portability/RESULTADO.md"
+  ],
+  "choices": [
+    {
+      "answer": "granted",
+      "label": "Review this change",
+      "effect": "Reviews only this change; later medium- or high-risk changes ask again, and delivery needs separate approval.",
+      "invocation": "gentle-ai review start --contract gentle-ai.review-integration/v2 --cwd /workspace/publicacion-proyecto-integrado --target sha256:ac20cace647ad44e22bde84a24ff7614f8478366349acf690153e9ada6a1ef4a --target-evidence v1:current-changes:workspace:e3d7774e19789b1faf2ed222336ad368028a7b56:6443bfe51ca654b83cbab395b197b4ddfdd9ff54:sha256:d415b463461e29f1e35bb292e24d9361d6ba7e6520dd7c623f3908bdf211aa2d --projection workspace --agent codex --lineage review-cbc96e75ac9a0450 --untracked-scope=select --expected-untracked-inventory=sha256:dad7b1bdf91433ff961b433606479f1092c577bec4d35dddcd0c57f8e12b91fd --intended-untracked=docs/skill-audit/clone-test-portability/RESULTADO.md --intended-untracked=docs/skill-audit/clone-test-portability/check_export.py --intended-untracked=docs/skill-audit/clone-test-portability/green-export.stderr --intended-untracked=docs/skill-audit/clone-test-portability/green-export.stdout --intended-untracked=docs/skill-audit/clone-test-portability/green-local.stderr --intended-untracked=docs/skill-audit/clone-test-portability/green-local.stdout --intended-untracked=docs/skill-audit/clone-test-portability/red.stderr --intended-untracked=docs/skill-audit/clone-test-portability/red.stdout --intended-untracked=odd/tasks/clone-test-portability.md --lenses review-reliability --lenses-reason 'Verify isolated clone provenance tests, export reproduction and unchanged production policy.' --consent granted"
+    },
+    {
+      "answer": "declined",
+      "label": "Skip this time",
+      "effect": "Skips only this change; no review record is created, and future reviews stay enabled.",
+      "invocation": "gentle-ai review start --contract gentle-ai.review-integration/v2 --cwd /workspace/publicacion-proyecto-integrado --target sha256:ac20cace647ad44e22bde84a24ff7614f8478366349acf690153e9ada6a1ef4a --target-evidence v1:current-changes:workspace:e3d7774e19789b1faf2ed222336ad368028a7b56:6443bfe51ca654b83cbab395b197b4ddfdd9ff54:sha256:d415b463461e29f1e35bb292e24d9361d6ba7e6520dd7c623f3908bdf211aa2d --projection workspace --agent codex --lineage review-cbc96e75ac9a0450 --untracked-scope=select --expected-untracked-inventory=sha256:dad7b1bdf91433ff961b433606479f1092c577bec4d35dddcd0c57f8e12b91fd --intended-untracked=docs/skill-audit/clone-test-portability/RESULTADO.md --intended-untracked=docs/skill-audit/clone-test-portability/check_export.py --intended-untracked=docs/skill-audit/clone-test-portability/green-export.stderr --intended-untracked=docs/skill-audit/clone-test-portability/green-export.stdout --intended-untracked=docs/skill-audit/clone-test-portability/green-local.stderr --intended-untracked=docs/skill-audit/clone-test-portability/green-local.stdout --intended-untracked=docs/skill-audit/clone-test-portability/red.stderr --intended-untracked=docs/skill-audit/clone-test-portability/red.stdout --intended-untracked=odd/tasks/clone-test-portability.md --lenses review-reliability --lenses-reason 'Verify isolated clone provenance tests, export reproduction and unchanged production policy.' --consent declined"
+    }
+  ],
+  "off_path": {
+    "note": "To turn reviews off for good, run 'gentle-ai review mode disable'.",
+    "command": "gentle-ai review mode disable"
+  }
+}

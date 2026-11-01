@@ -47,10 +47,34 @@ class StorageScopeTests(unittest.TestCase):
         self.assertEqual(json.loads(r.stdout)['storage_admission']['status'],'BLOCKED_HOST_STORAGE_UNKNOWN')
 
     def test_preflight_reports_official_source_clone(self):
-        report=preflight.evaluate('/tmp',caller_scope='EXTERNAL_CALLER')
-        self.assertEqual(report['source_checkout']['status'],'VERIFIED_LOCAL_CLONE')
-        self.assertTrue(report['source_checkout']['origin_match'])
-        self.assertIn(len(report['source_checkout']['head_commit']),[40,64])
+        root = SCRIPTS.parents[2]
+        origin = 'https://github.com/amaurijoseromerozavala-coder/requerimientos-socraticos-skill.git'
+        commands = [
+            ['git', '-C', str(root), 'rev-parse', '--show-toplevel'],
+            ['git', '-C', str(root), 'config', '--get', 'remote.origin.url'],
+            ['git', '-C', str(root), 'rev-parse', '--verify', 'HEAD^{commit}'],
+        ]
+        for oid in ('a' * 40, 'b' * 64):
+            responses = [subprocess.CompletedProcess(command, 0, value + '\n', '')
+                         for command, value in zip(commands, (str(root), origin, oid))]
+            with self.subTest(oid_length=len(oid)), patch.object(
+                    preflight.subprocess, 'run', side_effect=responses) as run:
+                report = preflight.evaluate('/tmp', caller_scope='EXTERNAL_CALLER')
+            self.assertEqual(report['source_checkout']['status'], 'VERIFIED_LOCAL_CLONE')
+            self.assertTrue(report['source_checkout']['origin_match'])
+            self.assertEqual(report['source_checkout']['head_commit'], oid)
+            self.assertEqual([call.args[0] for call in run.call_args_list], commands)
+
+    def test_source_checkout_rejects_unlisted_origin(self):
+        root = SCRIPTS.parents[2]
+        values = (str(root), 'https://example.invalid/fork.git', 'a' * 40)
+        responses = [subprocess.CompletedProcess([], 0, value + '\n', '')
+                     for value in values]
+        with patch.object(preflight.subprocess, 'run', side_effect=responses):
+            result = preflight.source_checkout()
+        self.assertEqual(result['status'], 'CLONE_UNVERIFIED')
+        self.assertFalse(result['origin_match'])
+        self.assertIsNone(result['head_commit'])
 
     def test_unverified_source_blocks_workers_not_documents(self):
         with patch.object(preflight,'source_checkout',return_value={'status':'CLONE_UNVERIFIED','origin_match':False,'head_commit':None}):

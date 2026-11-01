@@ -1,0 +1,191 @@
+{
+  "schema": "gentle-ai.review-integration.status/v9",
+  "contract": "gentle-ai.review-integration/v2",
+  "operation": "review.status",
+  "applicability": "unrelated",
+  "action": "start",
+  "replayability": "not_replayable",
+  "target_identity": "sha256:ac20cace647ad44e22bde84a24ff7614f8478366349acf690153e9ada6a1ef4a",
+  "projection": {
+    "schema": "gentle-ai.review-integration.projection/v1",
+    "kind": "current-changes",
+    "projection": "workspace",
+    "base_tree": "e3d7774e19789b1faf2ed222336ad368028a7b56",
+    "initial_review_tree": "6443bfe51ca654b83cbab395b197b4ddfdd9ff54",
+    "current_candidate_tree": "6443bfe51ca654b83cbab395b197b4ddfdd9ff54",
+    "paths_digest": "sha256:d415b463461e29f1e35bb292e24d9361d6ba7e6520dd7c623f3908bdf211aa2d",
+    "paths": [
+      "docs/skill-audit/clone-test-portability/RESULTADO.md",
+      "docs/skill-audit/clone-test-portability/check_export.py",
+      "docs/skill-audit/clone-test-portability/green-export.stderr",
+      "docs/skill-audit/clone-test-portability/green-export.stdout",
+      "docs/skill-audit/clone-test-portability/green-local.stderr",
+      "docs/skill-audit/clone-test-portability/green-local.stdout",
+      "docs/skill-audit/clone-test-portability/red.stderr",
+      "docs/skill-audit/clone-test-portability/red.stdout",
+      "odd/tasks/clone-test-portability.md",
+      "skills/requerimientos-socraticos/tests/test_storage_scope.py"
+    ],
+    "intended_untracked": [
+      "docs/skill-audit/clone-test-portability/RESULTADO.md",
+      "docs/skill-audit/clone-test-portability/check_export.py",
+      "docs/skill-audit/clone-test-portability/green-export.stderr",
+      "docs/skill-audit/clone-test-portability/green-export.stdout",
+      "docs/skill-audit/clone-test-portability/green-local.stderr",
+      "docs/skill-audit/clone-test-portability/green-local.stdout",
+      "docs/skill-audit/clone-test-portability/red.stderr",
+      "docs/skill-audit/clone-test-portability/red.stdout",
+      "odd/tasks/clone-test-portability.md"
+    ],
+    "intended_untracked_proof": "sha256:7b36ef95837b60501718cfc8a1fb63f497a839825bbf1fe1963292b59dee92dc",
+    "initial_snapshot_identity": "sha256:ac20cace647ad44e22bde84a24ff7614f8478366349acf690153e9ada6a1ef4a",
+    "current_snapshot_identity": "sha256:ac20cace647ad44e22bde84a24ff7614f8478366349acf690153e9ada6a1ef4a"
+  },
+  "eligible_untracked_inventory": "sha256:ad6996e7608050e3b75575d01edc78b6b2405e72f014855d08d6e51d6ac4b23d",
+  "repair": {
+    "schema": "gentle-ai.review-authority-repair-assessment/v1",
+    "status": "unsupported",
+    "counts": {
+      "lineages": 0,
+      "compact_lineages": 0,
+      "legacy_lineages": 0,
+      "events": 0,
+      "bytes": 0,
+      "eligible_candidates": 0,
+      "unsupported_lineages": 0,
+      "conflicts": 0
+    },
+    "supported_operations": [
+      "review/complete-fix",
+      "review/validate-fix"
+    ],
+    "authorization_schema": "gentle-ai.review-repair-authorization/v1"
+  },
+  "candidates": [],
+  "forecast": {
+    "horizon": "partial",
+    "steps": [
+      {
+        "step": 1,
+        "kind": "execute",
+        "reason_code": "fresh_target_ready",
+        "description": "Target is unreviewed and ready for initial review start"
+      }
+    ]
+  },
+  "next_transition": {
+    "kind": "execute",
+    "reason_code": "fresh_target_ready",
+    "execute": {
+      "operation": "review.start",
+      "command": "gentle-ai review start --cwd=/workspace/publicacion-proyecto-integrado --contract=gentle-ai.review-integration/v2 --target=sha256:ac20cace647ad44e22bde84a24ff7614f8478366349acf690153e9ada6a1ef4a --target-evidence=v1:current-changes:workspace:e3d7774e19789b1faf2ed222336ad368028a7b56:6443bfe51ca654b83cbab395b197b4ddfdd9ff54:sha256:d415b463461e29f1e35bb292e24d9361d6ba7e6520dd7c623f3908bdf211aa2d --projection=workspace --lineage=review-cbc96e75ac9a0450 --agent=codex --consent=relay --untracked-scope=select --expected-untracked-inventory=sha256:ad6996e7608050e3b75575d01edc78b6b2405e72f014855d08d6e51d6ac4b23d --intended-untracked=docs/skill-audit/clone-test-portability/RESULTADO.md --intended-untracked=docs/skill-audit/clone-test-portability/check_export.py --intended-untracked=docs/skill-audit/clone-test-portability/green-export.stderr --intended-untracked=docs/skill-audit/clone-test-portability/green-export.stdout --intended-untracked=docs/skill-audit/clone-test-portability/green-local.stderr --intended-untracked=docs/skill-audit/clone-test-portability/green-local.stdout --intended-untracked=docs/skill-audit/clone-test-portability/red.stderr --intended-untracked=docs/skill-audit/clone-test-portability/red.stdout --intended-untracked=odd/tasks/clone-test-portability.md",
+      "arguments": [
+        {
+          "name": "cwd",
+          "value": "/workspace/publicacion-proyecto-integrado",
+          "token": "--cwd=/workspace/publicacion-proyecto-integrado"
+        },
+        {
+          "name": "contract",
+          "value": "gentle-ai.review-integration/v2",
+          "token": "--contract=gentle-ai.review-integration/v2"
+        },
+        {
+          "name": "target",
+          "value": "sha256:ac20cace647ad44e22bde84a24ff7614f8478366349acf690153e9ada6a1ef4a",
+          "token": "--target=sha256:ac20cace647ad44e22bde84a24ff7614f8478366349acf690153e9ada6a1ef4a"
+        },
+        {
+          "name": "target-evidence",
+          "value": "v1:current-changes:workspace:e3d7774e19789b1faf2ed222336ad368028a7b56:6443bfe51ca654b83cbab395b197b4ddfdd9ff54:sha256:d415b463461e29f1e35bb292e24d9361d6ba7e6520dd7c623f3908bdf211aa2d",
+          "token": "--target-evidence=v1:current-changes:workspace:e3d7774e19789b1faf2ed222336ad368028a7b56:6443bfe51ca654b83cbab395b197b4ddfdd9ff54:sha256:d415b463461e29f1e35bb292e24d9361d6ba7e6520dd7c623f3908bdf211aa2d"
+        },
+        {
+          "name": "projection",
+          "value": "workspace",
+          "token": "--projection=workspace"
+        },
+        {
+          "name": "lineage",
+          "value": "review-cbc96e75ac9a0450",
+          "token": "--lineage=review-cbc96e75ac9a0450"
+        },
+        {
+          "name": "agent",
+          "value": "codex",
+          "token": "--agent=codex"
+        },
+        {
+          "name": "consent",
+          "value": "relay",
+          "token": "--consent=relay"
+        },
+        {
+          "name": "untracked-scope",
+          "value": "select",
+          "token": "--untracked-scope=select"
+        },
+        {
+          "name": "expected-untracked-inventory",
+          "value": "sha256:ad6996e7608050e3b75575d01edc78b6b2405e72f014855d08d6e51d6ac4b23d",
+          "token": "--expected-untracked-inventory=sha256:ad6996e7608050e3b75575d01edc78b6b2405e72f014855d08d6e51d6ac4b23d"
+        },
+        {
+          "name": "intended-untracked",
+          "value": "docs/skill-audit/clone-test-portability/RESULTADO.md",
+          "token": "--intended-untracked=docs/skill-audit/clone-test-portability/RESULTADO.md"
+        },
+        {
+          "name": "intended-untracked",
+          "value": "docs/skill-audit/clone-test-portability/check_export.py",
+          "token": "--intended-untracked=docs/skill-audit/clone-test-portability/check_export.py"
+        },
+        {
+          "name": "intended-untracked",
+          "value": "docs/skill-audit/clone-test-portability/green-export.stderr",
+          "token": "--intended-untracked=docs/skill-audit/clone-test-portability/green-export.stderr"
+        },
+        {
+          "name": "intended-untracked",
+          "value": "docs/skill-audit/clone-test-portability/green-export.stdout",
+          "token": "--intended-untracked=docs/skill-audit/clone-test-portability/green-export.stdout"
+        },
+        {
+          "name": "intended-untracked",
+          "value": "docs/skill-audit/clone-test-portability/green-local.stderr",
+          "token": "--intended-untracked=docs/skill-audit/clone-test-portability/green-local.stderr"
+        },
+        {
+          "name": "intended-untracked",
+          "value": "docs/skill-audit/clone-test-portability/green-local.stdout",
+          "token": "--intended-untracked=docs/skill-audit/clone-test-portability/green-local.stdout"
+        },
+        {
+          "name": "intended-untracked",
+          "value": "docs/skill-audit/clone-test-portability/red.stderr",
+          "token": "--intended-untracked=docs/skill-audit/clone-test-portability/red.stderr"
+        },
+        {
+          "name": "intended-untracked",
+          "value": "docs/skill-audit/clone-test-portability/red.stdout",
+          "token": "--intended-untracked=docs/skill-audit/clone-test-portability/red.stdout"
+        },
+        {
+          "name": "intended-untracked",
+          "value": "odd/tasks/clone-test-portability.md",
+          "token": "--intended-untracked=odd/tasks/clone-test-portability.md"
+        }
+      ],
+      "preconditions": [
+        {
+          "name": "target_identity",
+          "value": "sha256:ac20cace647ad44e22bde84a24ff7614f8478366349acf690153e9ada6a1ef4a"
+        }
+      ],
+      "binding": {
+        "lineage_id": "review-cbc96e75ac9a0450",
+        "target_identity": "sha256:ac20cace647ad44e22bde84a24ff7614f8478366349acf690153e9ada6a1ef4a"
+      }
+    }
+  }
+}

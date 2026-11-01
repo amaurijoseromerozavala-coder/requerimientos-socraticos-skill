@@ -1,0 +1,63 @@
+{
+  "schema": "gentle-ai.review-last-event-closure/v1",
+  "operation": "review/capture-result",
+  "lineage_id": "review-cbc96e75ac9a0450",
+  "state": "approved",
+  "action": "the approved review completed on the last admitted event and awaits its exact acknowledgement",
+  "reviewer_results": [
+    {
+      "lens": "review-reliability",
+      "findings": [],
+      "evidence": [
+        "Inspected all ten supplied patches without accessing external files or running commands.",
+        "skills/requerimientos-socraticos/tests/test_storage_scope.py replaces environment-dependent positive assertions with controlled Git responses, checks exact command arguments, and verifies the returned commit for both supported OID lengths. The added negative test asserts unverified status, a false origin match, and no commit for an unlisted origin.",
+        "docs/skill-audit/clone-test-portability/check_export.py copies the required source directories into a temporary export, runs the targeted suite with a timeout, and propagates its exit status.",
+        "docs/skill-audit/clone-test-portability/red.stderr records the original export failure; docs/skill-audit/clone-test-portability/green-export.stderr and docs/skill-audit/clone-test-portability/green-local.stderr each record ten passing tests. These are supplied execution records, not independently rerun results."
+      ],
+      "result_hash": "sha256:1963c89ad08c263790319cc74a3da4473279fabaf999e66d1bb1f995cc9320cc"
+    }
+  ],
+  "acknowledgement": {
+    "operation": "review.acknowledge-approved",
+    "command": "gentle-ai review acknowledge-approved --cwd=/workspace/publicacion-proyecto-integrado --lineage=review-cbc96e75ac9a0450 --target=sha256:ac20cace647ad44e22bde84a24ff7614f8478366349acf690153e9ada6a1ef4a --expected-revision=sha256:74daa6c8043b7cfc16fb571fe215cf3d7857605e7102941d82b92a33487f3387 --token=[REDACTED]",
+    "arguments": [
+      {
+        "name": "cwd",
+        "value": "/workspace/publicacion-proyecto-integrado",
+        "token": "--cwd=/workspace/publicacion-proyecto-integrado"
+      },
+      {
+        "name": "lineage",
+        "value": "review-cbc96e75ac9a0450",
+        "token": "--lineage=review-cbc96e75ac9a0450"
+      },
+      {
+        "name": "target",
+        "value": "sha256:ac20cace647ad44e22bde84a24ff7614f8478366349acf690153e9ada6a1ef4a",
+        "token": "--target=sha256:ac20cace647ad44e22bde84a24ff7614f8478366349acf690153e9ada6a1ef4a"
+      },
+      {
+        "name": "expected-revision",
+        "value": "sha256:74daa6c8043b7cfc16fb571fe215cf3d7857605e7102941d82b92a33487f3387",
+        "token": "--expected-revision=sha256:74daa6c8043b7cfc16fb571fe215cf3d7857605e7102941d82b92a33487f3387"
+      },
+      {
+        "name": "token",
+        "value": "[REDACTED]",
+        "token": "--token=[REDACTED]"
+      }
+    ],
+    "preconditions": [
+      {
+        "name": "state",
+        "value": "approved"
+      }
+    ],
+    "binding": {
+      "lineage_id": "review-cbc96e75ac9a0450",
+      "revision": "sha256:74daa6c8043b7cfc16fb571fe215cf3d7857605e7102941d82b92a33487f3387",
+      "target_identity": "sha256:ac20cace647ad44e22bde84a24ff7614f8478366349acf690153e9ada6a1ef4a"
+    }
+  },
+  "store_revision": "sha256:74daa6c8043b7cfc16fb571fe215cf3d7857605e7102941d82b92a33487f3387"
+}

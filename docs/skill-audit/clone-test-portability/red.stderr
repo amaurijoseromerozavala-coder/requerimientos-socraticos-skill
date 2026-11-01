@@ -1,0 +1,16 @@
+.....F...
+======================================================================
+FAIL: test_preflight_reports_official_source_clone (test_storage_scope.StorageScopeTests.test_preflight_reports_official_source_clone)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/requirements-export-test-onjmpv2x/skills/requerimientos-socraticos/tests/test_storage_scope.py", line 51, in test_preflight_reports_official_source_clone
+    self.assertEqual(report['source_checkout']['status'],'VERIFIED_LOCAL_CLONE')
+AssertionError: 'CLONE_UNVERIFIED' != 'VERIFIED_LOCAL_CLONE'
+- CLONE_UNVERIFIED
++ VERIFIED_LOCAL_CLONE
+
+
+----------------------------------------------------------------------
+Ran 9 tests in 0.116s
+
+FAILED (failures=1)
