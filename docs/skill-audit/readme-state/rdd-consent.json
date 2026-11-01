@@ -1,0 +1,38 @@
+{
+  "schema": "gentle-ai.review-integration.consent/v3",
+  "contract": "gentle-ai.review-integration/v2",
+  "operation": "review.start",
+  "action": "consent_required",
+  "agent": "codex",
+  "blocking": true,
+  "target_identity": "sha256:87e1e2df5a80c03d5695881325d72376a7acf7b0d8c3cef9070a7b5972a2ba4b",
+  "projection": "workspace",
+  "risk_level": "medium",
+  "changed_files": 11,
+  "changed_lines": 107,
+  "headline": "Gentle AI can review this change before you call it done.",
+  "reason": "Review can help detect regressions in these changes.",
+  "value": "Reviewing takes a little longer and makes the result safer.",
+  "risk_evidence": [
+    "this change is not purely passive documentation, so it gets one consolidated review.",
+    "an executable change in docs/skill-audit/readme-state/RESULTADO.md"
+  ],
+  "choices": [
+    {
+      "answer": "granted",
+      "label": "Review this change",
+      "effect": "Reviews only this change; later medium- or high-risk changes ask again, and delivery needs separate approval.",
+      "invocation": "gentle-ai review start --contract gentle-ai.review-integration/v2 --cwd /workspace/publicacion-proyecto-integrado --target sha256:87e1e2df5a80c03d5695881325d72376a7acf7b0d8c3cef9070a7b5972a2ba4b --target-evidence v1:current-changes:workspace:0de837f0f0effd2af321e5e65657876628de97f5:87748a90e2c2898737853156745b3452464e7b28:sha256:df7f0341831f7c4282e5b7d5843ad0f733c3253d6ec2b77d7dc6d996af711057 --projection workspace --agent codex --lineage review-644ca171b5b73b87 --untracked-scope=select --expected-untracked-inventory=sha256:74c591004e4aa78d5656df7bc6f04cf602fbaa1fe39a299e557824654f6c8850 --intended-untracked=docs/skill-audit/readme-state/RESULTADO.md --intended-untracked=docs/skill-audit/readme-state/check_negative.py --intended-untracked=docs/skill-audit/readme-state/check_readme.py --intended-untracked=docs/skill-audit/readme-state/green.stderr --intended-untracked=docs/skill-audit/readme-state/green.stdout --intended-untracked=docs/skill-audit/readme-state/negative.stderr --intended-untracked=docs/skill-audit/readme-state/negative.stdout --intended-untracked=docs/skill-audit/readme-state/red.stderr --intended-untracked=docs/skill-audit/readme-state/red.stdout --intended-untracked=odd/tasks/readme-state.md --lenses review-reliability --lenses-reason 'Verify README reflects implemented supervisor components and preserves incomplete integrated status; QA claims from unrelated subsystems excluded.' --consent granted"
+    },
+    {
+      "answer": "declined",
+      "label": "Skip this time",
+      "effect": "Skips only this change; no review record is created, and future reviews stay enabled.",
+      "invocation": "gentle-ai review start --contract gentle-ai.review-integration/v2 --cwd /workspace/publicacion-proyecto-integrado --target sha256:87e1e2df5a80c03d5695881325d72376a7acf7b0d8c3cef9070a7b5972a2ba4b --target-evidence v1:current-changes:workspace:0de837f0f0effd2af321e5e65657876628de97f5:87748a90e2c2898737853156745b3452464e7b28:sha256:df7f0341831f7c4282e5b7d5843ad0f733c3253d6ec2b77d7dc6d996af711057 --projection workspace --agent codex --lineage review-644ca171b5b73b87 --untracked-scope=select --expected-untracked-inventory=sha256:74c591004e4aa78d5656df7bc6f04cf602fbaa1fe39a299e557824654f6c8850 --intended-untracked=docs/skill-audit/readme-state/RESULTADO.md --intended-untracked=docs/skill-audit/readme-state/check_negative.py --intended-untracked=docs/skill-audit/readme-state/check_readme.py --intended-untracked=docs/skill-audit/readme-state/green.stderr --intended-untracked=docs/skill-audit/readme-state/green.stdout --intended-untracked=docs/skill-audit/readme-state/negative.stderr --intended-untracked=docs/skill-audit/readme-state/negative.stdout --intended-untracked=docs/skill-audit/readme-state/red.stderr --intended-untracked=docs/skill-audit/readme-state/red.stdout --intended-untracked=odd/tasks/readme-state.md --lenses review-reliability --lenses-reason 'Verify README reflects implemented supervisor components and preserves incomplete integrated status; QA claims from unrelated subsystems excluded.' --consent declined"
+    }
+  ],
+  "off_path": {
+    "note": "To turn reviews off for good, run 'gentle-ai review mode disable'.",
+    "command": "gentle-ai review mode disable"
+  }
+}

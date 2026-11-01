@@ -1,0 +1,198 @@
+{
+  "schema": "gentle-ai.review-integration.status/v9",
+  "contract": "gentle-ai.review-integration/v2",
+  "operation": "review.status",
+  "applicability": "unrelated",
+  "action": "start",
+  "replayability": "not_replayable",
+  "target_identity": "sha256:87e1e2df5a80c03d5695881325d72376a7acf7b0d8c3cef9070a7b5972a2ba4b",
+  "projection": {
+    "schema": "gentle-ai.review-integration.projection/v1",
+    "kind": "current-changes",
+    "projection": "workspace",
+    "base_tree": "0de837f0f0effd2af321e5e65657876628de97f5",
+    "initial_review_tree": "87748a90e2c2898737853156745b3452464e7b28",
+    "current_candidate_tree": "87748a90e2c2898737853156745b3452464e7b28",
+    "paths_digest": "sha256:df7f0341831f7c4282e5b7d5843ad0f733c3253d6ec2b77d7dc6d996af711057",
+    "paths": [
+      "README.md",
+      "docs/skill-audit/readme-state/RESULTADO.md",
+      "docs/skill-audit/readme-state/check_negative.py",
+      "docs/skill-audit/readme-state/check_readme.py",
+      "docs/skill-audit/readme-state/green.stderr",
+      "docs/skill-audit/readme-state/green.stdout",
+      "docs/skill-audit/readme-state/negative.stderr",
+      "docs/skill-audit/readme-state/negative.stdout",
+      "docs/skill-audit/readme-state/red.stderr",
+      "docs/skill-audit/readme-state/red.stdout",
+      "odd/tasks/readme-state.md"
+    ],
+    "intended_untracked": [
+      "docs/skill-audit/readme-state/RESULTADO.md",
+      "docs/skill-audit/readme-state/check_negative.py",
+      "docs/skill-audit/readme-state/check_readme.py",
+      "docs/skill-audit/readme-state/green.stderr",
+      "docs/skill-audit/readme-state/green.stdout",
+      "docs/skill-audit/readme-state/negative.stderr",
+      "docs/skill-audit/readme-state/negative.stdout",
+      "docs/skill-audit/readme-state/red.stderr",
+      "docs/skill-audit/readme-state/red.stdout",
+      "odd/tasks/readme-state.md"
+    ],
+    "intended_untracked_proof": "sha256:7634be639a364e1157a8ac7ebfbc754a6296a73e6d771ce84b4bba3bc67a2cf1",
+    "initial_snapshot_identity": "sha256:87e1e2df5a80c03d5695881325d72376a7acf7b0d8c3cef9070a7b5972a2ba4b",
+    "current_snapshot_identity": "sha256:87e1e2df5a80c03d5695881325d72376a7acf7b0d8c3cef9070a7b5972a2ba4b"
+  },
+  "eligible_untracked_inventory": "sha256:8fda8a90951c1503557ab3035009d5b24315105cc62e38bd889b3e09f8b34b30",
+  "repair": {
+    "schema": "gentle-ai.review-authority-repair-assessment/v1",
+    "status": "unsupported",
+    "counts": {
+      "lineages": 0,
+      "compact_lineages": 0,
+      "legacy_lineages": 0,
+      "events": 0,
+      "bytes": 0,
+      "eligible_candidates": 0,
+      "unsupported_lineages": 0,
+      "conflicts": 0
+    },
+    "supported_operations": [
+      "review/complete-fix",
+      "review/validate-fix"
+    ],
+    "authorization_schema": "gentle-ai.review-repair-authorization/v1"
+  },
+  "candidates": [],
+  "forecast": {
+    "horizon": "partial",
+    "steps": [
+      {
+        "step": 1,
+        "kind": "execute",
+        "reason_code": "fresh_target_ready",
+        "description": "Target is unreviewed and ready for initial review start"
+      }
+    ]
+  },
+  "next_transition": {
+    "kind": "execute",
+    "reason_code": "fresh_target_ready",
+    "execute": {
+      "operation": "review.start",
+      "command": "gentle-ai review start --cwd=/workspace/publicacion-proyecto-integrado --contract=gentle-ai.review-integration/v2 --target=sha256:87e1e2df5a80c03d5695881325d72376a7acf7b0d8c3cef9070a7b5972a2ba4b --target-evidence=v1:current-changes:workspace:0de837f0f0effd2af321e5e65657876628de97f5:87748a90e2c2898737853156745b3452464e7b28:sha256:df7f0341831f7c4282e5b7d5843ad0f733c3253d6ec2b77d7dc6d996af711057 --projection=workspace --lineage=review-644ca171b5b73b87 --agent=codex --consent=relay --untracked-scope=select --expected-untracked-inventory=sha256:8fda8a90951c1503557ab3035009d5b24315105cc62e38bd889b3e09f8b34b30 --intended-untracked=docs/skill-audit/readme-state/RESULTADO.md --intended-untracked=docs/skill-audit/readme-state/check_negative.py --intended-untracked=docs/skill-audit/readme-state/check_readme.py --intended-untracked=docs/skill-audit/readme-state/green.stderr --intended-untracked=docs/skill-audit/readme-state/green.stdout --intended-untracked=docs/skill-audit/readme-state/negative.stderr --intended-untracked=docs/skill-audit/readme-state/negative.stdout --intended-untracked=docs/skill-audit/readme-state/red.stderr --intended-untracked=docs/skill-audit/readme-state/red.stdout --intended-untracked=odd/tasks/readme-state.md",
+      "arguments": [
+        {
+          "name": "cwd",
+          "value": "/workspace/publicacion-proyecto-integrado",
+          "token": "--cwd=/workspace/publicacion-proyecto-integrado"
+        },
+        {
+          "name": "contract",
+          "value": "gentle-ai.review-integration/v2",
+          "token": "--contract=gentle-ai.review-integration/v2"
+        },
+        {
+          "name": "target",
+          "value": "sha256:87e1e2df5a80c03d5695881325d72376a7acf7b0d8c3cef9070a7b5972a2ba4b",
+          "token": "--target=sha256:87e1e2df5a80c03d5695881325d72376a7acf7b0d8c3cef9070a7b5972a2ba4b"
+        },
+        {
+          "name": "target-evidence",
+          "value": "v1:current-changes:workspace:0de837f0f0effd2af321e5e65657876628de97f5:87748a90e2c2898737853156745b3452464e7b28:sha256:df7f0341831f7c4282e5b7d5843ad0f733c3253d6ec2b77d7dc6d996af711057",
+          "token": "--target-evidence=v1:current-changes:workspace:0de837f0f0effd2af321e5e65657876628de97f5:87748a90e2c2898737853156745b3452464e7b28:sha256:df7f0341831f7c4282e5b7d5843ad0f733c3253d6ec2b77d7dc6d996af711057"
+        },
+        {
+          "name": "projection",
+          "value": "workspace",
+          "token": "--projection=workspace"
+        },
+        {
+          "name": "lineage",
+          "value": "review-644ca171b5b73b87",
+          "token": "--lineage=review-644ca171b5b73b87"
+        },
+        {
+          "name": "agent",
+          "value": "codex",
+          "token": "--agent=codex"
+        },
+        {
+          "name": "consent",
+          "value": "relay",
+          "token": "--consent=relay"
+        },
+        {
+          "name": "untracked-scope",
+          "value": "select",
+          "token": "--untracked-scope=select"
+        },
+        {
+          "name": "expected-untracked-inventory",
+          "value": "sha256:8fda8a90951c1503557ab3035009d5b24315105cc62e38bd889b3e09f8b34b30",
+          "token": "--expected-untracked-inventory=sha256:8fda8a90951c1503557ab3035009d5b24315105cc62e38bd889b3e09f8b34b30"
+        },
+        {
+          "name": "intended-untracked",
+          "value": "docs/skill-audit/readme-state/RESULTADO.md",
+          "token": "--intended-untracked=docs/skill-audit/readme-state/RESULTADO.md"
+        },
+        {
+          "name": "intended-untracked",
+          "value": "docs/skill-audit/readme-state/check_negative.py",
+          "token": "--intended-untracked=docs/skill-audit/readme-state/check_negative.py"
+        },
+        {
+          "name": "intended-untracked",
+          "value": "docs/skill-audit/readme-state/check_readme.py",
+          "token": "--intended-untracked=docs/skill-audit/readme-state/check_readme.py"
+        },
+        {
+          "name": "intended-untracked",
+          "value": "docs/skill-audit/readme-state/green.stderr",
+          "token": "--intended-untracked=docs/skill-audit/readme-state/green.stderr"
+        },
+        {
+          "name": "intended-untracked",
+          "value": "docs/skill-audit/readme-state/green.stdout",
+          "token": "--intended-untracked=docs/skill-audit/readme-state/green.stdout"
+        },
+        {
+          "name": "intended-untracked",
+          "value": "docs/skill-audit/readme-state/negative.stderr",
+          "token": "--intended-untracked=docs/skill-audit/readme-state/negative.stderr"
+        },
+        {
+          "name": "intended-untracked",
+          "value": "docs/skill-audit/readme-state/negative.stdout",
+          "token": "--intended-untracked=docs/skill-audit/readme-state/negative.stdout"
+        },
+        {
+          "name": "intended-untracked",
+          "value": "docs/skill-audit/readme-state/red.stderr",
+          "token": "--intended-untracked=docs/skill-audit/readme-state/red.stderr"
+        },
+        {
+          "name": "intended-untracked",
+          "value": "docs/skill-audit/readme-state/red.stdout",
+          "token": "--intended-untracked=docs/skill-audit/readme-state/red.stdout"
+        },
+        {
+          "name": "intended-untracked",
+          "value": "odd/tasks/readme-state.md",
+          "token": "--intended-untracked=odd/tasks/readme-state.md"
+        }
+      ],
+      "preconditions": [
+        {
+          "name": "target_identity",
+          "value": "sha256:87e1e2df5a80c03d5695881325d72376a7acf7b0d8c3cef9070a7b5972a2ba4b"
+        }
+      ],
+      "binding": {
+        "lineage_id": "review-644ca171b5b73b87",
+        "target_identity": "sha256:87e1e2df5a80c03d5695881325d72376a7acf7b0d8c3cef9070a7b5972a2ba4b"
+      }
+    }
+  }
+}

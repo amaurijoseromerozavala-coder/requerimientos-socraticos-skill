@@ -1,0 +1,116 @@
+{
+  "schema": "gentle-ai.review-integration.start/v4",
+  "contract": "gentle-ai.review-integration/v2",
+  "operation": "review.start",
+  "action": "created",
+  "lenses_required": true,
+  "lineage_id": "review-644ca171b5b73b87",
+  "state": "reviewing",
+  "risk_level": "medium",
+  "selected_lenses": [
+    "review-reliability"
+  ],
+  "projection": "workspace",
+  "base_tree": "0de837f0f0effd2af321e5e65657876628de97f5",
+  "candidate_tree": "87748a90e2c2898737853156745b3452464e7b28",
+  "changed_files": 11,
+  "changed_lines": 107,
+  "correction_budget": 54,
+  "risk_reasons": [
+    {
+      "code": "executable_change",
+      "path": "docs/skill-audit/readme-state/RESULTADO.md"
+    }
+  ],
+  "artifact_subjects": [
+    {
+      "schema": "gentle-ai.review-artifact-subject/v2",
+      "subject_hash": "sha256:49eb3747ed23d462ca783ab0f048d03f6e4ec0216a6de3c499a7ac0302186b84",
+      "lineage_id": "review-644ca171b5b73b87",
+      "authority_revision": "sha256:e2a60c043197a9530d24e14b76701e9aa24dbbd6574a37d9ada75a7394b6c7fb",
+      "target_identity": "sha256:87e1e2df5a80c03d5695881325d72376a7acf7b0d8c3cef9070a7b5972a2ba4b",
+      "base_tree": "0de837f0f0effd2af321e5e65657876628de97f5",
+      "candidate_tree": "87748a90e2c2898737853156745b3452464e7b28",
+      "changed_path_manifest_sha256": "sha256:c9298eb5cabfeda13fbabc537b7a04980f846d75fbbc05aa32547963b25dec0d",
+      "lens": "review-reliability",
+      "selected_order": 0
+    }
+  ],
+  "changed_path_manifest": [
+    {"path":"README.md","status":"M","old_mode":"100644","new_mode":"100644","deleted":false,"type_changed":false,"mode_only":false,"intended_untracked":false},
+    {"path":"docs/skill-audit/readme-state/RESULTADO.md","status":"A","old_mode":"000000","new_mode":"100644","deleted":false,"type_changed":false,"mode_only":false,"intended_untracked":true},
+    {"path":"docs/skill-audit/readme-state/check_negative.py","status":"A","old_mode":"000000","new_mode":"100644","deleted":false,"type_changed":false,"mode_only":false,"intended_untracked":true},
+    {"path":"docs/skill-audit/readme-state/check_readme.py","status":"A","old_mode":"000000","new_mode":"100644","deleted":false,"type_changed":false,"mode_only":false,"intended_untracked":true},
+    {"path":"docs/skill-audit/readme-state/green.stderr","status":"A","old_mode":"000000","new_mode":"100644","deleted":false,"type_changed":false,"mode_only":false,"intended_untracked":true},
+    {"path":"docs/skill-audit/readme-state/green.stdout","status":"A","old_mode":"000000","new_mode":"100644","deleted":false,"type_changed":false,"mode_only":false,"intended_untracked":true},
+    {"path":"docs/skill-audit/readme-state/negative.stderr","status":"A","old_mode":"000000","new_mode":"100644","deleted":false,"type_changed":false,"mode_only":false,"intended_untracked":true},
+    {"path":"docs/skill-audit/readme-state/negative.stdout","status":"A","old_mode":"000000","new_mode":"100644","deleted":false,"type_changed":false,"mode_only":false,"intended_untracked":true},
+    {"path":"docs/skill-audit/readme-state/red.stderr","status":"A","old_mode":"000000","new_mode":"100644","deleted":false,"type_changed":false,"mode_only":false,"intended_untracked":true},
+    {"path":"docs/skill-audit/readme-state/red.stdout","status":"A","old_mode":"000000","new_mode":"100644","deleted":false,"type_changed":false,"mode_only":false,"intended_untracked":true},
+    {"path":"odd/tasks/readme-state.md","status":"A","old_mode":"000000","new_mode":"100644","deleted":false,"type_changed":false,"mode_only":false,"intended_untracked":true}
+  ],
+  "repository_context": {
+    "capability": "review.opaque_repository_context",
+    "handle": "rctx2_1acba0996eb7b883717099310f52968c80ba4aeae3bd30133e0485d698cea1a6",
+    "revision": "sha256:e2a60c043197a9530d24e14b76701e9aa24dbbd6574a37d9ada75a7394b6c7fb",
+    "target_identity": "sha256:87e1e2df5a80c03d5695881325d72376a7acf7b0d8c3cef9070a7b5972a2ba4b"
+  },
+  "next_transition": {
+    "kind": "execute",
+    "reason_code": "review_status_required",
+    "execute": {
+      "operation": "review.status",
+      "command": "gentle-ai review status --contract=gentle-ai.review-integration/v2 --next-transition=true --lineage=review-644ca171b5b73b87 --repository-context=rctx2_1acba0996eb7b883717099310f52968c80ba4aeae3bd30133e0485d698cea1a6 --agent=codex --projection=workspace",
+      "arguments": [
+        {
+          "name": "contract",
+          "value": "gentle-ai.review-integration/v2",
+          "token": "--contract=gentle-ai.review-integration/v2"
+        },
+        {
+          "name": "next-transition",
+          "value": "true",
+          "token": "--next-transition=true"
+        },
+        {
+          "name": "lineage",
+          "value": "review-644ca171b5b73b87",
+          "token": "--lineage=review-644ca171b5b73b87"
+        },
+        {
+          "name": "repository-context",
+          "value": "rctx2_1acba0996eb7b883717099310f52968c80ba4aeae3bd30133e0485d698cea1a6",
+          "token": "--repository-context=rctx2_1acba0996eb7b883717099310f52968c80ba4aeae3bd30133e0485d698cea1a6"
+        },
+        {
+          "name": "agent",
+          "value": "codex",
+          "token": "--agent=codex"
+        },
+        {
+          "name": "projection",
+          "value": "workspace",
+          "token": "--projection=workspace"
+        }
+      ],
+      "selector_arguments": [
+        {
+          "name": "projection",
+          "value": "workspace",
+          "token": "--projection=workspace"
+        }
+      ],
+      "preconditions": [
+        {
+          "name": "state",
+          "value": "reviewing"
+        }
+      ],
+      "binding": {
+        "lineage_id": "review-644ca171b5b73b87",
+        "revision": "sha256:e2a60c043197a9530d24e14b76701e9aa24dbbd6574a37d9ada75a7394b6c7fb",
+        "target_identity": "sha256:87e1e2df5a80c03d5695881325d72376a7acf7b0d8c3cef9070a7b5972a2ba4b"
+      }
+    }
+  }
+}

@@ -8,12 +8,15 @@ Proyecto integrado de requisitos trazables, revisión de calidad y diseño de un
 |---|---|
 | Requerimientos Socráticos | Skill 2.4.8: activación portable, alcance de disco y clon verificado |
 | QA Inquisidor | Skill 0.1.3-alpha y comprobador documental |
-| Supervisor local ampliado | Diseño DRAFT; no implementado |
+| núcleo | Biblioteca local de procesos implementada; controla solo al hijo directo |
+| adaptador QA | API interna implementada; invoca el comprobador, clasifica salida y bloquea la instancia ante limpieza incierta |
+| reserva persistente | Registro cooperativo implementado hasta RESERVED; no está conectado al lanzamiento |
+| supervisor ampliado | Diseño DRAFT; no implementado como sistema completo: faltan transición ACTIVE/terminación, recuperación, admisión global e incorporación |
 | Integración | 23 decisiones, modelo booleano de 128 valoraciones y FSM parcial |
-| RDD del candidato integrado | R3-001 aprobado y reconocido; ver recibo de cierre |
+| RDD del diseño integrado | R3-001 documental aprobado y reconocido; los componentes ejecutables tienen recibos propios |
 | Calibración del hardware objetivo | No realizada |
 
-La revisión RDD inspeccionó 13 archivos; no certifica todo el repositorio ni ejecutó pruebas físicas. El diseño conserva brechas técnicas que bloquean READY. CI y producción permanecen diferidos.
+El RDD del diseño integrado inspeccionó 13 archivos; los RDD posteriores de cada unidad revisaron sus propios candidatos. Ninguno certifica todo el repositorio ni la ejecución física en el i3/WSL. Las brechas de integración bloquean READY; CI y producción permanecen diferidos.
 
 ## Por dónde comenzar
 
@@ -59,9 +62,11 @@ Se publican código propio, tests, documentos, evidencias, configuración de ré
 Primera biblioteca ejecutable en `supervisor/process_core.py`, separada de la
 evaluación QA. Controla un hijo directo Linux, captura acotada, límites virtuales,
 plazos y recolección. Una limpieza incierta bloquea esa instancia. No implementa
-todavía diario durable, coordinación entre instancias, cuotas globales, integración
-QA, incorporación ni recuperación tras reiniciar. El supervisor integrado sigue
-DRAFT; no es sandbox ni garantía de tiempo real.
+todavía coordinación entre instancias, cuotas globales, incorporación ni
+recuperación tras reiniciar. `supervisor/qa_adapter.py` aporta la invocación QA
+como API interna. `supervisor/journal.py` conserva una reserva RESERVED, sin estar
+conectado aún al lanzamiento ni poder confirmar terminación o recuperarse. El
+supervisor integrado sigue DRAFT; no es sandbox ni garantía de tiempo real.
 
 Pruebas locales acotadas: `python3 -B -m unittest discover -s supervisor/tests -v`.
 La suite combina procesos reales con una inyección explícita de fallo de espera;

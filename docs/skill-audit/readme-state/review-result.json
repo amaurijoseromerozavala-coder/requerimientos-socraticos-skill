@@ -1,0 +1,89 @@
+{
+  "schema": "gentle-ai.review-last-event-closure/v1",
+  "operation": "review/capture-result",
+  "lineage_id": "review-644ca171b5b73b87",
+  "state": "approved",
+  "action": "the approved review completed on the last admitted event and awaits its exact acknowledgement",
+  "advisory_findings": {
+    "statement": "This review is approved and its receipt stands. Every finding listed here is non-blocking: none opened a correction, none reopens this review, and no correction transition is offered for this candidate. Treat them as separate later work, never as a reason to re-run review on this candidate.",
+    "findings": [
+      {
+        "id": "R3-001",
+        "lens": "reliability",
+        "location": "docs/skill-audit/readme-state/check_readme.py:14-17",
+        "severity": "WARNING",
+        "disposition": "informational"
+      }
+    ]
+  },
+  "reviewer_results": [
+    {
+      "lens": "review-reliability",
+      "findings": [
+        {
+          "id": "R3-001",
+          "lens": "reliability",
+          "location": "docs/skill-audit/readme-state/check_readme.py:14-17",
+          "severity": "WARNING",
+          "claim": "The checker verifies component labels but leaves the required partial-implementation boundaries unproved. Changing the reservation description to claim launch integration or recovery would still print success, provided the labels and unrelated incomplete-supervisor wording remain. Assert the reservation and integration limitations in their respective descriptions and add a negative control that contradicts one of those limitations.",
+          "proof_refs": [
+            "docs/skill-audit/readme-state/check_readme.py:14-18 checks labels, one stale phrase, and a global incompleteness substring.",
+            "docs/skill-audit/readme-state/check_negative.py:16-21 tests only removal of the adapter label.",
+            "odd/tasks/readme-state.md:6-8 explicitly requires distinguishing partial components without proclaiming complete integration or recovery."
+          ],
+          "evidence_class": "deterministic",
+          "causal_disposition": "introduced"
+        }
+      ],
+      "evidence": [
+        "Inspected all 11 supplied patches without reading external files or running commands.",
+        "README.md distinguishes the implemented components from the incomplete integrated supervisor and explicitly limits the reservation to RESERVED without launch integration.",
+        "docs/skill-audit/readme-state/green.stdout records checker success; docs/skill-audit/readme-state/negative.stderr and docs/skill-audit/readme-state/negative.stdout record rejection of a missing adapter label. These supplied transcripts do not establish coverage of incorrect component-state descriptions."
+      ],
+      "result_hash": "sha256:918c43e0541b42d2ca68021788df508cb882c1939ec7a122483630c78c9d0745"
+    }
+  ],
+  "acknowledgement": {
+    "operation": "review.acknowledge-approved",
+    "command": "gentle-ai review acknowledge-approved --cwd=/workspace/publicacion-proyecto-integrado --lineage=review-644ca171b5b73b87 --target=sha256:87e1e2df5a80c03d5695881325d72376a7acf7b0d8c3cef9070a7b5972a2ba4b --expected-revision=sha256:4246b6e42a354aa1e2d382a3ded018e3607c927c3c3ebbbf1272132505b1ea9f --token=[REDACTED]",
+    "arguments": [
+      {
+        "name": "cwd",
+        "value": "/workspace/publicacion-proyecto-integrado",
+        "token": "--cwd=/workspace/publicacion-proyecto-integrado"
+      },
+      {
+        "name": "lineage",
+        "value": "review-644ca171b5b73b87",
+        "token": "--lineage=review-644ca171b5b73b87"
+      },
+      {
+        "name": "target",
+        "value": "sha256:87e1e2df5a80c03d5695881325d72376a7acf7b0d8c3cef9070a7b5972a2ba4b",
+        "token": "--target=sha256:87e1e2df5a80c03d5695881325d72376a7acf7b0d8c3cef9070a7b5972a2ba4b"
+      },
+      {
+        "name": "expected-revision",
+        "value": "sha256:4246b6e42a354aa1e2d382a3ded018e3607c927c3c3ebbbf1272132505b1ea9f",
+        "token": "--expected-revision=sha256:4246b6e42a354aa1e2d382a3ded018e3607c927c3c3ebbbf1272132505b1ea9f"
+      },
+      {
+        "name": "token",
+        "value": "[REDACTED]",
+        "token": "--token=[REDACTED]"
+      }
+    ],
+    "preconditions": [
+      {
+        "name": "state",
+        "value": "approved"
+      }
+    ],
+    "binding": {
+      "lineage_id": "review-644ca171b5b73b87",
+      "revision": "sha256:4246b6e42a354aa1e2d382a3ded018e3607c927c3c3ebbbf1272132505b1ea9f",
+      "target_identity": "sha256:87e1e2df5a80c03d5695881325d72376a7acf7b0d8c3cef9070a7b5972a2ba4b"
+    }
+  },
+  "store_revision": "sha256:4246b6e42a354aa1e2d382a3ded018e3607c927c3c3ebbbf1272132505b1ea9f"
+}
