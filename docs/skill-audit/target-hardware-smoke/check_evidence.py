@@ -4,6 +4,13 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[3]
 EVIDENCE = Path(__file__).with_name('observation.json')
+LIMITATIONS = [
+    'The structured report was supplied by the owner; raw process logs were not provided.',
+    'One bounded run does not establish behavior under memory, CPU or I/O contention.',
+    'RSS belongs to the measured command and is not a global host-memory guarantee.',
+    'No cause is assigned to pre/post changes in Windows free memory or PSI I/O.',
+    'The run does not authorize CI, deployment, production or hardware stress.',
+]
 
 
 def _pairs(items):
@@ -37,6 +44,9 @@ def verify(data, readme):
     assert 0 < run['peak_rss_kib'] < 524288
     assert data['claims'] == {'production_ready': False, 'stress_calibrated': False,
                               'scope': 'ONE_BOUNDED_RUN'}
+    # This fixed report uses a closed vocabulary. A changed or additional
+    # causal statement needs a new reviewed candidate, not a passing linter.
+    assert data['limitations'] == LIMITATIONS
     assert 'USER_REPORTED' in readme and '62 pruebas' in readme
     assert 'READY para producción' not in readme
 

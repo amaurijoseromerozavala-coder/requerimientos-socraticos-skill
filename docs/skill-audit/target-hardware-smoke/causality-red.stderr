@@ -1,0 +1,4 @@
+Traceback (most recent call last):
+  File "/workspace/target-causality-unit/docs/skill-audit/target-hardware-smoke/negative_causality.py", line 22, in <module>
+    raise AssertionError('CAUSAL_ATTRIBUTION_ACCEPTED_UNEXPECTED')
+AssertionError: CAUSAL_ATTRIBUTION_ACCEPTED_UNEXPECTED
