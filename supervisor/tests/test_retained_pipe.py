@@ -24,7 +24,8 @@ class RetainedPipeTests(unittest.TestCase):
     def test_false_complete_mutation_is_rejected(self):
         with tempfile.TemporaryDirectory(prefix='retained-pipe-mutant-') as directory:
             root = Path(directory)
-            for rel in (SCENARIO, Path('supervisor/process_core.py'), Path('supervisor/_child_entry.py')):
+            for rel in (SCENARIO, Path('supervisor/process_core.py'),
+                        Path('supervisor/journal.py'), Path('supervisor/_child_entry.py')):
                 target = root/rel
                 target.parent.mkdir(parents=True, exist_ok=True)
                 shutil.copyfile(ROOT/rel, target)

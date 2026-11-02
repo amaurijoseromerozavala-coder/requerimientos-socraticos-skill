@@ -1,0 +1,16 @@
+test_active_persistence_failure_cleans_child_and_keeps_reservation (test_journal_process_link.JournalProcessLinkTests.test_active_persistence_failure_cleans_child_and_keeps_reservation) ... ok
+test_half_configured_journal_is_rejected (test_journal_process_link.JournalProcessLinkTests.test_half_configured_journal_is_rejected) ... ok
+test_identity_failure_after_spawn_retains_reserved (test_journal_process_link.JournalProcessLinkTests.test_identity_failure_after_spawn_retains_reserved) ... ok
+test_launch_failure_after_reservation_remains_blocked (test_journal_process_link.JournalProcessLinkTests.test_launch_failure_after_reservation_remains_blocked) ... ok
+test_owner_exit_after_reserve_before_spawn_preserves_block (test_journal_process_link.JournalProcessLinkTests.test_owner_exit_after_reserve_before_spawn_preserves_block) ... ok
+test_readme_keeps_link_and_reconciliation_boundary_explicit (test_journal_process_link.JournalProcessLinkTests.test_readme_keeps_link_and_reconciliation_boundary_explicit) ... ok
+test_reserve_precedes_launch_and_terminal_record_blocks_reentry (test_journal_process_link.JournalProcessLinkTests.test_reserve_precedes_launch_and_terminal_record_blocks_reentry) ... ok
+test_stop_persistence_failure_still_reaps_and_blocks (test_journal_process_link.JournalProcessLinkTests.test_stop_persistence_failure_still_reaps_and_blocks) ... ok
+test_stop_recorded_before_signal_and_termination_confirmed (test_journal_process_link.JournalProcessLinkTests.test_stop_recorded_before_signal_and_termination_confirmed) ... ok
+test_terminal_transition_requires_matching_active_identity (test_journal_process_link.JournalProcessLinkTests.test_terminal_transition_requires_matching_active_identity) ... ok
+test_unavailable_journal_rejects_before_launch (test_journal_process_link.JournalProcessLinkTests.test_unavailable_journal_rejects_before_launch) ... ok
+
+----------------------------------------------------------------------
+Ran 11 tests in 0.698s
+
+OK

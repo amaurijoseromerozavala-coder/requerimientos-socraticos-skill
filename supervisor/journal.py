@@ -56,7 +56,7 @@ def _validate(doc):
     if doc['state'] == 'RESERVED':
         _identity(doc['identity'])
         return doc
-    if doc['state'] in ('ACTIVE', 'STOPPING'):
+    if doc['state'] in ('ACTIVE', 'STOPPING', 'CONFIRMED_TERMINATED'):
         identity = doc['identity']
         if not isinstance(identity, dict) or set(identity) != IDENTITY_FIELDS | {'pid', 'process_start_identity'}:
             raise JournalBlocked('INCOMPLETE_PROCESS_IDENTITY')
@@ -196,6 +196,22 @@ class Journal:
             if state['state'] != 'ACTIVE':
                 raise JournalBlocked('STOPPING_REQUIRES_ACTIVE')
             self._persist('STOPPING', state['identity'])
+        finally:
+            self._operation.release()
+
+    def record_terminated(self, pid, process_start_identity):
+        """Persist a trusted caller's exact-child termination observation."""
+        if not self._operation.acquire(blocking=False):
+            raise JournalBlocked('RESERVATION_BUSY')
+        try:
+            state = self.inspect()
+            if state['state'] not in ('ACTIVE', 'STOPPING'):
+                raise JournalBlocked('TERMINATION_REQUIRES_ACTIVE_PROCESS')
+            identity = state['identity']
+            if (type(pid) is not int or pid != identity['pid']
+                    or process_start_identity != identity['process_start_identity']):
+                raise JournalBlocked('PROCESS_IDENTITY_MISMATCH')
+            self._persist('CONFIRMED_TERMINATED', identity)
         finally:
             self._operation.release()
 

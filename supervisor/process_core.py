@@ -1,8 +1,9 @@
 """Linux direct-child lifecycle primitive, not the integrated QA supervisor.
 
 Trusted callers supply the fixed command, never QA input. The instance latches
-uncertain cleanup. No durable state, sandbox, descendant containment, QA semantics,
-result authorization or cross-instance admission is provided here.
+uncertain cleanup. An optional caller-owned journal records launch transitions,
+but does not reconcile or authorize a result. No sandbox, arbitrary-descendant
+containment, QA semantics, result authorization or global admission is provided.
 """
 from dataclasses import dataclass
 import math
@@ -15,6 +16,8 @@ import subprocess
 import sys
 import threading
 import time
+
+from supervisor.journal import Journal
 
 
 @dataclass(frozen=True)
@@ -38,7 +41,7 @@ class Limits:
 
 
 class ProcessSupervisor:
-    def __init__(self, command, limits=None):
+    def __init__(self, command, limits=None, *, journal=None, journal_identity=None):
         self.limits = limits or Limits()
         self.limits.validate()
         if (not isinstance(command, tuple) or not 1 <= len(command) <= 64
@@ -48,6 +51,13 @@ class ProcessSupervisor:
                 or not os.access(command[0], os.X_OK)):
             raise ValueError('TRUSTED_ABSOLUTE_EXECUTABLE_REQUIRED')
         self.command = command
+        if (journal is None) != (journal_identity is None):
+            raise ValueError('JOURNAL_AND_IDENTITY_REQUIRED_TOGETHER')
+        if journal is not None and (not isinstance(journal, Journal)
+                                    or not isinstance(journal_identity, dict)):
+            raise ValueError('TRUSTED_JOURNAL_REQUIRED')
+        self.journal = journal
+        self.journal_identity = dict(journal_identity) if journal is not None else None
         self._state = 'IDLE'
         self._owner = threading.Lock()
 
@@ -57,6 +67,16 @@ class ProcessSupervisor:
 
     def _wait(self, child, timeout):
         return child.wait(timeout=max(0, timeout))
+
+    def _read_start_identity(self, child):
+        """Read starttime while this exact child is still ours and unreaped."""
+        raw = Path(f'/proc/{child.pid}/stat').read_bytes()
+        if len(raw) > 4096 or not raw.startswith(str(child.pid).encode() + b' ('):
+            raise OSError('PROCESS_IDENTITY_UNAVAILABLE')
+        fields = raw.rpartition(b') ')[2].split()
+        if len(fields) < 20 or not fields[19].isdigit() or int(fields[19]) <= 0:
+            raise OSError('PROCESS_IDENTITY_UNAVAILABLE')
+        return fields[19].decode('ascii')
 
     def _signal_owned_group(self, child, requested_signal):
         """Signal only the live child's fresh session, never an inferred PGID."""
@@ -109,6 +129,9 @@ class ProcessSupervisor:
         error = None
         cleanup = 'NOT_STARTED'
         returncode = None
+        journal_active = False
+        journal_write_failed = False
+        start_identity = None
         started = time.monotonic()
 
         def drain_once(until, cleaning=False):
@@ -174,11 +197,17 @@ class ProcessSupervisor:
             cleanup = 'UNCONFIRMED'  # Until launch failure or reaping is established.
             deadline = started + self.limits.wall_seconds
             try:
+                if self.journal is not None:
+                    self.journal.reserve(self.journal_identity)
                 child = subprocess.Popen(
                     [sys.executable, '-I', '-B', str(Path(__file__).with_name('_child_entry.py')),
                      str(os.getpid()), str(memory), str(math.ceil(self.limits.wall_seconds + self.limits.grace_seconds + self.limits.cleanup_seconds)),
                      *self.command], stdin=subprocess.DEVNULL, stdout=subprocess.PIPE,
                     stderr=subprocess.PIPE, shell=False, close_fds=True, start_new_session=True)
+                if self.journal is not None:
+                    start_identity = self._read_start_identity(child)
+                    self.journal.record_active(child.pid, start_identity)
+                    journal_active = True
                 selected = selectors.DefaultSelector()
                 for stream, name in [(child.stdout, 'stdout'), (child.stderr, 'stderr')]:
                     os.set_blocking(stream.fileno(), False)
@@ -197,13 +226,19 @@ class ProcessSupervisor:
             except Exception as exc:
                 reason = 'OBSERVATION_FAILURE' if child is not None else 'LAUNCH_FAILURE'
                 error = type(exc).__name__
-                if child is None and isinstance(exc, OSError):
+                if child is None and isinstance(exc, OSError) and self.journal is None:
                     cleanup = 'NOT_STARTED'
             finally:
                 if child is not None:
                     self._state = 'INFRA_LOCK'  # Latch before any interruptible cleanup.
                     try:
                         if child.poll() is None:
+                            if journal_active:
+                                try:
+                                    self.journal.record_stopping()
+                                except Exception as exc:
+                                    journal_write_failed = True
+                                    error = type(exc).__name__
                             signals.append('SIGTERM')
                             self._signal_owned_group(child, signal.SIGTERM)
                         try:
@@ -216,6 +251,11 @@ class ProcessSupervisor:
                         # remaining group makes result admission uncertain.
                         cleanup = ('UNCONFIRMED' if self._group_still_exists(child)
                                    else 'CONFIRMED')
+                        if self.journal is not None:
+                            if cleanup == 'CONFIRMED' and journal_active and not journal_write_failed:
+                                self.journal.record_terminated(child.pid, start_identity)
+                            else:
+                                cleanup = 'UNCONFIRMED'
                     except BaseException as exc:
                         # Best effort stop request is not confirmation of reaping.
                         error = type(exc).__name__
@@ -234,8 +274,10 @@ class ProcessSupervisor:
                         for stream in (child.stdout, child.stderr):
                             if stream is not None:
                                 stream.close()
-                self._state = 'INFRA_LOCK' if cleanup == 'UNCONFIRMED' else 'IDLE'
+                self._state = ('INFRA_LOCK' if cleanup == 'UNCONFIRMED' or self.journal is not None
+                               else 'IDLE')
             status = ('INFRA_LOCK' if cleanup == 'UNCONFIRMED' else
+                      'JOURNAL_RECONCILIATION_REQUIRED' if self.journal is not None else
                       'LAUNCH_FAILED' if child is None else
                       'STOPPED' if reason else
                       'SIGNALED' if returncode is not None and returncode < 0 else 'EXITED')
@@ -247,6 +289,7 @@ class ProcessSupervisor:
                     'stdout': bytes(outputs['stdout']), 'stderr': bytes(outputs['stderr']),
                     'elapsed_seconds': time.monotonic() - started,
                     'requested_address_space_bytes': memory,
-                    'scope': 'DIRECT_CHILD_ONLY_NO_DURABLE_RECOVERY'}
+                    'scope': ('JOURNAL_LINK_NO_RECONCILIATION' if self.journal is not None
+                              else 'DIRECT_CHILD_ONLY_NO_DURABLE_RECOVERY')}
         finally:
             self._owner.release()

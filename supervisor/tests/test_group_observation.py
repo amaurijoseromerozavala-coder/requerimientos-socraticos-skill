@@ -47,7 +47,8 @@ class GroupObservationTests(unittest.TestCase):
     def test_readme_states_current_partial_journal_boundary(self):
         readme = (ROOT / 'README.md').read_text()
         self.assertIn('RESERVED→ACTIVE→STOPPING', readme)
-        self.assertIn('sin enlace al lanzamiento', readme)
+        self.assertIn('enlace optativo', readme)
+        self.assertIn('sin integración QA', readme)
 
 
 if __name__ == '__main__':

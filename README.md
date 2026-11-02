@@ -8,10 +8,10 @@ Proyecto integrado de requisitos trazables, revisión de calidad y diseño de un
 |---|---|
 | Requerimientos Socráticos | Skill 2.4.8: activación portable, alcance de disco y clon verificado |
 | QA Inquisidor | Skill 0.1.3-alpha y comprobador documental |
-| núcleo | Biblioteca local de procesos implementada; observa al hijo directo y su grupo local, sin contención universal de descendientes |
+| núcleo | Biblioteca local de procesos implementada; enlace optativo al journal para el lanzamiento, sin integración QA ni contención universal de descendientes |
 | adaptador QA | API interna implementada; invoca el comprobador, clasifica salida y bloquea la instancia ante limpieza incierta |
-| reserva persistente | Registro cooperativo con RESERVED→ACTIVE→STOPPING; sin enlace al lanzamiento ni confirmación de terminación |
-| supervisor ampliado | Diseño DRAFT; no implementado como sistema completo: faltan enlace del registro al proceso, terminación confirmada, recuperación, admisión global e incorporación |
+| reserva persistente | Registro cooperativo con RESERVED→ACTIVE→STOPPING→CONFIRMED_TERMINATED; requiere reconciliación antes de reutilizarlo |
+| supervisor ampliado | Diseño DRAFT; no implementado como sistema completo: faltan integración QA del enlace optativo, reconciliación, recuperación, admisión global e incorporación |
 | Integración | 23 decisiones, modelo booleano de 128 valoraciones y FSM parcial |
 | RDD del diseño integrado | R3-001 documental aprobado y reconocido; los componentes ejecutables tienen recibos propios |
 | Calibración del hardware objetivo | No realizada |
@@ -68,8 +68,12 @@ Esto no contiene procesos que abandonen ese grupo.
 Una limpieza incierta bloquea esa instancia. No implementa
 todavía coordinación entre instancias, cuotas globales, incorporación ni
 recuperación tras reiniciar. `supervisor/qa_adapter.py` aporta la invocación QA
-como API interna. `supervisor/journal.py` conserva RESERVED→ACTIVE→STOPPING, sin enlace al lanzamiento
-ni capacidad de confirmar terminación o recuperarse. El
+como API interna. El núcleo admite un enlace optativo al journal: persiste
+RESERVED antes de lanzar, ACTIVE con PID/starttime después, STOPPING antes de
+solicitar término y CONFIRMED_TERMINATED tras recolectar al hijo y observar
+que su grupo no conserva miembros activos. Una falla conserva el estado previo
+y bloquea nuevas ejecuciones. El estado terminal sigue sin reconciliación
+automática ni integración QA. El
 supervisor integrado sigue DRAFT; no es sandbox ni garantía de tiempo real.
 
 Pruebas locales acotadas: `python3 -B -m unittest discover -s supervisor/tests -v`.

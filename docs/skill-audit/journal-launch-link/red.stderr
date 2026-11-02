@@ -1,0 +1,67 @@
+test_identity_failure_after_spawn_retains_reserved (test_journal_process_link.JournalProcessLinkTests.test_identity_failure_after_spawn_retains_reserved) ... ERROR
+test_reserve_precedes_launch_and_terminal_record_blocks_reentry (test_journal_process_link.JournalProcessLinkTests.test_reserve_precedes_launch_and_terminal_record_blocks_reentry) ... ERROR
+test_stop_recorded_before_signal_and_termination_confirmed (test_journal_process_link.JournalProcessLinkTests.test_stop_recorded_before_signal_and_termination_confirmed) ... ERROR
+test_terminal_transition_requires_matching_active_identity (test_journal_process_link.JournalProcessLinkTests.test_terminal_transition_requires_matching_active_identity) ... ERROR
+test_unavailable_journal_rejects_before_launch (test_journal_process_link.JournalProcessLinkTests.test_unavailable_journal_rejects_before_launch) ... ERROR
+
+======================================================================
+ERROR: test_identity_failure_after_spawn_retains_reserved (test_journal_process_link.JournalProcessLinkTests.test_identity_failure_after_spawn_retains_reserved)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/supervisor-journal-link-unit/supervisor/tests/test_journal_process_link.py", line 75, in test_identity_failure_after_spawn_retains_reserved
+    supervisor = self.supervisor(journal, script='import time; time.sleep(1)')
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/supervisor-journal-link-unit/supervisor/tests/test_journal_process_link.py", line 32, in supervisor
+    return ProcessSupervisor(
+           ^^^^^^^^^^^^^^^^^^
+TypeError: ProcessSupervisor.__init__() got an unexpected keyword argument 'journal'
+
+======================================================================
+ERROR: test_reserve_precedes_launch_and_terminal_record_blocks_reentry (test_journal_process_link.JournalProcessLinkTests.test_reserve_precedes_launch_and_terminal_record_blocks_reentry)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/supervisor-journal-link-unit/supervisor/tests/test_journal_process_link.py", line 39, in test_reserve_precedes_launch_and_terminal_record_blocks_reentry
+    supervisor = self.supervisor(journal)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/supervisor-journal-link-unit/supervisor/tests/test_journal_process_link.py", line 32, in supervisor
+    return ProcessSupervisor(
+           ^^^^^^^^^^^^^^^^^^
+TypeError: ProcessSupervisor.__init__() got an unexpected keyword argument 'journal'
+
+======================================================================
+ERROR: test_stop_recorded_before_signal_and_termination_confirmed (test_journal_process_link.JournalProcessLinkTests.test_stop_recorded_before_signal_and_termination_confirmed)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/supervisor-journal-link-unit/supervisor/tests/test_journal_process_link.py", line 87, in test_stop_recorded_before_signal_and_termination_confirmed
+    supervisor = self.supervisor(journal, script='import time; time.sleep(2)',
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/supervisor-journal-link-unit/supervisor/tests/test_journal_process_link.py", line 32, in supervisor
+    return ProcessSupervisor(
+           ^^^^^^^^^^^^^^^^^^
+TypeError: ProcessSupervisor.__init__() got an unexpected keyword argument 'journal'
+
+======================================================================
+ERROR: test_terminal_transition_requires_matching_active_identity (test_journal_process_link.JournalProcessLinkTests.test_terminal_transition_requires_matching_active_identity)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/supervisor-journal-link-unit/supervisor/tests/test_journal_process_link.py", line 105, in test_terminal_transition_requires_matching_active_identity
+    journal.record_terminated(123, 'start-123')
+    ^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'Journal' object has no attribute 'record_terminated'
+
+======================================================================
+ERROR: test_unavailable_journal_rejects_before_launch (test_journal_process_link.JournalProcessLinkTests.test_unavailable_journal_rejects_before_launch)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/supervisor-journal-link-unit/supervisor/tests/test_journal_process_link.py", line 65, in test_unavailable_journal_rejects_before_launch
+    supervisor = self.supervisor(closed)
+                 ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/supervisor-journal-link-unit/supervisor/tests/test_journal_process_link.py", line 32, in supervisor
+    return ProcessSupervisor(
+           ^^^^^^^^^^^^^^^^^^
+TypeError: ProcessSupervisor.__init__() got an unexpected keyword argument 'journal'
+
+----------------------------------------------------------------------
+Ran 5 tests in 0.002s
+
+FAILED (errors=5)

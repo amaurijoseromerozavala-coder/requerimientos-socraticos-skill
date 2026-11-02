@@ -1,0 +1,7 @@
+# WU-SUP-JOURNAL-LINK-004 — candidato previo a RDD
+
+El núcleo de procesos admite un journal abierto e identidad de ejecución provistos por un llamador confiable. Reserva antes de `Popen`, registra PID y starttime desde `/proc` antes de recolectar al hijo, persiste STOPPING antes de solicitar término y CONFIRMED_TERMINATED solo tras `wait` y observación favorable del grupo. El estado terminal permanece no-IDLE y el núcleo devuelve `JOURNAL_RECONCILIATION_REQUIRED`; no otorga incorporación QA ni disponibilidad para otra ejecución.
+
+Se comprobaron el orden reserva→lanzamiento, salida normal, plazo con STOPPING, errores de lanzamiento y persistencia, ausencia de identidad, rechazo de identidad distinta y terminación abrupta del propietario tras RESERVED. RED inicial: API ausente; RED documental: README anterior desactualizado. GREEN focal: 11 pruebas. Regresión final del supervisor: 62 pruebas. Los ensayos son locales y acotados; no calibran el i3/WSL.
+
+El enlace es optativo y `QASupervisor` aún no lo usa. La identidad base de boot, namespace, manifiesto y política sigue siendo declaración del llamador; este módulo solo observa starttime del hijo. La confirmación depende de un llamador cooperante y de la observación local, no resuelve reconciliación, cuotas globales, recibos, arbitraje tras crash ni descendientes que salgan del grupo. CI y producción continúan bloqueados. RDD pendiente.
