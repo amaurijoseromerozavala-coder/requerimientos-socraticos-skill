@@ -1,0 +1,9 @@
+Traceback (most recent call last):
+  File "/workspace/target-smoke-unit/docs/skill-audit/target-hardware-smoke/check_evidence.py", line 55, in <module>
+    main()
+  File "/workspace/target-smoke-unit/docs/skill-audit/target-hardware-smoke/check_evidence.py", line 50, in main
+    verify(data, readme)
+  File "/workspace/target-smoke-unit/docs/skill-audit/target-hardware-smoke/check_evidence.py", line 40, in verify
+    assert 'USER_REPORTED' in readme and '62 pruebas' in readme
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError

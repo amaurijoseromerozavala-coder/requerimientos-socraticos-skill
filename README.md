@@ -14,9 +14,9 @@ Proyecto integrado de requisitos trazables, revisión de calidad y diseño de un
 | supervisor ampliado | Diseño DRAFT; no implementado como sistema completo: faltan integración QA del enlace optativo, reconciliación, recuperación, admisión global e incorporación |
 | Integración | 23 decisiones, modelo booleano de 128 valoraciones y FSM parcial |
 | RDD del diseño integrado | R3-001 documental aprobado y reconocido; los componentes ejecutables tienen recibos propios |
-| Calibración del hardware objetivo | No realizada |
+| Hardware objetivo | Una corrida acotada USER_REPORTED en i3/WSL: 62 pruebas OK sobre `6ca7fe4`; calibración bajo carga y producción pendientes |
 
-El RDD del diseño integrado inspeccionó 13 archivos; los RDD posteriores de cada unidad revisaron sus propios candidatos. Ninguno certifica todo el repositorio ni la ejecución física en el i3/WSL. Las brechas de integración bloquean READY; CI y producción permanecen diferidos.
+El RDD del diseño integrado inspeccionó 13 archivos; los RDD posteriores de cada unidad revisaron sus propios candidatos. Ninguno certifica todo el repositorio ni la ejecución física en el i3/WSL. El [ensayo acotado reportado por el propietario](docs/skill-audit/target-hardware-smoke/observation.json) registra una corrida de la suite, sin logs crudos ni reproducción independiente; no prueba comportamiento bajo saturación. Las brechas de integración bloquean READY; CI y producción permanecen diferidos.
 
 ## Por dónde comenzar
 
@@ -78,6 +78,7 @@ supervisor integrado sigue DRAFT; no es sandbox ni garantía de tiempo real.
 
 Pruebas locales acotadas: `python3 -B -m unittest discover -s supervisor/tests -v`.
 La suite combina procesos reales con una inyección explícita de fallo de espera;
-esta última no reproduce un estado D del kernel. No calibra el i3/WSL.
+esta última no reproduce un estado D del kernel. La corrida USER_REPORTED de
+62 pruebas en el i3/WSL no constituye calibración bajo carga ni autoriza producción.
 
 [Cierre RDD de R3-001](docs/skill-audit/integration-r3-001/CIERRE-RDD.md).

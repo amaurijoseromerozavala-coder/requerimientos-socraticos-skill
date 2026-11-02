@@ -1,0 +1,46 @@
+{
+  "schema": "target-hardware-smoke/v1",
+  "status": "OBSERVED_BOUNDED_SMOKE_USER_REPORTED",
+  "provenance": {
+    "class": "USER_REPORTED",
+    "raw_logs": "NOT_PROVIDED",
+    "independent_reproduction": "NOT_PERFORMED",
+    "observed_at_utc": "NOT_REPORTED"
+  },
+  "commit": "6ca7fe48ecd730cbe58e3872bdeff00c45631a61",
+  "preconditions": {
+    "windows_c_free_bytes": 15881228288,
+    "windows_free_memory_kib": 1459004,
+    "wsl_available_bytes": 5090951168,
+    "psi_io_full_avg10_percent": [0.01, 0.00]
+  },
+  "execution": {
+    "command": "python3 -B -m unittest discover -s supervisor/tests -q",
+    "virtual_memory_limit_kib": 524288,
+    "timeout_seconds": 90,
+    "exit_code": 0,
+    "wall_ms": 16343,
+    "unittest_elapsed_ms": 12515,
+    "tests": 62,
+    "result": "OK",
+    "peak_rss_kib": 31636
+  },
+  "postconditions": {
+    "windows_free_memory_kib": 1406060,
+    "psi_io_full_avg10_percent": 0.06,
+    "tracked_files_unchanged": true,
+    "preexisting_untracked_file": ".update.log"
+  },
+  "claims": {
+    "production_ready": false,
+    "stress_calibrated": false,
+    "scope": "ONE_BOUNDED_RUN"
+  },
+  "limitations": [
+    "The structured report was supplied by the owner; raw process logs were not provided.",
+    "One bounded run does not establish behavior under memory, CPU or I/O contention.",
+    "RSS belongs to the measured command and is not a global host-memory guarantee.",
+    "No cause is assigned to pre/post changes in Windows free memory or PSI I/O.",
+    "The run does not authorize CI, deployment, production or hardware stress."
+  ]
+}
