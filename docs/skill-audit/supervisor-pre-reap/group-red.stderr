@@ -1,0 +1,21 @@
+test_exited_leader_retains_group_identity_until_cleanup (supervisor.tests.test_group_observation.GroupObservationTests.test_exited_leader_retains_group_identity_until_cleanup) ... FAIL
+
+======================================================================
+FAIL: test_exited_leader_retains_group_identity_until_cleanup (supervisor.tests.test_group_observation.GroupObservationTests.test_exited_leader_retains_group_identity_until_cleanup)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/supervisor-pre-reap-unit/supervisor/tests/test_group_observation.py", line 42, in test_exited_leader_retains_group_identity_until_cleanup
+    self.assertEqual(result['signals_requested'], ['SIGTERM', 'SIGKILL'])
+AssertionError: Lists differ: [] != ['SIGTERM', 'SIGKILL']
+
+Second list contains 2 additional elements.
+First extra element 0:
+'SIGTERM'
+
+- []
++ ['SIGTERM', 'SIGKILL']
+
+----------------------------------------------------------------------
+Ran 1 test in 0.704s
+
+FAILED (failures=1)

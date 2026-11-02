@@ -1,0 +1,18 @@
+test_escalation_waits_for_group_observation_before_reaping (supervisor.tests.test_group_observation.GroupObservationTests.test_escalation_waits_for_group_observation_before_reaping) ... FAIL
+
+======================================================================
+FAIL: test_escalation_waits_for_group_observation_before_reaping (supervisor.tests.test_group_observation.GroupObservationTests.test_escalation_waits_for_group_observation_before_reaping)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/supervisor-pre-reap-unit/supervisor/tests/test_group_observation.py", line 51, in test_escalation_waits_for_group_observation_before_reaping
+    self.assertEqual(result['cleanup'], 'CONFIRMED')
+AssertionError: 'UNCONFIRMED' != 'CONFIRMED'
+- UNCONFIRMED
+? --
++ CONFIRMED
+
+
+----------------------------------------------------------------------
+Ran 1 test in 0.209s
+
+FAILED (failures=1)

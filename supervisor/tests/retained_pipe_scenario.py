@@ -19,6 +19,7 @@ def scenario():
     script = '''import os,time
 pid=os.fork()
 if pid==0:
+    os.setsid()  # Deliberately outside the direct child's group; fixture owns reaping.
     time.sleep(3)
     os._exit(0)
 os.write(1,(str(pid)+"\\n").encode())
@@ -36,10 +37,10 @@ os._exit(0)
             reaped.append(observed)
         assert observed == 0, 'HELPER_MUST_REMAIN_ALIVE_AT_RETURN'
         assert result['returncode'] == 0, 'DIRECT_CHILD_EXIT_REQUIRED'
-        assert result['cleanup'] == 'UNCONFIRMED', 'LIVING_GROUP_MUST_BLOCK'
-        assert result['status'] == 'INFRA_LOCK', 'LIVING_GROUP_MUST_NOT_ADMIT'
+        assert result['cleanup'] == 'CONFIRMED', 'OWNED_GROUP_TERMINATED'
+        assert result['status'] == 'STOPPED', 'RETAINED_PIPES_REACH_DEADLINE'
         assert result['capture_complete'] is False, 'CAPTURE_MUST_BE_INCOMPLETE'
-        assert result['signals_requested'] == [], 'REAPED_CHILD_MUST_NOT_BE_SIGNALED'
+        assert result['signals_requested'] == [], 'DETACHED_GROUP_MUST_NOT_BE_SIGNALED'
         assert result['elapsed_seconds'] < 2, 'FIXED_BUDGET_WITH_SCHEDULING_TOLERANCE'
         try:
             os.waitpid(result['pid'], os.WNOHANG)

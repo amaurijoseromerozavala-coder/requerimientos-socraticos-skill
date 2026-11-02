@@ -61,9 +61,12 @@ Se publican código propio, tests, documentos, evidencias, configuración de ré
 
 Primera biblioteca ejecutable en `supervisor/process_core.py`, separada de la
 evaluación QA. Controla un hijo directo Linux, captura acotada, límites virtuales,
-plazos y recolección. Mientras el hijo vive verifica su grupo antes de enviar
-señales de terminación; tras recolectarlo, un miembro no zombi del grupo bloquea
-la instancia sin enviarle señales. Una observación incompleta también bloquea.
+plazos y recolección. Conserva sin recolectar la identidad del hijo mientras
+observa su grupo; si quedan miembros activos,
+solicita terminación al grupo propio antes de recolectar
+al hijo y escala dentro de plazos acotados. Si hubo limpieza del grupo tras la
+salida del hijo, marca la tarea como detenida y no admite su resultado como una
+salida normal. Una observación o limpieza incierta bloquea la instancia.
 Esto no contiene procesos que abandonen ese grupo.
 Una limpieza incierta bloquea esa instancia. No implementa
 todavía coordinación entre instancias, cuotas globales, incorporación ni

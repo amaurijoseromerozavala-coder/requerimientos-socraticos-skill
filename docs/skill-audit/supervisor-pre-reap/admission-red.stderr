@@ -1,0 +1,17 @@
+test_exited_leader_with_detached_pipes_stops_owned_group (supervisor.tests.test_group_observation.GroupObservationTests.test_exited_leader_with_detached_pipes_stops_owned_group) ... FAIL
+
+======================================================================
+FAIL: test_exited_leader_with_detached_pipes_stops_owned_group (supervisor.tests.test_group_observation.GroupObservationTests.test_exited_leader_with_detached_pipes_stops_owned_group)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/supervisor-pre-reap-unit/supervisor/tests/test_group_observation.py", line 72, in test_exited_leader_with_detached_pipes_stops_owned_group
+    self.assertEqual(result['status'], 'STOPPED')
+AssertionError: 'EXITED' != 'STOPPED'
+- EXITED
++ STOPPED
+
+
+----------------------------------------------------------------------
+Ran 1 test in 0.026s
+
+FAILED (failures=1)

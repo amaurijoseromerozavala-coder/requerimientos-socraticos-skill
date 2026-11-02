@@ -79,10 +79,15 @@ class ProcessSupervisor:
         return fields[19].decode('ascii')
 
     def _signal_owned_group(self, child, requested_signal):
-        """Signal only the live child's fresh session, never an inferred PGID."""
+        """Signal the child's session while its PID remains owned and unreaped."""
         if os.getpgid(child.pid) != child.pid:
             raise OSError('CHILD_GROUP_IDENTITY_MISMATCH')
         os.killpg(child.pid, requested_signal)
+
+    def _child_exited_unreaped(self, child):
+        """Observe exit without releasing the PID that identifies its group."""
+        return os.waitid(os.P_PID, child.pid,
+                         os.WEXITED | os.WNOHANG | os.WNOWAIT) is not None
 
     def _group_still_exists(self, child):
         """Conservatively observe non-zombie members; never signal a reaped PGID."""
@@ -184,6 +189,17 @@ class ProcessSupervisor:
                 drain_once(until, cleaning=True)
                 if selected is None or not selected.get_map():
                     time.sleep(min(.005, max(0, until - time.monotonic())))
+
+        def wait_group_until(until):
+            """Keep the direct child unreaped until group termination is observed."""
+            while True:
+                if self._child_exited_unreaped(child) and not self._group_still_exists(child):
+                    return True
+                if time.monotonic() >= until:
+                    return False
+                drain_once(until, cleaning=True)
+                if selected is None or not selected.get_map():
+                    time.sleep(min(.005, max(0, until - time.monotonic())))
         try:
             if self._state == 'INFRA_LOCK':
                 return {'status': 'INFRA_LOCK', 'launched': False, 'cleanup': 'UNCONFIRMED'}
@@ -217,7 +233,7 @@ class ProcessSupervisor:
                     if remaining <= 0:
                         reason = 'WALL_DEADLINE'
                         break
-                    if not selected.get_map() and child.poll() is not None:
+                    if not selected.get_map() and self._child_exited_unreaped(child):
                         break
                     if drain_once(deadline):
                         reason = 'OUTPUT_LIMIT'
@@ -232,7 +248,12 @@ class ProcessSupervisor:
                 if child is not None:
                     self._state = 'INFRA_LOCK'  # Latch before any interruptible cleanup.
                     try:
-                        if child.poll() is None:
+                        # Observe and stop the owned group before wait() releases
+                        # the leader PID. A later killpg could address a reused ID.
+                        escalated = False
+                        if self._group_still_exists(child):
+                            if self._child_exited_unreaped(child) and reason is None:
+                                reason = 'GROUP_CLEANUP'
                             if journal_active:
                                 try:
                                     self.journal.record_stopping()
@@ -241,12 +262,14 @@ class ProcessSupervisor:
                                     error = type(exc).__name__
                             signals.append('SIGTERM')
                             self._signal_owned_group(child, signal.SIGTERM)
-                        try:
-                            returncode = wait_draining(time.monotonic() + self.limits.grace_seconds)
-                        except subprocess.TimeoutExpired:
-                            signals.append('SIGKILL')
-                            self._signal_owned_group(child, signal.SIGKILL)
-                            returncode = wait_draining(time.monotonic() + self.limits.cleanup_seconds)
+                            if not wait_group_until(time.monotonic() + self.limits.grace_seconds):
+                                signals.append('SIGKILL')
+                                self._signal_owned_group(child, signal.SIGKILL)
+                                escalated = True
+                        cleanup_deadline = time.monotonic() + self.limits.cleanup_seconds
+                        if escalated:
+                            wait_group_until(cleanup_deadline)
+                        returncode = wait_draining(cleanup_deadline)
                         # Reaping proves only the direct child's death. A
                         # remaining group makes result admission uncertain.
                         cleanup = ('UNCONFIRMED' if self._group_still_exists(child)

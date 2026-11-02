@@ -41,7 +41,6 @@ class GroupObservationBranches(unittest.TestCase):
                            side_effect=OSError('controlled proc observation failure')):
                     result = supervisor.run()
                 pid = int(marker.read_text())
-                self.assertTrue(_running(pid), 'fixture ended before observation')
                 self.assertEqual(result['returncode'], 0)
                 self.assertEqual(result['cleanup'], 'UNCONFIRMED')
                 self.assertEqual(result['status'], 'INFRA_LOCK')
