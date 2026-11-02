@@ -1,0 +1,7 @@
+GitHub Actions run 41477049313; commit 7807a30ed7d4bbc855c83645a5997f153c1f5681
+CI_ADMISSION_OBSERVATION {"cgroup_status":"OBSERVED_VISIBLE_SCOPE","memory_limit_states":["UNLIMITED_VISIBLE_SCOPE","UNLIMITED_VISIBLE_SCOPE","UNKNOWN"],"memory_status":"OBSERVED"}
+ci: Ran 7 tests OK
+supervisor: Ran 65 tests OK
+qa: Ran 62 tests OK
+requirements: FAILED exit=1; representative error RESOURCE_HEADROOM_UNKNOWN
+Source: https://github.com/amaurijoseromerozavala-coder/requerimientos-socraticos-skill/actions/runs/41477049313

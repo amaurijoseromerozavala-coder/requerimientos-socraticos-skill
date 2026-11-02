@@ -138,6 +138,36 @@ class EnvironmentTests(unittest.TestCase):
         self.assertEqual(observed['limit_states'][0]['memory'], 'FINITE')
         self.assertEqual(observed['memory_limits'][0]['limit_bytes'], 1073741824)
 
+    def test_proven_cgroup_v2_root_without_limit_file_is_unlimited(self):
+        spec = importlib.util.spec_from_file_location('probe_environment_real_root', SCRIPT)
+        module = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(module)
+        fake = {'/proc/self/cgroup': '0::/child.scope\n',
+                '/proc/self/mountinfo': '40 30 0:40 / /sys/fs/cgroup rw - cgroup2 cgroup rw\n',
+                '/sys/fs/cgroup/child.scope/memory.max': 'max',
+                '/sys/fs/cgroup/child.scope/memory.current': '1048576',
+                '/sys/fs/cgroup/child.scope/cpu.max': 'max 100000',
+                '/sys/fs/cgroup/cgroup.controllers': 'cpu memory io'}
+        with patch.object(module, 'read_small', side_effect=lambda p: fake.get(str(p))), \
+                patch.object(module.Path, 'is_dir', return_value=True), \
+                patch.object(module.Path, 'lstat', side_effect=FileNotFoundError):
+            observed = module.cgroup_observation()
+        self.assertEqual([row['memory'] for row in observed['limit_states']],
+                         ['UNLIMITED_VISIBLE_SCOPE', 'UNLIMITED_VISIBLE_SCOPE'])
+
+    def test_unproven_cgroup_root_without_limit_file_stays_unknown(self):
+        spec = importlib.util.spec_from_file_location('probe_environment_ambiguous_root', SCRIPT)
+        module = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(module)
+        fake = {'/proc/self/cgroup': '0::/\n',
+                '/proc/self/mountinfo': '40 30 0:40 /.. /sys/fs/cgroup rw - cgroup2 cgroup rw\n',
+                '/sys/fs/cgroup/cgroup.controllers': 'cpu memory io'}
+        with patch.object(module, 'read_small', side_effect=lambda p: fake.get(str(p))), \
+                patch.object(module.Path, 'is_dir', return_value=True), \
+                patch.object(module.Path, 'lstat', side_effect=FileNotFoundError):
+            observed = module.cgroup_observation()
+        self.assertEqual(observed['limit_states'][0]['memory'], 'UNKNOWN')
+
     def test_launcher_rejects_missing_explicit_interpreter(self):
         launcher = SCRIPT.parents[3] / 'bin/gentle-ai'
         env = dict(os.environ, REQUIREMENTS_PYTHON='/definitely-missing-requirements-interpreter')

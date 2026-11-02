@@ -81,6 +81,16 @@ def cgroup_observation():
     current = root / visible_relative
     if not current.is_dir():
         return unknown
+
+    def absent(path):
+        try:
+            path.lstat()
+        except FileNotFoundError:
+            return True
+        except OSError:
+            return False
+        return False
+
     memory = []; cpu = []; states = []; observed = False
     for _ in range(65):
         limit = read_small(current / 'memory.max')
@@ -96,6 +106,11 @@ def cgroup_observation():
                     state['memory'] = 'FINITE' if int(limit) >= 0 else 'MALFORMED'
                 except ValueError:
                     state['memory'] = 'MALFORMED'
+        elif (current == root and len(mount_roots) == 1 and mounted_from == Path('/')
+              and 'memory' in (read_small(root / 'cgroup.controllers') or '').split()
+              and all(absent(root / name) for name in ('memory.max', 'cgroup.type', 'cgroup.events'))):
+            # The proven cgroup-v2 root has no resource-control interface files.
+            state['memory'] = 'UNLIMITED_VISIBLE_SCOPE'
         if quota is not None:
             parts = quota.split()
             if len(parts) == 2:
