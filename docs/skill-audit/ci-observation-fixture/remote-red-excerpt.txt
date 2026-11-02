@@ -1,0 +1,4 @@
+quality	Check RDD record and local suites	2026-11-02T05:50:29.9359674Z FAIL: test_proc_read_error_latches_infra_lock (test_group_observation_branches.GroupObservationBranches.test_proc_read_error_latches_infra_lock)
+quality	Check RDD record and local suites	2026-11-02T05:50:29.9369636Z AssertionError: 'CONFIRMED' != 'UNCONFIRMED'
+quality	Check RDD record and local suites	2026-11-02T05:50:29.9374480Z Ran 64 tests in 12.764s
+quality	Check RDD record and local suites	2026-11-02T05:50:29.9374752Z FAILED (failures=1)

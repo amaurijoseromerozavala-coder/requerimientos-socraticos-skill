@@ -1,11 +1,8 @@
 """Focused checks for the R3-001 process-group observation branches."""
 from contextlib import nullcontext
-import os
 from pathlib import Path
-import signal
 import subprocess
 import sys
-import tempfile
 from types import SimpleNamespace
 import unittest
 from unittest.mock import patch
@@ -15,39 +12,31 @@ sys.path.insert(0, str(ROOT))
 from supervisor.process_core import ProcessSupervisor, Limits
 
 
-def _running(pid):
-    try:
-        return Path(f'/proc/{pid}/stat').read_text().split(') ', 1)[1][0] != 'Z'
-    except FileNotFoundError:
-        return False
-
-
 class GroupObservationBranches(unittest.TestCase):
-    def test_proc_read_error_latches_infra_lock(self):
-        with tempfile.TemporaryDirectory(prefix='group-observation-error-') as directory:
-            marker = Path(directory) / 'descendant.pid'
-            parent = (
-                'import subprocess,sys; '
-                'p=subprocess.Popen([sys.executable,"-B","-c","import time; time.sleep(3)"],'
-                'stdin=subprocess.DEVNULL,stdout=subprocess.DEVNULL,stderr=subprocess.DEVNULL); '
-                f'open({str(marker)!r},"w").write(str(p.pid))'
-            )
-            supervisor = ProcessSupervisor(
-                (sys.executable, '-B', '-c', parent),
-                Limits(wall_seconds=1, grace_seconds=.1, cleanup_seconds=.2))
-            pid = None
-            try:
-                with patch('supervisor.process_core.Path.read_text',
-                           side_effect=OSError('controlled proc observation failure')):
-                    result = supervisor.run()
-                pid = int(marker.read_text())
-                self.assertEqual(result['returncode'], 0)
-                self.assertEqual(result['cleanup'], 'UNCONFIRMED')
-                self.assertEqual(result['status'], 'INFRA_LOCK')
-                self.assertEqual(supervisor.run()['status'], 'INFRA_LOCK')
-            finally:
-                if pid is not None and _running(pid):
-                    os.kill(pid, signal.SIGKILL)
+    def test_group_observation_error_latches_infra_lock(self):
+        supervisor = ProcessSupervisor(
+            (sys.executable, '-B', '-c', 'print("done")'),
+            Limits(wall_seconds=1, grace_seconds=.1, cleanup_seconds=.2))
+        with patch.object(supervisor, '_group_still_exists',
+                          side_effect=OSError('controlled group observation failure')) as probe:
+            result = supervisor.run()
+        self.assertTrue(probe.called)
+        self.assertTrue(result['launched'])
+        self.assertEqual(result['diagnostic'], 'OSError')
+        self.assertEqual(result['cleanup'], 'UNCONFIRMED')
+        self.assertEqual(result['status'], 'INFRA_LOCK')
+        self.assertEqual(supervisor.run()['status'], 'INFRA_LOCK')
+
+    def test_proc_read_error_is_uncertain_when_member_is_present(self):
+        child = SimpleNamespace(pid=12345)
+        entry = SimpleNamespace(name='54321', path='/proc/54321')
+        supervisor = ProcessSupervisor((sys.executable, '-B', '-c', 'pass'))
+        with (patch('supervisor.process_core.os.killpg', return_value=None),
+              patch('supervisor.process_core.os.scandir',
+                    return_value=nullcontext([entry])),
+              patch('supervisor.process_core.Path.read_text',
+                    side_effect=OSError('controlled proc read failure'))):
+            self.assertTrue(supervisor._group_still_exists(child))
 
     def test_zombie_only_observation_preserves_normal_exit(self):
         child = []
