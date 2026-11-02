@@ -10,8 +10,8 @@ Proyecto integrado de requisitos trazables, revisión de calidad y diseño de un
 | QA Inquisidor | Skill 0.1.3-alpha y comprobador documental |
 | núcleo | Biblioteca local de procesos implementada; enlace optativo al journal para el lanzamiento, sin integración QA ni contención universal de descendientes |
 | adaptador QA | API interna implementada; invoca el comprobador, clasifica salida y bloquea la instancia ante limpieza incierta |
-| reserva persistente | Registro cooperativo con RESERVED→ACTIVE→STOPPING→CONFIRMED_TERMINATED; requiere reconciliación antes de reutilizarlo |
-| supervisor ampliado | Diseño DRAFT; no implementado como sistema completo: faltan integración QA del enlace optativo, reconciliación, recuperación, admisión global e incorporación |
+| reserva persistente | Registro cooperativo con RESERVED→ACTIVE→STOPPING→CONFIRMED_TERMINATED→IDLE tras captura y reconciliación; los estados inciertos siguen bloqueados |
+| supervisor ampliado | Diseño DRAFT; no implementado como sistema completo: faltan integración QA del enlace optativo, recuperación tras interrupción, admisión global e incorporación |
 | Integración | 23 decisiones, modelo booleano de 128 valoraciones y FSM parcial |
 | RDD del diseño integrado | R3-001 documental aprobado y reconocido; los componentes ejecutables tienen recibos propios |
 | CI | GitHub Actions activado: suites acotadas y verificación de coherencia del cierre RDD; protección de rama aún no configurada |
@@ -77,8 +77,16 @@ como API interna. El núcleo admite un enlace optativo al journal: persiste
 RESERVED antes de lanzar, ACTIVE con PID/starttime después, STOPPING antes de
 solicitar término y CONFIRMED_TERMINATED tras recolectar al hijo y observar
 que su grupo no conserva miembros activos. Una falla conserva el estado previo
-y bloquea nuevas ejecuciones. El estado terminal sigue sin reconciliación
-automática ni integración QA. El
+y bloquea nuevas ejecuciones. Tras confirmar la terminación, el enlace conserva
+stdout, stderr y un recibo de proceso en archivos privados separados, comprueba
+sus tamaños y hashes y reconcilia el estado terminal a IDLE, también al reabrir
+un almacén con captura completa. Archivos parciales ajenos a la contabilidad
+bloquean nuevas reservas. La contabilidad
+reserva 335872 bytes por ejecución y limita el conjunto a 32 MiB; comprueba el
+espacio visible del volumen, sin garantizar una reserva física frente a otros
+procesos o la capacidad del volumen anfitrión WSL. Los artefactos no se borran
+automáticamente. No hay recuperación autónoma de reservas o procesos inciertos,
+ni integración QA del enlace optativo. El
 supervisor integrado sigue DRAFT; no es sandbox ni garantía de tiempo real.
 
 Pruebas locales acotadas: `python3 -B -m unittest discover -s supervisor/tests -v`.

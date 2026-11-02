@@ -1,8 +1,9 @@
 """Linux direct-child lifecycle primitive, not the integrated QA supervisor.
 
 Trusted callers supply the fixed command, never QA input. The instance latches
-uncertain cleanup. An optional caller-owned journal records launch transitions,
-but does not reconcile or authorize a result. No sandbox, arbitrary-descendant
+uncertain cleanup. An optional caller-owned journal records launch transitions
+and bounded captures before terminal reuse; it does not authorize a result.
+No sandbox, arbitrary-descendant
 containment, QA semantics, result authorization or global admission is provided.
 """
 from dataclasses import dataclass
@@ -210,6 +211,7 @@ class ProcessSupervisor:
             if inherited != resource.RLIM_INFINITY and memory > inherited:
                 return {'status': 'RESOURCE_ADMISSION_REJECTED', 'launched': False}
             self._state = 'ACTIVE'
+            journal_reconciled = False
             cleanup = 'UNCONFIRMED'  # Until launch failure or reaping is established.
             deadline = started + self.limits.wall_seconds
             try:
@@ -277,6 +279,11 @@ class ProcessSupervisor:
                         if self.journal is not None:
                             if cleanup == 'CONFIRMED' and journal_active and not journal_write_failed:
                                 self.journal.record_terminated(child.pid, start_identity)
+                                self.journal.store_capture(child.pid, start_identity, returncode,
+                                                           bytes(outputs['stdout']), bytes(outputs['stderr']),
+                                                           all(eof.values()))
+                                self.journal.reconcile_terminated()
+                                journal_reconciled = True
                             else:
                                 cleanup = 'UNCONFIRMED'
                     except BaseException as exc:
@@ -297,10 +304,10 @@ class ProcessSupervisor:
                         for stream in (child.stdout, child.stderr):
                             if stream is not None:
                                 stream.close()
-                self._state = ('INFRA_LOCK' if cleanup == 'UNCONFIRMED' or self.journal is not None
+                self._state = ('INFRA_LOCK' if cleanup == 'UNCONFIRMED' or
+                               (self.journal is not None and not journal_reconciled)
                                else 'IDLE')
             status = ('INFRA_LOCK' if cleanup == 'UNCONFIRMED' else
-                      'JOURNAL_RECONCILIATION_REQUIRED' if self.journal is not None else
                       'LAUNCH_FAILED' if child is None else
                       'STOPPED' if reason else
                       'SIGNALED' if returncode is not None and returncode < 0 else 'EXITED')
@@ -312,7 +319,7 @@ class ProcessSupervisor:
                     'stdout': bytes(outputs['stdout']), 'stderr': bytes(outputs['stderr']),
                     'elapsed_seconds': time.monotonic() - started,
                     'requested_address_space_bytes': memory,
-                    'scope': ('JOURNAL_LINK_NO_RECONCILIATION' if self.journal is not None
+                    'scope': ('JOURNAL_LINK_DURABLE_CAPTURE' if self.journal is not None
                               else 'DIRECT_CHILD_ONLY_NO_DURABLE_RECOVERY')}
         finally:
             self._owner.release()

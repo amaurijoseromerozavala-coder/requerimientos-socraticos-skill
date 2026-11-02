@@ -65,7 +65,8 @@ class JournalTests(unittest.TestCase):
             with patch('supervisor.journal.os.fsync',side_effect=sync):
                 with self.assertRaises(JournalBlocked): journal.reserve(IDENTITY)
         with Journal(self.root) as journal:
-            self.assertEqual(journal.inspect()['state'],'RESERVED')
+            self.assertEqual(journal.inspect()['state'],'IDLE')
+            self.assertEqual(journal.accounting()['runs'][0]['state'],'RESERVED')
             with self.assertRaises(JournalBlocked): journal.reserve(IDENTITY)
     def test_missing_lock_never_recreated(self):
         (self.root/'owner.lock').unlink()

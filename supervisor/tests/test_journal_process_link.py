@@ -35,7 +35,7 @@ class JournalProcessLinkTests(unittest.TestCase):
             Limits(**values),
             journal=journal, journal_identity=IDENTITY)
 
-    def test_reserve_precedes_launch_and_terminal_record_blocks_reentry(self):
+    def test_reserve_precedes_launch_and_duplicate_run_id_blocks_reentry(self):
         with Journal(self.root) as journal:
             supervisor = self.supervisor(journal)
             original = subprocess.Popen
@@ -53,11 +53,10 @@ class JournalProcessLinkTests(unittest.TestCase):
             state = journal.inspect()
             self.assertEqual(result['returncode'], 0)
             self.assertEqual(result['cleanup'], 'CONFIRMED')
-            self.assertEqual(result['status'], 'JOURNAL_RECONCILIATION_REQUIRED')
+            self.assertEqual(result['status'], 'EXITED')
             self.assertEqual(result['stdout'], b'ok\n')
-            self.assertEqual(state['state'], 'CONFIRMED_TERMINATED')
-            self.assertEqual(state['identity']['pid'], launches[0])
-            self.assertTrue(state['identity']['process_start_identity'].isdigit())
+            self.assertEqual(state['state'], 'IDLE')
+            self.assertEqual(journal.accounting()['runs'][0]['state'], 'STORED')
             self.assertEqual(second['status'], 'INFRA_LOCK')
             self.assertEqual(len(launches), 1)
 
@@ -156,8 +155,8 @@ with Journal(sys.argv[1]) as journal:
             with patch.object(supervisor, '_signal_owned_group', side_effect=signal_group):
                 result = supervisor.run()
             self.assertEqual(result['stop_reason'], 'WALL_DEADLINE')
-            self.assertEqual(result['status'], 'JOURNAL_RECONCILIATION_REQUIRED')
-            self.assertEqual(journal.inspect()['state'], 'CONFIRMED_TERMINATED')
+            self.assertEqual(result['status'], 'STOPPED')
+            self.assertEqual(journal.inspect()['state'], 'IDLE')
 
     def test_terminal_transition_requires_matching_active_identity(self):
         with Journal(self.root) as journal:
