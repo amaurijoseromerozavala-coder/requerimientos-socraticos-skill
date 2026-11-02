@@ -75,6 +75,69 @@ class EnvironmentTests(unittest.TestCase):
             self.assertEqual(observation['limit_states'][0]['cpu'], 'UNLIMITED_VISIBLE_SCOPE')
             self.assertEqual(observation['memory_limits'], [])
 
+    def test_cgroup_namespace_mount_root_maps_to_visible_directory(self):
+        spec = importlib.util.spec_from_file_location('probe_environment_mount_root', SCRIPT)
+        module = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(module)
+        fake = {
+            '/proc/self/cgroup': '0::/host.slice/runner.scope\n',
+            '/proc/self/mountinfo': '40 30 0:40 /host.slice/runner.scope /sys/fs/cgroup rw - cgroup2 cgroup rw\n',
+            '/sys/fs/cgroup/memory.max': '1073741824',
+            '/sys/fs/cgroup/memory.current': '1048576',
+            '/sys/fs/cgroup/cpu.max': 'max 100000',
+        }
+        with patch.object(module, 'read_small', side_effect=lambda p: fake.get(str(p))), \
+                patch.object(module.Path, 'is_dir', return_value=True):
+            observed = module.cgroup_observation()
+        self.assertEqual(observed['status'], 'OBSERVED_VISIBLE_SCOPE')
+        self.assertEqual(len(observed['limit_states']), 1)
+        self.assertEqual(observed['limit_states'][0]['memory'], 'FINITE')
+        self.assertEqual(observed['memory_limits'][0]['limit_bytes'], 1073741824)
+
+    def test_cgroup_outside_visible_mount_remains_unknown(self):
+        spec = importlib.util.spec_from_file_location('probe_environment_mount_outside', SCRIPT)
+        module = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(module)
+        fake = {'/proc/self/cgroup': '0::/another.slice/runner.scope\n',
+                '/proc/self/mountinfo': '40 30 0:40 /host.slice/runner.scope /sys/fs/cgroup rw - cgroup2 cgroup rw\n'}
+        with patch.object(module, 'read_small', side_effect=lambda p: fake.get(str(p))), \
+                patch.object(module.Path, 'is_dir', return_value=False):
+            self.assertEqual(module.cgroup_observation()['status'], 'UNKNOWN')
+
+    def test_namespace_root_with_host_side_mount_marker_uses_visible_root(self):
+        spec = importlib.util.spec_from_file_location('probe_environment_namespace_root', SCRIPT)
+        module = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(module)
+        fake = {'/proc/self/cgroup': '0::/\n',
+                '/proc/self/mountinfo': '40 30 0:40 /.. /sys/fs/cgroup rw - cgroup2 cgroup rw\n',
+                '/sys/fs/cgroup/memory.max': 'max',
+                '/sys/fs/cgroup/memory.current': '10',
+                '/sys/fs/cgroup/cpu.max': 'max 100000'}
+        with patch.object(module, 'read_small', side_effect=lambda p: fake.get(str(p))), \
+                patch.object(module.Path, 'is_dir', return_value=True):
+            observed = module.cgroup_observation()
+        self.assertEqual(observed['status'], 'OBSERVED_VISIBLE_SCOPE')
+        self.assertEqual(observed['limit_states'][0]['memory'], 'UNLIMITED_VISIBLE_SCOPE')
+
+    def test_namespace_child_with_host_side_mount_marker_uses_visible_child(self):
+        spec = importlib.util.spec_from_file_location('probe_environment_namespace_child', SCRIPT)
+        module = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(module)
+        fake = {'/proc/self/cgroup': '0::/nested.scope\n',
+                '/proc/self/mountinfo': '40 30 0:40 /.. /sys/fs/cgroup rw - cgroup2 cgroup rw\n',
+                '/sys/fs/cgroup/nested.scope/memory.max': '1073741824',
+                '/sys/fs/cgroup/nested.scope/memory.current': '1048576',
+                '/sys/fs/cgroup/nested.scope/cpu.max': 'max 100000',
+                '/sys/fs/cgroup/memory.max': 'max',
+                '/sys/fs/cgroup/memory.current': '1048576',
+                '/sys/fs/cgroup/cpu.max': 'max 100000'}
+        with patch.object(module, 'read_small', side_effect=lambda p: fake.get(str(p))), \
+                patch.object(module.Path, 'is_dir', return_value=True):
+            observed = module.cgroup_observation()
+        self.assertEqual(observed['status'], 'OBSERVED_VISIBLE_SCOPE')
+        self.assertEqual(observed['limit_states'][0]['memory'], 'FINITE')
+        self.assertEqual(observed['memory_limits'][0]['limit_bytes'], 1073741824)
+
     def test_launcher_rejects_missing_explicit_interpreter(self):
         launcher = SCRIPT.parents[3] / 'bin/gentle-ai'
         env = dict(os.environ, REQUIREMENTS_PYTHON='/definitely-missing-requirements-interpreter')

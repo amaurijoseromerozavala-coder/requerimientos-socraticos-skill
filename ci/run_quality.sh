@@ -6,6 +6,14 @@ ulimit -v 1048576
 export PYTHONDONTWRITEBYTECODE=1 PYTHONHASHSEED=0 TZ=UTC
 
 python3 -B ci/check_rdd_record.py
+# This records the runner's visible admission facts if a later suite closes.
+# It does not override the skill's fail-closed resource policy.
+PYTHONPATH=skills/requerimientos-socraticos/scripts python3 -B -c '
+import json, probe_environment
+m = probe_environment.memory_observation()
+c = probe_environment.cgroup_observation()
+print("CI_ADMISSION_OBSERVATION " + json.dumps({"memory_status": m["status"], "cgroup_status": c["status"], "memory_limit_states": [row["memory"] for row in c["limit_states"]]}, sort_keys=True))
+'
 ci_scratch_dir=$(mktemp -d -t ci-quality-XXXXXXXX)
 trap 'rm -rf -- "$ci_scratch_dir"' EXIT
 

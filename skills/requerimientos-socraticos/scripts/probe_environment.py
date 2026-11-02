@@ -12,10 +12,11 @@ import time
 
 
 def read_small(path):
+    bound = 131072 if str(path) == '/proc/self/mountinfo' else 16384
     try:
         with Path(path).open('r', encoding='utf-8') as f:
-            value = f.read(16385)
-        return value if len(value) <= 16384 else None
+            value = f.read(bound + 1)
+        return value if len(value) <= bound else None
     except (OSError, UnicodeError):
         return None
 
@@ -48,11 +49,36 @@ def cgroup_observation():
                'limitation': 'No safe visible cgroup-v2 path; host limits not inferred.'}
     if len(candidates) != 1:
         return unknown
-    relative = Path(candidates[0].lstrip('/'))
-    if '..' in relative.parts or len(relative.parts) > 64:
+    group_path = Path(candidates[0])
+    if not group_path.is_absolute() or '..' in group_path.parts or len(group_path.parts) > 64:
         return unknown
     root = Path('/sys/fs/cgroup')
-    current = root / relative
+    mountinfo = read_small('/proc/self/mountinfo')
+    mount_roots = []
+    for line in (mountinfo or '').splitlines():
+        left, separator, right = line.partition(' - ')
+        fields = left.split()
+        if (separator and len(fields) >= 5 and fields[4] == str(root)
+                and right.split()[:1] == ['cgroup2']):
+            mount_roots.append(fields[3])
+    if mountinfo is not None and len(mount_roots) != 1:
+        return unknown
+    mounted_from = Path(mount_roots[0]) if mount_roots else Path('/')
+    if mounted_from == Path('/..'):
+        # Linux may report this host-side marker for a namespaced cgroup mount.
+        # Membership paths in that namespace, including child paths, are
+        # relative to the visible mount root.
+        visible_relative = group_path.relative_to('/')
+    elif group_path == Path('/'):
+        visible_relative = Path('.')
+    else:
+        if not mounted_from.is_absolute() or '..' in mounted_from.parts:
+            return unknown
+        try:
+            visible_relative = group_path.relative_to(mounted_from)
+        except ValueError:
+            return unknown
+    current = root / visible_relative
     if not current.is_dir():
         return unknown
     memory = []; cpu = []; states = []; observed = False

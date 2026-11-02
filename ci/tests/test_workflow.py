@@ -26,11 +26,14 @@ class WorkflowTests(unittest.TestCase):
         self.assertLessEqual(job['timeout-minutes'], 5)
         self.assertTrue(any(step.get('run') == 'bash ci/run_quality.sh'
                             for step in job['steps']))
+        self.assertIn('actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1', workflow_text)
+        self.assertIn('actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0', workflow_text)
         runner = RUNNER.read_text(encoding='utf-8')
         for suite in ('supervisor/tests', 'skills/qa-inquisidor/tests',
                       'skills/requerimientos-socraticos/tests'):
             self.assertIn(suite, runner)
         self.assertIn('ci/check_rdd_record.py', runner)
+        self.assertIn('CI_ADMISSION_OBSERVATION', runner)
 
     def test_public_status_matches_ci_activation(self):
         readme = README.read_text(encoding='utf-8')

@@ -17,6 +17,7 @@ class RunnerFailureTests(unittest.TestCase):
                 '#!/bin/sh\n'
                 'case "$*" in\n'
                 '  *check_rdd_record.py*) echo CONTROLLED_RECORD_OK; exit 0;;\n'
+                '  *probe_environment*) echo CONTROLLED_OBSERVATION; exit 0;;\n'
                 '  *unittest*) echo CONTROLLED_SUITE_FAILURE >&2; exit 7;;\n'
                 'esac\nexit 9\n', encoding='utf-8')
             fake_python.chmod(0o700)
