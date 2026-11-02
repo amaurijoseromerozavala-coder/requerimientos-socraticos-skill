@@ -1,0 +1,10 @@
+{
+  "schema": "ci-output-red/v1",
+  "command": "bash ci/run_quality.sh",
+  "exit_code": 0,
+  "stdout_bytes": 518537,
+  "budget_bytes": 16384,
+  "criterion": "stdout_bytes <= budget_bytes",
+  "result": "RED_OUTPUT_OVER_BUDGET",
+  "provenance": "LOCAL_MEASUREMENT_BEFORE_OUTPUT_FIX"
+}

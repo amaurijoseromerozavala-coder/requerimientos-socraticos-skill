@@ -14,15 +14,17 @@ Proyecto integrado de requisitos trazables, revisión de calidad y diseño de un
 | supervisor ampliado | Diseño DRAFT; no implementado como sistema completo: faltan integración QA del enlace optativo, reconciliación, recuperación, admisión global e incorporación |
 | Integración | 23 decisiones, modelo booleano de 128 valoraciones y FSM parcial |
 | RDD del diseño integrado | R3-001 documental aprobado y reconocido; los componentes ejecutables tienen recibos propios |
+| CI | GitHub Actions activado: suites acotadas y verificación de coherencia del cierre RDD; protección de rama aún no configurada |
 | Hardware objetivo | Una corrida acotada USER_REPORTED en i3/WSL: 62 pruebas OK sobre `6ca7fe4`; calibración bajo carga y producción pendientes |
 
-El RDD del diseño integrado inspeccionó 13 archivos; los RDD posteriores de cada unidad revisaron sus propios candidatos. Ninguno certifica todo el repositorio ni la ejecución física en el i3/WSL. El [ensayo acotado reportado por el propietario](docs/skill-audit/target-hardware-smoke/observation.json) registra una corrida de la suite, sin logs crudos ni reproducción independiente; no prueba comportamiento bajo saturación. Las brechas de integración bloquean READY; CI y producción permanecen diferidos.
+El RDD del diseño integrado inspeccionó 13 archivos; los RDD posteriores de cada unidad revisaron sus propios candidatos. Ninguno certifica todo el repositorio ni la ejecución física en el i3/WSL. El [ensayo acotado reportado por el propietario](docs/skill-audit/target-hardware-smoke/observation.json) registra una corrida de la suite, sin logs crudos ni reproducción independiente; no prueba comportamiento bajo saturación. Las brechas de integración bloquean READY. CI activado por solicitud del propietario; producción permanece diferida. El workflow no es todavía un control obligatorio de rama.
 
 ## Por dónde comenzar
 
 - [JSON completo para revisión independiente](exports/proyecto-requerimientos-qa-supervisor-completo.json): 893 archivos incluidos como contenido, índice de lectura y hashes. Es una instantánea anterior a esta preparación de publicación; los nuevos archivos de portada y licencia se entregan en el repositorio.
 - [Corrección documental R3-001](docs/skill-audit/integration-r3-001/RESULTADO.md).
 - [Informe RDD del candidato anterior](docs/skill-audit/integration-candidate-01/RESULTADO.md).
+- [Cierre posterior del RDD de WU-SUP-PRE-REAP-007](docs/skill-audit/supervisor-pre-reap/RDD-CIERRE.md): el `RDD: pendiente` del expediente previo describe el estado anterior a la revisión.
 - [Diseño integrado](docs/requirements/integracion-requisitos-qa-supervisor/candidato-v0.1/README.md).
 - [Decisiones confirmadas](docs/requirements/integracion-requisitos-qa-supervisor/decisiones-confirmadas.json).
 - [Catálogo y matriz de integración](docs/requirements/integracion-requisitos-qa-supervisor/matriz-integracion.json).
@@ -53,7 +55,7 @@ Los documentos históricos pueden incluir rutas locales y estados anteriores: co
 
 ## Alcance de esta publicación
 
-Se publican código propio, tests, documentos, evidencias, configuración de réplica y exportación. Se excluyen credenciales, estados privados de herramientas, respaldos del entorno, cachés, descargas y ejecutables externos. No se incorporan workflows de GitHub Actions.
+Se publican código propio, tests, documentos, evidencias, configuración de réplica, exportación y un workflow de GitHub Actions con permisos de solo lectura. Se excluyen credenciales, estados privados de herramientas, respaldos del entorno, cachés, descargas y ejecutables externos. La protección obligatoria de la rama sigue pendiente.
 
 [Licencia del proyecto](LICENSE) y [avisos de terceros](THIRD_PARTY_NOTICES.md).
 

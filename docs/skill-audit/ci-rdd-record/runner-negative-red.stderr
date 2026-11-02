@@ -1,0 +1,12 @@
+======================================================================
+FAIL: test_suite_failure_is_bounded_and_nonzero (ci.tests.test_runner_failure.RunnerFailureTests.test_suite_failure_is_bounded_and_nonzero)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/ci-rdd-record-unit/ci/tests/test_runner_failure.py", line 27, in test_suite_failure_is_bounded_and_nonzero
+    self.assertEqual(result.returncode, 7)
+AssertionError: 0 != 7
+
+----------------------------------------------------------------------
+Ran 1 test in 0.015s
+
+FAILED (failures=1)

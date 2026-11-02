@@ -18,10 +18,10 @@ establecidos, no ejecutarla: registrar el bloqueo y buscar una alternativa confo
 No intentar eludir restricciones técnicas, cuotas ni controles de las plataformas.
 La autorización del usuario no convierte una infracción en una acción permitida.
 
-CI permanece diferido y producción bloqueada. El humano reanudó la construcción
+CI activado por solicitud del propietario el 2026-11-02; producción bloqueada. El humano reanudó la construcción
 local de QA Inquisidor el 2026-10-29; análisis por defecto y ensayos de aplicación
-solo con autorización específica suficiente. Esta autorización no habilita CI,
-producción ni pruebas físicas del equipo inaccesible.
+solo con autorización específica suficiente. Aquella autorización de ensayos no
+habilitaba producción ni pruebas físicas del equipo inaccesible.
 <!-- /project:mandatory-platform-and-hardware-policy -->
 
 <!-- CODEGRAPH_START -->
@@ -77,8 +77,9 @@ exija el runtime de revisión se solicitan para el candidato correspondiente.
 - **WU-BACKUP:** después del cierre RDD, verificar identidad de los archivos,
   crear commit de la unidad y sus evidencias asociadas y hacer push normal al
   repositorio autorizado. Verificar el SHA remoto y entregar enlace. Si falla el
-  push, declarar respaldo pendiente. No force-push, CI, despliegue ni cambios de
-  permisos por inferencia; preservar historial y excluir secretos/estado privado.
+push, declarar respaldo pendiente. No force-push, despliegue ni cambios de
+permisos por inferencia; la activación de CI tiene autorización propia.
+Preservar historial y excluir secretos/estado privado.
 - **WU-CANDIDATE-IDENTITY:** distinguir contenido revisado de recibos y logs que
   produce la revisión/publicación. Esos registros posteriores deben apuntar al
   candidato o commit exacto, no modificar sus archivos ni presentarse como
