@@ -36,10 +36,14 @@ borradores. Son componentes acotados: no verifican que una interpretación del
 texto libre sea fiel, no emiten `HUMAN_CONFIRMED` y no autorizan operaciones.
 
 Decisión RS3-D01: `production_ready` designa **elegibilidad para revisión
-documental**. El permiso de despliegue es un gate distinto. Siguen abiertas las
-condiciones obligatorias de esa elegibilidad (D02), el mecanismo de autoridad,
-la interfaz y el alcance de semánticas temporales. El paquete no se incorporó
-en bloque al PRD canónico ni está implementado en su totalidad.
+documental**. RS3-D02 exige todos los requisitos aplicables respaldados por
+evidencia actual y ninguna brecha crítica. `documentary_eligibility.py` comprueba
+esa regla sobre un inventario declarado y vincula la vigencia declarada al
+snapshot indicado; su `MODEL_ELIGIBLE` no autentica completitud, verdad de
+evidencias ni autoridad. El permiso de despliegue es un gate distinto. Siguen
+abiertos el mecanismo de autoridad, la interfaz y el alcance de semánticas
+temporales. El paquete no se incorporó en bloque al PRD canónico ni está
+implementado en su totalidad.
 
 El RDD del diseño integrado inspeccionó 13 archivos; los RDD posteriores de cada unidad revisaron sus propios candidatos. Ninguno certifica todo el repositorio ni la ejecución física en el i3/WSL. El [ensayo acotado reportado por el propietario](docs/skill-audit/target-hardware-smoke/observation.json) registra una corrida de la suite, sin logs crudos ni reproducción independiente; no prueba comportamiento bajo saturación. Las brechas de integración bloquean READY. CI activado por solicitud del propietario; producción permanece diferida. El workflow no es todavía un control obligatorio de rama.
 

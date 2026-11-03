@@ -178,7 +178,12 @@ existencial; un testigo SAT se reevalúa dentro del presupuesto antes de
 presentarlo y se etiqueta como completado por el modelo, no observado.
 
 El maintainer fijó RS3-D01: `production_ready` significa elegibilidad para
-revisión documental; nunca permiso de despliegue. D02 y las decisiones de
-autenticación/UX siguen pendientes. Ningún helper RS3 crea recibos humanos,
-autoriza ejecución o sustituye la entrevista de esta skill. La versión base
-2.4.8 sigue vigente; RS3 aún no es una versión completa de producto.
+revisión documental; nunca permiso de despliegue. RS3-D02 exige todos los
+requisitos aplicables con evidencia actual y ninguna brecha crítica. El helper
+`documentary_eligibility.py` evalúa esas declaraciones de manera acotada:
+`MODEL_ELIGIBLE` solo describe el inventario suministrado, sin autenticar su
+completitud, la evidencia ni al actor. UNKNOWN, inventario incompleto y conjunto
+aplicable vacío no se promueven. Las decisiones de autenticación/UX siguen
+pendientes. Ningún helper RS3 crea recibos humanos, autoriza ejecución o
+sustituye la entrevista de esta skill. La versión base 2.4.8 sigue vigente;
+RS3 aún no es una versión completa de producto.
