@@ -1,0 +1,27 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:rs3:candidate-ir:0.1-proposed",
+  "title": "RS3 proposed CandidateIR; no human authority",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "id", "source_ref", "source_text", "status", "kind", "modality", "subject", "condition", "direction", "assumptions", "exceptions", "human_confirmation"],
+  "properties": {
+    "schema_version": {"const": "0.1-proposed"},
+    "id": {"type": "string", "pattern": "^RS3-[A-Z0-9-]{1,61}$"},
+    "source_ref": {"type": "string", "minLength": 1, "maxLength": 256},
+    "source_text": {"type": "string", "minLength": 1, "maxLength": 4096},
+    "status": {"enum": ["PROPOSED", "NEEDS_CLARIFICATION"]},
+    "kind": {"enum": ["NECESSARY_CONDITION", "SUFFICIENT_CONDITION", "EQUIVALENCE", "PROHIBITION", "PERMISSION", "OBLIGATION", "EXCEPTION", "TEMPORAL_REQUIREMENT", "MEASURED_LIMIT"]},
+    "modality": {"enum": ["MUST", "MUST_NOT", "MAY", "SHOULD", "UNDETERMINED"]},
+    "subject": {"$ref": "#/$defs/name"},
+    "condition": {"$ref": "#/$defs/name"},
+    "direction": {"enum": ["SUBJECT_IMPLIES_CONDITION", "CONDITION_IMPLIES_SUBJECT", "BICONDITIONAL", "NOT_COMPILABLE_YET"]},
+    "assumptions": {"type": "array", "maxItems": 16, "items": {"type": "string", "minLength": 1, "maxLength": 512}},
+    "exceptions": {"type": "array", "maxItems": 16, "items": {"type": "string", "minLength": 1, "maxLength": 512}},
+    "human_confirmation": {"const": "PENDING"}
+  },
+  "$defs": {
+    "name": {"type": "string", "pattern": "^[A-Za-z][A-Za-z0-9_]{0,63}$"}
+  },
+  "description": "Additional direction, context and UTF-8 byte limits are enforced by candidate_ir.py. No authenticity claim."
+}
