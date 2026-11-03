@@ -164,3 +164,21 @@ archivos sin commit. Si no se verifica, solo entrevista documental; no clonar,
 resetear ni actualizar automáticamente. Conservar un clon persistente y enlazar
 la skill desde él en el runtime. El sondeo no garantiza persistencia futura del
 filesystem ni que otro agente ejecute obligatoriamente el protocolo.
+
+### RS3 provisional: IR, consultas y borradores EARS
+
+Los helpers `candidate_ir.py`, `formal_queries.py`, `witness_validation.py` y
+`ears_draft.py` implementan sólo el subconjunto booleano explícito. Los
+oráculos independientes viven en `tests/`. `CandidateIR` conserva estado
+PROPOSED; su dirección, modalidad, fuente y contexto se comprueban antes de
+ofrecer un AST. El renderer produce una frase EARS universal **propuesta**
+desde ese AST, sin interpretar texto libre ni emitir autoridad. La factoría
+limita las consultas a dominio, brecha, ausencia de salida y consistencia
+existencial; un testigo SAT se reevalúa dentro del presupuesto antes de
+presentarlo y se etiqueta como completado por el modelo, no observado.
+
+El maintainer fijó RS3-D01: `production_ready` significa elegibilidad para
+revisión documental; nunca permiso de despliegue. D02 y las decisiones de
+autenticación/UX siguen pendientes. Ningún helper RS3 crea recibos humanos,
+autoriza ejecución o sustituye la entrevista de esta skill. La versión base
+2.4.8 sigue vigente; RS3 aún no es una versión completa de producto.
