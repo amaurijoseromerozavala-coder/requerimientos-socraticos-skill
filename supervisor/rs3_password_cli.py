@@ -138,7 +138,7 @@ def run_check(root, decision_path):
         password=password)
 
 
-def run_enroll(root):
+def run_enroll(root, *, agent_uid):
     fd = _open_tty()
     try:
         first = _read_secret(fd, b'Nueva contrasena local: ')
@@ -151,7 +151,7 @@ def run_enroll(root):
         raise ManualChannelBlocked('INVALID_PASSWORD_ENTRY') from error
     if not same:
         raise ManualChannelBlocked('ENROLLMENT_MISMATCH')
-    PasswordAuditor.initialize(root, first)
+    PasswordAuditor.initialize(root, first, agent_uid=agent_uid)
     return {'status': 'ENROLLED', 'authority_verification': 'NOT_ESTABLISHED',
             'execution_authorized': False}
 
@@ -161,12 +161,13 @@ def main(argv=None):
     subparsers = parser.add_subparsers(dest='command', required=True)
     enroll = subparsers.add_parser('enroll')
     enroll.add_argument('--root', required=True)
+    enroll.add_argument('--agent-uid', required=True, type=int)
     check = subparsers.add_parser('check')
     check.add_argument('--root', required=True)
     check.add_argument('--decision-file', required=True)
     args = parser.parse_args(argv)
     try:
-        result = run_enroll(args.root) if args.command == 'enroll' else run_check(
+        result = run_enroll(args.root, agent_uid=args.agent_uid) if args.command == 'enroll' else run_check(
             args.root, args.decision_file)
     except (ManualChannelBlocked, PasswordAuditBlocked) as error:
         print(json.dumps({'status': 'BLOCKED', 'reason': str(error),

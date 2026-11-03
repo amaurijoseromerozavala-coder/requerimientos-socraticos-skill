@@ -5,6 +5,14 @@ implementación y comprobación material pendientes. El [registro estructurado](
 mantiene `runtime_enforcement=NOT_IMPLEMENTED`, `human_confirmation_enabled=false`
 y `real_authority_gate=SECURITY_BOUNDARY_UNMET`.
 
+La guarda local de UID exige al dar de alta el UID declarado del agente, lo
+rechaza si coincide con la cuenta actual y fija ambos UID en el verificador.
+La comprobación posterior exige que UID real y efectivo coincidan con el UID
+de autoridad guardado. Esto previene un alta accidental bajo la misma cuenta;
+no prueba que el UID declarado sea realmente el de Pi/Codex ni descarta sudo,
+interop WSL o control del host. El formato del verificador es v2 y rechaza
+almacenes v1 sin migrarlos automáticamente.
+
 ## Contexto y decisión
 
 Las decisiones propuestas por Pi/Codex no pueden confirmarse por el texto del

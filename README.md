@@ -51,6 +51,9 @@ el flujo RS3.
 El resultado de contraseña coincidente no autentica por sí solo al humano.
 No se debe dar de alta una contraseña real bajo el UID del agente antes de
 verificar D05; las pruebas actuales usan valores sintéticos.
+La guarda de UID exige declarar el UID del agente al alta y fija ambos UID en
+el verificador. Sigue sin demostrar aislamiento frente a sudo, interop WSL o
+el host Windows; el formato anterior del verificador se rechaza sin migración.
 El gate real sigue bloqueado
 hasta verificar la cuenta y resolver D03 y la autenticación. El paquete no se
 incorporó en bloque al PRD canónico ni está

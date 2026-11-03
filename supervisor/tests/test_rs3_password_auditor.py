@@ -16,7 +16,7 @@ class PasswordAuditorTests(unittest.TestCase):
                              decision_text='Acepto revisar P-001.', nonce='1' * 32)
 
     def test_correct_and_wrong_password_are_logged_without_secret(self):
-        PasswordAuditor.initialize(self.root, self.password)
+        PasswordAuditor.initialize(self.root, self.password, agent_uid=os.getuid() + 1)
         backend = PasswordAuditor(self.root)
         bad = backend.check(**self.decision, password='synthetic-wrong-value-123')
         good = backend.check(**{**self.decision, 'nonce': '2' * 32},
@@ -33,7 +33,7 @@ class PasswordAuditorTests(unittest.TestCase):
         self.assertNotIn(self.password, (self.root / 'verifier.json').read_text())
 
     def test_reused_nonce_never_upgrades_failed_attempt(self):
-        PasswordAuditor.initialize(self.root, self.password)
+        PasswordAuditor.initialize(self.root, self.password, agent_uid=os.getuid() + 1)
         backend = PasswordAuditor(self.root)
         backend.check(**self.decision, password='synthetic-wrong-value-123')
         with self.assertRaises(PasswordAuditBlocked):
@@ -41,7 +41,7 @@ class PasswordAuditorTests(unittest.TestCase):
         self.assertEqual(len(backend.audit_events()), 1)
 
     def test_decision_digest_changes_with_text_or_snapshot(self):
-        PasswordAuditor.initialize(self.root, self.password)
+        PasswordAuditor.initialize(self.root, self.password, agent_uid=os.getuid() + 1)
         backend = PasswordAuditor(self.root)
         first = backend.check(**self.decision, password=self.password)
         second = backend.check(**{**self.decision, 'nonce': '2' * 32,
@@ -52,7 +52,7 @@ class PasswordAuditorTests(unittest.TestCase):
         self.assertNotEqual(first['subject_sha256'], third['subject_sha256'])
 
     def test_private_store_and_failed_log_write_block_check(self):
-        PasswordAuditor.initialize(self.root, self.password)
+        PasswordAuditor.initialize(self.root, self.password, agent_uid=os.getuid() + 1)
         self.assertEqual((self.root / 'verifier.json').stat().st_mode & 0o777, 0o600)
         os.chmod(self.root / 'events.jsonl', 0o644)
         with self.assertRaises(PasswordAuditBlocked):
@@ -60,14 +60,14 @@ class PasswordAuditorTests(unittest.TestCase):
 
     def test_invalid_enrollment_and_corrupt_verifier_fail_closed(self):
         with self.assertRaises(PasswordAuditBlocked):
-            PasswordAuditor.initialize(self.root, 'short')
-        PasswordAuditor.initialize(self.root, self.password)
+            PasswordAuditor.initialize(self.root, 'short', agent_uid=os.getuid() + 1)
+        PasswordAuditor.initialize(self.root, self.password, agent_uid=os.getuid() + 1)
         (self.root / 'verifier.json').write_text('{}')
         with self.assertRaises(PasswordAuditBlocked):
             PasswordAuditor(self.root).check(**self.decision, password=self.password)
 
     def test_verifier_symlink_and_duplicate_nonce_are_rejected(self):
-        PasswordAuditor.initialize(self.root, self.password)
+        PasswordAuditor.initialize(self.root, self.password, agent_uid=os.getuid() + 1)
         backend = PasswordAuditor(self.root)
         backend.check(**self.decision, password=self.password)
         with self.assertRaises(PasswordAuditBlocked):
@@ -80,7 +80,7 @@ class PasswordAuditorTests(unittest.TestCase):
             backend.check(**{**self.decision, 'nonce': '2' * 32}, password=self.password)
 
     def test_bounded_audit_failure_does_not_return_match(self):
-        PasswordAuditor.initialize(self.root, self.password)
+        PasswordAuditor.initialize(self.root, self.password, agent_uid=os.getuid() + 1)
         (self.root / 'events.jsonl').write_bytes(b'x' * (1024 * 1024 + 1))
         with self.assertRaises(PasswordAuditBlocked):
             PasswordAuditor(self.root).check(**self.decision, password=self.password)

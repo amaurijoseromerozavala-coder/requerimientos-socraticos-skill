@@ -19,7 +19,7 @@ from supervisor.rs3_audit_log import AuditBlocked, AuditLog
 ITERATIONS = 600_000
 VERIFIER_MAX_BYTES = 512
 DECISION_MAX_BYTES = 4096
-SCHEMA = 'rs3-pbkdf2-verifier/v1'
+SCHEMA = 'rs3-pbkdf2-verifier/v2'
 
 
 class PasswordAuditBlocked(RuntimeError):
@@ -79,8 +79,12 @@ class PasswordAuditor:
         self.root = Path(root).absolute()
 
     @classmethod
-    def initialize(cls, root, password):
+    def initialize(cls, root, password, *, agent_uid):
         """One-time enrollment; partial stores remain blocked, never repaired."""
+        authority_uid = os.getuid()
+        if (type(agent_uid) is not int or agent_uid < 0 or agent_uid == authority_uid
+                or os.geteuid() != authority_uid):
+            raise PasswordAuditBlocked('SEPARATE_ACCOUNT_REQUIRED')
         raw = _password_bytes(password, enrolling=True)
         root = Path(root).absolute()
         try:
@@ -88,6 +92,7 @@ class PasswordAuditor:
             salt = os.urandom(16)
             digest = hashlib.pbkdf2_hmac('sha256', raw, salt, ITERATIONS)
             payload = _encode({'schema': SCHEMA, 'iterations': ITERATIONS,
+                               'authority_uid': authority_uid, 'agent_uid': agent_uid,
                                'salt_hex': salt.hex(), 'digest_hex': digest.hex()}) + b'\n'
             directory = os.open(root, os.O_RDONLY | os.O_DIRECTORY | os.O_NOFOLLOW)
             try:
@@ -129,8 +134,14 @@ class PasswordAuditor:
                 os.close(directory)
             doc = json.loads(raw.decode('utf-8'), object_pairs_hook=_unique)
             if (not isinstance(doc, dict) or set(doc) != {'schema', 'iterations',
-                    'salt_hex', 'digest_hex'} or doc['schema'] != SCHEMA
+                    'authority_uid', 'agent_uid', 'salt_hex', 'digest_hex'}
+                    or doc['schema'] != SCHEMA
                     or type(doc['iterations']) is not int or doc['iterations'] != ITERATIONS
+                    or type(doc['authority_uid']) is not int
+                    or doc['authority_uid'] != os.getuid()
+                    or os.geteuid() != os.getuid()
+                    or type(doc['agent_uid']) is not int or doc['agent_uid'] < 0
+                    or doc['agent_uid'] == doc['authority_uid']
                     or not isinstance(doc['salt_hex'], str)
                     or re.fullmatch(r'[0-9a-f]{32}', doc['salt_hex']) is None
                     or not isinstance(doc['digest_hex'], str)

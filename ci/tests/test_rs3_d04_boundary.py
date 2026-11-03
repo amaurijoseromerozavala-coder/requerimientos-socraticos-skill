@@ -18,6 +18,7 @@ class D04BoundaryTests(unittest.TestCase):
                          'MANUAL_TTY_ADAPTER_IMPLEMENTED_BOUNDARY_UNVERIFIED')
         self.assertEqual(doc['real_authority_gate'], 'SECURITY_BOUNDARY_UNMET')
         self.assertIs(doc['human_confirmation_enabled'], False)
+        self.assertEqual(doc['uid_guard'], 'IMPLEMENTED_TARGET_UNVERIFIED')
         self.assertIn('RS3-D04-TRUSTED_INPUT_CHANNEL_VERIFICATION',
                       doc['pending_decisions'])
 

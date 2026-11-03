@@ -3,6 +3,7 @@
   "decision_status": "HUMAN_DECIDED_DESIGN",
   "choice": "SEPARATE_LOCAL_ACCOUNT",
   "runtime_enforcement": "NOT_IMPLEMENTED",
+  "uid_guard": "IMPLEMENTED_TARGET_UNVERIFIED",
   "target_hardware_verification": "NOT_RUN",
   "real_authority_gate": "SECURITY_BOUNDARY_UNMET",
   "human_confirmation_enabled": false,

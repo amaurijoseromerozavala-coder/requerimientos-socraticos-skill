@@ -18,7 +18,7 @@ class ManualPasswordChannelTests(unittest.TestCase):
         self.addCleanup(self.tmp.cleanup)
         self.root = Path(self.tmp.name) / 'authority'
         self.password = 'synthetic-password-only-12345'
-        PasswordAuditor.initialize(self.root, self.password)
+        PasswordAuditor.initialize(self.root, self.password, agent_uid=os.getuid() + 1)
         self.path = Path(self.tmp.name) / 'decision.json'
         self.doc = {'schema': 'rs3-manual-decision/v1', 'proposal_id': 'P-001',
                     'snapshot_sha256': 'a' * 64, 'decision_text': 'Acepto revisar P-001.'}
@@ -86,14 +86,14 @@ class ManualPasswordChannelTests(unittest.TestCase):
         with (mock.patch('supervisor.rs3_password_cli._open_tty', return_value=20),
               mock.patch('supervisor.rs3_password_cli._close_tty'),
               mock.patch('supervisor.rs3_password_cli._read_secret', side_effect=values)):
-            result = run_enroll(Path(self.tmp.name) / 'unicode-store')
+            result = run_enroll(Path(self.tmp.name) / 'unicode-store', agent_uid=os.getuid() + 1)
         self.assertEqual(result['status'], 'ENROLLED')
         values = ['contraseña-sintética-larga', 'contraseña-distinta-larga']
         with (mock.patch('supervisor.rs3_password_cli._open_tty', return_value=20),
               mock.patch('supervisor.rs3_password_cli._close_tty'),
               mock.patch('supervisor.rs3_password_cli._read_secret', side_effect=values)):
             with self.assertRaises(ManualChannelBlocked):
-                run_enroll(Path(self.tmp.name) / 'mismatch-store')
+                run_enroll(Path(self.tmp.name) / 'mismatch-store', agent_uid=os.getuid() + 1)
 
 
 if __name__ == '__main__':

@@ -202,6 +202,9 @@ y D05 no están verificados.
 El núcleo no está conectado a esta skill ni otorga autoridad.
 No introducir una contraseña real bajo el UID de Pi/Codex mientras D05 esté
 sin verificar; usar solo valores sintéticos en pruebas locales.
+La guarda de UID requiere declarar la cuenta del agente al alta y rechaza
+coincidencia con la cuenta actual; no acredita que la declaración sea auténtica
+ni que sudo o interop WSL estén contenidos.
 Ningún helper RS3 crea recibos humanos, autoriza ejecución o
 sustituye la entrevista de esta skill. La versión base 2.4.8 sigue vigente;
 RS3 aún no es una versión completa de producto.
