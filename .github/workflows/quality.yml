@@ -25,6 +25,9 @@ jobs:
       - name: Check changed public evidence
         env:
           QUALITY_BASE_SHA: ${{ github.event_name == 'pull_request' && github.event.pull_request.base.sha || github.event.before }}
-        run: python3 -B ci/check_review_evidence.py check-changed --base "$QUALITY_BASE_SHA"
+          QUALITY_FORCED: ${{ github.event.forced == true }}
+        run: |
+          base=$(python3 -B ci/select_evidence_base.py --before "$QUALITY_BASE_SHA" --forced "$QUALITY_FORCED")
+          python3 -B ci/check_review_evidence.py check-changed --base "$base"
       - name: Check RDD record and local suites
         run: bash ci/run_quality.sh

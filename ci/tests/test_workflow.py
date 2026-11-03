@@ -54,7 +54,10 @@ class WorkflowTests(unittest.TestCase):
         self.assertEqual(len(gate), 1)
         self.assertIn('github.event.pull_request.base.sha', gate[0]['env']['QUALITY_BASE_SHA'])
         self.assertIn('github.event.before', gate[0]['env']['QUALITY_BASE_SHA'])
+        self.assertIn('github.event.forced', gate[0]['env']['QUALITY_FORCED'])
+        self.assertIn('select_evidence_base.py', gate[0]['run'])
         self.assertIn('"$QUALITY_BASE_SHA"', gate[0]['run'])
+        self.assertIn('"$base"', gate[0]['run'])
 
     def test_readme_explains_history_change_for_existing_clones(self):
         readme = README.read_text(encoding='utf-8')
