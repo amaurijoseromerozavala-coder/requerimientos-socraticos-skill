@@ -30,7 +30,13 @@ class CandidateError(ValueError):
 
 
 def _text(value, limit, code):
-    if type(value) is not str or not value.strip() or len(value.encode('utf-8')) > limit:
+    if type(value) is not str or not value.strip():
+        raise CandidateError(code)
+    try:
+        size = len(value.encode('utf-8'))
+    except UnicodeError as error:
+        raise CandidateError(code) from error
+    if size > limit:
         raise CandidateError(code)
 
 

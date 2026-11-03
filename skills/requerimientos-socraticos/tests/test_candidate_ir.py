@@ -103,6 +103,18 @@ class CandidateIRTests(unittest.TestCase):
         invalid['human_confirmation'] = 'HUMAN_CONFIRMED'
         self.assertTrue(list(validator.iter_errors(invalid)))
 
+    def test_unpaired_unicode_surrogates_have_typed_rejection(self):
+        surrogate = chr(0xd800)
+        for field, value in (('source_text', 'P ' + surrogate + ' Q'),
+                             ('source_ref', 'source/' + surrogate),
+                             ('assumptions', [surrogate]),
+                             ('exceptions', [surrogate])):
+            with self.subTest(field=field):
+                item = proposal()
+                item[field] = value
+                with self.assertRaises(CandidateError):
+                    check_candidate(item)
+
 
 if __name__ == '__main__':
     unittest.main()
