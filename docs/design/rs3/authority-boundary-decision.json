@@ -25,12 +25,12 @@
     "decision_status": "HUMAN_DECIDED_DESIGN",
     "requested_function": "PASSWORD_VERIFICATION_BOUND_TO_DECISION",
     "credential_source": "LOCAL_PBKDF2_VERIFIER",
-    "authentication": "CORE_IMPLEMENTED_CHANNEL_UNVERIFIED",
+    "authentication": "MANUAL_TTY_ADAPTER_IMPLEMENTED_BOUNDARY_UNVERIFIED",
     "authority_verification": "NOT_PERFORMED",
     "execution_authorized": false,
-    "implementation_scope": "PASSWORD_MATCH_AND_BOUNDED_AUDIT_CORE",
+    "implementation_scope": "PASSWORD_MATCH_AUDIT_AND_MANUAL_TTY_ADAPTER",
     "target_hardware_verification": "NOT_RUN"
   },
-  "pending_decisions": ["RS3-D04-TRUSTED_INPUT_CHANNEL", "RS3-D03"],
+  "pending_decisions": ["RS3-D04-TRUSTED_INPUT_CHANNEL_VERIFICATION", "RS3-D03"],
   "scope": "ARCHITECTURE_DECISION_ONLY"
 }

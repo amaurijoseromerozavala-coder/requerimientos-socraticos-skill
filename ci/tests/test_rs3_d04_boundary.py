@@ -14,10 +14,12 @@ class D04BoundaryTests(unittest.TestCase):
         self.assertEqual(doc['d04']['decision_status'], 'HUMAN_DECIDED_DESIGN')
         self.assertEqual(doc['d04']['requested_function'], 'PASSWORD_VERIFICATION_BOUND_TO_DECISION')
         self.assertEqual(doc['d04']['credential_source'], 'LOCAL_PBKDF2_VERIFIER')
-        self.assertEqual(doc['d04']['authentication'], 'CORE_IMPLEMENTED_CHANNEL_UNVERIFIED')
+        self.assertEqual(doc['d04']['authentication'],
+                         'MANUAL_TTY_ADAPTER_IMPLEMENTED_BOUNDARY_UNVERIFIED')
         self.assertEqual(doc['real_authority_gate'], 'SECURITY_BOUNDARY_UNMET')
         self.assertIs(doc['human_confirmation_enabled'], False)
-        self.assertIn('RS3-D04-TRUSTED_INPUT_CHANNEL', doc['pending_decisions'])
+        self.assertIn('RS3-D04-TRUSTED_INPUT_CHANNEL_VERIFICATION',
+                      doc['pending_decisions'])
 
     def test_public_text_does_not_call_audit_log_an_authenticator(self):
         for path in ('README.md', 'docs/design/rs3/ADR-001-local-authority.md',

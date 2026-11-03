@@ -196,7 +196,9 @@ completitud, la evidencia ni al actor. UNKNOWN, inventario incompleto y conjunto
 aplicable vacío no se promueven. La autenticación y la UX de confirmación siguen
 sin implementarse. D04 eligió PBKDF2: `supervisor/rs3_password_auditor.py`
 comprueba una contraseña local y vincula el resultado a una decisión mediante
-un log acotado, pero el canal de entrada humana y D05 no están verificados.
+un log acotado. `supervisor/rs3_password_cli.py` ofrece entrada manual por
+`/dev/tty`, sin contraseña en argumentos ni stdin; la independencia del canal
+y D05 no están verificados.
 El núcleo no está conectado a esta skill ni otorga autoridad.
 No introducir una contraseña real bajo el UID de Pi/Codex mientras D05 esté
 sin verificar; usar solo valores sintéticos en pruebas locales.

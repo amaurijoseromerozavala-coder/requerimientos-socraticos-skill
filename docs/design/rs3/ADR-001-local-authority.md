@@ -25,6 +25,11 @@ contraseña ni texto. Sigue pendiente un canal de entrada humana confiable y
 la comprobación de D05 en el equipo objetivo. El núcleo
 `supervisor/rs3_audit_log.py` guarda eventos documentales y de comprobación
 con referencias y digests, y rechaza eventos que pretendan confirmación humana.
+El adaptador `supervisor/rs3_password_cli.py` lee una decisión acotada una sola
+vez, la muestra y pide la contraseña directamente en `/dev/tty` sin eco. Esto
+elimina los argumentos y stdin como canales de contraseña; no demuestra que el
+agente no controle la sesión terminal en el equipo objetivo. Hasta probar esa
+frontera, su resultado conserva `authority_verification=NOT_ESTABLISHED`.
 No se debe dar de alta una contraseña real en una cuenta accesible a Pi/Codex:
 el agente podría leer el derivado y fabricar registros desde ese UID. Los
 ensayos actuales usan únicamente contraseñas sintéticas en directorios temporales.
