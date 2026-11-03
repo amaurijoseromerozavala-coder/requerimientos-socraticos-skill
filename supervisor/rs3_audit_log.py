@@ -17,7 +17,8 @@ import stat
 
 DEFAULT_MAX_BYTES = 1024 * 1024
 KINDS = frozenset({'PROPOSAL_RECORDED', 'MODEL_CHECK_RECORDED',
-                   'REVIEW_REQUESTED', 'REVIEW_OBSERVED'})
+                   'REVIEW_REQUESTED', 'REVIEW_OBSERVED',
+                   'PASSWORD_CHECK_ACCEPTED', 'PASSWORD_CHECK_REJECTED'})
 ZERO_HASH = '0' * 64
 
 
@@ -142,11 +143,13 @@ class AuditLog:
         finally:
             os.close(fd)
 
-    def append(self, event):
+    def append(self, event, *, unique_ref=False):
         _event(event)
         fd = self._open()
         try:
             rows, size = self._read(fd)
+            if unique_ref and any(row['event']['ref'] == event['ref'] for row in rows):
+                raise AuditBlocked('DUPLICATE_REFERENCE')
             body = {'sequence': len(rows) + 1, 'event': dict(event),
                     'prev_sha256': rows[-1]['sha256'] if rows else ZERO_HASH,
                     'authority_verification': 'NOT_PERFORMED',

@@ -17,16 +17,23 @@ como la cuenta de autoridad ni emitir `HUMAN_CONFIRMED`.
 La confirmación semántica del humano y el permiso para una acción real son
 gates distintos. La aclaración humana sobre D04 exige que un backend compruebe
 la contraseña antes de aceptar cada decisión y vincule la comprobación al
-contenido decidido. Esa función está `NOT_IMPLEMENTED`; sigue pendiente elegir
-el origen de la credencial y el canal de entrada confiable. El núcleo ya
-publicado `supervisor/rs3_audit_log.py` solo guarda eventos documentales con
-referencias y digests, y rechaza eventos que pretendan confirmación humana.
+contenido decidido. El origen elegido es un verificador local PBKDF2-HMAC-SHA256:
+`supervisor/rs3_password_auditor.py` implementa alta única y comprobación
+acotada con evento persistido antes de devolver el resultado. Solo guarda sal
+y derivado; el evento contiene el digest de la decisión, nonce y resultado, sin
+contraseña ni texto. Sigue pendiente un canal de entrada humana confiable y
+la comprobación de D05 en el equipo objetivo. El núcleo
+`supervisor/rs3_audit_log.py` guarda eventos documentales y de comprobación
+con referencias y digests, y rechaza eventos que pretendan confirmación humana.
+No se debe dar de alta una contraseña real en una cuenta accesible a Pi/Codex:
+el agente podría leer el derivado y fabricar registros desde ese UID. Los
+ensayos actuales usan únicamente contraseñas sintéticas en directorios temporales.
 Su cadena de hashes detecta inconsistencias de bytes,
 pero no autentica al escritor ni protege frente al mismo UID. Tampoco detecta
-la pérdida de registros finales completos sin un anclaje externo. Comprobar una
-contraseña demostraría uso de la credencial, no identidad física absoluta. D03 sigue abierta
-para decidir qué confirmaciones necesitarían un mecanismo futuro. No se crean
-aquí cuentas, claves, servicios ni recibos de autoridad, y ninguna salida RS3
+la pérdida de registros finales completos sin un anclaje externo. Una coincidencia
+de contraseña demuestra uso de la credencial, no identidad física absoluta.
+D03 sigue abierta para decidir qué confirmaciones necesitarían un mecanismo
+futuro. Aquí no se crean cuentas, claves de firma, servicios ni recibos de autoridad, y ninguna salida RS3
 actual adquiere autoridad por este ADR.
 
 ## Condiciones observables antes de habilitar un gate real

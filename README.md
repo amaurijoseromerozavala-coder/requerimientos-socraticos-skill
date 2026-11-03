@@ -43,10 +43,13 @@ snapshot indicado; su `MODEL_ELIGIBLE` no autentica completitud, verdad de
 evidencias ni autoridad. El permiso de despliegue es un gate distinto. Siguen
 abiertos la implementación y comprobación de la autoridad, la interfaz y el
 alcance de semánticas temporales. D05 fija una [cuenta local separada](docs/design/rs3/ADR-001-local-authority.md)
-como objetivo. La aclaración D04 requiere verificar una contraseña vinculada
-a cada decisión; esa función está `NOT_IMPLEMENTED` y el origen de la credencial
-queda pendiente. El núcleo local existente solo registra eventos documentales:
-no autentica al humano ni integra el flujo RS3. El gate real sigue bloqueado
+como objetivo. D04 eligió PBKDF2 para una contraseña local vinculada a cada
+decisión. Existe un [núcleo de comprobación y auditoría](supervisor/rs3_password_auditor.py),
+pero carece de canal de entrada humana confiable y no integra el flujo RS3.
+El resultado de contraseña coincidente no autentica por sí solo al humano.
+No se debe dar de alta una contraseña real bajo el UID del agente antes de
+verificar D05; las pruebas actuales usan valores sintéticos.
+El gate real sigue bloqueado
 hasta verificar la cuenta y resolver D03 y la autenticación. El paquete no se
 incorporó en bloque al PRD canónico ni está
 implementado en su totalidad.
