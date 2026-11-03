@@ -15,7 +15,7 @@ from safe_io import read_regular
 from json_preflight import preflight_json
 from analyze_logic import artifact_identity
 from memory_budget import observe_process_memory
-from formal_queries import QueryContext, QueryKind
+from formal_queries import EquivalenceScope, QueryContext, QueryKind
 from witness_validation import verify_assignment
 
 MEMORY_FAILURE = b'{"status":"INCONCLUSIVE","error":{"code":"MEMORY_BUDGET_EXCEEDED","message":"Worker observed an allocation failure; no model results are reported."}}\n'
@@ -97,7 +97,7 @@ def validate(data):
         expr(item['expression'], allvars)
     return count
 
-def analyze(data, z3, seconds, want_table, deadline):
+def analyze(data, z3, seconds, want_table, deadline, comparison=None):
     nodes = validate(data)
     context = QueryContext(data, z3)
     variables = context.variables
@@ -148,6 +148,28 @@ def analyze(data, z3, seconds, want_table, deadline):
               'limits': {'variables': len(variables), 'ast_nodes': nodes, 'max_variables': 32, 'max_ast_nodes': MAX_NODES,
                          'max_depth': MAX_DEPTH, 'max_input_bytes': MAX_BYTES, 'total_seconds': seconds, 'per_query_seconds': 1},
               'scope': 'Results concern the supplied Boolean model only; they do not verify implementation, hardware, or human meaning.'}
+    if comparison is not None:
+        left_id, right_id, scope = comparison
+        basis = (check(context.equivalence_basis(left_id, right_id, scope))
+                 if scope is EquivalenceScope.CONTEXTUAL else {'status': 'NOT_APPLICABLE'})
+        if basis['status'] == 'UNSAT':
+            query = {'status': 'NOT_RUN', 'reason': 'context has no feasible assignment'}
+            interpretation = 'VACUOUS_CONTEXT'
+        elif basis['status'] == 'UNKNOWN':
+            query = {'status': 'NOT_RUN', 'reason': 'context basis unresolved'}
+            interpretation = 'INCONCLUSIVE'
+        else:
+            query = check(context.equivalence_formula(left_id, right_id, scope),
+                          list(variables))
+            interpretation = ({'SAT': ('DIFFERENT_ABSOLUTELY' if scope is EquivalenceScope.ABSOLUTE
+                                        else 'DIFFERENT_WITHIN_CONTEXT'),
+                               'UNSAT': ('EQUIVALENT_ABSOLUTELY' if scope is EquivalenceScope.ABSOLUTE
+                                         else 'EQUIVALENT_WITHIN_CONTEXT'),
+                               'UNKNOWN': 'INCONCLUSIVE'}[query['status']])
+        result['equivalence'] = {'left_id': left_id, 'right_id': right_id,
+                                 'scope': scope.value, 'basis': basis, 'query': query,
+                                 'interpretation': interpretation,
+                                 'limitation': 'Equivalence concerns two supplied rule clauses within the stated Boolean scope only.'}
     if want_table:
         if len(inputs) > 12:
             result['table'] = {'status': 'NOT_RUN', 'reason': 'more than 12 inputs'}
@@ -179,7 +201,17 @@ def main():
         parser = Parser(description=__doc__)
         parser.add_argument('input'); parser.add_argument('--timeout', type=float, default=5.0)
         parser.add_argument('--table', action='store_true')
+        parser.add_argument('--compare-left')
+        parser.add_argument('--compare-right')
+        parser.add_argument('--compare-scope', choices=('absolute', 'contextual'))
         args = parser.parse_args()
+        comparison_values = (args.compare_left, args.compare_right, args.compare_scope)
+        if any(value is not None for value in comparison_values) and not all(
+                value is not None for value in comparison_values):
+            raise InputError('QUERY_TEMPLATE_MISMATCH')
+        comparison = ((args.compare_left, args.compare_right,
+                       EquivalenceScope(args.compare_scope))
+                      if args.compare_scope is not None else None)
         if not math.isfinite(args.timeout) or not 0 < args.timeout <= 30:
             raise InputError('timeout must be greater than 0 and at most 30 seconds')
         started = time.monotonic()
@@ -196,7 +228,7 @@ def main():
             print(json.dumps({'error': {'code': 'SOLVER_UNAVAILABLE', 'message': 'z3-solver is unavailable'}}))
             return 2
         try:
-            result = analyze(data, z3, args.timeout, args.table, deadline)
+            result = analyze(data, z3, args.timeout, args.table, deadline, comparison)
             result['provenance'] = {'model_sha256': hashlib.sha256(raw).hexdigest(),
                                     'z3_version': z3.get_version_string(),
                                     'z3_module': artifact_identity(z3.__file__),

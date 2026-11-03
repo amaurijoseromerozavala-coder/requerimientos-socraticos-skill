@@ -181,6 +181,11 @@ identificadas: absoluta `XOR(F,H)` o contextual `D ∧ C_other ∧ XOR(F,H)`;
 excluye las reglas comparadas de `C_other`. El llamador debe validar el modelo,
 supervisar el solver y declarar el alcance. Ninguna de estas fórmulas altera la
 métrica `gap` o certifica equivalencia del producto.
+La CLI existente `scripts/requirements analyze <modelo.json>` acepta opcionalmente
+`--compare-left ID --compare-right ID --compare-scope absolute|contextual`.
+El worker supervisado distingue diferencia, equivalencia en el alcance y
+contexto vacuo; UNKNOWN/timeout no se convierten en equivalencia. La salida
+incluye el hash del modelo y los límites del solver como en las otras consultas.
 
 El maintainer fijó RS3-D01: `production_ready` significa elegibilidad para
 revisión documental; nunca permiso de despliegue. RS3-D02 exige todos los

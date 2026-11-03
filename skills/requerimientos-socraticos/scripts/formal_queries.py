@@ -53,23 +53,30 @@ class QueryContext:
             return arguments[0] == arguments[1]
         raise ValueError('unsupported validated expression')
 
-    def equivalence_formula(self, left_id, right_id, scope):
-        """Return a counterexample formula for two validated model rules.
-
-        SAT means a difference in the selected scope; UNSAT means equivalence
-        only within that scope. The caller runs and bounds the solver.
-        """
+    def _equivalence_indices(self, left_id, right_id, scope):
         if (type(scope) is not EquivalenceScope or type(left_id) is not str
                 or type(right_id) is not str or left_id == right_id
                 or left_id not in self.rule_ids or right_id not in self.rule_ids):
             raise ValueError('QUERY_TEMPLATE_MISMATCH')
-        left, right = self.rule_ids[left_id], self.rule_ids[right_id]
+        return self.rule_ids[left_id], self.rule_ids[right_id]
+
+    def equivalence_basis(self, left_id, right_id, scope):
+        """Return the scope whose satisfiability prevents a vacuous verdict."""
+        left, right = self._equivalence_indices(left_id, right_id, scope)
+        if scope is EquivalenceScope.ABSOLUTE:
+            return self.z3.BoolVal(True)
+        others = [clause for index, clause in enumerate(self.rule_clauses)
+                  if index not in (left, right)]
+        return self.z3.And(self.domain, *others)
+
+    def equivalence_formula(self, left_id, right_id, scope):
+        """Return XOR in the selected scope; caller bounds the solver."""
+        left, right = self._equivalence_indices(left_id, right_id, scope)
         difference = self.z3.Xor(self.rule_clauses[left], self.rule_clauses[right])
         if scope is EquivalenceScope.ABSOLUTE:
             return difference
-        others = [clause for index, clause in enumerate(self.rule_clauses)
-                  if index not in (left, right)]
-        return self.z3.And(self.domain, *others, difference)
+        return self.z3.And(self.equivalence_basis(left_id, right_id, scope),
+                           difference)
 
     def formula(self, kind):
         if type(kind) is not QueryKind:

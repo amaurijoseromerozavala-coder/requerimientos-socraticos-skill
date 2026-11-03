@@ -130,9 +130,17 @@ def main(_own_cli=False):
         parser.add_argument('input', help='Bounded Boolean JSON model; not executable content')
         parser.add_argument('--timeout', type=float, default=5, help='Wall-time budget in seconds (0 < value <= 30); subject to OS scheduling')
         parser.add_argument('--table', action='store_true', help='Exact guard-activation table for up to 12 inputs, if budget permits')
+        parser.add_argument('--compare-left', help='First existing rule ID for an optional RS3 comparison')
+        parser.add_argument('--compare-right', help='Second existing rule ID for an optional RS3 comparison')
+        parser.add_argument('--compare-scope', choices=('absolute', 'contextual'),
+                            help='Absolute XOR or domain/other-rule contextual XOR')
         parser.add_argument('--memory-budget-mib', type=int, default=None,
                             help='Legacy budget range 256..1024 MiB; admission profile auto-caps at 512 MiB')
         args = parser.parse_args()
+        comparison_values = (args.compare_left, args.compare_right, args.compare_scope)
+        if any(value is not None for value in comparison_values) and not all(
+                value is not None for value in comparison_values):
+            raise InputError('QUERY_TEMPLATE_MISMATCH')
         if not math.isfinite(args.timeout) or not 0 < args.timeout <= 30:
             raise InputError('timeout must be greater than 0 and at most 30 seconds')
         preflight = activation_preflight.evaluate(
@@ -192,6 +200,10 @@ def main(_own_cli=False):
                             '--timeout', str(max(.000001, remaining))]
                 if args.table:
                     command.append('--table')
+                if args.compare_scope is not None:
+                    command += ['--compare-left', args.compare_left,
+                                '--compare-right', args.compare_right,
+                                '--compare-scope', args.compare_scope]
                 # Count command setup against the same total deadline too.
                 remaining = args.timeout - (time.monotonic() - started)
                 if remaining <= 0:
