@@ -66,8 +66,11 @@ def validate(data):
         if type(node) is not dict:
             raise InputError('expression must be boolean or AST object')
         if set(node) == {'var'}:
-            if name(node['var']) not in allowed:
-                raise InputError('unknown or disallowed variable')
+            variable = name(node['var'])
+            if variable not in allvars:
+                raise InputError('UNKNOWN_VARIABLE')
+            if variable not in allowed:
+                raise InputError('WRONG_VARIABLE_ROLE')
             return
         keys(node, ('op', 'args'))
         op, args = node['op'], node['args']
