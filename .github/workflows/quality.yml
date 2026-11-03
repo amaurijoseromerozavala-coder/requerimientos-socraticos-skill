@@ -22,5 +22,9 @@ jobs:
           python-version: '3.12'
       - name: Install pinned test dependencies
         run: python -m pip install --disable-pip-version-check -r requirements.txt PyYAML==6.0.3
+      - name: Check changed public evidence
+        env:
+          QUALITY_BASE_SHA: ${{ github.event_name == 'pull_request' && github.event.pull_request.base.sha || github.event.before }}
+        run: python3 -B ci/check_review_evidence.py check-changed --base "$QUALITY_BASE_SHA"
       - name: Check RDD record and local suites
         run: bash ci/run_quality.sh

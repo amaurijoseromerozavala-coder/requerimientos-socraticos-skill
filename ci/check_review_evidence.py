@@ -141,8 +141,60 @@ def check_tree():
     return 0 if flagged == errors == 0 else 2
 
 
+def check_changed(base):
+    """Inspect committed evidence changed from one explicit base to HEAD."""
+    checked = flagged = errors = 0
+    if not re.fullmatch(r'[0-9a-f]{40}|[0-9a-f]{64}', base):
+        print('EVIDENCE_CHANGED checked=0 flagged=0 unknown=1')
+        return 2
+    try:
+        if set(base) == {'0'}:
+            base = subprocess.check_output(
+                ['git', 'hash-object', '-t', 'tree', '--stdin'], input=b'').strip().decode('ascii')
+        else:
+            subprocess.check_output(['git', 'cat-file', '-e', base + '^{commit}'], stderr=subprocess.DEVNULL)
+        names = subprocess.check_output([
+            'git', 'diff', '--name-only', '-z', '--diff-filter=ACMRT',
+            base, 'HEAD', '--', 'docs/skill-audit', 'exports']).split(b'\0')
+        for name in names:
+            if not name:
+                continue
+            entry = subprocess.check_output(['git', 'ls-tree', '-z', 'HEAD', '--', name])
+            lines = [row for row in entry.split(b'\0') if row]
+            if len(lines) != 1:
+                errors += 1
+                continue
+            metadata, actual = lines[0].split(b'\t', 1)
+            mode, kind, oid = metadata.split(b' ')
+            if actual != name or mode not in (b'100644', b'100755') or kind != b'blob':
+                errors += 1
+                continue
+            size = int(subprocess.check_output(['git', 'cat-file', '-s', oid]).strip())
+            if size > MAX_INPUT:
+                errors += 1
+                continue
+            data = subprocess.check_output(['git', 'cat-file', 'blob', oid])
+            if len(data) != size:
+                errors += 1
+                continue
+            try:
+                flagged += bool(exposed_values(data, suffix=Path(name.decode('utf-8')).suffix))
+                checked += 1
+            except (UnicodeError, ValueError):
+                errors += 1
+    except (OSError, ValueError, subprocess.CalledProcessError):
+        errors += 1
+    print(f'EVIDENCE_CHANGED checked={checked} flagged={flagged} unknown={errors}')
+    return 0 if flagged == errors == 0 else 2
+
+
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
-    parser.add_argument('action', choices=('check',))
+    parser.add_argument('action', choices=('check', 'check-changed'))
+    parser.add_argument('--base')
     args = parser.parse_args()
+    if args.action == 'check-changed':
+        sys.exit(check_changed(args.base or ''))
+    if args.base is not None:
+        parser.error('--base is only valid for check-changed')
     sys.exit(check_tree())

@@ -3,6 +3,8 @@ import json
 import io
 import os
 from pathlib import Path
+import subprocess
+import sys
 import tempfile
 import unittest
 from contextlib import redirect_stdout
@@ -16,6 +18,16 @@ SECOND_SAMPLE = 'b' * 64
 
 
 class ReviewEvidenceTests(unittest.TestCase):
+    def test_check_rejects_comparison_base_parameter(self):
+        script = Path(__file__).resolve().parents[1] / 'check_review_evidence.py'
+        with tempfile.TemporaryDirectory() as root:
+            subprocess.run(['git', 'init', '-q', root], check=True, capture_output=True)
+            result = subprocess.run(
+                [sys.executable, str(script), 'check', '--base', 'not-a-commit'],
+                cwd=root, capture_output=True, timeout=5)
+        self.assertNotEqual(result.returncode, 0)
+        self.assertNotIn(b'EVIDENCE_CHECK checked=0 flagged=0 unknown=0', result.stdout)
+
     def test_direct_token_key_is_redacted(self):
         data = {'token': SAMPLE, 'other': 'ordinary'}
         output = sanitize_bytes(json.dumps(data).encode(), suffix='.json')

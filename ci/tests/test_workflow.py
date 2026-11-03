@@ -46,6 +46,15 @@ class WorkflowTests(unittest.TestCase):
         self.assertNotIn('CI permanece diferido', agents)
         self.assertNotIn('Esta autorización no habilita CI', agents)
 
+    def test_changed_evidence_gate_uses_event_base(self):
+        doc = yaml.safe_load(WORKFLOW.read_text(encoding='utf-8'))
+        steps = doc['jobs']['quality']['steps']
+        gate = [step for step in steps if 'check_review_evidence.py check-changed' in step.get('run', '')]
+        self.assertEqual(len(gate), 1)
+        self.assertIn('github.event.pull_request.base.sha', gate[0]['env']['QUALITY_BASE_SHA'])
+        self.assertIn('github.event.before', gate[0]['env']['QUALITY_BASE_SHA'])
+        self.assertIn('"$QUALITY_BASE_SHA"', gate[0]['run'])
+
 
 if __name__ == '__main__':
     unittest.main()
