@@ -16,6 +16,7 @@ from json_preflight import preflight_json
 from analyze_logic import artifact_identity
 from memory_budget import observe_process_memory
 from formal_queries import QueryContext, QueryKind
+from witness_validation import verify_assignment
 
 MEMORY_FAILURE = b'{"status":"INCONCLUSIVE","error":{"code":"MEMORY_BUDGET_EXCEEDED","message":"Worker observed an allocation failure; no model results are reported."}}\n'
 
@@ -114,7 +115,15 @@ def analyze(data, z3, seconds, want_table, deadline):
         result = {'status': str(answer).upper()}
         if answer == z3.sat and witness_names:
             model = solver.model()
-            result['witness'] = {n: z3.is_true(model.eval(variables[n], model_completion=True)) for n in witness_names}
+            witness = {n: z3.is_true(model.eval(variables[n], model_completion=True))
+                       for n in witness_names}
+            witness_check = verify_assignment(formula, witness, witness_names,
+                                              variables, z3, deadline)
+            if witness_check != 'VERIFIED':
+                return {'status': 'UNKNOWN', 'reason': 'witness recheck ' + witness_check}
+            result['witness'] = witness
+            result['witness_check'] = witness_check
+            result['witness_origin'] = 'MODEL_COMPLETION_APPLIED'
         return result
     inputs = data['inputs']
     queries = {kind.value: check(context.formula(kind),
