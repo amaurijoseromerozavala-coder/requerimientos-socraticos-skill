@@ -41,8 +41,10 @@ evidencia actual y ninguna brecha crítica. `documentary_eligibility.py` comprue
 esa regla sobre un inventario declarado y vincula la vigencia declarada al
 snapshot indicado; su `MODEL_ELIGIBLE` no autentica completitud, verdad de
 evidencias ni autoridad. El permiso de despliegue es un gate distinto. Siguen
-abiertos el mecanismo de autoridad, la interfaz y el alcance de semánticas
-temporales. El paquete no se incorporó en bloque al PRD canónico ni está
+abiertos la implementación y comprobación de la autoridad, la interfaz y el
+alcance de semánticas temporales. D05 fija una [cuenta local separada](docs/design/rs3/ADR-001-local-authority.md)
+como objetivo; el gate real sigue bloqueado hasta verificarla y resolver
+D04/D03. El paquete no se incorporó en bloque al PRD canónico ni está
 implementado en su totalidad.
 
 El RDD del diseño integrado inspeccionó 13 archivos; los RDD posteriores de cada unidad revisaron sus propios candidatos. Ninguno certifica todo el repositorio ni la ejecución física en el i3/WSL. El [ensayo acotado reportado por el propietario](docs/skill-audit/target-hardware-smoke/observation.json) registra una corrida de la suite, sin logs crudos ni reproducción independiente; no prueba comportamiento bajo saturación. Las brechas de integración bloquean READY. CI activado por solicitud del propietario; producción permanece diferida. El workflow no es todavía un control obligatorio de rama.

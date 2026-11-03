@@ -193,6 +193,12 @@ pendientes. Ningún helper RS3 crea recibos humanos, autoriza ejecución o
 sustituye la entrevista de esta skill. La versión base 2.4.8 sigue vigente;
 RS3 aún no es una versión completa de producto.
 
+RS3-D05 fija una cuenta local separada como sede futura de autoridad;
+[ADR-001](../../docs/design/rs3/ADR-001-local-authority.md) exige comprobar en
+el hardware objetivo UID, accesos y ausencia de elevación desde el agente.
+Hasta entonces `SECURITY_BOUNDARY_UNMET`: D04/D03 y el servicio real siguen
+pendientes, sin `HUMAN_CONFIRMED` emitido por esta skill.
+
 La entrada portable `scripts/requirements documentary-check <dossier.json>`
 acepta solo un archivo regular JSON de hasta 256 KiB, rechaza claves duplicadas
 y limita la profundidad antes de decodificar. `input_sha256` identifica los

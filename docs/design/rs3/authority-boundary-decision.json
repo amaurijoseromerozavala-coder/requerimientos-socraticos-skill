@@ -1,0 +1,26 @@
+{
+  "decision_id": "RS3-D05",
+  "decision_status": "HUMAN_DECIDED_DESIGN",
+  "choice": "SEPARATE_LOCAL_ACCOUNT",
+  "runtime_enforcement": "NOT_IMPLEMENTED",
+  "target_hardware_verification": "NOT_RUN",
+  "real_authority_gate": "SECURITY_BOUNDARY_UNMET",
+  "human_confirmation_enabled": false,
+  "agent_permissions": {
+    "submit_proposal": true,
+    "verify_public_receipt": true,
+    "read_signing_key": false,
+    "write_authority_store": false,
+    "issue_human_confirmation": false,
+    "run_as_authority_account": false
+  },
+  "required_target_checks": [
+    "DISTINCT_UID",
+    "NO_AGENT_PRIVILEGE_ESCALATION",
+    "KEY_OWNERSHIP_AND_ACCESS",
+    "STORE_WRITE_ISOLATION",
+    "RECOVERY_AND_REVOCATION"
+  ],
+  "pending_decisions": ["RS3-D04", "RS3-D03"],
+  "scope": "ARCHITECTURE_DECISION_ONLY"
+}
