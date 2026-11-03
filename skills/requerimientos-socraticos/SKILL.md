@@ -176,6 +176,11 @@ desde ese AST, sin interpretar texto libre ni emitir autoridad. La factoría
 limita las consultas a dominio, brecha, ausencia de salida y consistencia
 existencial; un testigo SAT se reevalúa dentro del presupuesto antes de
 presentarlo y se etiqueta como completado por el modelo, no observado.
+La factoría ofrece además una fórmula de comparación entre dos reglas
+identificadas: absoluta `XOR(F,H)` o contextual `D ∧ C_other ∧ XOR(F,H)`;
+excluye las reglas comparadas de `C_other`. El llamador debe validar el modelo,
+supervisar el solver y declarar el alcance. Ninguna de estas fórmulas altera la
+métrica `gap` o certifica equivalencia del producto.
 
 El maintainer fijó RS3-D01: `production_ready` significa elegibilidad para
 revisión documental; nunca permiso de despliegue. RS3-D02 exige todos los
