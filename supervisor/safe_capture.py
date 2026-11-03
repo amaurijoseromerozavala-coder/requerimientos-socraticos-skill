@@ -9,7 +9,7 @@ import re
 _VALUE = rb'[A-Za-z0-9._~+/=-]{8,256}'
 _CLI = re.compile(rb'--token(?:=|[ \t]+)(' + _VALUE + rb')(?=$|[\s",}\]])', re.I)
 _MARKER = re.compile(rb'--token\b', re.I)
-_JSON_KEY = re.compile(rb'"(?:token|access_token|api_key|secret|password)"\s*:', re.I)
+_JSON_KEY = re.compile(rb'"(?:token|access[-_]token|api[-_]key|secret|password)"\s*:', re.I)
 _JSON_STRING = re.compile(rb'"(?:\\.|[^"\\])*"')
 _KEYS = {'token', 'access_token', 'api_key', 'secret', 'password'}
 _REDACTED = b'[REDACTED]'
@@ -20,6 +20,8 @@ class _ObjectPairs(list):
 
 
 def _collect(raw):
+    if _JSON_KEY.search(raw) and not raw.lstrip().startswith((b'{', b'[')):
+        raise ValueError('UNSCOPED_JSON_SECRET_MARKER')
     matches = list(_CLI.finditer(raw))
     if len(matches) != len(list(_MARKER.finditer(raw))):
         raise ValueError('AMBIGUOUS_CAPTURE_MARKER')
@@ -101,4 +103,6 @@ def redact_pair(stdout, stderr):
             for value in sorted(values, key=lambda item: (-len(item), item)):
                 stream = stream.replace(value, _REDACTED)
         result.append(stream)
+    if any(value in stream for value in values for stream in result):
+        raise ValueError('UNREDACTED_CAPTURE_VALUE')
     return tuple(result)

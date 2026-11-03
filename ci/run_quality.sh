@@ -19,17 +19,21 @@ trap 'rm -rf -- "$ci_scratch_dir"' EXIT
 
 run_suite() {
   local label=$1 suite=$2 exit_code
-  if timeout --signal=TERM --kill-after=5s 90s \
-      python3 -B -m unittest discover -s "$suite" -q \
-      > "$ci_scratch_dir/$label.stdout" 2> "$ci_scratch_dir/$label.stderr"; then
+  if python3 -B ci/safe_suite_capture.py \
+      "$ci_scratch_dir/$label.stdout" "$ci_scratch_dir/$label.stderr" -- \
+      python3 -B -m unittest discover -s "$suite" -q; then
     printf '%s: ' "$label"
     sed -n '/^Ran [0-9][0-9]* tests /p; /^OK$/p' "$ci_scratch_dir/$label.stderr" | tr '\n' ' '
     printf '\n'
   else
     exit_code=$?
     printf '%s: FAILED exit=%s\n' "$label" "$exit_code" >&2
-    tail -c 8192 "$ci_scratch_dir/$label.stderr" >&2
-    head -c 2048 "$ci_scratch_dir/$label.stdout" >&2
+    if [[ -f "$ci_scratch_dir/$label.stderr" && -f "$ci_scratch_dir/$label.stdout" ]]; then
+      tail -c 8192 "$ci_scratch_dir/$label.stderr" >&2
+      head -c 2048 "$ci_scratch_dir/$label.stdout" >&2
+    else
+      printf '%s\n' 'CI_CAPTURE_UNAVAILABLE' >&2
+    fi
     return "$exit_code"
   fi
 }
