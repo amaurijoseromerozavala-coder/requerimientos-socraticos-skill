@@ -25,7 +25,8 @@ class RetainedPipeTests(unittest.TestCase):
         with tempfile.TemporaryDirectory(prefix='retained-pipe-mutant-') as directory:
             root = Path(directory)
             for rel in (SCENARIO, Path('supervisor/process_core.py'),
-                        Path('supervisor/journal.py'), Path('supervisor/_child_entry.py')):
+                        Path('supervisor/journal.py'), Path('supervisor/safe_capture.py'),
+                        Path('supervisor/_child_entry.py')):
                 target = root/rel
                 target.parent.mkdir(parents=True, exist_ok=True)
                 shutil.copyfile(ROOT/rel, target)

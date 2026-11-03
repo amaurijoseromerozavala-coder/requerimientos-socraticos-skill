@@ -15,6 +15,8 @@ import stat
 import threading
 import uuid
 
+from supervisor.safe_capture import redact_pair
+
 MAX_BYTES = 16384
 ACCOUNTING_MAX_BYTES = 32768
 RUN_CAPACITY = 100
@@ -281,6 +283,12 @@ class Journal:
                     or len(stdout) > STDOUT_CAPACITY or len(stderr) > STDERR_CAPACITY
                     or type(returncode) is not int or type(complete) is not bool):
                 raise JournalBlocked('CAPTURE_LIMIT_OR_TYPE')
+            try:
+                stdout, stderr = redact_pair(stdout, stderr)
+            except ValueError as error:
+                raise JournalBlocked('CAPTURE_REDACTION_UNAVAILABLE') from error
+            if len(stdout) > STDOUT_CAPACITY or len(stderr) > STDERR_CAPACITY:
+                raise JournalBlocked('CAPTURE_REDACTED_LIMIT')
             account = self.accounting()
             rows = [row for row in account['runs'] if row['run_id'] == state['identity']['run_id']]
             if len(rows) != 1 or rows[0]['state'] != 'RESERVED':
@@ -322,6 +330,7 @@ class Journal:
                 os.close(runs_fd)
             rows[0]['state'] = 'STORED'
             self._persist_accounting(account)
+            return stdout, stderr
         finally:
             self._operation.release()
 

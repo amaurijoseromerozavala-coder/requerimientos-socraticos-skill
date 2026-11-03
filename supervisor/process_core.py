@@ -279,15 +279,20 @@ class ProcessSupervisor:
                         if self.journal is not None:
                             if cleanup == 'CONFIRMED' and journal_active and not journal_write_failed:
                                 self.journal.record_terminated(child.pid, start_identity)
-                                self.journal.store_capture(child.pid, start_identity, returncode,
-                                                           bytes(outputs['stdout']), bytes(outputs['stderr']),
-                                                           all(eof.values()))
+                                retained = self.journal.store_capture(
+                                    child.pid, start_identity, returncode,
+                                    bytes(outputs['stdout']), bytes(outputs['stderr']), all(eof.values()))
+                                outputs['stdout'] = bytearray(retained[0])
+                                outputs['stderr'] = bytearray(retained[1])
                                 self.journal.reconcile_terminated()
                                 journal_reconciled = True
                             else:
                                 cleanup = 'UNCONFIRMED'
                     except BaseException as exc:
                         # Best effort stop request is not confirmation of reaping.
+                        if self.journal is not None:
+                            outputs['stdout'].clear()
+                            outputs['stderr'].clear()
                         error = type(exc).__name__
                         try:
                             if child.poll() is None:
@@ -307,6 +312,9 @@ class ProcessSupervisor:
                 self._state = ('INFRA_LOCK' if cleanup == 'UNCONFIRMED' or
                                (self.journal is not None and not journal_reconciled)
                                else 'IDLE')
+            if self.journal is not None and not journal_reconciled:
+                outputs['stdout'].clear()
+                outputs['stderr'].clear()
             status = ('INFRA_LOCK' if cleanup == 'UNCONFIRMED' else
                       'LAUNCH_FAILED' if child is None else
                       'STOPPED' if reason else
