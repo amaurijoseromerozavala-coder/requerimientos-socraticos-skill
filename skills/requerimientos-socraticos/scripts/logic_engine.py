@@ -15,6 +15,7 @@ from safe_io import read_regular
 from json_preflight import preflight_json
 from analyze_logic import artifact_identity
 from memory_budget import observe_process_memory
+from formal_queries import QueryContext, QueryKind
 
 MEMORY_FAILURE = b'{"status":"INCONCLUSIVE","error":{"code":"MEMORY_BUDGET_EXCEEDED","message":"Worker observed an allocation failure; no model results are reported."}}\n'
 
@@ -94,20 +95,12 @@ def validate(data):
 
 def analyze(data, z3, seconds, want_table, deadline):
     nodes = validate(data)
-    variables = {n: z3.Bool(n) for n in data['inputs'] + data['outputs']}
-    def compile_expr(node):
-        if type(node) is bool: return z3.BoolVal(node)
-        if 'var' in node: return variables[node['var']]
-        args = [compile_expr(x) for x in node['args']]
-        return {'and': lambda: z3.And(*args), 'or': lambda: z3.Or(*args),
-                'not': lambda: z3.Not(args[0]), 'implies': lambda: z3.Implies(*args),
-                'eq': lambda: args[0] == args[1]}[node['op']]()
-    domain = compile_expr(data['domain'])
-    guards = [compile_expr(r['guard']) for r in data['rules']]
-    obligations = z3.And(*[z3.Implies(g, compile_expr(r['response'])) for g, r in zip(guards, data['rules'])])
-    covered = z3.Or(*guards)
-    outs = [variables[n] for n in data['outputs']]
-    feasible_output = z3.Exists(outs, obligations) if outs else obligations
+    context = QueryContext(data, z3)
+    variables = context.variables
+    domain = context.domain
+    obligations = context.obligations
+    covered = context.covered
+    feasible_output = context.feasible_output
     def check(formula, witness_names=()):
         remaining = deadline - time.monotonic()
         if remaining < .001:
@@ -124,13 +117,14 @@ def analyze(data, z3, seconds, want_table, deadline):
             result['witness'] = {n: z3.is_true(model.eval(variables[n], model_completion=True)) for n in witness_names}
         return result
     inputs = data['inputs']
-    queries = {'domain': check(domain, inputs), 'gap': check(z3.And(domain, z3.Not(covered)), inputs),
-               'no_output': check(z3.And(domain, z3.Not(feasible_output)), inputs),
-               'rule_consistency': check(z3.And(domain, obligations), list(variables))}
+    queries = {kind.value: check(context.formula(kind),
+                                  list(variables) if kind is QueryKind.RULE_CONSISTENCY else inputs)
+               for kind in QueryKind}
     validity = {'SAT': 'VALID', 'UNSAT': 'INVALID', 'UNKNOWN': 'UNKNOWN'}[queries['domain']['status']]
     props = []
     for p in data['properties']:
-        counterexample = check(z3.And(domain, obligations, z3.Not(compile_expr(p['expression']))), list(variables))
+        counterexample = check(z3.And(domain, obligations,
+                                      z3.Not(context.compile_expr(p['expression']))), list(variables))
         basis = queries['rule_consistency']['status']
         if basis == 'UNSAT': consequence = 'VACUOUS'
         elif basis == 'UNKNOWN' or counterexample['status'] == 'UNKNOWN': consequence = 'UNKNOWN'
