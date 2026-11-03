@@ -15,10 +15,15 @@ verificar un recibo público, pero no leer la clave, escribir el registro, actua
 como la cuenta de autoridad ni emitir `HUMAN_CONFIRMED`.
 
 La confirmación semántica del humano y el permiso para una acción real son
-gates distintos. D04 sigue abierta para decidir el mecanismo de autenticación;
-D03, para decidir qué confirmaciones requieren ese mecanismo. No se crean aquí
-cuentas, claves, servicios ni recibos, y ninguna salida RS3 actual adquiere
-autoridad por este ADR.
+gates distintos. D04 quedó decidida como registro local de auditoría sin
+autenticación: el núcleo acotado `supervisor/rs3_audit_log.py` guarda eventos
+documentales con referencias y digests, y rechaza eventos que pretendan
+confirmación humana. Su cadena de hashes detecta inconsistencias de bytes,
+pero no autentica al escritor ni protege frente al mismo UID. Tampoco detecta
+la pérdida de registros finales completos sin un anclaje externo. D03 sigue abierta
+para decidir qué confirmaciones necesitarían un mecanismo futuro. No se crean
+aquí cuentas, claves, servicios ni recibos de autoridad, y ninguna salida RS3
+actual adquiere autoridad por este ADR.
 
 ## Condiciones observables antes de habilitar un gate real
 
@@ -37,5 +42,6 @@ Si falta una comprobación, falla una operación negativa, o el agente puede
 obtener privilegios equivalentes, el gate permanece
 `SECURITY_BOUNDARY_UNMET`. La entrevista y los análisis documentales pueden
 continuar con `authority_verification=NOT_PERFORMED`; no se admiten recibos
-humanos verificables ni operaciones autorizadas hasta completar D04/D03,
+humanos verificables ni operaciones autorizadas hasta resolver D03 y el
+mecanismo de autenticación futuro,
 implementar el servicio y validar la frontera en el equipo objetivo.

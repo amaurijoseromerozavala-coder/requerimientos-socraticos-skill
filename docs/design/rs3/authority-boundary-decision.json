@@ -21,6 +21,15 @@
     "STORE_WRITE_ISOLATION",
     "RECOVERY_AND_REVOCATION"
   ],
-  "pending_decisions": ["RS3-D04", "RS3-D03"],
+  "d04": {
+    "decision_status": "HUMAN_DECIDED_DESIGN",
+    "choice": "LOCAL_AUDIT_LOG_ONLY",
+    "authentication": "NOT_IMPLEMENTED",
+    "authority_verification": "NOT_PERFORMED",
+    "execution_authorized": false,
+    "implementation_scope": "BOUNDED_DOCUMENTARY_LOG_CORE_ONLY",
+    "target_hardware_verification": "NOT_RUN"
+  },
+  "pending_decisions": ["RS3-D03"],
   "scope": "ARCHITECTURE_DECISION_ONLY"
 }
