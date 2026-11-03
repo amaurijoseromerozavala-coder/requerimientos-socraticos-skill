@@ -6,7 +6,7 @@ scripts_dir=$(cd -- "$(dirname -- "$entry")" && pwd -P)
 skill_dir=$(cd -- "$scripts_dir/.." && pwd -P)
 case "${1:---help}" in
     --help|-h|help)
-        printf '%s\n' 'requirements {activate|preflight|probe|analyze|validate|git-validate|normalize|lint|snapshot|verify|advance} [arguments]' \
+        printf '%s\n' 'requirements {activate|preflight|probe|analyze|documentary-check|validate|git-validate|normalize|lint|snapshot|verify|advance} [arguments]' \
           'Use the installed skill scripts/requirements directly; no upstream gentle-ai subcommand is required.' \
           'Python: explicit REQUIREMENTS_PYTHON, skill .venv, repository .venv, or configured XDG skill venv.'
         exit 0 ;;
@@ -17,6 +17,7 @@ case "$operation" in
     activate|preflight) helper=activation_preflight.py ;;
     probe) helper=probe_environment.py ;;
     analyze) helper=analyze_logic.py ;;
+    documentary-check) helper=documentary_eligibility.py ;;
     validate|git-validate) helper=validate_git.py ;;
     normalize) helper=normalize_text.py ;;
     lint) helper=requirements_guard.py; set -- validate "$@" ;;

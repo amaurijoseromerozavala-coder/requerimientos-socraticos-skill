@@ -187,3 +187,10 @@ aplicable vacío no se promueven. Las decisiones de autenticación/UX siguen
 pendientes. Ningún helper RS3 crea recibos humanos, autoriza ejecución o
 sustituye la entrevista de esta skill. La versión base 2.4.8 sigue vigente;
 RS3 aún no es una versión completa de producto.
+
+La entrada portable `scripts/requirements documentary-check <dossier.json>`
+acepta solo un archivo regular JSON de hasta 256 KiB, rechaza claves duplicadas
+y limita la profundidad antes de decodificar. `input_sha256` identifica los
+bytes leídos, sin acreditar la verdad del expediente. Su exit 0 acredita únicamente que
+la evaluación estructural se completó; no convierte `MODEL_ELIGIBLE` en una
+decisión humana ni en autorización operativa.
