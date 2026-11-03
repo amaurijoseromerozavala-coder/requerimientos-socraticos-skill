@@ -194,8 +194,10 @@ requisitos aplicables con evidencia actual y ninguna brecha crítica. El helper
 `MODEL_ELIGIBLE` solo describe el inventario suministrado, sin autenticar su
 completitud, la evidencia ni al actor. UNKNOWN, inventario incompleto y conjunto
 aplicable vacío no se promueven. La autenticación y la UX de confirmación siguen
-sin implementarse. D04 eligió solo un registro local de auditoría;
-`supervisor/rs3_audit_log.py` es un núcleo acotado aún no conectado a esta skill.
+sin implementarse. La aclaración D04 pide un backend que compruebe la contraseña
+y vincule el resultado a la decisión; esa función está `NOT_IMPLEMENTED` y el
+origen de la credencial sigue pendiente. `supervisor/rs3_audit_log.py` es solo
+un núcleo acotado de registro documental, aún no conectado a esta skill.
 Ningún helper RS3 crea recibos humanos, autoriza ejecución o
 sustituye la entrevista de esta skill. La versión base 2.4.8 sigue vigente;
 RS3 aún no es una versión completa de producto.

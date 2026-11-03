@@ -15,12 +15,16 @@ verificar un recibo público, pero no leer la clave, escribir el registro, actua
 como la cuenta de autoridad ni emitir `HUMAN_CONFIRMED`.
 
 La confirmación semántica del humano y el permiso para una acción real son
-gates distintos. D04 quedó decidida como registro local de auditoría sin
-autenticación: el núcleo acotado `supervisor/rs3_audit_log.py` guarda eventos
-documentales con referencias y digests, y rechaza eventos que pretendan
-confirmación humana. Su cadena de hashes detecta inconsistencias de bytes,
+gates distintos. La aclaración humana sobre D04 exige que un backend compruebe
+la contraseña antes de aceptar cada decisión y vincule la comprobación al
+contenido decidido. Esa función está `NOT_IMPLEMENTED`; sigue pendiente elegir
+el origen de la credencial y el canal de entrada confiable. El núcleo ya
+publicado `supervisor/rs3_audit_log.py` solo guarda eventos documentales con
+referencias y digests, y rechaza eventos que pretendan confirmación humana.
+Su cadena de hashes detecta inconsistencias de bytes,
 pero no autentica al escritor ni protege frente al mismo UID. Tampoco detecta
-la pérdida de registros finales completos sin un anclaje externo. D03 sigue abierta
+la pérdida de registros finales completos sin un anclaje externo. Comprobar una
+contraseña demostraría uso de la credencial, no identidad física absoluta. D03 sigue abierta
 para decidir qué confirmaciones necesitarían un mecanismo futuro. No se crean
 aquí cuentas, claves, servicios ni recibos de autoridad, y ninguna salida RS3
 actual adquiere autoridad por este ADR.

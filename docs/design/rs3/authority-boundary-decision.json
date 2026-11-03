@@ -22,14 +22,15 @@
     "RECOVERY_AND_REVOCATION"
   ],
   "d04": {
-    "decision_status": "HUMAN_DECIDED_DESIGN",
-    "choice": "LOCAL_AUDIT_LOG_ONLY",
+    "decision_status": "CLARIFICATION_RECORDED",
+    "requested_function": "PASSWORD_VERIFICATION_BOUND_TO_DECISION",
+    "credential_source": "UNDECIDED",
     "authentication": "NOT_IMPLEMENTED",
     "authority_verification": "NOT_PERFORMED",
     "execution_authorized": false,
     "implementation_scope": "BOUNDED_DOCUMENTARY_LOG_CORE_ONLY",
     "target_hardware_verification": "NOT_RUN"
   },
-  "pending_decisions": ["RS3-D03"],
+  "pending_decisions": ["RS3-D04-CREDENTIAL_SOURCE", "RS3-D03"],
   "scope": "ARCHITECTURE_DECISION_ONLY"
 }
