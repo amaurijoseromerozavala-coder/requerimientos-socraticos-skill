@@ -61,6 +61,16 @@ def _json_candidates(node):
     elif isinstance(node, list):
         for value in node:
             found.update(_json_candidates(value))
+    elif isinstance(node, str):
+        encoded = node.encode('utf-8')
+        cli_matches = list(CLI_VALUE.finditer(encoded))
+        if len(list(CLI_MARKER.finditer(encoded))) != len(cli_matches) + len(list(CLI_REDACTED.finditer(encoded))):
+            raise ValueError('AMBIGUOUS_EVIDENCE_MARKER')
+        text_matches = list(TEXT_KEY_VALUE.finditer(encoded))
+        if len(list(TEXT_MARKER.finditer(encoded))) != len(text_matches) + len(list(TEXT_REDACTED.finditer(encoded))):
+            raise ValueError('AMBIGUOUS_EVIDENCE_MARKER')
+        found.update(match.group(1) for match in cli_matches)
+        found.update(match.group(1) for match in text_matches)
     return found
 
 

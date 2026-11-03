@@ -84,6 +84,27 @@ class SafeCaptureTests(unittest.TestCase):
             self.assertFalse(SECRET.encode() in stdout)
             self.assertEqual(json.loads(stdout)['ordinary'], 7)
 
+    def test_recognized_argument_metadata_is_preserved(self):
+        metadata = {'name': 'target', 'value': 'sha256:' + 'a' * 64,
+                    'token': '--target=sha256:' + 'a' * 64}
+        raw = json.dumps({'arguments': [metadata]}).encode()
+        with Journal(self.root) as journal:
+            self.terminal(journal)
+            journal.store_capture(123, 'start-123', 0, raw, b'', True)
+            _, stdout, _, _ = self.captured(journal)
+            self.assertEqual(stdout, raw)
+
+    def test_metadata_exception_requires_exact_shape(self):
+        metadata = {'name': 'target', 'value': 'sha256:' + 'a' * 64,
+                    'token': '--target=sha256:' + 'a' * 64,
+                    'extra': 'ordinary', 'name_copy': 'target'}
+        metadata['token'] = '--unrelated=sha256:' + 'a' * 64
+        raw = json.dumps({'arguments': [metadata]}).encode()
+        with Journal(self.root) as journal:
+            self.terminal(journal)
+            with self.assertRaises(JournalBlocked):
+                journal.store_capture(123, 'start-123', 0, raw, b'', True)
+
     def test_escaped_json_value_and_escaped_copy_are_not_retained(self):
         escaped = SECRET.replace('S', '\\u0053', 1)
         raw = ('{"token":"' + escaped + '","copy":"' + escaped + '","keep":7}').encode()
@@ -105,6 +126,23 @@ class SafeCaptureTests(unittest.TestCase):
             _, stdout, _, _ = self.captured(journal)
             self.assertFalse(SECRET.encode() in stdout)
             self.assertEqual(json.loads(stdout)['keep'], 7)
+
+    def test_json_command_with_escaped_newline_is_sanitized(self):
+        raw = json.dumps({'command': 'tool --token=' + SECRET + '\n', 'keep': 7}).encode()
+        with Journal(self.root) as journal:
+            self.terminal(journal)
+            journal.store_capture(123, 'start-123', 0, raw, b'', True)
+            _, stdout, _, _ = self.captured(journal)
+            self.assertNotIn(SECRET.encode(), stdout)
+            self.assertEqual(json.loads(stdout)['command'], 'tool --token=[REDACTED]\n')
+
+    def test_large_ordinary_json_array_is_preserved(self):
+        raw = json.dumps([0] * 8200).encode()
+        with Journal(self.root) as journal:
+            self.terminal(journal)
+            journal.store_capture(123, 'start-123', 0, raw, b'', True)
+            _, stdout, _, _ = self.captured(journal)
+            self.assertEqual(stdout, raw)
 
     def test_redacted_expansion_above_limit_blocks_before_slot(self):
         short = b'SHORTVAL'

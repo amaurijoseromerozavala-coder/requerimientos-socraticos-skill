@@ -13,6 +13,14 @@ _JSON_KEY = re.compile(rb'"(?:token|access[-_]token|api[-_]key|secret|password)"
 _JSON_STRING = re.compile(rb'"(?:\\.|[^"\\])*"')
 _KEYS = {'token', 'access_token', 'api_key', 'secret', 'password'}
 _REDACTED = b'[REDACTED]'
+_REVIEW_ARGUMENT_NAMES = {
+    'agent', 'base-ref', 'consent', 'contract', 'cwd', 'execute',
+    'expected-revision', 'expected-untracked-inventory', 'intended-untracked',
+    'lens', 'lenses', 'lenses-reason', 'lineage', 'next-transition', 'order',
+    'projection', 'repository-context', 'request-context', 'request-hash',
+    'subject-hash', 'target', 'target-evidence', 'untracked-scope',
+    'workspace-overlay',
+}
 
 
 class _ObjectPairs(list):
@@ -23,40 +31,47 @@ def _collect(raw):
     if _JSON_KEY.search(raw) and not raw.lstrip().startswith((b'{', b'[')):
         raise ValueError('UNSCOPED_JSON_SECRET_MARKER')
     matches = list(_CLI.finditer(raw))
-    if len(matches) != len(list(_MARKER.finditer(raw))):
+    marker_mismatch = len(matches) != len(list(_MARKER.finditer(raw)))
+    json_candidate = raw.lstrip().startswith((b'{', b'['))
+    if marker_mismatch and not json_candidate:
         raise ValueError('AMBIGUOUS_CAPTURE_MARKER')
     values = {match.group(1) for match in matches}
     document = None
-    if raw.lstrip().startswith((b'{', b'[')):
+    if json_candidate:
         try:
             document = json.loads(raw.decode('utf-8'), object_pairs_hook=_ObjectPairs)
         except (UnicodeError, json.JSONDecodeError, RecursionError) as error:
             lowered = raw.lower()
-            if values or b'\\u' in lowered or _JSON_KEY.search(raw):
+            if values or marker_mismatch or b'\\u' in lowered or _JSON_KEY.search(raw):
                 raise ValueError('INVALID_CAPTURE_STRUCTURE') from error
             return values, None
         try:
-            pending = [(document, 0)]
-            visited = 0
+            pending = [document]
             while pending:
-                item, depth = pending.pop()
-                visited += 1
-                if visited > 8192 or depth > 32:
-                    raise ValueError('CAPTURE_STRUCTURE_LIMIT')
+                item = pending.pop()
                 if isinstance(item, _ObjectPairs):
+                    names = [value for key, value in item if key == 'name' and isinstance(value, str)]
+                    argument_name = names[0] if len(names) == 1 and sum(
+                        key == 'value' for key, _ in item) == 1 and sum(
+                        key == 'token' for key, _ in item) == 1 else None
                     named_secret = any(
                         key == 'name' and isinstance(value, str)
                         and value.lower().replace('-', '_') in _KEYS
                         for key, value in item)
                     for key, value in item:
                         normalized = str(key).lower().replace('-', '_')
-                        if normalized in _KEYS or (normalized == 'value' and named_secret):
+                        metadata = (normalized == 'token' and argument_name in _REVIEW_ARGUMENT_NAMES
+                                    and isinstance(value, str) and
+                                    (value == '--' + argument_name or
+                                     value.startswith('--' + argument_name + '=')))
+                        if not metadata and (normalized in _KEYS or
+                                             (normalized == 'value' and named_secret)):
                             if not isinstance(value, str) or not re.fullmatch(_VALUE, value.encode('utf-8')):
                                 raise ValueError('AMBIGUOUS_CAPTURE_VALUE')
                             values.add(value.encode('utf-8'))
-                        pending.append((value, depth + 1))
+                        pending.append(value)
                 elif isinstance(item, list):
-                    pending.extend((value, depth + 1) for value in item)
+                    pending.extend(item)
                 elif isinstance(item, str):
                     encoded = item.encode('utf-8')
                     decoded_matches = list(_CLI.finditer(encoded))

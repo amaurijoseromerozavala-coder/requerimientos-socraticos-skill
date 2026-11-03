@@ -58,6 +58,16 @@ class ChangedEvidenceTests(unittest.TestCase):
         self.assertEqual(result, 0)
         self.assertIn('checked=1 flagged=0 unknown=0', output)
 
+    def test_escaped_command_in_new_evidence_blocks(self):
+        path = self.root / 'docs/skill-audit/new.json'
+        path.write_text('{"command":"review \\u002d\\u002dtoken=ijklmnop5678"}')
+        self.git('add', '.')
+        self.git('commit', '-qm', 'escaped fixture')
+        result, output = self.observed(self.base)
+        self.assertEqual(result, 2)
+        self.assertIn('flagged=1', output)
+        self.assertNotIn('ijklmnop5678', output)
+
     def test_invalid_base_and_symlink_fail_closed(self):
         self.assertEqual(self.observed('not-a-commit')[0], 2)
         path = self.root / 'docs/skill-audit/link.json'

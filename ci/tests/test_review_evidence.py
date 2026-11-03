@@ -97,6 +97,17 @@ class ReviewEvidenceTests(unittest.TestCase):
         self.assertEqual(parsed['token'], '[REDACTED]')
         self.assertEqual(parsed['copy'], '[REDACTED]')
 
+    def test_escaped_command_marker_is_redacted(self):
+        raw = ('{"command":"review \\u002d\\u002dtoken=' + SAMPLE + '","keep":7}').encode()
+        output = sanitize_bytes(raw, suffix='.json')
+        self.assertNotIn(SAMPLE.encode(), output)
+        self.assertEqual(json.loads(output)['command'], 'review --token=[REDACTED]')
+
+    def test_ambiguous_escaped_command_marker_is_rejected(self):
+        raw = b'{"command":"review \\u002d\\u002dtoken=short"}'
+        with self.assertRaises(ValueError):
+            sanitize_bytes(raw, suffix='.json')
+
     def test_text_command_and_structured_secret(self):
         data = ('run --token ' + SAMPLE + '\n' +
                 'access_token: ' + SAMPLE + '\n').encode()
