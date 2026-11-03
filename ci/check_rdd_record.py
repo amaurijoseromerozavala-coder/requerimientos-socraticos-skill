@@ -12,6 +12,12 @@ TREE = 'eea8c615b5669c528f9d032e556f1b36897eaaae'
 TARGET = 'sha256:f40b29c06a666f84009ae10333e966dcd63ff68835a4e6342d4cb6dc7425e364'
 LINEAGE = 'review-d0f2c9baf4452a8e'
 RESULT_HASH = 'sha256:ceb3635e71935b9707a4a90c7cee74159537de2788fa872910d9c9aa477d81d2'
+# The original identity is retained as an archival claim. The public history
+# was rewritten to remove exposed authorization values, so CI checks the
+# corresponding reachable commit without claiming a fresh native RDD review.
+REWRITTEN_COMMIT = '9b2948521c577d56108167abc61261dc40a389ab'
+REWRITTEN_PARENT = 'f47258e93af19c55e0184f18c3c35bf5ce26f5ee'
+REWRITTEN_TREE = 'daf86fdd59144c156a5920bb0a0793356433f9db'
 
 
 def _require(condition, reason):
@@ -62,11 +68,12 @@ def verify_structure(record, marker):
 
 def verify_git(root, record):
     _require(isinstance(root, Path), 'ROOT_PATH_REQUIRED')
+    _require(record['commit'] == COMMIT, 'ARCHIVE_COMMIT_MISMATCH')
     run = subprocess.run(
-        ['git', 'show', '-s', '--format=%H %T %P', record['commit']],
+        ['git', 'show', '-s', '--format=%H %T %P', REWRITTEN_COMMIT],
         cwd=root, text=True, capture_output=True, timeout=5, check=True)
-    _require(run.stdout.strip() == ' '.join((COMMIT, TREE, PARENT)),
-             'RDD_COMMIT_TREE_MISMATCH')
+    _require(run.stdout.strip() == ' '.join((REWRITTEN_COMMIT, REWRITTEN_TREE, REWRITTEN_PARENT)),
+             'REWRITTEN_COMMIT_TREE_MISMATCH')
 
 
 def main():
@@ -76,7 +83,7 @@ def main():
     _require(hashlib.sha256(raw).hexdigest() == record['marker_sha256'],
              'RDD_MARKER_BYTES_MISMATCH')
     verify_git(ROOT, record)
-    print('RDD_RECORD_COHERENT_AUTHENTICITY_NOT_ESTABLISHED')
+    print('ARCHIVED_RDD_RECORD_COHERENT_NEW_REVIEW_NOT_ESTABLISHED')
 
 
 if __name__ == '__main__':

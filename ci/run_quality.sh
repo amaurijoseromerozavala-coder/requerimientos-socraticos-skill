@@ -5,6 +5,7 @@ set -euo pipefail
 ulimit -v 1048576
 export PYTHONDONTWRITEBYTECODE=1 PYTHONHASHSEED=0 TZ=UTC
 
+python3 -B ci/check_history_markers.py
 python3 -B ci/check_rdd_record.py
 # This records the runner's visible admission facts if a later suite closes.
 # It does not override the skill's fail-closed resource policy.

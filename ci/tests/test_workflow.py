@@ -33,6 +33,7 @@ class WorkflowTests(unittest.TestCase):
                       'skills/requerimientos-socraticos/tests'):
             self.assertIn(suite, runner)
         self.assertIn('ci/check_rdd_record.py', runner)
+        self.assertIn('ci/check_history_markers.py', runner)
         self.assertIn('CI_ADMISSION_OBSERVATION', runner)
 
     def test_public_status_matches_ci_activation(self):
@@ -54,6 +55,12 @@ class WorkflowTests(unittest.TestCase):
         self.assertIn('github.event.pull_request.base.sha', gate[0]['env']['QUALITY_BASE_SHA'])
         self.assertIn('github.event.before', gate[0]['env']['QUALITY_BASE_SHA'])
         self.assertIn('"$QUALITY_BASE_SHA"', gate[0]['run'])
+
+    def test_readme_explains_history_change_for_existing_clones(self):
+        readme = README.read_text(encoding='utf-8')
+        self.assertIn('Historial saneado', readme)
+        self.assertIn('clones existentes', readme)
+        self.assertIn('RDD históricos', readme)
 
 
 if __name__ == '__main__':

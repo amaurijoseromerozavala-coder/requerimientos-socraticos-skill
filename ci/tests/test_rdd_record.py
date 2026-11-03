@@ -2,9 +2,10 @@
 import copy
 import json
 from pathlib import Path
+import subprocess
 import unittest
 
-from ci.check_rdd_record import verify_git, verify_structure
+from ci.check_rdd_record import COMMIT, REWRITTEN_COMMIT, verify_git, verify_structure
 
 ROOT = Path(__file__).resolve().parents[2]
 RECORD = ROOT / 'docs/skill-audit/supervisor-pre-reap/RDD-CIERRE.json'
@@ -19,6 +20,12 @@ class RecordTests(unittest.TestCase):
     def test_exact_historical_commit_and_consumed_target(self):
         verify_structure(self.record, self.marker)
         verify_git(ROOT, self.record)
+
+    def test_archived_identity_is_not_in_reachable_public_history(self):
+        reachable = set(subprocess.check_output(
+            ['git', 'rev-list', '--all'], cwd=ROOT, text=True).splitlines())
+        self.assertNotIn(COMMIT, reachable)
+        self.assertIn(REWRITTEN_COMMIT, reachable)
 
     def test_changed_target_or_tree_is_rejected(self):
         for field in ('target_identity', 'candidate_tree', 'commit'):

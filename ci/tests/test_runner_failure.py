@@ -18,6 +18,7 @@ class RunnerFailureTests(unittest.TestCase):
             fake_python.write_text(
                 '#!/bin/sh\n'
                 'case "$*" in\n'
+                '  *check_history_markers.py*) echo CONTROLLED_HISTORY_OK; exit 0;;\n'
                 '  *check_rdd_record.py*) echo CONTROLLED_RECORD_OK; exit 0;;\n'
                 '  *probe_environment*) echo CONTROLLED_OBSERVATION; exit 0;;\n'
                 '  *safe_suite_capture.py*) exec "$CI_CAPTURE_REAL_PYTHON" "$@";;\n'

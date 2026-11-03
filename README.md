@@ -2,6 +2,16 @@
 
 Proyecto integrado de requisitos trazables, revisión de calidad y diseño de un supervisor local. Incluye fuentes, pruebas, esquemas, decisiones humanas, contratos, modelos y evidencias documentales.
 
+## Historial saneado
+
+La rama pública fue reconstruida para retirar valores de autorización de
+evidencias antiguas. Sus identificadores de commit cambiaron. Los RDD históricos
+describen los candidatos originales y no constituyen revisiones nuevas de los
+commits reconstruidos. Quienes mantengan clones existentes deben conservar su
+trabajo local, obtener la nueva rama principal y trasladar sus cambios propios
+sin volver a incorporar el historial anterior. Los enlaces a OID antiguos
+pueden dejar de resolverse; no es posible controlar copias externas ya creadas.
+
 ## Estado real
 
 | Componente | Estado |
