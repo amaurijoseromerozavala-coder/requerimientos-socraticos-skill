@@ -195,15 +195,8 @@ def build(package, head):
     }
 
 
-def main():
-    parser = argparse.ArgumentParser()
-    parser.add_argument('--package', required=True)
-    parser.add_argument('--head', required=True)
-    parser.add_argument('--output', required=True)
-    args = parser.parse_args()
-    if len(args.head) != 40 or any(char not in '0123456789abcdef' for char in args.head):
-        raise ValueError('INVALID_HEAD')
-    result = build(args.package, args.head)
+def render(result):
+    """Render the inventory deterministically for byte-for-byte source checks."""
     # One item per line keeps the 209-row inventory small and reviewable.
     header = {key: value for key, value in result.items()
               if key not in ('requirements', 'tasks', 'cases')}
@@ -220,7 +213,19 @@ def main():
                                             separators=(',', ':'))+suffix)
         lines.append('  ]'+(',' if index < 2 else ''))
     lines.append('}')
-    Path(args.output).write_text('\n'.join(lines)+'\n', encoding='utf-8')
+    return '\n'.join(lines)+'\n'
+
+
+def main():
+    parser = argparse.ArgumentParser()
+    parser.add_argument('--package', required=True)
+    parser.add_argument('--head', required=True)
+    parser.add_argument('--output', required=True)
+    args = parser.parse_args()
+    if len(args.head) != 40 or any(char not in '0123456789abcdef' for char in args.head):
+        raise ValueError('INVALID_HEAD')
+    result = build(args.package, args.head)
+    Path(args.output).write_text(render(result), encoding='utf-8')
 
 
 if __name__ == '__main__':
