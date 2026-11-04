@@ -181,6 +181,12 @@ El oráculo sintáctico solo admite cuatro patrones booleanos españoles acotado
 interpretación contradictoria o frase exterior devuelve NEEDS_CLARIFICATION
 sin AST ni EARS normativo. Esto no autentica el origen del texto ni su
 significado humano.
+`weak_model_gate.py` admite únicamente JSON UTF-8 acotado de una propuesta,
+rechaza duplicados, constantes no JSON y afirmaciones de autoridad, y separa
+REJECT_INPUT, NEEDS_CLARIFICATION, PROPOSED_FOR_REVIEW e INFRA_FAILURE. El
+corpus `assets/rs3-weak-model-cases.json` es sintético y local: no prueba
+proveedores, latencia, coste ni seguridad universal. El invocador debe
+supervisar el proceso y preservar una fuente humana por un canal independiente.
 La factoría ofrece además una fórmula de comparación entre dos reglas
 identificadas: absoluta `XOR(F,H)` o contextual `D ∧ C_other ∧ XOR(F,H)`;
 excluye las reglas comparadas de `C_other`. El llamador debe validar el modelo,
