@@ -187,6 +187,12 @@ REJECT_INPUT, NEEDS_CLARIFICATION, PROPOSED_FOR_REVIEW e INFRA_FAILURE. El
 corpus `assets/rs3-weak-model-cases.json` es sintético y local: no prueba
 proveedores, latencia, coste ni seguridad universal. El invocador debe
 supervisar el proceso y preservar una fuente humana por un canal independiente.
+`local_provider_adapter.py` conecta esa compuerta a un comando local fijo bajo
+el supervisor POSIX existente. Acota solicitud, plazo, memoria virtual del hijo
+directo y ambos canales de salida; una limpieza no confirmada bloquea la
+instancia. Los tests usan solo proveedores simulados, sin red ni credenciales.
+El adaptador no contiene descendientes que se separen del grupo ni prueba
+comportamiento de proveedores cloud o rendimiento en el hardware objetivo.
 La factoría ofrece además una fórmula de comparación entre dos reglas
 identificadas: absoluta `XOR(F,H)` o contextual `D ∧ C_other ∧ XOR(F,H)`;
 excluye las reglas comparadas de `C_other`. El llamador debe validar el modelo,
