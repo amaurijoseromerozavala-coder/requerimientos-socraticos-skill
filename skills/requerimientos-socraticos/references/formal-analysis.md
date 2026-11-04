@@ -141,6 +141,15 @@ frontera. Un consumidor que concatene esas frases en un prompt o las renderice
 como markup ejecutable pierde la separación; esta unidad no implementa ni
 verifica tal consumidor.
 
+`scripts/render_gap_questions.py paquete-gap-questions.json` ofrece un
+consumidor local mínimo: valida el paquete propuesto y produce HTML estático
+por stdout. Escapa variables, frases y referencias, no contiene scripts,
+enlaces ni formularios y declara CSP `default-src 'none'`. Un paquete
+inconsistente se rechaza sin HTML parcial. La vista es solo lectura; no
+revalida el modelo, no autentica a una persona y no registra respuestas.
+La comprobación del HTML generado no equivale a una prueba en el navegador
+del equipo objetivo.
+
 ## Capacidad y envolvente material
 
 scripts/probe_environment.py realiza lectura local limitada, sin benchmark ni red.
