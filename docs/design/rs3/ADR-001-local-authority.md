@@ -31,6 +31,10 @@ acotada con evento persistido antes de devolver el resultado. Solo guarda sal
 y derivado; el evento contiene el digest de la decisión, nonce y resultado, sin
 contraseña ni texto. Sigue pendiente un canal de entrada humana confiable y
 la comprobación de D05 en el equipo objetivo. El núcleo
+rechaza bajo el bloqueo del registro un segundo acierto para el mismo sujeto
+(propuesta, snapshot y texto), incluso con otro nonce; un intento fallido no
+consume ese sujeto. Esto evita un replay registrado, no autentica al actor.
+El núcleo
 `supervisor/rs3_audit_log.py` guarda eventos documentales y de comprobación
 con referencias y digests, y rechaza eventos que pretendan confirmación humana.
 El adaptador `supervisor/rs3_password_cli.py` lee una decisión acotada una sola

@@ -1,4 +1,5 @@
 import os
+from concurrent.futures import ThreadPoolExecutor
 from pathlib import Path
 import tempfile
 import unittest
@@ -38,6 +39,32 @@ class PasswordAuditorTests(unittest.TestCase):
         backend.check(**self.decision, password='synthetic-wrong-value-123')
         with self.assertRaises(PasswordAuditBlocked):
             backend.check(**self.decision, password=self.password)
+        self.assertEqual(len(backend.audit_events()), 1)
+
+    def test_success_cannot_be_replayed_with_a_fresh_nonce(self):
+        PasswordAuditor.initialize(self.root, self.password, agent_uid=os.getuid() + 1)
+        backend = PasswordAuditor(self.root)
+        first = backend.check(**self.decision, password=self.password)
+        self.assertIs(first['credential_match'], True)
+        with self.assertRaises(PasswordAuditBlocked):
+            backend.check(**{**self.decision, 'nonce': '2' * 32},
+                          password=self.password)
+        self.assertEqual([row['event']['kind'] for row in backend.audit_events()],
+                         ['PASSWORD_CHECK_ACCEPTED'])
+
+    def test_concurrent_successes_admit_only_one_subject(self):
+        PasswordAuditor.initialize(self.root, self.password, agent_uid=os.getuid() + 1)
+        backend = PasswordAuditor(self.root)
+        def attempt(nonce):
+            try:
+                backend.check(**{**self.decision, 'nonce': nonce},
+                              password=self.password)
+                return 'ACCEPTED'
+            except PasswordAuditBlocked:
+                return 'BLOCKED'
+        with ThreadPoolExecutor(max_workers=2) as pool:
+            outcomes = list(pool.map(attempt, ('1' * 32, '2' * 32)))
+        self.assertEqual(sorted(outcomes), ['ACCEPTED', 'BLOCKED'])
         self.assertEqual(len(backend.audit_events()), 1)
 
     def test_decision_digest_changes_with_text_or_snapshot(self):

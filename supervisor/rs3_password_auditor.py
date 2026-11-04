@@ -168,7 +168,8 @@ class PasswordAuditor:
         event = {'kind': 'PASSWORD_CHECK_ACCEPTED' if matched else 'PASSWORD_CHECK_REJECTED',
                  'ref': nonce, 'subject_sha256': subject_sha256}
         try:
-            AuditLog(self.root).append(event, unique_ref=True)
+            AuditLog(self.root).append(event, unique_ref=True,
+                                       unique_accepted_subject=True)
         except AuditBlocked as error:
             raise PasswordAuditBlocked('AUDIT_UNAVAILABLE') from error
         return {'proposal_id': proposal_id, 'snapshot_sha256': snapshot_sha256,

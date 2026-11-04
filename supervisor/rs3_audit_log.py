@@ -143,13 +143,20 @@ class AuditLog:
         finally:
             os.close(fd)
 
-    def append(self, event, *, unique_ref=False):
+    def append(self, event, *, unique_ref=False,
+               unique_accepted_subject=False):
         _event(event)
         fd = self._open()
         try:
             rows, size = self._read(fd)
             if unique_ref and any(row['event']['ref'] == event['ref'] for row in rows):
                 raise AuditBlocked('DUPLICATE_REFERENCE')
+            if (unique_accepted_subject
+                    and event['kind'] == 'PASSWORD_CHECK_ACCEPTED'
+                    and any(row['event']['kind'] == 'PASSWORD_CHECK_ACCEPTED'
+                            and row['event']['subject_sha256'] == event['subject_sha256']
+                            for row in rows)):
+                raise AuditBlocked('DUPLICATE_ACCEPTED_SUBJECT')
             body = {'sequence': len(rows) + 1, 'event': dict(event),
                     'prev_sha256': rows[-1]['sha256'] if rows else ZERO_HASH,
                     'authority_verification': 'NOT_PERFORMED',
