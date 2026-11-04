@@ -18,6 +18,7 @@ from memory_budget import observe_process_memory
 from formal_queries import EquivalenceScope, QueryContext, QueryKind
 from witness_validation import verify_assignment
 from gap_scenario import build_gap_interpretation
+from gap_region import sample_gap_region
 
 MEMORY_FAILURE = b'{"status":"INCONCLUSIVE","error":{"code":"MEMORY_BUDGET_EXCEEDED","message":"Worker observed an allocation failure; no model results are reported."}}\n'
 
@@ -98,7 +99,7 @@ def validate(data):
         expr(item['expression'], allvars)
     return count
 
-def analyze(data, z3, seconds, want_table, deadline, comparison=None):
+def analyze(data, z3, seconds, want_table, deadline, comparison=None, gap_samples=0):
     nodes = validate(data)
     context = QueryContext(data, z3)
     variables = context.variables
@@ -149,6 +150,7 @@ def analyze(data, z3, seconds, want_table, deadline, comparison=None):
               'limits': {'variables': len(variables), 'ast_nodes': nodes, 'max_variables': 32, 'max_ast_nodes': MAX_NODES,
                          'max_depth': MAX_DEPTH, 'max_input_bytes': MAX_BYTES, 'total_seconds': seconds, 'per_query_seconds': 1},
               'scope': 'Results concern the supplied Boolean model only; they do not verify implementation, hardware, or human meaning.'}
+    result['gap_region'] = sample_gap_region(data, context, z3, deadline, gap_samples)
     if comparison is not None:
         left_id, right_id, scope = comparison
         basis = (check(context.equivalence_basis(left_id, right_id, scope))
@@ -202,6 +204,7 @@ def main():
         parser = Parser(description=__doc__)
         parser.add_argument('input'); parser.add_argument('--timeout', type=float, default=5.0)
         parser.add_argument('--table', action='store_true')
+        parser.add_argument('--gap-samples', type=int, default=0)
         parser.add_argument('--compare-left')
         parser.add_argument('--compare-right')
         parser.add_argument('--compare-scope', choices=('absolute', 'contextual'))
@@ -215,6 +218,8 @@ def main():
                       if args.compare_scope is not None else None)
         if not math.isfinite(args.timeout) or not 0 < args.timeout <= 30:
             raise InputError('timeout must be greater than 0 and at most 30 seconds')
+        if not 0 <= args.gap_samples <= 16:
+            raise InputError('gap samples must be between 0 and 16')
         started = time.monotonic()
         deadline = started + args.timeout
         path = Path(args.input).absolute()
@@ -229,7 +234,8 @@ def main():
             print(json.dumps({'error': {'code': 'SOLVER_UNAVAILABLE', 'message': 'z3-solver is unavailable'}}))
             return 2
         try:
-            result = analyze(data, z3, args.timeout, args.table, deadline, comparison)
+            result = analyze(data, z3, args.timeout, args.table, deadline,
+                             comparison, args.gap_samples)
             result['provenance'] = {'model_sha256': hashlib.sha256(raw).hexdigest(),
                                     'z3_version': z3.get_version_string(),
                                     'z3_module': artifact_identity(z3.__file__),
@@ -237,6 +243,16 @@ def main():
                                     'note': 'Hash identifies supplied bytes; it does not establish semantic correctness.'}
             result['gap_interpretation'] = build_gap_interpretation(
                 data, result['queries']['gap'], result['provenance']['model_sha256'])
+            region = result['gap_region']
+            packets = [build_gap_interpretation(
+                data, sample, result['provenance']['model_sha256'])
+                for sample in region['samples']]
+            if any(packet['status'] != 'NEEDS_HUMAN_INTERPRETATION'
+                   for packet in packets):
+                region.update(status='INCONCLUSIVE', samples=[], remaining='UNKNOWN',
+                              reason='BOOLEAN_RECHECK_FAILED')
+            else:
+                region['samples'] = packets
         except z3.Z3Exception as exc:
             print(json.dumps({'error': {'code': 'SOLVER_ERROR', 'message': str(exc)}}))
             return 2

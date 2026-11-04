@@ -130,6 +130,8 @@ def main(_own_cli=False):
         parser.add_argument('input', help='Bounded Boolean JSON model; not executable content')
         parser.add_argument('--timeout', type=float, default=5, help='Wall-time budget in seconds (0 < value <= 30); subject to OS scheduling')
         parser.add_argument('--table', action='store_true', help='Exact guard-activation table for up to 12 inputs, if budget permits')
+        parser.add_argument('--gap-samples', type=int, default=0,
+                            help='False-first guard-gap samples, 0..16; optional bounded exploration')
         parser.add_argument('--compare-left', help='First existing rule ID for an optional RS3 comparison')
         parser.add_argument('--compare-right', help='Second existing rule ID for an optional RS3 comparison')
         parser.add_argument('--compare-scope', choices=('absolute', 'contextual'),
@@ -143,6 +145,8 @@ def main(_own_cli=False):
             raise InputError('QUERY_TEMPLATE_MISMATCH')
         if not math.isfinite(args.timeout) or not 0 < args.timeout <= 30:
             raise InputError('timeout must be greater than 0 and at most 30 seconds')
+        if not 0 <= args.gap_samples <= 16:
+            raise InputError('gap samples must be between 0 and 16')
         preflight = activation_preflight.evaluate(
             Path.cwd(), args.memory_budget_mib, workload='logic',
             caller_scope='OWNED_CLI' if _own_cli else 'EXTERNAL_CALLER')
@@ -200,6 +204,8 @@ def main(_own_cli=False):
                             '--timeout', str(max(.000001, remaining))]
                 if args.table:
                     command.append('--table')
+                if args.gap_samples:
+                    command += ['--gap-samples', str(args.gap_samples)]
                 if args.compare_scope is not None:
                     command += ['--compare-left', args.compare_left,
                                 '--compare-right', args.compare_right,

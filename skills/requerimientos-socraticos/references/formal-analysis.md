@@ -95,6 +95,14 @@ para explorar otras combinaciones hace falta una unidad posterior con
 particiones o bloqueos acotados y presupuesto explícito. No extrapoles el
 significado decidido para un testigo a toda la región sin comprobarla.
 
+La exploración optativa `analyze_logic.py --gap-samples N` usa N entre 0 y 16
+con el mismo plazo global. Entrega asignaciones en orden falso-antes-verdadero;
+`PARTIAL_LIMIT` confirma que hay más combinaciones en el modelo,
+`EXACT_WITHIN_SUPPLIED_MODEL` solo significa que el solver agotó `D ∧ ¬G`
+tras bloquear las muestras, e `INCONCLUSIVE` conserva lo no resuelto. Cada
+muestra requiere interpretación y decisión humana separadas; no generalices
+una clasificación a otra muestra por compartir una variable.
+
 ## Capacidad y envolvente material
 
 scripts/probe_environment.py realiza lectura local limitada, sin benchmark ni red.
