@@ -176,6 +176,11 @@ desde ese AST, sin interpretar texto libre ni emitir autoridad. La factoría
 limita las consultas a dominio, brecha, ausencia de salida y consistencia
 existencial; un testigo SAT se reevalúa dentro del presupuesto antes de
 presentarlo y se etiqueta como completado por el modelo, no observado.
+El oráculo sintáctico solo admite cuatro patrones booleanos españoles acotados
+(`solo si`, `si`, `si y solo si`, `Si…, entonces…`). Una negación,
+interpretación contradictoria o frase exterior devuelve NEEDS_CLARIFICATION
+sin AST ni EARS normativo. Esto no autentica el origen del texto ni su
+significado humano.
 La factoría ofrece además una fórmula de comparación entre dos reglas
 identificadas: absoluta `XOR(F,H)` o contextual `D ∧ C_other ∧ XOR(F,H)`;
 excluye las reglas comparadas de `C_other`. El llamador debe validar el modelo,

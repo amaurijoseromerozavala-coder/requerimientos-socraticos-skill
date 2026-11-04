@@ -19,6 +19,7 @@ def render_draft(candidate):
               'source_ref': checked['source_ref'],
               'source_sha256': checked['source_sha256'],
               'proposal_sha256': checked['proposal_sha256'],
+              'semantic_fidelity': checked['semantic_fidelity'],
               'meaning': ('REVIEW_ELIGIBLE_DOCUMENTARY_ONLY'
                           if 'production_ready' in (candidate['subject'], candidate['condition'])
                           else None),

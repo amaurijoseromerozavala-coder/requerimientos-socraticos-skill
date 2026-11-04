@@ -7,6 +7,8 @@ import hashlib
 import json
 import re
 
+from semantic_mini_oracle import assess
+
 
 SCHEMA_VERSION = '0.1-proposed'
 FIELDS = frozenset({'schema_version', 'id', 'source_ref', 'source_text',
@@ -75,7 +77,9 @@ def check_candidate(candidate):
     proposal_bytes = json.dumps(candidate, ensure_ascii=False, sort_keys=True,
                                 separators=(',', ':')).encode('utf-8')
     proposal_sha256 = hashlib.sha256(proposal_bytes).hexdigest()
+    semantic_fidelity = assess(candidate['source_text'], candidate)
     compilable = (candidate['status'] == 'PROPOSED' and
+                  semantic_fidelity == 'MATCHED_MINI_GRAMMAR' and
                   candidate['modality'] == 'MUST' and not candidate['assumptions']
                   and not candidate['exceptions'] and candidate['kind'] in DIRECTIONS)
     ast = None
@@ -92,6 +96,7 @@ def check_candidate(candidate):
             'status': 'PROPOSED' if compilable else 'NEEDS_CLARIFICATION',
             'authority': 'NOT_GRANTED', 'source_sha256': source_sha256,
             'proposal_sha256': proposal_sha256,
+            'semantic_fidelity': semantic_fidelity,
             'source_ref': candidate['source_ref'], 'ast': ast,
             'scope': 'SYNTAX_AND_DIRECTION_ONLY',
-            'limitation': 'Source bytes and direction are checked; human meaning is not authenticated.'}
+            'limitation': 'Only four bounded Spanish Boolean patterns are checked; source provenance and human meaning are not authenticated.'}

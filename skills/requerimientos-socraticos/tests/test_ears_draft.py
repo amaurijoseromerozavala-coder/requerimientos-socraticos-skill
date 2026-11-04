@@ -31,11 +31,13 @@ class EarsDraftTests(unittest.TestCase):
         first = render_draft(item)
         self.assertEqual(first['ast']['args'], [{'var': 'P'}, {'var': 'Q'}])
         self.assertIn('si «P» es verdadero, entonces «Q»', first['text'])
-        item.update(kind='SUFFICIENT_CONDITION', direction='CONDITION_IMPLIES_SUBJECT')
+        item.update(kind='SUFFICIENT_CONDITION', direction='CONDITION_IMPLIES_SUBJECT',
+                    source_text='P si Q')
         second = render_draft(item)
         self.assertEqual(second['ast']['args'], [{'var': 'Q'}, {'var': 'P'}])
         self.assertIn('si «Q» es verdadero, entonces «P»', second['text'])
-        item.update(kind='EQUIVALENCE', direction='BICONDITIONAL')
+        item.update(kind='EQUIVALENCE', direction='BICONDITIONAL',
+                    source_text='P si y solo si Q')
         third = render_draft(item)
         self.assertEqual(third['ast']['op'], 'eq')
         self.assertIn('mismo valor de verdad', third['text'])
@@ -56,6 +58,7 @@ class EarsDraftTests(unittest.TestCase):
     def test_review_eligible_meaning_is_documentary_only(self):
         item = candidate()
         item['subject'] = 'production_ready'
+        item['source_text'] = 'production_ready solo si Q'
         result = render_draft(item)
         self.assertIn('elegible para revisión documental', result['text'])
         self.assertEqual(result['ast']['args'][0], {'var': 'production_ready'})
