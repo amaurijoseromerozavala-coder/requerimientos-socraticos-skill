@@ -19,6 +19,7 @@ from formal_queries import EquivalenceScope, QueryContext, QueryKind
 from witness_validation import verify_assignment
 from gap_scenario import build_gap_interpretation
 from gap_region import sample_gap_region
+from gap_glossary import build_gap_questions
 
 MEMORY_FAILURE = b'{"status":"INCONCLUSIVE","error":{"code":"MEMORY_BUDGET_EXCEEDED","message":"Worker observed an allocation failure; no model results are reported."}}\n'
 
@@ -205,6 +206,7 @@ def main():
         parser.add_argument('input'); parser.add_argument('--timeout', type=float, default=5.0)
         parser.add_argument('--table', action='store_true')
         parser.add_argument('--gap-samples', type=int, default=0)
+        parser.add_argument('--glossary')
         parser.add_argument('--compare-left')
         parser.add_argument('--compare-right')
         parser.add_argument('--compare-scope', choices=('absolute', 'contextual'))
@@ -253,6 +255,23 @@ def main():
                               reason='BOOLEAN_RECHECK_FAILED')
             else:
                 region['samples'] = packets
+            glossary = None
+            glossary_digest = None
+            if args.glossary is not None:
+                glossary_path = Path(args.glossary).absolute()
+                glossary_raw = read_regular(glossary_path.parent,
+                                            glossary_path.name, 65536)
+                preflight_json(glossary_raw, max_depth=16, max_bytes=65536)
+                glossary = json.loads(
+                    glossary_raw.decode('utf-8'), object_pairs_hook=unique_object,
+                    parse_constant=lambda _: (_ for _ in ()).throw(
+                        InputError('non-finite JSON number')))
+                glossary_digest = hashlib.sha256(glossary_raw).hexdigest()
+            source_packets = (region['samples'] if region['samples']
+                              else [result['gap_interpretation']])
+            result['gap_questions'] = build_gap_questions(
+                source_packets, glossary, data['inputs'],
+                result['provenance']['model_sha256'], glossary_digest)
         except z3.Z3Exception as exc:
             print(json.dumps({'error': {'code': 'SOLVER_ERROR', 'message': str(exc)}}))
             return 2

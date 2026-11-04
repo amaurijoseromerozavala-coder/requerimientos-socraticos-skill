@@ -132,6 +132,7 @@ def main(_own_cli=False):
         parser.add_argument('--table', action='store_true', help='Exact guard-activation table for up to 12 inputs, if budget permits')
         parser.add_argument('--gap-samples', type=int, default=0,
                             help='False-first guard-gap samples, 0..16; optional bounded exploration')
+        parser.add_argument('--glossary', help='Optional bounded, proposed source glossary for gap questions')
         parser.add_argument('--compare-left', help='First existing rule ID for an optional RS3 comparison')
         parser.add_argument('--compare-right', help='Second existing rule ID for an optional RS3 comparison')
         parser.add_argument('--compare-scope', choices=('absolute', 'contextual'),
@@ -206,6 +207,8 @@ def main(_own_cli=False):
                     command.append('--table')
                 if args.gap_samples:
                     command += ['--gap-samples', str(args.gap_samples)]
+                if args.glossary is not None:
+                    command += ['--glossary', args.glossary]
                 if args.compare_scope is not None:
                     command += ['--compare-left', args.compare_left,
                                 '--compare-right', args.compare_right,
