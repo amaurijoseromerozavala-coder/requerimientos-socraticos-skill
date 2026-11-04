@@ -150,6 +150,15 @@ revalida el modelo, no autentica a una persona y no registra respuestas.
 La comprobación del HTML generado no equivale a una prueba en el navegador
 del equipo objetivo.
 
+Para consumir el informe completo de `analyze_logic.py`, usa
+`render_gap_questions.py --report reporte.json` o `--report -` con un pipe
+acotado. Este modo coteja el digest del modelo, la consulta GAP, la
+revalidación declarada del testigo y la asignación de cada pregunta con su
+escenario en el mismo informe. Una discrepancia no produce HTML. El informe
+puede ser falsificado de forma autoconsistente: este cotejo no sustituye la
+ejecución del analizador ni autentica la procedencia del modelo. La lectura
+de stdin no impone un plazo propio; el invocador debe supervisar el productor.
+
 ## Capacidad y envolvente material
 
 scripts/probe_environment.py realiza lectura local limitada, sin benchmark ni red.

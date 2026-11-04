@@ -99,6 +99,47 @@ def render_document(packet):
     return ''.join(parts)
 
 
+def render_analysis_report(report):
+    """Render only a report whose question and checked witness fields agree."""
+    if type(report) is not dict or type(report.get('provenance')) is not dict:
+        raise ValueError('INVALID_ANALYSIS_REPORT')
+    digest = report['provenance'].get('model_sha256')
+    if type(digest) is not str or not HEX64.fullmatch(digest):
+        raise ValueError('INVALID_ANALYSIS_DIGEST')
+    queries = report.get('queries')
+    gap = queries.get('gap') if type(queries) is dict else None
+    if (type(gap) is not dict or gap.get('status') != 'SAT'
+            or gap.get('witness_check') != 'VERIFIED'):
+        raise ValueError('UNVERIFIED_ANALYSIS_GAP')
+    packet = report.get('gap_questions')
+    if type(packet) is not dict:
+        raise ValueError('MISSING_GAP_QUESTIONS')
+    _validate(packet)
+    region = report.get('gap_region')
+    if type(region) is not dict or type(region.get('samples')) is not list:
+        raise ValueError('INVALID_GAP_REGION')
+    samples = (region['samples'] if region['samples'] else
+               [report.get('gap_interpretation')])
+    if len(samples) != len(packet['questions']):
+        raise ValueError('QUESTION_WITNESS_COUNT_MISMATCH')
+    for question, sample in zip(packet['questions'], samples):
+        if (type(sample) is not dict
+                or sample.get('status') != 'NEEDS_HUMAN_INTERPRETATION'
+                or sample.get('formal_query') != 'SAT(D AND NOT OR(GUARDS))'
+                or sample.get('witness_recheck')
+                != 'VERIFIED_BY_Z3_AND_BOOLEAN_EVALUATOR'
+                or sample.get('model_sha256') != digest
+                or question['model_sha256'] != digest):
+            raise ValueError('QUESTION_WITNESS_MISMATCH')
+        assignment = sample.get('input_assignment')
+        expected = question['input_assignment']
+        if (type(assignment) is not dict or set(assignment) != set(expected)
+                or any(type(value) is not bool or value is not expected[name]
+                       for name, value in assignment.items())):
+            raise ValueError('QUESTION_ASSIGNMENT_MISMATCH')
+    return render_document(packet)
+
+
 def _unique_object(pairs):
     result = {}
     for name, value in pairs:
@@ -110,16 +151,22 @@ def _unique_object(pairs):
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument('input', help='bounded JSON gap_questions packet')
+    parser.add_argument('input', help='bounded JSON packet or analysis report; - reads stdin')
+    parser.add_argument('--report', action='store_true',
+                        help='extract and cross-check gap_questions from a full analysis report')
     args = parser.parse_args()
     try:
-        path = Path(args.input).absolute()
-        raw = read_regular(path.parent, path.name, MAX_INPUT_BYTES)
+        if args.input == '-':
+            raw = sys.stdin.buffer.read(MAX_INPUT_BYTES + 1)
+        else:
+            path = Path(args.input).absolute()
+            raw = read_regular(path.parent, path.name, MAX_INPUT_BYTES)
         preflight_json(raw, max_depth=32, max_bytes=MAX_INPUT_BYTES)
         packet = json.loads(raw.decode('utf-8'), object_pairs_hook=_unique_object,
                             parse_constant=lambda _: (_ for _ in ()).throw(
                                 ValueError('NONFINITE_JSON_NUMBER')))
-        document = render_document(packet)
+        document = (render_analysis_report(packet) if args.report
+                    else render_document(packet))
     except MemoryError:
         print('INFRA_FAILURE', file=sys.stderr)
         return 3
