@@ -1,10 +1,12 @@
 # RS3: reconciliación conservadora del paquete de 2026-11-02
 
-Fuente: ZIP identificado por SHA-256 `83a83c77921f7737e89328b8dae365e7d0e7047f0c3fc7acbf7af2fd8f6c2d7e`. Se comprobaron los 25 miembros del manifiesto por tamaño y digest. La instantánea de código inspeccionada fue `cc95580f6f5d9177d9467f5ed3d4bd0e19a82bd9`. El paquete se declara borrador propuesto; no es una adopción conjunta del PRD.
+Fuente: ZIP identificado por SHA-256 `83a83c77921f7737e89328b8dae365e7d0e7047f0c3fc7acbf7af2fd8f6c2d7e`. Se comprobaron los 25 miembros del manifiesto por tamaño y digest. La instantánea de código inspeccionada fue `ec164df5b4c12e8a1b438a389fb5f35e19dc8627`. El paquete se declara borrador propuesto; no es una adopción conjunta del PRD.
 
 El [registro por ID](reconciliation-2026-11-03.json) contiene los 107 requisitos, 50 tareas y 52 casos propuestos, con digest de cada enunciado y vínculos conservadores hacia código y pruebas. Para 42 requisitos se observó código parcial relacionado; 65 quedaron sin evaluación de implementación. Ninguno tiene aceptación individual verificada. Entre las tareas, una es el inventario de solo lectura completado, 22 tienen evidencia parcial y 27 siguen pendientes. Los 52 casos conservan `NOT_RUN_AS_PACKAGE_CASE`: ejecutar suites existentes no equivale a ejecutar esos casos.
 
 Las 107 relaciones de trazabilidad del paquete son solo por grupo. Por ello, un enlace del registro indica una pista de inspección y nunca cobertura exacta. Las duraciones no se estimaron; la precedencia se conserva como topología, sin ruta crítica numérica. El generador `ci/build_rs3_reconciliation.py` reproduce el registro desde el ZIP identificado y falla si cambia su identidad, contenido declarado, denominadores o enlaces locales observados.
+
+La unidad `WU-RS3-PROPOSAL-BINDING-003` queda vinculada a RS3-REQ-036, RS3-REQ-041 y RS3-REQ-047 como evidencia de implementación **parcial**. Su RDD inspeccionó parches y no ejecutó tests. Los tres requisitos conservan `NOT_VERIFIED_PER_REQUIREMENT`; la fidelidad de la interpretación lingüística sigue sin oráculo independiente.
 
 Decisiones posteriores aplicables: D01 define `production_ready` como elegibilidad para revisión documental; D02 exige todos los requisitos aplicables, evidencia actual y ninguna brecha crítica. D04 seleccionó un verificador local PBKDF2 con bitácora; D05 eligió una cuenta local separada. El código actual de D04/D05 es parcial: la separación de cuenta, UID, terminal, permisos y elevación no está comprobada en el equipo objetivo. D03 sigue pendiente. La coincidencia de una contraseña no concede autoridad semántica ni permiso de ejecución.
 

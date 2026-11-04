@@ -11,7 +11,7 @@ from ci import build_rs3_reconciliation as builder
 
 ROOT = Path(__file__).resolve().parents[2]
 MATRIX = ROOT / 'docs/design/rs3/reconciliation-2026-11-03.json'
-AUDITED_HEAD = 'cc95580f6f5d9177d9467f5ed3d4bd0e19a82bd9'
+AUDITED_HEAD = 'ec164df5b4c12e8a1b438a389fb5f35e19dc8627'
 
 
 class BuilderOracleTests(unittest.TestCase):

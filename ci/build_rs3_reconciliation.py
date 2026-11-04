@@ -98,6 +98,18 @@ GROUP_TESTS = {
     'INTEGRATION': 'ci/tests/test_workflow.py',
 }
 
+PROPOSAL_BINDING_EVENT = {
+    'id': 'WU-RS3-PROPOSAL-BINDING-003',
+    'commit': 'ec164df5b4c12e8a1b438a389fb5f35e19dc8627',
+    'candidate': 'sha256:20b8256e7d37ef50b23247fbd0c3b70dfef731b0b1d3b8940e9439cc332c97b8',
+    'lineage': 'review-8d9def7efca963bc',
+    'rdd_receipt': 'docs/skill-audit/rs3-proposal-binding/RDD-CIERRE.md',
+    'rdd_scope': 'PATCH_INSPECTION_NO_TEST_EXECUTION',
+    'acceptance_scope': 'PARTIAL_IMPLEMENTATION_ONLY',
+}
+PROPOSAL_BINDING_REQUIREMENTS = frozenset({'RS3-REQ-036', 'RS3-REQ-041',
+                                            'RS3-REQ-047'})
+
 
 def _sha(raw):
     return hashlib.sha256(raw).hexdigest()
@@ -111,6 +123,8 @@ def _member(archive, suffix):
 
 
 def build(package, head):
+    if not (ROOT / PROPOSAL_BINDING_EVENT['rdd_receipt']).is_file():
+        raise ValueError('EVIDENCE_RECEIPT_MISSING')
     raw = Path(package).read_bytes()
     if _sha(raw) != ZIP_SHA256:
         raise ValueError('PACKAGE_IDENTITY_MISMATCH')
@@ -147,6 +161,8 @@ def build(package, head):
             'implementation_status': 'CODE_OBSERVED_PARTIAL' if links else 'NOT_ASSESSED',
             'code_paths': [links[0]] if links else [],
             'test_paths': [links[1]] if links else [],
+            **({'evidence_refs': [PROPOSAL_BINDING_EVENT['id']]}
+               if req_id in PROPOSAL_BINDING_REQUIREMENTS else {}),
             'acceptance_status': 'NOT_VERIFIED_PER_REQUIREMENT',
             'package_mapping': 'GROUP_ONLY_PROPOSED_NOT_FINE_GRAINED',
         })
@@ -191,6 +207,7 @@ def build(package, head):
         'plan_status': 'TOPOLOGY_ONLY',
         'duration_status': 'NOT_ESTIMATED',
         'acceptance_scope': 'INVENTORY_ONLY_NO_REQUIREMENT_PROMOTION',
+        'evidence_events': [PROPOSAL_BINDING_EVENT],
         'requirements': requirements, 'tasks': tasks, 'cases': cases,
     }
 

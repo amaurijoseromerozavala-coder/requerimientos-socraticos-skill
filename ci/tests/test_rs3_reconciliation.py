@@ -26,6 +26,22 @@ class RS3ReconciliationTests(unittest.TestCase):
                                    for number in range(1, total + 1)])
             self.assertEqual(len(ids), len(set(ids)))
 
+    def test_latest_partial_evidence_preserves_unverified_acceptance(self):
+        self.assertEqual(self.doc['observed_head'],
+                         'ec164df5b4c12e8a1b438a389fb5f35e19dc8627')
+        rows = {row['id']: row for row in self.doc['requirements']}
+        for req_id in ('RS3-REQ-036', 'RS3-REQ-041', 'RS3-REQ-047'):
+            self.assertEqual(rows[req_id]['evidence_refs'],
+                             ['WU-RS3-PROPOSAL-BINDING-003'])
+            self.assertEqual(rows[req_id]['acceptance_status'],
+                             'NOT_VERIFIED_PER_REQUIREMENT')
+        event = self.doc['evidence_events'][0]
+        self.assertEqual(event['id'], 'WU-RS3-PROPOSAL-BINDING-003')
+        self.assertTrue((ROOT / event['rdd_receipt']).is_file())
+        self.assertEqual(event['rdd_scope'], 'PATCH_INSPECTION_NO_TEST_EXECUTION')
+        self.assertTrue(all(row['execution'] == 'NOT_RUN_AS_PACKAGE_CASE'
+                            for row in self.doc['cases']))
+
     def test_proposals_are_not_promoted_by_code_presence(self):
         for row in self.doc['requirements']:
             self.assertEqual(row['package_status'], 'PROPOSED')
