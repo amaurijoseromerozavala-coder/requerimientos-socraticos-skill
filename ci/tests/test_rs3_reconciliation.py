@@ -39,7 +39,7 @@ class RS3ReconciliationTests(unittest.TestCase):
 
     def test_latest_partial_evidence_preserves_unverified_acceptance(self):
         self.assertEqual(self.doc['observed_head'],
-                         '40328757dcf7f6b758f8f09df845224f1b656572')
+                         '43d6859b81004fb8e3d19e996b05284ae6805c29')
         rows = {row['id']: row for row in self.doc['requirements']}
         for req_id in ('RS3-REQ-036', 'RS3-REQ-041', 'RS3-REQ-047'):
             self.assertIn('WU-RS3-PROPOSAL-BINDING-003',
@@ -74,6 +74,21 @@ class RS3ReconciliationTests(unittest.TestCase):
                                  'NOT_VERIFIED_PER_REQUIREMENT')
         self.assertTrue(all(row['execution'] == 'NOT_RUN_AS_PACKAGE_CASE'
                             for row in self.doc['cases']))
+
+    def test_local_provider_links_are_partial_only(self):
+        rows = {row['id']: row for row in self.doc['requirements']}
+        events = {row['id']: row for row in self.doc['evidence_events']}
+        event_id = 'WU-RS3-LOCAL-PROVIDER-ADAPTER-008'
+        self.assertIn(event_id, events)
+        self.assertTrue((ROOT / events[event_id]['rdd_receipt']).is_file())
+        self.assertEqual(events[event_id]['acceptance_scope'],
+                         'PARTIAL_IMPLEMENTATION_ONLY')
+        for req_id in ('RS3-REQ-070', 'RS3-REQ-080'):
+            self.assertIn(event_id, rows[req_id]['evidence_refs'])
+            self.assertEqual(rows[req_id]['implementation_status'],
+                             'CODE_OBSERVED_PARTIAL')
+            self.assertEqual(rows[req_id]['acceptance_status'],
+                             'NOT_VERIFIED_PER_REQUIREMENT')
 
     def test_proposals_are_not_promoted_by_code_presence(self):
         for row in self.doc['requirements']:

@@ -50,6 +50,8 @@ LINKS = {
     '059': (SCRIPT+'memory_budget.py', TEST+'test_logic_memory.py'),
     '061': (SCRIPT+'formal_queries.py', TEST+'test_formal_queries.py'),
     '062': (SCRIPT+'witness_validation.py', TEST+'test_witness_recheck.py'),
+    '070': (SCRIPT+'local_provider_adapter.py', TEST+'test_rs3_local_provider_adapter.py'),
+    '080': (SCRIPT+'local_provider_adapter.py', TEST+'test_rs3_local_provider_adapter.py'),
     '082': ('ci/check_rdd_record.py', 'ci/tests/test_rdd_record.py'),
     '083': ('ci/run_quality.sh', 'ci/tests/test_workflow.py'),
     '086': ('ci/check_rdd_record.py', 'ci/tests/test_rdd_record.py'),
@@ -128,8 +130,17 @@ WEAK_MODEL_EVENT = {
     'rdd_scope': 'PATCH_INSPECTION_NO_TEST_EXECUTION',
     'acceptance_scope': 'PARTIAL_IMPLEMENTATION_ONLY',
 }
+LOCAL_PROVIDER_EVENT = {
+    'id': 'WU-RS3-LOCAL-PROVIDER-ADAPTER-008',
+    'commit': '43d6859b81004fb8e3d19e996b05284ae6805c29',
+    'candidate': 'sha256:9d90308ad20fad37cfba76c88f3a94e0677f471ab2c99bd993e4f1d7f185720e',
+    'lineage': 'review-9fb0950c8a045d1b',
+    'rdd_receipt': 'docs/skill-audit/rs3-local-provider-adapter/RDD-CIERRE.md',
+    'rdd_scope': 'PATCH_INSPECTION_NO_TEST_EXECUTION',
+    'acceptance_scope': 'PARTIAL_IMPLEMENTATION_ONLY',
+}
 EVIDENCE_EVENTS = (PROPOSAL_BINDING_EVENT, SEMANTIC_ORACLE_EVENT,
-                   WEAK_MODEL_EVENT)
+                   WEAK_MODEL_EVENT, LOCAL_PROVIDER_EVENT)
 EVIDENCE_TARGETS = {
     PROPOSAL_BINDING_EVENT['id']: PROPOSAL_BINDING_REQUIREMENTS,
     SEMANTIC_ORACLE_EVENT['id']: frozenset({'RS3-REQ-038', 'RS3-REQ-040',
@@ -137,6 +148,7 @@ EVIDENCE_TARGETS = {
     WEAK_MODEL_EVENT['id']: frozenset({'RS3-REQ-036', 'RS3-REQ-038',
                                       'RS3-REQ-039', 'RS3-REQ-040',
                                       'RS3-REQ-043'}),
+    LOCAL_PROVIDER_EVENT['id']: frozenset({'RS3-REQ-070', 'RS3-REQ-080'}),
 }
 
 
