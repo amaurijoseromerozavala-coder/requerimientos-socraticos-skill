@@ -20,6 +20,7 @@ from witness_validation import verify_assignment
 from gap_scenario import build_gap_interpretation
 from gap_region import sample_gap_region
 from gap_glossary import build_gap_questions
+from git_source_provenance import prepare_pinned_glossary
 
 MEMORY_FAILURE = b'{"status":"INCONCLUSIVE","error":{"code":"MEMORY_BUDGET_EXCEEDED","message":"Worker observed an allocation failure; no model results are reported."}}\n'
 
@@ -207,6 +208,8 @@ def main():
         parser.add_argument('--table', action='store_true')
         parser.add_argument('--gap-samples', type=int, default=0)
         parser.add_argument('--glossary')
+        parser.add_argument('--source-repo')
+        parser.add_argument('--source-commit')
         parser.add_argument('--compare-left')
         parser.add_argument('--compare-right')
         parser.add_argument('--compare-scope', choices=('absolute', 'contextual'))
@@ -222,6 +225,10 @@ def main():
             raise InputError('timeout must be greater than 0 and at most 30 seconds')
         if not 0 <= args.gap_samples <= 16:
             raise InputError('gap samples must be between 0 and 16')
+        if (args.source_repo is None) != (args.source_commit is None):
+            raise InputError('source repo and commit must be supplied together')
+        if args.source_repo is not None and args.glossary is None:
+            raise InputError('source snapshot requires glossary')
         started = time.monotonic()
         deadline = started + args.timeout
         path = Path(args.input).absolute()
@@ -269,9 +276,30 @@ def main():
                 glossary_digest = hashlib.sha256(glossary_raw).hexdigest()
             source_packets = (region['samples'] if region['samples']
                               else [result['gap_interpretation']])
-            result['gap_questions'] = build_gap_questions(
-                source_packets, glossary, data['inputs'],
-                result['provenance']['model_sha256'], glossary_digest)
+            source_metadata = None
+            glossary_state_override = None
+            if type(glossary) is dict and glossary.get('schema_version') == 'rs3-gap-glossary/v2':
+                glossary_state_override, glossary, source_metadata = prepare_pinned_glossary(
+                    glossary, data['inputs'], result['provenance']['model_sha256'],
+                    args.source_repo, args.source_commit, deadline)
+            elif args.source_repo is not None:
+                raise InputError('pinned source requires glossary v2')
+            if glossary_state_override is not None and glossary_state_override != 'PINNED_BYTES_VERIFIED':
+                result['gap_questions'] = {
+                    'status': glossary_state_override, 'questions': [],
+                    'authority': 'NOT_GRANTED', 'source_authenticity': 'NOT_ESTABLISHED'}
+            else:
+                result['gap_questions'] = build_gap_questions(
+                    source_packets, glossary, data['inputs'],
+                    result['provenance']['model_sha256'], glossary_digest)
+                if source_metadata is not None:
+                    questions = result['gap_questions']
+                    questions['source_bytes'] = 'PINNED_GIT_BLOB_SLICE_VERIFIED'
+                    questions['source_commit_oid'] = source_metadata['commit']
+                    questions['git_object_format'] = source_metadata['object_format']
+                    for question in questions['questions']:
+                        for name, source in question['sources'].items():
+                            source.update(source_metadata['variables'][name])
         except z3.Z3Exception as exc:
             print(json.dumps({'error': {'code': 'SOLVER_ERROR', 'message': str(exc)}}))
             return 2

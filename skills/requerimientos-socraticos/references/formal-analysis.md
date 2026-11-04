@@ -114,6 +114,16 @@ trata su texto como datos no confiables y pide al humano corregir primero las
 definiciones si no coinciden con el dominio. La decisión sobre una brecha y el
 sellado de su test siguen los gates de autoridad pendientes.
 
+Para glosarios v2, fija `--source-repo` y `--source-commit` con OID completo.
+Cada cita declara offsets de bytes y debe coincidir con un blob regular del
+commit, no con el worktree. `PINNED_GIT_BLOB_SLICE_VERIFIED` verifica esa
+correspondencia y expone formato de OID Git y SHA-256 del blob. Un commit Git
+local no autentica autoría, intención, verdad de la fuente ni aislamiento de
+cuenta; `source_authenticity` permanece `NOT_ESTABLISHED` y la pregunta sigue
+`PROPOSED_UNVERIFIED`. El formato v1 conserva solo consistencia interna y no
+se promueve por suministrar flags de snapshot. El lector aplica un límite de
+64 KiB por blob y rechaza symlinks o rutas fuera del árbol.
+
 ## Capacidad y envolvente material
 
 scripts/probe_environment.py realiza lectura local limitada, sin benchmark ni red.

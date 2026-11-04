@@ -133,6 +133,8 @@ def main(_own_cli=False):
         parser.add_argument('--gap-samples', type=int, default=0,
                             help='False-first guard-gap samples, 0..16; optional bounded exploration')
         parser.add_argument('--glossary', help='Optional bounded, proposed source glossary for gap questions')
+        parser.add_argument('--source-repo', help='Local Git repository for pinned glossary v2 sources')
+        parser.add_argument('--source-commit', help='Full commit OID for pinned glossary v2 sources')
         parser.add_argument('--compare-left', help='First existing rule ID for an optional RS3 comparison')
         parser.add_argument('--compare-right', help='Second existing rule ID for an optional RS3 comparison')
         parser.add_argument('--compare-scope', choices=('absolute', 'contextual'),
@@ -148,6 +150,8 @@ def main(_own_cli=False):
             raise InputError('timeout must be greater than 0 and at most 30 seconds')
         if not 0 <= args.gap_samples <= 16:
             raise InputError('gap samples must be between 0 and 16')
+        if (args.source_repo is None) != (args.source_commit is None):
+            raise InputError('source repo and commit must be supplied together')
         preflight = activation_preflight.evaluate(
             Path.cwd(), args.memory_budget_mib, workload='logic',
             caller_scope='OWNED_CLI' if _own_cli else 'EXTERNAL_CALLER')
@@ -209,6 +213,9 @@ def main(_own_cli=False):
                     command += ['--gap-samples', str(args.gap_samples)]
                 if args.glossary is not None:
                     command += ['--glossary', args.glossary]
+                if args.source_repo is not None:
+                    command += ['--source-repo', args.source_repo,
+                                '--source-commit', args.source_commit]
                 if args.compare_scope is not None:
                     command += ['--compare-left', args.compare_left,
                                 '--compare-right', args.compare_right,
