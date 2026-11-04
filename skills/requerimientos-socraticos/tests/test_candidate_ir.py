@@ -1,5 +1,6 @@
 """RS3 proposed IR: syntactic compilation never grants human authority."""
 import copy
+import hashlib
 from pathlib import Path
 import sys
 import unittest
@@ -22,6 +23,26 @@ def proposal():
 
 
 class CandidateIRTests(unittest.TestCase):
+    def test_proposal_digest_binds_every_admitted_field(self):
+        item = proposal()
+        raw = json.dumps(item, ensure_ascii=False, sort_keys=True,
+                         separators=(',', ':')).encode('utf-8')
+        baseline = check_candidate(item)
+        self.assertEqual(baseline['proposal_sha256'], hashlib.sha256(raw).hexdigest())
+        for field, replacement in (('source_ref', 'interview/question-2/revision-1'),
+                                   ('condition', 'R'), ('modality', 'MAY'),
+                                   ('assumptions', ['only in region X']),
+                                   ('exceptions', ['except E'])):
+            with self.subTest(field=field):
+                changed = copy.deepcopy(item)
+                changed[field] = replacement
+                self.assertNotEqual(check_candidate(changed)['proposal_sha256'],
+                                    baseline['proposal_sha256'])
+        changed = copy.deepcopy(item)
+        changed['source_ref'] = 'interview/question-2/revision-1'
+        self.assertEqual(check_candidate(changed)['source_sha256'],
+                         baseline['source_sha256'])
+
     def test_necessary_direction_is_not_inverted(self):
         result = check_candidate(proposal())
         self.assertEqual(result['ast'], {'op': 'implies',

@@ -5,7 +5,7 @@ import unittest
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / 'scripts'))
 from ears_draft import render_draft
-from candidate_ir import CandidateError
+from candidate_ir import CandidateError, check_candidate
 
 
 def candidate():
@@ -19,6 +19,13 @@ def candidate():
 
 
 class EarsDraftTests(unittest.TestCase):
+    def test_ears_draft_binds_exact_proposal_without_granting_authority(self):
+        item = candidate()
+        result = render_draft(item)
+        self.assertEqual(result['proposal_sha256'], check_candidate(item)['proposal_sha256'])
+        self.assertEqual(result['authority'], 'NOT_GRANTED')
+        self.assertIs(result['execution_authorized'], False)
+
     def test_necessary_sufficient_and_equivalence_keep_direction(self):
         item = candidate()
         first = render_draft(item)

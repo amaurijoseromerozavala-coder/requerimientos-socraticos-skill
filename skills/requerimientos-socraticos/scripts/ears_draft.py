@@ -18,6 +18,7 @@ def render_draft(candidate):
               'execution_authorized': False, 'scope': 'DOCUMENTARY_ONLY',
               'source_ref': checked['source_ref'],
               'source_sha256': checked['source_sha256'],
+              'proposal_sha256': checked['proposal_sha256'],
               'meaning': ('REVIEW_ELIGIBLE_DOCUMENTARY_ONLY'
                           if 'production_ready' in (candidate['subject'], candidate['condition'])
                           else None),

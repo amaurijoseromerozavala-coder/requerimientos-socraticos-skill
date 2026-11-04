@@ -4,6 +4,7 @@ The caller supplies an interpretation of the original text. This module checks
 its form and direction, not whether that interpretation matches human intent.
 """
 import hashlib
+import json
 import re
 
 
@@ -71,6 +72,9 @@ def check_candidate(candidate):
             _text(value, 512, 'INVALID_CONTEXT')
 
     source_sha256 = hashlib.sha256(candidate['source_text'].encode('utf-8')).hexdigest()
+    proposal_bytes = json.dumps(candidate, ensure_ascii=False, sort_keys=True,
+                                separators=(',', ':')).encode('utf-8')
+    proposal_sha256 = hashlib.sha256(proposal_bytes).hexdigest()
     compilable = (candidate['status'] == 'PROPOSED' and
                   candidate['modality'] == 'MUST' and not candidate['assumptions']
                   and not candidate['exceptions'] and candidate['kind'] in DIRECTIONS)
@@ -87,6 +91,7 @@ def check_candidate(candidate):
     return {'schema_version': SCHEMA_VERSION,
             'status': 'PROPOSED' if compilable else 'NEEDS_CLARIFICATION',
             'authority': 'NOT_GRANTED', 'source_sha256': source_sha256,
+            'proposal_sha256': proposal_sha256,
             'source_ref': candidate['source_ref'], 'ast': ast,
             'scope': 'SYNTAX_AND_DIRECTION_ONLY',
             'limitation': 'Source bytes and direction are checked; human meaning is not authenticated.'}
