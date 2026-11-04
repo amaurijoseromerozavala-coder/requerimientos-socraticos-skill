@@ -1,0 +1,62 @@
+{
+  "contract_id": "RS3-AUTHORITY-PORTABILITY-DESIGN-001",
+  "status": "PROPOSED_DESIGN_NOT_ENFORCED",
+  "runtime_enforcement": "NOT_IMPLEMENTED",
+  "authority_verification": "NOT_ESTABLISHED",
+  "execution_authorized": false,
+  "target_hardware_verification": "NOT_RUN",
+  "challenge_binding": [
+    "protocol_version",
+    "confirmation_kind",
+    "proposal_sha256",
+    "snapshot_sha256",
+    "canonical_decision_sha256",
+    "nonce",
+    "audience",
+    "policy_sha256",
+    "expiry"
+  ],
+  "canonical_encoding": "VERSIONED_CANONICAL_BYTES_TO_BE_SPECIFIED_AND_TESTED",
+  "nonce_rule": "ISSUED_AND_CONSUMED_BY_INDEPENDENT_AUTHORITY_PER_CONFIRMATION",
+  "expiry_rule": "VERIFY_UNDER_DECLARED_CLOCK_POLICY_OR_BLOCK",
+  "replay": "BLOCK",
+  "agent_supplied_proof": "BLOCK",
+  "unknown_or_incomplete": "BLOCK",
+  "unsupported_environment": "BLOCK",
+  "environment_preflight": "PROFILE_SPECIFIC_REQUIRED",
+  "receipt_verification": "INDEPENDENT_OF_AGENT_REQUIRED",
+  "promotion_rule": "INDEPENDENT_BOUNDARY_AND_RECEIPT_REQUIRED",
+  "operation_gate": "SEPARATE",
+  "profiles": {
+    "LOCAL_PBKDF2": {
+      "decision_status": "RATIFIED_DESIGN_TARGET_UNVERIFIED",
+      "runtime_enforcement": "NOT_IMPLEMENTED",
+      "required_boundary": "SEPARATE_LOCAL_ACCOUNT",
+      "confirmation_frequency": "EVERY_CONFIRMATION",
+      "unverified": [
+        "AGENT_CANNOT_READ_VERIFIER_OR_WRITE_STORE",
+        "AGENT_CANNOT_CONTROL_AUTHORITY_TTY_OR_ELEVATE",
+        "RECOVERY_AND_REVOCATION",
+        "TARGET_NEGATIVE_TESTS"
+      ]
+    },
+    "TOTP": {
+      "decision_status": "OPTION_NOT_ADOPTED",
+      "runtime_enforcement": "NOT_IMPLEMENTED",
+      "required_boundary": "SEED_AND_VERIFIER_INDEPENDENT_OF_AGENT",
+      "unverified": ["CLOCK_POLICY", "REPLAY_AND_RATE_LIMIT", "DEVICE_RECOVERY"]
+    },
+    "PRINTED_COORDINATES": {
+      "decision_status": "OPTION_NOT_ADOPTED",
+      "runtime_enforcement": "NOT_IMPLEMENTED",
+      "required_boundary": "CARD_AND_UNUSED_CHALLENGES_INDEPENDENT_OF_AGENT",
+      "unverified": ["ONE_TIME_CONSUMPTION", "LOSS_AND_REISSUE", "HUMAN_CHANNEL"]
+    },
+    "PLATFORM_AUTHENTICATOR": {
+      "decision_status": "OPTION_NOT_ADOPTED",
+      "runtime_enforcement": "NOT_IMPLEMENTED",
+      "required_boundary": "VERIFIER_AND_PRIVATE_KEY_INDEPENDENT_OF_AGENT",
+      "unverified": ["PLATFORM_AVAILABILITY", "ORIGIN_OR_AUDIENCE", "RECOVERY_AND_REVOCATION"]
+    }
+  }
+}
