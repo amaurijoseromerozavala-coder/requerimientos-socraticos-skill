@@ -20,6 +20,8 @@ ITERATIONS = 600_000
 VERIFIER_MAX_BYTES = 512
 DECISION_MAX_BYTES = 4096
 SCHEMA = 'rs3-pbkdf2-verifier/v2'
+CONFIRMATION_KINDS = frozenset({
+    'SEMANTIC_ACCEPTANCE', 'EXCEPTION_ACCEPTANCE', 'OPERATION_AUTHORIZATION'})
 
 
 class PasswordAuditBlocked(RuntimeError):
@@ -52,7 +54,10 @@ def _password_bytes(password, *, enrolling=False):
     return raw
 
 
-def _decision(proposal_id, snapshot_sha256, decision_text, nonce):
+def _decision(proposal_id, snapshot_sha256, decision_text, nonce,
+              confirmation_kind):
+    if type(confirmation_kind) is not str or confirmation_kind not in CONFIRMATION_KINDS:
+        raise PasswordAuditBlocked('UNSUPPORTED_CONFIRMATION_KIND')
     if not isinstance(proposal_id, str) or re.fullmatch(r'[A-Za-z0-9_.-]{1,64}', proposal_id) is None:
         raise PasswordAuditBlocked('INVALID_PROPOSAL_ID')
     if not isinstance(snapshot_sha256, str) or re.fullmatch(r'[0-9a-f]{64}', snapshot_sha256) is None:
@@ -69,6 +74,8 @@ def _decision(proposal_id, snapshot_sha256, decision_text, nonce):
         raise PasswordAuditBlocked('INVALID_DECISION_TEXT')
     decision_sha256 = hashlib.sha256(raw).hexdigest()
     subject_sha256 = hashlib.sha256(_encode({
+        'schema': 'rs3-confirmation-subject/v2',
+        'confirmation_kind': confirmation_kind,
         'proposal_id': proposal_id, 'snapshot_sha256': snapshot_sha256,
         'decision_sha256': decision_sha256})).hexdigest()
     return decision_sha256, subject_sha256
@@ -158,9 +165,11 @@ class PasswordAuditor:
         except AuditBlocked as error:
             raise PasswordAuditBlocked('AUDIT_UNAVAILABLE') from error
 
-    def check(self, *, proposal_id, snapshot_sha256, decision_text, nonce, password):
+    def check(self, *, proposal_id, snapshot_sha256, decision_text, nonce,
+              confirmation_kind, password):
         decision_sha256, subject_sha256 = _decision(
-            proposal_id, snapshot_sha256, decision_text, nonce)
+            proposal_id, snapshot_sha256, decision_text, nonce,
+            confirmation_kind)
         raw = _password_bytes(password)
         salt, expected = self._verifier()
         actual = hashlib.pbkdf2_hmac('sha256', raw, salt, ITERATIONS)
@@ -173,6 +182,7 @@ class PasswordAuditor:
         except AuditBlocked as error:
             raise PasswordAuditBlocked('AUDIT_UNAVAILABLE') from error
         return {'proposal_id': proposal_id, 'snapshot_sha256': snapshot_sha256,
+                'confirmation_kind': confirmation_kind,
                 'decision_sha256': decision_sha256, 'subject_sha256': subject_sha256,
                 'credential_match': matched, 'authority_verification': 'NOT_ESTABLISHED',
                 'execution_authorized': False}

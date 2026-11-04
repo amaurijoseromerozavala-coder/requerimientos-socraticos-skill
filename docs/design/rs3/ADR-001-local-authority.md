@@ -60,6 +60,14 @@ aplicación runtime aún no está implementada ni verifica D05. Aquí no se crea
 cuentas, claves de firma, servicios ni recibos de autoridad, y ninguna salida
 RS3 actual adquiere autoridad por este ADR.
 
+El sujeto documental del auditor PBKDF2 incluye además `confirmation_kind`:
+`SEMANTIC_ACCEPTANCE`, `EXCEPTION_ACCEPTANCE` u
+`OPERATION_AUTHORIZATION`. Dos categorías con iguales propuesta, snapshot y
+texto producen digests distintos, sin compartir un acierto. El archivo de
+entrada manual es `rs3-manual-decision/v2` y exige esa categoría; v1 se
+rechaza sin migración implícita. El registro conserva sólo el digest del sujeto
+y el resultado, no una prueba de identidad humana.
+
 ## Condiciones observables antes de habilitar un gate real
 
 En el hardware objetivo se debe comprobar el UID efectivo distinto de ambos

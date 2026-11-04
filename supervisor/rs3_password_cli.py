@@ -18,7 +18,8 @@ import termios
 import time
 import unicodedata
 
-from supervisor.rs3_password_auditor import PasswordAuditBlocked, PasswordAuditor
+from supervisor.rs3_password_auditor import (CONFIRMATION_KINDS,
+                                             PasswordAuditBlocked, PasswordAuditor)
 
 
 FILE_MAX_BYTES = 8192
@@ -54,8 +55,10 @@ def load_decision(path):
             os.close(fd)
         doc = json.loads(raw.decode('utf-8'), object_pairs_hook=_unique)
         if (not isinstance(doc, dict) or set(doc) != {'schema', 'proposal_id',
-                'snapshot_sha256', 'decision_text'}
-                or doc['schema'] != 'rs3-manual-decision/v1'
+                'snapshot_sha256', 'decision_text', 'confirmation_kind'}
+                or doc['schema'] != 'rs3-manual-decision/v2'
+                or type(doc['confirmation_kind']) is not str
+                or doc['confirmation_kind'] not in CONFIRMATION_KINDS
                 or not isinstance(doc['proposal_id'], str)
                 or re.fullmatch(r'[A-Za-z0-9_.-]{1,64}', doc['proposal_id']) is None
                 or not isinstance(doc['snapshot_sha256'], str)
@@ -135,6 +138,7 @@ def run_check(root, decision_path):
     return PasswordAuditor(root).check(
         proposal_id=doc['proposal_id'], snapshot_sha256=doc['snapshot_sha256'],
         decision_text=doc['decision_text'], nonce=secrets.token_hex(16),
+        confirmation_kind=doc['confirmation_kind'],
         password=password)
 
 

@@ -14,7 +14,8 @@ class PasswordAuditorTests(unittest.TestCase):
         self.root = Path(self.tmp.name) / 'authority'
         self.password = 'synthetic-password-only-12345'
         self.decision = dict(proposal_id='P-001', snapshot_sha256='a' * 64,
-                             decision_text='Acepto revisar P-001.', nonce='1' * 32)
+                             decision_text='Acepto revisar P-001.', nonce='1' * 32,
+                             confirmation_kind='SEMANTIC_ACCEPTANCE')
 
     def test_correct_and_wrong_password_are_logged_without_secret(self):
         PasswordAuditor.initialize(self.root, self.password, agent_uid=os.getuid() + 1)
@@ -77,6 +78,28 @@ class PasswordAuditorTests(unittest.TestCase):
                                  'snapshot_sha256': 'b' * 64}, password=self.password)
         self.assertNotEqual(first['subject_sha256'], second['subject_sha256'])
         self.assertNotEqual(first['subject_sha256'], third['subject_sha256'])
+
+    def test_confirmation_kind_is_distinct_subject_and_not_authority(self):
+        PasswordAuditor.initialize(self.root, self.password, agent_uid=os.getuid() + 1)
+        backend = PasswordAuditor(self.root)
+        semantic = backend.check(**{**self.decision,
+                                    'confirmation_kind': 'SEMANTIC_ACCEPTANCE'},
+                                 password=self.password)
+        operation = backend.check(**{**self.decision, 'nonce': '2' * 32,
+                                     'confirmation_kind': 'OPERATION_AUTHORIZATION'},
+                                  password=self.password)
+        self.assertNotEqual(semantic['subject_sha256'], operation['subject_sha256'])
+        self.assertIs(operation['execution_authorized'], False)
+        self.assertEqual(operation['authority_verification'], 'NOT_ESTABLISHED')
+
+    def test_unmapped_confirmation_kind_rejects_before_audit(self):
+        PasswordAuditor.initialize(self.root, self.password, agent_uid=os.getuid() + 1)
+        backend = PasswordAuditor(self.root)
+        for kind in ('PROPOSAL_OR_CLARIFICATION', 'UNKNOWN', ''):
+            with self.subTest(kind=kind), self.assertRaises(PasswordAuditBlocked):
+                backend.check(**{**self.decision, 'confirmation_kind': kind},
+                              password=self.password)
+        self.assertEqual(backend.audit_events(), [])
 
     def test_private_store_and_failed_log_write_block_check(self):
         PasswordAuditor.initialize(self.root, self.password, agent_uid=os.getuid() + 1)

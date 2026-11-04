@@ -20,12 +20,13 @@ class ManualPasswordChannelTests(unittest.TestCase):
         self.password = 'synthetic-password-only-12345'
         PasswordAuditor.initialize(self.root, self.password, agent_uid=os.getuid() + 1)
         self.path = Path(self.tmp.name) / 'decision.json'
-        self.doc = {'schema': 'rs3-manual-decision/v1', 'proposal_id': 'P-001',
-                    'snapshot_sha256': 'a' * 64, 'decision_text': 'Acepto revisar P-001.'}
+        self.doc = {'schema': 'rs3-manual-decision/v2', 'proposal_id': 'P-001',
+                    'snapshot_sha256': 'a' * 64, 'decision_text': 'Acepto revisar P-001.',
+                    'confirmation_kind': 'SEMANTIC_ACCEPTANCE'}
         self.path.write_text(json.dumps(self.doc), encoding='utf-8')
 
     def test_decision_file_rejects_ambiguous_or_nonregular_input(self):
-        self.path.write_text('{"schema":"rs3-manual-decision/v1","schema":"x"}')
+        self.path.write_text('{"schema":"rs3-manual-decision/v2","schema":"x"}')
         with self.assertRaises(ManualChannelBlocked):
             load_decision(self.path)
         self.path.write_bytes(b'x' * 8193)
@@ -35,6 +36,24 @@ class ManualPasswordChannelTests(unittest.TestCase):
         self.path.symlink_to(Path(self.tmp.name) / 'other')
         with self.assertRaises(ManualChannelBlocked):
             load_decision(self.path)
+
+    def test_manual_file_requires_v2_confirmation_kind(self):
+        self.path.write_text(json.dumps({**self.doc, 'schema': 'rs3-manual-decision/v1'}),
+                             encoding='utf-8')
+        with self.assertRaises(ManualChannelBlocked):
+            load_decision(self.path)
+        new_doc = {**self.doc, 'schema': 'rs3-manual-decision/v2',
+                   'confirmation_kind': 'SEMANTIC_ACCEPTANCE'}
+        self.path.write_text(json.dumps(new_doc), encoding='utf-8')
+        self.assertEqual(load_decision(self.path)['confirmation_kind'],
+                         'SEMANTIC_ACCEPTANCE')
+        for invalid in ({key: value for key, value in new_doc.items()
+                         if key != 'confirmation_kind'},
+                        {**new_doc, 'confirmation_kind': 'UNKNOWN'}):
+            with self.subTest(invalid=invalid):
+                self.path.write_text(json.dumps(invalid), encoding='utf-8')
+                with self.assertRaises(ManualChannelBlocked):
+                    load_decision(self.path)
 
     def test_no_terminal_blocks_before_password_check(self):
         with mock.patch('supervisor.rs3_password_cli._open_tty',

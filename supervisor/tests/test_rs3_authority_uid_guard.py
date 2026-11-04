@@ -33,6 +33,7 @@ class AuthorityUidGuardTests(unittest.TestCase):
                 PasswordAuditor(self.root).check(
                     proposal_id='P-001', snapshot_sha256='a' * 64,
                     decision_text='Acepto revisar P-001.', nonce='1' * 32,
+                    confirmation_kind='SEMANTIC_ACCEPTANCE',
                     password=self.password)
 
     def test_manual_enroll_requires_distinct_agent_uid(self):

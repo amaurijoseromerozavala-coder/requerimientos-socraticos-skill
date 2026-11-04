@@ -238,6 +238,10 @@ excepción aceptada o autorización de operación; las propuestas pendientes no
 son confirmaciones. La autorización de operación es un gate aparte. Esta
 política sigue sin aplicarse como autoridad runtime hasta verificar D05 y el
 canal humano en el equipo objetivo.
+El adaptador PBKDF2 local exige una categoría de confirmación y la incluye en
+el digest documental; la entrada manual requiere
+`rs3-manual-decision/v2`. Un archivo v1 o categoría desconocida se rechaza.
+Esta es una propiedad del perfil local, no una solución universal de autoridad.
 Ningún helper RS3 crea recibos humanos, autoriza ejecución o
 sustituye la entrevista de esta skill. La versión base 2.4.8 sigue vigente;
 RS3 aún no es una versión completa de producto.
