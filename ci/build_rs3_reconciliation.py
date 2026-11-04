@@ -36,6 +36,7 @@ LINKS = {
     '041': (SCRIPT+'ears_draft.py', TEST+'test_ears_draft.py'),
     '042': (SCRIPT+'candidate_ir.py', TEST+'test_candidate_ir.py'),
     '043': (SCRIPT+'candidate_ir.py', TEST+'test_candidate_ir.py'),
+    '045': (SCRIPT+'semantic_mini_oracle.py', TEST+'test_rs3_semantic_oracles.py'),
     '047': (SCRIPT+'candidate_ir.py', TEST+'test_candidate_ir.py'),
     '048': (SCRIPT+'candidate_ir.py', TEST+'test_candidate_ir.py'),
     '049': (SCRIPT+'formal_queries.py', TEST+'test_formal_queries.py'),
@@ -109,6 +110,34 @@ PROPOSAL_BINDING_EVENT = {
 }
 PROPOSAL_BINDING_REQUIREMENTS = frozenset({'RS3-REQ-036', 'RS3-REQ-041',
                                             'RS3-REQ-047'})
+SEMANTIC_ORACLE_EVENT = {
+    'id': 'WU-RS3-SEMANTIC-ORACLES-005',
+    'commit': 'a636a4d2c598c22b6d50579763c09b60504fce27',
+    'candidate': 'sha256:52698748fd21281bf42502cb72b9494534bb2634024e22b367e7ec5bc9865692',
+    'lineage': 'review-e4f2d24d98f89b33',
+    'rdd_receipt': 'docs/skill-audit/rs3-semantic-oracles/RDD-CIERRE.md',
+    'rdd_scope': 'PATCH_INSPECTION_NO_TEST_EXECUTION',
+    'acceptance_scope': 'PARTIAL_IMPLEMENTATION_ONLY',
+}
+WEAK_MODEL_EVENT = {
+    'id': 'WU-RS3-WEAK-MODEL-ADMISSION-006',
+    'commit': '40328757dcf7f6b758f8f09df845224f1b656572',
+    'candidate': 'sha256:6d0891fdea5ac5ebae50dcee6d65ecea801f221ab0960b2085ec96fba0ac1c45',
+    'lineage': 'review-5454144c698d99c4',
+    'rdd_receipt': 'docs/skill-audit/rs3-weak-model-admission/RDD-CIERRE.md',
+    'rdd_scope': 'PATCH_INSPECTION_NO_TEST_EXECUTION',
+    'acceptance_scope': 'PARTIAL_IMPLEMENTATION_ONLY',
+}
+EVIDENCE_EVENTS = (PROPOSAL_BINDING_EVENT, SEMANTIC_ORACLE_EVENT,
+                   WEAK_MODEL_EVENT)
+EVIDENCE_TARGETS = {
+    PROPOSAL_BINDING_EVENT['id']: PROPOSAL_BINDING_REQUIREMENTS,
+    SEMANTIC_ORACLE_EVENT['id']: frozenset({'RS3-REQ-038', 'RS3-REQ-040',
+                                           'RS3-REQ-043', 'RS3-REQ-045'}),
+    WEAK_MODEL_EVENT['id']: frozenset({'RS3-REQ-036', 'RS3-REQ-038',
+                                      'RS3-REQ-039', 'RS3-REQ-040',
+                                      'RS3-REQ-043'}),
+}
 
 
 def _sha(raw):
@@ -123,8 +152,9 @@ def _member(archive, suffix):
 
 
 def build(package, head):
-    if not (ROOT / PROPOSAL_BINDING_EVENT['rdd_receipt']).is_file():
-        raise ValueError('EVIDENCE_RECEIPT_MISSING')
+    for event in EVIDENCE_EVENTS:
+        if not (ROOT / event['rdd_receipt']).is_file():
+            raise ValueError('EVIDENCE_RECEIPT_MISSING')
     raw = Path(package).read_bytes()
     if _sha(raw) != ZIP_SHA256:
         raise ValueError('PACKAGE_IDENTITY_MISMATCH')
@@ -154,6 +184,8 @@ def build(package, head):
         links = LINKS.get(f'{index:03d}')
         if links and any(not (ROOT/path).is_file() for path in links):
             raise ValueError('OBSERVED_PATH_MISSING')
+        evidence_refs = [event['id'] for event in EVIDENCE_EVENTS
+                         if req_id in EVIDENCE_TARGETS[event['id']]]
         requirements.append({
             'id': req_id, 'group': item['group'], 'priority': item['priority'],
             'statement_sha256': _sha(item['statement'].encode('utf-8')),
@@ -161,8 +193,7 @@ def build(package, head):
             'implementation_status': 'CODE_OBSERVED_PARTIAL' if links else 'NOT_ASSESSED',
             'code_paths': [links[0]] if links else [],
             'test_paths': [links[1]] if links else [],
-            **({'evidence_refs': [PROPOSAL_BINDING_EVENT['id']]}
-               if req_id in PROPOSAL_BINDING_REQUIREMENTS else {}),
+            **({'evidence_refs': evidence_refs} if evidence_refs else {}),
             'acceptance_status': 'NOT_VERIFIED_PER_REQUIREMENT',
             'package_mapping': 'GROUP_ONLY_PROPOSED_NOT_FINE_GRAINED',
         })
@@ -207,7 +238,7 @@ def build(package, head):
         'plan_status': 'TOPOLOGY_ONLY',
         'duration_status': 'NOT_ESTIMATED',
         'acceptance_scope': 'INVENTORY_ONLY_NO_REQUIREMENT_PROMOTION',
-        'evidence_events': [PROPOSAL_BINDING_EVENT],
+        'evidence_events': list(EVIDENCE_EVENTS),
         'requirements': requirements, 'tasks': tasks, 'cases': cases,
     }
 
