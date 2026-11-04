@@ -1,0 +1,47 @@
+{
+  "contract_id": "RS3-RATIFIED-REQUIREMENT-ORACLE-DESIGN-001",
+  "status": "HUMAN_STATED_DESIGN_NOT_ENFORCED",
+  "runtime_enforcement": "NOT_IMPLEMENTED",
+  "authority_verification": "NOT_ESTABLISHED",
+  "execution_authorized": false,
+  "state_rules": {
+    "CUSTOM_RESPONSE": "PROPOSAL_ONLY",
+    "AGENT_PROPOSED_REQUIREMENT": "PROPOSAL_ONLY",
+    "RATIFIED_REQUIREMENT": "EXPLICIT_OPTION_AND_GUARDIAN_RECEIPT_REQUIRED",
+    "ORACLE_PROPOSED": "PROPOSAL_ONLY",
+    "SEALED_TEST": "REQUIREMENT_AND_ORACLE_RATIFICATION_REQUIRED"
+  },
+  "agent_can_issue_ratification": false,
+  "authority_source": "INDEPENDENT_GUARDIAN_RECEIPT_NOT_AGENT_WORKTREE",
+  "requirement_revision_fields": [
+    "literal_source", "canonical_requirement_bytes", "source_snapshot_sha256",
+    "decision_category", "guardian_receipt_id", "canonical_encoding_version"
+  ],
+  "sealed_test_manifest_fields": [
+    "test_id", "requirement_revision_sha256", "requirement_source_sha256",
+    "oracle_spec_sha256", "test_bytes_sha256", "test_path",
+    "helper_bytes_sha256", "runner_bytes_sha256",
+    "dependency_lock_sha256", "environment_profile_sha256",
+    "source_git_tree_oid", "guardian_receipt_id"
+  ],
+  "digest_algorithm": "SHA-256_EXACT_BYTES",
+  "git_oid_algorithm": "READ_FROM_REPOSITORY",
+  "canonical_encoding": "VERSIONED_ENCODING_PENDING_IMPLEMENTATION",
+  "harness_closure": "ALL_EXECUTED_HELPERS_AND_CONFIGURATION_OR_BLOCK",
+  "dynamic_import_policy": "UNPINNED_IMPORT_BLOCKS_TRUSTED_GREEN",
+  "red_gate": "SEALED_BEFORE_IMPLEMENTATION",
+  "green_gate": "VERIFY_GUARDIAN_RECEIPT_AND_ALL_SEALED_BYTES_BEFORE_RUN",
+  "on_sealed_change": {
+    "TEST_BYTES": "BLOCK_AND_PROPOSE_NEW_RATIFIED_REVISION",
+    "HELPER_BYTES": "BLOCK_AND_PROPOSE_NEW_RATIFIED_REVISION",
+    "RUNNER_BYTES": "BLOCK_AND_PROPOSE_NEW_RATIFIED_REVISION",
+    "DEPENDENCY_LOCK": "BLOCK_AND_PROPOSE_NEW_RATIFIED_REVISION",
+    "ORACLE_SPEC": "BLOCK_AND_PROPOSE_NEW_RATIFIED_REVISION",
+    "REQUIREMENT_REVISION": "BLOCK_AND_PROPOSE_NEW_RATIFIED_REVISION"
+  },
+  "prior_revision_retention": "PRESERVE",
+  "existing_tests": "UNRATIFIED_UNTIL_INDIVIDUALLY_REVIEWED",
+  "ci_trust_anchor": "PENDING_PROTECTED_VERIFIER_AND_GUARDIAN_RECEIPT_FORMAT",
+  "test_artifact_is_authority": false,
+  "digest_alone_is_human_confirmation": false
+}
