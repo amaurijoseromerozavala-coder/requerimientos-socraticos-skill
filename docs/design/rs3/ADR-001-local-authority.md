@@ -72,6 +72,16 @@ un modo de archivo por sí solos no prueban aislamiento: sudo, pertenencia a
 grupos, capacidades del proceso o control administrativo del host pueden
 invalidarlo. En WSL, el administrador de Windows y el host siguen dentro del
 ámbito de confianza; esta decisión no demuestra aislamiento frente a ellos.
+`supervisor/rs3_d05_agent_boundary_preflight.py` permite observar desde la
+cuenta real del agente algunos errores locales de UID, capacidades y permisos
+sin leer la clave ni modificar el host. No ejecuta sudo ni inspecciona el
+terminal; su resultado global siempre es `SECURITY_BOUNDARY_UNMET`. En el
+equipo objetivo se invoca con
+`python3 -B -m supervisor.rs3_d05_agent_boundary_preflight --authority-uid UID --authority-root RUTA`,
+sustituyendo ambos valores por la cuenta y directorio
+reales que el operador haya configurado. Ejecutarlo bajo otra cuenta invalida
+esa observación. Un resultado `OBSERVED_LOCAL_GUARDS` aún exige pruebas
+independientes de escalada, canal humano y recuperación.
 
 Si falta una comprobación, falla una operación negativa, o el agente puede
 obtener privilegios equivalentes, el gate permanece
