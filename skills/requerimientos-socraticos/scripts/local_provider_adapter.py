@@ -6,6 +6,7 @@ control boundary, not a sandbox or a guarantee of physical timing.
 """
 
 import math
+import json
 import os
 import subprocess
 import threading
@@ -49,14 +50,21 @@ class LocalProviderAdapter:
         self._owner = threading.Lock()
         self._infra_locked = False
 
-    def invoke(self, request_bytes):
+    def invoke(self):
         if not self._owner.acquire(blocking=False):
             return _closed('INFRA_FAILURE', 'INSTANCE_BUSY')
         try:
             if self._infra_locked:
                 return _closed('INFRA_LOCK', 'CLEANUP_UNCONFIRMED')
-            if type(request_bytes) is not bytes:
-                return _closed('REJECT_INPUT', 'REQUEST_BYTES_REQUIRED')
+            try:
+                request_bytes = json.dumps(
+                    {'schema_version': 'rs3-source-request/1',
+                     'source_ref': self.source_snapshot.source_ref,
+                     'source_text': self.source_snapshot.source_text},
+                    ensure_ascii=False, sort_keys=True,
+                    separators=(',', ':')).encode('utf-8')
+            except (MemoryError, OSError, RecursionError, UnicodeError):
+                return _closed('INFRA_FAILURE', 'REQUEST_ENCODING_FAILURE')
             if len(request_bytes) > MAX_REQUEST_BYTES:
                 return _closed('REJECT_INPUT', 'REQUEST_SIZE_LIMIT')
             try:

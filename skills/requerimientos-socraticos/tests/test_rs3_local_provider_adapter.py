@@ -33,7 +33,7 @@ class LocalProviderAdapterTests(unittest.TestCase):
         payload = proposal_bytes()
         code = (f'import sys;sys.stderr.write("synthetic warning\\n");'
                 f'sys.stdout.buffer.write({payload!r})')
-        result = adapter(code).invoke(b'synthetic request')
+        result = adapter(code).invoke()
         self.assertEqual(result['admission'], 'PROPOSED_FOR_REVIEW')
         self.assertTrue(result['stderr_observed'])
         self.assertNotIn('synthetic warning', str(result))
@@ -53,7 +53,7 @@ class LocalProviderAdapterTests(unittest.TestCase):
         )
         for code, timeout, admission, reason in cases:
             with self.subTest(reason=reason):
-                result = adapter(code, timeout).invoke(b'synthetic request')
+                result = adapter(code, timeout).invoke()
                 self.assertEqual((result['admission'], result['reason_code']),
                                  (admission, reason))
                 self.assertIsNone(result['ast'])
@@ -61,7 +61,7 @@ class LocalProviderAdapterTests(unittest.TestCase):
                 self.assertNotIn('OOM', str(result))
 
     def test_empty_stdout_is_rejected(self):
-        result = adapter('pass').invoke(b'synthetic request')
+        result = adapter('pass').invoke()
         self.assertEqual((result['admission'], result['reason_code']),
                          ('REJECT_INPUT', 'PROVIDER_EMPTY_OUTPUT'))
 
@@ -71,9 +71,9 @@ class LocalProviderAdapterTests(unittest.TestCase):
                 'stderr_bytes': b'', 'timed_out': False, 'output_limit': False}
         instance = adapter('pass')
         with patch('local_provider_adapter.run_supervised', return_value=fake) as run:
-            first = instance.invoke(b'synthetic request')
-            second = instance.invoke(b'synthetic request')
-            third = instance.invoke('invalid request')
+            first = instance.invoke()
+            second = instance.invoke()
+            third = instance.invoke()
         self.assertEqual(first['admission'], 'INFRA_LOCK')
         self.assertEqual(second['admission'], 'INFRA_LOCK')
         self.assertEqual(third['admission'], 'INFRA_LOCK')
@@ -82,18 +82,18 @@ class LocalProviderAdapterTests(unittest.TestCase):
     def test_incomplete_supervisor_record_latches_without_exception(self):
         instance = adapter('pass')
         with patch('local_provider_adapter.run_supervised', return_value={'status': 'EXITED'}):
-            result = instance.invoke(b'synthetic request')
+            result = instance.invoke()
         self.assertEqual(result['admission'], 'INFRA_LOCK')
-        self.assertEqual(instance.invoke(b'synthetic request')['admission'], 'INFRA_LOCK')
+        self.assertEqual(instance.invoke()['admission'], 'INFRA_LOCK')
 
     def test_launch_failure_is_infrastructure_not_document_rejection(self):
         instance = adapter('pass')
         with patch('local_provider_adapter.run_supervised', side_effect=OSError):
-            result = instance.invoke(b'synthetic request')
+            result = instance.invoke()
         self.assertEqual(result['admission'], 'INFRA_FAILURE')
         self.assertEqual(result['reason_code'], 'PROVIDER_LAUNCH_OR_RESOURCE_FAILURE')
 
-    def test_bad_configuration_and_payload_reject_before_launch(self):
+    def test_bad_configuration_and_alternate_payload_reject_before_launch(self):
         with self.assertRaises(ValueError):
             LocalProviderAdapter(('python3', '-c', 'pass'),
                                  SourceSnapshot('synthetic/provider/1', 'P solo si Q'))
@@ -101,8 +101,10 @@ class LocalProviderAdapterTests(unittest.TestCase):
             adapter('pass', 0)
         instance = adapter('pass')
         with patch('local_provider_adapter.run_supervised') as run:
-            self.assertEqual(instance.invoke('text')['admission'], 'REJECT_INPUT')
-            self.assertEqual(instance.invoke(b'X' * 8193)['admission'], 'REJECT_INPUT')
+            with self.assertRaises(TypeError):
+                instance.invoke('text')
+            with self.assertRaises(TypeError):
+                instance.invoke(b'X' * 8193)
             run.assert_not_called()
 
 

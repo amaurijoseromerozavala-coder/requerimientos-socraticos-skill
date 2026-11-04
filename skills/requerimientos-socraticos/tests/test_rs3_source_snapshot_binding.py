@@ -35,7 +35,7 @@ class SourceSnapshotBindingTests(unittest.TestCase):
         self.snapshot = SourceSnapshot('synthetic/human/1', 'P solo si Q')
 
     def test_exact_source_is_proposed_without_authority(self):
-        result = adapter_for(proposal_bytes(), self.snapshot).invoke(b'synthetic request')
+        result = adapter_for(proposal_bytes(), self.snapshot).invoke()
         self.assertEqual(result['admission'], 'PROPOSED_FOR_REVIEW')
         self.assertEqual(result['source_binding'], 'MATCHED_CALLER_SNAPSHOT')
         self.assertIs(result['execution_authorized'], False)
@@ -48,14 +48,14 @@ class SourceSnapshotBindingTests(unittest.TestCase):
         standalone = admit_response(changed)
         self.assertEqual(standalone['admission'], 'PROPOSED_FOR_REVIEW')
         self.assertEqual(standalone['source_binding'], 'NOT_ASSESSED')
-        result = adapter_for(changed, self.snapshot).invoke(b'synthetic request')
+        result = adapter_for(changed, self.snapshot).invoke()
         self.assertEqual((result['admission'], result['reason_code']),
                          ('REJECT_INPUT', 'SOURCE_BINDING_MISMATCH'))
         self.assertIsNone(result['ast'])
 
     def test_reference_change_is_rejected_even_when_text_matches(self):
         result = adapter_for(proposal_bytes(source_ref='synthetic/human/2'),
-                             self.snapshot).invoke(b'synthetic request')
+                             self.snapshot).invoke()
         self.assertEqual((result['admission'], result['reason_code']),
                          ('REJECT_INPUT', 'SOURCE_BINDING_MISMATCH'))
         self.assertIsNone(result['ast'])

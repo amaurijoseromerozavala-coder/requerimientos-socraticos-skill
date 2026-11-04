@@ -198,6 +198,10 @@ AST. La comparación solo vincula bytes suministrados por el llamador: no
 autentica al humano, ni confirma la semántica, ni autoriza ejecución. Una
 admisión directa a `weak_model_gate.py` sin instantánea queda marcada
 `source_binding=NOT_ASSESSED`.
+El adaptador construye su solicitud JSON versionada desde la instantánea;
+`invoke()` no recibe bytes de fuente alternativos. Un JSON serializado mayor de
+8 KiB se rechaza antes del lanzamiento. Esta conexión no demuestra que el
+llamador obtuvo el texto de la persona indicada: D03/D05 siguen bloqueados.
 El adaptador no contiene descendientes que se separen del grupo ni prueba
 comportamiento de proveedores cloud o rendimiento en el hardware objetivo.
 La factoría ofrece además una fórmula de comparación entre dos reglas
