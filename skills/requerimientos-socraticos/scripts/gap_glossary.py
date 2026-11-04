@@ -3,6 +3,8 @@
 import hashlib
 import re
 
+from gap_scenario import _evaluate
+
 
 HEX64 = re.compile(r'^[0-9a-f]{64}$')
 FIELDS = {'when_true', 'when_false', 'source_ref', 'source_text', 'source_sha256'}
@@ -46,7 +48,7 @@ def glossary_state(glossary, inputs, model_sha256):
 
 
 def build_gap_questions(packets, glossary, inputs, model_sha256,
-                        glossary_sha256=None):
+                        glossary_sha256=None, model=None):
     if glossary is None:
         state = 'NEEDS_GLOSSARY'
     else:
@@ -55,13 +57,26 @@ def build_gap_questions(packets, glossary, inputs, model_sha256,
               'source_authenticity': 'NOT_ESTABLISHED'}
     if state != 'READY_PROPOSED':
         return result
+    if (type(model) is not dict or model.get('inputs') != inputs
+            or type(model.get('rules')) is not list or 'domain' not in model):
+        return {**result, 'status': 'NEEDS_MODEL_RECHECK'}
     for packet in packets:
         if packet.get('status') != 'NEEDS_HUMAN_INTERPRETATION':
             continue
         assignment = packet.get('input_assignment')
         if (type(assignment) is not dict or set(assignment) != set(inputs)
                 or any(type(value) is not bool for value in assignment.values())
-                or packet.get('model_sha256') != model_sha256):
+                or packet.get('model_sha256') != model_sha256
+                or packet.get('formal_query') != 'SAT(D AND NOT OR(GUARDS))'
+                or packet.get('witness_recheck') != 'VERIFIED_BY_Z3_AND_BOOLEAN_EVALUATOR'
+                or packet.get('inactive_rule_ids') != [rule['id'] for rule in model['rules']]):
+            return {**result, 'status': 'INCONCLUSIVE', 'questions': []}
+        try:
+            if (not _evaluate(model['domain'], assignment)
+                    or any(_evaluate(rule['guard'], assignment)
+                           for rule in model['rules'])):
+                return {**result, 'status': 'INCONCLUSIVE', 'questions': []}
+        except (KeyError, TypeError, ValueError):
             return {**result, 'status': 'INCONCLUSIVE', 'questions': []}
         phrases = []
         sources = {}

@@ -124,6 +124,14 @@ cuenta; `source_authenticity` permanece `NOT_ESTABLISHED` y la pregunta sigue
 se promueve por suministrar flags de snapshot. El lector aplica un límite de
 64 KiB por blob y rechaza symlinks o rutas fuera del árbol.
 
+Antes de emitir `gap_questions`, el generador reevalúa sobre el modelo los
+valores del testigo: deben satisfacer D y dejar todas las guardas inactivas.
+Comprueba también el identificador de consulta y el registro de revalidación
+del paquete. Una discrepancia produce `INCONCLUSIVE` sin pregunta; sin modelo
+se informa `NEEDS_MODEL_RECHECK`. Esto solo comprueba consistencia booleana
+entre paquete, modelo y frases seleccionadas del glosario. No demuestra que
+las frases expresen fielmente el requisito humano.
+
 ## Capacidad y envolvente material
 
 scripts/probe_environment.py realiza lectura local limitada, sin benchmark ni red.

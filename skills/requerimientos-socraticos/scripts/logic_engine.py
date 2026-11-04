@@ -291,7 +291,8 @@ def main():
             else:
                 result['gap_questions'] = build_gap_questions(
                     source_packets, glossary, data['inputs'],
-                    result['provenance']['model_sha256'], glossary_digest)
+                    result['provenance']['model_sha256'], glossary_digest,
+                    model=data)
                 if source_metadata is not None:
                     questions = result['gap_questions']
                     questions['source_bytes'] = 'PINNED_GIT_BLOB_SLICE_VERIFIED'
