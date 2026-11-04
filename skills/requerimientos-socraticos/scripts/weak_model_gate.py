@@ -9,6 +9,7 @@ import json
 
 from candidate_ir import CandidateError, check_candidate
 from json_preflight import preflight_json
+from source_snapshot import SourceSnapshot
 
 
 MAX_RESPONSE_BYTES = 16 * 1024
@@ -36,15 +37,19 @@ def _reject_constant(_value):
     raise _NonJsonConstant()
 
 
-def _result(admission, reason_code, ast=None, proposal_sha256=None):
+def _result(admission, reason_code, ast=None, proposal_sha256=None,
+            source_binding='NOT_ASSESSED'):
     return {'admission': admission, 'reason_code': reason_code, 'ast': ast,
             'proposal_sha256': proposal_sha256,
+            'source_binding': source_binding,
             'authority_verification': 'NOT_ESTABLISHED',
             'execution_authorized': False}
 
 
-def admit_response(raw):
+def admit_response(raw, *, source_snapshot=None):
     """Admit only a bounded CandidateIR proposal; never echo raw model text."""
+    if source_snapshot is not None and type(source_snapshot) is not SourceSnapshot:
+        return _result('INFRA_FAILURE', 'INVALID_CALLER_SNAPSHOT')
     if type(raw) is not bytes:
         return _result('REJECT_INPUT', 'BYTES_REQUIRED')
     if len(raw) > MAX_RESPONSE_BYTES:
@@ -79,11 +84,19 @@ def admit_response(raw):
         return _result('REJECT_INPUT', str(error))
     except (MemoryError, OSError, RecursionError):
         return _result('INFRA_FAILURE', 'RESOURCE_FAILURE')
+    source_binding = 'NOT_ASSESSED'
+    if source_snapshot is not None:
+        if (proposal['source_ref'] != source_snapshot.source_ref
+                or proposal['source_text'] != source_snapshot.source_text):
+            return _result('REJECT_INPUT', 'SOURCE_BINDING_MISMATCH')
+        source_binding = 'MATCHED_CALLER_SNAPSHOT'
     if checked['ast'] is None:
         reason = checked['semantic_fidelity']
         if reason == 'MATCHED_MINI_GRAMMAR':
             reason = 'UNCOMPILED_MODALITY_OR_CONTEXT'
         return _result('NEEDS_CLARIFICATION', reason,
-                       proposal_sha256=checked['proposal_sha256'])
+                       proposal_sha256=checked['proposal_sha256'],
+                       source_binding=source_binding)
     return _result('PROPOSED_FOR_REVIEW', 'BOUNDED_PROPOSAL_ONLY',
-                   ast=checked['ast'], proposal_sha256=checked['proposal_sha256'])
+                   ast=checked['ast'], proposal_sha256=checked['proposal_sha256'],
+                   source_binding=source_binding)

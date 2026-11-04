@@ -9,6 +9,7 @@ from unittest.mock import patch
 SCRIPTS = Path(__file__).resolve().parents[1] / 'scripts'
 sys.path.insert(0, str(SCRIPTS))
 from local_provider_adapter import LocalProviderAdapter
+from source_snapshot import SourceSnapshot
 
 
 def proposal_bytes():
@@ -23,6 +24,7 @@ def proposal_bytes():
 
 def adapter(code, timeout=.5):
     return LocalProviderAdapter((sys.executable, '-I', '-B', '-c', code),
+                                SourceSnapshot('synthetic/provider/1', 'P solo si Q'),
                                 timeout_seconds=timeout)
 
 
@@ -93,7 +95,8 @@ class LocalProviderAdapterTests(unittest.TestCase):
 
     def test_bad_configuration_and_payload_reject_before_launch(self):
         with self.assertRaises(ValueError):
-            LocalProviderAdapter(('python3', '-c', 'pass'))
+            LocalProviderAdapter(('python3', '-c', 'pass'),
+                                 SourceSnapshot('synthetic/provider/1', 'P solo si Q'))
         with self.assertRaises(ValueError):
             adapter('pass', 0)
         instance = adapter('pass')

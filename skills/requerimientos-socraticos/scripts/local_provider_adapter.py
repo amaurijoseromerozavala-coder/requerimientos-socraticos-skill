@@ -11,6 +11,7 @@ import subprocess
 import threading
 
 from process_supervision import run_supervised
+from source_snapshot import SourceSnapshot
 from weak_model_gate import admit_response
 
 
@@ -23,23 +24,27 @@ CONFIRMED_CLEANUP = 'DIRECT_WORKER_REAPED_AND_PIPES_DRAINED'
 def _closed(admission, reason, *, stderr_observed=False):
     return {'admission': admission, 'reason_code': reason, 'ast': None,
             'proposal_sha256': None, 'stderr_observed': stderr_observed,
+            'source_binding': 'NOT_ASSESSED',
             'authority_verification': 'NOT_ESTABLISHED',
             'execution_authorized': False}
 
 
 class LocalProviderAdapter:
-    def __init__(self, command, *, timeout_seconds=5):
+    def __init__(self, command, source_snapshot, *, timeout_seconds=5):
         if (type(command) is not tuple or not 1 <= len(command) <= 16
                 or any(type(arg) is not str or '\x00' in arg for arg in command)
                 or sum(len(arg.encode('utf-8')) for arg in command) > 4096
                 or not os.path.isabs(command[0]) or not os.path.isfile(command[0])
                 or not os.access(command[0], os.X_OK)):
             raise ValueError('TRUSTED_ABSOLUTE_COMMAND_REQUIRED')
+        if type(source_snapshot) is not SourceSnapshot:
+            raise ValueError('CALLER_SOURCE_SNAPSHOT_REQUIRED')
         if (type(timeout_seconds) not in (int, float)
                 or not math.isfinite(timeout_seconds)
                 or not 0 < timeout_seconds <= 30):
             raise ValueError('INVALID_TIMEOUT')
         self.command = command
+        self.source_snapshot = source_snapshot
         self.timeout_seconds = timeout_seconds
         self._owner = threading.Lock()
         self._infra_locked = False
@@ -98,7 +103,8 @@ class LocalProviderAdapter:
             if not observed['stdout_bytes']:
                 return _closed('REJECT_INPUT', 'PROVIDER_EMPTY_OUTPUT',
                                stderr_observed=stderr_observed)
-            admitted = admit_response(observed['stdout_bytes'])
+            admitted = admit_response(observed['stdout_bytes'],
+                                      source_snapshot=self.source_snapshot)
             return {**admitted, 'stderr_observed': stderr_observed}
         finally:
             self._owner.release()

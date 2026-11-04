@@ -191,6 +191,13 @@ supervisar el proceso y preservar una fuente humana por un canal independiente.
 el supervisor POSIX existente. Acota solicitud, plazo, memoria virtual del hijo
 directo y ambos canales de salida; una limpieza no confirmada bloquea la
 instancia. Los tests usan solo proveedores simulados, sin red ni credenciales.
+El adaptador exige una `SourceSnapshot` inmutable, fijada por el llamador antes
+del lanzamiento. La compuerta compara exactamente `source_ref` y `source_text`
+del CandidateIR con esa instantánea; una diferencia rechaza la propuesta sin
+AST. La comparación solo vincula bytes suministrados por el llamador: no
+autentica al humano, ni confirma la semántica, ni autoriza ejecución. Una
+admisión directa a `weak_model_gate.py` sin instantánea queda marcada
+`source_binding=NOT_ASSESSED`.
 El adaptador no contiene descendientes que se separen del grupo ni prueba
 comportamiento de proveedores cloud o rendimiento en el hardware objetivo.
 La factoría ofrece además una fórmula de comparación entre dos reglas
