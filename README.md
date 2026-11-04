@@ -54,8 +54,10 @@ verificar D05; las pruebas actuales usan valores sintéticos.
 La guarda de UID exige declarar el UID del agente al alta y fija ambos UID en
 el verificador. Sigue sin demostrar aislamiento frente a sudo, interop WSL o
 el host Windows; el formato anterior del verificador se rechaza sin migración.
-El gate real sigue bloqueado
-hasta verificar la cuenta y resolver D03 y la autenticación. El paquete no se
+El gate real sigue bloqueado hasta verificar la cuenta, el canal humano y la
+aplicación de D03. D03 exige contraseña para cada confirmación, vinculada a la
+decisión exacta; esta política todavía no está implementada como gate real.
+El paquete no se
 incorporó en bloque al PRD canónico ni está
 implementado en su totalidad.
 

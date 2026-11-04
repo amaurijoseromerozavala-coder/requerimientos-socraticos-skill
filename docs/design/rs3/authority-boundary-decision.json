@@ -32,6 +32,22 @@
     "implementation_scope": "PASSWORD_MATCH_AUDIT_AND_MANUAL_TTY_ADAPTER",
     "target_hardware_verification": "NOT_RUN"
   },
-  "pending_decisions": ["RS3-D04-TRUSTED_INPUT_CHANNEL_VERIFICATION", "RS3-D03"],
+  "d03": {
+    "decision_status": "HUMAN_DECIDED_DESIGN",
+    "choice": "EVERY_CONFIRMATION",
+    "confirmation_scope": {
+      "SEMANTIC_ACCEPTANCE": "FRESH_PBKDF2_BOUND_TO_EXACT_DECISION",
+      "EXCEPTION_ACCEPTANCE": "FRESH_PBKDF2_BOUND_TO_EXACT_DECISION",
+      "OPERATION_AUTHORIZATION": "FRESH_PBKDF2_BOUND_TO_EXACT_DECISION",
+      "PROPOSAL_OR_CLARIFICATION": "NO_CONFIRMATION",
+      "UNMAPPED": "BLOCK"
+    },
+    "session_reuse": "FORBIDDEN",
+    "operation_gate": "SEPARATE_FROM_SEMANTIC_GATE",
+    "runtime_enforcement": "NOT_IMPLEMENTED",
+    "authority_verification": "NOT_ESTABLISHED",
+    "execution_authorized": false
+  },
+  "pending_decisions": ["RS3-D04-TRUSTED_INPUT_CHANNEL_VERIFICATION"],
   "scope": "ARCHITECTURE_DECISION_ONLY"
 }

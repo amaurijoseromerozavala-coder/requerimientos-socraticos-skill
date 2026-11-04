@@ -49,9 +49,16 @@ Su cadena de hashes detecta inconsistencias de bytes,
 pero no autentica al escritor ni protege frente al mismo UID. Tampoco detecta
 la pérdida de registros finales completos sin un anclaje externo. Una coincidencia
 de contraseña demuestra uso de la credencial, no identidad física absoluta.
-D03 sigue abierta para decidir qué confirmaciones necesitarían un mecanismo
-futuro. Aquí no se crean cuentas, claves de firma, servicios ni recibos de autoridad, y ninguna salida RS3
-actual adquiere autoridad por este ADR.
+D03 quedó decidida por el maintainer: **cada confirmación** requiere una
+comprobación PBKDF2 nueva vinculada a la decisión y snapshot exactos. Esto
+incluye aceptar una interpretación semántica o excepción y autorizar una
+operación concreta. Preguntas, propuestas y aclaraciones pendientes no son
+confirmaciones. Una categoría no mapeada bloquea; no se reutiliza una
+autenticación de sesión. El permiso para una operación sigue siendo un gate
+separado de aceptar su significado. Esta es una decisión de diseño: su
+aplicación runtime aún no está implementada ni verifica D05. Aquí no se crean
+cuentas, claves de firma, servicios ni recibos de autoridad, y ninguna salida
+RS3 actual adquiere autoridad por este ADR.
 
 ## Condiciones observables antes de habilitar un gate real
 
@@ -70,6 +77,5 @@ Si falta una comprobación, falla una operación negativa, o el agente puede
 obtener privilegios equivalentes, el gate permanece
 `SECURITY_BOUNDARY_UNMET`. La entrevista y los análisis documentales pueden
 continuar con `authority_verification=NOT_PERFORMED`; no se admiten recibos
-humanos verificables ni operaciones autorizadas hasta resolver D03 y el
-mecanismo de autenticación futuro,
-implementar el servicio y validar la frontera en el equipo objetivo.
+humanos verificables ni operaciones autorizadas hasta implementar la política
+D03, verificar el canal de entrada y validar D05 en el equipo objetivo.

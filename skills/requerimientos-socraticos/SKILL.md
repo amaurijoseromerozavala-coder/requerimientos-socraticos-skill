@@ -233,6 +233,11 @@ sin verificar; usar solo valores sintéticos en pruebas locales.
 La guarda de UID requiere declarar la cuenta del agente al alta y rechaza
 coincidencia con la cuenta actual; no acredita que la declaración sea auténtica
 ni que sudo o interop WSL estén contenidos.
+D03 fija una comprobación PBKDF2 nueva para cada confirmación semántica,
+excepción aceptada o autorización de operación; las propuestas pendientes no
+son confirmaciones. La autorización de operación es un gate aparte. Esta
+política sigue sin aplicarse como autoridad runtime hasta verificar D05 y el
+canal humano en el equipo objetivo.
 Ningún helper RS3 crea recibos humanos, autoriza ejecución o
 sustituye la entrevista de esta skill. La versión base 2.4.8 sigue vigente;
 RS3 aún no es una versión completa de producto.
