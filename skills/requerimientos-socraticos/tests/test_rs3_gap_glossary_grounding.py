@@ -59,8 +59,13 @@ class GapGlossaryGroundingTests(unittest.TestCase):
         self.assertEqual(packet['source_authenticity'], 'NOT_ESTABLISHED')
         self.assertEqual(len(packet['questions']), 1)
         question = packet['questions'][0]
-        self.assertIn('A está ausente', question['text'])
-        self.assertIn('B está presente', question['text'])
+        self.assertEqual(question['text_origin'], 'SYSTEM_TEMPLATE')
+        self.assertEqual(question['scenario_clauses_origin'],
+                         'UNTRUSTED_GLOSSARY_DATA')
+        self.assertEqual([(item['variable'], item['value'], item['proposed_phrase'])
+                          for item in question['scenario_clauses']],
+                         [('A', False, 'A está ausente'),
+                          ('B', True, 'B está presente')])
         self.assertEqual(set(question['sources']), {'A', 'B'})
 
     def test_missing_or_stale_glossary_yields_no_question(self):

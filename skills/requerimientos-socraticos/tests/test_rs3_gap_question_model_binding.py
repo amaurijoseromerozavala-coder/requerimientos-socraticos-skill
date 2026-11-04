@@ -54,8 +54,10 @@ class GapQuestionModelBindingTests(unittest.TestCase):
         self.assertEqual(result['status'], 'PROPOSED_UNVERIFIED')
         self.assertEqual(result['authority'], 'NOT_GRANTED')
         self.assertEqual(result['source_authenticity'], 'NOT_ESTABLISHED')
-        self.assertIn('A ausente', result['questions'][0]['text'])
-        self.assertIn('B presente', result['questions'][0]['text'])
+        self.assertEqual([(item['variable'], item['value'], item['proposed_phrase'])
+                          for item in result['questions'][0]['scenario_clauses']],
+                         [('A', False, 'A ausente'),
+                          ('B', True, 'B presente')])
 
     def test_missing_model_cannot_prove_question_consistency(self):
         result = build_gap_questions([packet(False, True)], glossary(),

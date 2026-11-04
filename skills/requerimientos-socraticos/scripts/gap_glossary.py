@@ -8,6 +8,10 @@ from gap_scenario import _evaluate
 
 HEX64 = re.compile(r'^[0-9a-f]{64}$')
 FIELDS = {'when_true', 'when_false', 'source_ref', 'source_text', 'source_sha256'}
+QUESTION_TEXT = ('En el modelo booleano no se activa ninguna regla para este '
+                 'escenario. Revise las descripciones propuestas por separado. '
+                 '¿Es un requisito faltante, excepción válida, caso fuera de '
+                 'alcance, comportamiento prohibido o error del modelo?')
 
 
 def _text(value, maximum):
@@ -78,20 +82,23 @@ def build_gap_questions(packets, glossary, inputs, model_sha256,
                 return {**result, 'status': 'INCONCLUSIVE', 'questions': []}
         except (KeyError, TypeError, ValueError):
             return {**result, 'status': 'INCONCLUSIVE', 'questions': []}
-        phrases = []
+        scenario_clauses = []
         sources = {}
         for name in inputs:
             entry = glossary['variables'][name]
-            phrases.append(entry['when_true'] if assignment[name]
-                           else entry['when_false'])
+            scenario_clauses.append({
+                'variable': name, 'value': assignment[name],
+                'proposed_phrase': (entry['when_true'] if assignment[name]
+                                    else entry['when_false']),
+                'source_ref': entry['source_ref']})
             sources[name] = {'source_ref': entry['source_ref'],
                              'source_text': entry['source_text'],
                              'source_sha256': entry['source_sha256']}
         result['questions'].append({
-            'text': ('Según el glosario propuesto: ' + '; '.join(phrases) +
-                     '. En este escenario no se activa ninguna regla. '
-                     '¿Es un requisito faltante, excepción válida, caso fuera '
-                     'de alcance, comportamiento prohibido o error del modelo?'),
+            'text': QUESTION_TEXT,
+            'text_origin': 'SYSTEM_TEMPLATE',
+            'scenario_clauses': scenario_clauses,
+            'scenario_clauses_origin': 'UNTRUSTED_GLOSSARY_DATA',
             'input_assignment': assignment, 'sources': sources,
             'model_sha256': model_sha256,
             'semantic_status': 'PROPOSED_UNVERIFIED'})

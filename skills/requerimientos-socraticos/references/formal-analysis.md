@@ -132,6 +132,15 @@ se informa `NEEDS_MODEL_RECHECK`. Esto solo comprueba consistencia booleana
 entre paquete, modelo y frases seleccionadas del glosario. No demuestra que
 las frases expresen fielmente el requisito humano.
 
+En `gap_questions`, `text` procede de una plantilla fija y no incorpora frases
+del glosario. `scenario_clauses` conserva cada `variable`, valor, frase
+propuesta y referencia de fuente como datos no confiables; la UI debe
+mostrarlos como texto literal separado de las instrucciones y opciones. El
+campo `scenario_clauses_origin=UNTRUSTED_GLOSSARY_DATA` identifica esta
+frontera. Un consumidor que concatene esas frases en un prompt o las renderice
+como markup ejecutable pierde la separación; esta unidad no implementa ni
+verifica tal consumidor.
+
 ## Capacidad y envolvente material
 
 scripts/probe_environment.py realiza lectura local limitada, sin benchmark ni red.
