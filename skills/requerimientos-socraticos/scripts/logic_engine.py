@@ -17,6 +17,7 @@ from analyze_logic import artifact_identity
 from memory_budget import observe_process_memory
 from formal_queries import EquivalenceScope, QueryContext, QueryKind
 from witness_validation import verify_assignment
+from gap_scenario import build_gap_interpretation
 
 MEMORY_FAILURE = b'{"status":"INCONCLUSIVE","error":{"code":"MEMORY_BUDGET_EXCEEDED","message":"Worker observed an allocation failure; no model results are reported."}}\n'
 
@@ -234,6 +235,8 @@ def main():
                                     'z3_module': artifact_identity(z3.__file__),
                                     'elapsed_seconds': time.monotonic() - started,
                                     'note': 'Hash identifies supplied bytes; it does not establish semantic correctness.'}
+            result['gap_interpretation'] = build_gap_interpretation(
+                data, result['queries']['gap'], result['provenance']['model_sha256'])
         except z3.Z3Exception as exc:
             print(json.dumps({'error': {'code': 'SOLVER_ERROR', 'message': str(exc)}}))
             return 2

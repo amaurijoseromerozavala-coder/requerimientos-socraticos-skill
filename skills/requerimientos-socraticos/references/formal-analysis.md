@@ -78,6 +78,23 @@ no inventar diálogos. Preguntar al humano intención/política, al asistente ev
 observada. UNKNOWN se propaga. Regenerar análisis si cambia dominio o significado.
 No iniciar ensayos del sistema objetivo por recibir un contraejemplo simbólico.
 
+Para `gap_interpretation.status=NEEDS_HUMAN_INTERPRETATION`, usa el testigo
+revalidado y el SHA del modelo como referencia. Obtén del IR/glosario la fuente
+y significado de cada variable; si faltan, pregunta antes de atribuir semántica.
+El agente propone una explicación en lenguaje natural y la confronta con el
+escenario estructurado, sin alterar asignaciones ni reglas. Ofrece al humano
+estas hipótesis: requisito faltante, excepción válida, fuera del alcance,
+comportamiento prohibido, error de modelo o aclaración pendiente. No selecciones
+una por ausencia de respuesta. Una respuesta personalizada vuelve al
+interrogatorio sin código ni Git de autoridad. Un requisito nuevo confirmado
+sigue el contrato de ratificación y sellado de test por identidad; un cambio
+de modelo invalida el paquete anterior. `NO_CANDIDATE` e `INCONCLUSIVE` no se
+presentan como brechas reales. Una brecha de guardas no equivale a `NO_OUTPUT`.
+Un testigo representa una combinación concreta, no toda la región de brechas;
+para explorar otras combinaciones hace falta una unidad posterior con
+particiones o bloqueos acotados y presupuesto explícito. No extrapoles el
+significado decidido para un testigo a toda la región sin comprobarla.
+
 ## Capacidad y envolvente material
 
 scripts/probe_environment.py realiza lectura local limitada, sin benchmark ni red.
