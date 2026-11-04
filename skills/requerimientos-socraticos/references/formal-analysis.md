@@ -159,6 +159,18 @@ puede ser falsificado de forma autoconsistente: este cotejo no sustituye la
 ejecución del analizador ni autentica la procedencia del modelo. La lectura
 de stdin no impone un plazo propio; el invocador debe supervisar el productor.
 
+`scripts/analyze_to_view.py modelo.json --glossary glosario.json` ofrece esa
+entrada supervisada en POSIX: invoca el analizador fijado en el mismo paquete,
+captura stdout/stderr con cota de 1 MiB por canal y un plazo exterior de
+`--timeout + 2` segundos. Solo emite HTML si el hijo sale con código 0, no
+agota tiempo ni salida, se recolecta con pipes drenados y el informe supera
+el cotejo anterior. `--gap-samples` acepta 1..16; fuentes v2 admiten
+`--source-repo` junto con `--source-commit`. Los errores no producen HTML y
+se reportan por stderr sin reproducir contenido de entrada. Usa un Python
+con las dependencias instaladas para el analizador. La supervisión depende de
+un SO responsivo y controla al hijo directo, no descendientes arbitrarios.
+No confirma decisiones ni acredita el navegador o hardware objetivo.
+
 ## Capacidad y envolvente material
 
 scripts/probe_environment.py realiza lectura local limitada, sin benchmark ni red.
