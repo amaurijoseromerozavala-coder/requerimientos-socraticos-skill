@@ -42,7 +42,16 @@ coordenada y decisión; no revelar el código. La admisión solo se produce tras
 verificar tanto el consumo duradero como un recibo auténtico del guardián.
 Un commit Git por sí solo identifica una transición de repositorio, no autentica
 al escritor ni demuestra percepción humana. La forma de autenticación del
-recibo y la codificación canónica aún requieren especificación y pruebas.
+recibo aún requiere especificación y pruebas.
+
+La unidad WU-034 implementó **solo** la identidad propuesta de presentación,
+opción y desafío. Usa JSON ASCII con claves ordenadas y separadores compactos,
+sin normalización Unicode, precedido por dominio v1 y salto de línea para cada
+SHA-256. Rechaza campos desconocidos, IDs de opción duplicados y controles de
+texto, con cotas de tamaño. El guardián todavía debe calcular y verificar por
+sí mismo esos bytes desde la fuente autorizada; el agente no puede entregar un
+digest arbitrario como prueba. La codificación y autenticación del recibo,
+el almacenamiento y consumo de códigos siguen pendientes.
 
 El almacén privado y Git no forman automáticamente una transacción atómica.
 Ante caída entre consumo y commit, escritura parcial, pérdida de fsync o
