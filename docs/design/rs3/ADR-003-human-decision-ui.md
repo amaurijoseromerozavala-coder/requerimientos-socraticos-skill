@@ -22,8 +22,10 @@ guardián, no el LLM, calcula los digests desde bytes canónicos. Solo después
 de mostrar la selección exacta se solicita un código. La eventual verificación
 de código, consumo único y commit Git son una transición indivisible desde la
 perspectiva de admisión: ante caída o incertidumbre no se emite recibo válido.
-La tarjeta de coordenadas aún no ha sustituido la elección PBKDF2 de D03; su
-perfil, longitud de códigos, almacenamiento y recuperación quedan por decidir.
+La decisión posterior del maintainer sustituyó PBKDF2 como mecanismo objetivo
+por códigos impresos y recibos ligados a la selección exacta. La tarjeta
+continúa sin implementación; formato de impresión, custodia y recuperación
+requieren pruebas y decisiones de operación. Véase [ADR-004](ADR-004-printed-code-authority.md).
 
 ## Origen y prueba de presentación
 

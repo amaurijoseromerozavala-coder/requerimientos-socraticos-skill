@@ -15,7 +15,7 @@
   "custom_response_authority_receipt": "FORBIDDEN",
   "custom_response_semantics": "UNCONFIRMED_PROPOSAL_FOR_REINTERPRETATION",
   "reformulation": "NEW_PROPOSAL_NEW_SNAPSHOT_NEW_HASHES_NEW_LINK",
-  "code_profile": "UNDECIDED; D03_LOCAL_PBKDF2_REMAINS_RATIFIED",
+  "code_profile": "PRINTED_COORDINATES_RATIFIED_NOT_ENABLED",
   "qa_primary_comparison": "CANONICAL_PRESENTATION_MANIFEST_VS_GIT_RECEIPT",
   "screenshot_role": "SUPPLEMENTARY_PRESENTATION_EVIDENCE",
   "screenshot_proves_human_viewed": false,

@@ -11,12 +11,35 @@
     "proposal_sha256",
     "snapshot_sha256",
     "canonical_decision_sha256",
+    "presentation_manifest_sha256",
+    "selected_option_id",
+    "selected_option_sha256",
     "nonce",
     "audience",
     "policy_sha256",
+    "card_id",
+    "coordinate",
     "expiry"
   ],
+  "receipt_binding": [
+    "protocol_version",
+    "confirmation_kind",
+    "proposal_sha256",
+    "snapshot_sha256",
+    "presentation_manifest_sha256",
+    "canonical_decision_sha256",
+    "selected_option_id",
+    "selected_option_sha256",
+    "nonce",
+    "audience",
+    "policy_sha256",
+    "card_id",
+    "coordinate",
+    "expiry",
+    "challenge_sha256"
+  ],
   "canonical_encoding": "VERSIONED_CANONICAL_BYTES_TO_BE_SPECIFIED_AND_TESTED",
+  "selected_option_rule": "STABLE_ID_AND_TYPED_OPTION_DIGEST; EQUAL_TEXT_DISTINCT_IDS_REMAIN_DISTINCT",
   "nonce_rule": "ISSUED_AND_CONSUMED_BY_INDEPENDENT_AUTHORITY_PER_CONFIRMATION",
   "expiry_rule": "VERIFY_UNDER_DECLARED_CLOCK_POLICY_OR_BLOCK",
   "replay": "BLOCK",
@@ -29,7 +52,7 @@
   "operation_gate": "SEPARATE",
   "profiles": {
     "LOCAL_PBKDF2": {
-      "decision_status": "RATIFIED_DESIGN_TARGET_UNVERIFIED",
+      "decision_status": "SUPERSEDED_NON_AUTHORITATIVE_COMPONENT",
       "runtime_enforcement": "NOT_IMPLEMENTED",
       "required_boundary": "SEPARATE_LOCAL_ACCOUNT",
       "confirmation_frequency": "EVERY_CONFIRMATION",
@@ -47,10 +70,17 @@
       "unverified": ["CLOCK_POLICY", "REPLAY_AND_RATE_LIMIT", "DEVICE_RECOVERY"]
     },
     "PRINTED_COORDINATES": {
-      "decision_status": "OPTION_NOT_ADOPTED",
+      "decision_status": "RATIFIED_DESIGN_TARGET_UNVERIFIED",
       "runtime_enforcement": "NOT_IMPLEMENTED",
       "required_boundary": "CARD_AND_UNUSED_CHALLENGES_INDEPENDENT_OF_AGENT",
-      "unverified": ["ONE_TIME_CONSUMPTION", "LOSS_AND_REISSUE", "HUMAN_CHANNEL"]
+      "code_format": "CRYPTOGRAPHIC_RANDOM_128_BITS_MINIMUM; FORMAT_AND_PRINTING_PENDING",
+      "code_storage": "GUARDIAN_PRIVATE_ONLY; NO_CODE_OR_VERIFIER_IN_PUBLIC_GIT",
+      "consumption": "ATOMIC_ADMISSION_OR_BLOCK",
+      "replay": "BLOCK",
+      "uncertain_state": "BLOCK_AND_RECONCILE",
+      "receipt_source": "INDEPENDENT_GUARDIAN; GIT_COMMIT_ALONE_NOT_AUTHENTICATION",
+      "receipt_scope": "EXACT_DECISION_AND_PRESENTATION_MANIFEST",
+      "unverified": ["ONE_TIME_CONSUMPTION", "LOSS_AND_REISSUE", "HUMAN_CHANNEL", "GUARDIAN_CUSTODY", "RECEIPT_AUTHENTICITY", "GIT_DURABILITY_AND_RECOVERY"]
     },
     "PLATFORM_AUTHENTICATOR": {
       "decision_status": "OPTION_NOT_ADOPTED",

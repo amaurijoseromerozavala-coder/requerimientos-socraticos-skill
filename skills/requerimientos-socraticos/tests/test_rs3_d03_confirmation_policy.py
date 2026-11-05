@@ -26,7 +26,7 @@ class D03ConfirmationPolicyTests(unittest.TestCase):
         scope = self.doc['d03']['confirmation_scope']
         for kind in ('SEMANTIC_ACCEPTANCE', 'EXCEPTION_ACCEPTANCE',
                      'OPERATION_AUTHORIZATION'):
-            self.assertEqual(scope[kind], 'FRESH_PBKDF2_BOUND_TO_EXACT_DECISION')
+            self.assertEqual(scope[kind], 'FRESH_PRINTED_CODE_BOUND_TO_EXACT_DECISION')
         self.assertEqual(scope['UNMAPPED'], 'BLOCK')
         self.assertEqual(scope['PROPOSAL_OR_CLARIFICATION'], 'NO_CONFIRMATION')
         self.assertEqual(self.doc['d03']['session_reuse'], 'FORBIDDEN')
@@ -41,7 +41,7 @@ class D03ConfirmationPolicyTests(unittest.TestCase):
 
     def test_public_summary_does_not_mark_d03_undecided(self):
         readme = README.read_text(encoding='utf-8')
-        self.assertIn('D03 exige contraseña para cada confirmación', readme)
+        self.assertIn('D03 exige un código impreso nuevo para cada confirmación', readme)
         self.assertNotIn('resolver D03', readme)
 
 

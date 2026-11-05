@@ -5,6 +5,13 @@ implementación y comprobación material pendientes. El [registro estructurado](
 mantiene `runtime_enforcement=NOT_IMPLEMENTED`, `human_confirmation_enabled=false`
 y `real_authority_gate=SECURITY_BOUNDARY_UNMET`.
 
+**Actualización D03/D04:** el maintainer sustituyó PBKDF2 como mecanismo
+objetivo por códigos impresos de un solo uso y recibos ligados a la decisión.
+Los párrafos de PBKDF2 siguientes describen el componente previo y sus
+límites; no autorizan usarlo como confirmación vigente. La frecuencia D03
+(cada confirmación) y la cuenta separada D05 se conservan. Véase
+[ADR-004](ADR-004-printed-code-authority.md).
+
 La guarda local de UID exige al dar de alta el UID declarado del agente, lo
 rechaza si coincide con la cuenta actual y fija ambos UID en el verificador.
 La comprobación posterior exige que UID real y efectivo coincidan con el UID
@@ -50,7 +57,9 @@ pero no autentica al escritor ni protege frente al mismo UID. Tampoco detecta
 la pérdida de registros finales completos sin un anclaje externo. Una coincidencia
 de contraseña demuestra uso de la credencial, no identidad física absoluta.
 D03 quedó decidida por el maintainer: **cada confirmación** requiere una
-comprobación PBKDF2 nueva vinculada a la decisión y snapshot exactos. Esto
+comprobación nueva vinculada a la decisión y snapshot exactos. El mecanismo
+PBKDF2 descrito aquí fue reemplazado como objetivo por la decisión posterior
+de códigos impresos. Esto
 incluye aceptar una interpretación semántica o excepción y autorizar una
 operación concreta. Preguntas, propuestas y aclaraciones pendientes no son
 confirmaciones. Una categoría no mapeada bloquea; no se reutiliza una

@@ -1,6 +1,7 @@
 # ADR-002 — Protocolo de autoridad portable, con fronteras verificadas por entorno
 
-**Estado:** propuesta de diseño; no reemplaza D03 ni D05, no habilita autoridad.
+**Estado:** protocolo propuesto; el perfil de códigos impresos fue ratificado
+posteriormente como objetivo D03, sin habilitar autoridad. D05 se conserva.
 El [contrato estructurado](authority-portability-contract.json) permanece en
 `PROPOSED_DESIGN_NOT_ENFORCED`. En el equipo objetivo no se ha probado ninguna
 frontera. La persona está usando el teléfono, por lo que no se le exigen ahora
@@ -11,8 +12,9 @@ comandos en su PC.
 La parte portable es un **protocolo de confirmación**, no una contraseña o un
 dispositivo universal. El agente solo propone una decisión. Un emisor ajeno a
 su control crea un desafío que vincula versión de protocolo, categoría D03,
-digest de propuesta, digest de snapshot, digest de los bytes canónicos de la
-decisión, nonce, audiencia, digest de política y vencimiento. El verificador
+digest de propuesta, digest de snapshot, digest del manifiesto de presentación,
+digest de los bytes canónicos de la decisión, nonce, audiencia, digest de
+política y vencimiento. El verificador
 comprueba todos esos campos juntos, consume el nonce de forma atómica y emite
 un recibo autenticado verificable por un componente independiente del agente.
 Una alteración de cualquiera de esos campos exige otro desafío y otro recibo.
@@ -26,7 +28,8 @@ D03 exige una comprobación nueva para **cada** aceptación semántica, excepci�
 aceptada o autorización operativa. No hay confirmación por silencio ni una
 autenticación reutilizable durante toda la sesión. D05 eligió una cuenta local
 separada como sede de autoridad en el perfil Linux/WSL; esa elección se conserva.
-PBKDF2 es el verificador elegido para dicho perfil. La implementación actual
+Los códigos impresos son ahora el perfil objetivo; PBKDF2 permanece como
+componente previo no autoritativo. La implementación actual de PBKDF2
 registra coincidencias sintéticas pero no prueba la separación ni puede emitir
 `HUMAN_CONFIRMED`. Un entorno que no pueda demostrar una frontera fuera del
 alcance del agente queda en `SECURITY_BOUNDARY_UNMET`.
@@ -35,9 +38,9 @@ alcance del agente queda en `SECURITY_BOUNDARY_UNMET`.
 
 | Perfil | Ventaja | Riesgo y requisito para considerarlo |
 |---|---|---|
-| Cuenta local separada + PBKDF2 | Aprovecha la decisión D05 y funciona sin red en Linux/WSL | Hay que probar UID, privilegios, propiedad, terminal, escritura, revocación y control del host; todavía no se hizo en el i3. |
+| Cuenta local separada + PBKDF2 | Componente previo, sin red | Ya no es el mecanismo objetivo; sus pruebas no habilitan D03/D05. |
 | TOTP en teléfono | No requiere que el usuario esté frente al PC y suele funcionar sin red | El reloj, la semilla y el verificador deben estar fuera del agente; un código copiable no demuestra por sí solo qué decisión se aprobó, y exige anti-replay y rate limit. No adoptado. |
-| Tarjeta de coordenadas impresa | No depende de teléfono ni reloj | Impresión, custodia, consumo único, pérdida y reemisión complican la operación. No adoptado. |
+| Tarjeta de coordenadas impresa | Perfil objetivo sin red ni reloj para el código | Exige códigos aleatorios de alta entropía, custodia privada, consumo único, recuperación y recibo auténtico. Ratificado como diseño; no implementado. |
 | Autenticador de plataforma con desafío | Puede proteger una clave privada en un dispositivo compatible y ligar un desafío | Depende de capacidades y origen/audiencia verificados; no es universal ni está integrado. No adoptado. |
 
 El teléfono puede ser interfaz de preguntas y respuestas ahora, pero su canal

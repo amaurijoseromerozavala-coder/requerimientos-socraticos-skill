@@ -43,8 +43,10 @@ snapshot indicado; su `MODEL_ELIGIBLE` no autentica completitud, verdad de
 evidencias ni autoridad. El permiso de despliegue es un gate distinto. Siguen
 abiertos la implementación y comprobación de la autoridad, la interfaz y el
 alcance de semánticas temporales. D05 fija una [cuenta local separada](docs/design/rs3/ADR-001-local-authority.md)
-como objetivo. D04 eligió PBKDF2 para una contraseña local vinculada a cada
-decisión. Existe un [núcleo de comprobación y auditoría](supervisor/rs3_password_auditor.py),
+como objetivo. D04 eligió inicialmente PBKDF2; esa elección quedó sustituida
+como mecanismo objetivo por [códigos impresos de un solo uso y recibos ligados
+a la decisión](docs/design/rs3/ADR-004-printed-code-authority.md). El código
+PBKDF2 previo permanece no autoritativo. Existe un [núcleo de comprobación y auditoría](supervisor/rs3_password_auditor.py),
 con un [adaptador de terminal manual](supervisor/rs3_password_cli.py), pero la
 independencia de ese terminal frente al agente no está verificada y no integra
 el flujo RS3.
@@ -55,7 +57,7 @@ La guarda de UID exige declarar el UID del agente al alta y fija ambos UID en
 el verificador. Sigue sin demostrar aislamiento frente a sudo, interop WSL o
 el host Windows; el formato anterior del verificador se rechaza sin migración.
 El gate real sigue bloqueado hasta verificar la cuenta, el canal humano y la
-aplicación de D03. D03 exige contraseña para cada confirmación, vinculada a la
+aplicación de D03. D03 exige un código impreso nuevo para cada confirmación, vinculado a la
 decisión exacta; esta política todavía no está implementada como gate real.
 El paquete no se
 incorporó en bloque al PRD canónico ni está

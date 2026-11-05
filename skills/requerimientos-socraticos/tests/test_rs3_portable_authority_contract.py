@@ -19,8 +19,10 @@ class PortableAuthorityContractTests(unittest.TestCase):
         self.assertEqual(self.contract['status'], 'PROPOSED_DESIGN_NOT_ENFORCED')
         self.assertEqual(set(self.contract['challenge_binding']), {
             'protocol_version', 'confirmation_kind', 'proposal_sha256',
-            'snapshot_sha256', 'canonical_decision_sha256', 'nonce',
-            'audience', 'policy_sha256', 'expiry',
+            'snapshot_sha256', 'canonical_decision_sha256',
+            'presentation_manifest_sha256', 'selected_option_id',
+            'selected_option_sha256', 'nonce',
+            'audience', 'policy_sha256', 'card_id', 'coordinate', 'expiry',
         })
         self.assertEqual(self.contract['unknown_or_incomplete'], 'BLOCK')
         self.assertEqual(self.contract['replay'], 'BLOCK')
@@ -39,10 +41,12 @@ class PortableAuthorityContractTests(unittest.TestCase):
         self.assertEqual(self.decision['d03']['choice'], 'EVERY_CONFIRMATION')
         profiles = self.contract['profiles']
         self.assertEqual(profiles['LOCAL_PBKDF2']['decision_status'],
-                         'RATIFIED_DESIGN_TARGET_UNVERIFIED')
+                         'SUPERSEDED_NON_AUTHORITATIVE_COMPONENT')
         self.assertEqual(profiles['LOCAL_PBKDF2']['required_boundary'],
                          'SEPARATE_LOCAL_ACCOUNT')
-        for name in ('TOTP', 'PRINTED_COORDINATES', 'PLATFORM_AUTHENTICATOR'):
+        self.assertEqual(profiles['PRINTED_COORDINATES']['decision_status'],
+                         'RATIFIED_DESIGN_TARGET_UNVERIFIED')
+        for name in ('TOTP', 'PLATFORM_AUTHENTICATOR'):
             self.assertEqual(profiles[name]['decision_status'], 'OPTION_NOT_ADOPTED')
             self.assertEqual(profiles[name]['runtime_enforcement'], 'NOT_IMPLEMENTED')
 
