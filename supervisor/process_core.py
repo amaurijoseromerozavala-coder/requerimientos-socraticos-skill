@@ -107,7 +107,10 @@ class ProcessSupervisor:
                 if not entry.name.isdecimal():
                     continue
                 observed += 1
-                if observed > 4096:
+                # A host may retain thousands of unrelated zombies. Keep a
+                # finite scan budget, but do not classify the target group as
+                # live merely because the old 4096-entry ceiling was reached.
+                if observed > 32768:
                     return True
                 try:
                     raw = Path(entry.path, 'stat').read_text()[:4096]
