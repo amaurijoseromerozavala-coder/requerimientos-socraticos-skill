@@ -53,6 +53,14 @@ sí mismo esos bytes desde la fuente autorizada; el agente no puede entregar un
 digest arbitrario como prueba. La codificación y autenticación del recibo,
 el almacenamiento y consumo de códigos siguen pendientes.
 
+WU-035 añadió un registro POSIX **sin códigos** que conserva
+`AVAILABLE → PENDING → SPENT` bajo bloqueo y fsync. `PENDING` sobrevive al
+reinicio; una etapa de escritura incompleta bloquea hasta reconciliar el
+archivo principal, y reconciliar nunca libera una coordenada pendiente.
+El registro acepta un digest propuesto, no comprueba que provenga del guardián;
+su resultado sigue sin autoridad. Verificación del código, consumo auténtico,
+recibo, separación D05 y pruebas en el equipo objetivo siguen pendientes.
+
 El almacén privado y Git no forman automáticamente una transacción atómica.
 Ante caída entre consumo y commit, escritura parcial, pérdida de fsync o
 incertidumbre de estado, el guardián bloquea la admisión y reconcilia antes
