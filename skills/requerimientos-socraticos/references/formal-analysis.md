@@ -171,6 +171,17 @@ con las dependencias instaladas para el analizador. La supervisión depende de
 un SO responsivo y controla al hijo directo, no descendientes arbitrarios.
 No confirma decisiones ni acredita el navegador o hardware objetivo.
 
+`analyze_to_view.py --format question-json` usa el mismo informe supervisado y
+verificado para emitir únicamente la primera pregunta propuesta de un posible
+lote. `question_count` indica cuántos escenarios había; la siguiente pregunta
+requiere otro intercambio y gestión de estado externa. `question_sha256` se
+calcula sobre JSON canónico (UTF-8, claves ordenadas, sin espacios) de
+`model_sha256`, `glossary_sha256` y el objeto `question`, precedido por
+`rs3-question-handoff/v1` y un salto de línea. Un cambio en esos campos
+invalida esa identidad. La salida declara `NOT_GRANTED` y
+`NOT_ESTABLISHED`: el hash identifica bytes propuestos, no autentica una
+fuente, confirma significado humano ni autoriza actos. No registra respuestas.
+
 ## Capacidad y envolvente material
 
 scripts/probe_environment.py realiza lectura local limitada, sin benchmark ni red.
