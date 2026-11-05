@@ -199,6 +199,33 @@ El evento inicial se denomina `QUESTION_PROPOSED`: producir el registro no
 prueba que la pregunta se haya mostrado a una persona. `WAITING_USER` indica
 solo que el registro no tiene respuesta.
 
+Para custodia local POSIX, el usuario prepara **fuera de cualquier Git** una
+raíz privada propia con modo 0700. `private_interrogation_store.py create
+RAIZ handoff.json` crea una sesión 0600 y devuelve solo su ID.
+`private_interrogation_store.py present RAIZ ID` exige stdout TTY, escribe
+la pregunta con plazo de tres segundos y conserva un recibo 0600 con SHA-256
+de los bytes entregados al descriptor; los controles de formato Unicode
+potencialmente engañosos aparecen escapados. El recibo se escribe y sincroniza
+en un archivo de etapa antes de enlazar el nombre final sin sobreescribirlo.
+Un fallo parcial de escritura no crea recibo. Un corte durante la etapa puede
+dejar un archivo `stage-ID.json` privado; la siguiente entrega reconcilia
+esa etapa antes de reintentar. Si el corte ocurre después del enlace,
+la respuesta reconcilia los dos nombres del mismo inodo antes de leer el
+recibo completo. Un enlace ajeno o metadatos inseguros bloquean la operación.
+`private_interrogation_store.py respond RAIZ ID
+--response-file respuesta.txt` exige ese recibo, guarda la respuesta en una
+actualización atómica y devuelve solo estado e ID. Se admite `-` para leer
+la respuesta desde stdin bajo supervisión del invocador.
+
+El recibo significa `TTY_WRITE_COMPLETED`, **no** que una persona vio la
+pregunta. La raíz debe no estar sincronizada externamente; el programa
+comprueba permisos, symlinks y pertenencia Git visible, pero no puede probar
+que un directorio externo esté libre de sincronización ni contener a un
+atacante con el mismo UID. Fallar tras un reemplazo pero antes de su fsync
+puede dejar el resultado de persistencia incierto: releer antes de reintentar.
+La sesión no escribe al Git de autoridad, no autentica respuestas y no
+habilita D03/D05 o producción.
+
 ## Capacidad y envolvente material
 
 scripts/probe_environment.py realiza lectura local limitada, sin benchmark ni red.
