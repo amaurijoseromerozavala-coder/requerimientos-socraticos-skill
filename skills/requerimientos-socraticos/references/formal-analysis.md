@@ -182,6 +182,23 @@ invalida esa identidad. La salida declara `NOT_GRANTED` y
 `NOT_ESTABLISHED`: el hash identifica bytes propuestos, no autentica una
 fuente, confirma significado humano ni autoriza actos. No registra respuestas.
 
+`record_interrogation.py start handoff.json` construye un registro
+`WAITING_USER`; `record_interrogation.py respond historia.json
+--response-file respuesta.txt` añade texto literal y cambia a
+`INTERPRETATION_REVIEW`. El valor `-` para `--response-file` lee stdin; ese
+productor necesita supervisión externa si puede bloquearse. La herramienta
+solo emite JSON por stdout; su invocador debe guardar historial y respuestas
+en custodia privada. Los archivos se leen con cotas (1 MiB para JSON, 8 KiB
+para respuesta), y no se imprime contenido de entrada en errores. Incluso
+una frase que diga «confirmo» queda `UNVERIFIED_RELAY`:
+`authority_verification=NOT_ESTABLISHED` y `execution_authorized=false`.
+El digest del handoff se recalcula y los campos anidados son cerrados, pero
+eso no autentica la fuente ni prueba que el humano vio la pregunta. No se
+registra en Git de autoridad ni se implementa el gate D03/D05.
+El evento inicial se denomina `QUESTION_PROPOSED`: producir el registro no
+prueba que la pregunta se haya mostrado a una persona. `WAITING_USER` indica
+solo que el registro no tiene respuesta.
+
 ## Capacidad y envolvente material
 
 scripts/probe_environment.py realiza lectura local limitada, sin benchmark ni red.
