@@ -31,9 +31,14 @@ eleva automáticamente límites ni autoridad; uno insuficiente devuelve
 variar por plataforma (venv, paquete o imagen), pero debe satisfacer el mismo
 contrato comprobable. Docker no es requisito implícito.
 
-**Brecha actual:** `requirements.txt` fija dependencias directas, pero no
-incluye un lock de todas las transitivas con hashes para cada plataforma;
-`Dockerfile` tampoco fija el digest de la imagen base. Por tanto, este
+El instalador Linux/WSL `prepare_runtime.py` usa `requirements-runtime.lock`
+con versiones transitivas y hashes de distribuciones, exige CPython 3.12,
+ruedas binarias y destino nuevo. La prueba material cubrió Linux x86_64 en
+cloud; otras plataformas y el hardware WSL del usuario siguen `NOT_RUN`.
+El resultado de instalación enumera el SHA-256 de cada rueda seleccionada.
+CI aún instala desde `requirements.txt` y no verifica este lock; el intérprete
+base y pip no están fijados byte a byte, y `Dockerfile` no fija el digest de
+la imagen base. Por tanto, este
 repositorio aún no demuestra reproducción byte a byte del runtime en cualquier
 hardware. La instalación portable debe registrar exactamente qué artefactos
 resolvió y rechazar una variante no verificada; no puede presentar la salida

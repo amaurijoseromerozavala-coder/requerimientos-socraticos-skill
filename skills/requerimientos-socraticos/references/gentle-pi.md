@@ -16,20 +16,30 @@ juntos. Las rutas con espacios y symlinks son admitidas en Linux/WSL.
 
 ## Preparar el intérprete una vez
 
-Desde la raíz del repositorio clonado, si el operador autoriza preparar el entorno:
+Desde la raíz del repositorio clonado, si el operador autoriza preparar el entorno
+en Linux/WSL y dispone de una ruta absoluta a CPython 3.12:
 
 ```bash
-python3 -m venv .venv
-.venv/bin/python -m pip install -r requirements.txt
+RS3_PYTHON="$(readlink -f "$(command -v python3.12)")"
+"$RS3_PYTHON" skills/requerimientos-socraticos/scripts/prepare_runtime.py \
+  --python "$RS3_PYTHON" --target "$PWD/.venv"
 REQUIREMENTS_PYTHON="$PWD/.venv/bin/python" \
   bash skills/requerimientos-socraticos/scripts/requirements activate --path "$PWD"
 ```
 
-Python 3.12 es la versión de referencia comprobada. No se promete compatibilidad
-con todas las versiones ni disponibilidad de dependencias en todos los equipos.
+El instalador comprueba `requirements-runtime.lock` por SHA-256, instala desde
+una instantánea privada de sus bytes con hashes y ruedas binarias, y exige que
+`.venv` aún no exista. No modifica un entorno previo. Si el host carece de una
+rueda compatible, espacio visible o promoción atómica sin reemplazo, bloquea.
+El resultado lista las versiones y SHA-256 de las ruedas elegidas por `pip`.
+Ante plazo agotado se envía SIGKILL al grupo y se recolecta el líder; esto no
+confirma cada descendiente ni contiene procesos que abandonen ese grupo.
+Una instalación lograda no establece D05 ni prueba la frontera de autoridad.
+La prueba material observada cubre Linux x86_64 en cloud; WSL y otras
+arquitecturas siguen sin ensayar con este instalador.
 Desde 2.4.8, conservar el clon oficial y configurar Pi para cargar la skill desde
 él; una copia aislada sin repositorio no acredita source_checkout y bloquea
-workers. REQUIREMENTS_PYTHON selecciona el intérprete, no sustituye el clon. No hay instalador automático de paquetes.
+workers. REQUIREMENTS_PYTHON selecciona el intérprete, no sustituye el clon.
 
 Orden sin selección explícita: `.venv/bin/python` de la skill, `.venv/bin/python`
 del repositorio y entorno configurado en XDG_DATA_HOME para la skill. No hay
