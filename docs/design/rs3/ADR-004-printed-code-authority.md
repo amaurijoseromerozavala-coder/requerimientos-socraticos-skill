@@ -61,6 +61,22 @@ El registro acepta un digest propuesto, no comprueba que provenga del guardián;
 su resultado sigue sin autoridad. Verificación del código, consumo auténtico,
 recibo, separación D05 y pruebas en el equipo objetivo siguen pendientes.
 
+WU-036 añadió un **verificador sintético no autoritativo** al registro local.
+Provisiona hashes SHA-256 con sal por coordenada en un archivo privado y solo
+compara un código para una reserva PENDING con digest de desafío coincidente.
+Un intento correcto, incorrecto o malformado gasta la coordenada antes de
+devolver el resultado; una etapa incierta bloquea. El aprovisionamiento rechaza
+códigos duplicados y mantiene un marcador bloqueante hasta sincronizar el
+archivo y el directorio. Una falla en esa sincronización deja la provisión
+sin confirmar y exige reconciliación fuera de esta unidad. Si se pierde el
+borrado del marcador tras un reinicio, este reaparece y bloquea la
+disponibilidad; no se infiere que el aprovisionamiento terminó. Este hash es un verificador
+de prueba: ni la longitud del código demuestra entropía, ni la sal mitiga por
+sí sola códigos débiles. El mismo UID todavía controla almacén y proceso;
+faltan emisión/custodia independiente, autenticación del desafío, recibo y la
+frontera D05. Por ello, incluso `code_match=true` no confirma al humano ni
+autoriza una operación.
+
 El almacén privado y Git no forman automáticamente una transacción atómica.
 Ante caída entre consumo y commit, escritura parcial, pérdida de fsync o
 incertidumbre de estado, el guardián bloquea la admisión y reconcilia antes
