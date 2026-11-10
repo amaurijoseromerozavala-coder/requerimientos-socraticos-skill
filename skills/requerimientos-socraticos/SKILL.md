@@ -59,6 +59,9 @@ las lecturas de directorios mutables son lint sin autoridad. Informa estado y pe
 - [Schema PRD](assets/prd.schema.json)
 - [Schema entrevista](assets/interview.schema.json)
 - [Schema propuestas](assets/design-proposals.schema.json)
+- [Despliegue de autoridad RS3](references/authority-deployment.md): evaluar el
+  perfil y sus falsadores antes de proponer instalación; `requirements activate`
+  no establece D05 ni autoriza operaciones.
 
 ## Sondeo y análisis formal 2.4
 

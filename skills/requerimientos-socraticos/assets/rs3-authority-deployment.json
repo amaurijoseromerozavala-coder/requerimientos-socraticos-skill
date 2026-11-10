@@ -1,0 +1,76 @@
+{
+  "schema": "rs3-authority-deployment/v1",
+  "selected_target": "POSIX_SPLIT_UID_LINUX_WSL",
+  "runtime_enforcement": "NOT_IMPLEMENTED",
+  "authority_verification": "NOT_ESTABLISHED",
+  "execution_authorized": false,
+  "promotion_rule": "MATERIAL_NEGATIVE_TESTS_AND_INDEPENDENT_RECEIPT_REQUIRED",
+  "runtime_replication": {
+    "status": "NOT_ESTABLISHED",
+    "required_evidence": [
+      "SOURCE_COMMIT_VERIFIED",
+      "PYTHON_ABI_AND_ARCH_COMPATIBLE",
+      "TRANSITIVE_DEPENDENCIES_HASH_LOCKED",
+      "TOOL_VERSIONS_VERIFIED",
+      "CLEAN_RUNTIME_RECONSTRUCTED",
+      "HOST_RESOURCE_ADMISSION",
+      "HOST_SECURITY_BOUNDARY_RECHECK"
+    ],
+    "current_gaps": [
+      "TRANSITIVE_DEPENDENCIES_NOT_HASH_LOCKED",
+      "BASE_IMAGE_NOT_DIGEST_PINNED",
+      "GUARDIAN_AND_UI_NOT_IMPLEMENTED"
+    ]
+  },
+  "observed_current_cloud": {
+    "status": "BLOCKED",
+    "reason": "Agent UID 1000 read and wrote the synthetic authority store."
+  },
+  "profiles": {
+    "POSIX_SPLIT_UID_LINUX_WSL": {
+      "status": "TARGET_UNVERIFIED",
+      "execution_authorized": false,
+      "required_evidence": [
+        "DISTINCT_GUARDIAN_UID",
+        "AGENT_CANNOT_READ_OR_WRITE_GUARDIAN_STORE",
+        "AGENT_CANNOT_ELEVATE_OR_CONTROL_GUARDIAN",
+        "TRUSTED_HUMAN_UI_ORIGIN",
+        "EXACT_DECISION_BINDING",
+        "ONE_TIME_CODE_CONSUMPTION",
+        "INDEPENDENT_GUARDIAN_RECEIPT",
+        "PRIVATE_GIT_WRITER_BOUNDARY",
+        "REVOCATION_AND_RECOVERY",
+        "TRUSTED_CLOCK_AND_EXPIRY",
+        "NONCE_REPLAY_GUARD",
+        "GUARDIAN_RECOMPUTES_CHALLENGE",
+        "AGENT_CANNOT_CONTROL_HUMAN_UI_OR_SESSION",
+        "AGENT_CANNOT_ACCESS_RECEIPT_KEY"
+      ],
+      "wsl_additional_evidence": [
+        "WSL_INTEROP_NEGATIVE_TEST",
+        "WINDOWS_HOST_CONTROL_ASSESSMENT"
+      ],
+      "hardware_target": "NOT_RUN"
+    },
+    "SINGLE_UID": {
+      "status": "BLOCKED",
+      "execution_authorized": false,
+      "reason": "Agent and guardian share file and process authority."
+    },
+    "MANAGED_CLOUD": {
+      "status": "TARGET_UNVERIFIED",
+      "execution_authorized": false,
+      "reason": "Requires its own independent guardian and human-channel assessment; the current cloud instance is blocked."
+    },
+    "WINDOWS_ACL": {
+      "status": "FUTURE_UNVERIFIED",
+      "execution_authorized": false,
+      "reason": "Separate accounts, ACLs, browser origin and key custody require platform-specific tests."
+    },
+    "UNKNOWN": {
+      "status": "BLOCKED",
+      "execution_authorized": false,
+      "reason": "Missing environment facts do not authorize execution."
+    }
+  }
+}
