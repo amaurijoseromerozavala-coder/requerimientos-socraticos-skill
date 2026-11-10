@@ -60,6 +60,15 @@ class PrintedCodeVerifier:
     def __init__(self, root):
         self.root = Path(root).absolute()
 
+    def require_ready(self, card_id, coordinate):
+        """Check provisioning without exposing verifier bytes or claiming custody.
+
+        This is a point-in-time availability check, not an atomic reservation.
+        """
+        doc = self._read()
+        if doc['card_id'] != card_id or coordinate not in doc['verifiers']:
+            raise CodeVerifierBlocked('VERIFIER_COORDINATE_MISMATCH')
+
     @classmethod
     def initialize(cls, root, codes):
         """Provision fixture codes once; does not prove entropy or custody."""

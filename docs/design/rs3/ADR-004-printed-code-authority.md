@@ -77,6 +77,16 @@ faltan emisión/custodia independiente, autenticación del desafío, recibo y la
 frontera D05. Por ello, incluso `code_match=true` no confirma al humano ni
 autoriza una operación.
 
+WU-037 enlazó la propuesta completa del desafío con la reserva y la
+comparación sintéticas. Recalcula la identidad desde la pregunta, opciones,
+selección y metadatos, y comprueba que exista un verificador íntegro antes
+de reservar. Un digest libre no es entrada de esta ruta. La comprobación de
+verificador y la reserva aún son operaciones separadas: un actor del mismo
+UID puede modificar el almacén entre ambas, dejar PENDING sin disponibilidad
+de verificación y obligar a reconciliar. La lectura final bloquea el acierto
+si falta el verificador; no demuestra procedencia humana, tiempo vigente,
+custodia independiente ni autorización.
+
 El almacén privado y Git no forman automáticamente una transacción atómica.
 Ante caída entre consumo y commit, escritura parcial, pérdida de fsync o
 incertidumbre de estado, el guardián bloquea la admisión y reconcilia antes

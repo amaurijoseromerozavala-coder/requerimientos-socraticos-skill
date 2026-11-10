@@ -75,6 +75,7 @@
       "identity_builder": "IMPLEMENTED_NON_AUTHORITATIVE",
       "reservation_ledger": "IMPLEMENTED_CODE_FREE_UNAUTHENTICATED",
       "synthetic_code_verifier": "IMPLEMENTED_NON_AUTHORITATIVE",
+      "candidate_reservation_binding": "IMPLEMENTED_NON_AUTHORITATIVE",
       "required_boundary": "CARD_AND_UNUSED_CHALLENGES_INDEPENDENT_OF_AGENT",
       "code_format": "CRYPTOGRAPHIC_RANDOM_128_BITS_MINIMUM; FORMAT_AND_PRINTING_PENDING",
       "code_storage": "GUARDIAN_PRIVATE_ONLY; NO_CODE_OR_VERIFIER_IN_PUBLIC_GIT",
