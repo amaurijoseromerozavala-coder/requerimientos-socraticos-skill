@@ -1,14 +1,20 @@
 """Synthetic and local checks for the non-authorizing D05 agent probe."""
 
 import os
+import io
+import json
 from pathlib import Path
+import socket
 import stat
 import tempfile
+from contextlib import redirect_stdout
 from types import SimpleNamespace
 import unittest
 from unittest import mock
 
-from supervisor.rs3_d05_agent_boundary_preflight import probe_agent_boundary
+from supervisor.rs3_d05_agent_boundary_preflight import (
+    main, observe_agent_host_exposure, probe_agent_boundary,
+)
 
 
 class AgentBoundaryPreflightTests(unittest.TestCase):
@@ -16,6 +22,16 @@ class AgentBoundaryPreflightTests(unittest.TestCase):
         self.tmp = tempfile.TemporaryDirectory()
         self.addCleanup(self.tmp.cleanup)
         self.root = Path(self.tmp.name) / 'authority'
+        patcher = mock.patch(
+            'supervisor.rs3_d05_agent_boundary_preflight.observe_agent_host_exposure',
+            return_value={'checks': {'docker_socket': 'NOT_ASSESSED',
+                                     'wsl_interop': 'NOT_ASSESSED',
+                                     'windows_mount_write': 'NOT_ASSESSED'},
+                          'host_status': 'NOT_ASSESSED',
+                          'privilege_escalation': 'NOT_ASSESSED',
+                          'windows_host_control': 'NOT_ASSESSED'})
+        patcher.start()
+        self.addCleanup(patcher.stop)
 
     def test_equal_or_privileged_uid_fails_closed(self):
         self.root.mkdir(mode=0o700)
@@ -68,6 +84,112 @@ class AgentBoundaryPreflightTests(unittest.TestCase):
             result = probe_agent_boundary(self.root, 2002)
         self.assertEqual(result['local_status'], 'OBSERVED_LOCAL_GUARDS')
         self.assertEqual(result['real_authority_gate'], 'SECURITY_BOUNDARY_UNMET')
+        self.assertIs(result['execution_authorized'], False)
+
+    def test_observed_host_exposure_blocks_local_profile(self):
+        self.root.mkdir(mode=0o700)
+        with mock.patch(
+            'supervisor.rs3_d05_agent_boundary_preflight.observe_agent_host_exposure',
+            return_value={'checks': {'docker_socket': 'EXPOSED'},
+                          'host_status': 'EXPOSURE_OBSERVED',
+                          'privilege_escalation': 'DOCKER_SOCKET_WRITE_PERMISSION_OBSERVED',
+                          'windows_host_control': 'NOT_ASSESSED'}):
+            result = probe_agent_boundary(self.root, os.getuid() + 1)
+        self.assertEqual(result['local_status'], 'FAIL')
+        self.assertEqual(result['host_exposure']['host_status'],
+                         'EXPOSURE_OBSERVED')
+        self.assertIs(result['execution_authorized'], False)
+
+
+class HostExposureTests(unittest.TestCase):
+    def test_accessible_docker_socket_and_enabled_interop_are_exposures(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            docker = root / 'docker.sock'
+            interop = root / 'WSLInterop'
+            interop.write_text('enabled\ninterpreter /init\n')
+            with socket.socket(socket.AF_UNIX) as sock:
+                sock.bind(str(docker))
+                with (mock.patch('supervisor.rs3_d05_agent_boundary_preflight._is_windows_mount',
+                                 return_value=True),
+                      mock.patch('supervisor.rs3_d05_agent_boundary_preflight.os.access',
+                                 return_value=True)):
+                    result = observe_agent_host_exposure(
+                        docker_socket=docker, interop_path=interop,
+                        windows_mount=root)
+            self.assertEqual(set(result['checks'].values()), {'EXPOSED'})
+            self.assertEqual(result['host_status'], 'EXPOSURE_OBSERVED')
+            self.assertIs(result['execution_authorized'], False)
+
+    def test_missing_signals_do_not_prove_isolation(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            result = observe_agent_host_exposure(
+                docker_socket=root / 'missing.sock',
+                interop_path=root / 'missing-interop', windows_mount=root)
+            self.assertEqual(result['host_status'], 'NOT_ASSESSED')
+            self.assertNotIn('PASS', str(result))
+            self.assertIs(result['execution_authorized'], False)
+
+    def test_regular_file_or_non_windows_mount_is_not_exposure(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            docker = root / 'docker.sock'
+            docker.write_text('ordinary file')
+            interop = root / 'WSLInterop'
+            interop.write_text('disabled\n')
+            with (mock.patch('supervisor.rs3_d05_agent_boundary_preflight._is_windows_mount',
+                             return_value=False),
+                  mock.patch('supervisor.rs3_d05_agent_boundary_preflight.os.access',
+                             return_value=True)):
+                result = observe_agent_host_exposure(
+                    docker_socket=docker, interop_path=interop,
+                    windows_mount=root)
+            self.assertEqual(result['checks']['docker_socket'], 'NOT_ASSESSED')
+            self.assertEqual(result['checks']['wsl_interop'], 'DISABLED_OBSERVED')
+            self.assertEqual(result['checks']['windows_mount_write'], 'NOT_ASSESSED')
+            self.assertNotEqual(result['host_status'], 'EXPOSURE_OBSERVED')
+
+    def test_write_only_socket_permission_remains_exposed(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            docker = root / 'docker.sock'
+            with socket.socket(socket.AF_UNIX) as sock:
+                sock.bind(str(docker))
+                def write_only(path, mode):
+                    return path == docker and mode == os.W_OK
+                with mock.patch('supervisor.rs3_d05_agent_boundary_preflight.os.access',
+                                side_effect=write_only):
+                    result = observe_agent_host_exposure(
+                        docker_socket=docker, interop_path=root / 'missing',
+                        windows_mount=root)
+            self.assertEqual(result['checks']['docker_socket'], 'EXPOSED')
+            self.assertEqual(result['host_status'], 'EXPOSURE_OBSERVED')
+
+    def test_writeable_windows_mount_is_reflected_in_host_control(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            interop = root / 'WSLInterop'
+            interop.write_text('disabled\n')
+            with (mock.patch('supervisor.rs3_d05_agent_boundary_preflight._is_windows_mount',
+                             return_value=True),
+                  mock.patch('supervisor.rs3_d05_agent_boundary_preflight.os.access',
+                             return_value=True)):
+                result = observe_agent_host_exposure(
+                    docker_socket=root / 'missing.sock', interop_path=interop,
+                    windows_mount=root)
+            self.assertEqual(result['checks']['windows_mount_write'], 'EXPOSED')
+            self.assertEqual(result['windows_host_control'],
+                             'WINDOWS_MOUNT_WRITE_OBSERVED')
+
+    def test_agent_only_cli_requires_no_guardian(self):
+        output = io.StringIO()
+        with redirect_stdout(output):
+            exit_code = main(['--agent-only'])
+        result = json.loads(output.getvalue())
+        self.assertEqual(exit_code, 0)
+        self.assertEqual(result['schema'], 'rs3-d05-agent-host-exposure/v1')
+        self.assertEqual(result['authority_verification'], 'NOT_ESTABLISHED')
         self.assertIs(result['execution_authorized'], False)
 
 

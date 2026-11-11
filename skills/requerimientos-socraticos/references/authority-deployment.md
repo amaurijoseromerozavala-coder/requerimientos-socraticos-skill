@@ -95,6 +95,16 @@ de solo lectura puede ejecutarse con
 Su resultado nunca habilita autoridad por sí mismo. Si el módulo no está
 instalado junto a una skill portable, registrar `NOT_RUN`; no inferir PASS.
 
+Sin cuenta guardián designada, `python3 -B
+supervisor/rs3_d05_agent_boundary_preflight.py --agent-only` observa de forma
+pasiva UID efectivo, capacidades, permiso de acceso al socket Docker, WSLInterop
+y escritura en un montaje Windows identificado. `EXPOSED` significa que se
+observó una vía de control potencial incompatible con la frontera de autoridad;
+**no** demuestra que se haya alterado el futuro almacén del guardián. Ausencia
+de esas señales es `NOT_ASSESSED`, nunca prueba aislamiento. El sondeo no invoca
+`sudo`, Docker, PowerShell ni `wsl.exe`, y no sustituye las pruebas negativas
+con guardián real ni la evaluación de permisos del host Windows.
+
 ## Evidencia y transiciones
 
 El orden es: diseño confirmado → fixtures sintéticos → cuentas y custodia
@@ -112,3 +122,11 @@ devolvió `authority_verification=NOT_ESTABLISHED` y
 `execution_authorized=false`. La UI, Git privado y segundo UID fueron
 `NOT_RUN`. Esa observación falsó D05 en **esa topología**, no determina la
 capacidad del equipo Linux/WSL del usuario.
+
+Una transcripción proporcionada por el operador de una corrida acotada en su
+WSL informa instalación WU039 satisfactoria y regresión completa exit 0. La
+suite usó el límite interno de 1 GiB de `ci/run_quality.sh`; el intento de
+imponer 512 MiB no ejecutó las pruebas. Su origen se clasifica
+`USER_REPORTED`, distinto de la ejecución local cloud y de un gate D05. No
+había guardián designado, por lo que el sondeo de cuenta/ruta permaneció
+`NOT_RUN`; producción y autoridad siguen bloqueadas.

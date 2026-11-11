@@ -54,6 +54,11 @@ seleccionado. No cambiar el proyecto objetivo por el repositorio de la skill.
 Si faltan intérprete/helpers, informar INTERPRETER_UNAVAILABLE/HELPER_UNAVAILABLE;
 continuar solo con entrevista/documentos, sin inventar sondeo ni autorización.
 
+El sondeo de exposición D05 sin guardián designado está en el repositorio
+completo: `python3 -B supervisor/rs3_d05_agent_boundary_preflight.py
+--agent-only`. Solo observa señales locales y siempre deja autoridad sin
+establecer; no se incluye en una copia aislada de la skill.
+
 ## Diagnóstico y correcciones con Pi
 
 1. Leer AGENTS.md del proyecto y confirmar alcance existente antes de editar.
