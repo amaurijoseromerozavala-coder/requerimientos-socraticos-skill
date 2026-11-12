@@ -13,7 +13,7 @@ import unittest
 from unittest import mock
 
 from supervisor.rs3_d05_agent_boundary_preflight import (
-    _other_windows_mount_write, main, observe_agent_host_exposure,
+    _is_windows_mount, _other_windows_mount_write, main, observe_agent_host_exposure,
     probe_agent_boundary,
 )
 
@@ -229,6 +229,34 @@ class HostExposureTests(unittest.TestCase):
                 self.assertEqual(_other_windows_mount_write(inventory), 'NOT_ASSESSED')
             inventory.write_bytes(b'x' * (1024 * 1024 + 1))
             self.assertEqual(_other_windows_mount_write(inventory), 'NOT_ASSESSED')
+
+    def test_aname_prefix_does_not_identify_windows_mount(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            inventory = root / 'mountinfo'
+            inventory.write_text(
+                f'101 80 0:33 / {root} rw - 9p D: rw,aname=drvfs-backup\n'
+                f'102 80 0:34 / {root} rw - 9p D: rw,other=aname=drvfs\n')
+            with mock.patch('supervisor.rs3_d05_agent_boundary_preflight.os.access',
+                            return_value=True):
+                self.assertEqual(_other_windows_mount_write(inventory),
+                                 'NOT_ASSESSED')
+            with mock.patch('builtins.open', return_value=io.BytesIO(
+                    inventory.read_bytes())):
+                self.assertFalse(_is_windows_mount(root))
+
+    def test_complete_aname_value_with_wsl_parameters_is_windows_mount(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            inventory = root / 'mountinfo'
+            inventory.write_text(
+                f'101 80 0:33 / {root} rw - 9p D: rw,aname=drvfs;path=D:\\;uid=1000\n')
+            with mock.patch('supervisor.rs3_d05_agent_boundary_preflight.os.access',
+                            return_value=True):
+                self.assertEqual(_other_windows_mount_write(inventory), 'EXPOSED')
+            with mock.patch('builtins.open', return_value=io.BytesIO(
+                    inventory.read_bytes())):
+                self.assertTrue(_is_windows_mount(root))
 
     def test_write_only_socket_permission_remains_exposed(self):
         with tempfile.TemporaryDirectory() as directory:

@@ -27,6 +27,17 @@ def _effective_caps():
         return 'NOT_ASSESSED'
 
 
+def _is_windows_filesystem(right):
+    if len(right) < 3:
+        return False
+    if right[0] == b'drvfs':
+        return True
+    if right[0] != b'9p':
+        return False
+    return any(option.split(b';', 1)[0] == b'aname=drvfs'
+               for option in right[2].split(b','))
+
+
 def _is_windows_mount(mount):
     """Identify a WSL Windows drive mount; an ordinary /mnt/c is insufficient."""
     try:
@@ -40,9 +51,8 @@ def _is_windows_mount(mount):
             if len(fields) != 2:
                 continue
             left, right = fields[0].split(), fields[1].split()
-            if (len(left) > 4 and left[4] == wanted and len(right) > 2
-                    and (right[0] == b'drvfs'
-                         or (right[0] == b'9p' and b'aname=drvfs' in right[2]))):
+            if (len(left) > 4 and left[4] == wanted
+                    and _is_windows_filesystem(right)):
                 return True
     except OSError:
         pass
@@ -63,9 +73,7 @@ def _other_windows_mount_write(mountinfo_path=Path('/proc/self/mountinfo'),
             if len(fields) != 2:
                 continue
             left, right = fields[0].split(), fields[1].split()
-            if not (len(left) > 4 and len(right) > 2 and
-                    (right[0] == b'drvfs' or
-                     (right[0] == b'9p' and b'aname=drvfs' in right[2]))):
+            if not (len(left) > 4 and _is_windows_filesystem(right)):
                 continue
             encoded = re.sub(rb'\\([0-7]{3})',
                              lambda match: bytes((int(match.group(1), 8),)),
