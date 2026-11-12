@@ -6,6 +6,8 @@ códigos reales, controla el navegador ni concede autoridad. La activación
 **no establece D05**, aun cuando informe `READY_FOR_LIVE_ADMISSION`.
 El contrato de perfiles es
 [`rs3-authority-deployment.json`](../assets/rs3-authority-deployment.json).
+La [secuencia de preparación de dos cuentas](d05-split-account-runbook.md)
+explicita las pruebas negativas y puertas de parada para el operador WSL.
 
 ## Perfil elegido y alternativas
 
@@ -98,7 +100,9 @@ instalado junto a una skill portable, registrar `NOT_RUN`; no inferir PASS.
 Sin cuenta guardián designada, `python3 -B
 supervisor/rs3_d05_agent_boundary_preflight.py --agent-only` observa de forma
 pasiva UID efectivo, capacidades, permiso de acceso al socket Docker, WSLInterop
-y escritura en un montaje Windows identificado. `EXPOSED` significa que se
+y escritura en la raíz de los montajes `drvfs`/`9p` identificados, incluidos
+volúmenes adicionales visibles en `mountinfo`. No descarta escritura en
+subdirectorios ni otras vías al host. `EXPOSED` significa que se
 observó una vía de control potencial incompatible con la frontera de autoridad;
 **no** demuestra que se haya alterado el futuro almacén del guardián. Ausencia
 de esas señales es `NOT_ASSESSED`, nunca prueba aislamiento. El sondeo no invoca

@@ -8,6 +8,7 @@ import argparse
 import json
 import os
 from pathlib import Path
+import re
 import stat
 
 
@@ -48,13 +49,46 @@ def _is_windows_mount(mount):
     return False
 
 
+def _other_windows_mount_write(mountinfo_path=Path('/proc/self/mountinfo'),
+                               *, excluded=Path('/mnt/c')):
+    """Observe other writable drvfs mounts without exposing host paths."""
+    try:
+        with mountinfo_path.open('rb') as stream:
+            raw = stream.read(1024 * 1024 + 1)
+        if len(raw) > 1024 * 1024:
+            return 'NOT_ASSESSED'
+        found = False
+        for line in raw.splitlines():
+            fields = line.split(b' - ', 1)
+            if len(fields) != 2:
+                continue
+            left, right = fields[0].split(), fields[1].split()
+            if not (len(left) > 4 and len(right) > 2 and
+                    (right[0] == b'drvfs' or
+                     (right[0] == b'9p' and b'aname=drvfs' in right[2]))):
+                continue
+            encoded = re.sub(rb'\\([0-7]{3})',
+                             lambda match: bytes((int(match.group(1), 8),)),
+                             left[4])
+            mount = Path(os.fsdecode(encoded))
+            if mount == excluded:
+                continue
+            found = True
+            if os.access(mount, os.W_OK):
+                return 'EXPOSED'
+        return 'WRITE_DENIED_OBSERVED' if found else 'NOT_ASSESSED'
+    except (OSError, ValueError):
+        return 'NOT_ASSESSED'
+
+
 def observe_agent_host_exposure(*, docker_socket=Path('/var/run/docker.sock'),
                                 interop_path=Path('/proc/sys/fs/binfmt_misc/WSLInterop'),
                                 windows_mount=Path('/mnt/c')):
     """Passive exposure observations; absence never proves isolation."""
     checks = {'docker_socket': 'NOT_ASSESSED',
               'wsl_interop': 'NOT_ASSESSED',
-              'windows_mount_write': 'NOT_ASSESSED'}
+              'windows_mount_write': 'NOT_ASSESSED',
+              'other_windows_mount_write': 'NOT_ASSESSED'}
     agent_uid, effective_uid = os.getuid(), os.geteuid()
     caps = _effective_caps()
     try:
@@ -79,6 +113,8 @@ def observe_agent_host_exposure(*, docker_socket=Path('/var/run/docker.sock'),
         checks['windows_mount_write'] = (
             'EXPOSED' if os.access(windows_mount, os.W_OK)
             else 'WRITE_DENIED_OBSERVED')
+    checks['other_windows_mount_write'] = _other_windows_mount_write(
+        excluded=windows_mount)
     exposed = ('EXPOSED' in checks.values() or caps == 'NONZERO'
                or agent_uid != effective_uid)
     return {
@@ -96,7 +132,8 @@ def observe_agent_host_exposure(*, docker_socket=Path('/var/run/docker.sock'),
         'windows_host_control': ('INTEROP_EXPOSED_UNVERIFIED'
                                  if checks['wsl_interop'] == 'EXPOSED'
                                  else 'WINDOWS_MOUNT_WRITE_OBSERVED'
-                                 if checks['windows_mount_write'] == 'EXPOSED'
+                                 if (checks['windows_mount_write'] == 'EXPOSED' or
+                                     checks['other_windows_mount_write'] == 'EXPOSED')
                                  else 'NOT_ASSESSED'),
         'authority_verification': 'NOT_ESTABLISHED',
         'execution_authorized': False,

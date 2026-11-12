@@ -13,7 +13,8 @@ import unittest
 from unittest import mock
 
 from supervisor.rs3_d05_agent_boundary_preflight import (
-    main, observe_agent_host_exposure, probe_agent_boundary,
+    _other_windows_mount_write, main, observe_agent_host_exposure,
+    probe_agent_boundary,
 )
 
 
@@ -102,6 +103,13 @@ class AgentBoundaryPreflightTests(unittest.TestCase):
 
 
 class HostExposureTests(unittest.TestCase):
+    def setUp(self):
+        patcher = mock.patch(
+            'supervisor.rs3_d05_agent_boundary_preflight._other_windows_mount_write',
+            return_value='NOT_ASSESSED')
+        patcher.start()
+        self.addCleanup(patcher.stop)
+
     def test_accessible_docker_socket_and_enabled_interop_are_exposures(self):
         with tempfile.TemporaryDirectory() as directory:
             root = Path(directory)
@@ -117,16 +125,26 @@ class HostExposureTests(unittest.TestCase):
                     result = observe_agent_host_exposure(
                         docker_socket=docker, interop_path=interop,
                         windows_mount=root)
-            self.assertEqual(set(result['checks'].values()), {'EXPOSED'})
+            self.assertEqual(result['checks']['docker_socket'], 'EXPOSED')
+            self.assertEqual(result['checks']['wsl_interop'], 'EXPOSED')
+            self.assertEqual(result['checks']['windows_mount_write'], 'EXPOSED')
+            self.assertEqual(result['checks']['other_windows_mount_write'],
+                             'NOT_ASSESSED')
             self.assertEqual(result['host_status'], 'EXPOSURE_OBSERVED')
             self.assertIs(result['execution_authorized'], False)
 
     def test_missing_signals_do_not_prove_isolation(self):
         with tempfile.TemporaryDirectory() as directory:
             root = Path(directory)
-            result = observe_agent_host_exposure(
-                docker_socket=root / 'missing.sock',
-                interop_path=root / 'missing-interop', windows_mount=root)
+            with (mock.patch('supervisor.rs3_d05_agent_boundary_preflight._effective_caps',
+                             return_value='ZERO'),
+                  mock.patch('supervisor.rs3_d05_agent_boundary_preflight.os.getuid',
+                             return_value=1001),
+                  mock.patch('supervisor.rs3_d05_agent_boundary_preflight.os.geteuid',
+                             return_value=1001)):
+                result = observe_agent_host_exposure(
+                    docker_socket=root / 'missing.sock',
+                    interop_path=root / 'missing-interop', windows_mount=root)
             self.assertEqual(result['host_status'], 'NOT_ASSESSED')
             self.assertNotIn('PASS', str(result))
             self.assertIs(result['execution_authorized'], False)
@@ -138,7 +156,13 @@ class HostExposureTests(unittest.TestCase):
             docker.write_text('ordinary file')
             interop = root / 'WSLInterop'
             interop.write_text('disabled\n')
-            with (mock.patch('supervisor.rs3_d05_agent_boundary_preflight._is_windows_mount',
+            with (mock.patch('supervisor.rs3_d05_agent_boundary_preflight._effective_caps',
+                             return_value='ZERO'),
+                  mock.patch('supervisor.rs3_d05_agent_boundary_preflight.os.getuid',
+                             return_value=1001),
+                  mock.patch('supervisor.rs3_d05_agent_boundary_preflight.os.geteuid',
+                             return_value=1001),
+                  mock.patch('supervisor.rs3_d05_agent_boundary_preflight._is_windows_mount',
                              return_value=False),
                   mock.patch('supervisor.rs3_d05_agent_boundary_preflight.os.access',
                              return_value=True)):
@@ -149,6 +173,62 @@ class HostExposureTests(unittest.TestCase):
             self.assertEqual(result['checks']['wsl_interop'], 'DISABLED_OBSERVED')
             self.assertEqual(result['checks']['windows_mount_write'], 'NOT_ASSESSED')
             self.assertNotEqual(result['host_status'], 'EXPOSURE_OBSERVED')
+
+    def test_nonzero_effective_capabilities_are_exposure(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            with mock.patch('supervisor.rs3_d05_agent_boundary_preflight._effective_caps',
+                            return_value='NONZERO'):
+                result = observe_agent_host_exposure(
+                    docker_socket=root / 'missing.sock',
+                    interop_path=root / 'missing-interop', windows_mount=root)
+        self.assertEqual(result['host_status'], 'EXPOSURE_OBSERVED')
+        self.assertEqual(result['privilege_escalation'], 'ELEVATED_PROCESS_OBSERVED')
+        self.assertIs(result['execution_authorized'], False)
+
+    def test_other_windows_mount_exposure_propagates(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            interop = root / 'WSLInterop'
+            interop.write_text('disabled\n')
+            with mock.patch(
+                'supervisor.rs3_d05_agent_boundary_preflight._other_windows_mount_write',
+                return_value='EXPOSED'):
+                result = observe_agent_host_exposure(
+                    docker_socket=root / 'missing.sock', interop_path=interop,
+                    windows_mount=root)
+        self.assertEqual(result['host_status'], 'EXPOSURE_OBSERVED')
+        self.assertEqual(result['windows_host_control'],
+                         'WINDOWS_MOUNT_WRITE_OBSERVED')
+        self.assertIs(result['execution_authorized'], False)
+
+
+    def test_other_drive_is_detected_without_default_drive(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            mountpoint = root / 'd drive'
+            mountpoint.mkdir()
+            inventory = root / 'mountinfo'
+            encoded = str(mountpoint).replace(' ', r'\040')
+            inventory.write_text(
+                f'101 80 0:33 / {encoded} rw - 9p D: rw,aname=drvfs\n')
+            with mock.patch('supervisor.rs3_d05_agent_boundary_preflight.os.access',
+                            side_effect=lambda path, mode: path == mountpoint and mode == os.W_OK):
+                result = _other_windows_mount_write(inventory, excluded=Path('/mnt/c'))
+        self.assertEqual(result, 'EXPOSED')
+
+    def test_non_windows_mount_and_oversized_inventory_do_not_pass(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            inventory = root / 'mountinfo'
+            inventory.write_text(
+                f'101 80 0:33 / {root} rw - ext4 drvfs rw\n'
+                f'102 80 0:34 / {root} rw - 9p D: rw,aname=other\n')
+            with mock.patch('supervisor.rs3_d05_agent_boundary_preflight.os.access',
+                            return_value=True):
+                self.assertEqual(_other_windows_mount_write(inventory), 'NOT_ASSESSED')
+            inventory.write_bytes(b'x' * (1024 * 1024 + 1))
+            self.assertEqual(_other_windows_mount_write(inventory), 'NOT_ASSESSED')
 
     def test_write_only_socket_permission_remains_exposed(self):
         with tempfile.TemporaryDirectory() as directory:
