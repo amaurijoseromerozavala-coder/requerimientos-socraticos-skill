@@ -1,0 +1,76 @@
+{
+  "record_kind": "post-review-delivery-record",
+  "not_a_native_receipt": true,
+  "reviewed_candidate": {
+    "target_identity": "sha256:5eedce639332d10448ec1d4ae92279afcbaea42059a188196544336170f728ed",
+    "git_tree": "2d663d82a49efb13f4aeabb247fdcd5c5d77fb9e",
+    "paths": [
+      "odd/tasks/rs3-agent-bootstrap.md",
+      "wsl/rs3_bootstrap.py",
+      "wsl/test_rs3_bootstrap.py"
+    ],
+    "identity_verification": "Exact worktree bytes and 100644 modes match the approved tree."
+  },
+  "rdd": {
+    "lineage": "review-0a3aacb8e57d7570",
+    "historical_cli_transcript": {
+      "capture_validation": {
+        "exit_code": 0,
+        "state": "approved"
+      },
+      "acknowledge_approved": {
+        "exit_code": 0,
+        "action": "acknowledged",
+        "authority": "burned",
+        "consumed_revision": "sha256:ac9cfb68b725c759de20a5089a9dfb897ab1d9a635c33cf7411d4cb513ebf853"
+      }
+    },
+    "current_cli_status": {
+      "source": "Parent-observed official CLI status with explicit three-path selection",
+      "target_identity": "sha256:5eedce639332d10448ec1d4ae92279afcbaea42059a188196544336170f728ed",
+      "exit_code": 0,
+      "next_transition_kind": "stop",
+      "reason_code": "target_already_acknowledged"
+    }
+  },
+  "delivery_gate_separate_from_rdd": {
+    "command": "gentle-ai review validate --gate pre-commit --cwd <repository-root>",
+    "source": "Previously executed official CLI transcript",
+    "exit_code": 0,
+    "result": "invalidated",
+    "allowed": false,
+    "action": "repository-policy",
+    "delivery": "unmanaged",
+    "reason": "review enforcement is enabled but no review authority governs this candidate, so delivery follows ordinary repository policy",
+    "interpretation": "No permission is inferred from exit code or unmanaged delivery. AGENTS.md WU-BACKUP and the exact approved, acknowledged RDD govern backup."
+  },
+  "verification_history": {
+    "source": "Prior executed test transcript; temporary raw logs are no longer present and are not reconstructed",
+    "red": {
+      "command": "python3 -B -m unittest discover -s wsl -p test_rs3_bootstrap.py -v",
+      "exit_code": 1,
+      "scope": "Latent-membership correction before implementation; failures included shared-fixture effects, not eight independent reproductions."
+    },
+    "green": {
+      "command": "python3 -B -m unittest discover -s wsl -p test_rs3_bootstrap.py -v",
+      "exit_code": 0,
+      "tests": 13
+    },
+    "regression": {
+      "command": "python3 -B -m unittest supervisor.tests.test_rs3_d05_agent_boundary_preflight -v",
+      "exit_code": 0,
+      "tests": 18
+    },
+    "real_runtime": "NOT_RUN"
+  },
+  "limitations": [
+    "The ODD file is preserved as reviewed; its pre-closure progress text is historical, not the final RDD status recorded here.",
+    "Current files systemd NSS source coverage is not established; the reviewed files-only preflight blocks it.",
+    "The bootstrap has not been applied and no real accounts were created.",
+    "The reviewed alternate-root test seam is not isolation for real account commands."
+  ],
+  "rollback_boundary": "Remove only the three reviewed candidate files and this later delivery record; no runtime rollback or account deletion is implied.",
+  "D05": "NOT_ESTABLISHED",
+  "execution_authorized": false,
+  "record_scope": "This later record references the reviewed candidate; it was not part of that candidate and grants no approval to itself."
+}
