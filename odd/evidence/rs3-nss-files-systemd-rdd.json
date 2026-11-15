@@ -1,0 +1,109 @@
+{
+  "record_kind": "post-review-delivery-record",
+  "not_a_native_receipt": true,
+  "reviewed_candidate": {
+    "target_identity": "sha256:539622c37c232bd75f580e0131c36a84dc96e2d074383766aba3b4ec590b0541",
+    "git_tree": "c0c6bfd08cae71e9cdf7993075804effa47ac6d3",
+    "base_commit": "4fcb0baa601c76b087b057cf8c8425eaf8b3a1e4",
+    "base_tree": "c8527dde875e2cc2421f62ce4bf4e3b5583d3909",
+    "paths": [
+      "odd/tasks/rs3-nss-files-systemd.md",
+      "wsl/rs3_bootstrap.py",
+      "wsl/rs3_nss.py",
+      "wsl/test_rs3_bootstrap.py",
+      "wsl/test_rs3_nss_systemd.py"
+    ],
+    "identity_verification": "Exact worktree bytes and 100644 modes match the approved frozen tree."
+  },
+  "rdd": {
+    "lineage": "review-e2c4cc40aaa381e9",
+    "source": "Observed native CLI stdout artifacts; this record is a sanitized later summary, not a native receipt.",
+    "native_risk_level": "medium",
+    "selected_lenses": [
+      "review-risk",
+      "review-resilience",
+      "review-readability",
+      "review-reliability"
+    ],
+    "reviewer_results": [
+      {
+        "lens": "review-risk",
+        "findings": [],
+        "result_hash": "sha256:e8ffe429f06b97c27f0e032d9bcf64ee028b8ca7245f876657eb1ce6bf5570b5"
+      },
+      {
+        "lens": "review-resilience",
+        "findings": [],
+        "result_hash": "sha256:70e78eeb54d3b4aca3a19ba390dcf9f81ac356363f89fc9d075b0e0f426a9c12"
+      },
+      {
+        "lens": "review-readability",
+        "findings": [],
+        "result_hash": "sha256:4ff2b296f589fb30cd4bec1521942150c00593ea0744e11b63b16d89536be83d"
+      },
+      {
+        "lens": "review-reliability",
+        "findings": [],
+        "result_hash": "sha256:16a18dafdaecc3d23cb6217165993897e603b1c29015c0b6af1573d2e6d3a5b2"
+      }
+    ],
+    "capture_result_exit_codes": {
+      "risk": 0,
+      "resilience": 0,
+      "readability": 0,
+      "reliability": 0
+    },
+    "closure_state": "approved",
+    "acknowledgement": {
+      "exit_code": 0,
+      "action": "acknowledged",
+      "target_identity": "sha256:539622c37c232bd75f580e0131c36a84dc96e2d074383766aba3b4ec590b0541",
+      "consumed_revision": "sha256:53a461e2f50ce2b0a92528c18a169a413d070e4584606d241eff416af1c90148",
+      "authority": "burned"
+    }
+  },
+  "delivery_gate_separate_from_rdd": {
+    "command": "gentle-ai review validate --gate pre-commit --cwd <repository-root>",
+    "source": "Parent-observed official CLI execution before staging",
+    "exit_code": 0,
+    "result": "invalidated",
+    "allowed": false,
+    "action": "repository-policy",
+    "delivery": "unmanaged",
+    "reason": "review enforcement is enabled but no review authority governs this candidate, so delivery follows ordinary repository policy",
+    "interpretation": "The gate alone grants no permission and does not override the approved, acknowledged exact-candidate RDD. AGENTS.md WU-BACKUP governs backup."
+  },
+  "executed_tests": {
+    "source": "Existing user-local evidence logs and recorded exit-code files inspected during delivery audit",
+    "red": {
+      "command": "python3 -B -m unittest discover -s wsl -p test_rs3_nss_systemd.py -v",
+      "exit_code": 1,
+      "tests": 10,
+      "failures": 2,
+      "errors": 2,
+      "scope": "Semantic target-defect RED on the original implementation. A prior test-generation syntax failure is not counted."
+    },
+    "green": {
+      "command": "python3 -B -m unittest discover -s wsl -p 'test_rs3*.py' -v",
+      "exit_code": 0,
+      "tests": 27
+    },
+    "regression": {
+      "command": "python3 -B -m unittest supervisor.tests.test_rs3_d05_agent_boundary_preflight -v",
+      "exit_code": 0,
+      "tests": 18
+    },
+    "real_runtime": "NOT_RUN"
+  },
+  "limitations": [
+    "Coverage is limited to the explicit files/systemd profile, pinned libnss-systemd 255.4-1ubuntu8.17, the allowlisted DynamicUser provider, and absent drop-in directories. Unknown or unproved coverage blocks.",
+    "Checks assume a trusted host/root and stable observed snapshots; they do not guarantee atomic exclusion of hostile root changes.",
+    "Synthetic account commands model expected file changes and do not establish real account-tool behavior or runtime isolation.",
+    "The ODD is preserved exactly as reviewed; its pending RDD text is historical and is superseded by the closure evidence recorded here.",
+    "No real bootstrap was applied and no accounts were created."
+  ],
+  "rollback_boundary": "This unit code, tests, ODD and this later record only; no automatic runtime rollback, account deletion or removal of evidence is implied.",
+  "D05": "NOT_ESTABLISHED",
+  "execution_authorized": false,
+  "record_scope": "Later delivery evidence pointing to the exact reviewed candidate; not part of that candidate, not approval of itself."
+}

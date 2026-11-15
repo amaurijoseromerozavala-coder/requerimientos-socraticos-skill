@@ -20,7 +20,8 @@ class BootstrapTests(unittest.TestCase):
         (self.root / "etc/wsl.conf").write_text("[boot]\nsystemd=true\n")
         (self.root / "etc/os-release").write_text('ID=ubuntu\nVERSION_ID="24.04"\n')
         (self.root / "proc/sys/kernel/osrelease").write_text("microsoft-standard-WSL2")
-        (self.root / "etc/nsswitch.conf").write_text("group: files\ngshadow: files\n")
+        (self.root / "etc/nsswitch.conf").write_text("passwd: files\ngroup: files\ngshadow: files\n")
+        (self.root / "etc/passwd").write_text("root:x:0:0:root:/root:/bin/bash\n")
         (self.root / "etc/group").write_text("root:x:0:\n")
         (self.root / "etc/gshadow").write_text("root:*::\n")
         self.patches = [
@@ -30,12 +31,27 @@ class BootstrapTests(unittest.TestCase):
             patch.object(b.pwd, "getpwuid", side_effect=KeyError),
             patch.object(b.grp, "getgrnam", side_effect=KeyError),
             patch.object(b.grp, "getgrgid", side_effect=KeyError),
+            patch.object(b.nss, "TRUSTED_UID", os.getuid()),
             patch.object(b, "trusted_parent", return_value=None),
         ]
         for p in self.patches:
             p.start()
         self.addCleanup(lambda: [p.stop() for p in reversed(self.patches)])
         self.addCleanup(self.tmp.cleanup)
+
+    def fake_account_command(self, argv):
+        # Model only expected file effects; no host account command is invoked.
+        name = argv[-1]
+        uid = dict((n, u) for n, u, _ in b.ACCOUNTS)[name]
+        if argv[0].endswith("groupadd"):
+            changes = (("group", f"{name}:x:{uid}:\n"),
+                       ("gshadow", f"{name}:!::\n"))
+        else:
+            shell = next(s for n, _, s in b.ACCOUNTS if n == name)
+            changes = (("passwd", f"{name}:x:{uid}:{uid}::/home/{name}:{shell}\n"),)
+        for file, row in changes:
+            with (self.root / "etc" / file).open("a") as stream:
+                stream.write(row)
 
     def test_preflight_accepts_only_observed_config(self):
         self.assertEqual(b.preflight(self.root), b.ORIGINAL)
@@ -84,7 +100,7 @@ class BootstrapTests(unittest.TestCase):
             p.unlink()
 
     def test_apply_orders_commands_and_preserves_original(self):
-        run = Mock()
+        run = Mock(side_effect=self.fake_account_command)
         with patch.object(b, "preflight", return_value=b.ORIGINAL), patch.object(
                 b.os, "chown"), patch.object(b, "run", run), patch.object(
                 b.pwd, "getpwnam", side_effect=lambda n: Mock(
@@ -141,7 +157,7 @@ class BootstrapTests(unittest.TestCase):
             p.write_text(text)
             with self.assertRaises(b.Blocked):
                 b.preflight(self.root)
-        p.write_text("group: files\ngshadow: files\n")
+        p.write_text("passwd: files\ngroup: files\ngshadow: files\n")
         (self.root / "etc/group").write_text("malformed")
         with self.assertRaises(b.Blocked):
             b.preflight(self.root)
@@ -161,11 +177,14 @@ class BootstrapTests(unittest.TestCase):
     def test_effective_groups_checked_before_config_replace(self):
         for target, _, _ in b.ACCOUNTS:
             for extra, wrong_primary in ((True, False), (False, True)):
+                for file, text in (("passwd", "root:x:0:0:root:/root:/bin/bash\n"),
+                                   ("group", "root:x:0:\n"), ("gshadow", "root:*::\n")):
+                    (self.root / "etc" / file).write_text(text)
                 def account(name):
                     uid = dict((n, u) for n, u, _ in b.ACCOUNTS)[name]
                     return Mock(pw_uid=uid, pw_gid=27 if wrong_primary and name == target else uid)
                 with patch.object(b, "preflight", return_value=b.ORIGINAL), patch.object(
-                        b, "run"), patch.object(b.pwd, "getpwnam", side_effect=account), patch.object(
+                        b, "run", side_effect=self.fake_account_command), patch.object(b.pwd, "getpwnam", side_effect=account), patch.object(
                         b.os, "getgrouplist", side_effect=lambda n, g:
                         [g, 27] if extra and n == target else [g]), patch.object(b.os, "chown"):
                     with self.assertRaises(b.Blocked):
