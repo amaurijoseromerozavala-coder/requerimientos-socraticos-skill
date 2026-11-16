@@ -7,18 +7,19 @@ códigos reales, controla el navegador ni concede autoridad. La activación
 El contrato de perfiles es
 [`rs3-authority-deployment.json`](../assets/rs3-authority-deployment.json).
 La [secuencia de preparación de dos cuentas](d05-split-account-runbook.md)
-explicita las pruebas negativas y puertas de parada para el operador WSL.
+documenta los controles Linux ya explorados. El diseño vigente se describe en
+[`ADR-005`](../../../docs/design/rs3/ADR-005-windows-sid-guardian.md).
 
 ## Perfil elegido y alternativas
 
-El primer destino elegido por el humano es Linux/WSL con **agente y guardián
-bajo UIDs distintos**. Es un objetivo de implementación y falsación, no un
-estado listo. El perfil de UID único, incluido el cloud env actualmente
-observado, queda bloqueado para autoridad real. Un cloud gestionado puede
-ejecutar pruebas sintéticas/documentales si carece de cuenta y canal humano
-independientes; otro cloud es `TARGET_UNVERIFIED`, no bloqueado por su nombre
-ni aprobado por parecerse a este. Windows con cuentas y ACL propias permanece por diseñar y
-ensayar; entorno desconocido bloquea.
+El destino ratificado es `WINDOWS_SPLIT_SID_AGENT_WSL_GUARDIAN_WINDOWS`:
+Pi/Codex en WSL iniciado por una cuenta Windows restringida; guardián, UI y
+almacén bajo otra cuenta Windows. Está `TARGET_UNVERIFIED`. Dos UID Linux en
+WSL del **mismo usuario Windows** aportan defensa operativa, sin establecer
+D05. El perfil de UID único queda bloqueado; cloud gestionado requiere una
+evaluación propia y el entorno desconocido bloquea. La instalación existente
+de `rs3-agent` conserva valor como ensayo Linux, no como prueba del nuevo
+perfil. Códigos impresos y recibo auténtico siguen siendo obligatorios.
 
 ## Replicar el entorno sin fijarlo a un hardware
 
@@ -55,9 +56,10 @@ alterar archivos `0600/0700` que posee; esos permisos no crean D05.
 
 ## Preflight material antes de cualquier instalación real
 
-1. Identificar OS, host, UID real/efectivo, propietarios y rutas reales del
+1. Identificar OS, host, SID Windows de ambos roles, UID real/efectivo,
+   propietarios y rutas reales del
    código, almacén y Git privado. Registrar UNKNOWN cuando no se observe.
-2. Exigir cuenta de guardián distinta, sin elevación utilizable por el agente,
+2. Exigir cuenta de guardián con SID Windows distinto, sin elevación utilizable por el agente,
    y comprobar desde la cuenta del agente la imposibilidad de leer o escribir
    almacén, clave de recibos y Git privado. Un resultado favorable de
    `rs3_d05_agent_boundary_preflight.py` es solo observación local; también

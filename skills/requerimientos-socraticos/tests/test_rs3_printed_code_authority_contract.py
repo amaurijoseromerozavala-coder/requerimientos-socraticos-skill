@@ -20,7 +20,7 @@ class PrintedCodeAuthorityContractTests(unittest.TestCase):
         self.assertEqual(self.boundary['d03']['credential_profile'], 'PRINTED_COORDINATES')
         self.assertEqual(self.boundary['d04']['profile_target_status'],
                          'SUPERSEDED_BY_PRINTED_COORDINATES')
-        self.assertEqual(self.boundary['choice'], 'SEPARATE_LOCAL_ACCOUNT')
+        self.assertEqual(self.boundary['choice'], 'WINDOWS_SPLIT_SID_AGENT_WSL_GUARDIAN_WINDOWS')
         self.assertEqual(self.protocol['profiles']['PRINTED_COORDINATES']['decision_status'],
                          'RATIFIED_DESIGN_TARGET_UNVERIFIED')
         self.assertEqual(self.protocol['profiles']['LOCAL_PBKDF2']['decision_status'],

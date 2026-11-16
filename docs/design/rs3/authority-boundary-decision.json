@@ -1,7 +1,7 @@
 {
   "decision_id": "RS3-D05",
   "decision_status": "HUMAN_DECIDED_DESIGN",
-  "choice": "SEPARATE_LOCAL_ACCOUNT",
+  "choice": "WINDOWS_SPLIT_SID_AGENT_WSL_GUARDIAN_WINDOWS",
   "runtime_enforcement": "NOT_IMPLEMENTED",
   "uid_guard": "IMPLEMENTED_TARGET_UNVERIFIED",
   "target_hardware_verification": "NOT_RUN",
@@ -16,6 +16,13 @@
     "run_as_authority_account": false
   },
   "required_target_checks": [
+    "DISTINCT_WINDOWS_SID",
+    "AGENT_STANDARD_WINDOWS_ACCOUNT",
+    "GUARDIAN_PRIVATE_STORE_ACL",
+    "AGENT_CANNOT_READ_CODES_OR_SIGNING_KEY",
+    "TRUSTED_GUARDIAN_UI_SESSION",
+    "EXACT_DECISION_SIGNED_RECEIPT",
+    "AGENT_CANNOT_EXECUTE_PROTECTED_OPERATION",
     "DISTINCT_UID",
     "NO_AGENT_PRIVILEGE_ESCALATION",
     "KEY_OWNERSHIP_AND_ACCESS",

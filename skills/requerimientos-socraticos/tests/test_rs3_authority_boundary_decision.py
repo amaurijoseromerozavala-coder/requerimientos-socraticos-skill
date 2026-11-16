@@ -13,7 +13,7 @@ class AuthorityBoundaryDecisionTests(unittest.TestCase):
     def test_separate_account_is_design_choice_not_runtime_claim(self):
         decision = json.loads(DECISION.read_text(encoding='utf-8'))
         self.assertEqual(decision['decision_id'], 'RS3-D05')
-        self.assertEqual(decision['choice'], 'SEPARATE_LOCAL_ACCOUNT')
+        self.assertEqual(decision['choice'], 'WINDOWS_SPLIT_SID_AGENT_WSL_GUARDIAN_WINDOWS')
         self.assertEqual(decision['decision_status'], 'HUMAN_DECIDED_DESIGN')
         self.assertEqual(decision['runtime_enforcement'], 'NOT_IMPLEMENTED')
         self.assertEqual(decision['real_authority_gate'], 'SECURITY_BOUNDARY_UNMET')
@@ -36,7 +36,9 @@ class AuthorityBoundaryDecisionTests(unittest.TestCase):
     def test_unverified_isolation_cannot_be_described_as_deployed(self):
         decision = json.loads(DECISION.read_text(encoding='utf-8'))
         checks = set(decision['required_target_checks'])
-        self.assertTrue({'DISTINCT_UID', 'NO_AGENT_PRIVILEGE_ESCALATION',
+        self.assertTrue({'DISTINCT_WINDOWS_SID', 'AGENT_STANDARD_WINDOWS_ACCOUNT',
+                         'AGENT_CANNOT_EXECUTE_PROTECTED_OPERATION',
+                         'DISTINCT_UID', 'NO_AGENT_PRIVILEGE_ESCALATION',
                          'KEY_OWNERSHIP_AND_ACCESS', 'STORE_WRITE_ISOLATION',
                          'RECOVERY_AND_REVOCATION'} <= checks)
         adr = ADR.read_text(encoding='utf-8')

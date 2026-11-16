@@ -37,7 +37,7 @@ class PortableAuthorityContractTests(unittest.TestCase):
         self.assertEqual(self.contract['operation_gate'], 'SEPARATE')
 
     def test_ratified_local_profile_and_alternatives_are_distinct(self):
-        self.assertEqual(self.decision['choice'], 'SEPARATE_LOCAL_ACCOUNT')
+        self.assertEqual(self.decision['choice'], 'WINDOWS_SPLIT_SID_AGENT_WSL_GUARDIAN_WINDOWS')
         self.assertEqual(self.decision['d03']['choice'], 'EVERY_CONFIRMATION')
         profiles = self.contract['profiles']
         self.assertEqual(profiles['LOCAL_PBKDF2']['decision_status'],

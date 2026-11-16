@@ -1,6 +1,6 @@
 {
   "schema": "rs3-authority-deployment/v1",
-  "selected_target": "POSIX_SPLIT_UID_LINUX_WSL",
+  "selected_target": "WINDOWS_SPLIT_SID_AGENT_WSL_GUARDIAN_WINDOWS",
   "runtime_enforcement": "NOT_IMPLEMENTED",
   "authority_verification": "NOT_ESTABLISHED",
   "execution_authorized": false,
@@ -29,9 +29,29 @@
     "reason": "Agent UID 1000 read and wrote the synthetic authority store."
   },
   "profiles": {
+    "WINDOWS_SPLIT_SID_AGENT_WSL_GUARDIAN_WINDOWS": {
+      "status": "TARGET_UNVERIFIED",
+      "execution_authorized": false,
+      "required_distinct_windows_sids": true,
+      "same_windows_sid_wsl_uids_sufficient": false,
+      "required_evidence": [
+        "AGENT_STANDARD_WINDOWS_ACCOUNT",
+        "GUARDIAN_DISTINCT_WINDOWS_SID",
+        "GUARDIAN_PRIVATE_STORE_ACL",
+        "AGENT_CANNOT_READ_CODES_OR_SIGNING_KEY",
+        "TRUSTED_GUARDIAN_UI_SESSION",
+        "EXACT_DECISION_SIGNED_RECEIPT",
+        "ONE_TIME_PRINTED_CODE",
+        "AGENT_CANNOT_EXECUTE_PROTECTED_OPERATION",
+        "REVOCATION_AND_RECOVERY",
+        "TARGET_NEGATIVE_TESTS"
+      ],
+      "hardware_target": "NOT_RUN"
+    },
     "POSIX_SPLIT_UID_LINUX_WSL": {
       "status": "TARGET_UNVERIFIED",
       "execution_authorized": false,
+      "same_windows_sid_boundary": "NOT_ESTABLISHED",
       "required_evidence": [
         "DISTINCT_GUARDIAN_UID",
         "AGENT_CANNOT_READ_OR_WRITE_GUARDIAN_STORE",

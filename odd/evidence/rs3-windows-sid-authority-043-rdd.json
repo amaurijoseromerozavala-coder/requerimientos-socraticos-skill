@@ -1,0 +1,17 @@
+{
+  "schema": "rs3-workunit-review-record/v1",
+  "workunit": "WU-RS3-WINDOWS-SID-AUTHORITY-043",
+  "reviewed_candidate": "sha256:95e1c712a3127d5eaad21249f6044e2f5a70becbc786e8a9c17b75550fc62c4d",
+  "review_lineage": "review-31b4216ad0b949a9",
+  "review_result": "approved",
+  "review_acknowledgement": "acknowledged",
+  "review_findings": [],
+  "reviewed_paths_count": 11,
+  "red_observed": "3 documentary tests: 1 failure, 2 errors before contract changes",
+  "green_observed": "16 affected authority tests passed",
+  "regression_observed": "432 skill tests passed with declared dependencies in temporary environment",
+  "target_windows_material_tests": "NOT_RUN",
+  "authority_verification": "NOT_ESTABLISHED",
+  "execution_authorized": false,
+  "scope_note": "This post-review record is not part of the reviewed candidate."
+}

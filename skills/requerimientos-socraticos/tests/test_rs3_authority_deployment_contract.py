@@ -31,13 +31,18 @@ RUNTIME_GATES = {
 
 def assert_fail_closed(testcase, doc):
     testcase.assertEqual(doc['schema'], 'rs3-authority-deployment/v1')
-    testcase.assertEqual(doc['selected_target'], 'POSIX_SPLIT_UID_LINUX_WSL')
+    testcase.assertEqual(doc['selected_target'], 'WINDOWS_SPLIT_SID_AGENT_WSL_GUARDIAN_WINDOWS')
     testcase.assertEqual(doc['runtime_enforcement'], 'NOT_IMPLEMENTED')
     testcase.assertEqual(doc['authority_verification'], 'NOT_ESTABLISHED')
     testcase.assertIs(doc['execution_authorized'], False)
     testcase.assertEqual(set(doc['profiles']), {
         'POSIX_SPLIT_UID_LINUX_WSL', 'SINGLE_UID', 'MANAGED_CLOUD',
-        'WINDOWS_ACL', 'UNKNOWN'})
+        'WINDOWS_ACL', 'UNKNOWN', 'WINDOWS_SPLIT_SID_AGENT_WSL_GUARDIAN_WINDOWS'})
+    windows = doc['profiles']['WINDOWS_SPLIT_SID_AGENT_WSL_GUARDIAN_WINDOWS']
+    testcase.assertEqual(windows['status'], 'TARGET_UNVERIFIED')
+    testcase.assertIs(windows['required_distinct_windows_sids'], True)
+    testcase.assertIs(windows['same_windows_sid_wsl_uids_sufficient'], False)
+    testcase.assertIn('AGENT_CANNOT_EXECUTE_PROTECTED_OPERATION', windows['required_evidence'])
     for profile in doc['profiles'].values():
         testcase.assertIs(profile['execution_authorized'], False)
         testcase.assertNotIn(profile['status'], ('READY', 'HUMAN_CONFIRMED'))
@@ -66,6 +71,7 @@ class AuthorityDeploymentContractTests(unittest.TestCase):
         doc = json.loads(CONTRACT.read_text(encoding='utf-8'))
         changes = [
             ('global_authority', lambda p: p.update(execution_authorized=True)),
+            ('windows_same_sid', lambda p: p['profiles']['WINDOWS_SPLIT_SID_AGENT_WSL_GUARDIAN_WINDOWS'].update(required_distinct_windows_sids=False)),
             ('single_uid_ready', lambda p: p['profiles']['SINGLE_UID'].update(status='READY')),
             ('missing_wsl_falsifier', lambda p: p['profiles']['POSIX_SPLIT_UID_LINUX_WSL']
              ['wsl_additional_evidence'].remove('WSL_INTEROP_NEGATIVE_TEST')),
