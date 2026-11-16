@@ -1,0 +1,18 @@
+{
+  "schema": "rs3-workunit-review-record/v1",
+  "workunit": "RS3-END-TO-END-WEAK-MODEL-001",
+  "reviewed_candidate": "sha256:8cf8ae460ef24ab2321d396278d9473416e551b13686c3bed93b1d1361d689a6",
+  "review_lineage": "review-e3008f359971bee6",
+  "review_result": "approved",
+  "review_acknowledgement": "acknowledged",
+  "review_findings": [],
+  "reviewed_paths_count": 3,
+  "red_observed": "Initial missing module, then five semantic failures; after the first RDD warning, two malformed analyzer reports raised AttributeError before correction.",
+  "green_observed": "Five synthetic vertical tests passed after the correction.",
+  "regression_observed": "437 skill tests passed with declared dependencies in a temporary virtual environment.",
+  "real_weak_model_campaign": "NOT_RUN",
+  "target_windows_material_tests": "NOT_RUN",
+  "authority_verification": "NOT_ESTABLISHED",
+  "execution_authorized": false,
+  "scope_note": "This post-review record is not part of the reviewed candidate."
+}
